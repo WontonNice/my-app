@@ -32,8 +32,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the prime factorization of 756?",
     "promptHtml": "<p><span>What is the prime factorization of 756?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -76,8 +76,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(\\left(8\\div m\\right)+4=20,\\) what is the value of m?",
     "promptHtml": "<p><span>If </span><span>\\(\\left(8\\div m\\right)+4=20,\\)</span><span>&nbsp;what is the value of <em>m</em>?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -120,8 +120,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(6x=x-1\\text{,}680\\)\nWhat is the value of x in the equation shown above?",
     "promptHtml": "<p data-align=\"center\"><span>\\(6x=x-1\\text{,}680\\)</span></p><p><span>What is the value of <em>x</em> in the equation shown above?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -164,8 +164,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A person buys a used car with a down payment of $1,200 and makes monthly payments of $275 for 3 years. What is the total amount the person pays for the car?",
     "promptHtml": "<p><span>A person buys a used car with a down payment of $1,200 and makes monthly payments of $275 for <span>3 years.</span> What is the total amount the person pays for the car?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -208,8 +208,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Maya read n pages for her English homework. Trevor read three times as many pages as Maya. Together, Maya and Trevor read 12 more pages than Ali read. Write an expression that shows how many pages Ali read, in terms of n.\nEnter your answer in the space provided. Enter only your answer.",
     "promptHtml": "<p><span>Maya </span><span>read</span> <span><em>n</em> pages for her English homework. Trevor </span><span>read</span><span> three times as many pages as Maya. Together, Maya and Trevor </span><span>read</span><span> 12 more pages than </span><span>Ali</span> <span>read.</span><span> Write an expression that shows how many pages </span><span>Ali</span> <span>read</span><span>, in terms of <em>n</em>.</span></p><p><span>Enter your answer in the space provided. Enter only your answer.&nbsp;</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Algebraic Expressions",
     "correctTextAnswers": [
       "4n-12"
     ],
@@ -234,8 +234,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In the parallelogram above, what is the value of x?",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-e8809dfe9e69af542188.svg\" alt=\"The image of a parallelogram with two angles shown. Top left  angle has a measure of 3x degrees. Lower left angle has a measure of 2x degrees. \" width=\"170\"></p><p><span>In the parallelogram above, what is the value of <em>x</em>?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Geometry",
+    "subtopic": "Triangles & Polygons",
     "choices": [
       {
         "id": "A",
@@ -278,8 +278,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(-12>6x\\)\nFor what values of x is the above inequality true?",
     "promptHtml": "<p data-align=\"center\"><span>\\(-12&gt;6x\\)</span></p><p><span>For what values of <em>x</em> is the above inequality true?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -323,8 +323,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "prompt": "Jordan is helping plan snacks for a school dance. He knows that 0.75 of the students voted for pizza, and he wants to record the same amount using a fraction.\nWhich fractions are equivalent to the decimal 0.75?\nSelect the four correct answers.",
     "promptHtml": "<p><span>Jordan is helping plan snacks for a school dance. He knows that 0.75 of the students voted for pizza, and he wants to record the same amount using a fraction.</span></p><p><span>Which fractions are equivalent to the decimal 0.75?</span></p><p><span>Select the <strong>four </strong>correct answers.</span></p>",
     "choiceColumns": 2,
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -383,8 +383,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Maria rides her bicycle to school at a constant speed of 15 miles per hour. If the distance to school is 6 miles, how many minutes will it take Maria to get to school?",
     "promptHtml": "<p><span>Maria rides her bicycle to school at a constant speed of <span>15 miles</span> per hour. If the distance to school is <span>6 miles,</span> how many <strong>minutes</strong> will it take Maria to get to school?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -427,8 +427,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In the figure above, \\(n\\parallel p.\\) Straight line m intersects both line n and line p. What is the value of r?",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-5e6dd49f298f85a23cd5.svg\" alt=\"Parallel lines N and P are cut by a transversal line m. the intersection of lines M and N create a angle with the measure of R degrees. A perpendicular line segment to line M also intersects line P to create a right triangle. The right angle is to the far right and the angle above has a measure of 73 degrees. \" width=\"294\"></p><p><span>In the figure above, </span><span>\\(n\\parallel p.\\)</span><span>&nbsp; Straight <span>line <em>m</em></span> intersects both <span>line <em>n</em></span> and <span>line <em>p</em>.</span> What is the value of <em>r</em>?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Geometry",
+    "subtopic": "Lines & Angles",
     "choices": [
       {
         "id": "A",
@@ -471,8 +471,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Allison has 5 stamp albums with 576 stamps in each album. If she transfers her stamp collection to 6 albums, each holding 378 stamps, how many stamps will be left over?",
     "promptHtml": "<p><span>Allison has 5 stamp albums with 576 stamps in each album. If she transfers her stamp collection to 6 albums, each holding 378 stamps, how many stamps will be left over?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -515,8 +515,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A spinner has 5 congruent sections labeled as shown. One side of a fair coin is heads, and the other side is tails.\n\nThe spinner is spun one time, and the coin is flipped. What is the probability that the spinner lands on 1 and the coin lands on tails?\nSelect the place on the number line that represents the probability.",
     "promptHtml": "<p><span>A spinner has 5 congruent sections labeled as shown. One side of a fair coin is heads, and the other side is tails.</span></p><p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-234daf0a725748487434.svg\" alt=\"The image has a spinner with 5 equal sized sections. Next to the spinner is a coin showing heads.\" width=\"375\"></p><p><span>The spinner is spun one time, and the coin is flipped. What is the probability that the spinner lands on 1 and the coin lands on tails?</span></p><p><span>Select the place on the number line that represents the probability.</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability",
     "correctPointIds": [
       "point-2"
     ],
@@ -621,8 +621,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Start with the number 135.28 and perform the following steps in order:\nStep 1: Multiply by 10.\nStep 2: Add 0.5 to the result of Step 1.\nStep 3: Drop the digits after the decimal point.\nStep 4: Divide by 10.\nWhat is the result?",
     "promptHtml": "<p><span>Start with the number 135.28 and perform the following steps in order:</span></p> <ul><li><span>Step 1: Multiply by 10.</span></li><li><span>Step 2: Add 0.5 to the result of Step 1.</span></li><li><span>Step 3: Drop the digits after the decimal point.</span></li><li><span>Step 4: Divide by 10.</span></li></ul> <p><span>What is the result?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -665,8 +665,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(x=-2,\\) what is the value of \\(\\left|x+{x}^{2}+{x}^{3}\\right|-\\left|x+2x+3x\\right|?\\)",
     "promptHtml": "<p><span>If </span><span>\\(x=-2,\\)</span><span> what is the value of </span><span>\\(\\left|x+{x}^{2}+{x}^{3}\\right|-\\left|x+2x+3x\\right|?\\)</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -709,8 +709,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A grocery store sells 1-gallon containers of milk for $3.99. The store also sells orange juice in a 6-pack of 5.5-fluid-ounce bottles for $1.79. Suppose the store wants to sell its orange juice in gallon containers instead. To the nearest dollar, how much more would a gallon of orange juice cost than a gallon of milk?\nEnter your answer in the space.",
     "promptHtml": "<p><span>A grocery store sells </span><span><span>1-<span></span>gallon</span></span><span> containers of milk for $3.99. The store also sells orange juice in a </span><span><span>6-<span></span>pack</span></span><span> of </span><span><span>5.5-fluid-<span></span>ounce</span></span><span> bottles for $1.79. Suppose the store wants to sell its orange juice in gallon containers instead. To the nearest dollar, how much more would a gallon of orange juice cost than a gallon of milk?</span></p><p><span>Enter your answer in the space.</span></p><div><p>\n\n\n</p></div>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Units & Conversions",
     "correctTextAnswers": [
       "3"
     ],
@@ -733,8 +733,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(\\frac{3+\\left(-3\\right)}{3-\\left(-3\\right)}=\\)",
     "promptHtml": "<p data-align=\"left\"><span>\\(\\frac{3+\\left(-3\\right)}{3-\\left(-3\\right)}=\\)</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -777,8 +777,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the distance between the midpoints of \\(\\overline{\\text{MN}}\\) and \\(\\overline{\\text{RS?}}\\)",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-d03d7f22712ec3583148.svg\" alt=\"The image, on a number line, that goes from 0 to 8, with some points labeled, M, R, S, and N., Point M is at 1, Point R is at 3, Point S is at 6, and Point N is at 7. \" width=\"271\"></p><p><span>What is the distance between the midpoints of </span><span>\\(\\overline{\\text{MN}}\\)</span><span> and </span><span>\\(\\overline{\\text{RS?}}\\)</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Geometry",
+    "subtopic": "Coordinates & Segment Relationships",
     "choices": [
       {
         "id": "A",
@@ -821,8 +821,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(\\begin{matrix}\\text{I. }s-t\\\\\\text{II. }s{t}^{2}\\\\\\text{III. }{s}^{t}\\end{matrix}\\)\n\nIf s is a positive integer and t is a negative integer, which of the above expressions must be a positive number?",
     "promptHtml": "<p data-align=\"center\"><span><br></span><span>\\(\\begin{matrix}\\text{I. }s-t\\\\\\text{II. }s{t}^{2}\\\\\\text{III. }{s}^{t}\\end{matrix}\\)</span><span><br><br></span></p><p><span>If <em>s</em> is a positive integer and <em>t</em> is a negative integer, which of the above expressions <strong>must</strong> be a positive number?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -865,8 +865,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of \\(\\left(-\\frac{3}{4}\\right)\\left(-\\frac{2}{5}\\right)?\\)",
     "promptHtml": "<p><span>What is the value of </span><span>\\(\\left(-\\frac{3}{4}\\right)\\left(-\\frac{2}{5}\\right)?\\)</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -907,7 +907,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Two circles, with centers at A and C, are shown. Line segment AB is congruent to line segment DE.\n\nDetermine the area, A, and the circumference, C, of each circle to complete the table.\nSelect one answer in each row.",
     "promptHtml": "<p><span>Two circles, with centers at A and C, are shown. Line </span><span><span>segment </span><span>AB</span></span><span> is congruent to line </span><span><span>segment </span><span>DE.</span></span></p><p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-4a31bdb258b6611e3adb.svg\" alt=\"The image is of 2 circles. The left circle has a center point A, and a radius A, B, that measures 5 units. The circle on the right has a center point C, with a diameter created by line segment E, D\" width=\"303\"></p><p><span>Determine the area, <em>A</em>, and the circumference, <em>C</em>, of each circle to complete the table.</span></p><p><span>Select one answer in each row.&nbsp;</span></p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry",
+    "subtopic": "Circles",
     "categories": [
       {
         "id": "category-1",
@@ -963,8 +964,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a fruit basket, the ratio of apples to oranges is the same as the ratio of cherries to walnuts. If there are 6 oranges, 16 cherries, and 48 walnuts, how many apples are there?",
     "promptHtml": "<p><span>In a fruit basket, the ratio of apples to oranges is the same as the ratio of cherries to walnuts. If there are 6 oranges, 16 cherries, and 48 walnuts, how many apples are there?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1007,8 +1008,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "During a hiking trip, a group of students recorded the elevation (in feet) at several points along the trail:\n\\(-120 \\text{ft,}\\) \\(-80 \\text{ft,}\\) \\(0 \\text{ft,}\\) \\(45 \\text{ft,}\\) \\(-30 \\text{ft,}\\) \\(90 \\text{ft}\\)\nWhat is the difference between the highest and lowest elevations recorded on the trail?\nEnter your answer in the space.",
     "promptHtml": "<p><span>During a hiking trip, a group of students recorded the elevation (in feet) at several points along the trail:</span></p> <p data-align=\"center\"><span>\\(-120 \\text{ft,}\\)</span> &nbsp;<span>\\(-80 \\text{ft,}\\)</span> &nbsp;<span>\\(0 \\text{ft,}\\)</span> &nbsp;<span>\\(45 \\text{ft,}\\)</span> &nbsp;<span>\\(-30 \\text{ft,}\\)</span> &nbsp;<span>\\(90 \\text{ft}\\)</span></p> <p><span>What is the difference between the highest and lowest elevations recorded on the trail?</span></p><p><span>Enter your answer in the space.</span></p><div><p>\n\n\n</p></div>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Integers & Absolute Value",
     "correctTextAnswers": [
       "210"
     ],
@@ -1031,8 +1032,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On parallelogram PQRS above, the length of \\(\\overline{\\text{QT}}\\) is 18 centimeters. What is the area of the parallelogram?",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-f0f5e35acd0cdade40ea.svg\" alt=\"The image of parallelogram PQRS with a line segment QT that is perpendicular to line segment PS creating a right triangle QTP. Line segment QT has a measure of 18 centimeters. Side PS has a length of 34 centimeters and side RS has a length of 22 centimeters.\" width=\"188\"></p><p><span>On parallelogram PQRS above, the length of </span><span>\\(\\overline{\\text{QT}}\\)</span><span>&nbsp;is <span>18 centimeters.</span> What is the area of the parallelogram?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Geometry",
+    "subtopic": "Area & Perimeter",
     "choices": [
       {
         "id": "A",
@@ -1075,8 +1076,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a showing of an artist’s works, the ratio of the number of paintings, drawings, and photographs shown is 3:5:4, respectively. If the number of drawings shown was 45, what is the total number of photographs and paintings that were shown?",
     "promptHtml": "<p><span>In a showing of an artist’s works, the ratio of the number of paintings, drawings, and photographs shown is </span><span>3:5:4,</span><span> respectively. If the number of drawings shown was 45, what is the total number of photographs and paintings that were shown?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1119,8 +1120,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "For each \\(\\frac{3}{8}\\) foot of curtain width, \\(\\frac{5}{6}\\) yard of fabric is needed to make ruffles. How many yards of fabric are needed per foot of curtain width?",
     "promptHtml": "<p><span>For each </span><span>\\(\\frac{3}{8}\\)</span><span> foot of curtain width, </span><span>\\(\\frac{5}{6}\\)</span><span><span>&nbsp;yard</span> of fabric is needed to make ruffles. How many yards of fabric are needed per foot of curtain width?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -1163,8 +1164,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which straight line is the graph of a proportional relationship?",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-b9559b1b950146f364ce.svg\" alt=\"An image of a coordinate grid where the x  axis and y axis go from 0 to 10. Lines T,  R, V,  Q, M,  S, and,  V,  P,  are graphed on the grid. \" width=\"312\"></p><p><span>Which straight line is the graph of a&nbsp;proportional relationship?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1207,8 +1208,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Some friends are buying bags of ice for a picnic. The graph shows the cost of the ice, in dollars, in relation to the weight, in pounds. Which statement about a point on the graph is true?",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-e718f4ca005af2367d93.svg\" alt=\"A graph titled Ice Costs. The x axis goes from 0 to 20 in increments of 2 labeled weight of Ice (pounds). The y axis goes from 0 to 3 in increments of 3 tenths labeled  Cost Dollars. A ray starts at the origin and passes through point 20 3 \" width=\"296\"></p><p><span>Some friends are buying bags of ice for a picnic. The graph shows the cost of the ice, in dollars, in relation to the weight, in pounds. Which statement about a point on the graph is true?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Functions & Graphs",
     "choices": [
       {
         "id": "A",
@@ -1251,8 +1252,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(\\frac{z+3w}{4}=5w,\\) what is the value of \\(z\\) in terms of \\(w\\text{?}\\)\nEnter your answer in the space provided. Enter only your answer.",
     "promptHtml": "<p><span>If </span><span>\\(\\frac{z+3w}{4}=5w,\\)</span><span>&nbsp;what is the value of </span><span>\\(z\\)</span><span><em>&nbsp;</em>in terms of </span><span>\\(w\\text{?}\\)</span></p><p><span>Enter your answer in the space provided. Enter only your answer.&nbsp;</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Equations & Systems",
     "correctTextAnswers": [
       "17w"
     ],
@@ -1278,8 +1279,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A smoothie shop uses a consistent ratio of fruit to yogurt in its recipes. The table shows the proportional relationship between the number of cups of fruit (x) and the number of cups of yogurt (y) in different smoothie batches.\nSMOOTHIE RECIPECups of Fruit x Cups of Yogurt y\n6 1.5\n8 2.0\n10 2.5\n12 3.0\n\nWhat is the constant of proportionality of the number of cups of yogurt to the number of cups of fruit?\nEnter your answer in the space.",
     "promptHtml": "<p><span>A smoothie shop uses a consistent ratio of fruit to yogurt in its recipes. The table shows the proportional relationship between the number of cups of fruit (<em>x</em>) and the number of cups of yogurt (<em>y</em>) in different smoothie batches.</span></p><table data-table-style=\"compact\"><caption><span>SMOOTHIE RECIPE</span></caption><tbody><tr><th scope=\"col\"><span>Cups of Fruit&nbsp;<em>x</em></span></th><th scope=\"col\"><span>Cups of Yogurt&nbsp;<em>y</em></span></th></tr><tr><td data-align=\"center\"><span>6</span></td><td data-align=\"center\"><span>1.5</span></td></tr><tr><td data-align=\"center\"><span>8</span></td><td data-align=\"center\"><span>2.0</span></td></tr><tr><td data-align=\"center\"><span>10</span></td><td data-align=\"center\"><span>2.5</span></td></tr><tr><td data-align=\"center\"><span>12</span></td><td data-align=\"center\"><span>3.0</span></td></tr></tbody></table> <p>&nbsp;</p><p><span>What is the constant of proportionality of the number of cups of yogurt to the number of cups of fruit?</span></p><p><span>Enter your answer in the space.</span></p><div><p>\n\n\n</p></div>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "correctTextAnswers": [
       "0.25",
       "1/4"
@@ -1303,8 +1304,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Out of 2,000 high school seniors, 191 were enrolled in the Honor Society. What percentage of the entire group of 2,000 seniors were in the Honor Society?",
     "promptHtml": "<p><span>Out of 2,000 high school seniors, 191 were enrolled in the Honor Society. What percentage of the entire group of 2,000 seniors were in the Honor Society?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1347,8 +1348,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "NUMBER OF VISITORS TO BROOKSIDE ZOO Male Female\nChildren 360 340\nAdults 210 290\n\nThe table above shows the number of people who visited Brookside Zoo in one day. The largest of the four groups made up what percentage of all visitors on that day?",
     "promptHtml": "<table><caption><span>NUMBER OF VISITORS TO BROOKSIDE ZOO</span></caption><tbody><tr><th data-align=\"center\" scope=\"col\">&nbsp;</th><th scope=\"col\"><span>Male</span></th><th scope=\"col\"><span>Female</span></th></tr><tr><td><span>Children</span></td><td data-align=\"center\"><span>360</span></td><td data-align=\"center\"><span>340</span></td></tr><tr><td><span>Adults</span></td><td data-align=\"center\"><span>210</span></td><td data-align=\"center\"><span>290</span></td></tr></tbody></table> <p data-align=\"center\">&nbsp;</p><p><span>The table above shows the number of people who visited Brookside Zoo in one day. The largest of the four groups made up what percentage of all visitors on that day?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1391,8 +1392,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The box plot shows the average monthly high temperatures in New York City for 12 months. What is the difference between the range and the interquartile range of the temperature data?\nEnter your answer in the space.",
     "promptHtml": "<p data-align=\"center\"></p><p><span><img src=\"/exam-images/2026-2027-form-c-official-shsat-2026-c-82-cf6c648edeb8da46.png\" alt=\"Math diagram\" width=\"300\">The box plot shows the average monthly high temperatures in New York City for <span>12 months.</span> What is the difference between the range and the interquartile range of the temperature </span><span>data?</span></p><p><span>Enter your answer in the space.</span></p><div><p>\n\n\n</p></div>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Averages & Spread",
     "correctTextAnswers": [
       "15"
     ],
@@ -1415,8 +1416,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A bag contains 40 tiles that are either red, green, or blue. A tile is selected at random, the color is recorded, and the tile is put back in the bag. This process is carried out 120 times, and 18 of those times a red tile is selected. Based on the information, what is the most likely number of red tiles in the bag?",
     "promptHtml": "<p><span>A bag contains 40 tiles that are either red, green, or blue. A tile is selected at random, the color is recorded, and the tile is put back in the bag. This process is carried out 120 times, and 18 of those times a red tile is selected. Based on the information, what is the most likely number of red tiles in the bag?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1459,8 +1460,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A teacher will randomly select 3 students to be on a school committee. He will choose either a student from Classroom A or a student from Classroom B with each selection. This tree diagram shows the selection possibilities.\n\nWhat is the probability that the teacher will select 2 students from Classroom A and 1 student from Classroom B (in any order) for the committee?",
     "promptHtml": "<p><span>A teacher will randomly select 3 students to be on a school committee. He will choose either a student from <span>Classroom A</span> or a student from <span>Classroom B</span> with each selection. This tree diagram shows the selection possibilities.</span></p><p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-87725e8763a20934662b.svg\" alt=\"The tree diagram shows the possibilities for three rounds of selection of a student from class A or a student from class B. \" width=\"175\"></p><p><span>What is the probability that the teacher will select 2 students from <span>Classroom A</span> and 1 student from <span>Classroom B</span> (in any order) for the committee?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1503,8 +1504,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(4(a+2b)=28b+2a,\\) what is the value of \\(a\\) in terms of \\(b\\)?\nEnter your answer in the space provided. Enter only your answer.",
     "promptHtml": "<p><span>If </span><span>\\(4(a+2b)=28b+2a,\\)</span><span>&nbsp;what is the value of </span><span>\\(a\\)</span><span>&nbsp;in terms of </span><span>\\(b\\)</span><span>?</span></p><p><span>Enter your answer in the space provided. Enter only your answer.&nbsp;</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Equations & Systems",
     "correctTextAnswers": [
       "10b"
     ],
@@ -1530,8 +1531,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A deck of 52 playing cards contains 13 hearts. Sara has 12 cards from this deck in her hand, 3 of which are hearts. The other cards remain in the deck. What is the probability that a card drawn at random from the remainder of the deck will be a heart?",
     "promptHtml": "<p><span>A deck of 52 playing cards contains 13 hearts. Sara has 12 cards from this deck in her hand, 3 of which are hearts. The other cards remain in the deck. What is the probability that a card drawn at random from the remainder of the deck will be a heart?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1574,8 +1575,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The table shows the probability of randomly picking each flavor of candy from a bowl.\nPICKING CANDY FROM\nA BOWLFlavor Probability\nButterscotch 0.57\nLemon 0.095\nMaple 0.125\nStrawberry 0.21\n\nWhich flavor is most likely to be randomly picked?",
     "promptHtml": "<p><span>The table shows the probability of randomly picking each flavor of candy from a bowl.</span></p><table><caption><span>PICKING CANDY FROM<br>A BOWL</span></caption><tbody><tr><th scope=\"col\"><span>Flavor</span></th><th scope=\"col\"><span>Probability</span></th></tr><tr><td><span>Butterscotch</span></td><td data-align=\"center\"><span>0.57</span></td></tr><tr><td><span>Lemon</span></td><td data-align=\"center\"><span>0.095</span></td></tr><tr><td><span>Maple</span></td><td data-align=\"center\"><span>0.125</span></td></tr><tr><td><span>Strawberry</span></td><td data-align=\"center\"><span>0.21</span></td></tr></tbody></table> <p>&nbsp;</p><p><span>Which flavor is most likely to be randomly picked?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -1618,8 +1619,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "This formula can be used to determine p, the number of pages that will be in a book that contains w words, with an average of r words per page, and f extra pages in the front for the title and publishing information.\n\\(p=\\frac{1}{r}w+f\\)\nIf the formula is solved for w, it can be used to find the number of words in a book with p pages. What will the formula be if it is solved for w?",
     "promptHtml": "<p><span>This formula can be used to determine <em>p</em>, the number of pages that will be in a book that contains <em>w</em> words, with an average of <em>r </em>words per page, and <em>f</em> extra pages in the front for the title and publishing information.</span></p> <p data-align=\"center\"><span>\\(p=\\frac{1}{r}w+f\\)</span></p> <p><span>If the formula is solved for <em>w</em>, it can be used to find the number of words in a book with <em>p</em> pages. What will the formula be if it is solved for <em>w</em>?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -1662,8 +1663,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A shipment contains 170 small boxes of medical supplies. In a random sample of 20 of these boxes, 8 have damage and the others are undamaged. Based on this sample, what is the best prediction of the number of undamaged boxes in the shipment, not including the boxes in the random sample?",
     "promptHtml": "<p><span>A shipment contains 170 small boxes of medical supplies. In a random sample of 20 of these boxes, 8 have damage and the others are undamaged. Based on this sample, what is the best prediction of the number of undamaged boxes in the shipment, <strong>not</strong> including the boxes in the random sample?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1706,8 +1707,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In basketball, a player can earn 1 point for making a free throw and 2 points for making another basket. Marcus makes a mean of 8 free throws per game, and he scores a total of at least 25 points per game. The inequality below shows this relationship, where b represents the number of 2-point baskets Marcus makes.\n\\(2b+8\\ge 25\\)\nWhat is the number of 2-point baskets Marcus needs to make if he wants to score at least his minimum total points for a game and make his mean number of free throws?",
     "promptHtml": "<p><span>In basketball, a player can earn <span>1 point</span> for making a free throw and <span>2 points</span> for making another basket. Marcus makes a mean of 8 free throws per game, and he scores a total of at least <span>25 points</span> per game. The inequality below shows this relationship, where <em>b</em> represents the number of </span><span><span>2-<span></span>point</span></span><span> baskets Marcus makes.</span></p> <p data-align=\"center\"><span>\\(2b+8\\ge 25\\)</span></p> <p><span>What is the number of </span><span>2-point</span><span> baskets Marcus needs to make if he wants to score at <strong>least </strong>his minimum total points for a game and make his mean number of free throws?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -1750,8 +1751,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Elijah is at the school bookstore. He wants to buy a water bottle for $12.50 and some notebooks that cost $4.75 each. He has at most $35.00 to spend. Write an inequality that represents the number of notebooks, n, Elijah can purchase.\nEnter your answer in the space provided. Enter only your answer.",
     "promptHtml": "<p><span>Elijah is at the school bookstore. He wants to buy a water bottle for $12.50 and some notebooks that cost $4.75 each. He has at most $35.00 to spend. Write an inequality that represents the number of notebooks, <em>n</em>, Elijah can purchase.</span></p><p><span>Enter your answer in the space provided. Enter only your answer.&nbsp;</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Inequalities",
     "correctTextAnswers": [
       "12.50+4.75n<=35.00",
       "4.75n+12.50<=35.00"
@@ -1778,8 +1779,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Tariq is making a clay block in the shape of a cube with a side length of \\(20 \\text{cm.}\\) He hollows out the center by removing clay to form a rectangular prism-shaped hole with a base of \\(5 \\text{cm}\\cdot 5 \\text{cm}\\) and a height of \\(20 \\text{cm.}\\)\n\nWhat is the volume, in cubic centimeters, of the block after the clay is removed from the center?\nEnter your answer in the space.",
     "promptHtml": "<p><span>Tariq is making a clay block in the shape of a cube with a side length of </span><span>\\(20 \\text{cm.}\\)</span><span> He hollows out the center by removing clay to form a rectangular prism-shaped hole with a base of </span><span>\\(5 \\text{cm}\\cdot 5 \\text{cm}\\)</span><span> and a height of </span><span>\\(20 \\text{cm.}\\)</span></p><p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-10bb49f092b6822e9ef6.svg\" alt=\"A diagram of a cube with side lengths of twenty centimeters has is a section removed from the middle of the cube in the shape of rectangular prism where the length and width of 5 centimeters and a height of 20 centimeters \" width=\"352\"></p><p><span>What is the volume, in cubic centimeters, of the block after the clay is removed from the center?</span></p><p><span>Enter your answer in the space.</span></p><div><p>\n\n\n</p></div>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Geometry",
+    "subtopic": "Surface Area & Volume",
     "correctTextAnswers": [
       "7500"
     ],
@@ -1802,8 +1803,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A softball player bought bottles of water for her team to have at practice. The total number of bottles she bought, b, is proportional to n, the number of players at practice. Which equation represents the relationship between b and n? The constant of proportionality is p.",
     "promptHtml": "<p><span>A softball player bought bottles of water for her team to have at practice. The total number of bottles she bought, <em>b</em>, is proportional to <em>n</em>, the number of players at practice. Which equation represents the relationship between <em>b</em> and <em>n</em>? The constant of proportionality is <em>p</em>.</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1846,8 +1847,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "",
     "dropdownContentHtml": "<p><span>A smartphone screen is designed to be <span>72 millimeters</span> wide. The quality control team allows for a variation of </span><span>\\(\\pm 4\\%\\)</span><span>&nbsp;in the width. Select the minimum and maximum screen widths that fall within the acceptable range of screen widths, in millimeters.</span></p><p><span>Select the correct answer from each drop-down to complete the sentence.</span></p><div><p><span>The acceptable screen width is from </span><span>\n{{dropdown-1}}\n</span><span> to </span><span>\n{{dropdown-2}}\n</span><span> millimeters.</span></p></div>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Percentages",
     "dropdownContent": [
       "A smartphone screen is designed to be 72 millimeters wide. The quality control team allows for a variation of \\(\\pm 4\\%\\) in the width. Select the minimum and maximum screen widths that fall within the acceptable range of screen widths, in millimeters.\nSelect the correct answer from each drop-down to complete the sentence.\nThe acceptable screen width is from\n{{dropdown-1}}\nto\n{{dropdown-2}}\nmillimeters."
     ],
@@ -1916,8 +1917,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Malik earns $10 per hour at his job. He wants to change to a job that will pay $12 per hour. What will be the percent increase in Malik’s hourly pay if he makes this job change?",
     "promptHtml": "<p><span>Malik</span><span> earns $10 per hour at his job. He wants to change to a job that will pay $12 per hour. What will be the percent increase in </span><span>Malik’s</span><span> hourly pay if he makes this job change?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1960,8 +1961,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A rain gauge shows that 10 centimeters of rain fell yesterday. If 1 inch is equal to approximately 2.5 centimeters, about how many inches of rain fell yesterday?",
     "promptHtml": "<p><span>A rain gauge shows that <span>10 centimeters</span> of rain fell yesterday. If <span>1 inch</span> is equal to approximately <span>2.5 centimeters,</span> about how many inches of rain fell yesterday?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Units & Conversions",
     "choices": [
       {
         "id": "A",
@@ -2004,8 +2005,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The height of a plant, in millimeters, is proportional to the number of days the plant has grown. The plant has grown 20 millimeters in 8 days. What is the constant of proportionality, in millimeters per day?",
     "promptHtml": "<p><span>The height of a plant, in millimeters, is proportional to the number of days the <span>plant has</span> grown. The plant has grown <span>20 millimeters</span> in <span>8 days.</span> What is the constant of proportionality, in millimeters per day?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -2048,8 +2049,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which table shows a proportional relationship?",
     "promptHtml": "<p><span>Which table shows a proportional relationship?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -2093,8 +2094,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "prompt": "The box plot illustrates the number of hours eighth-grade students spend on screens during a typical week. What is the difference between the range and the interquartile range (IQR) of the screen time data?\n\nMove the correct answer to each box. Not all answers will be used.",
     "promptHtml": "<p><span>The box plot illustrates the number of hours eighth-grade students spend on screens during a typical week. What is the difference between the range and the interquartile range (IQR) of the screen time data?</span></p><p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-3a7ce6c862129ef7ef89.svg\" alt=\"A box plot with the title of Number of screen hours for eighth grade students. The number line below the boxplot goes from 5 to 20\" width=\"304\"></p><p><span>Move the correct answer to each box. Not all answers will be used.</span></p>",
     "dragDropContentHtml": "<p><span>The range of screen time hours is </span>{{slot-1}}<span> hours.&nbsp;</span></p> <p><span>The IQR is </span>{{slot-2}}<span> hours.</span></p> <p><span>The difference between the range and the IQR is </span>{{slot-3}}<span> hours.</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Averages & Spread",
     "allowReuse": true,
     "dragDropStyle": "outlined",
     "dragDropContent": [
@@ -2151,8 +2152,8 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Terry wants to pour cement around the edge of the circular patio in her backyard. The patio has a radius of 5 feet. What is the distance, in feet, around the edge of the patio? Use 3.14 for \\(\\pi .\\)",
     "promptHtml": "<p><span>Terry wants to pour cement around the edge of the circular patio in her backyard. The patio has a radius of <span>5 feet.</span> What is the distance, in feet, around the edge of the patio? Use 3.14 for </span><span>\\(\\pi .\\)</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Geometry",
+    "subtopic": "Circles",
     "choices": [
       {
         "id": "A",

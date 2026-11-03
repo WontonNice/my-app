@@ -1,3 +1,4 @@
+import { normalizeCoordinateResponse, normalizeDragDropImage } from './coordinate-response.mjs';
 import {readEnglishTopicSections, englishTopicConfiguration, saveEnglishSectionTopics} from "./english-topic-sections.mjs";
 import { homedir } from "node:os";
 import { createHash, randomBytes } from "node:crypto";
@@ -21,6 +22,7 @@ import { readBank, mutateBank, importCaptures, previewCaptureBatch, applyCapture
 import { createGlossaryRichText } from "./content-studio-glossary.js";
 import { passageCategories, normalizePassageCategory as normalizeCategory, patchPassageCategory } from "./passage-category-editor.mjs";
 import { readMathTopicConfiguration, saveMathTopicConfiguration, validateMathClassification } from "./math-topic-editor.mjs";
+import { examPreviewAsset } from "./exam-preview-bundle.mjs";
 import { mathPreviewAsset } from "./math-preview-bundle.mjs";
 import { compareExamState } from "./exam-duplicates.mjs";
 import { createPartBImports } from "./part-b-import.mjs";
@@ -771,7 +773,7 @@ function normalizeChoice(choice, index, { allowIncomplete = false } = {}) {
 }
 
 function normalizeQuestion(question, passageId, index, { allowIncomplete = false } = {}) {
-  if (['math_drag_drop','inline_dropdown','graph_point_select','number_line_response','numeric_entry','expression_entry','grid_in'].includes(question?.type)) return normalizeMathQuestion(question,passageId,index,{allowIncomplete});
+  if (['coordinate_response','math_drag_drop','inline_dropdown','graph_point_select','number_line_response','numeric_entry','expression_entry','grid_in'].includes(question?.type)) return normalizeMathQuestion(question,passageId,index,{allowIncomplete});
   if (!question || typeof question !== "object" || Array.isArray(question)) {
     throw new EditorError(400, `Question ${index + 1} is invalid.`);
   }
@@ -803,6 +805,7 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
     ...(promptHtml ? { promptHtml } : {}),
     ...(question.selectionHtml ? {selectionHtml:sanitizeRichText(question.selectionHtml)} : {}),
     ...(question.choiceColumns === 2 ? { choiceColumns: 2 } : {}),
+    ...(question.hideChoiceLabels === true ? { hideChoiceLabels: true } : {}),
     ...Object.fromEntries(["dragDropContentHtml","dropdownContentHtml"].filter(key=>question[key]).map(key=>[key,sanitizeRichText(question[key])])),
     topic: allowIncomplete ? String(question.topic || "") : requiredText(question.topic, `Question ${index + 1} topic`),
   };
@@ -986,7 +989,7 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
     return {
       ...baseQuestion,
       categories,
-      ...(isMatrixChoice && question.matrixStyle === 'evidence' ? { matrixStyle: 'evidence' } : {}),
+      ...(isMatrixChoice && ['evidence', 'compact'].includes(question.matrixStyle) ? { matrixStyle: question.matrixStyle } : {}),
       ...(categoryCapacity ? { categoryCapacity } : {}),
       correctPlacements,
       instructions:
@@ -1950,8 +1953,8 @@ function normalizeMathDropdownOption(option, optionIndex, questionNumber, dropdo
 function normalizeCalculatorDisplay(question) {
   const entryLayout = ["plain", "x_equals", "fraction"].includes(question.entryLayout) ? question.entryLayout : "plain";
   const entryVariable = typeof question.entryVariable === "string" ? question.entryVariable.trim().normalize("NFKC") : "";
-  if (question.entryVariable != null && typeof question.entryVariable !== "string" || entryVariable && !/^\p{L}$/u.test(entryVariable)) {
-    throw new EditorError(400, "Calculator variable must be one letter, such as b, w, or n.");
+  if (question.entryVariable != null && typeof question.entryVariable !== "string" || entryVariable && !/^\p{L}(?:\s*,\s*\p{L}){0,2}$/u.test(entryVariable)) {
+    throw new EditorError(400, "Calculator variable must be one letter, or up to three letters separated by commas, such as x, y.");
   }
   const entryPrefixVariable = typeof question.entryPrefixVariable === 'string' ? question.entryPrefixVariable.trim().normalize('NFKC') : '';
   if (question.entryPrefixVariable != null && (typeof question.entryPrefixVariable !== 'string' || !/^\p{L}$/u.test(entryPrefixVariable))) throw new EditorError(400, 'Calculator equation label must be one letter.');
@@ -1992,6 +1995,7 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
     ...(promptHtml ? { promptHtml } : {}),
     ...(question.selectionHtml ? {selectionHtml:sanitizeRichText(question.selectionHtml)} : {}),
     ...(question.choiceColumns === 2 ? { choiceColumns: 2 } : {}),
+    ...(question.hideChoiceLabels === true ? { hideChoiceLabels: true } : {}),
     ...Object.fromEntries(["dragDropContentHtml","dropdownContentHtml"].filter(key=>question[key]).map(key=>[key,sanitizeRichText(question[key])])),
     ...(typeof question.stimulus === "string" && question.stimulus.trim()
       ? { stimulus: question.stimulus.trim() }
@@ -2001,6 +2005,10 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
     ...(typeof question.subtopic === "string" && question.subtopic.trim() ? { subtopic: question.subtopic.trim() } : {}),
   };
 
+  if (type === "coordinate_response") {
+    try { return {...baseQuestion, type, coordinateResponse: normalizeCoordinateResponse(question.coordinateResponse, {allowIncomplete, image: value=>normalizeMathImage(value,questionNumber)})}; }
+    catch(error) { throw new EditorError(400, `Math question ${questionNumber}: ${error.message}`); }
+  }
   if (type === "multiple_choice" || type === "multi_select") {
     const sourceChoices = Array.isArray(question.choices) ? question.choices : [];
     if (!allowIncomplete && sourceChoices.length < 2 || sourceChoices.length > 8) {
@@ -2085,7 +2093,7 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
           }
           const width = slot?.width == null ? undefined : Number(slot.width);
           if (width != null && (!Number.isFinite(width) || width < 28 || width > 1000)) throw new EditorError(400, `Math question ${questionNumber} box ${slotIndex + 1} width must be between 28 and 1000 pixels.`);
-          return { correctItemId, id: slotId, ...(width != null ? { width } : {}) };
+          return { correctItemId, id: slotId, ...(width != null ? { width } : {}), ...Object.fromEntries(["left","top","height"].filter(k=>slot[k]!=null).map(k=>[k,Number(slot[k])])) };
         })
       : [];
     if (!dragDropSlots.length || new Set(dragDropSlots.map((slot) => slot.id)).size !== dragDropSlots.length) {
@@ -2115,6 +2123,7 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
     return {
       ...baseQuestion,
       allowReuse: question.allowReuse === true,
+      ...(question.dragDropImage ? {dragDropImage:normalizeDragDropImage(question.dragDropImage,dragDropSlots,value=>normalizeMathImage(value,questionNumber))} : {}),
       ...(question.dragDropStyle ? { dragDropStyle: question.dragDropStyle } : {}),
       dragDropContent,
       dragDropSlots,
@@ -3664,6 +3673,19 @@ async function handleRequest(request, response) {
       const operation = url.pathname === '/api/standalone-import' ? 'import' : url.pathname.endsWith('/publish') ? 'publish' : 'save';
       sendJson(response, 200, await partBImports[operation](await readJson(request))); return;
     }
+    const examPreviewMatch = url.pathname.match(/^\/api\/exams\/([^/]+)\/preview$/);
+    if (request.method === 'GET' && examPreviewMatch) {
+      const catalog = JSON.parse(await readFile(join(workspaceRoot, 'server/data/exam-content.json'), 'utf8'));
+      const id = decodeURIComponent(examPreviewMatch[1]);
+      if (!Object.hasOwn(catalog, id)) throw new EditorError(404, 'Saved exam not found.');
+      sendJson(response, 200, catalog[id]); return;
+    }
+    if (request.method === 'GET' && url.pathname.startsWith('/exam-preview/')) {
+      const asset = await examPreviewAsset(workspaceRoot, url.pathname);
+      if (!asset) throw new EditorError(404, 'Preview asset not found.');
+      response.writeHead(200, { 'Cache-Control': 'no-store', 'Content-Type': asset.type });
+      response.end(asset.body); return;
+    }
     if (request.method === 'GET' && url.pathname.startsWith('/math-student-preview/')) {
       const asset = await mathPreviewAsset(workspaceRoot, url.pathname);
       if (!asset) throw new EditorError(404, 'Preview asset not found.');
@@ -3751,6 +3773,7 @@ async function handleRequest(request, response) {
         ".jpeg": "image/jpeg",
         ".jpg": "image/jpeg",
         ".png": "image/png",
+        ".svg": "image/svg+xml",
         ".svgz": "image/svg+xml",
         ".webp": "image/webp",
       }[extension];

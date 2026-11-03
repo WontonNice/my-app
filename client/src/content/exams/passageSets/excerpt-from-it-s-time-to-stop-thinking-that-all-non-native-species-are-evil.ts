@@ -71,7 +71,8 @@ const excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvilQuestions: E
     "points": 1,
     "prompt": "Which two phrases from paragraph 3 most affect the tone of the excerpt?",
     "instructions": "Move the two correct answers to the box.",
-    "promptHtml": "Which&nbsp;<strong>two</strong>&nbsp;phrases&nbsp;from&nbsp;paragraph&nbsp;3&nbsp;<strong>most</strong>&nbsp;affect the&nbsp;tone&nbsp;of the excerpt?",
+    "instructionsHtml": "Move the <strong>two</strong> correct answers to the box.",
+    "promptHtml": "<p><span>Which </span><strong>two</strong><span> phrases from paragraph 3 </span><strong>most</strong><span> affect the tone of the excerpt?</span></p>",
     "topic": "Tone & Mood",
     "categories": [
       {
@@ -85,27 +86,27 @@ const excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvilQuestions: E
     },
     "items": [
       {
-        "html": "<strong>“sounded the alarm”</strong>",
+        "html": "“sounded the alarm”",
         "id": "item-1",
         "text": "“sounded the alarm”"
       },
       {
-        "html": "<strong>“gotten the message”</strong>",
+        "html": "“gotten the message”",
         "id": "item-2",
         "text": "“gotten the message”"
       },
       {
-        "html": "<strong>“rip out”</strong>",
+        "html": "“rip out”",
         "id": "item-3",
         "text": "“rip out”"
       },
       {
-        "html": "<strong>“become increasingly popular”</strong>",
+        "html": "“become increasingly popular”",
         "id": "item-4",
         "text": "“become increasingly popular”"
       },
       {
-        "html": "<strong>“provide food”</strong>",
+        "html": "“provide food”",
         "id": "item-5",
         "text": "“provide food”"
       }

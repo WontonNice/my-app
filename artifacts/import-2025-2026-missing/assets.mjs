@@ -1,0 +1,6 @@
+import fs from 'node:fs/promises';import path from 'node:path';import {load} from 'cheerio';import {gunzipSync} from 'node:zlib';
+const root=path.dirname(decodeURIComponent(new URL(import.meta.url).pathname).replace(/^\/([A-Z]:)/,'$1'));const urls=new Set();
+for(const form of ['a','b'])for(const r of JSON.parse(await fs.readFile(path.join(root,`testnav-${form}.json`)))){const $=load(r.html);$('img[src]').each((i,e)=>{const s=$(e).attr('src');if(/^http/.test(s))urls.add(s)});$('[style]').each((i,e)=>{for(const m of $(e).attr('style').matchAll(/url\(['"]?([^)'"\s]+)/g))if(/^http/.test(m[1]))urls.add(m[1])});}
+await fs.mkdir(path.join(root,'source-assets'),{recursive:true});let map={};try{map=JSON.parse(await fs.readFile(path.join(root,'source-assets.json')))}catch{}
+for(const url of urls){if(map[url])continue;const r=await fetch(url);if(!r.ok)throw Error(`${r.status} ${url}`);let bytes=Buffer.from(await r.arrayBuffer()),name=path.basename(new URL(url).pathname);if(bytes[0]===31&&bytes[1]===139){bytes=gunzipSync(bytes);name=name.replace(/\.svgz$/i,'.svg')}const file=path.join('source-assets',name);await fs.writeFile(path.join(root,file),bytes);map[url]={file};await fs.writeFile(path.join(root,'source-assets.json'),JSON.stringify(map,null,2));}
+console.log('Downloaded',Object.keys(map).length,'source assets');

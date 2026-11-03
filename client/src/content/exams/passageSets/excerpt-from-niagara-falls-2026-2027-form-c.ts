@@ -19,7 +19,7 @@ const excerptFromNiagaraFalls20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 2.\nThey are extraordinarily level, one long curtain of lacework and woven foam.\nWhat is the effect of comparing the American Falls to a “long curtain of lacework and woven foam”?",
     "promptHtml": "<p>Read this sentence from <span>paragraph 2.</span></p> <p data-align=\"indent\"><strong>They are extraordinarily level, one long curtain of lacework and woven foam.</strong></p> <p>What is the effect of comparing the American Falls to a “long curtain of lacework and woven foam”?</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const excerptFromNiagaraFalls20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 3.\nThese are the lower rapids, a sight more terrifying than the Falls, because less intelligible.\nWhich statement best describes how the sentence fits into the overall structure of the excerpt?",
     "promptHtml": "<p>Read this sentence from <span>paragraph 3.</span></p> <p data-align=\"indent\"><strong>These are the lower rapids, a sight more terrifying than the Falls, because less intelligible.</strong></p> <p>Which statement <strong>best</strong> describes how the sentence fits into the overall structure of the excerpt?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const excerptFromNiagaraFalls20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from the excerpt best supports the idea that the essence of the Falls lies in their emotional impact?",
     "promptHtml": "<p>Which sentence from the excerpt <strong>best</strong> supports the idea that the essence of the Falls lies in their emotional impact?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const excerptFromNiagaraFalls20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 4.\nThere one can sit and let great cloudy thoughts of destiny and the passage of empires drift through the mind; for such dreams are at home by Niagara.\nThe sentence most contributes to the development of ideas in the excerpt by",
     "promptHtml": "<p>Read this sentence from <span>paragraph 4.</span></p> <p data-align=\"indent\"><strong>There one can sit and let great cloudy thoughts of destiny and the passage of empires drift through the mind; for such dreams are at home by Niagara.</strong></p> <p>The sentence <strong>most</strong> contributes to the development of ideas in the excerpt by</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const excerptFromNiagaraFalls20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "In paragraph 4, the idea that human life and history ultimately end in the same way is illustrated mainly through",
     "promptHtml": "<p>In paragraph 4, the idea that human life and history ultimately end in the same way is illustrated <strong>mainly</strong> through</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const excerptFromNiagaraFalls20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "With which statement would the author of this excerpt most likely agree?",
     "promptHtml": "<p><span>With</span> <span>which</span> <span>statement</span> would the <span>author</span> of this excerpt <span><strong>most likely</strong></span> agree?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",

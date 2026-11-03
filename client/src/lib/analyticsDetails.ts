@@ -1,4 +1,5 @@
 import { submittedExamSections } from "../../../server/src/shared/examCompletion";
+import { evidenceArea } from "./analyticsScope";
 import { buildStudentAnalytics, percentage, type AnalyticsInput, type Evidence } from "./studentAnalytics";
 
 export type AnalysisFilters = { source: string; kind: string; from: string; to: string; section: string; basis: string };
@@ -41,14 +42,15 @@ export function evidenceSummary(rows: Evidence[]) {
   const times = rows.flatMap(row => row.seconds !== undefined && row.seconds > 0 ? [row.seconds] : []).sort((a,b) => a-b);
   const median = times.length ? times.length % 2 ? times[Math.floor(times.length/2)] : (times[times.length/2-1]+times[times.length/2])/2 : null;
   const dates = rows.flatMap(row => row.date ? [row.date] : []).sort((a,b) => Date.parse(a)-Date.parse(b));
-  return { correct, incorrect, unanswered, total: rows.length, accuracy: percentage(correct,rows.length), attemptedAccuracy: percentage(correct,correct+incorrect), unique: new Set(rows.map(row => row.identity)).size, assessments: new Set(rows.map(row => row.examKey)).size, timed: times.length, median, first: dates[0] ?? null, last: dates.at(-1) ?? null, averageSeconds: times.length ? times.reduce((a,b)=>a+b,0)/times.length : null };
+  const pending = rows.filter(row => row.status === "Pending").length;
+  return { correct, incorrect, unanswered, pending, total: rows.length - pending, accuracy: percentage(correct,rows.length - pending), attemptedAccuracy: percentage(correct,correct+incorrect), unique: new Set(rows.map(row => row.identity)).size, assessments: new Set(rows.map(row => row.examKey)).size, timed: times.length, median, first: dates[0] ?? null, last: dates.at(-1) ?? null, averageSeconds: times.length ? times.reduce((a,b)=>a+b,0)/times.length : null };
 }
 export function detailedGroups(rows: Evidence[], dimension: string) {
   const groups = new Map<string, { key: string; label: string; kind: string; rows: Evidence[] }>();
   for (const row of rows) {
-    const detail = dimension === "subtopic" ? row.section === "math" ? `${row.question.topic} › ${row.question.subtopic || "Unclassified"}` : "" : dimension === "passage" ? row.passage ? `${row.passage.title}${row.passage.versionLabel ? ` · ${row.passage.versionLabel}` : ""}` : "" : dimension === "format" ? row.question.type.replaceAll("_"," ") : dimension === "source" ? row.source : row.question.topic;
+    const detail = dimension === "subtopic" ? row.section === "math" ? `${row.question.topic} › ${row.question.subtopic || "Unclassified"}` : "" : dimension === "passage" ? row.passage ? `${row.passage.title}${row.passage.versionLabel ? ` · ${row.passage.versionLabel}` : ""}` : "" : dimension === "format" ? row.question.type.replaceAll("_"," ") : dimension === "source" ? row.source : (row.question.topic?.trim() || "Unclassified");
     if (!detail) continue;
-    const key = JSON.stringify([row.kind,row.section,dimension === "passage" ? row.passage?.id : detail]);
+    const key = JSON.stringify([row.kind,row.section,evidenceArea(row),dimension === "passage" ? row.passage?.id : detail]);
     const group = groups.get(key) ?? { key, label: `${row.section === "math" ? "Math" : "English"} · ${detail}`, kind: row.kind, rows: [] };
     group.rows.push(row); groups.set(key,group);
   }

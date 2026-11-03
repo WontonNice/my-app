@@ -1,0 +1,9 @@
+.practice-stars ol { display:flex; gap:12px; list-style:none; margin:0; padding:0; }
+.practice-stars li { display:grid; justify-items:center; gap:5px; color:#737c77; font-family:inherit; font-size:.7rem; font-weight:600; line-height:1.3; }
+.practice-stars li svg { fill:transparent; transition:fill .25s,color .25s,transform .25s; }
+.practice-stars li.is-earned { color:#895713; }
+.practice-stars li.is-earned svg { fill:#efbc52; stroke:#895713; }
+.practice-stars p { margin:9px 0 0; color:#59675e; font-size:.76rem; line-height:1.5; }
+.practice-stars.is-compact ol { gap:7px; }
+.practice-stars.is-compact li { gap:2px; font-size:.6rem; }
+@media (prefers-reduced-motion:reduce) { .practice-stars li svg { transition:none; } }

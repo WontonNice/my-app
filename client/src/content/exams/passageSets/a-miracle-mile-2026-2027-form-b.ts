@@ -19,7 +19,7 @@ const aMiracleMile20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The words “feat,” “humanly impossible,” and “impenetrable barrier” in paragraph 1 affect the tone of the paragraph because they",
     "promptHtml": "<p>The <span>words</span> “feat,” “humanly impossible,” and “impenetrable barrier” in <span><span>paragraph</span> 1</span> affect the <span>tone</span> of the paragraph <span>because</span> they</p>",
-    "topic": "",
+    "topic": "Tone & Mood",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const aMiracleMile20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read these sentences from paragraph 7.\nBannister said, “I felt that the moment of a lifetime had come. There was no pain, only a great unity of movement and aim.”\nThe sentences contribute to the development of ideas in the passage by showing that Bannister",
     "promptHtml": "<p><span>Read</span> these <span>sentences</span> from <span><span>paragraph</span> 7.</span></p> <p data-align=\"indent\"><strong>Bannister said, “I felt that the moment of a lifetime had come. There was no pain, only a great unity of movement and aim.”</strong></p> <p>The sentences contribute to the development of ideas in the <span>passage</span> by showing that Bannister</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const aMiracleMile20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence best supports the idea that Bannister needed an alternative to “logical planning” (paragraph 3) in order to accomplish his goal?",
     "promptHtml": "<p><span>Which</span> <span>sentence</span> <span><strong>best</strong></span> <span>supports</span> the idea that Bannister needed an alternative to “logical <span>planning” (<span>paragraph</span> 3)</span> in order to accomplish his goal?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const aMiracleMile20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from the passage indicates that Bannister nearly made a mistake that would have cost him the world record?",
     "promptHtml": "<p><span>Which</span>&nbsp; <span>sentence</span> from the <span>passage</span> indicates that Bannister nearly made a mistake that would have cost him the world record?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const aMiracleMile20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Bannister’s loss in the 1952 Olympics influenced his decision to pursue breaking the four-minute-mile barrier by",
     "promptHtml": "<p>Bannister’s loss in the 1952 Olympics influenced his decision to pursue breaking the four-minute-mile barrier by</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",

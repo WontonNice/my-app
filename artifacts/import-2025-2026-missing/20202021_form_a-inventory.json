@@ -1,0 +1,3716 @@
+{
+  "1": {
+    "number": 1,
+    "page": 1,
+    "box": [
+      47.8192,
+      300.2072091,
+      568,
+      716
+    ],
+    "numberBox": [
+      47.8192,
+      306.2072091,
+      60.5388784,
+      318.2069091
+    ],
+    "prompt": "What is the best way to combine the sentences?\n\n(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.\n\n(2) One of Jupiter’s moons is named Io.\n\n(3) Io has the greatest number of active volcanoes in the solar system.",
+    "promptHtml": "<p>What is the best way to combine the sentences?</p><blockquote data-boxed=\"true\">(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.</blockquote><blockquote data-boxed=\"true\">(2) One of Jupiter’s moons is named Io.</blockquote><blockquote data-boxed=\"true\">(3) Io has the greatest number of active volcanoes in the solar system.</blockquote>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+        "html": "<p>Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.",
+        "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.",
+        "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.</p>"
+      },
+      {
+        "id": "D",
+        "text": "Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+        "html": "<p>Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "standalone",
+        "part-b-import-2306e0b898d5-ae910e11"
+      ],
+      [
+        1.0,
+        "standalone",
+        "official-shsat-2026-d-50"
+      ],
+      [
+        0.26837972876516775,
+        "standalone",
+        "part-b-question-5"
+      ]
+    ]
+  },
+  "2": {
+    "number": 2,
+    "page": 2,
+    "box": [
+      50.822,
+      52.94380000000001,
+      568,
+      295.94939999999997
+    ],
+    "numberBox": [
+      50.822,
+      58.94380000000001,
+      63.542,
+      70.94380000000001
+    ],
+    "prompt": "Which revision corrects the error in sentence structure in the paragraph?\n\nIn September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation Proclamation, written in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.",
+    "promptHtml": "<p>Which revision corrects the error in sentence structure in the paragraph?</p><blockquote data-boxed=\"true\">In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation Proclamation, written in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.</blockquote>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Institution, and the",
+        "html": "<p>Institution, and the</p>"
+      },
+      {
+        "id": "F",
+        "text": "year, and the",
+        "html": "<p>year, and the</p>"
+      },
+      {
+        "id": "G",
+        "text": "objects, which include",
+        "html": "<p>objects, which include</p>"
+      },
+      {
+        "id": "H",
+        "text": "Proclamation, which was written",
+        "html": "<p>Proclamation, which was written</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "standalone",
+        "part-b-question-10"
+      ],
+      [
+        1.0,
+        "standalone",
+        "part-b-import-63ff15016dc9-8d09d754"
+      ],
+      [
+        0.9033856317093312,
+        "standalone",
+        "part-b-import-09119fae8b50-506b3190"
+      ]
+    ]
+  },
+  "3": {
+    "number": 3,
+    "page": 2,
+    "box": [
+      50.8218,
+      300.94939999999997,
+      568,
+      480.1696999999999
+    ],
+    "numberBox": [
+      50.8218,
+      306.94939999999997,
+      63.5418,
+      318.94939999999997
+    ],
+    "prompt": "Read this sentence.\n\nThe Appalachian Trail is a really long trail that a lot of people do each year.\n\nWhich revision of the sentence uses the most precise language?",
+    "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\">The Appalachian Trail is a really long trail that a lot of people do each year.</blockquote><p>Which revision of the sentence uses the most precise language?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The Appalachian Trail is an extremely long trail that millions of people do each year.",
+        "html": "<p>The Appalachian Trail is an extremely long trail that millions of people do each year.</p>"
+      },
+      {
+        "id": "B",
+        "text": "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year.",
+        "html": "<p>The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year.</p>"
+      },
+      {
+        "id": "C",
+        "text": "The Appalachian Trail is a 2,200-mile trail that two million people hike each year.",
+        "html": "<p>The Appalachian Trail is a 2,200-mile trail that two million people hike each year.</p>"
+      },
+      {
+        "id": "D",
+        "text": "The Appalachian Trail is a lengthy trail that a couple million people do each year.",
+        "html": "<p>The Appalachian Trail is a lengthy trail that a couple million people do each year.</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "standalone",
+        "pdf-shsat-2024-2025-b-q003"
+      ],
+      [
+        0.8792029887920298,
+        "standalone",
+        "part-b-question-8"
+      ],
+      [
+        0.8731707317073171,
+        "standalone",
+        "part-b-import-6ac23baedc82-90db8349"
+      ]
+    ]
+  },
+  "4": {
+    "number": 4,
+    "page": 2,
+    "box": [
+      50.82570000000004,
+      485.1696999999999,
+      568,
+      716
+    ],
+    "numberBox": [
+      50.82570000000004,
+      491.1696999999999,
+      63.54570000000004,
+      503.1696999999999
+    ],
+    "prompt": "Which edit should be made to correct this sentence?\n\nIn 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.",
+    "promptHtml": "<p>Which edit should be made to correct this sentence?</p><blockquote data-boxed=\"true\">In 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.</blockquote>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Insert a comma after agile.",
+        "html": "<p>Insert a comma after <em><strong>agile</strong></em>.</p>"
+      },
+      {
+        "id": "F",
+        "text": "Insert a comma after first.",
+        "html": "<p>Insert a comma after <em><strong>first</strong></em>.</p>"
+      },
+      {
+        "id": "G",
+        "text": "Insert a comma after only.",
+        "html": "<p>Insert a comma after <em><strong>only</strong></em>.</p>"
+      },
+      {
+        "id": "H",
+        "text": "Insert a comma after States.",
+        "html": "<p>Insert a comma after <em><strong>States</strong></em>.</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "standalone",
+        "part-b-question-9"
+      ],
+      [
+        1.0,
+        "standalone",
+        "part-b-import-a014b48d8124-92d0f942"
+      ],
+      [
+        1.0,
+        "standalone",
+        "part-b-import-6821270b0d81-84bcb37c"
+      ]
+    ]
+  },
+  "5": {
+    "number": 5,
+    "page": 3,
+    "box": [
+      49.8194,
+      49.64249999999993,
+      568,
+      716
+    ],
+    "numberBox": [
+      49.8194,
+      55.64249999999993,
+      62.5394,
+      67.64249999999993
+    ],
+    "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
+    "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.</blockquote>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became.",
+        "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed.",
+        "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became.",
+        "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>"
+      },
+      {
+        "id": "D",
+        "text": "Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed.",
+        "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "standalone",
+        "pdf-shsat-2024-2025-b-q004"
+      ],
+      [
+        0.9514066496163683,
+        "standalone",
+        "part-b-import-473bc215a86a-5af09018"
+      ],
+      [
+        0.7437037037037038,
+        "standalone",
+        "part-b-import-55ca9287c304-58585284"
+      ]
+    ]
+  },
+  "6": {
+    "number": 6,
+    "page": 6,
+    "box": [
+      53.8194,
+      52.142600000000016,
+      568,
+      220.32259999999997
+    ],
+    "numberBox": [
+      53.8194,
+      58.142600000000016,
+      66.5394,
+      70.14260000000002
+    ],
+    "prompt": "Which revision of sentence 2 uses the most precise language?",
+    "promptHtml": "<p>Which revision of sentence 2 uses the most precise language?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "These are the people who spend their free time volunteering at animal shelters, helping with activities in community centers, or cleaning up parks.",
+        "html": "<p>These are the people who spend their free time volunteering at animal shelters, helping with activities in community centers, or cleaning up parks.</p>"
+      },
+      {
+        "id": "F",
+        "text": "These are the people who spend their free time helping others in numerous ways at a variety of places, events, or organizations that need support.",
+        "html": "<p>These are the people who spend their free time helping others in numerous ways at a variety of places, events, or organizations that need support.</p>"
+      },
+      {
+        "id": "G",
+        "text": "These are the people who spend their free time working at local establishments that help people, animals, or other groups in need of assistance.",
+        "html": "<p>These are the people who spend their free time working at local establishments that help people, animals, or other groups in need of assistance.</p>"
+      },
+      {
+        "id": "H",
+        "text": "These are the people who spend a lot of time volunteering at places where they can help people in many ways.",
+        "html": "<p>These are the people who spend a lot of time volunteering at places where they can help people in many ways.</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.4049493813273341,
+        "standalone",
+        "part-b-question-8"
+      ],
+      [
+        0.3973509933774834,
+        "standalone",
+        "part-b-import-6ac23baedc82-90db8349"
+      ],
+      [
+        0.3355408388520971,
+        "standalone",
+        "pdf-shsat-2024-2025-b-q003"
+      ]
+    ]
+  },
+  "7": {
+    "number": 7,
+    "page": 6,
+    "box": [
+      53.8194,
+      225.32259999999997,
+      568,
+      393.5026
+    ],
+    "numberBox": [
+      53.8194,
+      231.32259999999997,
+      66.5394,
+      243.32259999999997
+    ],
+    "prompt": "Which sentence should follow sentence 4 to introduce the main claim of the passage?",
+    "promptHtml": "<p>Which sentence should follow sentence 4 to introduce the main claim of the passage?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "With that in mind, high school students should consider engaging in some form of regular volunteerism.",
+        "html": "<p>With that in mind, high school students should consider engaging in some form of regular volunteerism.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Fortunately for students, these benefits are guaranteed to produce both immediate and long-term results.",
+        "html": "<p>Fortunately for students, these benefits are guaranteed to produce both immediate and long-term results.</p>"
+      },
+      {
+        "id": "C",
+        "text": "In fact, studies have confirmed that volunteerism can be beneficial for students, the family, and the community.",
+        "html": "<p>In fact, studies have confirmed that volunteerism can be beneficial for students, the family, and the community.</p>"
+      },
+      {
+        "id": "D",
+        "text": "For this reason, high school students should learn about how helping others can strengthen their communities.",
+        "html": "<p>For this reason, high school students should learn about how helping others can strengthen their communities.</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.2844311377245509,
+        "2026-2027-form-dMath.ts",
+        "2026-2027-form-d-math-item-17"
+      ],
+      [
+        0.2844311377245509,
+        "2022-2023-form-bMath.ts",
+        "2022-2023-form-b-q76"
+      ],
+      [
+        0.2647527910685805,
+        "2026-2027-form-aMath.ts",
+        "2026-2027-form-a-math-item-4"
+      ]
+    ]
+  },
+  "8": {
+    "number": 8,
+    "page": 6,
+    "box": [
+      53.8194,
+      398.5026,
+      568,
+      716
+    ],
+    "numberBox": [
+      53.8194,
+      404.5026,
+      66.5394,
+      416.5026
+    ],
+    "prompt": "Which sentence is least relevant to the ideas presented in the second paragraph (sentences 5–10) and should be deleted?",
+    "promptHtml": "<p>Which sentence is least relevant to the ideas presented in the second paragraph (sentences 5–10) and should be deleted?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "sentence 6",
+        "html": "<p>sentence 6</p>"
+      },
+      {
+        "id": "F",
+        "text": "sentence 7",
+        "html": "<p>sentence 7</p>"
+      },
+      {
+        "id": "G",
+        "text": "sentence 8",
+        "html": "<p>sentence 8</p>"
+      },
+      {
+        "id": "H",
+        "text": "sentence 9",
+        "html": "<p>sentence 9</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.311787072243346,
+        "standalone",
+        "official-shsat-2026-b-47"
+      ],
+      [
+        0.2561576354679803,
+        "2023-2024-form-aMath.ts",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q073"
+      ],
+      [
+        0.2561576354679803,
+        "2019-2020-form-aMath.ts",
+        "2019-2020-form-a-q73"
+      ]
+    ]
+  },
+  "9": {
+    "number": 9,
+    "page": 7,
+    "box": [
+      52.8194,
+      52.142600000000016,
+      568,
+      272.3226
+    ],
+    "numberBox": [
+      52.8194,
+      58.142600000000016,
+      65.5394,
+      70.14260000000002
+    ],
+    "prompt": "Which of these would best follow sentence 12 and support the ideas presented in the third paragraph (sentences 11–12)?",
+    "promptHtml": "<p>Which of these would best follow sentence 12 and support the ideas presented in the third paragraph (sentences 11–12)?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "These students show that they are likely to be responsible, reliable, and helpful young adults. Admissions counselors know that character traits like these will benefit the applicants as well as whomever they interact with.",
+        "html": "<p>These students show that they are likely to be responsible, reliable, and helpful young adults. Admissions counselors know that character traits like these will benefit the applicants as well as whomever they interact with.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Volunteering can help students meet new people who can provide references and advice to the students when they are applying to colleges. It can also be an invaluable opportunity for students to meet possible future employers.",
+        "html": "<p>Volunteering can help students meet new people who can provide references and advice to the students when they are applying to colleges. It can also be an invaluable opportunity for students to meet possible future employers.</p>"
+      },
+      {
+        "id": "C",
+        "text": "The counselors hope that young adults who demonstrate this behavior will go on to volunteer during their college years, working on campus in student government and leadership programs or serving in the community at hospitals, schools, and homeless shelters.",
+        "html": "<p>The counselors hope that young adults who demonstrate this behavior will go on to volunteer during their college years, working on campus in student government and leadership programs or serving in the community at hospitals, schools, and homeless shelters.</p>"
+      },
+      {
+        "id": "D",
+        "text": "Many colleges are looking for students who are not just academically successful but who also work well with others and care about improving and serving surrounding communities.",
+        "html": "<p>Many colleges are looking for students who are not just academically successful but who also work well with others and care about improving and serving surrounding communities.</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.278118609406953,
+        "standalone",
+        "part-b-import-17a36c202bfd-480b2997"
+      ],
+      [
+        0.2620689655172414,
+        "standalone",
+        "official-shsat-2026-d-47"
+      ],
+      [
+        0.24564183835182252,
+        "standalone",
+        "standalone-vague-pronoun-1"
+      ]
+    ]
+  },
+  "10": {
+    "number": 10,
+    "page": 7,
+    "box": [
+      52.8194,
+      277.3226,
+      568,
+      716
+    ],
+    "numberBox": [
+      52.8194,
+      283.3226,
+      72.6494,
+      295.3226
+    ],
+    "prompt": "Which concluding sentence should replace sentence 22 to provide the best support for the argument presented in the passage?",
+    "promptHtml": "<p>Which concluding sentence should replace sentence 22 to provide the best support for the argument presented in the passage?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "In every city, there are homeless shelters, food pantries, youth centers, and political campaigns that depend on the support and commitment of hardworking young people.",
+        "html": "<p>In every city, there are homeless shelters, food pantries, youth centers, and political campaigns that depend on the support and commitment of hardworking young people.</p>"
+      },
+      {
+        "id": "F",
+        "text": "Clearly, students who volunteer will experience a host of benefits, such as learning new skills meeting interesting people, opening up opportunities for the future, and gaining a sense of satisfaction.",
+        "html": "<p>Clearly, students who volunteer will experience a host of benefits, such as learning new skills meeting interesting people, opening up opportunities for the future, and gaining a sense of satisfaction.</p>"
+      },
+      {
+        "id": "G",
+        "text": "When students carefully evaluate their activities and prioritize volunteerism, they find a way to work it into their schedule and are soon encouraging their peers to do the same.",
+        "html": "<p>When students carefully evaluate their activities and prioritize volunteerism, they find a way to work it into their schedule and are soon encouraging their peers to do the same.</p>"
+      },
+      {
+        "id": "H",
+        "text": "Whether they are seeking admission to college, preparing to enter the workforce, or simply looking to reduce stress, high school students who volunteer can help themselves as much a they help others.",
+        "html": "<p>Whether they are seeking admission to college, preparing to enter the workforce, or simply looking to reduce stress, high school students who volunteer can help themselves as much a they help others.</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.32037914691943126,
+        "standalone",
+        "part-b-import-be10ff9dae9c-bd9b9422"
+      ],
+      [
+        0.29895366218236175,
+        "standalone",
+        "official-shsat-2026-d-47"
+      ],
+      [
+        0.2789667896678967,
+        "standalone",
+        "part-b-import-17a36c202bfd-480b2997"
+      ]
+    ]
+  },
+  "58": {
+    "number": 58,
+    "page": 38,
+    "box": [
+      49.8195,
+      200.69963030000008,
+      303,
+      350.5388303
+    ],
+    "numberBox": [
+      49.8195,
+      206.69963030000008,
+      69.6496783,
+      218.69973030000006
+    ],
+    "prompt": "Simplify:\n\n−3.8 + 2.3 − (−1.1)",
+    "promptHtml": "<p>Simplify:</p><p>−3.8 + 2.3 − (−1.1)</p>",
+    "choices": [],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q58"
+      ],
+      [
+        0.5945945945945946,
+        "grade-9-mini-formMath.ts",
+        "grade-9-mini-form-grade-9-mini-adam-4"
+      ],
+      [
+        0.5106382978723404,
+        "2024-2025-form-bMath.ts",
+        "pdf-shsat-2024-2025-b-q084"
+      ]
+    ]
+  },
+  "60": {
+    "number": 60,
+    "page": 38,
+    "box": [
+      319.8222,
+      200.6972819,
+      568,
+      716
+    ],
+    "numberBox": [
+      319.8222,
+      206.6972819,
+      339.6523783,
+      218.69738189999998
+    ],
+    "prompt": "3 A juice mixture contains gallon of 16 3 apple juice and gallon of cranberry 40 juice. How many gallons of apple juice\n\nper gallon of cranberry juice does the\n\nmixture contain? (Express your answer\n\nas a decimal.)",
+    "promptHtml": "<p>3 A juice mixture contains gallon of 16 3 apple juice and gallon of cranberry 40 juice. How many gallons of apple juice</p><p>per gallon of cranberry juice does the</p><p>mixture contain? (Express your answer</p><p>as a decimal.)</p>",
+    "choices": [],
+    "matches": [
+      [
+        0.9644970414201184,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q60"
+      ],
+      [
+        0.4932249322493225,
+        "digital-shsat-practice-test-4Math.ts",
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-12"
+      ],
+      [
+        0.44126074498567336,
+        "digital-shsat-practice-test-5Math.ts",
+        "satcc-digital-shsat-practice-test-5-v2-math-44"
+      ]
+    ]
+  },
+  "59": {
+    "number": 59,
+    "page": 38,
+    "box": [
+      49.8195,
+      355.5388303,
+      303,
+      716
+    ],
+    "numberBox": [
+      49.8195,
+      361.5388303,
+      69.6496783,
+      373.5389303
+    ],
+    "prompt": "Angle M and angle R are supplementary.\n\nThe measure of angle R is 5 times the\n\nmeasure of angle M. What is the measure\n\nof angle R in degrees?",
+    "promptHtml": "<p>Angle M and angle R are supplementary.</p><p>The measure of angle R is 5 times the</p><p>measure of angle M. What is the measure</p><p>of angle R in degrees?</p>",
+    "choices": [],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q59"
+      ],
+      [
+        0.7758620689655172,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q097"
+      ],
+      [
+        0.7758620689655172,
+        "2019-2020-form-bMath.ts",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q097"
+      ]
+    ]
+  },
+  "61": {
+    "number": 61,
+    "page": 39,
+    "box": [
+      50.8194,
+      65.44740000000002,
+      303,
+      716
+    ],
+    "numberBox": [
+      50.8194,
+      71.44740000000002,
+      70.6494,
+      83.44740000000002
+    ],
+    "prompt": "1 Mr. Chan’s lawn grows 2 inches every 8 2 weeks. He mows his lawn every 3 2 weeks and cuts off the top 1 inches 4 of lawn. If Mr. Chan’s lawn was 4 inches\n\ntall at the beginning of the season, how\n\nmany inches tall, in decimal form, is\n\nMr. Chan’s lawn after 8 weeks?",
+    "promptHtml": "<p>1 Mr. Chan’s lawn grows 2 inches every 8 2 weeks. He mows his lawn every 3 2 weeks and cuts off the top 1 inches 4 of lawn. If Mr. Chan’s lawn was 4 inches</p><p>tall at the beginning of the season, how</p><p>many inches tall, in decimal form, is</p><p>Mr. Chan’s lawn after 8 weeks?</p>",
+    "choices": [],
+    "matches": [
+      [
+        0.9796954314720813,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q61"
+      ],
+      [
+        0.3037974683544304,
+        "2019-2020-form-aMath.ts",
+        "2019-2020-form-a-q75"
+      ],
+      [
+        0.3012987012987013,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q73"
+      ]
+    ]
+  },
+  "62": {
+    "number": 62,
+    "page": 39,
+    "box": [
+      320.8194,
+      65.44749999999999,
+      568,
+      716
+    ],
+    "numberBox": [
+      320.8194,
+      71.44749999999999,
+      340.6494,
+      83.44749999999999
+    ],
+    "prompt": "RESULTS FROM SURVEY OF 110 FAMILIES\n\nNumber of Children in the Number of Families Family 0 45 1 32 2 19 3 8 4 6\n\nThe table above shows the number of children in each of 110 families. What is the median number of children in these families?",
+    "promptHtml": "<p>RESULTS FROM SURVEY OF 110 FAMILIES</p><p><strong>Number of</strong> <strong>Children in the Number of Families</strong> <strong>Family</strong> 0 45 1 32 2 19 3 8 4 6</p><p>The table above shows the number of children in each of 110 families. What is the median number of children in these families?</p>",
+    "choices": [],
+    "matches": [
+      [
+        0.7034482758620689,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q62"
+      ],
+      [
+        0.5458823529411765,
+        "2021-2022-form-bMath.ts",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q095"
+      ],
+      [
+        0.5458823529411765,
+        "2018-2019-form-bMath.ts",
+        "2018-2019-form-b-pdf-shsat-2018-2019-b-q095"
+      ]
+    ]
+  },
+  "63": {
+    "number": 63,
+    "page": 40,
+    "box": [
+      48.81939999999997,
+      165.7509,
+      303,
+      370.59090000000003
+    ],
+    "numberBox": [
+      48.81939999999997,
+      171.7509,
+      68.64939999999997,
+      183.7509
+    ],
+    "prompt": "Mr. Jones has 550 goats, which is 10% more than Mr. King has. How many more goats does Mr. Jones have than Mr. King?",
+    "promptHtml": "<p>Mr. Jones has 550 goats, which is 10% more than Mr. King has. How many <strong>more</strong> goats does Mr. Jones have than Mr. King?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "50",
+        "html": "<p>50</p>"
+      },
+      {
+        "id": "B",
+        "text": "55",
+        "html": "<p>55</p>"
+      },
+      {
+        "id": "C",
+        "text": "495",
+        "html": "<p>495</p>"
+      },
+      {
+        "id": "D",
+        "text": "500",
+        "html": "<p>500</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q63"
+      ],
+      [
+        0.4,
+        "digital-shsat-practice-test-4Math.ts",
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-13"
+      ],
+      [
+        0.37130801687763715,
+        "2021-2022-form-aMath.ts",
+        "2021-2022-form-a-q66"
+      ]
+    ]
+  },
+  "65": {
+    "number": 65,
+    "page": 40,
+    "box": [
+      318.8214,
+      165.74749999999995,
+      568,
+      716
+    ],
+    "numberBox": [
+      318.8214,
+      171.74749999999995,
+      338.65139999999997,
+      183.74749999999995
+    ],
+    "prompt": "Q R\n\nP S\n\nIn the figure above, PQRS is a square. Point S is the center of the circle, and points P and R are on the circle. If the area of the square is 4 square centimeters, what is the area, in square centimeters, of the shaded quarter of the circle?",
+    "promptHtml": "<p>Q R</p><p>P S</p><p>In the figure above, PQRS is a square. Point S is the center of the circle, and points P and R are on the circle. If the area of the square is 4 square centimeters, what is the area, in square centimeters, of the shaded quarter of the circle?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "π 4",
+        "html": "<p>π 4</p>"
+      },
+      {
+        "id": "B",
+        "text": "π",
+        "html": "<p>π</p>"
+      },
+      {
+        "id": "C",
+        "text": "2π",
+        "html": "<p>2π</p>"
+      },
+      {
+        "id": "D",
+        "text": "4π",
+        "html": "<p>4π</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.9253731343283582,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q65"
+      ],
+      [
+        0.4318936877076412,
+        "2023-2024-form-aMath.ts",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q094"
+      ],
+      [
+        0.42953020134228187,
+        "digital-shsat-practice-test-4Math.ts",
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-28"
+      ]
+    ]
+  },
+  "64": {
+    "number": 64,
+    "page": 40,
+    "box": [
+      48.81939999999997,
+      375.59090000000003,
+      303,
+      716
+    ],
+    "numberBox": [
+      48.81939999999997,
+      381.59090000000003,
+      68.64939999999997,
+      393.59090000000003
+    ],
+    "prompt": "2y y If − = and x ≠ 0 , what x 2x 2x expression is represented by ?",
+    "promptHtml": "<p>2<em>y y</em> If − = and <em>x</em> ≠ 0 , what <em>x</em> 2<em>x</em> 2<em>x</em> expression is represented by ?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "y",
+        "html": "<p><em>y</em></p>"
+      },
+      {
+        "id": "F",
+        "text": "2y",
+        "html": "<p>2<em>y</em></p>"
+      },
+      {
+        "id": "G",
+        "text": "3y",
+        "html": "<p>3<em>y</em></p>"
+      },
+      {
+        "id": "H",
+        "text": "4y",
+        "html": "<p>4<em>y</em></p>"
+      }
+    ],
+    "matches": [
+      [
+        0.656,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q64"
+      ],
+      [
+        0.4339622641509434,
+        "digital-shsat-practice-test-3Math.ts",
+        "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-28"
+      ],
+      [
+        0.42201834862385323,
+        "2022-2023-form-aMath.ts",
+        "2022-2023-form-a-q64"
+      ]
+    ]
+  },
+  "66": {
+    "number": 66,
+    "page": 41,
+    "box": [
+      47.8194,
+      64.24749999999995,
+      303,
+      266.73720000000003
+    ],
+    "numberBox": [
+      47.8194,
+      70.24749999999995,
+      67.6494,
+      82.24749999999995
+    ],
+    "prompt": "A list of consecutive integers begins with m and ends with n. If n − m = 66, how\n\nmany integers are in the list?",
+    "promptHtml": "<p>A list of consecutive integers begins with <em>m</em> and ends with <em>n</em>. If <em>n</em> − <em>m</em> = 66, how</p><p>many integers are in the list?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "2",
+        "html": "<p>2</p>"
+      },
+      {
+        "id": "F",
+        "text": "33",
+        "html": "<p>33</p>"
+      },
+      {
+        "id": "G",
+        "text": "66",
+        "html": "<p>66</p>"
+      },
+      {
+        "id": "H",
+        "text": "67",
+        "html": "<p>67</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q66"
+      ],
+      [
+        0.48333333333333334,
+        "2026-2027-form-aMath.ts",
+        "2026-2027-form-a-math-item-35"
+      ],
+      [
+        0.48333333333333334,
+        "2021-2022-form-aMath.ts",
+        "2021-2022-form-a-q97"
+      ]
+    ]
+  },
+  "68": {
+    "number": 68,
+    "page": 41,
+    "box": [
+      317.82439999999997,
+      64.24599999999998,
+      568,
+      337.7372
+    ],
+    "numberBox": [
+      317.82439999999997,
+      70.24599999999998,
+      337.6544,
+      82.24599999999998
+    ],
+    "prompt": "1 Jar 1 and Jar 2 each contain cup of 2 1 water. If of the water in Jar 1 is poured 4 into Jar 2, how much water is now in\n\nJar 2?",
+    "promptHtml": "<p>1 Jar 1 and Jar 2 each contain cup of 2 1 water. If of the water in Jar 1 is poured 4 into Jar 2, how much water is now in</p><p>Jar 2?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "1 cup 8",
+        "html": "<p>1 cup 8</p>"
+      },
+      {
+        "id": "F",
+        "text": "1 cup 4",
+        "html": "<p>1 cup 4</p>"
+      },
+      {
+        "id": "G",
+        "text": "5 cup 8",
+        "html": "<p>5 cup 8</p>"
+      },
+      {
+        "id": "H",
+        "text": "3 cup 4",
+        "html": "<p>3 cup 4</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.7799227799227799,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q68"
+      ],
+      [
+        0.30711610486891383,
+        "2019-2020-form-bMath.ts",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q063"
+      ],
+      [
+        0.2975206611570248,
+        "2024-2025-form-bMath.ts",
+        "pdf-shsat-2024-2025-b-q086"
+      ]
+    ]
+  },
+  "67": {
+    "number": 67,
+    "page": 41,
+    "box": [
+      47.8194,
+      271.73720000000003,
+      303,
+      716
+    ],
+    "numberBox": [
+      47.8194,
+      277.73720000000003,
+      67.6494,
+      289.7372
+    ],
+    "prompt": "Simplify:\n\n⎛ 39(x − 3) ⎞ ⎜ ⎟ + 39 ⎝ 3 ⎠ 13",
+    "promptHtml": "<p>Simplify:</p><p>⎛ 39(<em>x</em> − 3) ⎞ ⎜ ⎟ + 39 ⎝ 3 ⎠ 13</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "x",
+        "html": "<p><em>x</em></p>"
+      },
+      {
+        "id": "B",
+        "text": "x − 2",
+        "html": "<p><em>x</em> − 2</p>"
+      },
+      {
+        "id": "C",
+        "text": "13x − 36",
+        "html": "<p>13<em>x</em> − 36</p>"
+      },
+      {
+        "id": "D",
+        "text": "36 x + 13",
+        "html": "<p>36 <em>x</em> + 13</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.5454545454545454,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q58"
+      ],
+      [
+        0.4473684210526316,
+        "2026-2027-form-bMath.ts",
+        "official-shsat-2026-b-76"
+      ],
+      [
+        0.4473684210526316,
+        "2021-2022-form-bMath.ts",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q088"
+      ]
+    ]
+  },
+  "69": {
+    "number": 69,
+    "page": 41,
+    "box": [
+      317.8194,
+      342.7372,
+      568,
+      716
+    ],
+    "numberBox": [
+      317.8194,
+      348.7372,
+      337.6494,
+      360.7372
+    ],
+    "prompt": "If n is a whole number, and 0.01 is 1 1 between and , what is the value n n + 2 of n ?",
+    "promptHtml": "<p>If <em>n</em> is a whole number, and 0.01 is 1 1 between and , what is the value <em>n n</em> + 2 of <em>n</em> ?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "0",
+        "html": "<p>0</p>"
+      },
+      {
+        "id": "B",
+        "text": "1",
+        "html": "<p>1</p>"
+      },
+      {
+        "id": "C",
+        "text": "2",
+        "html": "<p>2</p>"
+      },
+      {
+        "id": "D",
+        "text": "99",
+        "html": "<p>99</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.9193548387096774,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q69"
+      ],
+      [
+        0.5048543689320388,
+        "digital-shsat-practice-test-4Math.ts",
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-49"
+      ],
+      [
+        0.5,
+        "2023-2024-form-aMath.ts",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q090"
+      ]
+    ]
+  },
+  "70": {
+    "number": 70,
+    "page": 42,
+    "box": [
+      47.8294,
+      65.44740000000002,
+      303,
+      303.9374
+    ],
+    "numberBox": [
+      47.8294,
+      71.44740000000002,
+      67.6594,
+      83.44740000000002
+    ],
+    "prompt": "When asked a certain question in a poll, 72% of the people polled answered yes. If 56 people did not answer yes to that question, what is the total number of people who were polled?",
+    "promptHtml": "<p>When asked a certain question in a poll, 72% of the people polled answered yes. If 56 people did <strong>not</strong> answer yes to that question, what is the total number of people who were polled?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "78",
+        "html": "<p>78</p>"
+      },
+      {
+        "id": "F",
+        "text": "128",
+        "html": "<p>128</p>"
+      },
+      {
+        "id": "G",
+        "text": "144",
+        "html": "<p>144</p>"
+      },
+      {
+        "id": "H",
+        "text": "200",
+        "html": "<p>200</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q70"
+      ],
+      [
+        0.3991031390134529,
+        "2026-2027-form-bMath.ts",
+        "official-shsat-2026-b-82"
+      ],
+      [
+        0.3991031390134529,
+        "2021-2022-form-bMath.ts",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q110"
+      ]
+    ]
+  },
+  "72": {
+    "number": 72,
+    "page": 42,
+    "box": [
+      317.8194,
+      65.44740000000002,
+      568,
+      318.9374
+    ],
+    "numberBox": [
+      317.8194,
+      71.44740000000002,
+      337.6494,
+      83.44740000000002
+    ],
+    "prompt": "A program on a computer randomly generates a sequence of whole numbers from 1 to 9, inclusive. If the computer generates a sequence of 300 numbers, what is the best prediction of the number of odd numbers in the sequence?",
+    "promptHtml": "<p>A program on a computer randomly generates a sequence of whole numbers from 1 to 9, inclusive. If the computer generates a sequence of 300 numbers, what is the best prediction of the number of odd numbers in the sequence?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "120",
+        "html": "<p>120</p>"
+      },
+      {
+        "id": "F",
+        "text": "133",
+        "html": "<p>133</p>"
+      },
+      {
+        "id": "G",
+        "text": "150",
+        "html": "<p>150</p>"
+      },
+      {
+        "id": "H",
+        "text": "167",
+        "html": "<p>167</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q72"
+      ],
+      [
+        0.3522012578616352,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q071"
+      ],
+      [
+        0.3522012578616352,
+        "2019-2020-form-bMath.ts",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q071"
+      ]
+    ]
+  },
+  "71": {
+    "number": 71,
+    "page": 42,
+    "box": [
+      47.8194,
+      308.9374,
+      303,
+      716
+    ],
+    "numberBox": [
+      47.8194,
+      314.9374,
+      67.6494,
+      326.9374
+    ],
+    "prompt": "A museum has a room in the shape of a rectangle. The area of the floor is 960 square feet. In a scale drawing of the museum, 1 inch = 20 feet. If the length of the room is 2 inches in the scale drawing, what is the width of this room in the scale drawing?",
+    "promptHtml": "<p>A museum has a room in the shape of a rectangle. The area of the floor is 960 square feet. In a scale drawing of the museum, 1 inch = 20 feet. If the length of the room is 2 inches in the scale drawing, what is the width of this room in the scale drawing?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 1 in. 5",
+        "html": "<p>1 1 in. 5</p>"
+      },
+      {
+        "id": "B",
+        "text": "1 1 in. 4",
+        "html": "<p>1 1 in. 4</p>"
+      },
+      {
+        "id": "C",
+        "text": "24 in.",
+        "html": "<p>24 in.</p>"
+      },
+      {
+        "id": "D",
+        "text": "40 in.",
+        "html": "<p>40 in.</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.9050772626931567,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q71"
+      ],
+      [
+        0.4134078212290503,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q059"
+      ],
+      [
+        0.4134078212290503,
+        "2019-2020-form-bMath.ts",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q059"
+      ]
+    ]
+  },
+  "73": {
+    "number": 73,
+    "page": 42,
+    "box": [
+      317.8194,
+      323.9374,
+      568,
+      716
+    ],
+    "numberBox": [
+      317.8194,
+      329.9374,
+      337.6494,
+      341.9374
+    ],
+    "prompt": "A truck rental company charges a one-time fee of $40 plus $1 per mile driven. Dalia rented a truck and used a coupon for 20% off the total rental cost. After the coupon was applied, she spent a total of $60. How many miles did she drive?",
+    "promptHtml": "<p>A truck rental company charges a one-time fee of $40 plus $1 per mile driven. Dalia rented a truck and used a coupon for 20% off the total rental cost. After the coupon was applied, she spent a total of $60. How many miles did she drive?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "8",
+        "html": "<p>8</p>"
+      },
+      {
+        "id": "B",
+        "text": "20",
+        "html": "<p>20</p>"
+      },
+      {
+        "id": "C",
+        "text": "32",
+        "html": "<p>32</p>"
+      },
+      {
+        "id": "D",
+        "text": "35",
+        "html": "<p>35</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q73"
+      ],
+      [
+        0.49372384937238495,
+        "digital-shsat-practice-test-5Math.ts",
+        "satcc-digital-shsat-practice-test-5-v2-math-10"
+      ],
+      [
+        0.4183381088825215,
+        "digital-shsat-practice-test-3Math.ts",
+        "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-42"
+      ]
+    ]
+  },
+  "74": {
+    "number": 74,
+    "page": 43,
+    "box": [
+      47.8194,
+      65.44740000000002,
+      303,
+      358.9371
+    ],
+    "numberBox": [
+      47.8194,
+      71.44740000000002,
+      67.6494,
+      83.44740000000002
+    ],
+    "prompt": "The probability of drawing a red candy at 2 random from a bag of 25 candies is . 5 After 5 red candies are removed from the\n\nbag, what is the probability of randomly\n\ndrawing a red candy from the bag?",
+    "promptHtml": "<p>The probability of drawing a red candy at 2 random from a bag of 25 candies is . 5 After 5 red candies are removed from the</p><p>bag, what is the probability of randomly</p><p>drawing a red candy from the bag?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "0",
+        "html": "<p>0</p>"
+      },
+      {
+        "id": "F",
+        "text": "1 10",
+        "html": "<p>1 10</p>"
+      },
+      {
+        "id": "G",
+        "text": "1 5",
+        "html": "<p>1 5</p>"
+      },
+      {
+        "id": "H",
+        "text": "1 4",
+        "html": "<p>1 4</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.9011627906976745,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q74"
+      ],
+      [
+        0.4648910411622276,
+        "2024-2025-form-bMath.ts",
+        "pdf-shsat-2024-2025-b-q086"
+      ],
+      [
+        0.4174454828660436,
+        "2026-2027-form-aMath.ts",
+        "2026-2027-form-a-math-item-19"
+      ]
+    ]
+  },
+  "76": {
+    "number": 76,
+    "page": 43,
+    "box": [
+      317.8194,
+      65.44709999999998,
+      568,
+      405.9371
+    ],
+    "numberBox": [
+      317.8194,
+      71.44709999999998,
+      337.6494,
+      83.44709999999998
+    ],
+    "prompt": "8.9, 8.2, 8.5, 9.0, 8.4, 8.6, 8.8\n\nAt a skating championship, there are seven judges who each award a score for each skater’s performance. The highest and lowest scores given to each skater are discarded, and the mean of the remaining scores is then calculated and reported as the skater’s final score. What is the final score for the skater who received the scores shown above from the judges?",
+    "promptHtml": "<p>8.9, 8.2, 8.5, 9.0, 8.4, 8.6, 8.8</p><p>At a skating championship, there are seven judges who each award a score for each skater’s performance. The highest and lowest scores given to each skater are discarded, and the mean of the remaining scores is then calculated and reported as the skater’s final score. What is the final score for the skater who received the scores shown above from the judges?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "8.60",
+        "html": "<p>8.60</p>"
+      },
+      {
+        "id": "F",
+        "text": "8.62",
+        "html": "<p>8.62</p>"
+      },
+      {
+        "id": "G",
+        "text": "8.64",
+        "html": "<p>8.64</p>"
+      },
+      {
+        "id": "H",
+        "text": "8.70",
+        "html": "<p>8.70</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q76"
+      ],
+      [
+        0.3458646616541353,
+        "2026-2027-form-aMath.ts",
+        "2026-2027-form-a-math-item-40"
+      ],
+      [
+        0.3458646616541353,
+        "2021-2022-form-aMath.ts",
+        "2021-2022-form-a-q103"
+      ]
+    ]
+  },
+  "75": {
+    "number": 75,
+    "page": 43,
+    "box": [
+      47.8194,
+      363.9371,
+      303,
+      716
+    ],
+    "numberBox": [
+      47.8194,
+      369.9371,
+      67.6494,
+      381.9371
+    ],
+    "prompt": "Each number in a sequence is formed by doubling the previous number and then adding 1. If the 9th number in the sequence is 63, what is the 10th number minus the 7th number?",
+    "promptHtml": "<p>Each number in a sequence is formed by doubling the previous number and then adding 1. If the 9th number in the sequence is 63, what is the 10th number minus the 7th number?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "96",
+        "html": "<p>96</p>"
+      },
+      {
+        "id": "B",
+        "text": "111",
+        "html": "<p>111</p>"
+      },
+      {
+        "id": "C",
+        "text": "112",
+        "html": "<p>112</p>"
+      },
+      {
+        "id": "D",
+        "text": "127",
+        "html": "<p>127</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q75"
+      ],
+      [
+        0.5869565217391305,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q071"
+      ],
+      [
+        0.5869565217391305,
+        "2019-2020-form-bMath.ts",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q071"
+      ]
+    ]
+  },
+  "77": {
+    "number": 77,
+    "page": 43,
+    "box": [
+      317.8194,
+      410.9371,
+      568,
+      716
+    ],
+    "numberBox": [
+      317.8194,
+      416.9371,
+      337.6494,
+      428.9371
+    ],
+    "prompt": "1 A piece of wood that is 4 feet long 2 is cut into 2 pieces of different lengths.\n\nThe shorter piece has a length of x feet.\n\nWhich inequality expresses all possible\n\nvalues of x?",
+    "promptHtml": "<p>1 A piece of wood that is 4 feet long 2 is cut into 2 pieces of different lengths.</p><p>The shorter piece has a length of <em>x</em> feet.</p><p>Which inequality expresses all possible</p><p>values of <em>x</em>?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 0 < x < 2 4",
+        "html": "<p>1 0 &lt; <em>x</em> &lt; 2 4</p>"
+      },
+      {
+        "id": "B",
+        "text": "1 0 ≤ x ≤ 2 4",
+        "html": "<p>1 0 ≤ <em>x</em> ≤ 2 4</p>"
+      },
+      {
+        "id": "C",
+        "text": "1 0 < x < 4 2",
+        "html": "<p>1 0 &lt; <em>x</em> &lt; 4 2</p>"
+      },
+      {
+        "id": "D",
+        "text": "1 1 2 < x < 4 4 2",
+        "html": "<p>1 1 2 &lt; <em>x</em> &lt; 4 4 2</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.5987261146496815,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q77"
+      ],
+      [
+        0.4218181818181818,
+        "2023-2024-form-aMath.ts",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q113"
+      ],
+      [
+        0.3557692307692308,
+        "digital-shsat-practice-test-4Math.ts",
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-38"
+      ]
+    ]
+  },
+  "78": {
+    "number": 78,
+    "page": 44,
+    "box": [
+      49.748,
+      66.49808729999995,
+      303,
+      449.3316873
+    ],
+    "numberBox": [
+      49.748,
+      72.49808729999995,
+      69.4337553,
+      84.41718730000002
+    ],
+    "prompt": "y\n\n20\n\n15\n\n10\n\n5 x O 5 10 15 20\n\nWhat is the area, in square units, of the shaded region shown in the figure above?",
+    "promptHtml": "<p>y</p><p>20</p><p>15</p><p>10</p><p>5 x <em>O</em> 5 10 15 20</p><p>What is the area, in square units, of the shaded region shown in the figure above?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "75",
+        "html": "<p>75</p>"
+      },
+      {
+        "id": "F",
+        "text": "125",
+        "html": "<p>125</p>"
+      },
+      {
+        "id": "G",
+        "text": "150",
+        "html": "<p>150</p>"
+      },
+      {
+        "id": "H",
+        "text": "200",
+        "html": "<p>200</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.8982035928143712,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q78"
+      ],
+      [
+        0.6229508196721312,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q113"
+      ],
+      [
+        0.6229508196721312,
+        "2019-2020-form-bMath.ts",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q113"
+      ]
+    ]
+  },
+  "80": {
+    "number": 80,
+    "page": 44,
+    "box": [
+      317.5656246,
+      66.49532229999988,
+      568,
+      286.16293729999995
+    ],
+    "numberBox": [
+      317.5656246,
+      72.49532229999988,
+      337.25137989999996,
+      84.41442229999996
+    ],
+    "prompt": "Let x be an odd number. In terms of x, what is the sum of the two even numbers closest to x ?",
+    "promptHtml": "<p>Let <em>x</em> be an odd number. In terms of <em>x</em>, what is the sum of the two even numbers closest to <em>x</em> ?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "x",
+        "html": "<p><em>x</em></p>"
+      },
+      {
+        "id": "F",
+        "text": "2x",
+        "html": "<p>2<em>x</em></p>"
+      },
+      {
+        "id": "G",
+        "text": "2x − 2",
+        "html": "<p>2<em>x</em> − 2</p>"
+      },
+      {
+        "id": "H",
+        "text": "2x − 4",
+        "html": "<p>2<em>x</em> − 4</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.8228571428571428,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q80"
+      ],
+      [
+        0.618421052631579,
+        "2019-2020-form-bMath.ts",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q094"
+      ],
+      [
+        0.45454545454545453,
+        "digital-shsat-practice-test-3Math.ts",
+        "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-10"
+      ]
+    ]
+  },
+  "81": {
+    "number": 81,
+    "page": 44,
+    "box": [
+      317.5656245999999,
+      291.16293729999995,
+      568,
+      716
+    ],
+    "numberBox": [
+      317.5656245999999,
+      297.16293729999995,
+      337.2513798999999,
+      309.08203729999997
+    ],
+    "prompt": "In 1991, the total public debt of the United States was about $3,600,000,000,000. In that year, there were about 250,000,000 people in the United States. Which amount is the best estimate of the public debt per person for that year?",
+    "promptHtml": "<p>In 1991, the total public debt of the United States was about $3,600,000,000,000. In that year, there were about 250,000,000 people in the United States. Which amount is the best estimate of the public debt per person for that year?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "$1,440",
+        "html": "<p>$1,440</p>"
+      },
+      {
+        "id": "B",
+        "text": "$14,400",
+        "html": "<p>$14,400</p>"
+      },
+      {
+        "id": "C",
+        "text": "$144,000",
+        "html": "<p>$144,000</p>"
+      },
+      {
+        "id": "D",
+        "text": "$14,400,000,000",
+        "html": "<p>$14,400,000,000</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q81"
+      ],
+      [
+        0.3125,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q105"
+      ],
+      [
+        0.25936599423631124,
+        "2026-2027-form-aMath.ts",
+        "2026-2027-form-a-math-item-37"
+      ]
+    ]
+  },
+  "79": {
+    "number": 79,
+    "page": 44,
+    "box": [
+      49.748,
+      454.3316873,
+      303,
+      716
+    ],
+    "numberBox": [
+      49.748,
+      460.3316873,
+      69.4337553,
+      472.2507873
+    ],
+    "prompt": "9 F = C + 32 5\n\nYesterday in Centerville, the highest Fahrenheit temperature, F, was 86°, and the lowest was 68°. What was the difference between these temperatures, in degrees Celsius, C?",
+    "promptHtml": "<p>9 <em>F</em> = <em>C</em> + 32 5</p><p>Yesterday in Centerville, the highest Fahrenheit temperature, F, was 86°, and the lowest was 68°. What was the difference between these temperatures, in degrees Celsius, <em>C</em>?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "10.0° C",
+        "html": "<p>10.0° C</p>"
+      },
+      {
+        "id": "B",
+        "text": "15.0° C",
+        "html": "<p>15.0° C</p>"
+      },
+      {
+        "id": "C",
+        "text": "20.0° C",
+        "html": "<p>20.0° C</p>"
+      },
+      {
+        "id": "D",
+        "text": "32.4° C",
+        "html": "<p>32.4° C</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.9874213836477987,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q79"
+      ],
+      [
+        0.4742857142857143,
+        "2022-2023-form-aMath.ts",
+        "2022-2023-form-a-q60"
+      ],
+      [
+        0.41916167664670656,
+        "2026-2027-form-cMath.ts",
+        "official-shsat-2026-c-82"
+      ]
+    ]
+  },
+  "82": {
+    "number": 82,
+    "page": 45,
+    "box": [
+      48.3218,
+      65.54229999999995,
+      303,
+      402.31199999999995
+    ],
+    "numberBox": [
+      48.3218,
+      71.54229999999995,
+      68.15180000000001,
+      83.54229999999995
+    ],
+    "prompt": "y cm\n\nx cm\n\n• • • • M N P Q\n\nIn the figure above, N is the midpoint of MQ . Which segment has length (2x − y)\n\ncentimeters?",
+    "promptHtml": "<p>y cm</p><p>x cm</p><p>• • • • M N P Q</p><p>In the figure above, N is the midpoint of MQ . Which segment has length (2<em>x</em> − <em>y</em>)</p><p>centimeters?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "PQ",
+        "html": "<p>PQ</p>"
+      },
+      {
+        "id": "F",
+        "text": "NP",
+        "html": "<p>NP</p>"
+      },
+      {
+        "id": "G",
+        "text": "MQ",
+        "html": "<p>MQ</p>"
+      },
+      {
+        "id": "H",
+        "text": "MP",
+        "html": "<p>MP</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.8020833333333334,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q82"
+      ],
+      [
+        0.4293193717277487,
+        "grade-9-mini-formMath.ts",
+        "grade-9-mini-form-grade-9-mini-adam-13"
+      ],
+      [
+        0.40764331210191085,
+        "2026-2027-form-bMath.ts",
+        "official-shsat-2026-b-57"
+      ]
+    ]
+  },
+  "84": {
+    "number": 84,
+    "page": 45,
+    "box": [
+      318.3218,
+      65.54229999999995,
+      568,
+      358.03229999999996
+    ],
+    "numberBox": [
+      318.3218,
+      71.54229999999995,
+      338.1518,
+      83.54229999999995
+    ],
+    "prompt": "On Wednesday, a baker produced 100 more loaves of bread than were produced on Tuesday. On Thursday, the baker produced 50 fewer loaves than were produced on Tuesday. If the total number of loaves produced on all three days was 230, how many loaves were produced on Wednesday?",
+    "promptHtml": "<p>On Wednesday, a baker produced 100 more loaves of bread than were produced on Tuesday. On Thursday, the baker produced 50 fewer loaves than were produced on Tuesday. If the total number of loaves produced on all three days was 230, how many loaves were produced on Wednesday?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "60",
+        "html": "<p>60</p>"
+      },
+      {
+        "id": "F",
+        "text": "80",
+        "html": "<p>80</p>"
+      },
+      {
+        "id": "G",
+        "text": "120",
+        "html": "<p>120</p>"
+      },
+      {
+        "id": "H",
+        "text": "160",
+        "html": "<p>160</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q84"
+      ],
+      [
+        0.6836027713625866,
+        "digital-shsat-practice-test-4Math.ts",
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-1"
+      ],
+      [
+        0.565947242206235,
+        "digital-shsat-practice-test-5Math.ts",
+        "satcc-digital-shsat-practice-test-5-v2-math-40"
+      ]
+    ]
+  },
+  "85": {
+    "number": 85,
+    "page": 45,
+    "box": [
+      318.3218,
+      363.03229999999996,
+      568,
+      716
+    ],
+    "numberBox": [
+      318.3218,
+      369.03229999999996,
+      338.1518,
+      381.03229999999996
+    ],
+    "prompt": "QUIZ SCORES IN MRS. ARCH’S CLASS\n\nNumber of Quiz Score Students 60 9 70 7 80 4 90 5 100 3\n\nIn the table above, what is the mean quiz score?",
+    "promptHtml": "<p>QUIZ SCORES IN MRS. ARCH’S CLASS</p><p><strong>Number of</strong> <strong>Quiz Score</strong> <strong>Students</strong> 60 9 70 7 80 4 90 5 100 3</p><p>In the table above, what is the mean quiz score?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "60",
+        "html": "<p>60</p>"
+      },
+      {
+        "id": "B",
+        "text": "70",
+        "html": "<p>70</p>"
+      },
+      {
+        "id": "C",
+        "text": "75",
+        "html": "<p>75</p>"
+      },
+      {
+        "id": "D",
+        "text": "80",
+        "html": "<p>80</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.5769230769230769,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q85"
+      ],
+      [
+        0.425531914893617,
+        "digital-shsat-practice-test-4Math.ts",
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-29"
+      ],
+      [
+        0.4166666666666667,
+        "2021-2022-form-aMath.ts",
+        "2021-2022-form-a-q84"
+      ]
+    ]
+  },
+  "83": {
+    "number": 83,
+    "page": 45,
+    "box": [
+      48.3218,
+      407.31199999999995,
+      303,
+      716
+    ],
+    "numberBox": [
+      48.3218,
+      413.31199999999995,
+      68.15180000000001,
+      425.31199999999995
+    ],
+    "prompt": "30 ft\n\n25 ft 20 ft\n\nWhat is the area of the parallelogram shown above?",
+    "promptHtml": "<p>30 ft</p><p>25 ft 20 ft</p><p>What is the area of the parallelogram shown above?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "750 sq ft",
+        "html": "<p>750 sq ft</p>"
+      },
+      {
+        "id": "B",
+        "text": "600 sq ft",
+        "html": "<p>600 sq ft</p>"
+      },
+      {
+        "id": "C",
+        "text": "500 sq ft",
+        "html": "<p>500 sq ft</p>"
+      },
+      {
+        "id": "D",
+        "text": "300 sq ft",
+        "html": "<p>300 sq ft</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.92,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q83"
+      ],
+      [
+        0.5165562913907285,
+        "2017-2018-form-aMath.ts",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q085"
+      ],
+      [
+        0.49624060150375937,
+        "2026-2027-form-bMath.ts",
+        "official-shsat-2026-b-91"
+      ]
+    ]
+  },
+  "86": {
+    "number": 86,
+    "page": 46,
+    "box": [
+      48.8194,
+      65.44740000000002,
+      303,
+      328.14669999999995
+    ],
+    "numberBox": [
+      48.8194,
+      71.44740000000002,
+      68.6494,
+      83.44740000000002
+    ],
+    "prompt": "Which graph represents the solution to the inequality x + 4 ≥ 3 ?",
+    "promptHtml": "<p>Which graph represents the solution to the inequality <em>x</em> + 4 ≥ 3 ?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "–4 –3 –2 –1 0 1 2 3 4 5 6 7",
+        "html": "<p>–4 –3 –2 –1 0 1 2 3 4 5 6 7</p>"
+      },
+      {
+        "id": "F",
+        "text": "–4 –3 –2 –1 0 1 2 3 4 5 6 7",
+        "html": "<p>–4 –3 –2 –1 0 1 2 3 4 5 6 7</p>"
+      },
+      {
+        "id": "G",
+        "text": "–4 –3 –2 –1 0 1 2 3 4 5 6 7",
+        "html": "<p>–4 –3 –2 –1 0 1 2 3 4 5 6 7</p>"
+      },
+      {
+        "id": "H",
+        "text": "–4 –3 –2 –1 0 1 2 3 4 5 6 7",
+        "html": "<p>–4 –3 –2 –1 0 1 2 3 4 5 6 7</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.5373134328358209,
+        "2023-2024-form-aMath.ts",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q095"
+      ],
+      [
+        0.5294117647058824,
+        "2020-2021-form-bMath.ts",
+        "2020-2021-form-b-q110"
+      ],
+      [
+        0.4868421052631579,
+        "2021-2022-form-aMath.ts",
+        "2021-2022-form-a-q71"
+      ]
+    ]
+  },
+  "88": {
+    "number": 88,
+    "page": 46,
+    "box": [
+      318.8156,
+      65.44689999999991,
+      568,
+      318.9368999999999
+    ],
+    "numberBox": [
+      318.8156,
+      71.44689999999991,
+      338.64560000000006,
+      83.44689999999991
+    ],
+    "prompt": "Nura made a square poster with a side length of 13 inches. Latrice made a square poster with a side length of 15 inches. What is the difference, in square inches, between the area of Latrice’s poster and the area of Nura’s poster?",
+    "promptHtml": "<p>Nura made a square poster with a side length of 13 inches. Latrice made a square poster with a side length of 15 inches. What is the difference, in square inches, between the area of Latrice’s poster and the area of Nura’s poster?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "56",
+        "html": "<p>56</p>"
+      },
+      {
+        "id": "F",
+        "text": "8",
+        "html": "<p>8</p>"
+      },
+      {
+        "id": "G",
+        "text": "4",
+        "html": "<p>4</p>"
+      },
+      {
+        "id": "H",
+        "text": "2",
+        "html": "<p>2</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q88"
+      ],
+      [
+        0.5729442970822282,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q093"
+      ],
+      [
+        0.5729442970822282,
+        "2019-2020-form-bMath.ts",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q093"
+      ]
+    ]
+  },
+  "89": {
+    "number": 89,
+    "page": 46,
+    "box": [
+      318.8156,
+      323.9368999999999,
+      568,
+      716
+    ],
+    "numberBox": [
+      318.8156,
+      329.9368999999999,
+      338.64560000000006,
+      341.9368999999999
+    ],
+    "prompt": "INGREDIENTS FOR 4 SERVINGS OF OATMEAL\n\nIngredient Cups\n\n2 Oats 3\n\n1 Water 3 4\n\nThe table shows the cups of ingredients used to make 4 servings of oatmeal. What is the unit rate for cups of oats per cup of water?",
+    "promptHtml": "<p>INGREDIENTS FOR 4 SERVINGS OF OATMEAL</p><h3>Ingredient Cups</h3><p>2 Oats 3</p><p>1 Water 3 4</p><p>The table shows the cups of ingredients used to make 4 servings of oatmeal. What is the unit rate for cups of oats per cup of water?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 6",
+        "html": "<p>1 6</p>"
+      },
+      {
+        "id": "B",
+        "text": "8 39",
+        "html": "<p>8 39</p>"
+      },
+      {
+        "id": "C",
+        "text": "13 16",
+        "html": "<p>13 16</p>"
+      },
+      {
+        "id": "D",
+        "text": "13 8",
+        "html": "<p>13 8</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.6153846153846154,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q89"
+      ],
+      [
+        0.45849802371541504,
+        "2022-2023-form-aMath.ts",
+        "2022-2023-form-a-q108"
+      ],
+      [
+        0.38961038961038963,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q087"
+      ]
+    ]
+  },
+  "87": {
+    "number": 87,
+    "page": 46,
+    "box": [
+      48.8194,
+      333.14669999999995,
+      303,
+      716
+    ],
+    "numberBox": [
+      48.8194,
+      339.14669999999995,
+      68.6494,
+      351.14669999999995
+    ],
+    "prompt": "1 The reciprocal of is added to the 4 reciprocal of 3. What is the reciprocal of\n\nthis sum?",
+    "promptHtml": "<p>1 The reciprocal of is added to the 4 reciprocal of 3. What is the reciprocal of</p><p>this sum?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3 13",
+        "html": "<p>3 13</p>"
+      },
+      {
+        "id": "B",
+        "text": "3 4",
+        "html": "<p>3 4</p>"
+      },
+      {
+        "id": "C",
+        "text": "4 5",
+        "html": "<p>4 5</p>"
+      },
+      {
+        "id": "D",
+        "text": "13 4",
+        "html": "<p>13 4</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.6699507389162561,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q87"
+      ],
+      [
+        0.40236686390532544,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q085"
+      ],
+      [
+        0.40236686390532544,
+        "2019-2020-form-bMath.ts",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q085"
+      ]
+    ]
+  },
+  "90": {
+    "number": 90,
+    "page": 47,
+    "box": [
+      47.8194,
+      65.80089999999996,
+      303,
+      299.2901
+    ],
+    "numberBox": [
+      47.8194,
+      71.80089999999996,
+      67.6494,
+      83.80089999999996
+    ],
+    "prompt": "⎛ 3 1 ⎞ 1 2 If − x = + , what is the value ⎜ ⎟ ⎝ 5 2 ⎠ 4 3 of x?",
+    "promptHtml": "<p>⎛ 3 1 ⎞ 1 2 If − <em>x</em> = + , what is the value ⎜ ⎟ ⎝ 5 2 ⎠ 4 3 of <em>x</em>?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "11 120",
+        "html": "<p>11 120</p>"
+      },
+      {
+        "id": "F",
+        "text": "2 7",
+        "html": "<p>2 7</p>"
+      },
+      {
+        "id": "G",
+        "text": "5 6",
+        "html": "<p>5 6</p>"
+      },
+      {
+        "id": "H",
+        "text": "55 6",
+        "html": "<p>55 6</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.6486486486486487,
+        "2026-2027-form-dMath.ts",
+        "2026-2027-form-d-math-item-4"
+      ],
+      [
+        0.6486486486486487,
+        "2022-2023-form-bMath.ts",
+        "2022-2023-form-b-q67"
+      ],
+      [
+        0.6329113924050633,
+        "2025-2026-form-bMath.ts",
+        "2025-2026-form-b-math-1"
+      ]
+    ]
+  },
+  "92": {
+    "number": 92,
+    "page": 47,
+    "box": [
+      317.8194,
+      65.45010000000002,
+      568,
+      282.2208999999999
+    ],
+    "numberBox": [
+      317.8194,
+      71.45010000000002,
+      337.6494,
+      83.45010000000002
+    ],
+    "prompt": "Evaluate:\n\n(−8) − 12 + (−17) − (−31) − 24",
+    "promptHtml": "<p>Evaluate:</p><p>(−8) − 12 + (−17) − (−31) − 24</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "−30",
+        "html": "<p>−30</p>"
+      },
+      {
+        "id": "F",
+        "text": "−18",
+        "html": "<p>−18</p>"
+      },
+      {
+        "id": "G",
+        "text": "18",
+        "html": "<p>18</p>"
+      },
+      {
+        "id": "H",
+        "text": "44",
+        "html": "<p>44</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q92"
+      ],
+      [
+        0.39436619718309857,
+        "digital-shsat-practice-test-4Math.ts",
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-37"
+      ],
+      [
+        0.3116883116883117,
+        "digital-shsat-practice-test-3Math.ts",
+        "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-13"
+      ]
+    ]
+  },
+  "93": {
+    "number": 93,
+    "page": 47,
+    "box": [
+      317.8168999999999,
+      287.2208999999999,
+      568,
+      716
+    ],
+    "numberBox": [
+      317.8168999999999,
+      293.2208999999999,
+      337.64689999999996,
+      305.2208999999999
+    ],
+    "prompt": "CELL PHONE SALES BY COLOR\n\nPercent of Cell Color Phones Sold\n\nWhite 8k\n\nBlack 30\n\nBlue 30 − 2k\n\nRed k + 5\n\nTotal 100\n\nThe table above shows cell phone sales by\n\ncolor. What percent of the cell phones sold were blue?",
+    "promptHtml": "<p>CELL PHONE SALES BY COLOR</p><p><strong>Percent of Cell</strong> <strong>Color</strong> <strong>Phones Sold</strong></p><p>White 8<em>k</em></p><p>Black 30</p><p>Blue 30 − 2<em>k</em></p><p>Red <em>k</em> + 5</p><p>Total 100</p><p>The table above shows cell phone sales by</p><p>color. What percent of the cell phones sold were blue?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "18%",
+        "html": "<p>18%</p>"
+      },
+      {
+        "id": "B",
+        "text": "20%",
+        "html": "<p>20%</p>"
+      },
+      {
+        "id": "C",
+        "text": "22%",
+        "html": "<p>22%</p>"
+      },
+      {
+        "id": "D",
+        "text": "28%",
+        "html": "<p>28%</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.6614785992217899,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q93"
+      ],
+      [
+        0.35135135135135137,
+        "2024-2025-form-bMath.ts",
+        "pdf-shsat-2024-2025-b-q102"
+      ],
+      [
+        0.31724137931034485,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q058"
+      ]
+    ]
+  },
+  "91": {
+    "number": 91,
+    "page": 47,
+    "box": [
+      47.8194,
+      304.2901,
+      303,
+      716
+    ],
+    "numberBox": [
+      47.8194,
+      310.2901,
+      67.6494,
+      322.2901
+    ],
+    "prompt": "In a certain state, the sales tax rate increased from 7.0% to 7.5%. What was the increase in the sales tax on a $200 item?",
+    "promptHtml": "<p>In a certain state, the sales tax rate increased from 7.0% to 7.5%. What was the increase in the sales tax on a $200 item?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "$1",
+        "html": "<p>$1</p>"
+      },
+      {
+        "id": "B",
+        "text": "$10",
+        "html": "<p>$10</p>"
+      },
+      {
+        "id": "C",
+        "text": "$14",
+        "html": "<p>$14</p>"
+      },
+      {
+        "id": "D",
+        "text": "$15",
+        "html": "<p>$15</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q91"
+      ],
+      [
+        0.5084745762711864,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q97"
+      ],
+      [
+        0.41379310344827586,
+        "2024-2025-form-bMath.ts",
+        "pdf-shsat-2024-2025-b-q061"
+      ]
+    ]
+  },
+  "94": {
+    "number": 94,
+    "page": 48,
+    "box": [
+      47.8194,
+      67.04750000000001,
+      303,
+      452.2082
+    ],
+    "numberBox": [
+      47.8194,
+      73.04750000000001,
+      67.6494,
+      85.04750000000001
+    ],
+    "prompt": "1 2\n\nX Y Z\n\nOn the number line above, the distance between X and Y is 1 unit, and the distance between Y and Z is 2 units. What is the distance between Y and the midpoint of X and Z?",
+    "promptHtml": "<p>1 2</p><p>X Y Z</p><p>On the number line above, the distance between X and Y is 1 unit, and the distance between Y and Z is 2 units. What is the distance between Y and the midpoint of X and Z?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "1 2",
+        "html": "<p>1 2</p>"
+      },
+      {
+        "id": "F",
+        "text": "1",
+        "html": "<p>1</p>"
+      },
+      {
+        "id": "G",
+        "text": "1 1 2",
+        "html": "<p>1 1 2</p>"
+      },
+      {
+        "id": "H",
+        "text": "3",
+        "html": "<p>3</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.8770764119601329,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q94"
+      ],
+      [
+        0.5304347826086957,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q113"
+      ],
+      [
+        0.43946188340807174,
+        "2026-2027-form-aMath.ts",
+        "2026-2027-form-a-math-item-39"
+      ]
+    ]
+  },
+  "96": {
+    "number": 96,
+    "page": 48,
+    "box": [
+      317.8194,
+      67.04819999999995,
+      568,
+      527.2782
+    ],
+    "numberBox": [
+      317.8194,
+      73.04819999999995,
+      337.6494,
+      85.04819999999995
+    ],
+    "prompt": "13 in. 13 in. 12 in.\n\n10 in.\n\nRaquel is cutting out pieces of cardboard to make a pyramid. She will use a square piece for the base and identical triangular pieces for the sides. The figure above shows the dimensions of the triangle for each side. What will be the total surface area, in square inches, of the pyramid, including the square base?",
+    "promptHtml": "<p>13 in. 13 in. 12 in.</p><p>10 in.</p><p>Raquel is cutting out pieces of cardboard to make a pyramid. She will use a square piece for the base and identical triangular pieces for the sides. The figure above shows the dimensions of the triangle for each side. What will be the total surface area, in square inches, of the pyramid, including the square base?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "280",
+        "html": "<p>280</p>"
+      },
+      {
+        "id": "F",
+        "text": "295",
+        "html": "<p>295</p>"
+      },
+      {
+        "id": "G",
+        "text": "340",
+        "html": "<p>340</p>"
+      },
+      {
+        "id": "H",
+        "text": "360",
+        "html": "<p>360</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.9706959706959707,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q96"
+      ],
+      [
+        0.4346076458752515,
+        "digital-shsat-practice-test-4Math.ts",
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-21"
+      ],
+      [
+        0.430327868852459,
+        "2026-2027-form-aMath.ts",
+        "2026-2027-form-a-math-item-11"
+      ]
+    ]
+  },
+  "95": {
+    "number": 95,
+    "page": 48,
+    "box": [
+      47.8194,
+      457.2082,
+      303,
+      716
+    ],
+    "numberBox": [
+      47.8194,
+      463.2082,
+      67.6494,
+      475.2082
+    ],
+    "prompt": "By what percent did the price of a cup of coffee increase if its price was increased from $1.25 to $1.35?",
+    "promptHtml": "<p>By what percent did the price of a cup of coffee increase if its price was increased from $1.25 to $1.35?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "7%",
+        "html": "<p>7%</p>"
+      },
+      {
+        "id": "B",
+        "text": "8%",
+        "html": "<p>8%</p>"
+      },
+      {
+        "id": "C",
+        "text": "10%",
+        "html": "<p>10%</p>"
+      },
+      {
+        "id": "D",
+        "text": "12%",
+        "html": "<p>12%</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q95"
+      ],
+      [
+        0.39759036144578314,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q97"
+      ],
+      [
+        0.3804878048780488,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q098"
+      ]
+    ]
+  },
+  "97": {
+    "number": 97,
+    "page": 48,
+    "box": [
+      317.8194,
+      532.2782,
+      568,
+      716
+    ],
+    "numberBox": [
+      317.8194,
+      538.2782,
+      337.6494,
+      550.2782
+    ],
+    "prompt": "The price of a sandwich was raised from $6.25 to $6.75. What was the percent increase in the price?",
+    "promptHtml": "<p>The price of a sandwich was raised from $6.25 to $6.75. What was the percent increase in the price?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "5%",
+        "html": "<p>5%</p>"
+      },
+      {
+        "id": "B",
+        "text": "8%",
+        "html": "<p>8%</p>"
+      },
+      {
+        "id": "C",
+        "text": "7%",
+        "html": "<p>7%</p>"
+      },
+      {
+        "id": "D",
+        "text": "50%",
+        "html": "<p>50%</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q97"
+      ],
+      [
+        0.519774011299435,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q91"
+      ],
+      [
+        0.4120603015075377,
+        "2023-2024-form-bMath.ts",
+        "2023-2024-form-b-pdf-shsat-2023-2024-b-q098"
+      ]
+    ]
+  },
+  "98": {
+    "number": 98,
+    "page": 49,
+    "box": [
+      48.8194,
+      65.44749999999999,
+      303,
+      303.9375
+    ],
+    "numberBox": [
+      48.8194,
+      71.44749999999999,
+      68.6494,
+      83.44749999999999
+    ],
+    "prompt": "Terrell played 5 computer games and earned a mean score of 8 points per game. If his mean score for the first 4 games was 7 points per game, how many points was his score in the fifth game?",
+    "promptHtml": "<p>Terrell played 5 computer games and earned a mean score of 8 points per game. If his mean score for the first 4 games was 7 points per game, how many points was his score in the fifth game?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "9",
+        "html": "<p>9</p>"
+      },
+      {
+        "id": "F",
+        "text": "11",
+        "html": "<p>11</p>"
+      },
+      {
+        "id": "G",
+        "text": "12",
+        "html": "<p>12</p>"
+      },
+      {
+        "id": "H",
+        "text": "14",
+        "html": "<p>14</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q98"
+      ],
+      [
+        0.4295774647887324,
+        "2021-2022-form-bMath.ts",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q082"
+      ],
+      [
+        0.4295774647887324,
+        "2018-2019-form-bMath.ts",
+        "2018-2019-form-b-pdf-shsat-2018-2019-b-q082"
+      ]
+    ]
+  },
+  "101": {
+    "number": 101,
+    "page": 49,
+    "box": [
+      318.8194,
+      65.44749999999999,
+      568,
+      357.9375
+    ],
+    "numberBox": [
+      318.8194,
+      71.44749999999999,
+      345.75939999999997,
+      83.44749999999999
+    ],
+    "prompt": "A tank with a 500-gallon capacity currently contains 75 gallons of water. Additional water is poured into this tank at a rate of 5 gallons per minute. After 45 minutes of adding water, what percentage of the tank’s total capacity will be filled? (Assume that there is no loss of water from the tank.)",
+    "promptHtml": "<p>A tank with a 500-gallon capacity currently contains 75 gallons of water. Additional water is poured into this tank at a rate of 5 gallons per minute. After 45 minutes of adding water, what percentage of the tank’s total capacity will be filled? (Assume that there is no loss of water from the tank.)</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "45%",
+        "html": "<p>45%</p>"
+      },
+      {
+        "id": "B",
+        "text": "55%",
+        "html": "<p>55%</p>"
+      },
+      {
+        "id": "C",
+        "text": "60%",
+        "html": "<p>60%</p>"
+      },
+      {
+        "id": "D",
+        "text": "70%",
+        "html": "<p>70%</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q101"
+      ],
+      [
+        0.3220779220779221,
+        "2022-2023-form-bMath.ts",
+        "2022-2023-form-b-q62"
+      ],
+      [
+        0.3193612774451098,
+        "2019-2020-form-bMath.ts",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q101"
+      ]
+    ]
+  },
+  "99": {
+    "number": 99,
+    "page": 49,
+    "box": [
+      48.8194,
+      308.9375,
+      303,
+      528.7805
+    ],
+    "numberBox": [
+      48.8194,
+      314.9375,
+      68.6494,
+      326.9375
+    ],
+    "prompt": "Lian bought enough oranges to fill 4 bags. Each bag contains 8 oranges. The total cost was $11.52. At that rate, how much would Lian pay for 42 oranges?",
+    "promptHtml": "<p>Lian bought enough oranges to fill 4 bags. Each bag contains 8 oranges. The total cost was $11.52. At that rate, how much would Lian pay for 42 oranges?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "$17.28",
+        "html": "<p>$17.28</p>"
+      },
+      {
+        "id": "B",
+        "text": "$15.12",
+        "html": "<p>$15.12</p>"
+      },
+      {
+        "id": "C",
+        "text": "$15.02",
+        "html": "<p>$15.02</p>"
+      },
+      {
+        "id": "D",
+        "text": "$12.52",
+        "html": "<p>$12.52</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q99"
+      ],
+      [
+        0.3783783783783784,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q102"
+      ],
+      [
+        0.3697478991596639,
+        "2026-2027-form-bMath.ts",
+        "official-shsat-2026-b-70"
+      ]
+    ]
+  },
+  "102": {
+    "number": 102,
+    "page": 49,
+    "box": [
+      318.8194,
+      362.9375,
+      568,
+      716
+    ],
+    "numberBox": [
+      318.8194,
+      368.9375,
+      345.75939999999997,
+      380.9375
+    ],
+    "prompt": "Misha wants to use ribbon to make\n\n2 straps for a backpack. The ribbon costs\n\n$5.00 a yard. If each strap requires 1 1 yards of ribbon, how much will Misha 4 pay for the ribbon (not including tax)?",
+    "promptHtml": "<p>Misha wants to use ribbon to make</p><p>2 straps for a backpack. The ribbon costs</p><p>$5.00 a yard. If each strap requires 1 1 yards of ribbon, how much will Misha 4 pay for the ribbon (not including tax)?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "$4.00",
+        "html": "<p>$4.00</p>"
+      },
+      {
+        "id": "F",
+        "text": "$6.25",
+        "html": "<p>$6.25</p>"
+      },
+      {
+        "id": "G",
+        "text": "$11.25",
+        "html": "<p>$11.25</p>"
+      },
+      {
+        "id": "H",
+        "text": "$12.50",
+        "html": "<p>$12.50</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.9938650306748467,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q102"
+      ],
+      [
+        0.40540540540540543,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q99"
+      ],
+      [
+        0.38485804416403785,
+        "2018-2019-form-aMath.ts",
+        "2018-2019-form-a-pdf-shsat-2018-2019-a-q077"
+      ]
+    ]
+  },
+  "100": {
+    "number": 100,
+    "page": 49,
+    "box": [
+      48.81939999999997,
+      533.7805,
+      303,
+      716
+    ],
+    "numberBox": [
+      48.81939999999997,
+      539.7805,
+      75.75939999999997,
+      551.7805
+    ],
+    "prompt": "3.6 ÷ 0.018 =",
+    "promptHtml": "<p>3.6 ÷ 0.018 =</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "0.005",
+        "html": "<p>0.005</p>"
+      },
+      {
+        "id": "F",
+        "text": "0.648",
+        "html": "<p>0.648</p>"
+      },
+      {
+        "id": "G",
+        "text": "20",
+        "html": "<p>20</p>"
+      },
+      {
+        "id": "H",
+        "text": "200",
+        "html": "<p>200</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.16326530612244897,
+        "2017-2018-form-aMath.ts",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q067"
+      ],
+      [
+        0.09917355371900827,
+        "2017-2018-form-aMath.ts",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q064"
+      ],
+      [
+        0.0970873786407767,
+        "2017-2018-form-aMath.ts",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q063"
+      ]
+    ]
+  },
+  "103": {
+    "number": 103,
+    "page": 50,
+    "box": [
+      50.8218,
+      63.94749999999999,
+      303,
+      424.2857999999999
+    ],
+    "numberBox": [
+      50.8218,
+      69.94749999999999,
+      77.76180000000001,
+      81.94749999999999
+    ],
+    "prompt": "A graph shows the proportional\n\nrelationship between the number of test\n\nquestions a student gets correct, x, and\n\nthe student’s test score, y. The ordered ⎛ 5 ⎞ pair 1, is on the graph. What does the ⎜ ⎟ ⎝ 4 ⎠ y-coordinate of the ordered pair represent\n\nin this relationship?",
+    "promptHtml": "<p>A graph shows the proportional</p><p>relationship between the number of test</p><p>questions a student gets correct, <em>x</em>, and</p><p>the student’s test score, <em>y</em>. The ordered ⎛ 5 ⎞ pair 1, is on the graph. What does the ⎜ ⎟ ⎝ 4 ⎠ <em>y</em>-coordinate of the ordered pair represent</p><p>in this relationship?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 The test will last 1 hours. 4",
+        "html": "<p>1 The test will last 1 hours. 4</p>"
+      },
+      {
+        "id": "B",
+        "text": "1 Each test question is worth 1 points. 4",
+        "html": "<p>1 Each test question is worth 1 points. 4</p>"
+      },
+      {
+        "id": "C",
+        "text": "An average student can answer 5 questions in 4 minutes.",
+        "html": "<p>An average student can answer 5 questions in 4 minutes.</p>"
+      },
+      {
+        "id": "D",
+        "text": "A student who answers 5 questions correctly will earn 4 points.",
+        "html": "<p>A student who answers 5 questions correctly will earn 4 points.</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.9819193324061196,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q103"
+      ],
+      [
+        0.44702467343976776,
+        "2026-2027-form-dMath.ts",
+        "2026-2027-form-d-math-item-28"
+      ],
+      [
+        0.44702467343976776,
+        "2022-2023-form-bMath.ts",
+        "2022-2023-form-b-q102"
+      ]
+    ]
+  },
+  "105": {
+    "number": 105,
+    "page": 50,
+    "box": [
+      320.8195999999999,
+      63.94579999999985,
+      568,
+      331.43579999999986
+    ],
+    "numberBox": [
+      320.8195999999999,
+      69.94579999999985,
+      347.7595999999999,
+      81.94579999999985
+    ],
+    "prompt": "A hiker plans on hiking 17 miles in 3 days. Which equation describes the relationship between the number of days hiked, x, and the number of miles traveled, y?",
+    "promptHtml": "<p>A hiker plans on hiking 17 miles in 3 days. Which equation describes the relationship between the number of days hiked, <em>x</em>, and the number of miles traveled, <em>y</em>?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3 y = x 17",
+        "html": "<p>3 <em>y</em> = <em>x</em> 17</p>"
+      },
+      {
+        "id": "B",
+        "text": "y = 3x",
+        "html": "<p><em>y</em> = 3<em>x</em></p>"
+      },
+      {
+        "id": "C",
+        "text": "17 y = x 3",
+        "html": "<p>17 <em>y</em> = <em>x</em> 3</p>"
+      },
+      {
+        "id": "D",
+        "text": "y = 17x",
+        "html": "<p><em>y</em> = 17<em>x</em></p>"
+      }
+    ],
+    "matches": [
+      [
+        0.7723342939481268,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q105"
+      ],
+      [
+        0.4748603351955307,
+        "2020-2021-form-bMath.ts",
+        "2020-2021-form-b-q76"
+      ],
+      [
+        0.4028436018957346,
+        "2024-2025-form-bMath.ts",
+        "pdf-shsat-2024-2025-b-q076"
+      ]
+    ]
+  },
+  "106": {
+    "number": 106,
+    "page": 50,
+    "box": [
+      320.82959999999997,
+      336.43579999999986,
+      568,
+      716
+    ],
+    "numberBox": [
+      320.82959999999997,
+      342.43579999999986,
+      347.76959999999997,
+      354.43579999999986
+    ],
+    "prompt": "Carolyn walked 3 miles from her house to 1 the library and then 2 miles farther to 2 the grocery store. Returning home by the 2 same route, she walked 1 miles before 3 stopping at a friend’s house. How many\n\nmiles did Carolyn have left to walk home?",
+    "promptHtml": "<p>Carolyn walked 3 miles from her house to 1 the library and then 2 miles farther to 2 the grocery store. Returning home by the 2 same route, she walked 1 miles before 3 stopping at a friend’s house. How many</p><p>miles did Carolyn have left to walk home?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "5 3 6",
+        "html": "<p>5 3 6</p>"
+      },
+      {
+        "id": "F",
+        "text": "1 4 6",
+        "html": "<p>1 4 6</p>"
+      },
+      {
+        "id": "G",
+        "text": "2 4 3",
+        "html": "<p>2 4 3</p>"
+      },
+      {
+        "id": "H",
+        "text": "1 7 6",
+        "html": "<p>1 7 6</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.8179871520342612,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q106"
+      ],
+      [
+        0.34805194805194806,
+        "2023-2024-form-aMath.ts",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q109"
+      ],
+      [
+        0.3148148148148148,
+        "2019-2020-form-aMath.ts",
+        "2019-2020-form-a-q109"
+      ]
+    ]
+  },
+  "104": {
+    "number": 104,
+    "page": 50,
+    "box": [
+      50.81959999999998,
+      429.2857999999999,
+      303,
+      716
+    ],
+    "numberBox": [
+      50.81959999999998,
+      435.2857999999999,
+      77.75959999999998,
+      447.2857999999999
+    ],
+    "prompt": "In a survey of 200 adults in the town of Waskegon, 45 reported reading the online version of the Waskegon Bulletin the previous day. If 25,000 adults live in Waskegon, which number is the best estimate of the number of adults who read the online version of the Waskegon Bulletin the previous day?",
+    "promptHtml": "<p>In a survey of 200 adults in the town of Waskegon, 45 reported reading the online version of the <em>Waskegon Bulletin</em> the previous day. If 25,000 adults live in Waskegon, which number is the best estimate of the number of adults who read the online version of the <em>Waskegon</em> <em>Bulletin</em> the previous day?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "5,600",
+        "html": "<p>5,600</p>"
+      },
+      {
+        "id": "F",
+        "text": "9,000",
+        "html": "<p>9,000</p>"
+      },
+      {
+        "id": "G",
+        "text": "11,300",
+        "html": "<p>11,300</p>"
+      },
+      {
+        "id": "H",
+        "text": "24,800",
+        "html": "<p>24,800</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q104"
+      ],
+      [
+        0.3434343434343434,
+        "2022-2023-form-aMath.ts",
+        "2022-2023-form-a-q98"
+      ],
+      [
+        0.2894168466522678,
+        "2026-2027-form-cMath.ts",
+        "official-shsat-2026-c-81"
+      ]
+    ]
+  },
+  "107": {
+    "number": 107,
+    "page": 51,
+    "box": [
+      49.4218,
+      63.94749999999999,
+      303,
+      321.79019999999997
+    ],
+    "numberBox": [
+      49.4218,
+      69.94749999999999,
+      76.3618,
+      81.94749999999999
+    ],
+    "prompt": "1 1 A child grows 1 inches in of a year. 4 3 What would be his yearly growth rate in\n\ninches per year?",
+    "promptHtml": "<p>1 1 A child grows 1 inches in of a year. 4 3 What would be his yearly growth rate in</p><p>inches per year?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "5 12",
+        "html": "<p>5 12</p>"
+      },
+      {
+        "id": "B",
+        "text": "1 3 4",
+        "html": "<p>1 3 4</p>"
+      },
+      {
+        "id": "C",
+        "text": "3 3 4",
+        "html": "<p>3 3 4</p>"
+      },
+      {
+        "id": "D",
+        "text": "1 4 4",
+        "html": "<p>1 4 4</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.62882096069869,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q107"
+      ],
+      [
+        0.4,
+        "2022-2023-form-aMath.ts",
+        "2022-2023-form-a-q108"
+      ],
+      [
+        0.3285024154589372,
+        "2019-2020-form-aMath.ts",
+        "2019-2020-form-a-q75"
+      ]
+    ]
+  },
+  "109": {
+    "number": 109,
+    "page": 51,
+    "box": [
+      319.4197,
+      63.49180000000001,
+      568,
+      283.4351
+    ],
+    "numberBox": [
+      319.4197,
+      69.49180000000001,
+      346.3597,
+      81.49180000000001
+    ],
+    "prompt": "What is the value of 10 1 + ⎛ −5 1 ⎞ − ⎛ −2 3 ⎞ ? ⎜ ⎟ ⎜ ⎟ 2 ⎝ 3 ⎠ ⎝ 4 ⎠",
+    "promptHtml": "<p>What is the value of 10 1 + ⎛ −5 1 ⎞ − ⎛ −2 3 ⎞ ? ⎜ ⎟ ⎜ ⎟ 2 ⎝ 3 ⎠ ⎝ 4 ⎠</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "5 2 12",
+        "html": "<p>5 2 12</p>"
+      },
+      {
+        "id": "B",
+        "text": "11 7 12",
+        "html": "<p>11 7 12</p>"
+      },
+      {
+        "id": "C",
+        "text": "1 13 12",
+        "html": "<p>1 13 12</p>"
+      },
+      {
+        "id": "D",
+        "text": "7 18 12",
+        "html": "<p>7 18 12</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.6582278481012658,
+        "2026-2027-form-dMath.ts",
+        "2026-2027-form-d-math-item-4"
+      ],
+      [
+        0.6582278481012658,
+        "2022-2023-form-bMath.ts",
+        "2022-2023-form-b-q67"
+      ],
+      [
+        0.6388888888888888,
+        "digital-shsat-practice-test-4Math.ts",
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-36"
+      ]
+    ]
+  },
+  "110": {
+    "number": 110,
+    "page": 51,
+    "box": [
+      319.4218,
+      288.4351,
+      568,
+      716
+    ],
+    "numberBox": [
+      319.4218,
+      294.4351,
+      346.3618,
+      306.4351
+    ],
+    "prompt": "Carlos has $350 in a savings account that earns 5% simple interest each year. How much will he have in the account after 1 year, if there is no money withdrawn?",
+    "promptHtml": "<p>Carlos has $350 in a savings account that earns 5% simple interest each year. How much will he have in the account after 1 year, if there is no money withdrawn?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "$17.50",
+        "html": "<p>$17.50</p>"
+      },
+      {
+        "id": "F",
+        "text": "$175.00",
+        "html": "<p>$175.00</p>"
+      },
+      {
+        "id": "G",
+        "text": "$367.50",
+        "html": "<p>$367.50</p>"
+      },
+      {
+        "id": "H",
+        "text": "$525.00",
+        "html": "<p>$525.00</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q110"
+      ],
+      [
+        0.4318936877076412,
+        "digital-shsat-practice-test-5Math.ts",
+        "satcc-digital-shsat-practice-test-5-v2-math-14"
+      ],
+      [
+        0.4157706093189964,
+        "2023-2024-form-aMath.ts",
+        "2023-2024-form-a-pdf-shsat-2023-2024-a-q058"
+      ]
+    ]
+  },
+  "108": {
+    "number": 108,
+    "page": 51,
+    "box": [
+      49.4218,
+      326.79019999999997,
+      303,
+      716
+    ],
+    "numberBox": [
+      49.4218,
+      332.79019999999997,
+      76.3618,
+      344.79019999999997
+    ],
+    "prompt": "3(0.01) − 3(0.1) =",
+    "promptHtml": "<p>3(0.01) − 3(0.1) =</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "−0.33",
+        "html": "<p>−0.33</p>"
+      },
+      {
+        "id": "F",
+        "text": "−0.27",
+        "html": "<p>−0.27</p>"
+      },
+      {
+        "id": "G",
+        "text": "0",
+        "html": "<p>0</p>"
+      },
+      {
+        "id": "H",
+        "text": "0.33",
+        "html": "<p>0.33</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.16666666666666666,
+        "2017-2018-form-aMath.ts",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q067"
+      ],
+      [
+        0.13445378151260504,
+        "2017-2018-form-aMath.ts",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q064"
+      ],
+      [
+        0.09900990099009901,
+        "2017-2018-form-aMath.ts",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q063"
+      ]
+    ]
+  },
+  "111": {
+    "number": 111,
+    "page": 52,
+    "box": [
+      49.677,
+      64.70149579999998,
+      303,
+      716
+    ],
+    "numberBox": [
+      49.677,
+      70.70149579999998,
+      76.2144684,
+      82.54009580000002
+    ],
+    "prompt": "The probability of an event occurring is 0.05. What is the chance that the event will occur?",
+    "promptHtml": "<p>The probability of an event occurring is 0.05. What is the chance that the event will occur?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "likely",
+        "html": "<p>likely</p>"
+      },
+      {
+        "id": "B",
+        "text": "unlikely",
+        "html": "<p>unlikely</p>"
+      },
+      {
+        "id": "C",
+        "text": "impossible",
+        "html": "<p>impossible</p>"
+      },
+      {
+        "id": "D",
+        "text": "neither likely nor unlikely",
+        "html": "<p>neither likely nor unlikely</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q111"
+      ],
+      [
+        0.27692307692307694,
+        "2022-2023-form-bMath.ts",
+        "2022-2023-form-b-q62"
+      ],
+      [
+        0.25622775800711745,
+        "2026-2027-form-dMath.ts",
+        "2026-2027-form-d-math-item-39"
+      ]
+    ]
+  },
+  "112": {
+    "number": 112,
+    "page": 52,
+    "box": [
+      315.3192,
+      65.1540713999999,
+      568,
+      716
+    ],
+    "numberBox": [
+      315.3192,
+      71.1540713999999,
+      341.8566684,
+      82.99267139999995
+    ],
+    "prompt": "The table below shows the number of cups of red paint and blue paint used to make a purple paint mixture.\n\nPURPLE PAINT\n\nCups of Red Paint Cups of Blue Paint 1 1.5 4 6 11 y\n\nBased on the relationship between the number of cups of red paint and the number of cups of blue paint, what is the value of y?",
+    "promptHtml": "<p>The table below shows the number of cups of red paint and blue paint used to make a purple paint mixture.</p><p>PURPLE PAINT</p><p><strong>Cups of Red Paint Cups of Blue Paint</strong> 1 1.5 4 6 11 <em>y</em></p><p>Based on the relationship between the number of cups of red paint and the number of cups of blue paint, what is the value of <em>y</em>?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "10.5",
+        "html": "<p>10.5</p>"
+      },
+      {
+        "id": "F",
+        "text": "13",
+        "html": "<p>13</p>"
+      },
+      {
+        "id": "G",
+        "text": "16.5",
+        "html": "<p>16.5</p>"
+      },
+      {
+        "id": "H",
+        "text": "24",
+        "html": "<p>24</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.8899082568807339,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q112"
+      ],
+      [
+        0.4,
+        "digital-shsat-practice-test-3Math.ts",
+        "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-12"
+      ],
+      [
+        0.38949671772428884,
+        "2020-2021-form-bMath.ts",
+        "2020-2021-form-b-q76"
+      ]
+    ]
+  },
+  "113": {
+    "number": 113,
+    "page": 53,
+    "box": [
+      49.81990000000002,
+      65.4375,
+      303,
+      716
+    ],
+    "numberBox": [
+      49.81990000000002,
+      71.4375,
+      76.75990000000002,
+      83.4375
+    ],
+    "prompt": "P Q R\n\n–3 –2 –1 0 1 2 3 4 5 6 7 8\n\nOn the number line above, what is the distance, in units, between the midpoint of PQ and the midpoint of QR ?",
+    "promptHtml": "<p>P Q R</p><p>–3 –2 –1 0 1 2 3 4 5 6 7 8</p><p>On the number line above, what is the distance, in units, between the midpoint of PQ and the midpoint of QR ?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3",
+        "html": "<p>3</p>"
+      },
+      {
+        "id": "B",
+        "text": "4",
+        "html": "<p>4</p>"
+      },
+      {
+        "id": "C",
+        "text": "5",
+        "html": "<p>5</p>"
+      },
+      {
+        "id": "D",
+        "text": "6",
+        "html": "<p>6</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.9214659685863874,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q113"
+      ],
+      [
+        0.5202312138728323,
+        "2026-2027-form-cMath.ts",
+        "official-shsat-2026-c-67"
+      ],
+      [
+        0.5202312138728323,
+        "2022-2023-form-aMath.ts",
+        "2022-2023-form-a-q82"
+      ]
+    ]
+  },
+  "114": {
+    "number": 114,
+    "page": 53,
+    "box": [
+      319.8199,
+      65.44749999999999,
+      568,
+      716
+    ],
+    "numberBox": [
+      319.8199,
+      71.44749999999999,
+      346.7599,
+      83.44749999999999
+    ],
+    "prompt": "An ice cream shop sells 16 cups of ice cream for $48 and 4 cups for $12. There is a proportional relationship between the number of cups of ice cream and the cost. What is the constant of proportionality for this relationship?",
+    "promptHtml": "<p>An ice cream shop sells 16 cups of ice cream for $48 and 4 cups for $12. There is a proportional relationship between the number of cups of ice cream and the cost. What is the constant of proportionality for this relationship?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "3 cups per dollar",
+        "html": "<p>3 cups per dollar</p>"
+      },
+      {
+        "id": "F",
+        "text": "3 dollars per cup",
+        "html": "<p>3 dollars per cup</p>"
+      },
+      {
+        "id": "G",
+        "text": "4 cups per dollar",
+        "html": "<p>4 cups per dollar</p>"
+      },
+      {
+        "id": "H",
+        "text": "4 dollars per cup\n\nTHIS IS THE END OF THE TEST. IF TIME REMAINS, YOU SHOULD CHECK YOUR ANSWERS. BE SURE THAT THERE ARE NO STRAY MARKS, PARTIALLY",
+        "html": "<p>4 dollars per cup</p><p>THIS IS THE END OF THE TEST. IF TIME REMAINS, YOU SHOULD CHECK YOUR ANSWERS. BE SURE THAT THERE ARE NO STRAY MARKS, PARTIALLY</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.8280701754385965,
+        "2024-2025-form-aMath.ts",
+        "2024-2025-form-a-q114"
+      ],
+      [
+        0.42584434654919234,
+        "2022-2023-form-bMath.ts",
+        "2022-2023-form-b-q109"
+      ],
+      [
+        0.42516268980477223,
+        "2022-2023-form-bMath.ts",
+        "2022-2023-form-b-q104"
+      ]
+    ]
+  }
+}

@@ -2,15 +2,16 @@ import { useId, useState } from "react";
 import { analysisDay, evidenceSummary, type detailedGroups } from "../lib/analyticsDetails";
 import type { AnalyticsExam, Evidence } from "../lib/studentAnalytics";
 
-export function StudentEvidenceMatrix({ section, groups, exams, dimension, inspect }: {
+export function StudentEvidenceMatrix({ section, subjectLabel, groups, exams, dimension, inspect }: {
   section: "english" | "math";
+  subjectLabel?: string;
   groups: ReturnType<typeof detailedGroups>;
   exams: AnalyticsExam[];
   dimension: string;
   inspect: (rows: Evidence[]) => void;
 }) {
   const headingId = useId();
-  const subject = section === "english" ? "English" : "Math";
+  const subject = subjectLabel ?? (section === "english" ? "English" : "Math");
   const subjectGroups = groups.filter(group => group.rows[0]?.section === section);
   const recordKeys = new Set(subjectGroups.flatMap(group => group.rows.map(row => row.examKey)));
   const subjectExams = exams.filter(exam => recordKeys.has(exam.key));
@@ -43,10 +44,10 @@ export function StudentEvidenceMatrix({ section, groups, exams, dimension, inspe
               const matched = group.rows.filter(row => row.examKey === exam.key);
               const summary = evidenceSummary(matched);
               return <td key={exam.key}>{matched.length ? <button
-                className={`sa-heat-cell ${summary.accuracy! < 50 ? "is-low" : summary.accuracy! < 80 ? "is-mid" : "is-high"}`}
-                aria-label={`${group.label}, ${group.kind}, ${exam.title}, ${analysisDay(exam.date) || "date unavailable"}: ${summary.accuracy}% correct, ${summary.correct} of ${summary.total} responses. View responses`}
+                className={`sa-heat-cell ${summary.accuracy === null ? "" : summary.accuracy < 50 ? "is-low" : summary.accuracy < 80 ? "is-mid" : "is-high"}`}
+                aria-label={`${group.label}, ${group.kind}, ${exam.title}, ${analysisDay(exam.date) || "date unavailable"}: ${summary.accuracy === null ? "Grading pending" : `${summary.accuracy}% correct, ${summary.correct} of ${summary.total} responses`}. View responses`}
                 onClick={() => inspect(matched)} type="button"
-              >{summary.accuracy}%<small>{summary.correct}/{summary.total}</small></button> : <span title="No response evidence for this group">—</span>}</td>;
+              >{summary.accuracy === null ? "Pending" : `${summary.accuracy}%`}<small>{summary.correct}/{summary.total}{summary.pending > 0 ? ` · ${summary.pending} pending` : ""}</small></button> : <span title="No response evidence for this group">—</span>}</td>;
             })}
           </tr>)}</tbody>
         </table>

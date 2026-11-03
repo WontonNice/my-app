@@ -24,7 +24,7 @@ const inventionOfTheTelegraph20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which statement describes how the author’s use of problem-solution in paragraph 2 contributes to the development of ideas in the passage?",
     "promptHtml": "<p>Which statement describes how the author’s use of problem-solution in paragraph 2 contributes to the development of ideas in the passage?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -70,7 +70,7 @@ const inventionOfTheTelegraph20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The details of the section “The Growth of an Idea” convey a central idea of the passage by suggesting that",
     "promptHtml": "<p>The details of the section “The Growth of an Idea” convey a central idea of the passage by suggesting that</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -116,7 +116,7 @@ const inventionOfTheTelegraph20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which statement describes how the author’s use of sequencing in paragraph 3 contributes to the overall structure of the passage?",
     "promptHtml": "<p>Which statement describes how the author’s use of sequencing in paragraph 3 contributes to the overall structure of the passage?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -162,7 +162,7 @@ const inventionOfTheTelegraph20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence is the best summary of how Morse obtained the funding necessary to build his telegraph system?",
     "promptHtml": "<p>Which sentence is the <strong>best </strong>summary of how Morse obtained the funding necessary to build his telegraph system?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -208,7 +208,7 @@ const inventionOfTheTelegraph20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 7. The desperate Morse gave the go-ahead, and the line was completed in time for the dramatic and spectacularly successful link between the Supreme Court chamber of the Capitol building and the railroad station in Baltimore. The words “dramatic” and “spectacularly” in the sentence convey a",
     "promptHtml": "<p>Read this sentence from paragraph 7. <strong>The desperate Morse gave the go-ahead, and the line was completed in time for</strong> <strong>the dramatic and spectacularly successful link between the Supreme Court</strong> <strong>chamber of the Capitol building and the railroad station in Baltimore.</strong> The words “dramatic” and “spectacularly” in the sentence convey a</p>",
-    "topic": "",
+    "topic": "Tone & Mood",
     "choices": [
       {
         "id": "A",
@@ -254,7 +254,7 @@ const inventionOfTheTelegraph20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the graph support the ideas in paragraph 8?",
     "promptHtml": "<p>How does the graph support the ideas in paragraph 8?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -300,7 +300,7 @@ const inventionOfTheTelegraph20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The idea that, in the mid-nineteenth century, the United States was mostly unaware of the possibilities of electricity is illustrated in the passage mainly through the",
     "promptHtml": "<p>The idea that, in the mid-nineteenth century, the United States was mostly unaware of the possibilities of electricity is illustrated in the passage <strong>mainly </strong>through the</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -346,7 +346,7 @@ const inventionOfTheTelegraph20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "With which statement would the author most likely agree?",
     "promptHtml": "<p>With which statement would the author <strong>most likely </strong>agree?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -392,7 +392,7 @@ const inventionOfTheTelegraph20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the map provide additional support for a central idea of the passage?",
     "promptHtml": "<p>How does the map provide additional support for a central idea of the passage?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",

@@ -2,7 +2,16 @@ import fs from "node:fs";
 import path from "node:path";
 import type { ExamContent } from "../shared/examTypes";
 
+const filename = path.resolve(__dirname, "../../data/exam-content.json");
+let cached: { mtimeMs: number; size: number; contents: Record<string, ExamContent> } | undefined;
+
 export function getExamContent(assessmentId: string): ExamContent | null {
-    const contents = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../../data/exam-content.json"), "utf8")) as Record<string, ExamContent>;
-    return contents[assessmentId] ?? null;
+    // Only authored content is cached. Student responses and authorization are not.
+    // Exporting a changed catalog invalidates the cache on the next lookup.
+    const stat = fs.statSync(filename);
+    if (!cached || cached.mtimeMs !== stat.mtimeMs || cached.size !== stat.size) {
+        cached = { mtimeMs: stat.mtimeMs, size: stat.size, contents: JSON.parse(fs.readFileSync(filename, "utf8")) as Record<string, ExamContent> };
+    }
+    const content = cached.contents[assessmentId];
+    return content ? structuredClone(content) : null;
 }

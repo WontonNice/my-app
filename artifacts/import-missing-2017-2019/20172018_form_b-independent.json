@@ -1,0 +1,559 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "prompt": "Read this paragraph.\n\nWhich sentence should be revised to correct a run-on?",
+      "promptHtml": "<p>Read this paragraph.</p><p>Which sentence should be revised to correct a run-on?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "sentence 1",
+          "html": "<p>sentence 1</p>"
+        },
+        {
+          "id": "B",
+          "text": "sentence 2",
+          "html": "<p>sentence 2</p>"
+        },
+        {
+          "id": "C",
+          "text": "sentence 3",
+          "html": "<p>sentence 3</p>"
+        },
+        {
+          "id": "D",
+          "text": "sentence 4",
+          "html": "<p>sentence 4</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Sentence Structure",
+      "points": 1,
+      "explanation": "1. (A) The question asks for the identification of a run-on sentence that needs to be corrected. Option B, Option C, and Option D identify complete sentences that are not run-ons. Option A identifies a sentence made up of two independent clauses that need to be more definitively separated between “opened” and “as,” using either a semicolon or a period.",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-b-q001",
+      "review": {
+        "sourceFile": "20172018_form_b.pdf",
+        "sourcePages": [
+          1
+        ],
+        "sourceQuestion": "1",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_b_-_answers.pdf",
+          "sourcePages": [
+            16
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20172018_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                39.9976,
+                130.375,
+                293.47709999999995,
+                212.90200000000004
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "A",
+      "stimulusHtml": "<p>(1) In September 2016, the National Museum of African American History and Culture opened, as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. (2) Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. (3) The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. (4) A commemorative copy of the Emancipation Proclamation, which was written in 1863 during the presidency of Abraham Lincoln, is also available for viewing at the museum.</p>",
+      "stimulus": "(1) In September 2016, the National Museum of African American History and Culture opened, as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. (2) Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. (3) The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. (4) A commemorative copy of the Emancipation Proclamation, which was written in 1863 during the presidency of Abraham Lincoln, is also available for viewing at the museum.",
+      "explanationHtml": "<p>1. (A) The question asks for the identification of a run-on sentence that needs to be corrected. Option B, Option C, and Option D identify complete sentences that are not run-ons. Option A identifies a sentence made up of two independent clauses that need to be more definitively separated between “opened” and “as,” using either a semicolon or a period.</p>",
+      "sourceQuestion": "1",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2017-2018 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-b",
+        "label": "2017-2018 Form B",
+        "year": "2017-2018",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_b.pdf",
+        "sourceQuestion": "1",
+        "pages": [
+          1
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_b.pdf; PDF page 1; original question 1."
+      ]
+    },
+    {
+      "prompt": "Read this sentence.\n\nHow should this sentence be revised?",
+      "promptHtml": "<p>Read this sentence.</p><p>How should this sentence be revised?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.",
+          "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>"
+        },
+        {
+          "id": "B",
+          "text": "On Wednesday to promote their club, a bake sale will be sponsored by members of the debate team.",
+          "html": "<p>On Wednesday to promote their club, a bake sale will be sponsored by members of the debate team.</p>"
+        },
+        {
+          "id": "C",
+          "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday.",
+          "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.",
+          "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Sentence Structure",
+      "points": 1,
+      "explanation": "2. (G) The sentence in the box demonstrates the use of a misplaced modifier. In Option E and Option F, the phrase “to promote their club” incorrectly modifies “a bake sale.” While Option H makes it clearer that “to promote their club” refers to the “members of the debate team,” the rest of the sentence is poorly written. Option G is the only option in which the phrase “to promote their club” clearly modifies “members of the debate team” and that clarifies that the bake sale is on Wednesday.",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-b-q002",
+      "review": {
+        "sourceFile": "20172018_form_b.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "2",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_b_-_answers.pdf",
+          "sourcePages": [
+            16
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "The source explanation uses E–H; the editor displays the same ordered choices as A–D.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20172018_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                39.9976,
+                227.90200000000004,
+                294.6931000000001,
+                333.4380000000001
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "C",
+      "stimulusHtml": "<p>To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</p>",
+      "stimulus": "To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.",
+      "explanationHtml": "<p>2. (G) The sentence in the box demonstrates the use of a misplaced modifier. In Option E and Option F, the phrase “to promote their club” incorrectly modifies “a bake sale.” While Option H makes it clearer that “to promote their club” refers to the “members of the debate team,” the rest of the sentence is poorly written. Option G is the only option in which the phrase “to promote their club” clearly modifies “members of the debate team” and that clarifies that the bake sale is on Wednesday.</p>",
+      "sourceQuestion": "2",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2017-2018 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-b",
+        "label": "2017-2018 Form B",
+        "year": "2017-2018",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_b.pdf",
+        "sourceQuestion": "2",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_b.pdf; PDF page 2; original question 2.",
+        "The source explanation uses E–H; the editor displays the same ordered choices as A–D."
+      ]
+    },
+    {
+      "prompt": "Read this paragraph.\n\nWhich sentence should be revised to correct an inappropriate shift in verb tense?",
+      "promptHtml": "<p>Read this paragraph.</p><p>Which sentence should be revised to correct an inappropriate shift in verb tense?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "sentence 1",
+          "html": "<p>sentence 1</p>"
+        },
+        {
+          "id": "B",
+          "text": "sentence 2",
+          "html": "<p>sentence 2</p>"
+        },
+        {
+          "id": "C",
+          "text": "sentence 3",
+          "html": "<p>sentence 3</p>"
+        },
+        {
+          "id": "D",
+          "text": "sentence 4",
+          "html": "<p>sentence 4</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Verbs",
+      "points": 1,
+      "explanation": "3. (C) All the sentences should have a main verb in the past tense. For Option A (sentence 1), Option B (sentence 2), and Option D (sentence 4), the main verbs in the sentences are in the past tense (“spent,” “did,” “recited”). For Option C (sentence 3), the main verb in the sentence inappropriately shifts to the present tense (“studies”) and should be revised to the past tense (“studied”).",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-b-q003",
+      "review": {
+        "sourceFile": "20172018_form_b.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "3",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_b_-_answers.pdf",
+          "sourcePages": [
+            16
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20172018_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                39.9976,
+                348.4380000000001,
+                293.83809999999994,
+                430.96500000000015
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "C",
+      "stimulusHtml": "<p>(1) Devon spent several hours preparing for an upcoming audition. (2) First, he did vocal exercises to practice his diction and projection. (3) Then, he studies the text of the monologue to better understand the emotions and motivations of the character he plans to portray. (4) Finally, he recited his monologue in front of a mirror many times, making slight adjustments and improvements to his performance each time.</p>",
+      "stimulus": "(1) Devon spent several hours preparing for an upcoming audition. (2) First, he did vocal exercises to practice his diction and projection. (3) Then, he studies the text of the monologue to better understand the emotions and motivations of the character he plans to portray. (4) Finally, he recited his monologue in front of a mirror many times, making slight adjustments and improvements to his performance each time.",
+      "explanationHtml": "<p>3. (C) All the sentences should have a main verb in the past tense. For Option A (sentence 1), Option B (sentence 2), and Option D (sentence 4), the main verbs in the sentences are in the past tense (“spent,” “did,” “recited”). For Option C (sentence 3), the main verb in the sentence inappropriately shifts to the present tense (“studies”) and should be revised to the past tense (“studied”).</p>",
+      "sourceQuestion": "3",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2017-2018 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-b",
+        "label": "2017-2018 Form B",
+        "year": "2017-2018",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_b.pdf",
+        "sourceQuestion": "3",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_b.pdf; PDF page 2; original question 3."
+      ]
+    },
+    {
+      "prompt": "Read this sentence.\n\nWhich edit should be made to correct this sentence?",
+      "promptHtml": "<p>Read this sentence.</p><p>Which edit should be made to correct this sentence?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "delete the comma after Rome",
+          "html": "<p>delete the comma after Rome</p>"
+        },
+        {
+          "id": "B",
+          "text": "insert a comma after Italy",
+          "html": "<p>insert a comma after Italy</p>"
+        },
+        {
+          "id": "C",
+          "text": "delete the comma after World",
+          "html": "<p>delete the comma after World</p>"
+        },
+        {
+          "id": "D",
+          "text": "insert a comma after built",
+          "html": "<p>insert a comma after built</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Punctuation",
+      "points": 1,
+      "explanation": "4. (F) The sentence in the box needs a comma to set off the nonrestrictive clause “which is considered one of the New Seven Wonders of the World.” Option E would remove the comma between a city and country, which would be incorrect. Option G would incorrectly remove the comma at the end of a nonrestrictive clause, which is set off by commas at the beginning and the end. Option H is incorrect because a comma is not necessary before the conjunction “and” to connect a dependent clause. Option F is the only option that places a comma where it is needed, after “Italy,” to set off the nonrestrictive clause that follows.",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-b-q004",
+      "review": {
+        "sourceFile": "20172018_form_b.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "4",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_b_-_answers.pdf",
+          "sourcePages": [
+            16
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "The source explanation uses E–H; the editor displays the same ordered choices as A–D.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20172018_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                39.9976,
+                445.96500000000015,
+                293.63005,
+                586.0145000000002
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "B",
+      "stimulusHtml": "<p>The Colosseum in Rome, Italy which is considered one of the New Seven Wonders of the World, is the largest amphitheater ever built and could hold more than 50,000 spectators.</p>",
+      "stimulus": "The Colosseum in Rome, Italy which is considered one of the New Seven Wonders of the World, is the largest amphitheater ever built and could hold more than 50,000 spectators.",
+      "explanationHtml": "<p>4. (F) The sentence in the box needs a comma to set off the nonrestrictive clause “which is considered one of the New Seven Wonders of the World.” Option E would remove the comma between a city and country, which would be incorrect. Option G would incorrectly remove the comma at the end of a nonrestrictive clause, which is set off by commas at the beginning and the end. Option H is incorrect because a comma is not necessary before the conjunction “and” to connect a dependent clause. Option F is the only option that places a comma where it is needed, after “Italy,” to set off the nonrestrictive clause that follows.</p>",
+      "sourceQuestion": "4",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2017-2018 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-b",
+        "label": "2017-2018 Form B",
+        "year": "2017-2018",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_b.pdf",
+        "sourceQuestion": "4",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_b.pdf; PDF page 2; original question 4.",
+        "The source explanation uses E–H; the editor displays the same ordered choices as A–D."
+      ]
+    },
+    {
+      "prompt": "Read this sentence.\n\nWhat is the most precise revision for the words The engineers tried some other things?",
+      "promptHtml": "<p>Read this sentence.</p><p>What is the most precise revision for the words The engineers tried some other things?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The engineers did experiments with several new materials",
+          "html": "<p>The engineers did experiments with several new materials</p>"
+        },
+        {
+          "id": "B",
+          "text": "The engineers tested foam and fiberglass",
+          "html": "<p>The engineers tested foam and fiberglass</p>"
+        },
+        {
+          "id": "C",
+          "text": "The engineers did tests with two new materials",
+          "html": "<p>The engineers did tests with two new materials</p>"
+        },
+        {
+          "id": "D",
+          "text": "The engineers worked with foam and fiberglass",
+          "html": "<p>The engineers worked with foam and fiberglass</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Word Choice & Precision",
+      "points": 1,
+      "explanation": "5. (B) The question asks for the most precise revision for the words The engineers tried some other things. Option A and Option C use the word “materials” rather than precisely identifying what the engineers used. Option D identifies the materials, but the imprecise verb “worked with” does not specify what the engineers were doing. Option B is the only option that revises the words to be precise by using the specific words “tested” for the verb and “foam and fiberglass” for the materials.",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-b-q005",
+      "review": {
+        "sourceFile": "20172018_form_b.pdf",
+        "sourcePages": [
+          3
+        ],
+        "sourceQuestion": "5",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_b_-_answers.pdf",
+          "sourcePages": [
+            16
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20172018_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                39.9976,
+                601.0145000000002,
+                292.55559999999997,
+                706.5505000000003
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "B",
+      "stimulusHtml": "<p>The engineers tried some other things in the hope of finding a more effective insulation for the compartment.</p>",
+      "stimulus": "The engineers tried some other things in the hope of finding a more effective insulation for the compartment.",
+      "explanationHtml": "<p>5. (B) The question asks for the most precise revision for the words The engineers tried some other things. Option A and Option C use the word “materials” rather than precisely identifying what the engineers used. Option D identifies the materials, but the imprecise verb “worked with” does not specify what the engineers were doing. Option B is the only option that revises the words to be precise by using the specific words “tested” for the verb and “foam and fiberglass” for the materials.</p>",
+      "sourceQuestion": "5",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2017-2018 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-b",
+        "label": "2017-2018 Form B",
+        "year": "2017-2018",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_b.pdf",
+        "sourceQuestion": "5",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_b.pdf; PDF page 3; original question 5."
+      ]
+    }
+  ]
+}

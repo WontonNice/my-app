@@ -4,7 +4,7 @@ import { validDate } from "./learningPlan";
 
 export type ContentInventory = NonNullable<PlanOverview["inventory"]>;
 export type PassageCompletionFilter = "" | "completed" | "not_completed";
-export const contentHasCompleted = (row: ContentInventory[number]) => row.hasCompleted ?? (row.status === "Completed" || row.priorCount > 0);
+export const contentHasCompleted = (row: ContentInventory[number]) => row.hasCompleted ?? row.status === "Completed";
 export function passageCompletionDate(value: string | null | undefined) {
   if (!value || !Number.isFinite(Date.parse(value))) return "No Data";
   if (/^\d{4}-\d{2}-\d{2}$/.test(value)) return validDate(value) ? value : "No Data";
@@ -20,10 +20,10 @@ export function categoryInventory(inventory: ContentInventory) {
     const count = counts.get(passageCategory(row.content.passageCategory))!;
     count.total++;
     count.remaining += Number(row.status === "Never assigned");
-    count.completed += Number(row.hasCompleted ?? (row.status === "Completed" || row.priorCount > 0));
+    count.completed += Number(contentHasCompleted(row));
     count.assigned += Number(["Assigned", "In progress", "Awaiting review"].includes(row.status));
     count.planned += Number(row.status === "Planned");
-    count.used += Number(row.hasBeenAssigned ?? (row.status !== "Never assigned" && (row.status !== "Planned" || row.priorCount > 0)));
+    count.used += Number(row.hasBeenAssigned || contentHasCompleted(row) || ["Assigned", "In progress", "Awaiting review", "Previously assigned"].includes(row.status));
   }
   return [...counts.values()];
 }

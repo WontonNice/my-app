@@ -265,6 +265,7 @@ export const usingFireToKeepAPrairieHealthy20202021FormBPassageSet: ExamPassageS
   "body": "Read each text and answer the related questions. Base your answers only on the content within the text."
 },
   passage: createProsePassage({
+    passageCategory: "official_handbook",
     id: "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b",
     title: "Using Fire to Keep a Prairie Healthy",
     image: {"alt":"Using Fire to Keep a Prairie Healthy illustration","src":"/exam-images/using-fire-to-keep-a-prairie-healthy-passage.svgz"},

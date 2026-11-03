@@ -19,7 +19,7 @@ const excerptFromInSearchOfTheUnknown20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read paragraph 2 from the excerpt.\nTo the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising refusals—of course, first submitting all such letters, together with my replies, to Professor Farrago.\nThis paragraph helps develop the plot by establishing that the narrator",
     "promptHtml": "<p><span>Read</span> <span>paragraph</span> 2 from the excerpt.</p> <p data-align=\"indent\"><strong>To the proprietors of . . . mangy lynxes, moth-eaten coyotes, and dancing bears I returned courteous but uncompromising <span>refusals—</span>of course, first submitting all such letters, together with my replies, to <span>Professor Farrago.</span></strong></p> <p>This paragraph <span>helps</span> develop the <span>plot</span> by establishing that the <span>narrator</span></p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const excerptFromInSearchOfTheUnknown20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 3.\nThe professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology.\nWhat does the phrase “a faint trace of apology” convey about the professor?",
     "promptHtml": "<p><span>Read</span> this <span>sentence</span> from <span><span>paragraph</span> 3.</span></p> <p data-align=\"indent\"><strong>The professor, who was sitting at his desk before a pile of letters and replies submitted for approval by me, pushed his glasses down and looked over them at me with a whimsical smile that suggested amusement, impatience, annoyance, and perhaps a faint trace of apology.</strong></p> <p><span>What</span> does the <span>phrase</span> “a faint trace of apology” convey about the professor?</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const excerptFromInSearchOfTheUnknown20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the exchange between the professor and the narrator in paragraphs 8–11 contribute to the development of the characters?",
     "promptHtml": "<p><span>How</span> does the exchange between the professor and the <span>narrator</span> in <span><span>paragraphs</span> 8–11</span> contribute to the development of the <span>characters</span>?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const excerptFromInSearchOfTheUnknown20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The professor’s observations in paragraphs 15–17 create tension in the excerpt by causing the narrator to feel",
     "promptHtml": "<p>The professor’s observations in <span><span>paragraphs</span> 15–17</span> create tension in the excerpt by causing the <span>narrator</span> to feel</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const excerptFromInSearchOfTheUnknown20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the interaction between the narrator and the professor in paragraphs 26–28 contribute to the development of the theme?",
     "promptHtml": "<p><span>How</span> does the interaction between the <span>narrator</span> and the professor in <span><span>paragraphs</span> 26–28</span> contribute to the development of the <span>theme</span>?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const excerptFromInSearchOfTheUnknown20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from the excerpt best explains why the professor is eager to send the narrator on an expedition?",
     "promptHtml": "<p><span>Which</span> <span>sentence</span> from the excerpt <span><strong>best</strong></span> <span>explains</span> <span>why</span> the professor is eager to send the <span>narrator</span> on an expedition?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const excerptFromInSearchOfTheUnknown20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does paragraph 34 help develop the plot of the excerpt?",
     "promptHtml": "<p><span>How</span> does <span><span>paragraph</span> 34</span> <span>help</span> develop the <span>plot</span> of the excerpt?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -306,7 +306,7 @@ const excerptFromInSearchOfTheUnknown20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence best demonstrates the professional relationship between the narrator and the professor?",
     "promptHtml": "<p><span>Which</span> <span>sentence</span> <span><strong>best</strong></span> <span>demonstrates</span> the professional relationship between the <span>narrator</span> and the professor?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -347,7 +347,7 @@ const excerptFromInSearchOfTheUnknown20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the author develop the contrast between the narrator’s point of view and the professor’s point of view?",
     "promptHtml": "<p><span>How</span> does the <span>author</span> develop the <span>contrast</span> between the <span>narrator’s</span> <span>point of view</span> and the professor’s point of view?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",

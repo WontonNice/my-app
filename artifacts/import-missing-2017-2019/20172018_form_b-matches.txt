@@ -1,0 +1,546 @@
+1 [{'score': 0.8459, 'parent': 'standalone', 'id': 'part-b-import-09119fae8b50-506b3190'}]
+Read this paragraph.
+
+(1) In September 2016, the National Museum of African American History and Culture opened, as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. (2) Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. (3) The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. (4) A commemorative copy of the Emancipation Proclamation, which was written in 1863 during the presidency of Abraham Lincoln, is also available for viewing at the museum.
+
+Which sentence should be revised to correct a run-on?
+A: sentence 1 | B: sentence 2 | C: sentence 3 | D: sentence 4
+2 [{'score': 0.9964, 'parent': 'standalone', 'id': 'part-b-import-8f756ef5b720-d07b4e8f'}]
+Read this sentence.
+
+To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.
+
+How should this sentence be revised?
+E: To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team. | F: On Wednesday to promote their club, a bake sale will be sponsored by members of the debate team. | G: To promote their club, members of the debate team will sponsor a bake sale on Wednesday. | H: Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.
+3 [{'score': 0.7008, 'parent': 'standalone', 'id': 'part-b-import-be9fbdda08ee-cb4b54d9'}]
+Read this paragraph.
+
+(1) Devon spent several hours preparing for an upcoming audition. (2) First, he did vocal exercises to practice his diction and projection. (3) Then, he studies the text of the monologue to better understand the emotions and motivations of the character he plans to portray. (4) Finally, he recited his monologue in front of a mirror many times, making slight adjustments and improvements to his performance each time.
+
+Which sentence should be revised to correct an inappropriate shift in verb tense?
+A: sentence 1 | B: sentence 2 | C: sentence 3 | D: sentence 4
+4 [{'score': 0.9948, 'parent': 'standalone', 'id': 'part-b-import-5ce9007a70b7-82667959'}]
+Read this sentence.
+
+The Colosseum in Rome, Italy which is considered one of the New Seven Wonders of the World, is the largest amphitheater ever built and could hold more than 50,000 spectators.
+
+Which edit should be made to correct this sentence?
+E: delete the comma after Rome | F: insert a comma after Italy | G: delete the comma after World | H: insert a comma after built
+5 [{'score': 0.7545, 'parent': 'standalone', 'id': 'part-b-import-11fdbe8f497f-4770de9a'}]
+Read this sentence.
+
+The engineers tried some other things in the hope of finding a more effective insulation for the compartment.
+
+What is the most precise revision for the words The engineers tried some other things?
+A: The engineers did experiments with several new materials | B: The engineers tested foam and fiberglass | C: The engineers did tests with two new materials | D: The engineers worked with foam and fiberglass
+6 [{'score': 0.7381, 'parent': 'the-local-library-2018-2019-form-b', 'id': 'the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q005'}]
+Which sentence should replace sentence 4 to best introduce the main claim of the passage?
+E: The public library is a valuable resource that all members of a community should use. | F: Going to the public library to gather information can be a valuable learning experience. | G: The resources available at a public library are most useful for students. | H: A public library offers many services to those who are interested in improving their communities.
+7 [{'score': 0.3592, 'parent': 'cracking-the-code-2019-2020-form-a', 'id': 'cracking-the-code-2019-2020-form-a-2019-form-a-ela-q05'}]
+What is the best way to combine sentences 6 and 7 to clarify the relationship between ideas?
+A: There has been an explosion of digital media in recent years, since people in different places can now communicate almost instantaneously. | B: There has been an explosion of digital media in recent years, although it now allows people in different places to communicate almost instantaneously. | C: In addition to the explosion of digital media in recent years, people in different places can communicate almost instantaneously. | D: With the explosion of digital media in recent years, people in different places can now communicate almost instantaneously.
+8 [{'score': 0.9907, 'parent': 'the-local-library-2018-2019-form-b', 'id': 'the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q006'}]
+Which sentence can best follow and support sentence 9?
+E: Libraries, which have been around for centuries and are found throughout the world today, help preserve the history of a community. | F: The public library is often used as a place for community leaders and organizers to host community events, such as hearings or town halls. | G: Libraries rely on a combination of local, state, and federal dollars to provide the kinds of services and programs that community members have come to expect. | H: At a public library, people can interact with others through a variety of programs, including teen book clubs, toddler story times, and senior-citizen exercise classes.
+9 [{'score': 0.7087, 'parent': 'the-benefits-of-indoor-plants-2020-2021-form-a', 'id': 'the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-12'}]
+Which transition word or phrase should be added to the beginning of sentence 12?
+A: For example | B: Similarly | C: Indeed | D: As a result
+10 [{'score': 0.9622, 'parent': 'the-local-library-2018-2019-form-b', 'id': 'the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q007'}]
+Which revision of sentence 14 best maintains the formal style established in the passage?
+E: The resources available at the library can help people accomplish many tasks. | F: All the materials you can get at the library can help you do many different tasks. | G: Everything in the library can help people work on a lot of different things. | H: The resources you can find at the library can help you do whatever you need to do.
+11 [{'score': 0.8299, 'parent': 'martial-arts-for-the-mind-and-body-2021-2022-form-b', 'id': 'martial-arts-for-the-mind-and-body-2021-2022-form-b-pdf-shsat-2021-2022-b-q006'}]
+Where should sentence 19 be moved to improve the organization of the fourth paragraph (sentences 15–19)?
+A: to the beginning of the paragraph (before sentence 15) | B: between sentences 15 and 16 | C: between sentences 16 and 17 | D: between sentences 17 and 18
+12 [{'score': 0.7871, 'parent': 'find-time-to-volunteer-2024-2025-form-b', 'id': 'find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q007'}]
+Which sentence is irrelevant to the argument presented in the passage and should be deleted?
+E: sentence 3 | F: sentence 11 | G: sentence 13 | H: sentence 20
+13 [{'score': 0.9335, 'parent': 'the-local-library-2018-2019-form-b', 'id': 'the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q009'}]
+Which concluding sentence should be added after sentence 21 to support the argument presented in the passage?
+A: Finally, patrons of the public library can grow in both their interpersonal life and their level of community engagement. | B: Clearly, it is in the best interest of community members to maintain, support, and use their public library. | C: After all, the public library has been a part of American communities since the first one was founded in 1833. | D: In the end, community leaders must work together to find ways to generate more involvement in public library events.
+14 [{'score': 0.2925, 'parent': 'standalone', 'id': 'satcc-digital-shsat-practice-test-5-v2-ela-49'}]
+What is the best way to combine sentences 4 and 5 to clarify the relationship between ideas?
+E: Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, making the transportation of people and goods difficult and time consuming. | F: Even though roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, the transportation of people and goods was difficult and time consuming. | G: Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, emphasizing that the transportation of people and goods was difficult and time consuming. | H: Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, since the transportation of people and goods was difficult and time consuming.
+15 [{'score': 0.904, 'parent': 'moving-through-mountains-2018-2019-form-a', 'id': 'moving-through-mountains-2018-2019-form-a-pdf-shsat-2018-2019-a-q004'}]
+Which sentence should follow sentence 6 to most clearly introduce the topic of the passage?
+A: The Gotthard Base Tunnel was approved by Swiss voters in 1992 and was funded by tolls, fuel taxes, and government loans. | B: Leaders from several European countries attended the opening ceremonies for the Gotthard Base Tunnel. | C: The Gotthard Base Tunnel is the world’s longest and deepest railway tunnel, stretching 35.5 miles straight through the base of the Swiss Alps. | D: The construction of the Gotthard Base Tunnel continues to help reduce the number of freight trucks on the roadways.
+16 [{'score': 0.9473, 'parent': 'moving-through-mountains-2018-2019-form-a', 'id': 'moving-through-mountains-2018-2019-form-a-pdf-shsat-2018-2019-a-q005'}]
+Which sentence could be added to follow and support sentence 8?
+E: The tunnel-boring machine is helpful to tunnel builders in the modern era and has been an improvement over dynamite. | F: These enormous tunnel-boring machines function somewhat like a cheese grater, grinding slowly through rock and stone. | G: Engineers had considered making a tunnel under the mountains for many years, but it was impossible to do without modern tunnel-boring machines. | H: Different types of tunnel-boring machines are used depending on the geology of the area where the tunnel is being created.
+17 [{'score': 0.8564, 'parent': 'martial-arts-for-the-mind-and-body-2021-2022-form-b', 'id': 'martial-arts-for-the-mind-and-body-2021-2022-form-b-pdf-shsat-2021-2022-b-q006'}]
+Where should sentence 12 be moved to improve the organization of the second paragraph (sentences 7–12)?
+A: to the beginning of the paragraph (before sentence 7) | B: between sentences 7 and 8 | C: between sentences 9 and 10 | D: between sentences 10 and 11
+18 [{'score': 0.7177, 'parent': 'the-benefits-of-indoor-plants-2020-2021-form-a', 'id': 'the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-12'}]
+Which transition word or phrase should be added to the beginning of sentence 15?
+E: Even so | F: Additionally | G: For example | H: Therefore
+19 [{'score': 0.7642, 'parent': 'find-time-to-volunteer-2024-2025-form-b', 'id': 'find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q007'}]
+Which sentence is irrelevant to the topic presented in the passage and should be removed?
+A: sentence 3 | B: sentence 11 | C: sentence 13 | D: sentence 17
+20 [{'score': 0.9867, 'parent': 'moving-through-mountains-2018-2019-form-a', 'id': 'moving-through-mountains-2018-2019-form-a-pdf-shsat-2018-2019-a-q009'}]
+Which concluding sentence should be added after sentence 19 to support the topic presented in the passage?
+E: There is proof that underground tunnels like the Gotthard Base Tunnel are beneficial to the economy of the surrounding areas. | F: The Gotthard Base Tunnel is an extraordinary example of how human ingenuity and persistence can overcome great obstacles. | G: The completion of the Gotthard Base Tunnel shows that people can work together to achieve important goals. | H: The Swiss government is confident that the economic impact of the Gotthard Base Tunnel will be worth its construction cost.
+21 [{'score': 0.3538, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051'}]
+Which of the following best tells what this passage is about?
+A: the reasons Nixon was expected to defeat Kennedy in the 1960 election | B: the discussion of domestic issues in the 1960 presidential debates | C: the events related to the first televised presidential debate | D: the qualifications of Nixon and Kennedy for the role of president
+22 [{'score': 0.2618, 'parent': 'digital-shsat-practice-test-3Math.ts', 'id': 'digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-26'}]
+Which of the following would have been the most likely result if the candidates had not debated on television in 1960?
+E: Kennedy would have won the election anyway. | F: Nixon would have had a better chance of winning the election. | G: The election results would have been much closer. | H: The debates would not have become a tradition.
+23 [{'score': 0.2651, 'parent': 'indoor-plants', 'id': 'indoor-plants-3'}]
+Which of the following did critics in 1960 think could be an undesirable consequence of televised presidential debates?
+A: Candidates who are less well-known would have to debate experienced politicians. | B: Candidates might have difficulty overcoming the pressure of being on live television. | C: Candidates would be evaluated based on their performance rather than their positions. | D: Candidates would need to participate in multiple televised debates to fully cover important issues.
+24 [{'score': 0.2787, 'parent': 'wolves-of-the-sea-2023-2024-form-a', 'id': 'wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q055'}]
+How did Kennedy benefit from the debates?
+E: He was able to prove that he knew more about domestic issues than Nixon did. | F: He was able to display favorable personal characteristics despite his inexperience. | G: He was able to show that he had a more positive relationship with reporters than Nixon did. | H: He was able to persuade viewers to agree with his positions on domestic issues.
+25 [{'score': 0.3138, 'parent': 'invention-of-the-telegraph-2020-2021-form-a', 'id': 'invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-56'}]
+What evidence does the author provide to support the last sentence of the passage?
+A: Kennedy and Nixon drew much smaller audiences for their later debates. | B: Kennedy and Nixon responded to questions calmly and carefully. | C: Nixon participated in the debate despite having been recently ill. | D: Nixon was more experienced and well-known than Kennedy.
+26 [{'score': 0.2777, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q053'}]
+Why did people who were not normally interested in politics tune in to the first of the Great Debates?
+E: Vice President Nixon was a popular politician. | F: Television had never before been used in this way. | G: They had heard that Kennedy was young and charismatic. | H: They wanted to see whether the newspaper polls were correct.
+27 [{'score': 0.386, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051'}]
+Which of the following best tells what this passage is about?
+A: the circumstances that allow ice to melt | B: the theories behind what makes ice slippery | C: the discoveries of Michael Faraday | D: the processes of freezing and melting
+28 [{'score': 0.4468, 'parent': 'uncovering-the-past-2018-2019-form-b', 'id': 'uncovering-the-past-2018-2019-form-b-pdf-shsat-2018-2019-b-q037'}]
+What is the most likely reason that the author mentions lead and diamond crystals in the last paragraph?
+E: to point out that solids other than ice have slippery surfaces | F: to suggest that ice, lead, and diamonds are composed of the same materials | G: to cast doubt on Faraday’s theory of slipperiness | H: to illustrate the effects of temperature and pressure on slipperiness
+29 [{'score': 0.3175, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q083'}]
+According to Faraday, why do two ice cubes fuse when held together?
+A: Friction causes the surfaces of the ice to melt and refreeze. | B: The applied pressure forces the surfaces of the cubes to stick to each other. | C: Liquid layers on the surfaces freeze together when the surfaces make contact. | D: The liquid layers on the surfaces of the ice are perfectly smooth.
+30 [{'score': 0.3327, 'parent': 'uncovering-the-past-2018-2019-form-b', 'id': 'uncovering-the-past-2018-2019-form-b-pdf-shsat-2018-2019-b-q037'}]
+What is the most likely reason that the author mentions the 1996 experiment at Lawrence Berkeley Laboratory?
+E: to provide evidence about the surface of ice | F: to illustrate that studying ice molecules is difficult | G: to show how experiments on ice are inconclusive | H: to explain why ice cubes freeze together
+31 [{'score': 0.3233, 'parent': '2024-2025-form-bMath.ts', 'id': 'pdf-shsat-2024-2025-b-q061'}]
+According to researchers at the Lawrence Berkeley Laboratory, why is the surface of ice liquid-like rather than a true liquid?
+A: because electrons rebound from the ice surface | B: because the ice surface molecules vibrate only up and down | C: because the ice surface is a different temperature | D: because the ice surface is under pressure
+32 [{'score': 0.3014, 'parent': '2022-2023-form-bMath.ts', 'id': '2022-2023-form-b-q77'}]
+According to the passage, which of the following undermines the friction theory of slipperiness?
+E: a person wearing flat-bottomed shoes gliding across an icy surface | F: two ice cubes fusing together | G: electrons bouncing off the surface of ice | H: a person sliding while standing immobile on an icy surface
+33 [{'score': 0.3931, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q012'}]
+The author includes details about the pressure theory in the third paragraph in order to
+A: highlight that there are different ideas regarding this theory about the slipperiness of ice. | B: describe the most recently accepted theory for the slipperiness of ice. | C: emphasize that this theory has been tested by scientists who study the slipperiness of ice. | D: show that there is scientific support for a plausible theory about the slipperiness of ice.
+34 [{'score': 0.9954, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q010'}]
+Which statement best describes the central idea of the passage?
+E: Marsh’s experience growing up on a farm allowed him to witness firsthand how human demands on nature can lead to problems, and as an adult he wrote one of the first books about conservation. | F: Marsh challenged the notion that nature could repair the damage people cause to it, but he also supported human-made modifications to nature that improve transportation and commerce. | G: Marsh’s ideas about the environment were considered radical in his lifetime, but they later gained popularity during the environmental movement in the twentieth century. | H: Marsh was a radical thinker who believed that people’s actions could dramatically affect nature, and his writings are considered foundational to the conservation movement.
+35 [{'score': 0.9835, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q011'}]
+Marsh believed that the people of his time caused harm to the environment mostly because
+A: they assumed future generations would solve any environmental problems. | B: they thought industrial progress was more important than protecting nature. | C: they were unwilling to change farming and waste-disposal practices. | D: they lacked knowledge of nature and natural processes.
+36 [{'score': 0.9819, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q012'}]
+What is the most likely reason the author uses the word “surprisingly” in line 11?
+E: to argue that Marsh’s ideas are more applicable in the present than they were during his lifetime | F: to show that Marsh introduced ideas a century before they became widely accepted | G: to emphasize that Marsh was unaware that his ideas would help begin a conservation movement | H: to prove that there would be fewer issues with the environment today if people had accepted Marsh’s ideas earlier
+37 [{'score': 0.9571, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q013'}]
+Which evidence supports the idea that Marsh’s theories about nature were accurate?
+A: the details about Marsh’s observations of environmental degradation | B: the details about how Marsh’s writing inspired a conservation movement | C: the details about how Marsh’s ideas are essential to modern environmental science | D: the details about Marsh’s opinion on human alterations to the environment
+38 [{'score': 0.9616, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q014'}]
+Which detail about Marsh provides support for the author’s statement in lines 55–58?
+E: his reputation as a radical thinker | F: his contribution to the conservation movement | G: his experience working as an ambassador | H: his approval of beneficial human-made projects in nature
+39 [{'score': 1.0, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q015'}]
+Which of Marsh’s ideas most influenced the environmental movement of the 1960s?
+A: Some human alterations to the environment are necessary. | B: People lack an understanding of the environment. | C: Human activities could damage the environment. | D: Environmental degradation has been occurring for many years.
+40 [{'score': 0.3458, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051'}]
+Which of the following best tells what this passage is about?
+E: the ways people have harnessed wind power throughout history | F: reasons for developing wind farms to generate electricity | G: how windmills are used in the United States | H: why windmills were modified to generate electricity
+41 [{'score': 0.3677, 'parent': 'champion-of-the-channel-2020-2021-form-a', 'id': 'champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q22'}]
+What evidence best supports the idea that windmills were important resources in the western United States?
+A: the details about the development and use of wind farms | B: the details about how windmills provided water for farms and livestock | C: the details about the role of wind energy during the energy crisis of the 1970s | D: the details about how steam engines influenced the use of windmills
+42 [{'score': 0.2616, 'parent': 'excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b', 'id': 'excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-3'}]
+The author describes the tasks windmills were used for in lines 36–40 in order to
+E: emphasize that windmills served a variety of purposes. | F: highlight that windmills are more efficient than water wheels. | G: emphasize that windmills were used for many years. | H: convey that some countries used windmills more than other countries.
+43 [{'score': 0.2752, 'parent': 'standalone', 'id': 'part-b-import-11fdbe8f497f-4770de9a'}]
+Why were fewer American farms dependent on wind machines for electrical power after the 1950s?
+A: The energy crisis had prompted interest in other fuel sources. | B: Coal and natural gas could generate more power than wind turbines. | C: Centralized power systems connected most places. | D: Wind farms had reduced the need for individual windmills.
+44 [{'score': 0.2956, 'parent': 'going-solar-in-china-2022-2023-form-b', 'id': 'going-solar-in-china-2022-2023-form-b-2'}]
+Which of the following best expresses the author’s opinion regarding the future use of wind energy?
+E: Wind farming methods are unlikely to increase electrical output. | F: Wind farms will most likely be used to provide energy in rural areas. | G: Wind farming output will likely supplement other sources of energy. | H: Wind farms may become an important source of electricity.
+45 [{'score': 0.3095, 'parent': '2024-2025-form-aMath.ts', 'id': '2024-2025-form-a-q112'}]
+According to the passage, the people of Holland most notably used windmills to
+A: pump water to remote locations. | B: turn bogs into usable land. | C: make the country famous. | D: process a variety of goods.
+46 [{'score': 0.4219, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051'}]
+Which of the following best tells what this passage is about?
+E: how variations in weather conditions affect tree growth | F: recent breakthroughs in understanding Native American cultures | G: why the Pueblo villages were abandoned | H: how tree-ring dating can establish the age of archaeological findings
+47 [{'score': 0.2676, 'parent': 'a-miracle-mile-2019-2020-form-a', 'id': 'a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q14'}]
+What was the importance of the key beam described in the fourth paragraph?
+A: It proved that trees of the same age would have identical tree-ring patterns. | B: It helped archaeologists determine why the villages had been built at that time. | C: It revealed a new floating chronology for archaeologists to investigate. | D: It connected the floating chronology to the established chronology.
+48 [{'score': 0.3151, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q055'}]
+The author explains the causes of wide and narrow tree rings in lines 8–13 in order to
+E: emphasize that tree-ring dating is highly accurate. | F: highlight how tree rings help determine past weather patterns. | G: emphasize that a tree’s ring patterns grow in a unique way. | H: highlight the importance of studying tree rings.
+49 [{'score': 0.4414, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q013'}]
+Which evidence best supports the idea that tree-ring dating helped archaeologists understand why the Pueblo villages were abandoned?
+A: the details about the Hopi village Oraibi | B: the details about the twenty-three-year drought | C: the details about the discovery of the Pueblo villages | D: the details about the floating chronology
+50 [{'score': 0.2418, 'parent': '2020-2021-form-bMath.ts', 'id': '2020-2021-form-b-q113'}]
+Why did the archaeologists conclude that the buildings in the abandoned Pueblo villages were constructed before A.D. 1260?
+E: The logs in the Pueblo buildings did not share any ring patterns with the established chronology from the Hopi village. | F: The logs in the Pueblo buildings had fewer rings than the logs from the buildings in the Hopi village. | G: The Pueblo villages were abandoned before the Hopi village was established. | H: The Pueblo villages and the Hopi village were constructed from logs of similar size.
+51 [{'score': 0.2917, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q012'}]
+Why did archaeologists compare the logs from buildings in the abandoned Pueblo villages with logs from the Hopi village?
+A: to find the oldest and most recent logs used in the Pueblo villages | B: to find evidence that would help explain what caused people to leave the Pueblo villages | C: to find a log from the Pueblo villages that had tree rings that matched logs from the Hopi village | D: to find evidence that the Pueblo villages were constructed before the Hopi village
+52 [{'score': 0.2637, 'parent': '2022-2023-form-aMath.ts', 'id': '2022-2023-form-a-q69'}]
+Why did ordinary people in the 1930s identify with the art of the American Scene painters?
+E: The artists were primarily concerned with painting farm life. | F: People appreciated the beauty reflected in the paintings. | G: People wanted paintings to show social and cultural change. | H: The paintings reflected the times in ways that were familiar to most viewers.
+53 [{'score': 0.3325, 'parent': 'digital-shsat-practice-test-5Math.ts', 'id': 'satcc-digital-shsat-practice-test-5-v2-math-33'}]
+Which of the following subjects would an Urban Realist painter be most likely to represent?
+A: a scene with factory workers going home from work | B: a scene with children playing games in a street | C: a scene of a bustling European city | D: a scene showing the stores along the main street in a city
+54 [{'score': 0.2928, 'parent': 'snowy-mountains-2018-2019-form-b', 'id': 'snowy-mountains-2018-2019-form-b-pdf-shsat-2018-2019-b-q038'}]
+Hopper’s paintings contrast with the work of the Urban Realist painters by
+E: showing the ugliness of a city environment. | F: illustrating the move toward an international style. | G: revealing the ways that dull urban life can include beauty. | H: focusing on the portrayal of people rather than on the setting.
+55 [{'score': 0.3903, 'parent': 'excerpt-from-how-exercise-could-help-you-learn-a-new-language-2023-form-b', 'id': 'excerpt-from-how-exercise-could-help-you-learn-a-new-language-2023-form-b-2023-form-b-q33'}]
+How does the fourth paragraph contribute to the passage?
+A: It describes the end of the American Scene movement. | B: It highlights Edward Hopper as a unique American Scene painter. | C: It explains why Edward Hopper’s work has been forgotten. | D: It contrasts the American Scene and Urban Realist styles.
+56 [{'score': 0.2767, 'parent': 'excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b', 'id': 'excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-2'}]
+The author uses the phrase “without apology” (lines 59–60) to explain that Hopper did not think he needed to justify
+E: how he portrayed his subjects. | F: painting scenes of real places. | G: why his paintings became popular. | H: the classification of his art style.
+57 [{'score': 0.2892, 'parent': 'excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4', 'id': 'excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-21'}]
+What is the most likely reason that Regionalist art has retained some of its popularity while Urban Realist art has not?
+A: Regionalist art depicts modern life as well as life in the past, while Urban Realist art depicts only the past. | B: Regionalist art more accurately portrays the time in which it was painted than Urban Realist art does. | C: Regionalist art shows American life as people wish to remember it, while Urban Realist art does not. | D: Regionalist art depicts Americans overcoming the Depression, while Urban Realist art depicts life during World War II.
+58 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q058'}]
+How many 5-digit numbers can be created using the digits 2, 3, 5, 7, and 8 without repeating any digits within that 5-digit number?
+
+59 [{'score': 0.96, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q059'}]
+147−x = 12 12
+
+What is the value of x in the equation shown above?
+
+60 [{'score': 0.0051, 'parent': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a', 'id': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-29'}]
+(−6) − (−5) + 4.2 − 3 − 9.6 =
+
+61 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q061'}]
+Tyler has completed 60 pages in his French workbook. This is 20% of the total number of pages in the workbook. How many pages are in the workbook?
+
+62 [{'score': 0.9, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q062'}]
+30°
+
+y° 60° P
+
+25°
+
+Four straight lines intersect at point P as shown above. What is the value of y ?
+
+63 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q063'}]
+If x = 9 and y = −7, what is the value of x(x − 2y)?
+A: 18 | B: 45 | C: 144 | D: 207
+64 [{'score': 0.8137, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-56'}]
+Q R
+
+50°
+
+70° P T S
+
+In the figure above, PQRS is a parallelogram. The measure of ∠PQT is 50°, and the measure of ∠PTQ is 70°. What is the measure of ∠QRS?
+E: 60° | F: 70° | G: 80° | H: 120°
+65 [{'score': 0.8919, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q065'}]
+P R M = 3N = = Q + 5 = > 0 4 7 Based on the statement above, which variable has the greatest value?
+A: M | B: N | C: P | D: R
+66 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q066'}]
+A roofing contractor uses shingles at a rate of 3 bundles for every 96 square feet of roof covered. At this rate, how many bundles of shingles will he need in order to cover a roof that is 416 square feet?
+E: 5 | F: 12 | G: 13 | H: 14
+67 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q067'}]
+To make party invitations, Macie could buy a package of paper for $10.50, or she could buy x individual sheets of the same paper for $0.15 each. What is the largest value of x that would make buying the individual sheets less expensive than buying the package?
+A: 60 | B: 65 | C: 69 | D: 70
+68 [{'score': 0.9467, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q068'}]
+At 1:00 p.m. one day, the temperature was 8 degrees above zero. During the rest of the day, the temperature fell 3 degrees per hour. What was the temperature at 7:00 p.m. that day?
+E: −13° | F: −10° | G: −7° | H: 5°
+69 [{'score': 0.9929, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q069'}]
+A bag contains 75 marbles that are red, blue, or green. The ratio of red to blue marbles is 15:7, and the ratio of blue to green marbles is 7:3. If 2 blue marbles are removed and replaced with 2 green marbles, what will be the new ratio of red to green marbles?
+A: 3:1 | B: 5:1 | C: 7:5 | D: 45:11
+70 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-62'}]
+DESSERT CHOICES
+
+Dessert Number of Times Ordered
+
+Cookies 42
+
+Pie 23
+
+Cake 47
+
+Ice Cream 48
+
+The table above shows the number of times that different desserts were ordered at a restaurant. Based on this information, what is the probability of a customer ordering ice cream as a dessert?
+E: 25% | F: 30% | G: 40% | H: 48%
+71 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q071'}]
+What is the least common multiple of 24, 6, and 18?
+A: 36 | B: 48 | C: 72 | D: 144
+72 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q072'}]
+One day, the Early Bird Restaurant used 15 dozen eggs for 200 breakfast customers. At this rate, approximately how many dozen eggs are needed for 300 breakfast customers?
+E: 20 | F: 23 | G: 25 | H: 30
+73 [{'score': 0.9243, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q073'}]
+A cooler contains three types of beverages: 5 bottles of apple juice, 3 bottles of grape juice, and 6 bottles of fruit punch. What is the probability that a bottle chosen at random from this cooler is not apple juice?
+
+1
+A: 9
+
+5 | B: 14
+
+9 | C: 14
+
+2 | D: 3
+74 [{'score': 0.9531, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-65'}]
+A large circular dinner plate has a radius of 20 centimeters. A smaller circular plate with a circumference of 20(cid:31) centimeters is placed in the center of the larger dinner plate. What is the area of the part of the larger dinner plate that is not covered by the smaller plate?
+E: 20(cid:31) sq cm | F: 100(cid:31) sq cm | G: 200(cid:31) sq cm | H: 300(cid:31) sq cm
+75 [{'score': 0.8014, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q075'}]
+PRICES FOR AD SPACE
+
+Space Price
+
+1 200 4
+
+1 350 2
+
+full page 600
+
+The table above shows prices for newspaper 1 advertising. A store purchased pages, 4 1 pages, and full pages of space in equal 2 numbers for a total of $11,500. What is the
+
+total amount of page space the store
+
+purchased?
+
+3
+A: 1 pages 4 | B: 10 pages
+
+1 | C: 16 pages 2
+
+1 | D: 17 pages 2
+76 [{'score': 0.3562, 'parent': '2022-2023-form-aMath.ts', 'id': '2022-2023-form-a-q68'}]
+y
+
+R S T x
+
+U V
+
+For which point on the graph above is the value of the y-coordinate greater than the value of the x-coordinate?
+E: R | F: T | G: U | H: V
+77 [{'score': 0.8649, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q077'}]
+36 If = 4x , what is the value of x when y y = 3 ?
+A: 3 | B: 4 | C: 9 | D: 12
+78 [{'score': 0.7267, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-69'}]
+Points X , Y, and Z are on a straight line, and 3 Y is between X and Z . Length YZ = XY, 5 and length XY = 20 centimeters. What is the
+
+length of XZ?
+E: 12 cm | F: 24 cm | G: 30 cm | H: 32 cm
+79 [{'score': 0.9626, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q079'}]
+3 Bryana bought 1 yards of cloth at $8.00 per 4 yard. If there was an 8% sales tax, what was
+
+the total cost of the cloth?
+A: $12.96 | B: $14.08 | C: $15.12 | D: $16.08
+80 [{'score': 0.6497, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-71'}]
+M N
+
+1 1 3
+
+5 On the number line above, MN = 5 . What 6 is the position of point M ?
+
+1
+E: −7 6
+
+1 | F: −4 2
+
+1 | G: 4 2
+
+1 | H: 7 6
+81 [{'score': 0.9691, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-72'}]
+A United States presidential coin is made from an alloy of four metals—copper, zinc, manganese, and nickel—with weights in the ratio of 177:12:7:4, respectively. The coin weighs a total of 8 grams. What is the weight of the zinc in this coin?
+A: 0.28 g | B: 0.48 g | C: 0.96 g | D: 48 g
+82 [{'score': 0.9283, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q082'}]
+Jack scored an average of 15 points per game in his first 3 basketball games. In his 4th game, he scored 27 points. What is his average score for the first 4 games?
+E: 15 | F: 17 | G: 18 | H: 21
+83 [{'score': 0.9532, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q083'}]
+A cylindrical oil drum can hold 4,320 liters
+
+when it is completely full. Currently, the drum 1 is full of oil. How many kiloliters of oil 3 need to be added in order to fill the drum
+
+completely?
+A: 1.44 kL | B: 2.88 kL | C: 4.32 kL | D: 14.10 kL
+84 [{'score': 0.98, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-73'}]
+Nicole’s age now is three times Carmen’s age. If Carmen will be 17 in two years, how old was Nicole 5 years ago?
+E: 38 yr | F: 40 yr | G: 45 yr | H: 50 yr
+85 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q085'}]
+A chemical decays in such a way that the amount left at the end of each week is 20% less than the amount at the beginning of that same week. What percent of the original amount is left after two weeks?
+A: 40% | B: 60% | C: 64% | D: 80%
+86 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q086'}]
+If w − 1 is an odd integer, which one of the following must be an even integer?
+E: w + 1 | F: 2w − 1 | G: 2w − 2 | H: 2w + 1
+87 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q087'}]
+Three students stand at the starting line of a running track and begin running laps at the same time. Ann completes 1 lap every 2 minutes, Jack completes 1 lap every 3 minutes, and Lee completes 1 lap every 4 minutes. How many laps does Ann complete before all three runners are once again at the starting line at the same time?
+A: 4 | B: 6 | C: 12 | D: 20
+88 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q088'}]
+Simplify this expression:
+
+4(7 − 3x) − (5 − x)
+E: 23 − 4x | F: 23 − 11x | G: 28 − 4x | H: 28 − 12x
+89 [{'score': 0.9606, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-77'}]
+PET SURVEY
+
+Number of Pets Number of Students
+
+0 12
+
+1 16
+
+2 7
+
+3 or more 5
+
+Amy surveyed students at her school about the number of pets they have. What is the probability that a student who participated in the survey has at least 2 pets?
+
+7
+A: 40
+
+1 | B: 12
+
+1 | C: 8
+
+3 | D: 10
+90 [{'score': 0.9775, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q090'}]
+A large container is partially filled with n liters of water. Ito adds 10 liters of water to the container, making it 60% full. If Ito adds 6 more liters of water, the container will be 75% full. What is the value of n ?
+E: 14 | F: 15 | G: 26 | H: 30
+91 [{'score': 0.9296, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q091'}]
+3 1 5x + 3x + 9 + 2 x If x = 10, what is the value of the expression above?
+A: 2,539.01 | B: 5,039.01 | C: 5,039.1 | D: 5,139
+92 [{'score': 0.959, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-79'}]
+N S P
+
+R 6 cm
+
+M T Q
+
+R, S, and T are midpoints of the sides of square MNPQ, as shown above. What is the sum of the areas of the shaded triangles?
+E: 9 sq cm | F: 12 sq cm | G: 18 sq cm | H: 36 sq cm
+93 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q093'}]
+The Chens spend $5 of every $8 they earn on planned expenses. If the family earns $29,600 in one year, how much will they spend on planned expenses that year?
+A: $1,850 | B: $3,700 | C: $5,920 | D: $18,500
+94 [{'score': 0.9979, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q094'}]
+A pizza shop offers a choice of 3 sizes (small, medium, and large) and 7 different toppings. Different pizzas can be created by changing the size and/or the choice of toppings. If Cody wants to order a pizza with exactly 2 different toppings, how many different pizzas can he create?
+E: 6 | F: 21 G 63 | H: 126
+95 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q095'}]
+SURVEY OF CATS PER FAMILY
+
+Number of Cats Number of Families
+
+0 15
+
+1 42
+
+2 35
+
+3 or more 8
+
+The table above shows the number of cats per family in 100 households in the Blaine neighborhood. By what percentage is the number of families with 1 cat greater than the number of families with 2 cats?
+A: 7% | B: 10% | C: 17% | D: 20%
+96 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-83'}]
+A wooden box has a square base. The height of this box is 3 times the length of one side of the base. If one side of the base is 3 feet long, what is the volume of this box?
+E: 9 cu ft | F: 27 cu ft | G: 36 cu ft | H: 81 cu ft
+97 [{'score': 0.9613, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q097'}]
+On a bike trip, Rajiv traveled 65 kilometers in 5 hours, while Shaina traveled 72 kilometers in 4 hours. How much less was Rajiv’s mean speed, in kilometers per hour (kph), than Shaina’s?
+A: 1 kph | B: 5 kph | C: 7 kph | D: 9 kph
+98 [{'score': 0.8548, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-85'}]
+Points P, Q, R, and S represent −3, −1, 0, and 2, respectively, on a number line. How many units is the midpoint of PQ from the midpoint of RS ?
+E: 1 | F: 2 | G: 3 | H: 4
+99 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q099'}]
+There are 1,000 cubic centimeters in 1 liter, and 1,000 cubic millimeters in 1 milliliter. How many cubic millimeters are there in 1,000 cubic centimeters?
+A: 1,000 | B: 10,000 | C: 100,000 | D: 1,000,000
+100 [{'score': 0.8644, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q100'}]
+1 + x
+
+y 2
+
+In the quarter circle above, what is y in terms of x ?
+E: x − 1 | F: x + 1
+
+x+1 | G: 2 (x+1)2 | H: 2
+101 [{'score': 0.8844, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-87'}]
+M R T
+
+1 5 − 4 8
+
+The hash marks on the number line above are evenly spaced. What is the coordinate of point R?
+
+7
+A: 40
+
+9 | B: 40
+
+11 | C: 40
+
+21 | D: 40
+102 [{'score': 0.9765, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q102'}]
+Phan chose an Internet service that charges $18.00 per month plus $0.024 per minute. Deion chose an Internet service that charges $30.00 per month for unlimited usage. At the end of the month, Phan’s and Deion’s charges were identical. For how many minutes did Phan use the Internet service that month?
+E: 50 min | F: 60 min | G: 100 min | H: 500 min
+103 [{'score': 0.9695, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q103'}]
+In a sample of 50 cars at a local dealership, there are 12 red cars and 10 cars with backup cameras. Of the 12 red cars, 4 have backup cameras. If a car is selected at random from the given sample, what is the probability that both of the following are true: the car is not red and does not have a backup camera?
+
+3
+A: 5
+
+16 | B: 25
+
+19 | C: 25
+
+4 | D: 5
+104 [{'score': 0.9242, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q104'}]
+The decimal 0.06 can be written as the x fraction . What is the value of x ? 50
+E: 3 | F: 6 | G: 12 | H: 30
+105 [{'score': 0.9455, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q105'}]
+y
+
+4
+
+x O m n
+
+What is the area of the shaded triangle shown above?
+A: m + n | B: n − m | C: 2(n − m) | D: 4(n − m)
+106 [{'score': 1.0, 'parent': '2026-2027-form-bMath.ts', 'id': 'official-shsat-2026-b-92'}]
+ANIMAL CARDS
+
+Number of Cards Picture on Card
+
+8 cat
+
+6 dog
+
+5 bird
+
+4 fish
+
+1 horse
+
+The cards in the table above are mixed in a box. Which animal pictured on a card has exactly a 1 in 4 chance of being picked at random from the box?
+E: cat | F: dog | G: fish | H: horse
+107 [{'score': 0.7778, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q107'}]
+Which number line below shows the solution set for 2x − 2 ≤ y ≤ 4x + 10 when y = 1 ?
+A: –3 –2 –1 0 1 2 3 | B: –3 –2 –1 0 1 2 3 | C: –3 –2 –1 0 1 2 3 | D: –3 –2 –1 0 1 2 3
+108 [{'score': 0.8288, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q108'}]
+= 21 7
+
+In the equation above, what is the value of p ?
+
+2
+E: 3 | F: 3
+
+14 | G: 3 | H: 14
+109 [{'score': 0.9433, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q109'}]
+A ball is selected at random from a box that contains 7 black balls, 14 green balls, and 21 red balls. What is the probability that the ball selected is black?
+
+1
+A: 6
+
+1 | B: 5
+
+1 | C: 3
+
+5 | D: 6
+110 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q110'}]
+At North High School, a survey asked two questions, Question A and Question B. For each question, students could answer either “yes” or “no.” Of the 800 students who responded to the survey, 720 answered “yes” to Question A, and 640 answered “yes” to Question B. What is the least possible number of these students who could have answered “yes” to both questions?
+E: 80 | F: 160 | G: 560 | H: 640
+111 [{'score': 0.969, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q111'}]
+Raoul is at least 3 years older than Vahn. Which of the following inequalities gives the relationship between Raoul’s age ( r ) and Vahn’s age ( v )?
+A: r − v ≥ 3 | B: r − v ≤ 3 | C: 3 − v ≤ r | D: 3 − r ≤ v
+112 [{'score': 0.8357, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q112'}]
+1 sind = 5.6 ricks 1 sind = 12.88 dalts
+
+Using the conversion above, how many dalts are equal to 1 rick?
+E: 0.43 dalt | F: 2.30 dalts | G: 7.28 dalts | H: 18.48 dalts
+113 [{'score': 1.0, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q113'}]
+There are now x cans stacked on a shelf that holds 36 cans when full. If 4 of these cans were removed, the shelf would be half full. What is the value of x ?
+A: 14 | B: 16 | C: 18 | D: 22
+114 [{'score': 0.7175, 'parent': '2018-2019-form-bMath.ts', 'id': '2018-2019-form-b-pdf-shsat-2018-2019-b-q114'}]
+Carlos tossed a paper cup in the air 50 times and found that the probability of it landing on its side was 72%. If he tosses the cup in the air 150 more times, what is the total number of times he can expect the cup to land on its side?
+E: 72 | F: 108 | G: 144 | H: 158
+
+THIS IS THE END OF THE TEST. IF TIME REMAINS, YOU MAY CHECK YOUR ANSWERS. BE SURE THAT THERE ARE NO STRAY MARKS, PARTIALLY FILLED ANSWER CIRCLES, OR INCOMPLETE ERASURES ON YOUR ANSWER SHEET. j

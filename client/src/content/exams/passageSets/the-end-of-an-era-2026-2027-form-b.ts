@@ -19,7 +19,7 @@ const theEndOfAnEra20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence should follow sentence 3 to best introduce the topic of the passage?",
     "promptHtml": "<p><span><span>Which</span> <span>sentence</span> should follow <span>sentence 3</span> to <span><strong>best</strong></span> <span>introduce</span> the <span>topic</span> of the <span>passage</span>?</span></p>",
-    "topic": "",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -63,7 +63,7 @@ const theEndOfAnEra20262027FormBQuestions: ExamQuestion[] = [
     "prompt": "Which word should be added to the beginning of sentence 8 to provide a better transition to the third paragraph (sentences 8–11)?\nMove the correct answer to the box.",
     "promptHtml": "<p><span><span>Which</span> <span>word</span> should be added to the <span>beginning</span> of <span>sentence</span> 8 to provide a better <span>transition</span> to the third <span>paragraph</span> (sentences </span><span>8–11)?</span></p> <p><span>Move the correct <span>answer</span> to the box.</span></p>",
     "dragDropContentHtml": "<p><span>(8) </span>{{slot-1}} <span><em>Opportunity</em> continued to provide valuable data about craters and other surface features.</span></p>",
-    "topic": "Uncategorized",
+    "topic": "Topic & Transitions",
     "allowReuse": false,
     "dragDropStyle": "outlined",
     "dragDropContent": [
@@ -110,7 +110,7 @@ const theEndOfAnEra20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which revision of sentence 11 best maintains the formal style established in the passage?",
     "promptHtml": "<p><span><span>Which</span> <span>revision</span> of <span>sentence</span> 11 <span><strong>best</strong></span> maintains the formal style established in the <span>passage</span>?</span></p>",
-    "topic": "",
+    "topic": "Word Choice & Precision",
     "choices": [
       {
         "id": "A",
@@ -151,7 +151,7 @@ const theEndOfAnEra20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence.\nOne of Opportunity’s major contributions was finding possible evidence of the presence of water on Mars.\nWhere should the sentence be added to the passage?",
     "promptHtml": "<p><span><span>Read</span> this <span>sentence</span>.</span></p> <blockquote data-boxed=\"true\"><span>One of </span><span><em>Opportunity</em>’s </span><span>major contributions was finding possible evidence of the presence of water on Mars.</span></blockquote> <p><span><span>Where</span> should the sentence be added to the <span>passage</span>?</span></p>",
-    "topic": "",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -192,7 +192,7 @@ const theEndOfAnEra20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "What is the best way to combine sentences 12 and 13?",
     "promptHtml": "<p><span><span>What</span> is the <span><strong>best</strong></span> way to combine </span><span><span><span>sentences</span> 12</span></span> <span>and 13?</span></p>",
-    "topic": "",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",

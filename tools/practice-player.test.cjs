@@ -11,6 +11,8 @@ async function loadRenderer() {
     const result = await build({stdin:{contents:`
       import React from 'react';import {renderToStaticMarkup} from 'react-dom/server';
       import {PracticeStats,PracticeFeedback} from './client/src/features/math-command/PracticeFeedback';
+      import {PracticeStars} from './client/src/features/math-command/PracticeStars';
+      export function renderStars(best) { return renderToStaticMarkup(<PracticeStars longestStreak={best}/>); }
       import {InequalityPractice} from './client/src/features/math-command/InequalityPractice';
       import {generatorPreviewCatalog} from './client/src/features/math-command/generatorPreview';
       import {ExamMathQuestion} from './client/src/components/ExamMathQuestion';
@@ -46,8 +48,19 @@ test('answer feedback distinguishes correct/incorrect results and retains best s
   const correct=renderFeedback(true),incorrect=renderFeedback(false);
   assert.match(correct,/mc-practice-feedback is-correct/);assert.match(correct,/Correct/);
   assert.match(incorrect,/mc-practice-feedback is-incorrect/);assert.match(incorrect,/Incorrect/);
-  assert.match(correct,/Best streak <strong>3<\/strong>/);
-  assert.match(incorrect,/Streak <strong>0<\/strong>/);assert.match(incorrect,/Best streak <strong>2<\/strong>/);
+  assert.match(correct,/Longest streak <strong>3<\/strong>/);
+  assert.match(incorrect,/Streak <strong>0<\/strong>/);assert.match(incorrect,/Longest streak <strong>2<\/strong>/);
+});
+
+test('five streak stars unlock at exact ten-answer thresholds with accessible locked and earned labels',async()=>{
+ const {renderStars}=await loadRenderer();
+ for(const best of [0,9,10,19,20,29,30,39,40,49,50,75]){
+   const html=renderStars(best),earned=Math.min(5,Math.floor(best/10));
+   assert.match(html,new RegExp(`${earned} of 5 streak stars earned`));
+   assert.equal((html.match(/class="is-earned"/g)||[]).length,earned);
+   for(const target of [10,20,30,40,50])assert.ok(html.includes(`${target} in a row: ${best>=target?'earned':'locked'}`));
+ }
+ assert.match(renderStars(50),/All five stars earned/);
 });
 
 test('checked choices identify the correct answer and a wrong selection without coloring an unanswered question', async () => {
@@ -60,7 +73,7 @@ test('checked choices identify the correct answer and a wrong selection without 
 test('generator preview renders the existing exam toolbar, question, drawing tool and streak statistics', async () => {
   const {renderPreview}=await loadRenderer(),html=renderPreview();
   assert.match(html,/exam-session-shell/);assert.match(html,/Exam controls/);
-  assert.match(html,/Next item/);assert.match(html,/Pencil tool/);assert.match(html,/Best streak/);
+  assert.match(html,/Next item/);assert.match(html,/Pencil tool/);assert.match(html,/Longest streak/);
   assert.match(html,/PREVIEW:/);assert.doesNotMatch(html,/ps-sample|CORRECT ANSWER/);
 });
 
@@ -69,5 +82,5 @@ test('mini preview retains the exam controls in a bounded nonmodal region',async
  assert.match(html,/mc-exam-mini mc-infinite-page/);assert.match(html,/mc-mini-viewport/);
  assert.match(html,/role="region"/);assert.match(html,/Close question preview/);
  assert.doesNotMatch(html,/mc-exam-viewer|aria-modal|role="dialog"/);
- assert.match(html,/Next item/);assert.match(html,/Pencil tool/);assert.match(html,/Best streak/);
+ assert.match(html,/Next item/);assert.match(html,/Pencil tool/);assert.match(html,/Longest streak/);
 });

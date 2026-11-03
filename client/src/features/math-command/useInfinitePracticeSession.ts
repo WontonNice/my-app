@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { addPracticeTime, createPracticeState, type PracticeState } from './inequalitySession';
 import type { PracticeCatalog, PracticeSelection } from '../../../../server/src/shared/practiceCatalog';
-import {readSavedPractice,savePractice} from './practiceSessionStorage';
+import {readSavedPractice,savePractice,readPracticeProgress} from './practiceSessionStorage';
 
 function restore(owner:string,moduleId?:string) { try { return readSavedPractice(localStorage,owner,moduleId); } catch { return null; } }
 
@@ -36,5 +36,7 @@ export function useInfinitePracticeSession(initialModuleId?: string,catalog?:Pra
   }, [update, persistSession,persist]);
   const save=()=>{const now=Date.now();const timed=current.current&&lastTick.current!==null?addPracticeTime(current.current,Math.max(0,now-lastTick.current)):current.current;current.current=timed;lastTick.current=now;return persist(timed);};
   const resume=(moduleId:string)=>restore(owner,moduleId);
-  return { session, update, save, saveError, resume };
+  let personalBest=session?.longestStreak??0;
+  try { if(session&&persistSession)personalBest=Math.max(personalBest,readPracticeProgress(localStorage,owner,session.moduleId).longestStreak); } catch { /* The save error handles unavailable storage. */ }
+  return { session, update, save, saveError, resume, personalBest };
 }

@@ -19,7 +19,7 @@ const excerptFromTheHighestTide20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "In paragraph 3, the phrase “the butterflies of the sea” conveys the idea that",
     "promptHtml": "<p>In paragraph 3, the phrase “the butterflies of the sea” conveys the idea that</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const excerptFromTheHighestTide20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read these sentences from paragraph 4.\nI’m not sure why I decided to take a look. It was still an hour before sunrise, and I knew exactly what the bars looked like in the moonlight, but for some reason, I couldn’t resist.\nThe sentences contribute to the overall structure of the excerpt by",
     "promptHtml": "<p>Read these sentences from <span>paragraph 4.</span></p> <p data-align=\"indent\"><strong>I’m not sure why I decided to take a look. It was still an hour before sunrise, and I knew exactly what the bars looked like in the moonlight, but for some reason, I couldn’t resist.</strong></p> <p>The sentences contribute to the overall structure of the excerpt by</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const excerptFromTheHighestTide20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The narrator’s actions in paragraph 5 reveal that he is",
     "promptHtml": "<p>The narrator’s actions in paragraph 5 reveal that he is</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const excerptFromTheHighestTide20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the setting affect the plot of the excerpt?",
     "promptHtml": "<p>How does the setting affect the plot of the excerpt?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const excerptFromTheHighestTide20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from paragraph 5 supports the idea that the narrator is taking a risk?",
     "promptHtml": "<p>Which sentence from paragraph 5 supports the idea that the narrator is taking a risk?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const excerptFromTheHighestTide20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 6.\nI kept stepping toward the one sound I’d heard, a growing part of me hoping I’d find nothing at all.\nHow do the narrator’s actions develop a central idea of the excerpt?",
     "promptHtml": "<p>Read this sentence from <span>paragraph 6.</span></p> <p data-align=\"indent\"><strong>I kept stepping toward the one sound I’d heard, a growing part of me hoping I’d find nothing at all.</strong></p> <p>How do the narrator’s actions develop a central idea of the excerpt?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const excerptFromTheHighestTide20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read these sentences from paragraph 8.\nSo, I was looking at it and not looking at it while my heart spangled my vision. I saw fragments, pieces, and tried to fuse them in my mind but couldn’t be certain of the whole.\nThe sensory language “spangled my vision,” “I saw fragments, pieces,” and “tried to fuse them in my mind” conveys the narrator’s",
     "promptHtml": "<p>Read these sentences from <span>paragraph 8.</span></p> <p data-align=\"indent\"><strong>So, I was looking at it and not looking at it while my heart spangled my vision. I saw fragments, pieces, and tried to fuse them in my mind but couldn’t be certain of the whole.</strong></p> <p>The sensory language “spangled my vision,” “I saw fragments, pieces,” and “tried to fuse them in my mind” conveys the narrator’s</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -306,7 +306,7 @@ const excerptFromTheHighestTide20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The author develops the narrator’s point of view when the narrator sees the creature by",
     "promptHtml": "<p>The author develops the narrator’s point of view when the narrator sees the creature by</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",

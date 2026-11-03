@@ -19,7 +19,7 @@ const excerptFromTheSpiritOfTheHerd20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from the excerpt best explains why Wade reserved Peroxide Jim for “emergency work” (paragraph 1)?",
     "promptHtml": "<p><span>Which</span> <span>sentence</span> from the excerpt <span><strong>best</strong></span> <span>explains</span> <span>why</span> Wade reserved Peroxide Jim for “emergency work” <span>(<span>paragraph</span> 1)?</span></p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const excerptFromTheSpiritOfTheHerd20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Paragraphs 1–2 contribute to the development of the central idea of the excerpt by",
     "promptHtml": "<p><span>Paragraphs</span> 1–2 contribute to the development of the central idea of the excerpt by</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const excerptFromTheSpiritOfTheHerd20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does paragraph 3 convey the effect of the setting on the cattle drive?",
     "promptHtml": "<p><span>How</span> does <span><span>paragraph</span> 3</span> convey the <span>effect</span> of the <span>setting</span> on the cattle drive?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const excerptFromTheSpiritOfTheHerd20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 13.\nClose on their left bore down the flank of the herd, and on their right, under their very feet, was a precipice, so close that they felt its blackness—its three hundred feet of fall!\nThe phrase “bore down the flank of the herd” conveys that Wade",
     "promptHtml": "<p><span>Read</span> this <span>sentence</span> from <span><span>paragraph</span> 13.</span></p> <p data-align=\"indent\"><strong>Close on their left bore down the flank of the herd, and on their right, under their very feet, was a precipice, so close that they felt its <span>blackness—</span>its <span>three hundred</span> feet of fall!</strong></p> <p>The <span>phrase</span> “bore down the flank of the herd” conveys that Wade</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const excerptFromTheSpiritOfTheHerd20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read these sentences from the excerpt.\nHe was riding to turn the herd, too, back from the rim, as the horse also knew. (paragraph 11)\nIt was Peroxide Jim’s, according to Wade, for not by word or by touch of hand or knee had the horse been directed in the run. (paragraph 16)\nHow do these sentences develop a central idea in the excerpt?",
     "promptHtml": "<p><span>Read</span> these <span>sentences</span> from the excerpt.</p> <p data-align=\"indent\"><strong>He was riding to turn the herd, too, back from the rim, as the horse also knew.</strong> <span>(<span>paragraph</span> 11)</span></p> <p data-align=\"indent\"><strong>It was Peroxide Jim’s, according to Wade, for not by word or by touch of hand or knee had the horse been directed in the run. </strong><span>(paragraph 16)</span></p> <p><span>How</span> do these sentences develop a central idea in the excerpt?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const excerptFromTheSpiritOfTheHerd20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How do the details in paragraphs 14–16 help convey a central idea of the excerpt?",
     "promptHtml": "<p><span>How</span> do the <span>details</span> in <span><span>paragraphs</span> 14–16</span> <span>help</span> convey a central idea of the excerpt?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const excerptFromTheSpiritOfTheHerd20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from the excerpt best reveals the mood on the drive before the lightning struck?",
     "promptHtml": "<p><span>Which</span> <span>sentence</span> from the excerpt <span><strong>best</strong></span> reveals the <span>mood</span> on the drive <span>before</span> the lightning struck?</p>",
-    "topic": "",
+    "topic": "Tone & Mood",
     "choices": [
       {
         "id": "A",

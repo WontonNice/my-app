@@ -1,22 +1,10 @@
 {
   "metadata": {
-    "2026-2027-form-a-math-item-22": {
-      "category": "Statistics and Probability",
-      "subcategory": "Data Displays & Sampling"
-    },
+    "2026-2027-form-a-math-item-22": {},
     "2021-2022-form-a-q76": {},
-    "2025-2026-form-a-math-5": {
-      "category": "Statistics and Probability",
-      "subcategory": "Counting & Sets"
-    },
-    "2025-2026-form-a-math-1": {
-      "category": "Ratios and Proportional Relationships",
-      "subcategory": "Ratios & Proportions"
-    },
-    "2026-2027-form-a-math-item-1": {
-      "category": "Ratios and Proportional Relationships",
-      "subcategory": "Ratios & Proportions"
-    },
+    "2025-2026-form-a-math-5": {},
+    "2025-2026-form-a-math-1": {},
+    "2026-2027-form-a-math-item-1": {},
     "2019-2020-form-a-q58": {
       "category": "Ratios and Proportional Relationships",
       "subcategory": "Percentages"
@@ -769,146 +757,41 @@
       "category": "Ratios and Proportional Relationships",
       "subcategory": "Ratios & Proportions"
     },
-    "2025-2026-form-a-math-9": {
-      "category": "Algebra",
-      "subcategory": "Equations & Systems"
-    },
-    "2025-2026-form-a-math-11": {
-      "category": "Geometry",
-      "subcategory": "Triangles & Polygons"
-    },
-    "2025-2026-form-a-math-15": {
-      "category": "Algebra",
-      "subcategory": "Equations & Systems"
-    },
-    "colored-pencils-not-red": {
-      "category": "Statistics and Probability",
-      "subcategory": "Probability"
-    },
-    "absolute-value-equivalent-drag": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Integers & Absolute Value"
-    },
-    "cards-without-replacement-not-blue": {
-      "category": "Statistics and Probability",
-      "subcategory": "Probability"
-    },
-    "smallest-factor-of-91": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Number Types & Properties"
-    },
-    "triangular-banner-scale-drawing": {
-      "category": "Geometry",
-      "subcategory": "Similarity & Scale Drawings"
-    },
-    "tien-jordan-age-ratio": {
-      "category": "Algebra",
-      "subcategory": "Equations & Systems"
-    },
-    "sum-of-mixed-numbers": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions & Decimals"
-    },
-    "longest-stick-common-factor": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Number Types & Properties"
-    },
-    "choose-pairs-of-cookies": {
-      "category": "Statistics and Probability",
-      "subcategory": "Counting & Sets"
-    },
-    "point-between-fraction-number-line": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions & Decimals"
-    },
-    "notebook-cost-graph-points": {
-      "category": "Ratios and Proportional Relationships",
-      "subcategory": "Ratios & Proportions"
-    },
-    "compound-fraction-math-entry": {
-      "category": "Algebra",
-      "subcategory": "Algebraic Expressions"
-    },
-    "2026-2027-form-a-math-item-8": {
-      "category": "Algebra",
-      "subcategory": "Equations & Systems"
-    },
-    "2026-2027-form-a-math-item-9": {
-      "category": "Geometry",
-      "subcategory": "Triangles & Polygons"
-    },
-    "2026-2027-form-a-math-item-14": {
-      "category": "Algebra",
-      "subcategory": "Equations & Systems"
-    },
-    "2026-2027-form-a-math-item-15": {
-      "category": "Statistics and Probability",
-      "subcategory": "Probability"
-    },
-    "2026-2027-form-a-math-item-17": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Integers & Absolute Value"
-    },
-    "2026-2027-form-a-math-item-19": {
-      "category": "Statistics and Probability",
-      "subcategory": "Probability"
-    },
-    "2026-2027-form-a-math-item-23": {
-      "category": "Geometry",
-      "subcategory": "Similarity & Scale Drawings"
-    },
-    "2026-2027-form-a-math-item-26": {
-      "category": "Algebra",
-      "subcategory": "Equations & Systems"
-    },
-    "2026-2027-form-a-math-item-28": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions & Decimals"
-    },
-    "2026-2027-form-a-math-item-29": {
-      "category": "Statistics and Probability",
-      "subcategory": "Counting & Sets"
-    },
-    "2026-2027-form-a-math-item-31": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Fractions & Decimals"
-    },
-    "2026-2027-form-a-math-item-35": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Number Types & Properties"
-    },
-    "2026-2027-form-a-math-item-36": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Number Types & Properties"
-    },
-    "2026-2027-form-a-math-item-37": {
-      "category": "Ratios and Proportional Relationships",
-      "subcategory": "Ratios & Proportions"
-    },
-    "2026-2027-form-a-math-item-38": {
-      "category": "Algebra",
-      "subcategory": "Equations & Systems"
-    },
-    "2026-2027-form-a-math-item-44": {
-      "category": "Statistics and Probability",
-      "subcategory": "Probability"
-    },
-    "2026-2027-form-a-math-item-45": {
-      "category": "Arithmetic & Number Sense",
-      "subcategory": "Order of Operations"
-    },
-    "2026-2027-form-a-math-item-47": {
-      "category": "Geometry",
-      "subcategory": "Coordinates & Segment Relationships"
-    },
-    "2026-2027-form-a-math-item-48": {
-      "category": "Algebra",
-      "subcategory": "Equations & Systems"
-    },
-    "2026-2027-form-a-math-item-50": {
-      "category": "Algebra",
-      "subcategory": "Algebraic Expressions"
-    },
+    "2025-2026-form-a-math-9": {},
+    "2025-2026-form-a-math-11": {},
+    "2025-2026-form-a-math-15": {},
+    "colored-pencils-not-red": {},
+    "absolute-value-equivalent-drag": {},
+    "cards-without-replacement-not-blue": {},
+    "smallest-factor-of-91": {},
+    "triangular-banner-scale-drawing": {},
+    "tien-jordan-age-ratio": {},
+    "sum-of-mixed-numbers": {},
+    "longest-stick-common-factor": {},
+    "choose-pairs-of-cookies": {},
+    "point-between-fraction-number-line": {},
+    "notebook-cost-graph-points": {},
+    "compound-fraction-math-entry": {},
+    "2026-2027-form-a-math-item-8": {},
+    "2026-2027-form-a-math-item-9": {},
+    "2026-2027-form-a-math-item-14": {},
+    "2026-2027-form-a-math-item-15": {},
+    "2026-2027-form-a-math-item-17": {},
+    "2026-2027-form-a-math-item-19": {},
+    "2026-2027-form-a-math-item-23": {},
+    "2026-2027-form-a-math-item-26": {},
+    "2026-2027-form-a-math-item-28": {},
+    "2026-2027-form-a-math-item-29": {},
+    "2026-2027-form-a-math-item-31": {},
+    "2026-2027-form-a-math-item-35": {},
+    "2026-2027-form-a-math-item-36": {},
+    "2026-2027-form-a-math-item-37": {},
+    "2026-2027-form-a-math-item-38": {},
+    "2026-2027-form-a-math-item-44": {},
+    "2026-2027-form-a-math-item-45": {},
+    "2026-2027-form-a-math-item-47": {},
+    "2026-2027-form-a-math-item-48": {},
+    "2026-2027-form-a-math-item-50": {},
     "2026-2027-form-d-math-item-1": {
       "category": "Arithmetic & Number Sense",
       "subcategory": "Number Types & Properties"
@@ -1067,18 +950,9 @@
       "category": "Statistics and Probability",
       "subcategory": "Data Displays & Sampling"
     },
-    "center-city-walk-vs-bicycle": {
-      "category": "Statistics and Probability",
-      "subcategory": "Data Displays & Sampling"
-    },
-    "2026-2027-form-a-math-item-4": {
-      "category": "Statistics and Probability",
-      "subcategory": "Counting & Sets"
-    },
-    "2026-2027-form-a-math-item-41": {
-      "category": "Statistics and Probability",
-      "subcategory": "Data Displays & Sampling"
-    }
+    "center-city-walk-vs-bicycle": {},
+    "2026-2027-form-a-math-item-4": {},
+    "2026-2027-form-a-math-item-41": {}
   },
   "savedViews": [],
   "collections": [],
@@ -1552,7 +1426,7 @@
       }
     }
   ],
-  "revision": "3ad18bb8-5525-487f-838f-380eb0eec524",
+  "revision": "16d59d8b-b915-478b-8ffa-81aca6e37b5d",
   "taxonomy": {
     "categories": [
       {
@@ -1749,6 +1623,12 @@
       "label": "Simplifying Expressions",
       "category": "Algebra",
       "subcategory": "Algebraic Expressions"
+    },
+    {
+      "id": "03a21542-bc74-4216-af87-a403aee66a60",
+      "label": "Probability With & Without Replacement",
+      "category": "Statistics and Probability",
+      "subcategory": "Probability"
     }
   ],
   "retiredClassificationSkillIds": [],
@@ -1767,230 +1647,9 @@
       ]
     },
     "b76fdb28-cb6c-4573-ba51-1ff3d50c855c": {
-      "revision": "30cea077-de85-46cb-82fc-5efe63b5dca4",
-      "activeBatchId": "b7061794-98a5-4f3d-b254-bc8fa0f22515",
-      "batches": [
-        {
-          "id": "b7061794-98a5-4f3d-b254-bc8fa0f22515",
-          "name": "Review only · Andrew M · Nov 2",
-          "notes": "REVIEW ONLY — candidate questions collected during the November 2 usability walkthrough. Do not implement generators or assign practice until Nathan reviews the findings. Check existing generators before building duplicates.",
-          "updatedAt": "2026-11-02T20:07:57.062Z",
-          "entries": [
-            {
-              "id": "15ed0801-8ba4-495a-a602-fa0697170354",
-              "source": {
-                "id": "2021-2022-form-a-q61",
-                "question": {
-                  "id": "2021-2022-form-a-q61",
-                  "source": {
-                    "sourceFamily": "official_shsat",
-                    "sourceFormat": "pdf",
-                    "playerProfile": "testnav",
-                    "sourceId": "official-shsat-2021-2022-form-a",
-                    "label": "2021-2022 Form A",
-                    "year": "2021-2022",
-                    "form": "A",
-                    "sourceQuestion": "61",
-                    "pages": [
-                      39
-                    ]
-                  },
-                  "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q061-explanation-1.png\" alt=\"Official explanation for source question 61; original printed answer labels retained.\" width=\"333\"></p>",
-                  "skilled": "TBD",
-                  "explanation": "(45) Let x = number of students with\nonly cats as pets. Let y = number of\nstudents with only dogs as pets.\nCalculate x and y using the given\ninformation:\nThere are 20 students who have cats, and\nof those 20 students, 3 have both cats\nand dogs.\nIf 3 out of 20 students also have dogs,\nthen x = 20-3=17\nThere are 23 students who have dogs, and\nof those 23 students, 3 have both cats\nand dogs.\nIf 3 out of 23 students also have cats,\nthen y = 23-3 =20\nTo find the total number of students\nsurveyed, add the number of students\nwho only have cats (x ), the number of\nstudents who only have dogs (y ), the\nnumber of students who have both (3),\nand the number of students who have\nneither (5):\n34+5+x+y=8+17+20=45",
-                  "points": 1,
-                  "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true.\n\n• \\(20\\) students have cats.\n• \\(23\\) students have dogs.\n• \\(3\\) students have both dogs and cats.\n• \\(5\\) students have no dogs or cats.\n\nHow many students were surveyed?",
-                  "promptHtml": "<p>A survey asked students what pets they have. Based on the results, the following statements are all true.</p><ul><li>\\(20\\) students have cats.</li><li>\\(23\\) students have dogs.</li><li>\\(3\\) students have both dogs and cats.</li><li>\\(5\\) students have no dogs or cats.</li></ul><p>How many students were surveyed?</p>",
-                  "topic": "Statistics and Probability",
-                  "subtopic": "Counting & Sets",
-                  "correctTextAnswers": [
-                    "45"
-                  ],
-                  "type": "short_response",
-                  "entryControl": "text"
-                },
-                "sources": [
-                  {
-                    "assessmentId": "2021-2022-form-a",
-                    "title": "2021-2022 Form A",
-                    "number": 4,
-                    "year": "2021-2022",
-                    "form": "A",
-                    "source": "2021-2022 Form A"
-                  }
-                ],
-                "category": "Statistics and Probability",
-                "subcategory": "Counting & Sets",
-                "skilled": "TBD"
-              },
-              "destination": {
-                "category": "Statistics and Probability",
-                "topic": "Counting & Sets",
-                "moduleId": "2021-2022-form-a-q76",
-                "moduleTitle": "Overlapping Groups",
-                "group": "general"
-              },
-              "notes": "",
-              "status": "draft",
-              "addedAt": "2026-11-02T16:49:02.326Z"
-            },
-            {
-              "id": "b7522c31-c437-4602-9ea1-7e303162f55d",
-              "source": {
-                "id": "2021-2022-form-a-q96",
-                "question": {
-                  "id": "2021-2022-form-a-q96",
-                  "source": {
-                    "sourceFamily": "official_shsat",
-                    "sourceFormat": "pdf",
-                    "playerProfile": "testnav",
-                    "sourceId": "official-shsat-2021-2022-form-a",
-                    "label": "2021-2022 Form A",
-                    "year": "2021-2022",
-                    "form": "A",
-                    "sourceQuestion": "96",
-                    "pages": [
-                      48
-                    ]
-                  },
-                  "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q096-explanation-1.png\" alt=\"Official explanation for source question 96; original printed answer labels retained.\" width=\"310\"></p>",
-                  "skilled": "TBD",
-                  "explanation": "(G) It is easier to rewrite N as M+N\nsince they are both fractions.\nM+=N=“.Y¥ Wy Zz _ We\nxX Z XxX YY Ky",
-                  "points": 1,
-                  "prompt": "Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal \\(0\\). What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?",
-                  "promptHtml": "<p>Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal \\(0\\). What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?</p>",
-                  "topic": "Algebra",
-                  "subtopic": "Algebraic Expressions",
-                  "choices": [
-                    {
-                      "id": "A",
-                      "math": "\\frac{wx}{yz}",
-                      "text": "\\frac{wx}{yz}"
-                    },
-                    {
-                      "id": "B",
-                      "math": "\\frac{wy}{xz}",
-                      "text": "\\frac{wy}{xz}"
-                    },
-                    {
-                      "id": "C",
-                      "math": "\\frac{wz}{xy}",
-                      "text": "\\frac{wz}{xy}"
-                    },
-                    {
-                      "id": "D",
-                      "math": "\\frac{xy}{wz}",
-                      "text": "\\frac{xy}{wz}"
-                    }
-                  ],
-                  "correctChoiceId": "C",
-                  "type": "multiple_choice"
-                },
-                "sources": [
-                  {
-                    "assessmentId": "2021-2022-form-a",
-                    "title": "2021-2022 Form A",
-                    "number": 39,
-                    "year": "2021-2022",
-                    "form": "A",
-                    "source": "2021-2022 Form A"
-                  }
-                ],
-                "category": "Algebra",
-                "subcategory": "Algebraic Expressions",
-                "skilled": "TBD"
-              },
-              "destination": {
-                "category": "Algebra",
-                "topic": "Algebraic Expressions",
-                "moduleId": "general-algebra-algebraic-expressions-rj42ee",
-                "moduleTitle": "General Practice",
-                "group": "general"
-              },
-              "notes": "",
-              "status": "draft",
-              "addedAt": "2026-11-02T16:49:38.796Z"
-            },
-            {
-              "id": "180b84e1-6298-4243-b165-0b045d0780f3",
-              "source": {
-                "id": "2021-2022-form-a-q64",
-                "question": {
-                  "id": "2021-2022-form-a-q64",
-                  "source": {
-                    "sourceFamily": "official_shsat",
-                    "sourceFormat": "pdf",
-                    "playerProfile": "testnav",
-                    "sourceId": "official-shsat-2021-2022-form-a",
-                    "label": "2021-2022 Form A",
-                    "year": "2021-2022",
-                    "form": "A",
-                    "sourceQuestion": "64",
-                    "pages": [
-                      40
-                    ]
-                  },
-                  "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q064-explanation-1.png\" alt=\"Official explanation for source question 64; original printed answer labels retained.\" width=\"234\"></p>",
-                  "skilled": "TBD",
-                  "explanation": "(E) 7+3n+6-4n-8=\n(7 #6- 8) + (3n 7 4n) =\nS_n",
-                  "points": 1,
-                  "prompt": "\\(7+(3n+6)-(4n+8)=\\)",
-                  "promptHtml": "<p>\\(7+(3n+6)-(4n+8)=\\)</p>",
-                  "topic": "Algebra",
-                  "subtopic": "Algebraic Expressions",
-                  "choices": [
-                    {
-                      "id": "A",
-                      "math": "5-n",
-                      "text": "5-n"
-                    },
-                    {
-                      "id": "B",
-                      "math": "5+n",
-                      "text": "5+n"
-                    },
-                    {
-                      "id": "C",
-                      "math": "21-n",
-                      "text": "21-n"
-                    },
-                    {
-                      "id": "D",
-                      "math": "21+n",
-                      "text": "21+n"
-                    }
-                  ],
-                  "correctChoiceId": "A",
-                  "type": "multiple_choice"
-                },
-                "sources": [
-                  {
-                    "assessmentId": "2021-2022-form-a",
-                    "title": "2021-2022 Form A",
-                    "number": 7,
-                    "year": "2021-2022",
-                    "form": "A",
-                    "source": "2021-2022 Form A"
-                  }
-                ],
-                "category": "Algebra",
-                "subcategory": "Algebraic Expressions",
-                "skilled": "TBD"
-              },
-              "destination": {
-                "category": "Algebra",
-                "topic": "Algebraic Expressions",
-                "moduleId": "",
-                "moduleTitle": "Simplifying expressions with subtraction",
-                "group": "general"
-              },
-              "notes": "",
-              "status": "draft",
-              "addedAt": "2026-11-02T16:49:55.331Z"
-            }
-          ]
-        }
-      ]
+      "revision": "b6f9627a-ce9a-47df-9f63-f862da4e2387",
+      "activeBatchId": "",
+      "batches": []
     }
   }
 }

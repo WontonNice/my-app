@@ -3,17 +3,19 @@ import type { ExamQuestion } from '../../../../server/src/shared/examTypes';
 import { mathCorrectAnswer } from '../../../../server/src/shared/mathCommandAnalytics';
 import { ExamAnswer, ExamText } from '../../components/ExamReviewQuestion';
 import { practiceAccuracy, type PracticeState } from './inequalitySession';
+import { PracticeStars } from './PracticeStars';
 
 function ResultIndicator({ correct }: { correct: boolean }) {
   const Icon = correct ? CircleCheck : CircleX;
   return <><Icon size={18} aria-hidden="true"/>{correct ? 'Correct' : 'Incorrect'}</>;
 }
 
-export function PracticeStats({ state, correct }: { state: PracticeState; correct?: boolean }) {
+export function PracticeStats({ state, correct, personalBest = state.longestStreak }: { state: PracticeState; correct?: boolean; personalBest?: number }) {
   return <div className="mc-practice-stats" role="status" aria-label="Session statistics">
     <span>Streak <strong>{state.streak}</strong></span>
-    <span>Best streak <strong>{state.longestStreak}</strong></span>
+    <span>Longest streak <strong>{personalBest}</strong></span>
     <span>Accuracy <strong>{practiceAccuracy(state)}</strong> <small>({state.correct}/{state.checked})</small></span>
+    <PracticeStars longestStreak={personalBest} compact/>
     {correct !== undefined && <span className={`mc-practice-result ${correct ? 'is-correct' : 'is-incorrect'}`}><ResultIndicator correct={correct}/></span>}
   </div>;
 }

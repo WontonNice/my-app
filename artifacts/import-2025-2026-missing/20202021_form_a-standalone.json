@@ -1,0 +1,156 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "prompt": "What is the best way to combine the sentences?\n\n(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.\n\n(2) One of Jupiter’s moons is named Io.\n\n(3) Io has the greatest number of active volcanoes in the solar system.",
+      "promptHtml": "<p>What is the best way to combine the sentences?</p><blockquote data-boxed=\"true\">(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.<br>(2) One of Jupiter’s moons is named Io.<br>(3) Io has the greatest number of active volcanoes in the solar system.</blockquote>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+          "html": "<p>Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.",
+          "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.",
+          "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+          "html": "<p>Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>"
+        }
+      ],
+      "id": "20202021-form-a-q001",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "1",
+        "sourcePages": [
+          1
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        }
+      },
+      "correctChoiceId": "C",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+      "sourceQuestion": "1",
+      "versionLabels": [
+        "2020-2021 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "label": "2020-2021 Form A",
+        "year": "2020-2021",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_a.pdf",
+        "sourceQuestion": "1",
+        "pages": [
+          1
+        ]
+      },
+      "notes": [
+        "Source 20202021_form_a.pdf; question 1."
+      ]
+    },
+    {
+      "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
+      "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) When coal was used to heat <u>homes</u>, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product <u>company</u> created a doughy substance to help people remove this soot. (3) Over time, as natural gas <u>becomes</u> more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he <u>remarketed</u> the product as the toy known today as Play-Doh.</blockquote>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became.",
+          "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed.",
+          "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became.",
+          "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed.",
+          "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>"
+        }
+      ],
+      "id": "20202021-form-a-q005",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "5",
+        "sourcePages": [
+          3
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            3,
+            4
+          ]
+        }
+      },
+      "correctChoiceId": "C",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q5-1-png-passage.png\" alt=\"Supplied explanation for question 5\"></p><p><img src=\"/exam-images/restore-20202021-form-a-answers-q5-2-png-passage.png\" alt=\"Supplied explanation for question 5\"></p>",
+      "sourceQuestion": "5",
+      "versionLabels": [
+        "2020-2021 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "label": "2020-2021 Form A",
+        "year": "2020-2021",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_a.pdf",
+        "sourceQuestion": "5",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Source 20202021_form_a.pdf; question 5."
+      ]
+    }
+  ]
+}

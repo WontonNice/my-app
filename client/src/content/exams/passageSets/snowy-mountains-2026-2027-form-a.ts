@@ -19,7 +19,7 @@ const snowyMountains20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The description in the first stanza (lines 1–7) helps establish a central idea of the poem by",
     "promptHtml": "<p>The <span>description</span> in the first <span>stanza</span> <span>(lines 1–7)</span> <span>helps</span> establish a central idea of the <span>poem</span> by</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const snowyMountains20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which detail from the poem reflects the speaker’s view that people often fail to appreciate what is familiar?",
     "promptHtml": "<p><span>Which</span> <span>detail</span> from the <span>poem</span> reflects the speaker’s view that people <span>often</span> fail to appreciate <span>what</span> is familiar?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const snowyMountains20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does isolating the word “Uprise” in line 7 affect the meaning of the poem?",
     "promptHtml": "<p><span>How</span> does isolating the <span>word</span> “Uprise” in <span>line 7</span> affect the meaning of the <span>poem</span>?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const snowyMountains20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "In which two ways does the poet develop the speaker’s point of view in the second stanza (lines 8–14)?\nSelect the two correct answers.",
     "promptHtml": "<p>In <span>which</span> <strong>two</strong> ways does the poet develop the speaker’s <span>point of view</span> in the second <span>stanza</span> <span>(lines 8–14)?</span></p> <p>Select the <strong>two</strong> correct <span>answers</span>.</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -192,7 +192,7 @@ const snowyMountains20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read lines 21–22 from the poem.\nBarrier broken down by those who do not need\nThe joy of time-resisting storm-worn stone,\nHow do the lines help convey the speaker’s point of view?",
     "promptHtml": "<p><span>Read</span> <span>lines 21–22</span> from the <span>poem</span>.</p> <p data-align=\"indent\"><strong>Barrier broken down by those <span>who</span> do not need</strong><br><strong>The joy of time-resisting storm-worn stone,</strong></p> <p><span>How</span> do the lines <span>help</span> convey the speaker’s <span>point of view</span>?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -233,7 +233,7 @@ const snowyMountains20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read lines 23–26 from the poem.\nThe mountains swing along\nThe south horizon of the sky;\nWelcoming with wide floors of blue-green ice\nThe mists that dance and drive before the sun.\nThe personification in these concluding lines of the poem suggests that the mountains are",
     "promptHtml": "<p><span>Read</span> lines 23–26 from the <span>poem</span>.</p> <p data-align=\"indent\"><strong>The mountains swing along</strong><br><strong>The south horizon of the sky;</strong><br><strong>Welcoming with wide floors of blue-green ice</strong><br><strong>The mists that dance and drive before the sun.</strong></p> <p>The personification in these concluding lines of the poem suggests that the mountains are</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -274,7 +274,7 @@ const snowyMountains20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which quotations from the poem support the theme that nature’s unspoiled beauty is splendid, and which quotations support the theme that human creations detract from natural wonder?\nMove each answer to the correct box.",
     "promptHtml": "<p><span>Which</span> <span>quotations</span> from the <span>poem</span> <span>support</span> the <span>theme</span> that nature’s unspoiled beauty is splendid, and which quotations support the theme that human creations detract from natural wonder?&nbsp;</p> <p>Move each <span>answer</span> to the correct box.</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "categories": [
       {
         "id": "category-1",

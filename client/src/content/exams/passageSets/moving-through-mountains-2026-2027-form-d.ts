@@ -19,7 +19,7 @@ const movingThroughMountains20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence should be added after sentence 5 to introduce the main topic of the passage?",
     "promptHtml": "<p><span>Which sentence should be added after <span>sentence 5</span> to introduce the main topic of the passage?</span></p>",
-    "topic": "",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const movingThroughMountains20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence should be added to follow and support sentence 7?",
     "promptHtml": "<p><span>Which sentence should be added to follow and support <span>sentence 7?</span></span></p>",
-    "topic": "",
+    "topic": "Relevance & Conclusion",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const movingThroughMountains20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Where should sentence 11 be moved in order to improve the organization of the second paragraph (sentences 6–11)?",
     "promptHtml": "<p><span>Where should sentence 11 be moved in order to improve the organization of the second paragraph </span><span><span>(sentences </span><span>6–11)</span><span>?</span></span></p>",
-    "topic": "",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const movingThroughMountains20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence presents information that shifts away from the main topic of the third paragraph (sentences 12–16) and should be removed?",
     "promptHtml": "<p><span>Which sentence </span><span>presents</span><span> information that shifts away from the main topic of the third paragraph </span><span><span>(sentences </span><span>12–16)</span></span><span> and should be </span><span>removed?</span></p>",
-    "topic": "",
+    "topic": "Relevance & Conclusion",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const movingThroughMountains20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which transition phrase should be added to the beginning of sentence 18?",
     "promptHtml": "<p><span>Which transition phrase should be added to the beginning of <span>sentence 18?</span></span></p>",
-    "topic": "",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const movingThroughMountains20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which concluding sentence should be added after sentence 18 to support the topic presented in the passage?",
     "promptHtml": "<p><span>Which concluding sentence should be added after <span>sentence 18</span> to support the topic presented in the passage?</span></p>",
-    "topic": "",
+    "topic": "Relevance & Conclusion",
     "choices": [
       {
         "id": "A",

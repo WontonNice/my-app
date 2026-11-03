@@ -1,0 +1,138 @@
+{
+  "changedQuestions": [
+    3,
+    18
+  ],
+  "count": 57,
+  "q3": {
+    "id": "2025-2026-form-b-official-shsat-2025-b-60",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "label": "2025-2026 Form B",
+      "url": "https://www.stuyprep.nyc/16tests.html",
+      "year": "2025-2026",
+      "form": "B",
+      "section": "Math",
+      "sourceQuestion": "60"
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20252026-form-b-math-answers-q60-1-png-passage.png\" alt=\"Supplied explanation for question 60\"></p>",
+    "skilled": "TBD",
+    "explanation": "",
+    "points": 1,
+    "prompt": "The list shows the results of a survey. A survey was taken to see whether students like basketball, soccer, both, or neither. These were the results:\n25 students like basketball.\n19 students like soccer.\n7 students like both basketball and soccer.\n10 students don’t like either basketball or soccer.\nUse the information provided to determine how many students were surveyed and how many like only soccer.\nMove the correct answer to each box.",
+    "promptHtml": "<p><span><span>The </span><span>list </span><span>shows </span><span>the </span><span>results</span><span> of </span><span>a </span><span>survey</span><span>. </span><span>A </span><span>survey </span><span>was </span><span>taken </span><span>to </span><span>see </span><span>whether </span><span>students </span><span>like </span><span>basketball, </span><span>soccer, </span><span>both, </span><span>or </span><span>neither. </span><span>These </span><span>were </span><span>the </span><span>results:</span></span></p> <ul><li><span>25 students like basketball.</span></li><li><span>19 students like soccer.</span></li><li><span>7 students like both basketball and soccer.</span></li><li><span>10 students don’t like either basketball or soccer.</span></li></ul> <p><span><span>Use </span><span>the </span><span>information </span><span>provided </span><span>to </span><span>determine </span><span>how </span><span>many </span><span>students </span><span>were </span><span>surveyed </span><span>and </span><span>how </span><span>many </span><span>like </span><span>only</span><span> soccer.</span></span></p> <p><span><span>Move </span><span>the </span><span>correct </span><span>answer </span><span>to </span><span>each</span><span> box.</span></span></p>",
+    "dragDropContentHtml": "<p>There were {{slot-1}} students surveyed, and {{slot-2}} students like only soccer.</p>",
+    "topic": "Statistics and Probability",
+    "subtopic": "Counting & Sets",
+    "allowReuse": false,
+    "dragDropStyle": "outlined",
+    "dragDropContent": [
+      "There were {{slot-1}} students surveyed, and {{slot-2}} students like only soccer."
+    ],
+    "dragDropSlots": [
+      {
+        "correctItemId": "item-5",
+        "id": "slot-1",
+        "width": 50
+      },
+      {
+        "correctItemId": "item-1",
+        "id": "slot-2",
+        "width": 50
+      }
+    ],
+    "items": [
+      {
+        "id": "item-1",
+        "text": "12"
+      },
+      {
+        "id": "item-2",
+        "text": "19"
+      },
+      {
+        "id": "item-3",
+        "text": "26"
+      },
+      {
+        "id": "item-4",
+        "text": "3"
+      },
+      {
+        "id": "item-5",
+        "text": "47"
+      },
+      {
+        "id": "item-6",
+        "text": "54"
+      }
+    ],
+    "type": "math_drag_drop",
+    "commandMetadata": {},
+    "importNeedsEditing": true,
+    "importSource": "https://www.stuyprep.nyc/16tests.html · Question 60",
+    "importNotes": []
+  },
+  "q18": {
+    "id": "2025-2026-form-b-official-shsat-2025-b-75",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "label": "2025-2026 Form B",
+      "url": "https://www.stuyprep.nyc/16tests.html",
+      "year": "2025-2026",
+      "form": "B",
+      "section": "Math",
+      "sourceQuestion": "75"
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20252026-form-b-math-answers-q75-1-png-passage.png\" alt=\"Supplied explanation for question 75\"></p>",
+    "skilled": "TBD",
+    "explanation": "",
+    "points": 1,
+    "prompt": "Which tables represent a proportional relationship between the number of books purchased and the total cost?\nSelect the two correct answers.",
+    "promptHtml": "<p><span><span>Which </span><span>tables </span><span>represent </span><span>a </span><span>proportional</span><span> relationship </span><span>between</span><span> the </span><span>number</span><span> of </span><span>books </span><span>purchased </span><span>and </span><span>the </span><span>total</span><span> cost?</span></span></p><p><span><span>Select </span><span>the </span><strong>two</strong><span> correct </span><span>answers.</span></span></p>",
+    "hideChoiceLabels": true,
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<img src=\"/exam-images/2025-2026-form-b-q18-choice-a-testnav-passage.png\" alt=\"Number of Books Purchased, 10, 15, 20, 25; Total Cost ($), 40, 60, 80, 100\" width=\"386\">",
+        "text": "Number of Books Purchased 10 15 20 25\nTotal Cost ($) 40 60 80 100"
+      },
+      {
+        "id": "B",
+        "html": "<img src=\"/exam-images/2025-2026-form-b-q18-choice-b-testnav-passage.png\" alt=\"Number of Books Purchased, 10, 15, 20, 25; Total Cost ($), 70, 110, 150, 250\" width=\"403\">",
+        "text": "Number of Books Purchased 10 15 20 25\nTotal Cost ($) 70 110 150 250"
+      },
+      {
+        "id": "C",
+        "html": "<img src=\"/exam-images/2025-2026-form-b-q18-choice-c-testnav-passage.png\" alt=\"Number of Books Purchased, 10, 15, 20, 25; Total Cost ($), 80, 120, 160, 200\" width=\"404\">",
+        "text": "Number of Books Purchased 10 15 20 25\nTotal Cost ($) 80 120 160 200"
+      },
+      {
+        "id": "D",
+        "html": "<img src=\"/exam-images/2025-2026-form-b-q18-choice-d-testnav-passage.png\" alt=\"Number of Books Purchased, 10, 15, 20, 25; Total Cost ($), 90, 130, 170, 210\" width=\"404\">",
+        "text": "Number of Books Purchased 10 15 20 25\nTotal Cost ($) 90 130 170 210"
+      },
+      {
+        "id": "E",
+        "html": "<img src=\"/exam-images/2025-2026-form-b-q18-choice-e-testnav-passage.png\" alt=\"Number of Books Purchased, 10, 15, 20, 25; Total Cost ($), 100, 100, 100, 100\" width=\"413\">",
+        "text": "Number of Books Purchased 10 15 20 25\nTotal Cost ($) 100 100 100 100"
+      }
+    ],
+    "correctChoiceIds": [
+      "A",
+      "C"
+    ],
+    "requiredSelections": 2,
+    "type": "multi_select",
+    "commandMetadata": {},
+    "importNeedsEditing": true,
+    "importSource": "https://www.stuyprep.nyc/16tests.html · Question 75",
+    "importNotes": []
+  }
+}

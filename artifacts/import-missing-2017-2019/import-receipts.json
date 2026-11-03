@@ -1,0 +1,423 @@
+{
+  "20172018_form_a": {
+    "assessmentId": "2017-2018-form-a",
+    "passages": [
+      {
+        "draftId": "import-bcec98888dcbe826274e-ee57b83f",
+        "id": "reading-passage-1-2017-2018-form-a",
+        "fileName": "reading-passage-1-2017-2018-form-a.ts",
+        "questions": 7
+      },
+      {
+        "draftId": "import-19dd57900bd58b0bf2f0-867cd425",
+        "id": "reading-passage-2-2017-2018-form-a",
+        "fileName": "reading-passage-2-2017-2018-form-a.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-fc379d0e812f3f9a9879-e3a86d31",
+        "id": "reading-passage-3-2017-2018-form-a",
+        "fileName": "reading-passage-3-2017-2018-form-a.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-41a5f59b871d7153c7e5-9c657213",
+        "id": "reading-passage-4-2017-2018-form-a",
+        "fileName": "reading-passage-4-2017-2018-form-a.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-cd29730bae959c7ba9bd-2f7589b2",
+        "id": "reading-passage-5-2017-2018-form-a",
+        "fileName": "reading-passage-5-2017-2018-form-a.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-d35e93cfef55eb528b3e-d708829d",
+        "id": "reading-passage-6-2017-2018-form-a",
+        "fileName": "reading-passage-6-2017-2018-form-a.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-b69912db1b4cccaef8f6-f2f276a5",
+        "id": "unlock-ride-return-2017-2018-form-a",
+        "fileName": "unlock-ride-return-2017-2018-form-a.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-80930832f7d690b4e474-26da8a81",
+        "id": "pursuing-a-hobby-2017-2018-form-a",
+        "fileName": "pursuing-a-hobby-2017-2018-form-a.ts",
+        "questions": 6
+      }
+    ],
+    "independent": [
+      {
+        "draftId": "part-b-import-0ea66e24a5c0-72af5644",
+        "id": "part-b-import-0ea66e24a5c0-72af5644",
+        "sourceQuestion": "1"
+      },
+      {
+        "draftId": "part-b-import-55ca9287c304-58585284",
+        "id": "part-b-import-55ca9287c304-58585284",
+        "sourceQuestion": "2"
+      },
+      {
+        "draftId": "part-b-import-be10ff9dae9c-bd9b9422",
+        "id": "part-b-import-be10ff9dae9c-bd9b9422",
+        "sourceQuestion": "3"
+      },
+      {
+        "draftId": "part-b-import-4669ed81b4aa-903f4032",
+        "id": "part-b-import-4669ed81b4aa-903f4032",
+        "sourceQuestion": "4"
+      },
+      {
+        "draftId": "part-b-import-1bc95d788614-c76e5943",
+        "id": "part-b-import-1bc95d788614-c76e5943",
+        "sourceQuestion": "5"
+      },
+      {
+        "draftId": "part-b-import-58cd1c48131d-1dd438a6",
+        "id": "part-b-import-58cd1c48131d-1dd438a6",
+        "sourceQuestion": "6"
+      }
+    ],
+    "math": {
+      "assessmentId": "2017-2018-form-a",
+      "added": [
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q058",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q059",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q060",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q061",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q062",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q063",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q064",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q065",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q066",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q067",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q068",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q069",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q070",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q071",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q072",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q073",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q074",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q075",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q076",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q077",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q078",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q079",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q080",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q081",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q082",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q083",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q084",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q085",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q086",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q087",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q088",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q089",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q090",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q091",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q092",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q093",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q094",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q095",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q096",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q097",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q098",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q099",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q100",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q101",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q102",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q103",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q104",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q105",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q106",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q107",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q108",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q109",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q110",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q111",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q112",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q113",
+        "2017-2018-form-a-pdf-shsat-2017-2018-a-q114"
+      ],
+      "existing": [],
+      "errors": []
+    }
+  },
+  "20172018_form_b": {
+    "assessmentId": "2017-2018-form-b",
+    "passages": [
+      {
+        "draftId": "import-a6eee0a96dc0e11d1557-9a828429",
+        "id": "reading-passage-1-2017-2018-form-b",
+        "fileName": "reading-passage-1-2017-2018-form-b.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-4c0fab94207f2d4ad28c-9009e41c",
+        "id": "reading-passage-2-2017-2018-form-b",
+        "fileName": "reading-passage-2-2017-2018-form-b.ts",
+        "questions": 7
+      },
+      {
+        "draftId": "import-4c95d64c898c8d2fd219-77665672",
+        "id": "reading-passage-3-2017-2018-form-b",
+        "fileName": "reading-passage-3-2017-2018-form-b.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-5c000e2b39d34612f5dd-40ce990a",
+        "id": "reading-passage-4-2017-2018-form-b",
+        "fileName": "reading-passage-4-2017-2018-form-b.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-ae02e396131c2dc2f6ed-eb5adc19",
+        "id": "reading-passage-5-2017-2018-form-b",
+        "fileName": "reading-passage-5-2017-2018-form-b.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-8349afcf756fd0b85117-25189141",
+        "id": "reading-passage-6-2017-2018-form-b",
+        "fileName": "reading-passage-6-2017-2018-form-b.ts",
+        "questions": 6
+      },
+      {
+        "draftId": "import-7fdf1ee00b92bea78cba-39dd6d85",
+        "id": "the-local-library-2017-2018-form-b",
+        "fileName": "the-local-library-2017-2018-form-b.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-c867d3f09c86d0bcf06d-a05da044",
+        "id": "moving-through-mountains-2017-2018-form-b",
+        "fileName": "moving-through-mountains-2017-2018-form-b.ts",
+        "questions": 7
+      }
+    ],
+    "independent": [
+      {
+        "draftId": "part-b-import-d51ef5a4da25-097e5f95",
+        "id": "part-b-import-d51ef5a4da25-097e5f95",
+        "sourceQuestion": "1"
+      },
+      {
+        "draftId": "part-b-import-98dc205aa3e8-2094d5e0",
+        "id": "part-b-import-98dc205aa3e8-2094d5e0",
+        "sourceQuestion": "2"
+      },
+      {
+        "draftId": "part-b-import-54658f33bda8-f23b8b56",
+        "id": "part-b-import-54658f33bda8-f23b8b56",
+        "sourceQuestion": "3"
+      },
+      {
+        "draftId": "part-b-import-5491bf3aee6b-dca7c6a1",
+        "id": "part-b-import-5491bf3aee6b-dca7c6a1",
+        "sourceQuestion": "4"
+      },
+      {
+        "draftId": "part-b-import-113c673c387b-c66e9563",
+        "id": "part-b-import-113c673c387b-c66e9563",
+        "sourceQuestion": "5"
+      }
+    ],
+    "math": {
+      "assessmentId": "2017-2018-form-b",
+      "added": [
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q058",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q059",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q060",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q061",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q062",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q063",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q064",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q065",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q066",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q067",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q068",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q069",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q070",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q071",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q072",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q073",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q074",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q075",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q076",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q077",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q078",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q079",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q080",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q081",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q082",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q083",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q084",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q085",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q086",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q087",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q088",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q089",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q090",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q091",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q092",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q093",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q094",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q095",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q096",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q097",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q098",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q099",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q100",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q101",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q102",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q103",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q104",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q105",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q106",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q107",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q108",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q109",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q110",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q111",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q112",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q113",
+        "2017-2018-form-b-pdf-shsat-2017-2018-b-q114"
+      ],
+      "existing": [],
+      "errors": []
+    }
+  },
+  "20192020_form_b": {
+    "assessmentId": "2019-2020-form-b",
+    "passages": [
+      {
+        "draftId": "import-c954eb11fdd5dae0a3fa-4b8936fa",
+        "id": "the-best-laid-plans-of-ravens-2019-2020-form-b",
+        "fileName": "the-best-laid-plans-of-ravens-2019-2020-form-b.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-8dfd93dde38ae08b60df-23185a42",
+        "id": "looking-for-the-smallest-spark-of-everything-2019-2020-form-b",
+        "fileName": "looking-for-the-smallest-spark-of-everything-2019-2020-form-b.ts",
+        "questions": 9
+      },
+      {
+        "draftId": "import-45127ccd2822edcdd9bb-4d92c13d",
+        "id": "excerpt-from-the-spirit-of-the-herd-2019-2020-form-b",
+        "fileName": "excerpt-from-the-spirit-of-the-herd-2019-2020-form-b.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-928f2e420255aeb8964d-77e80d2e",
+        "id": "a-memory-revolution-2019-2020-form-b",
+        "fileName": "a-memory-revolution-2019-2020-form-b.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-5b6b2aaac7fc239d93dd-5ea96e80",
+        "id": "serpent-mound-2019-2020-form-b",
+        "fileName": "serpent-mound-2019-2020-form-b.ts",
+        "questions": 8
+      },
+      {
+        "draftId": "import-efc1f041b24499755fa6-b0082bba",
+        "id": "massachusetts-lowell-national-historical-park-2019-2020-form-b",
+        "fileName": "massachusetts-lowell-national-historical-park-2019-2020-form-b.ts",
+        "questions": 7
+      },
+      {
+        "draftId": "import-6526e53300da4bf4073d-0cf963d4",
+        "id": "martial-arts-for-the-mind-and-body-2019-2020-form-b",
+        "fileName": "martial-arts-for-the-mind-and-body-2019-2020-form-b.ts",
+        "questions": 6
+      }
+    ],
+    "independent": [
+      {
+        "draftId": "part-b-import-9d14715150af-39798b2c",
+        "id": "part-b-import-9d14715150af-39798b2c",
+        "sourceQuestion": "1"
+      },
+      {
+        "draftId": "part-b-import-a6c479c6476d-70d39721",
+        "id": "part-b-import-a6c479c6476d-70d39721",
+        "sourceQuestion": "2"
+      },
+      {
+        "draftId": "part-b-import-bbccdcd22a0c-c496117b",
+        "id": "part-b-import-bbccdcd22a0c-c496117b",
+        "sourceQuestion": "3"
+      }
+    ],
+    "math": {
+      "assessmentId": "2019-2020-form-b",
+      "added": [
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q058",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q059",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q060",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q061",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q062",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q063",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q064",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q065",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q066",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q067",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q068",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q069",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q070",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q071",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q072",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q073",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q074",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q075",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q076",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q077",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q078",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q079",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q080",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q081",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q082",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q083",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q084",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q085",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q086",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q087",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q088",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q089",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q090",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q091",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q092",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q093",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q094",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q095",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q096",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q097",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q098",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q099",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q100",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q101",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q102",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q103",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q104",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q105",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q106",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q107",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q108",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q109",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q110",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q111",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q112",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q113",
+        "2019-2020-form-b-pdf-shsat-2019-2020-b-q114"
+      ],
+      "existing": [],
+      "errors": []
+    }
+  }
+}

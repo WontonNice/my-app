@@ -55,7 +55,7 @@ test('calculator variables save independently of answer labels, including no var
   const question = section.questions.find(question => question.id === 'official-shsat-2026-c-85');
   assert.equal(question.entryVariable, 'b');
   assert.equal(question.entryPrefixVariable, 'a');
-  for (const variable of ['b', 'w', '']) {
+  for (const variable of ['b', 'w', '', 'x, y', 'a,b,c']) {
     const result = normalizeMathQuestion({ ...question, entryVariable: variable }, 'exam', 34);
     assert.equal(result.entryVariable, variable || undefined);
     assert.equal(result.entryPrefixVariable, 'a');
@@ -63,5 +63,6 @@ test('calculator variables save independently of answer labels, including no var
   }
   assert.throws(() => normalizeMathQuestion({ ...question, entryVariable: 'ab' }, 'exam', 34), /Calculator variable must be one letter/);
   assert.throws(() => normalizeMathQuestion({ ...question, entryVariable: '2' }, 'exam', 34), /Calculator variable must be one letter/);
+  assert.throws(() => normalizeMathQuestion({ ...question, entryVariable: 'a,b,c,d' }, 'exam', 34), /Calculator variable must be one letter/);
   assert.throws(() => normalizeMathQuestion({ ...question, entryPrefixVariable: 'ab' }, 'exam', 34), /equation label must be one letter/);
 });

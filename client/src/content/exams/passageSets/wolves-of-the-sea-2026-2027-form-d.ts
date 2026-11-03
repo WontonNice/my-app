@@ -19,7 +19,7 @@ const wolvesOfTheSea20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The details in paragraph 1 contribute to a central idea of the passage by showing that Darimont",
     "promptHtml": "<p>The details in paragraph 1 contribute to a central idea of the passage by showing that Darimont</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const wolvesOfTheSea20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Why does the author include details about the conversation between Starr and Darimont in paragraph 2?",
     "promptHtml": "<p>Why does the author include details about the conversation between Starr and Darimont in <span>paragraph 2?</span></p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const wolvesOfTheSea20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 4.\nAfter collecting and analyzing the DNA in 800 samples of gray fur and wolf waste, researchers could produce hard biological evidence that sea wolves had genetic markers that made them distinct from the mainland wolves.\nThe phrase “hard biological evidence” conveys that the goal of the research team was to",
     "promptHtml": "<p>Read this sentence from <span>paragraph 4.</span></p> <p data-align=\"indent\"><strong>After collecting and analyzing the DNA in 800 samples of gray fur and wolf waste, researchers could produce hard biological evidence that sea wolves had genetic markers that made them distinct from the mainland wolves.</strong></p> <p>The phrase “hard biological evidence” conveys that the goal of the research team was to</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const wolvesOfTheSea20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The author uses the word “admits” in paragraph 5 most likely to",
     "promptHtml": "<p>The author uses the word “admits” in <span>paragraph 5</span> <strong>most likely</strong> to</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const wolvesOfTheSea20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from the passage best supports the idea that sea wolves had successfully adapted to living on the islands?",
     "promptHtml": "<p>Which sentence from the passage <strong>best</strong> supports the idea that sea wolves had successfully adapted to living on the islands?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const wolvesOfTheSea20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How did a change in habitat most affect the wolf population of the Great Bear Rainforest over time?",
     "promptHtml": "<p>How did a change in habitat <strong>most</strong> affect the wolf population of the Great Bear Rainforest over time?</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",

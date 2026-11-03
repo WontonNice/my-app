@@ -265,6 +265,7 @@
     .student-preview-modal > header small { color: #c6d5e1; font-size: .65rem; }
     .student-preview-controls { display: flex; align-items: center; gap: 8px; min-width: 0; }
     .student-preview-controls label { display: flex; align-items: center; gap: 7px; min-width: 0; color: #dce7f0; font-size: .66rem; font-weight: 700; }
+    .student-preview-controls label[hidden] { display: none; }
     .student-preview-controls select { width: auto; min-width: 160px; border-color: rgb(255 255 255 / 24%); background: #fff; }
     .student-preview-controls .secondary { border-color: rgb(255 255 255 / 30%); background: rgb(255 255 255 / 10%); color: #fff; }
     .student-preview-controls .secondary:hover { border-color: #fff; color: #fff; }
@@ -1113,6 +1114,7 @@ Why D is wrong."></textarea>
     <header>
       <div><strong>Student exam preview</strong><small id="student-preview-subtitle">Live preview of the current unsaved passage and questions</small></div>
       <div class="student-preview-controls">
+        <label id="exam-preview-subject-label" hidden>Start with <select id="exam-preview-subject"><option value="english">English</option><option value="math">Math</option></select></label>
         <label>Preview question <select id="student-preview-question"></select></label>
         <button class="secondary" id="close-student-preview" type="button">Close preview</button>
       </div>
@@ -1553,6 +1555,7 @@ Why D is wrong."></textarea>
           ],
         };
       }
+      if (type === "coordinate_response") return {...base,coordinateResponse:{xMin:-7,xMax:7,yMin:-7,yMax:7,xStep:1,yStep:1,xSnap:1,ySnap:1,width:450,height:450,plot:{left:53,top:53,width:344,height:344},tools:[{id:'line-1',label:'Line 1',kind:'line',color:'#0000ff'}]}};
       if (type === "graph_point_select") {
         return {
           ...base,
@@ -3311,6 +3314,7 @@ Why D is wrong."></textarea>
     function renderStudentPreview(authoringFrame = null) {
       // Timers invoke this with no argument; only an iframe selects authoring.
       const authoring = authoringFrame?.tagName === 'IFRAME';
+      if (app.previewMode === 'exam' && !authoring) return;
       const modal = $("#student-preview-modal");
       if (modal.hidden && !authoring) return;
       if (app.previewMode === "math" && !authoring) {
@@ -3562,6 +3566,27 @@ Why D is wrong."></textarea>
       app.previewTimer = window.setTimeout(renderStudentPreview, 100);
     }
 
+    function openExamPreview() {
+      if (!app.selectedAssessmentId) return;
+      app.previewMode = 'exam';
+      const frame = $('#student-preview-frame');
+      delete frame.dataset.mathStudentPreview;
+      delete frame.dataset.mathPreviewBoot;
+      frame.onload = null;
+      frame.removeAttribute('srcdoc');
+      frame.title = 'Saved English and Math exam';
+      frame.src = '/exam-preview/?assessmentId=' + encodeURIComponent(app.selectedAssessmentId);
+      $('#exam-preview-subject').value = 'english';
+      $('#exam-preview-subject-label').hidden = false;
+      $('#student-preview-question').closest('label').hidden = true;
+      $('#student-preview-modal header strong').textContent = 'View exam';
+      $('#student-preview-modal').setAttribute('aria-label', 'View exam');
+      $('#student-preview-subtitle').textContent = 'Student player · Saved content · Preview responses are not saved.';
+      $('#student-preview-modal').hidden = false;
+      document.body.style.overflow = 'hidden';
+      studioUI.openStudentDialog();
+    }
+
     function openStudentPreview() {
       app.previewMode = "passage";
       app.previewQuestionIndex = studioUI.selectedQuestionIndex;
@@ -3590,6 +3615,12 @@ Why D is wrong."></textarea>
     }
 
     function closeStudentPreview() {
+      $('#exam-preview-subject-label').hidden = true;
+      $('#student-preview-question').closest('label').hidden = false;
+      $('#student-preview-modal header strong').textContent = 'Student exam preview';
+      $('#student-preview-modal').setAttribute('aria-label', 'Student exam preview');
+      $('#student-preview-frame').title = 'Student exam preview';
+      app.previewMode = 'passage';
       $("#student-preview-modal").hidden = true;
       $("#student-preview-frame").srcdoc = "";
       $("#student-preview-frame").removeAttribute("src");
@@ -4752,7 +4783,7 @@ Why D is wrong."></textarea>
         }, new Map()).values(),
       );
       $("#test-builder").innerHTML = `
-        <div class="panel-head"><div><h2>${escapeHtml(assessment.title)}</h2><small>${escapeHtml(assessment.description || "No exam description.")}</small></div></div>
+        <div class="panel-head"><div><h2>${escapeHtml(assessment.title)}</h2><small>${escapeHtml(assessment.description || "No exam description.")}</small></div><button class="secondary" id="view-exam" type="button">View exam</button></div>
         <div class="test-summary">
           <span>${app.testDraft.readingPassageIds.length} shuffleable reading passage${app.testDraft.readingPassageIds.length === 1 ? "" : "s"}</span>
           <span>${fixedPassageCount} fixed revising/editing passage${fixedPassageCount === 1 ? "" : "s"}</span>
@@ -4870,6 +4901,7 @@ Why D is wrong."></textarea>
           ),
         );
       });
+      $("#view-exam")?.addEventListener("click", openExamPreview);
       $("#save-test")?.addEventListener("click", saveTest);
       const answerEntry = document.createElement("p");
       answerEntry.className = "field-note";
@@ -5495,7 +5527,7 @@ Why D is wrong."></textarea>
       if (!question) {
         return `<div class="editor-empty">Add the first math question.</div>`;
       }
-      const supported = ["multiple_choice", "multi_select", "short_response", "numeric_entry", "expression_entry", "inline_dropdown", "math_drag_drop", "graph_point_select", "number_line_response"].includes(question.type);
+      const supported = ["multiple_choice", "multi_select", "short_response", "numeric_entry", "expression_entry", "inline_dropdown", "math_drag_drop", "graph_point_select", "number_line_response", "coordinate_response"].includes(question.type);
       const isChoice = question.type === "multiple_choice" || question.type === "multi_select";
       const isTextEntry = ["short_response", "numeric_entry", "expression_entry"].includes(question.type);
       const isCalculatorEntry = ["numeric_entry", "expression_entry"].includes(question.type);
@@ -5526,6 +5558,7 @@ Why D is wrong."></textarea>
                 <option ${question.type === "math_drag_drop" ? "selected" : ""} value="math_drag_drop">Drag answers into math</option>
                 <option ${question.type === "graph_point_select" ? "selected" : ""} value="graph_point_select">Select points on a graph</option>
                 <option ${question.type === "number_line_response" ? "selected" : ""} value="number_line_response">Graph a number-line ray</option>
+                <option ${question.type === "coordinate_response" ? "selected" : ""} value="coordinate_response">Draw on a coordinate plane / move a polygon</option>
                 ${supported ? "" : `<option selected value="${escapeHtml(question.type)}">${escapeHtml(question.type)} (preserved)</option>`}
               </select>
             </label>
@@ -5609,9 +5642,9 @@ Why D is wrong."></textarea>
                 </select>
               </label>
               <label class="field" id="math-entry-variable-field">
-                <span>Calculator variable</span>
-                <input id="math-entry-variable" value="${escapeHtml(question.entryVariable || "")}" maxlength="2" placeholder="e.g. b" autocomplete="off" spellcheck="false" aria-describedby="math-entry-variable-note">
-                <small id="math-entry-variable-note">One letter to add to the expression keypad and allow when typing. Leave blank for no variable key.</small>
+                <span>Calculator variables</span>
+                <input id="math-entry-variable" value="${escapeHtml(question.entryVariable || "")}" placeholder="e.g. b or x, y" autocomplete="off" spellcheck="false" aria-describedby="math-entry-variable-note">
+                <small id="math-entry-variable-note">Up to three letters, separated by commas, to add to the expression keypad and allow when typing. Leave blank for no variable keys.</small>
               </label>
               <label class="field" id="math-entry-prefix-variable-field" ${question.entryLayout === "x_equals" ? "" : "hidden"}>
                 <span>Answer label variable</span>
@@ -5629,6 +5662,7 @@ Why D is wrong."></textarea>
           ${isMathDragDrop ? mathDragDropEditorMarkup(question) : ""}
           ${isGraphPointSelect ? mathGraphEditorMarkup(question) : ""}
           ${isNumberLineResponse ? mathNumberLineResponseEditorMarkup(question) : ""}
+          ${question.type === "coordinate_response" ? `<section class="math-answer-editor"><h2>Coordinate graph</h2><p>Set the grid, snapping, tools and keyed points. A line key accepts any two points on the same line.</p><div class="question-grid">${['xMin','xMax','yMin','yMax','xSnap','ySnap'].map(field=>`<label class="field"><span>${field}</span><input type="number" step="any" data-coordinate-field="${field}" value="${escapeHtml(question.coordinateResponse?.[field] ?? '')}"></label>`).join('')}</div><label class="field"><span>Graph tools, artwork and answer key (JSON)</span><textarea id="coordinate-config" rows="14" spellcheck="false">${escapeHtml(JSON.stringify(question.coordinateResponse,null,2))}</textarea></label><button type="button" class="secondary" id="apply-coordinate-config">Apply graph configuration</button></section>` : ""}
 
           <section>
             <div class="panel-head"><div><h2>Complete student preview</h2><small>Review the full question and answer interaction exactly as students will see it.</small></div></div>
@@ -6455,9 +6489,9 @@ Why D is wrong."></textarea>
       $("#math-entry-variable")?.addEventListener("input", (event) => {
         // Preserve the existing label when editing legacy questions that used
         // entryVariable for both the keypad and the equation prefix.
-        if (!question.entryPrefixVariable) question.entryPrefixVariable = question.entryVariable || "x";
+        if (!question.entryPrefixVariable) question.entryPrefixVariable = question.entryVariable?.split(',')[0].trim() || "x";
         question.entryVariable = event.target.value.trim().normalize("NFKC");
-        event.target.setCustomValidity(question.entryVariable && !/^\p{L}$/u.test(question.entryVariable) ? "Enter one letter for the calculator variable." : "");
+        event.target.setCustomValidity(question.entryVariable && !/^\p{L}(?:\s*,\s*\p{L}){0,2}$/u.test(question.entryVariable) ? "Enter up to three letters separated by commas, such as x, y." : "");
         markMathDirty();
         renderMathPreview();
       });
@@ -6603,6 +6637,8 @@ Why D is wrong."></textarea>
           renderMathPreview();
         });
       });
+      $$('[data-coordinate-field]', $('#math-builder')).forEach(input=>input.addEventListener('change',()=>{question.coordinateResponse[input.dataset.coordinateField]=Number(input.value);$('#coordinate-config').value=JSON.stringify(question.coordinateResponse,null,2);markMathDirty();renderMathPreview();}));
+      $('#apply-coordinate-config')?.addEventListener('click',()=>{try{const config=JSON.parse($('#coordinate-config').value);if(!config||typeof config!=='object'||Array.isArray(config)||!Array.isArray(config.tools)||!config.plot)throw new Error('Include graph bounds, a plot and a tools array.');question.coordinateResponse=config;markMathDirty();renderMathBuilder();}catch(error){setStatus(`Graph configuration: ${error.message}`,'error');}});
       $("#choose-math-image")?.addEventListener("click", () => $("#math-image-file").click());
       $("#open-math-student-preview")?.addEventListener("click", openMathStudentPreview);
       $("#math-image-file")?.addEventListener("change", (event) => uploadMathImage(event.target.files?.[0]));
@@ -7418,7 +7454,15 @@ WRONG D:`;
       if(!app.mathDirty){const assessmentId=app.mathDraft?.assessmentId,questionId=app.mathDraft?.questions[app.selectedMathQuestionIndex]?.id;reloadState().then(()=>{if(assessmentId)selectMathAssessment(assessmentId,{selectedQuestionId:questionId});}).catch(error=>setStatus(error.message,'error'));}
       else setStatus('Skilled definitions changed. Your draft is retained; reload the saved section before saving over updated classifications.','warning');
     });
+    $('#exam-preview-subject').addEventListener('change', () => {
+      if (app.previewMode !== 'exam') return;
+      $('#student-preview-frame').src = '/exam-preview/?assessmentId=' + encodeURIComponent(app.selectedAssessmentId) + '&subject=' + $('#exam-preview-subject').value;
+    });
     window.addEventListener("message", (event) => {
+      if (event.origin === location.origin && event.source === $('#student-preview-frame').contentWindow && event.data?.type === 'studio:exam-preview-close' && app.previewMode === 'exam') {
+        closeStudentPreview();
+        return;
+      }
       if(event.origin===location.origin && event.source===$("#math-command-frame").contentWindow && event.data?.type==='studio:math-management-changed') {
         if(app.mathDirty){setStatus('Math management changed. Your question edits are retained; reload the saved section before saving over new classifications.','warning');return;}
         const assessmentId=app.mathDraft?.assessmentId,questionId=app.mathDraft?.questions[app.selectedMathQuestionIndex]?.id;

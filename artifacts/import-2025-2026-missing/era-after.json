@@ -1,0 +1,200 @@
+{
+  "author": "",
+  "byline": "",
+  "subtitle": "",
+  "blurb": "",
+  "directions": {
+    "body": "Read each text and answer the related questions. You will be asked to recognize and correct errors so that the text follows the conventions of standard written English.",
+    "breadcrumbLabel": "ELA REV/EDIT A DIRECTIONS",
+    "subject": "English Language Arts",
+    "title": "REVISING/EDITING PART A"
+  },
+  "exportName": "theEndOfAnEraPassageSet",
+  "fileName": "the-end-of-an-era.ts",
+  "format": "sentence_prose",
+  "id": "the-end-of-an-era",
+  "passageSetId": "ela-the-end-of-an-era",
+  "passageType": "informational",
+  "passageCategory": "miscellaneous",
+  "questions": [
+    {
+      "id": "the-end-of-an-era-1",
+      "points": 1,
+      "prompt": "Which sentence should follow sentence 3 to best introduce the topic of the passage?",
+      "promptHtml": "<p>Which sentence should follow <span data-no-break=\"true\">sentence 3</span> to <strong>best</strong> introduce the topic of the passage?</p>",
+      "topic": "Topic & Transitions",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>Despite the challenges of operating on the surface of another planet, the <em>Opportunity</em> rover made many valuable contributions to the field of space research.</p>",
+          "text": "Despite the challenges of operating on the surface of another planet, the Opportunity rover made many valuable contributions to the field of space research."
+        },
+        {
+          "id": "B",
+          "html": "<p>The <em>Opportunity</em> rover mission was a success because it informed NASA scientists about how water might have existed on Mars.</p>",
+          "text": "The Opportunity rover mission was a success because it informed NASA scientists about how water might have existed on Mars."
+        },
+        {
+          "id": "C",
+          "html": "<p>Throughout the historic mission of the <em>Opportunity</em> rover, NASA scientists had to overcome challenges created by the flaws in the rover’s design.</p>",
+          "text": "Throughout the historic mission of the Opportunity rover, NASA scientists had to overcome challenges created by the flaws in the rover’s design."
+        },
+        {
+          "id": "D",
+          "html": "<p>The <em>Opportunity</em> rover mission surpassed the original timeline of the assignment and allowed scientists to collect additional data about the planet Mars.</p>",
+          "text": "The Opportunity rover mission surpassed the original timeline of the assignment and allowed scientists to collect additional data about the planet Mars."
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice"
+    },
+    {
+      "id": "the-end-of-an-era-2",
+      "points": 1,
+      "prompt": "Which word should be added to the beginning of sentence 8 to provide a better transition to the third paragraph (sentences 8–11)?",
+      "instructions": "Move the correct answer to the box.",
+      "promptHtml": "<p>Which word should be added to the beginning of sentence 8 to provide a better transition to the third paragraph (sentences <span>8–11)?</span></p> <p>Move the correct answer to the box.</p>",
+      "dragDropContentHtml": "<p>(8) {{blank-1}} <em>Opportunity</em> continued to provide valuable data about craters and other surface features.</p>",
+      "topic": "Topic & Transitions",
+      "type": "transition_drop",
+      "choices": [
+        {
+          "id": "A",
+          "html": "Overall,",
+          "text": "Overall,"
+        },
+        {
+          "id": "B",
+          "html": "Furthermore,",
+          "text": "Furthermore,"
+        },
+        {
+          "id": "C",
+          "html": "Meanwhile,",
+          "text": "Meanwhile,"
+        },
+        {
+          "id": "D",
+          "html": "Consequently,",
+          "text": "Consequently,"
+        }
+      ],
+      "dragDropContent": [
+        "(8) {{blank-1}} Opportunity continued to provide valuable data about craters and other surface features."
+      ],
+      "dragDropSlots": [
+        {
+          "id": "blank-1",
+          "correctItemId": "C"
+        }
+      ],
+      "allowReuse": false
+    },
+    {
+      "id": "the-end-of-an-era-3",
+      "points": 1,
+      "prompt": "Which revision of sentence 11 best maintains the formal style established in the passage?",
+      "promptHtml": "<p>Which revision of sentence 11 <strong>best</strong> maintains the formal style established in the passage?</p>",
+      "topic": "Word Choice & Precision",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>However, in 2018, a dust storm covered the planet, bringing the rover’s progress to a standstill.</p>",
+          "text": "However, in 2018, a dust storm covered the planet, bringing the rover’s progress to a standstill."
+        },
+        {
+          "id": "B",
+          "html": "<p>However, in 2018, a dust storm shrouded the planet, impermanently halting the rover’s progress.</p>",
+          "text": "However, in 2018, a dust storm shrouded the planet, impermanently halting the rover’s progress."
+        },
+        {
+          "id": "C",
+          "html": "<p>However, in 2018, a dust storm enveloped the whole of the planet, arresting the rover’s progress for a time.</p>",
+          "text": "However, in 2018, a dust storm enveloped the whole of the planet, arresting the rover’s progress for a time."
+        },
+        {
+          "id": "D",
+          "html": "<p>However, in 2018, a dust storm covered up the whole planet, which quickly brought a stop to the progress of the rover.</p>",
+          "text": "However, in 2018, a dust storm covered up the whole planet, which quickly brought a stop to the progress of the rover."
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice"
+    },
+    {
+      "id": "the-end-of-an-era-4",
+      "points": 1,
+      "prompt": "Read this sentence.\n\nOne of Opportunity’s major contributions was finding possible evidence of the presence of water on Mars.\n\nWhere should the sentence be added to the passage?",
+      "promptHtml": "<p>Read this sentence.</p> <blockquote data-boxed=\"true\">One of <span><em>Opportunity</em>’s </span>major contributions was finding possible evidence of the presence of water on Mars.</blockquote> <p>Where should the sentence be added to the passage?</p>",
+      "topic": "Topic & Transitions",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>between sentences 2 and 3</p>",
+          "text": "between sentences 2 and 3"
+        },
+        {
+          "id": "B",
+          "html": "<p>at the beginning of the second paragraph (before <span data-no-break=\"true\">sentence 4)</span></p>",
+          "text": "at the beginning of the second paragraph (before sentence 4)"
+        },
+        {
+          "id": "C",
+          "html": "<p>at the end of the second paragraph (after <span data-no-break=\"true\">sentence 7)</span></p>",
+          "text": "at the end of the second paragraph (after sentence 7)"
+        },
+        {
+          "id": "D",
+          "html": "<p>between sentences 8 and 9</p>",
+          "text": "between sentences 8 and 9"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice"
+    },
+    {
+      "id": "the-end-of-an-era-5",
+      "points": 1,
+      "prompt": "What is the best way to combine sentences 12 and 13?",
+      "promptHtml": "<p>What is the <strong>best</strong> way to combine <span data-no-break=\"true\">sentences 12</span> and 13?</p>",
+      "topic": "Sentence Structure",
+      "choices": [
+        {
+          "id": "A",
+          "html": "<p>Preventing the rover from charging its batteries, minor dust storms had periodically deposited a layer of dust onto the solar panels of the rover prior to this planet-wide dust storm.</p>",
+          "text": "Preventing the rover from charging its batteries, minor dust storms had periodically deposited a layer of dust onto the solar panels of the rover prior to this planet-wide dust storm."
+        },
+        {
+          "id": "B",
+          "html": "<p>Periodically depositing a layer of dust onto the solar panels of the rover prior to this planet-wide dust storm, minor dust storms had prevented it from charging its batteries.</p>",
+          "text": "Periodically depositing a layer of dust onto the solar panels of the rover prior to this planet-wide dust storm, minor dust storms had prevented it from charging its batteries."
+        },
+        {
+          "id": "C",
+          "html": "<p>Minor dust storms, prior to this planet-wide dust storm, prevented the rover from charging its batteries because they had periodically deposited a layer of dust onto the solar panels of the rover.</p>",
+          "text": "Minor dust storms, prior to this planet-wide dust storm, prevented the rover from charging its batteries because they had periodically deposited a layer of dust onto the solar panels of the rover."
+        },
+        {
+          "id": "D",
+          "html": "<p>Prior to this planet-wide dust storm, minor dust storms had periodically deposited a layer of dust onto the solar panels of the rover, preventing it from charging its batteries.</p>",
+          "text": "Prior to this planet-wide dust storm, minor dust storms had periodically deposited a layer of dust onto the solar panels of the rover, preventing it from charging its batteries."
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice"
+    }
+  ],
+  "richText": "<p>(1) In 2004, the National Aeronautics and Space Administration (NASA) landed a rover, or robotic vehicle, named <em>Opportunity</em> on the surface of Mars.  <span data-no-break=\"true\">(2) The</span> rover’s mission was to search for evidence of water and life on the planet.  <span data-no-break=\"true\">(3) The</span> rover was designed to gather data on Mars for about <span data-no-break=\"true\">90 days,</span> but <span><em>Opportunity</em>’s</span> assignment did not come to an end until nearly <span data-no-break=\"true\">15 years</span> later in 2019.</p> <p>(4) During the rover’s mission, a high-resolution camera on the rover’s robotic arm took magnified photographs of the surface of Mars.  <span data-no-break=\"true\">(5) The</span> photographs revealed small round rocks scattered across the surface of the planet.  <span data-no-break=\"true\">(6) The</span> scientists nicknamed these rocks “blueberries” based on the rocks’ resemblance to the fruit.  <span data-no-break=\"true\">(7) These</span> rocks were important because their spherical shape suggested that liquid water may have flowed over them for a substantial amount of time.</p> <p>(8) <em>Opportunity</em> continued to provide valuable data about craters and other surface features.  <span data-no-break=\"true\">(9) Throughout</span> the mission, the rover traveled a total of <span data-no-break=\"true\">28.06 miles</span> across Mars’ surface.  <span data-no-break=\"true\">(10) When</span> <em>Opportunity</em> had traveled nearly the length of a marathon, scientists celebrated the accomplishment by naming the valley that the rover was in Marathon Valley.  <span data-no-break=\"true\">(11) However,</span> in 2018, a dust storm spread all over the planet, putting the rover’s progress on hold.</p> <p>(12) Prior to this planet-wide dust storm, minor dust storms had periodically deposited a layer of dust onto the solar panels of the rover.  <span data-no-break=\"true\">(13) These</span> prevented it from charging its batteries.  <span data-no-break=\"true\">(14) Scientists</span> then had to rely on the passing winds and dust devils to clean off the solar panels.  <span data-no-break=\"true\">(15) After</span> the massive 2018 dust storm subsided, scientists expected to be able to reestablish communication with <em>Opportunity</em>.  <span data-no-break=\"true\">(16) They</span> made repeated attempts but to no avail.  <span data-no-break=\"true\">(17) In</span> 2019, NASA finally declared <span><em>Opportunity</em>’s</span> mission complete.</p> <p>(18) <em>Opportunity</em> was an important asset in scientists’ study of Mars; it returned valuable data about our neighbor planet and survived powerful dust storms.  <span data-no-break=\"true\">(19) NASA</span> described the mission of <em>Opportunity</em> as “one of the most successful and enduring feats of interplanetary exploration.”  <span data-no-break=\"true\">(20) Even</span> though this rover’s journey ended, other rovers still roam the surface of Mars.</p>",
+  "sourceHash": "e4f1a440197e381db1d1ba1cb573aa8d190010f862fc8b20326fe858df2b8d48",
+  "sourceNote": "",
+  "section": "revising_editing_a",
+  "teacherSource": "",
+  "preserveSourceLayout": true,
+  "images": [],
+  "text": "(1) In 2004, the National Aeronautics and Space Administration (NASA) landed a rover, or robotic vehicle, named Opportunity on the surface of Mars. (2) The rover’s mission was to search for evidence of water and life on the planet. (3) The rover was designed to gather data on Mars for about 90 days, but Opportunity’s assignment did not come to an end until nearly 15 years later in 2019.\n(4) During the rover’s mission, a high-resolution camera on the rover’s robotic arm took magnified photographs of the surface of Mars. (5) The photographs revealed small round rocks scattered across the surface of the planet. (6) The scientists nicknamed these rocks “blueberries” based on the rocks’ resemblance to the fruit. (7) These rocks were important because their spherical shape suggested that liquid water may have flowed over them for a substantial amount of time.\n(8) Opportunity continued to provide valuable data about craters and other surface features. (9) Throughout the mission, the rover traveled a total of 28.06 miles across Mars’ surface. (10) When Opportunity had traveled nearly the length of a marathon, scientists celebrated the accomplishment by naming the valley that the rover was in Marathon Valley. (11) However, in 2018, a dust storm spread all over the planet, putting the rover’s progress on hold.\n(12) Prior to this planet-wide dust storm, minor dust storms had periodically deposited a layer of dust onto the solar panels of the rover. (13) These prevented it from charging its batteries. (14) Scientists then had to rely on the passing winds and dust devils to clean off the solar panels. (15) After the massive 2018 dust storm subsided, scientists expected to be able to reestablish communication with Opportunity. (16) They made repeated attempts but to no avail. (17) In 2019, NASA finally declared Opportunity’s mission complete.\n(18) Opportunity was an important asset in scientists’ study of Mars; it returned valuable data about our neighbor planet and survived powerful dust storms. (19) NASA described the mission of Opportunity as “one of the most successful and enduring feats of interplanetary exploration.” (20) Even though this rover’s journey ended, other rovers still roam the surface of Mars.",
+  "title": "The End of an Era",
+  "versionLabel": "2025-2026 Form B",
+  "versionLabels": [
+    "2025-2026 Form B"
+  ]
+}

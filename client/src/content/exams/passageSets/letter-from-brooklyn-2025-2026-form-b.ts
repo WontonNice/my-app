@@ -1,7 +1,7 @@
-import { createPlainTextPassage } from "../formatters";
+import { createSourcePassage } from "../formatters";
 import type { ExamPassageSet, ExamQuestion } from "../types";
 
-const letterFromBrooklyn20252026FormBPassageText = "I can already see how this will end.\n\nHow I will grow tired of the bridge’s\n\nsteep incline, and the absent-minded tourists\n\nwandering into the bicycle path.\n\nThe weather will turn cold.\n\nBut that all happens later.\n\nFor now it is the early edge of fall,\n\nleaves green still while the air narrows,\n\nis slightly crisp, almost grazing\n\nthe hair of my arm like a passing stranger,\n\nas though the air has been forced into intimacy\n\nby the brevity of daylight.\n\nBut when it starts darkening at 4,\n\nthis closeness, I know, will be a felt distance,\n\nlike someone drawing your attention\n\nto their lack of intimacy.\n\nThese days I am still walking at a cathedral pace\n\nbeneath the branches bending across avenues,\n\nbrownstones like rows of lived-in chapels,\n\nlike a pop-up picture book I could have had as a child,\n\nbut didn’t. How Brooklyn makes me nostalgic\n\nfor the moment I am walking inside of.\n\nThese late afternoons filled\n\nwith a loneliness that makes me feel\n\ndistinctly myself, and an awareness\n\nof how rare that is.";
+const letterFromBrooklyn20252026FormBPassageText = "I can already see how this will end.\nHow I will grow tired of the bridge’s\nsteep incline, and the absent-minded tourists\nwandering into the bicycle path.\nThe weather will turn cold.\nBut that all happens later.\nFor now it is the early edge of fall,\nleaves green still while the air narrows,\nis slightly crisp, almost grazing\nthe hair of my arm like a passing stranger,\nas though the air has been forced into intimacy\nby the brevity of daylight.\nBut when it starts darkening at 4,\nthis closeness, I know, will be a felt distance,\nlike someone drawing your attention\nto their lack of intimacy.\nThese days I am still walking at a cathedral pace\nbeneath the branches bending across avenues,\nbrownstones like rows of lived-in chapels,\nlike a pop-up picture book I could have had as a child,\nbut didn’t. How Brooklyn makes me nostalgic\nfor the moment I am walking inside of.\nThese late afternoons filled\nwith a loneliness that makes me feel\ndistinctly myself, and an awareness\nof how rare that is.";
 
 const letterFromBrooklyn20252026FormBQuestions: ExamQuestion[] = [
   {
@@ -287,6 +287,8 @@ const letterFromBrooklyn20252026FormBQuestions: ExamQuestion[] = [
 
 export const letterFromBrooklyn20252026FormBPassageSet: ExamPassageSet = {
   id: "ela-letter-from-brooklyn-2025-2026-form-b",
+  versionLabels: ["2025-2026 Form B"],
+  section: "reading",
   questionCount: letterFromBrooklyn20252026FormBQuestions.length,
   directions: {
   "subject": "English Language Arts",
@@ -294,12 +296,16 @@ export const letterFromBrooklyn20252026FormBPassageSet: ExamPassageSet = {
   "breadcrumbLabel": "ELA RDG COMP DIRECTIONS",
   "body": "Read each text and answer the related questions. Base your answers only on the content within the text."
 },
-  passage: createPlainTextPassage({
+  passage: createSourcePassage({
     id: "letter-from-brooklyn-2025-2026-form-b",
+    preserveSourceLayout: true,
+    format: "poem",
+    images: [],
     title: "Letter from Brooklyn",
     author: "Jacob Scheier",
     passageType: "poem",
-    richText: "<p>I can already see how this will end.</p><p>How I will grow tired of the bridge’s</p><p>steep incline, and the absent-minded tourists</p><p>wandering into the bicycle path.</p><p>The weather will turn cold.</p><p>But that all happens later.</p><p>For now it is the early edge of fall,</p><p>leaves green still while the air narrows,</p><p>is slightly crisp, almost grazing</p><p>the hair of my arm like a passing stranger,</p><p>as though the air has been forced into intimacy</p><p>by the&nbsp;brevity&nbsp;of daylight.</p><p>But when it starts darkening at 4,</p><p>this closeness, I know, will be a felt distance,</p><p>like someone drawing your attention</p><p>to their lack of intimacy.</p><p>These days I am still walking at a&nbsp;cathedral&nbsp;pace</p><p>beneath the branches bending across avenues,</p><p>brownstones like rows of lived-in&nbsp;chapels,</p><p>like a pop-up picture book I could have had as a child,</p><p>but didn’t. How Brooklyn makes me&nbsp;nostalgic</p><p>for the moment I am walking inside of.</p><p>These late afternoons filled</p><p>with a loneliness that makes me feel</p><p>distinctly myself, and an awareness</p><p>of how rare that is.</p><p>\n\n</p>",
+    passageCategory: "official_handbook",
+    richText: "<div data-poetry-line=\"true\">I can already see how this will end.</div><div data-poetry-line=\"true\">How I will grow tired of the bridge’s</div><div data-poetry-line=\"true\">steep incline, and the absent-minded tourists</div><div data-poetry-line=\"true\">wandering into the bicycle path.</div><div data-poetry-line=\"true\">The weather will turn cold.</div><div data-poetry-line=\"true\">But that all happens later.</div><div data-poetry-line=\"true\">For now it is the early edge of fall,</div><div data-poetry-line=\"true\">leaves green still while the air narrows,</div><div data-poetry-line=\"true\">is slightly crisp, almost grazing</div><div data-poetry-line=\"true\">the hair of my arm like a passing stranger,</div><div data-poetry-line=\"true\">as though the air has been forced into intimacy</div><div data-poetry-line=\"true\">by the <span data-glossary-definition=\"briefness\" role=\"link\" tabindex=\"0\">brevity</span> of daylight.</div><div data-poetry-line=\"true\">But when it starts darkening at 4,</div><div data-poetry-line=\"true\">this closeness, I know, will be a felt distance,</div><div data-poetry-line=\"true\">like someone drawing your attention</div><div data-poetry-line=\"true\">to their lack of intimacy.</div><div data-poetry-line=\"true\">These days I am still walking at a <span data-glossary-definition=\"meditative\" role=\"link\" tabindex=\"0\">cathedral</span> pace</div><div data-poetry-line=\"true\">beneath the branches bending across avenues,</div><div data-poetry-line=\"true\">brownstones like rows of lived-in <span data-glossary-definition=\"private places of prayer or worship\" role=\"link\" tabindex=\"0\">chapels,</span></div><div data-poetry-line=\"true\">like a pop-up picture book I could have had as a child,</div><div data-poetry-line=\"true\">but didn’t. How Brooklyn makes me <span data-glossary-definition=\"yearning for the past\" role=\"link\" tabindex=\"0\">nostalgic</span></div><div data-poetry-line=\"true\">for the moment I am walking inside of.</div><div data-poetry-line=\"true\">These late afternoons filled</div><div data-poetry-line=\"true\">with a loneliness that makes me feel</div><div data-poetry-line=\"true\">distinctly myself, and an awareness</div><div data-poetry-line=\"true\">of how rare that is.</div>",
     sourceNote: "“Letter from Brooklyn” from LETTER FROM BROOKLYN: POEMS by Jacob Scheier, published by ECW Press. Copyright © 2013 by Jacob Scheier. All rights reserved.",
     text: letterFromBrooklyn20252026FormBPassageText,
     versionLabel: "2025-2026 Form B",

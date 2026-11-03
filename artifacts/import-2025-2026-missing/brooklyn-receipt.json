@@ -1,0 +1,10 @@
+{
+  "lineCount": 26,
+  "questionsUnchanged": true,
+  "changedFields": [
+    "richText",
+    "sourceHash",
+    "preserveSourceLayout",
+    "text"
+  ]
+}

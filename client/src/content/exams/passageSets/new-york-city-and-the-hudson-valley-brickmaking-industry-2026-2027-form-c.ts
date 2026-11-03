@@ -19,7 +19,7 @@ const newYorkCityAndTheHudsonValleyBrickmakingIndustry20262027FormCQuestions: Ex
     "points": 1,
     "prompt": "Which revision of sentence 10 would best maintain the style established in the passage?",
     "promptHtml": "<p><span>Which revision of sentence 10 would <strong>best </strong>maintain the style established in the passage?</span></p>",
-    "topic": "",
+    "topic": "Word Choice & Precision",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const newYorkCityAndTheHudsonValleyBrickmakingIndustry20262027FormCQuestions: Ex
     "points": 1,
     "prompt": "Which two sentences present information irrelevant to the ideas in the passage and should be deleted?\nMove the two correct answers to the box.",
     "promptHtml": "<p><span>Which <strong>two </strong>sentences </span><span>present</span><span> information irrelevant to the ideas in the passage and should be deleted?</span></p> <p><span>Move the <strong>two </strong>correct answers to the box.</span></p>",
-    "topic": "",
+    "topic": "Relevance & Conclusion",
     "categories": [
       {
         "id": "category-1",
@@ -117,7 +117,7 @@ const newYorkCityAndTheHudsonValleyBrickmakingIndustry20262027FormCQuestions: Ex
     "points": 1,
     "prompt": "Which phrase should be added to the beginning of sentence 11 to provide the best transition from the ideas in sentence 10?",
     "promptHtml": "<p><span>Which phrase should be added to the beginning of sentence 11 to provide the<strong> best</strong> transition from the ideas in sentence 10?</span></p>",
-    "topic": "",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -158,7 +158,7 @@ const newYorkCityAndTheHudsonValleyBrickmakingIndustry20262027FormCQuestions: Ex
     "points": 1,
     "prompt": "Which sentence would best follow sentence 20 to support ideas in the fourth paragraph (sentences 18–21)?",
     "promptHtml": "<p><span>Which sentence would <strong>best </strong>follow sentence 20 to support ideas in the fourth paragraph (sentences 18</span><span>–21)?</span></p>",
-    "topic": "",
+    "topic": "Relevance & Conclusion",
     "choices": [
       {
         "id": "A",

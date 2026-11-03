@@ -37,7 +37,7 @@ export function saveGeneratorPlanner(root: string, actor: string, value: unknown
     if (input.action === 'duplicate' && !batch) throw fail('This batch is not in your planner.', 404);
     const original = batch;
     batch = { id: randomUUID(), name: text(input.name, 120, true), notes: original?.notes ?? '', updatedAt: now,
-      entries: original?.entries.map(entry => ({ ...structuredClone(entry), id: randomUUID(), status: 'draft' as const, addedAt: now })) ?? [] };
+      entries: original?.entries.map(entry => ({ ...structuredClone(entry), id: randomUUID(), status: entry.status === 'available' ? 'available' as const : 'draft' as const, addedAt: now })) ?? [] };
     own.batches.push(batch); own.activeBatchId = batch.id;
   } else {
     if (!batch) throw fail('This batch is not in your planner. Reload and choose a batch.', 404);
@@ -52,7 +52,7 @@ export function saveGeneratorPlanner(root: string, actor: string, value: unknown
         if (existing) { if (!existing.context && contexts[source.id]) existing.context = context(contexts[source.id]); continue; }
         const category = source.question.topic ?? '', topic = source.question.subtopic ?? '';
         batch.entries.push({ id: randomUUID(), source: { id: source.id, question: structuredClone(source.question), sources: source.sources, category, subcategory: topic, skilled: source.question.skilled ?? 'TBD' },
-          destination: { category, topic, moduleId: '', moduleTitle: '', group: 'general' }, context: context(contexts[source.id]), notes: '', status: 'draft', addedAt: now });
+          destination: { category, topic, moduleId: '', moduleTitle: '', group: 'general' }, context: context(contexts[source.id]), notes: '', status: 'available', addedAt: now });
       }
       if (batch.entries.length > 100) throw fail('Keep at most 100 questions in one batch. Create another batch for the rest.');
     } else if (input.action === 'update') {

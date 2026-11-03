@@ -1,0 +1,34 @@
+.coordinate-response { display:flex; align-items:flex-start; max-width:100%; color:#000; font:16px Arial,sans-serif; }
+.coordinate-canvas { flex:0 1 auto; min-width:0; }
+.coordinate-canvas>h4 { margin:0; text-align:center; color:#000; font:bold 18px Arial,sans-serif; }
+.coordinate-canvas>svg { display:block; max-width:100%; height:auto; touch-action:none; overflow:visible; user-select:none; }
+.coordinate-tools { box-sizing:border-box; flex:0 0 208px; padding:0 54px 0 0; }
+.coordinate-tool { position:relative; padding:3px; margin:6px 0 0; border-radius:7px; background:#fff; box-shadow:0 0 0 3px #7998ad; }
+.coordinate-tool:first-child { margin-top:0; }
+.coordinate-tool>button { width:100%; height:44px; border:1px solid #aaa; border-radius:5px; background:linear-gradient(#ffffff70,#ffffff00),var(--tool-color); color:#fff; font:16px Arial,sans-serif; text-shadow:0 1px 1px #333; cursor:pointer; }
+.coordinate-tool.is-active>button { background:var(--tool-color); }
+.coordinate-tool.is-active:after { content:''; position:absolute; pointer-events:none; right:-52px; top:5px; border-left:52px solid var(--tool-color); border-top:18px solid transparent; border-bottom:18px solid transparent; filter:drop-shadow(2px 0 white) drop-shadow(2px 0 #888); }
+.coordinate-point,.coordinate-shape { cursor:grab; outline:none; }
+.coordinate-point:active,.coordinate-shape:active { cursor:grabbing; }
+.coordinate-point:focus { stroke:#0005; stroke-width:6; }
+.coordinate-shape:focus polygon { stroke:#0078d7; stroke-width:3; }
+.coordinate-canvas [data-coordinate-grid]:focus-visible { outline:2px solid #0078d7; outline-offset:3px; }
+@media(max-width:560px) { .coordinate-tools { flex-basis:110px; padding-right:25px; } .coordinate-tool.is-active:after {right:-23px;border-left-width:23px;} .coordinate-tool>button {font-size:13px;} }
+
+.exam-matrix-choice-wrap.is-compact-matrix { padding:6px 0; max-width:750px; }
+.exam-matrix-choice-wrap.is-compact-matrix .exam-matrix-choice-table { min-width:0; font:16px Arial,sans-serif; table-layout:auto; }
+.exam-matrix-choice-wrap.is-compact-matrix .exam-matrix-choice-table th,.exam-matrix-choice-wrap.is-compact-matrix .exam-matrix-choice-table td { border:1px solid #ccc; height:46px; padding:4px; box-sizing:border-box; font-weight:400; text-align:center; }
+.exam-matrix-choice-wrap.is-compact-matrix .exam-matrix-choice-table th:first-child { width:auto; }
+.exam-matrix-choice-wrap.is-compact-matrix .katex { font-size:1.17em; }
+.exam-matrix-choice-wrap.is-compact-matrix .exam-katex-inline { font-size:16px; }
+.exam-matrix-choice-wrap.is-compact-matrix .exam-matrix-choice-table thead th { height:44px; }
+.exam-matrix-choice-wrap.is-compact-matrix .exam-matrix-choice-table input { appearance:none; width:20px; height:20px; border:1px solid #aaa; border-radius:50%; background:#eee; box-shadow:inset 0 1px 3px #bbb; cursor:pointer; }
+.exam-matrix-choice-wrap.is-compact-matrix .exam-matrix-choice-table input:checked { background:radial-gradient(circle,#333 0 4px,transparent 5px),#eee; }
+.exam-math-drag-response.is-image { gap:24px; }
+.exam-math-drag-response.is-image .exam-math-drag-bank { min-height:52px; padding:8px 12px 16px; }
+.exam-math-drag-response.is-image .exam-math-drag-bank button { width:100px; height:28px; min-height:28px; padding:0; font:14px Arial,sans-serif; }
+.exam-math-drag-response.is-image .exam-math-drag-image { margin-inline:auto; }
+.exam-math-drag-response.is-image .exam-math-drag-slot.is-filled {background:#fff;}
+.exam-math-drag-response.is-image .exam-math-drag-placed-tile {padding:0; border:0; font:14px Arial,sans-serif;}
+.exam-math-document.is-coordinate-response .exam-math-panel h1 li { line-height:20px; }
+.exam-session-shell .exam-choice-list.is-unlettered .exam-choice { grid-template-columns:14px minmax(0,1fr); }

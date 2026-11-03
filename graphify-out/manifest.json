@@ -1,0 +1,3176 @@
+{
+  "client/src/App.tsx": {
+    "mtime": 1793403153.9252725,
+    "seen": 1793731485.2280283,
+    "ast_hash": "8dbf3d0aaebf5018476b94853fc363c9",
+    "semantic_hash": "8dbf3d0aaebf5018476b94853fc363c9"
+  },
+  "client/src/components/AppErrorBoundary.tsx": {
+    "mtime": 1784109118.338683,
+    "seen": 1793731485.2280283,
+    "ast_hash": "62d9bf828d441f579c4c24e2f40e0a0e",
+    "semantic_hash": "62d9bf828d441f579c4c24e2f40e0a0e"
+  },
+  "client/src/components/AppLink.tsx": {
+    "mtime": 1783939243.2176986,
+    "seen": 1793731485.2280283,
+    "ast_hash": "083295889e206b7f20887fb8d4256528",
+    "semantic_hash": "083295889e206b7f20887fb8d4256528"
+  },
+  "client/src/components/BankPracticeInsights.tsx": {
+    "mtime": 1791218849.354272,
+    "seen": 1793731485.2280283,
+    "ast_hash": "7e30a5b5171552d835b1d2a2c50cd5cc",
+    "semantic_hash": "7e30a5b5171552d835b1d2a2c50cd5cc"
+  },
+  "client/src/components/ClassAccessError.tsx": {
+    "mtime": 1793404420.7173088,
+    "seen": 1793731485.2280283,
+    "ast_hash": "8848fa8684d7f2b681a11f0684c5a10f",
+    "semantic_hash": "8848fa8684d7f2b681a11f0684c5a10f"
+  },
+  "client/src/components/ClassAccessGate.tsx": {
+    "mtime": 1793404421.589795,
+    "seen": 1793731485.2280283,
+    "ast_hash": "ce776e834d760ebbca4eafa2a41e95b6",
+    "semantic_hash": "ce776e834d760ebbca4eafa2a41e95b6"
+  },
+  "client/src/components/CompactAnswer.tsx": {
+    "mtime": 1793716702.656237,
+    "seen": 1793731485.2280283,
+    "ast_hash": "e46504fb155fede6c04ce0bd7c7f98fd",
+    "semantic_hash": "e46504fb155fede6c04ce0bd7c7f98fd"
+  },
+  "client/src/components/CoordinateResponse.tsx": {
+    "mtime": 1793691905.5723894,
+    "seen": 1793731485.2280283,
+    "ast_hash": "e2517c35e35e40d70933477cea75f9df",
+    "semantic_hash": "e2517c35e35e40d70933477cea75f9df"
+  },
+  "client/src/components/CorporateDashboardShell.tsx": {
+    "mtime": 1792853075.3943791,
+    "seen": 1793731485.2280283,
+    "ast_hash": "38a4808937ac4240845329397d67dbe6",
+    "semantic_hash": "38a4808937ac4240845329397d67dbe6"
+  },
+  "client/src/components/CorrectionCanvas.tsx": {
+    "mtime": 1792600447.7193542,
+    "seen": 1793731485.2280283,
+    "ast_hash": "f4a441dae65f58d9241ea7589001bdd5",
+    "semantic_hash": "f4a441dae65f58d9241ea7589001bdd5"
+  },
+  "client/src/components/CorrectionExamPlayer.tsx": {
+    "mtime": 1793403153.9262729,
+    "seen": 1793731485.2280283,
+    "ast_hash": "3d2b1c63fd4eb57b60e6f6d708ba5fcd",
+    "semantic_hash": "3d2b1c63fd4eb57b60e6f6d708ba5fcd"
+  },
+  "client/src/components/ExamGeneralDirections.tsx": {
+    "mtime": 1793403153.9272728,
+    "seen": 1793731485.2280283,
+    "ast_hash": "0128f5bd1d15362a713f523147023a2c",
+    "semantic_hash": "0128f5bd1d15362a713f523147023a2c"
+  },
+  "client/src/components/ExamLibraryFilters.tsx": {
+    "mtime": 1793013832.6564565,
+    "seen": 1793731485.2280283,
+    "ast_hash": "7371807270929464ddd8baa969206fe8",
+    "semantic_hash": "7371807270929464ddd8baa969206fe8"
+  },
+  "client/src/components/ExamMathQuestion.tsx": {
+    "mtime": 1793710986.4514315,
+    "seen": 1793731485.2280283,
+    "ast_hash": "02ae152e0db80d3450cad6d1b8302f2a",
+    "semantic_hash": "02ae152e0db80d3450cad6d1b8302f2a"
+  },
+  "client/src/components/ExamReviewQuestion.tsx": {
+    "mtime": 1793691131.0731158,
+    "seen": 1793731485.2280283,
+    "ast_hash": "02d2e23ac36da5320cc939096aaa7d18",
+    "semantic_hash": "02d2e23ac36da5320cc939096aaa7d18"
+  },
+  "client/src/components/ExamSectionSubmission.tsx": {
+    "mtime": 1792813479.5276973,
+    "seen": 1793731485.2280283,
+    "ast_hash": "36c943fadeb6425a316800ad8d2bd1bc",
+    "semantic_hash": "36c943fadeb6425a316800ad8d2bd1bc"
+  },
+  "client/src/components/ExamTimeExpiredDialog.tsx": {
+    "mtime": 1793023211.9777958,
+    "seen": 1793731485.2280283,
+    "ast_hash": "8caea8678e352233312cc00eabb59413",
+    "semantic_hash": "8caea8678e352233312cc00eabb59413"
+  },
+  "client/src/components/FeaturedCarousel.tsx": {
+    "mtime": 1787963783.646061,
+    "seen": 1793731485.2280283,
+    "ast_hash": "767a40cce2638e83937246f62fae2674",
+    "semantic_hash": "767a40cce2638e83937246f62fae2674"
+  },
+  "client/src/components/InfiniteContentPreview.tsx": {
+    "mtime": 1793649132.3068216,
+    "seen": 1793731485.2280283,
+    "ast_hash": "98e4747cb0e5bc2a2b867fb0cfb7ac3f",
+    "semantic_hash": "98e4747cb0e5bc2a2b867fb0cfb7ac3f"
+  },
+  "client/src/components/InlineTextSelection.tsx": {
+    "mtime": 1793609305.1098754,
+    "seen": 1793731485.2280283,
+    "ast_hash": "f7f4347e00448d779615c42df5de62cb",
+    "semantic_hash": "f7f4347e00448d779615c42df5de62cb"
+  },
+  "client/src/components/LibraryQuestionResponse.tsx": {
+    "mtime": 1793689730.7643874,
+    "seen": 1793731485.2280283,
+    "ast_hash": "0f86219f5ce0e712c8be4b84b93058de",
+    "semantic_hash": "0f86219f5ce0e712c8be4b84b93058de"
+  },
+  "client/src/components/MathEntryResponse.tsx": {
+    "mtime": 1793612061.9945378,
+    "seen": 1793731485.2280283,
+    "ast_hash": "2ecdc75127ea0ca88437154f41ace68c",
+    "semantic_hash": "2ecdc75127ea0ca88437154f41ace68c"
+  },
+  "client/src/components/MathStudyHall.tsx": {
+    "mtime": 1793729526.9919026,
+    "seen": 1793731485.2280283,
+    "ast_hash": "5719ae54cb06490d81efa3f254fe909f",
+    "semantic_hash": "5719ae54cb06490d81efa3f254fe909f"
+  },
+  "client/src/components/MealCustomizationDialog.tsx": {
+    "mtime": 1793195669.7624028,
+    "seen": 1793731485.2280283,
+    "ast_hash": "2dbfbea1feed35f585f7e1f15deeb50b",
+    "semantic_hash": "2dbfbea1feed35f585f7e1f15deeb50b"
+  },
+  "client/src/components/MealCustomizationEditor.tsx": {
+    "mtime": 1793195669.761403,
+    "seen": 1793731485.2280283,
+    "ast_hash": "7fff81cc28865280a2af0400106aedc3",
+    "semantic_hash": "7fff81cc28865280a2af0400106aedc3"
+  },
+  "client/src/components/MealImageField.tsx": {
+    "mtime": 1793186166.5779302,
+    "seen": 1793731485.2280283,
+    "ast_hash": "e449c122c5b1724fdc192dc3d9396a42",
+    "semantic_hash": "e449c122c5b1724fdc192dc3d9396a42"
+  },
+  "client/src/components/MealOrderHistory.tsx": {
+    "mtime": 1793209464.0883644,
+    "seen": 1793731485.2280283,
+    "ast_hash": "00fadead8d57db51c15e9d9d2f6af72d",
+    "semantic_hash": "00fadead8d57db51c15e9d9d2f6af72d"
+  },
+  "client/src/components/MealPhoto.tsx": {
+    "mtime": 1793186167.1604943,
+    "seen": 1793731485.2280283,
+    "ast_hash": "0c589f0014c952288c47ae54164e1a67",
+    "semantic_hash": "0c589f0014c952288c47ae54164e1a67"
+  },
+  "client/src/components/MealRequestStatus.tsx": {
+    "mtime": 1793209804.4228988,
+    "seen": 1793731485.2280283,
+    "ast_hash": "f8e48c79efb3096f8d2115c008817cb8",
+    "semantic_hash": "f8e48c79efb3096f8d2115c008817cb8"
+  },
+  "client/src/components/PaperAnswerGrid.tsx": {
+    "mtime": 1792991119.257945,
+    "seen": 1793731485.2280283,
+    "ast_hash": "430ce0143dbb06216095cc40ab5dec46",
+    "semantic_hash": "430ce0143dbb06216095cc40ab5dec46"
+  },
+  "client/src/components/PassageGlossary.tsx": {
+    "mtime": 1790639074.1684017,
+    "seen": 1793731485.2280283,
+    "ast_hash": "b200ab70a5fda2131603aece4acb6b9d",
+    "semantic_hash": "b200ab70a5fda2131603aece4acb6b9d"
+  },
+  "client/src/components/RichResponseTemplate.tsx": {
+    "mtime": 1793403153.9302733,
+    "seen": 1793731485.2280283,
+    "ast_hash": "41705b39f1b425d8d801deeeb90abeef",
+    "semantic_hash": "41705b39f1b425d8d801deeeb90abeef"
+  },
+  "client/src/components/SentenceDragDrop.tsx": {
+    "mtime": 1793726996.7023158,
+    "seen": 1793731485.2280283,
+    "ast_hash": "65ce4ef4cb3578ae3463c6f7447c68c8",
+    "semantic_hash": "65ce4ef4cb3578ae3463c6f7447c68c8"
+  },
+  "client/src/components/ShsatCountdown.tsx": {
+    "mtime": 1792243341.3298347,
+    "seen": 1793731485.2280283,
+    "ast_hash": "2d6695e68001330b3523a29ce769a9f7",
+    "semantic_hash": "2d6695e68001330b3523a29ce769a9f7"
+  },
+  "client/src/components/StudentAnalysisDetails.tsx": {
+    "mtime": 1793726274.50981,
+    "seen": 1793731485.2280283,
+    "ast_hash": "7496d42c67943f3ba29ac44278cc2a23",
+    "semantic_hash": "7496d42c67943f3ba29ac44278cc2a23"
+  },
+  "client/src/components/StudentAnalyticsWorkstation.tsx": {
+    "mtime": 1793727938.8174791,
+    "seen": 1793731485.2280283,
+    "ast_hash": "2aff6c00921ceae362933867520f17d7",
+    "semantic_hash": "2aff6c00921ceae362933867520f17d7"
+  },
+  "client/src/components/StudentAssessmentHistory.tsx": {
+    "mtime": 1793719087.9945812,
+    "seen": 1793731485.2280283,
+    "ast_hash": "a3441046089451cae956c2335cdde8ce",
+    "semantic_hash": "a3441046089451cae956c2335cdde8ce"
+  },
+  "client/src/components/StudentAssessmentLibrary.tsx": {
+    "mtime": 1793013986.7547295,
+    "seen": 1793731485.2280283,
+    "ast_hash": "c27dad6189a5a3f956c5809da537cbaa",
+    "semantic_hash": "c27dad6189a5a3f956c5809da537cbaa"
+  },
+  "client/src/components/StudentEvidenceMatrix.tsx": {
+    "mtime": 1793725904.0969641,
+    "seen": 1793731485.2280283,
+    "ast_hash": "15dcd2489044652cb4cdd5562c443662",
+    "semantic_hash": "15dcd2489044652cb4cdd5562c443662"
+  },
+  "client/src/components/StudentLearningPlan.tsx": {
+    "mtime": 1793153499.1621342,
+    "seen": 1793731485.2280283,
+    "ast_hash": "05f877a35e986d2e6abb848001a1e83c",
+    "semantic_hash": "05f877a35e986d2e6abb848001a1e83c"
+  },
+  "client/src/components/StudentPassageInventory.tsx": {
+    "mtime": 1793728217.3316405,
+    "seen": 1793731485.2280283,
+    "ast_hash": "599120c1fd296fc789466dc409c432b0",
+    "semantic_hash": "599120c1fd296fc789466dc409c432b0"
+  },
+  "client/src/components/StudentPassageProgress.tsx": {
+    "mtime": 1793716525.9327521,
+    "seen": 1793731485.2280283,
+    "ast_hash": "06ba85b781d491e7f546359f353b7ccf",
+    "semantic_hash": "06ba85b781d491e7f546359f353b7ccf"
+  },
+  "client/src/components/StudentPortalShell.tsx": {
+    "mtime": 1793030611.2674904,
+    "seen": 1793731485.2280283,
+    "ast_hash": "a88d01358bee9f85cf024ea67280a8cd",
+    "semantic_hash": "a88d01358bee9f85cf024ea67280a8cd"
+  },
+  "client/src/components/StudentProgressRoster.tsx": {
+    "mtime": 1792812328.0573628,
+    "seen": 1793731485.2280283,
+    "ast_hash": "c55d9e60572209288ae30ad9a6bd0a19",
+    "semantic_hash": "c55d9e60572209288ae30ad9a6bd0a19"
+  },
+  "client/src/components/StudentScorePlot.tsx": {
+    "mtime": 1793726348.2052996,
+    "seen": 1793731485.2280283,
+    "ast_hash": "0b4c827718ec12be3644f5a356cb5f81",
+    "semantic_hash": "0b4c827718ec12be3644f5a356cb5f81"
+  },
+  "client/src/components/StudentSessionOverview.tsx": {
+    "mtime": 1793718926.3407295,
+    "seen": 1793731485.2280283,
+    "ast_hash": "ce94ceb4337b82a9d9bf1c1c9bd1c388",
+    "semantic_hash": "ce94ceb4337b82a9d9bf1c1c9bd1c388"
+  },
+  "client/src/components/TeacherAssessmentInsights.tsx": {
+    "mtime": 1792838889.0134063,
+    "seen": 1793731485.2280283,
+    "ast_hash": "b1209b6368204f7bca9fec3d32ca7c18",
+    "semantic_hash": "b1209b6368204f7bca9fec3d32ca7c18"
+  },
+  "client/src/components/TeacherCountdown.tsx": {
+    "mtime": 1792840876.664891,
+    "seen": 1793731485.2280283,
+    "ast_hash": "e32b564b95990d33f8b7ce7a7415e076",
+    "semantic_hash": "e32b564b95990d33f8b7ce7a7415e076"
+  },
+  "client/src/components/TeacherExamReentry.tsx": {
+    "mtime": 1792841014.7691503,
+    "seen": 1793731485.2280283,
+    "ast_hash": "2b203e7780590a03c9a2b72c5064712d",
+    "semantic_hash": "2b203e7780590a03c9a2b72c5064712d"
+  },
+  "client/src/components/TeacherExamTools.tsx": {
+    "mtime": 1793403153.932274,
+    "seen": 1793731485.2280283,
+    "ast_hash": "d74a47b19f02f06745f9c71c808c72b3",
+    "semantic_hash": "d74a47b19f02f06745f9c71c808c72b3"
+  },
+  "client/src/components/TeacherLearningPlan.tsx": {
+    "mtime": 1793718926.3377283,
+    "seen": 1793731485.2280283,
+    "ast_hash": "8d94bbed6b8ba8db0c62e02bdf72c3ec",
+    "semantic_hash": "8d94bbed6b8ba8db0c62e02bdf72c3ec"
+  },
+  "client/src/components/WontonCompanion.tsx": {
+    "mtime": 1793186386.6766124,
+    "seen": 1793731485.2280283,
+    "ast_hash": "d60b054be13b84ad4aa2a8461d4d15b7",
+    "semantic_hash": "d60b054be13b84ad4aa2a8461d4d15b7"
+  },
+  "client/src/components/WontonSprite.tsx": {
+    "mtime": 1793186385.431543,
+    "seen": 1793731485.2280283,
+    "ast_hash": "0a32d329d191f9bcb160cb73618bce71",
+    "semantic_hash": "0a32d329d191f9bcb160cb73618bce71"
+  },
+  "client/src/components/auth/MeadowScene.tsx": {
+    "mtime": 1793119882.1624985,
+    "seen": 1793731485.2280283,
+    "ast_hash": "8a6081a6b8f94fb87b72b1e6c71a3b2d",
+    "semantic_hash": "8a6081a6b8f94fb87b72b1e6c71a3b2d"
+  },
+  "client/src/components/auth/WaterPortrait.tsx": {
+    "mtime": 1793152725.971035,
+    "seen": 1793731485.2280283,
+    "ast_hash": "f3ff07f5b16fee04096259c4975e6fdb",
+    "semantic_hash": "f3ff07f5b16fee04096259c4975e6fdb"
+  },
+  "client/src/components/auth/deerIdleFrames.json": {
+    "mtime": 1793119728.0921361,
+    "seen": 1793731485.2280283,
+    "ast_hash": "2b1b8c68bdbe166b6a7cfd27620a63be",
+    "semantic_hash": "2b1b8c68bdbe166b6a7cfd27620a63be"
+  },
+  "client/src/components/auth/deerWalkFrames.json": {
+    "mtime": 1793119743.5948725,
+    "seen": 1793731485.2280283,
+    "ast_hash": "71771cc5ef2464b65564ce7c0e429106",
+    "semantic_hash": "71771cc5ef2464b65564ce7c0e429106"
+  },
+  "client/src/components/auth/useReducedMotion.ts": {
+    "mtime": 1793114987.58718,
+    "seen": 1793731485.2280283,
+    "ast_hash": "a439b2556b7e4bd14882f87304beaf67",
+    "semantic_hash": "a439b2556b7e4bd14882f87304beaf67"
+  },
+  "client/src/content/advancedPractice/index.ts": {
+    "mtime": 1791918395.4630127,
+    "seen": 1793731485.2280283,
+    "ast_hash": "90067082436c7c75fb92f34cb5f76826",
+    "semantic_hash": "90067082436c7c75fb92f34cb5f76826"
+  },
+  "client/src/content/advancedPractice/passageSets/the-cat-s-table.ts": {
+    "mtime": 1791918395.4620116,
+    "seen": 1793731485.2280283,
+    "ast_hash": "3a0e90d901019f87bacebd3d8d005b56",
+    "semantic_hash": "3a0e90d901019f87bacebd3d8d005b56"
+  },
+  "client/src/content/advancedPractice/types.ts": {
+    "mtime": 1782621825.5716484,
+    "seen": 1793731485.2280283,
+    "ast_hash": "10e34a4acadfbde783096f134c618af0",
+    "semantic_hash": "10e34a4acadfbde783096f134c618af0"
+  },
+  "client/src/content/exams/formatters.ts": {
+    "mtime": 1793403153.933274,
+    "seen": 1793731485.2280283,
+    "ast_hash": "b6b22a2ca29f4e05b9a79a115d0c7777",
+    "semantic_hash": "b6b22a2ca29f4e05b9a79a115d0c7777"
+  },
+  "client/src/content/exams/index.ts": {
+    "mtime": 1793718868.1771493,
+    "seen": 1793731485.2280283,
+    "ast_hash": "7ca274dbe9b4961237c023706f82be95",
+    "semantic_hash": "7ca274dbe9b4961237c023706f82be95"
+  },
+  "client/src/content/exams/mathSets/2017-2018-form-aMath.ts": {
+    "mtime": 1793684029.8328838,
+    "seen": 1793731485.2280283,
+    "ast_hash": "5b4a3e45503b194156aca1be0b258b5d",
+    "semantic_hash": "5b4a3e45503b194156aca1be0b258b5d"
+  },
+  "client/src/content/exams/mathSets/2017-2018-form-bMath.ts": {
+    "mtime": 1793684119.8217378,
+    "seen": 1793731485.2280283,
+    "ast_hash": "ec1150eb5b8c3492d0e4c015b11040f5",
+    "semantic_hash": "ec1150eb5b8c3492d0e4c015b11040f5"
+  },
+  "client/src/content/exams/mathSets/2018-2019-form-aMath.ts": {
+    "mtime": 1793641821.5838735,
+    "seen": 1793731485.2280283,
+    "ast_hash": "72eed02a4035b083b1721121475c99f3",
+    "semantic_hash": "72eed02a4035b083b1721121475c99f3"
+  },
+  "client/src/content/exams/mathSets/2018-2019-form-bMath.ts": {
+    "mtime": 1793641895.5996215,
+    "seen": 1793731485.2280283,
+    "ast_hash": "34978c77338f56314570cec691950575",
+    "semantic_hash": "34978c77338f56314570cec691950575"
+  },
+  "client/src/content/exams/mathSets/2019-2020-form-aMath.ts": {
+    "mtime": 1793588650.057856,
+    "seen": 1793731485.2280283,
+    "ast_hash": "9c45414993d2215b70df980d3d647fe8",
+    "semantic_hash": "9c45414993d2215b70df980d3d647fe8"
+  },
+  "client/src/content/exams/mathSets/2019-2020-form-bMath.ts": {
+    "mtime": 1793684200.443146,
+    "seen": 1793731485.2280283,
+    "ast_hash": "65a30eedcc8f12cf04685012289c4009",
+    "semantic_hash": "65a30eedcc8f12cf04685012289c4009"
+  },
+  "client/src/content/exams/mathSets/2020-2021-form-aMath.ts": {
+    "mtime": 1793714308.0713594,
+    "seen": 1793731485.2280283,
+    "ast_hash": "418fac44a0eb5eaaf52d58c092a96eb5",
+    "semantic_hash": "418fac44a0eb5eaaf52d58c092a96eb5"
+  },
+  "client/src/content/exams/mathSets/2020-2021-form-bMath.ts": {
+    "mtime": 1793588650.057856,
+    "seen": 1793731485.2280283,
+    "ast_hash": "2376a014a0355335c64196c98ff03fe7",
+    "semantic_hash": "2376a014a0355335c64196c98ff03fe7"
+  },
+  "client/src/content/exams/mathSets/2021-2022-form-aMath.ts": {
+    "mtime": 1793608103.4431317,
+    "seen": 1793731485.2280283,
+    "ast_hash": "1a5afc6b9ca6480a41f4379f4507d19c",
+    "semantic_hash": "1a5afc6b9ca6480a41f4379f4507d19c"
+  },
+  "client/src/content/exams/mathSets/2021-2022-form-bMath.ts": {
+    "mtime": 1793603798.3046484,
+    "seen": 1793731485.2280283,
+    "ast_hash": "3ac8f4238b69191ce340a365d747ac9f",
+    "semantic_hash": "3ac8f4238b69191ce340a365d747ac9f"
+  },
+  "client/src/content/exams/mathSets/2022-2023-form-aMath.ts": {
+    "mtime": 1793588650.0588565,
+    "seen": 1793731485.2280283,
+    "ast_hash": "dcf25d34a2a03e910fcd24a9c0ed92a9",
+    "semantic_hash": "dcf25d34a2a03e910fcd24a9c0ed92a9"
+  },
+  "client/src/content/exams/mathSets/2022-2023-form-bMath.ts": {
+    "mtime": 1793588650.0598555,
+    "seen": 1793731485.2280283,
+    "ast_hash": "694371f778d369251335a830a46801c5",
+    "semantic_hash": "694371f778d369251335a830a46801c5"
+  },
+  "client/src/content/exams/mathSets/2023-2024-form-aMath.ts": {
+    "mtime": 1793592012.3536727,
+    "seen": 1793731485.2280283,
+    "ast_hash": "a5c6aaa93a1be82d55f8b4fc3c958a5b",
+    "semantic_hash": "a5c6aaa93a1be82d55f8b4fc3c958a5b"
+  },
+  "client/src/content/exams/mathSets/2023-2024-form-bMath.ts": {
+    "mtime": 1793592020.4541938,
+    "seen": 1793731485.2280283,
+    "ast_hash": "1536b1b696f238df5eff9c169df4045a",
+    "semantic_hash": "1536b1b696f238df5eff9c169df4045a"
+  },
+  "client/src/content/exams/mathSets/2024-2025-form-aMath.ts": {
+    "mtime": 1793588650.0598555,
+    "seen": 1793731485.2280283,
+    "ast_hash": "c54dd3c20fc7ae61bda43d48adb2cce6",
+    "semantic_hash": "c54dd3c20fc7ae61bda43d48adb2cce6"
+  },
+  "client/src/content/exams/mathSets/2024-2025-form-bMath.ts": {
+    "mtime": 1793403153.9352746,
+    "seen": 1793731485.2280283,
+    "ast_hash": "afb0e4bbac1ab11069ba1d77ba461394",
+    "semantic_hash": "afb0e4bbac1ab11069ba1d77ba461394"
+  },
+  "client/src/content/exams/mathSets/2025-2026-form-aMath.ts": {
+    "mtime": 1793714377.0679846,
+    "seen": 1793731485.2280283,
+    "ast_hash": "6fa3fae0c02130d21dcb07d99278daa2",
+    "semantic_hash": "6fa3fae0c02130d21dcb07d99278daa2"
+  },
+  "client/src/content/exams/mathSets/2025-2026-form-bMath.ts": {
+    "mtime": 1793718470.1222534,
+    "seen": 1793731485.2280283,
+    "ast_hash": "1c54694f0c3bb0366f9d50350a324f98",
+    "semantic_hash": "1c54694f0c3bb0366f9d50350a324f98"
+  },
+  "client/src/content/exams/mathSets/2026-2027-form-aMath.ts": {
+    "mtime": 1793711608.0641823,
+    "seen": 1793731485.2280283,
+    "ast_hash": "e34ab45deb380f956380583138b806c5",
+    "semantic_hash": "e34ab45deb380f956380583138b806c5"
+  },
+  "client/src/content/exams/mathSets/2026-2027-form-bMath.ts": {
+    "mtime": 1793668793.0602086,
+    "seen": 1793731485.2280283,
+    "ast_hash": "e651eb9e28c9fca22c1a8cbca3280443",
+    "semantic_hash": "e651eb9e28c9fca22c1a8cbca3280443"
+  },
+  "client/src/content/exams/mathSets/2026-2027-form-cMath.ts": {
+    "mtime": 1793668793.0602086,
+    "seen": 1793731485.2280283,
+    "ast_hash": "62aeb78aa795913619d6c92fc606a5b4",
+    "semantic_hash": "62aeb78aa795913619d6c92fc606a5b4"
+  },
+  "client/src/content/exams/mathSets/2026-2027-form-dMath.ts": {
+    "mtime": 1793588650.061856,
+    "seen": 1793731485.2280283,
+    "ast_hash": "efec9e9bba46265b00b26d0b31986d1e",
+    "semantic_hash": "efec9e9bba46265b00b26d0b31986d1e"
+  },
+  "client/src/content/exams/mathSets/digital-shsat-practice-test-3Math.ts": {
+    "mtime": 1793127324.6706307,
+    "seen": 1793731485.2280283,
+    "ast_hash": "d57f8f22a6b738789c272e6f716e5a09",
+    "semantic_hash": "d57f8f22a6b738789c272e6f716e5a09"
+  },
+  "client/src/content/exams/mathSets/digital-shsat-practice-test-4Math.ts": {
+    "mtime": 1793451492.5706997,
+    "seen": 1793731485.2280283,
+    "ast_hash": "352b7aa09c7d4f85cdfdea70f7206345",
+    "semantic_hash": "352b7aa09c7d4f85cdfdea70f7206345"
+  },
+  "client/src/content/exams/mathSets/digital-shsat-practice-test-5Math.ts": {
+    "mtime": 1793403153.938276,
+    "seen": 1793731485.2280283,
+    "ast_hash": "2b8d6c9bafc627ba9f6b819e52ba01e6",
+    "semantic_hash": "2b8d6c9bafc627ba9f6b819e52ba01e6"
+  },
+  "client/src/content/exams/mathSets/grade-9-mini-formMath.ts": {
+    "mtime": 1793717070.6866481,
+    "seen": 1793731485.2280283,
+    "ast_hash": "12c552f4170fd8e7afb9ab349e57215f",
+    "semantic_hash": "12c552f4170fd8e7afb9ab349e57215f"
+  },
+  "client/src/content/exams/passageLibrary.ts": {
+    "mtime": 1793727687.8605952,
+    "seen": 1793731485.2280283,
+    "ast_hash": "7733cc9f0ec7beeccefe5310d0787b38",
+    "semantic_hash": "7733cc9f0ec7beeccefe5310d0787b38"
+  },
+  "client/src/content/exams/passageSets/5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a.ts": {
+    "mtime": 1792226984.30266,
+    "seen": 1793731485.2280283,
+    "ast_hash": "d3e575fd6e82da9af57df80bf7c7c874",
+    "semantic_hash": "d3e575fd6e82da9af57df80bf7c7c874"
+  },
+  "client/src/content/exams/passageSets/5-reasons-physical-books-might-be-better-than-e-books-2024-2025-form-a.ts": {
+    "mtime": 1793403153.9392755,
+    "seen": 1793731485.2280283,
+    "ast_hash": "cae4b1760dee4718beaf08dfb795d72e",
+    "semantic_hash": "cae4b1760dee4718beaf08dfb795d72e"
+  },
+  "client/src/content/exams/passageSets/Snowy Mountains.ts": {
+    "mtime": 1793727490.5352259,
+    "seen": 1793731485.2280283,
+    "ast_hash": "c5e31ae9e9f1f0312d9b9d6688173a03",
+    "semantic_hash": "c5e31ae9e9f1f0312d9b9d6688173a03"
+  },
+  "client/src/content/exams/passageSets/a-memory-revolution-2019-2020-form-b.ts": {
+    "mtime": 1793684523.2365246,
+    "seen": 1793731485.2280283,
+    "ast_hash": "b67852d3ad4c0648e68d5c5b8220cd8d",
+    "semantic_hash": "b67852d3ad4c0648e68d5c5b8220cd8d"
+  },
+  "client/src/content/exams/passageSets/a-memory-revolution-2021-2022-form-b.ts": {
+    "mtime": 1793603770.6266763,
+    "seen": 1793731485.2280283,
+    "ast_hash": "8617852b5301ceee35eb9f5ddcdd32eb",
+    "semantic_hash": "8617852b5301ceee35eb9f5ddcdd32eb"
+  },
+  "client/src/content/exams/passageSets/a-memory-revolution-2023-2024-form-a.ts": {
+    "mtime": 1793582698.3913321,
+    "seen": 1793731485.2280283,
+    "ast_hash": "6f8b91739e5af1294c09b648337c570c",
+    "semantic_hash": "6f8b91739e5af1294c09b648337c570c"
+  },
+  "client/src/content/exams/passageSets/a-memory-revolution-2026-2027-form-d.ts": {
+    "mtime": 1793668208.1976833,
+    "seen": 1793731485.2280283,
+    "ast_hash": "bb335b85fb564a03ba308f716bb04338",
+    "semantic_hash": "bb335b85fb564a03ba308f716bb04338"
+  },
+  "client/src/content/exams/passageSets/a-miracle-mile-2019-2020-form-a.ts": {
+    "mtime": 1793193171.4975007,
+    "seen": 1793731485.2280283,
+    "ast_hash": "f83b888608d5a787d47e3110e2fc48af",
+    "semantic_hash": "f83b888608d5a787d47e3110e2fc48af"
+  },
+  "client/src/content/exams/passageSets/a-miracle-mile-2021-2022-form-b.ts": {
+    "mtime": 1793668208.212687,
+    "seen": 1793731485.2280283,
+    "ast_hash": "d74941280ed85a9c7c802fcf9ce96e4b",
+    "semantic_hash": "d74941280ed85a9c7c802fcf9ce96e4b"
+  },
+  "client/src/content/exams/passageSets/a-miracle-mile-2026-2027-form-b.ts": {
+    "mtime": 1793668793.0552075,
+    "seen": 1793731485.2280283,
+    "ast_hash": "24e02b7a5e5a185c6a1df3ea4efc1b16",
+    "semantic_hash": "24e02b7a5e5a185c6a1df3ea4efc1b16"
+  },
+  "client/src/content/exams/passageSets/a-miracle-mile-version-2.ts": {
+    "mtime": 1793725572.045457,
+    "seen": 1793731485.2280283,
+    "ast_hash": "7b28ec6c4641d201bd14a625bb2b823e",
+    "semantic_hash": "7b28ec6c4641d201bd14a625bb2b823e"
+  },
+  "client/src/content/exams/passageSets/a-miracle-mile.ts": {
+    "mtime": 1793035381.3046012,
+    "seen": 1793731485.2280283,
+    "ast_hash": "936aa6c842a4ee777056b3dad7701857",
+    "semantic_hash": "936aa6c842a4ee777056b3dad7701857"
+  },
+  "client/src/content/exams/passageSets/an-early-warning-2018-2019-form-a.ts": {
+    "mtime": 1793641625.2308404,
+    "seen": 1793731485.2280283,
+    "ast_hash": "894513ddd2369aafe1c43191e8b9eeaa",
+    "semantic_hash": "894513ddd2369aafe1c43191e8b9eeaa"
+  },
+  "client/src/content/exams/passageSets/at-dusk-2024-2025-form-a.ts": {
+    "mtime": 1793403153.9432764,
+    "seen": 1793731485.2280283,
+    "ast_hash": "774f12db6c82f4ae141364f2a95a1036",
+    "semantic_hash": "774f12db6c82f4ae141364f2a95a1036"
+  },
+  "client/src/content/exams/passageSets/at-dusk-2024-form-a.ts": {
+    "mtime": 1793403153.9432764,
+    "seen": 1793731485.2280283,
+    "ast_hash": "7293f90b071799840cd3d2c2f657dc4d",
+    "semantic_hash": "7293f90b071799840cd3d2c2f657dc4d"
+  },
+  "client/src/content/exams/passageSets/at-dusk-2025-2026-form-b.ts": {
+    "mtime": 1793725870.6739,
+    "seen": 1793731485.2280283,
+    "ast_hash": "5e620371785f8a4eb7ddb733d5277a6f",
+    "semantic_hash": "5e620371785f8a4eb7ddb733d5277a6f"
+  },
+  "client/src/content/exams/passageSets/bird-talk-2023-form-a.ts": {
+    "mtime": 1793035381.3116014,
+    "seen": 1793731485.2280283,
+    "ast_hash": "1e3fa4451b978687e8804aed1046de44",
+    "semantic_hash": "1e3fa4451b978687e8804aed1046de44"
+  },
+  "client/src/content/exams/passageSets/bird-talk-2026-2027-form-c.ts": {
+    "mtime": 1793668793.056208,
+    "seen": 1793731485.2280283,
+    "ast_hash": "f0bb5328d7544c6ab178b33e35b9aaf9",
+    "semantic_hash": "f0bb5328d7544c6ab178b33e35b9aaf9"
+  },
+  "client/src/content/exams/passageSets/champion-of-the-channel-2018-2019-form-a.ts": {
+    "mtime": 1793641630.9964323,
+    "seen": 1793731485.2280283,
+    "ast_hash": "90728cc4a5f2d305cff67d8f93e6bfc8",
+    "semantic_hash": "90728cc4a5f2d305cff67d8f93e6bfc8"
+  },
+  "client/src/content/exams/passageSets/champion-of-the-channel-2020-2021-form-a.ts": {
+    "mtime": 1791640393.488689,
+    "seen": 1793731485.2280283,
+    "ast_hash": "ec798b8a8a3b969b40ef2bab5ba700a5",
+    "semantic_hash": "ec798b8a8a3b969b40ef2bab5ba700a5"
+  },
+  "client/src/content/exams/passageSets/champion-of-the-channel-2024-2025-form-a.ts": {
+    "mtime": 1793403153.9462779,
+    "seen": 1793731485.2280283,
+    "ast_hash": "6e2b6f1b3b77466fdf665a0e1b7a124f",
+    "semantic_hash": "6e2b6f1b3b77466fdf665a0e1b7a124f"
+  },
+  "client/src/content/exams/passageSets/champion-of-the-channel-2026-2027-form-a.ts": {
+    "mtime": 1793668208.2136872,
+    "seen": 1793731485.2280283,
+    "ast_hash": "6bb8a379851c69210f27d8b5e0555f78",
+    "semantic_hash": "6bb8a379851c69210f27d8b5e0555f78"
+  },
+  "client/src/content/exams/passageSets/cracking-the-code-2019-2020-form-a.ts": {
+    "mtime": 1793193122.7579148,
+    "seen": 1793731485.2280283,
+    "ast_hash": "cddcd9b62e5d4331066aa0c277252879",
+    "semantic_hash": "cddcd9b62e5d4331066aa0c277252879"
+  },
+  "client/src/content/exams/passageSets/cracking-the-code-2022-2023-form-a.ts": {
+    "mtime": 1793603598.8176017,
+    "seen": 1793731485.2280283,
+    "ast_hash": "1b311150efbf2ef8a93e220d666d49e8",
+    "semantic_hash": "1b311150efbf2ef8a93e220d666d49e8"
+  },
+  "client/src/content/exams/passageSets/cross-purposes-2018-2019-form-a.ts": {
+    "mtime": 1793641787.2817256,
+    "seen": 1793731485.2280283,
+    "ast_hash": "0d58720bff16955412826e2fa61fb98d",
+    "semantic_hash": "0d58720bff16955412826e2fa61fb98d"
+  },
+  "client/src/content/exams/passageSets/cross-purposes-2023-2024-form-b.ts": {
+    "mtime": 1793592830.455098,
+    "seen": 1793731485.2280283,
+    "ast_hash": "4866fae539593c334cc9c73984efd7c5",
+    "semantic_hash": "4866fae539593c334cc9c73984efd7c5"
+  },
+  "client/src/content/exams/passageSets/cross-purposes-form-b.ts": {
+    "mtime": 1793035381.3136032,
+    "seen": 1793731485.2280283,
+    "ast_hash": "ed889a51ae2d0cc360aaab9f6c82be53",
+    "semantic_hash": "ed889a51ae2d0cc360aaab9f6c82be53"
+  },
+  "client/src/content/exams/passageSets/dothemnoharm.ts": {
+    "mtime": 1793727490.517221,
+    "seen": 1793731485.2280283,
+    "ast_hash": "08a4886906fe3083e3348a29551336ea",
+    "semantic_hash": "08a4886906fe3083e3348a29551336ea"
+  },
+  "client/src/content/exams/passageSets/dover-beach-digital-shsat-practice-test-3.ts": {
+    "mtime": 1793039541.6484537,
+    "seen": 1793731485.2280283,
+    "ast_hash": "86ccb044ecf60f70970ec7ef37ec1592",
+    "semantic_hash": "86ccb044ecf60f70970ec7ef37ec1592"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-a-tramp-abroad-2018-2019-form-a.ts": {
+    "mtime": 1793641636.6749291,
+    "seen": 1793731485.2280283,
+    "ast_hash": "e782a57a10f7ab751a21af2f4045e420",
+    "semantic_hash": "e782a57a10f7ab751a21af2f4045e420"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-a-tramp-abroad-2020-2021-shsat-sample-test-form-b.ts": {
+    "mtime": 1793449148.4627569,
+    "seen": 1793731485.2280283,
+    "ast_hash": "e822ef25be4f33dd6cd4b0a01f82b178",
+    "semantic_hash": "e822ef25be4f33dd6cd4b0a01f82b178"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-a-voice-in-the-wilderness-2018-2019-form-b.ts": {
+    "mtime": 1793641839.3692145,
+    "seen": 1793731485.2280283,
+    "ast_hash": "a2c629298e0b7a4c7c443f3c03f66cb5",
+    "semantic_hash": "a2c629298e0b7a4c7c443f3c03f66cb5"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-a-voice-in-the-wilderness-2020-2021-form-a.ts": {
+    "mtime": 1793035381.3346076,
+    "seen": 1793731485.2280283,
+    "ast_hash": "c0f08e2de2f19387bf1aa4f5eb618ba4",
+    "semantic_hash": "c0f08e2de2f19387bf1aa4f5eb618ba4"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-a-voice-in-the-wilderness-2026-2027-form-a.ts": {
+    "mtime": 1793668208.2146876,
+    "seen": 1793731485.2280283,
+    "ast_hash": "ae2b1ace0fb19dd0ef64ba528307a34e",
+    "semantic_hash": "ae2b1ace0fb19dd0ef64ba528307a34e"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-do-them-no-harm-2023-2024-form-a.ts": {
+    "mtime": 1793584834.468135,
+    "seen": 1793731485.2280283,
+    "ast_hash": "cfb510353e382981d6ec3a6a3fe52438",
+    "semantic_hash": "cfb510353e382981d6ec3a6a3fe52438"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-do-them-no-harm-2023-form-a.ts": {
+    "mtime": 1792984934.5712352,
+    "seen": 1793731485.2280283,
+    "ast_hash": "7c8e23162fa7278e172482dcb8e657e5",
+    "semantic_hash": "7c8e23162fa7278e172482dcb8e657e5"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-excerpt-from-the-voyage-of-the-beagle-digital-shsat-practice-test-4.ts": {
+    "mtime": 1793449486.0885046,
+    "seen": 1793731485.2280283,
+    "ast_hash": "1879ba7345138e71939ab077a665226c",
+    "semantic_hash": "1879ba7345138e71939ab077a665226c"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-first-ice-digital-shsat-practice-test-5.ts": {
+    "mtime": 1793403153.9502778,
+    "seen": 1793731485.2280283,
+    "ast_hash": "a98a58b461d027a5a1a73072400bced5",
+    "semantic_hash": "a98a58b461d027a5a1a73072400bced5"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-formation-digital-shsat-practice-test-4.ts": {
+    "mtime": 1793451113.6753314,
+    "seen": 1793731485.2280283,
+    "ast_hash": "abd1c26b2fe0b1fd2f3fe5a31bcb93da",
+    "semantic_hash": "abd1c26b2fe0b1fd2f3fe5a31bcb93da"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-growing-peppers-on-the-iss-is-just-the-start-of-space-farming-2026-2027-form-c.ts": {
+    "mtime": 1793668208.2146876,
+    "seen": 1793731485.2280283,
+    "ast_hash": "1907d766ad1d1316c3c13dc746e3576a",
+    "semantic_hash": "1907d766ad1d1316c3c13dc746e3576a"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-how-exercise-could-help-you-learn-a-new-language-2023-form-b.ts": {
+    "mtime": 1793035381.3156037,
+    "seen": 1793731485.2280283,
+    "ast_hash": "9e341a8b20e183b9a06999572d5bdb80",
+    "semantic_hash": "9e341a8b20e183b9a06999572d5bdb80"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-how-exercise-could-help-you-learn-a-new-language-2024-2025-form-b.ts": {
+    "mtime": 1793668208.215688,
+    "seen": 1793731485.2280283,
+    "ast_hash": "1d31fc58bf58d6c2ee204e6c417f155c",
+    "semantic_hash": "1d31fc58bf58d6c2ee204e6c417f155c"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-how-we-made-the-first-flight-2019-2020-form-a.ts": {
+    "mtime": 1793194012.711601,
+    "seen": 1793731485.2280283,
+    "ast_hash": "84bccb2e47d6dca42f76dadccc4a5e51",
+    "semantic_hash": "84bccb2e47d6dca42f76dadccc4a5e51"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-how-we-made-the-first-flight-2021-2022-form-b.ts": {
+    "mtime": 1793603665.8995633,
+    "seen": 1793731485.2280283,
+    "ast_hash": "c7c30b30a9d5af299e9780430624e9ce",
+    "semantic_hash": "c7c30b30a9d5af299e9780430624e9ce"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-how-we-made-the-first-flight-2023-2024-form-b.ts": {
+    "mtime": 1793579798.4822218,
+    "seen": 1793731485.2280283,
+    "ast_hash": "4bb4529b924a0d68a8ed0bc7510a90bf",
+    "semantic_hash": "4bb4529b924a0d68a8ed0bc7510a90bf"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-how-we-made-the-first-flight-2026-2027-form-d.ts": {
+    "mtime": 1793668208.215688,
+    "seen": 1793731485.2280283,
+    "ast_hash": "d1d26cbaa757c8ac64681f8b76780576",
+    "semantic_hash": "d1d26cbaa757c8ac64681f8b76780576"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b.ts": {
+    "mtime": 1793035381.3176055,
+    "seen": 1793731485.2280283,
+    "ast_hash": "d8c0f01f331339c23f84179d96d65fe5",
+    "semantic_hash": "d8c0f01f331339c23f84179d96d65fe5"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-impressions-of-an-indian-childhood-2022-2023-form-b.ts": {
+    "mtime": 1793036534.790675,
+    "seen": 1793731485.2280283,
+    "ast_hash": "afc94e640390985396341b3a2dbc117c",
+    "semantic_hash": "afc94e640390985396341b3a2dbc117c"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-impressions-of-an-indian-childhood-2024-2025-form-a-version-2.ts": {
+    "mtime": 1793403153.9552789,
+    "seen": 1793731485.2280283,
+    "ast_hash": "c9a9cc3d57e7c432fdb301346c352144",
+    "semantic_hash": "c9a9cc3d57e7c432fdb301346c352144"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-impressions-of-an-indian-childhood-2026-2027-form-c.ts": {
+    "mtime": 1793668208.2166886,
+    "seen": 1793731485.2280283,
+    "ast_hash": "dbb3a8c7ed29030773b18aa8d3965d74",
+    "semantic_hash": "dbb3a8c7ed29030773b18aa8d3965d74"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-in-search-of-the-unknown-2019-2020-form-a.ts": {
+    "mtime": 1793194058.64232,
+    "seen": 1793731485.2280283,
+    "ast_hash": "05ee749f1821e1b14e75b97e3e1f4b36",
+    "semantic_hash": "05ee749f1821e1b14e75b97e3e1f4b36"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-in-search-of-the-unknown-2023-2024-form-b.ts": {
+    "mtime": 1793580166.9697454,
+    "seen": 1793731485.2280283,
+    "ast_hash": "c498c37e5035876ed79b74e8d8de1d15",
+    "semantic_hash": "c498c37e5035876ed79b74e8d8de1d15"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-in-search-of-the-unknown-2026-2027-form-b.ts": {
+    "mtime": 1793668208.2166886,
+    "seen": 1793731485.2280283,
+    "ast_hash": "262de56b9b1c824ecf712ca9fcf6bdfd",
+    "semantic_hash": "262de56b9b1c824ecf712ca9fcf6bdfd"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-in-search-of-the-unknown.ts": {
+    "mtime": 1793727490.521222,
+    "seen": 1793731485.2290287,
+    "ast_hash": "12c2b78c5633f232af181ba042a8e8bf",
+    "semantic_hash": "12c2b78c5633f232af181ba042a8e8bf"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-2022-2023-form-a.ts": {
+    "mtime": 1792996134.8042233,
+    "seen": 1793731485.2290287,
+    "ast_hash": "15b04bd07e302e20328e975dbaa98cd0",
+    "semantic_hash": "15b04bd07e302e20328e975dbaa98cd0"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-2024-2025-form-a.ts": {
+    "mtime": 1793403153.9562793,
+    "seen": 1793731485.2290287,
+    "ast_hash": "871bb5ede144cbc8858bdb08581f111c",
+    "semantic_hash": "871bb5ede144cbc8858bdb08581f111c"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil.ts": {
+    "mtime": 1793725251.964007,
+    "seen": 1793731485.2290287,
+    "ast_hash": "18d3458c8e661f7f0938de7cf356311d",
+    "semantic_hash": "18d3458c8e661f7f0938de7cf356311d"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-little-women-digital-shsat-practice-test-2.ts": {
+    "mtime": 1792991522.8818521,
+    "seen": 1793731485.2290287,
+    "ast_hash": "24abc765afaa5d34ab2fdad0bc3b27d9",
+    "semantic_hash": "24abc765afaa5d34ab2fdad0bc3b27d9"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-message-at-the-speed-of-air-digital-shsat-practice-test-5.ts": {
+    "mtime": 1793403153.9572792,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f0c147e854a4e53bb527f63cb78f0992",
+    "semantic_hash": "f0c147e854a4e53bb527f63cb78f0992"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-mowgli-s-brothers-digital-shsat-practice-test-4.ts": {
+    "mtime": 1793448650.17311,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f856d98c17cbf7a226bdf3bfb4e71847",
+    "semantic_hash": "f856d98c17cbf7a226bdf3bfb4e71847"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1.ts": {
+    "mtime": 1792851402.7299616,
+    "seen": 1793731485.2290287,
+    "ast_hash": "bdc314f0e07b53d9d6d9146418c3a4b3",
+    "semantic_hash": "bdc314f0e07b53d9d6d9146418c3a4b3"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-niagara-falls-2018-2019-form-b.ts": {
+    "mtime": 1793641845.2176254,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f08ad386ec27f5e4840e949bcf0c251e",
+    "semantic_hash": "f08ad386ec27f5e4840e949bcf0c251e"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-niagara-falls-2020-2021-shsat-sample-test-form-b.ts": {
+    "mtime": 1793035381.3206034,
+    "seen": 1793731485.2290287,
+    "ast_hash": "360e9f5e2cd1b759568dfb36dbe17a78",
+    "semantic_hash": "360e9f5e2cd1b759568dfb36dbe17a78"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-niagara-falls-2023-2024-form-b.ts": {
+    "mtime": 1793579812.5016944,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6c43af0743d06bb69662ffa198ce01fb",
+    "semantic_hash": "6c43af0743d06bb69662ffa198ce01fb"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-niagara-falls-2026-2027-form-c.ts": {
+    "mtime": 1793668793.057209,
+    "seen": 1793731485.2290287,
+    "ast_hash": "421cdf9d2e645b9509476bb2f267c745",
+    "semantic_hash": "421cdf9d2e645b9509476bb2f267c745"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-o-captain-my-captain-digital-shsat-practice-test-2.ts": {
+    "mtime": 1792984934.572236,
+    "seen": 1793731485.2290287,
+    "ast_hash": "19537fcd8ed56865f29b8c1b32743699",
+    "semantic_hash": "19537fcd8ed56865f29b8c1b32743699"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-on-women-s-right-to-vote-digital-shsat-practice-test-3.ts": {
+    "mtime": 1793037687.0694592,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9c2c4cde126b678e6cf9af54639fcda4",
+    "semantic_hash": "9c2c4cde126b678e6cf9af54639fcda4"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-research-riddle-resolved-2019-2020-form-a.ts": {
+    "mtime": 1793194146.7085931,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ba18043b571cd0622283c17605a92e6f",
+    "semantic_hash": "ba18043b571cd0622283c17605a92e6f"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-research-riddle-resolved-2021-2022-form-a.ts": {
+    "mtime": 1793668208.2176888,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0b3112e7e6fecdf3b1d6e751d41b3049",
+    "semantic_hash": "0b3112e7e6fecdf3b1d6e751d41b3049"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-rip-van-winkle-digital-shsat-practice-test-5.ts": {
+    "mtime": 1793403153.9582796,
+    "seen": 1793731485.2290287,
+    "ast_hash": "28d9e5d1eff71e9777262bb0a4b574e7",
+    "semantic_hash": "28d9e5d1eff71e9777262bb0a4b574e7"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-room-to-roam-digital-shsat-practice-test-5.ts": {
+    "mtime": 1793403153.95928,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0894e2b7007ecb642c7c7ef66c39630b",
+    "semantic_hash": "0894e2b7007ecb642c7c7ef66c39630b"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-scribe-like-an-egyptian-2023-2024-form-b.ts": {
+    "mtime": 1793593902.3331084,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9aaf009764c54e54451e2e911ce2ba86",
+    "semantic_hash": "9aaf009764c54e54451e2e911ce2ba86"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-scribe-like-an-egyptian-2023-form-a.ts": {
+    "mtime": 1793035381.322605,
+    "seen": 1793731485.2290287,
+    "ast_hash": "08848fdbaa7f958ba2528e217993cf27",
+    "semantic_hash": "08848fdbaa7f958ba2528e217993cf27"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4.ts": {
+    "mtime": 1793449789.1332545,
+    "seen": 1793731485.2290287,
+    "ast_hash": "36e84c59c3fe6cc44f2c923475a3ef97",
+    "semantic_hash": "36e84c59c3fe6cc44f2c923475a3ef97"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-call-of-the-wild-digital-shsat-practice-test-1.ts": {
+    "mtime": 1792852748.2989326,
+    "seen": 1793731485.2290287,
+    "ast_hash": "cd6710fa65274fadcf0d81d163cebe6c",
+    "semantic_hash": "cd6710fa65274fadcf0d81d163cebe6c"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-cart-that-changed-the-supermarket-digital-shsat-practice-test-2.ts": {
+    "mtime": 1792984934.5732355,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8c53cc6c88507c308173436640550605",
+    "semantic_hash": "8c53cc6c88507c308173436640550605"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4.ts": {
+    "mtime": 1793451180.8193548,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6a55f36914d3b0f45aa8912f09bc83f8",
+    "semantic_hash": "6a55f36914d3b0f45aa8912f09bc83f8"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-fix-it-saturdays.ts": {
+    "mtime": 1792851661.675958,
+    "seen": 1793731485.2290287,
+    "ast_hash": "47febbe33886b1f141a2b6825ebf8de7",
+    "semantic_hash": "47febbe33886b1f141a2b6825ebf8de7"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-food-business-incubator-2023-2024-form-b.ts": {
+    "mtime": 1793579949.4009948,
+    "seen": 1793731485.2290287,
+    "ast_hash": "51249069352e9725bf024dae4b53b0c4",
+    "semantic_hash": "51249069352e9725bf024dae4b53b0c4"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-food-business-incubator-2023-form-a.ts": {
+    "mtime": 1793035381.3276062,
+    "seen": 1793731485.2290287,
+    "ast_hash": "2a8b90fa338377567bd04f6fb06c0593",
+    "semantic_hash": "2a8b90fa338377567bd04f6fb06c0593"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4.ts": {
+    "mtime": 1793451089.9682956,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a4ade01a4a8b46725576b42c7431e50d",
+    "semantic_hash": "a4ade01a4a8b46725576b42c7431e50d"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-hall-that-learned-to-listen-digital-shsat-practice-test-4.ts": {
+    "mtime": 1793448707.1671174,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6600fc68f6fb64d239be60e7bf0b276e",
+    "semantic_hash": "6600fc68f6fb64d239be60e7bf0b276e"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-highest-tide-2022-2023-form-b.ts": {
+    "mtime": 1793035381.3396096,
+    "seen": 1793731485.2290287,
+    "ast_hash": "960ce973503a6fcca51c7778763919bd",
+    "semantic_hash": "960ce973503a6fcca51c7778763919bd"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-highest-tide-2024-form-a.ts": {
+    "mtime": 1793403153.9602802,
+    "seen": 1793731485.2290287,
+    "ast_hash": "693b1dcf330ced33aff1b51a6e9411d0",
+    "semantic_hash": "693b1dcf330ced33aff1b51a6e9411d0"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-highest-tide-2026-2027-form-d.ts": {
+    "mtime": 1793668208.218689,
+    "seen": 1793731485.2290287,
+    "ast_hash": "38345aa6bff46c5709cf3d7e26430b7b",
+    "semantic_hash": "38345aa6bff46c5709cf3d7e26430b7b"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-key-of-the-garden-digital-shsat-practice-test-3.ts": {
+    "mtime": 1793036664.1058702,
+    "seen": 1793731485.2290287,
+    "ast_hash": "04ca6aa4bb3fde0c8efeeb42c20f93c1",
+    "semantic_hash": "04ca6aa4bb3fde0c8efeeb42c20f93c1"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-last-mule.ts": {
+    "mtime": 1789087035.7448683,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8353bffc29fb7c54cac90ec7245c17e1",
+    "semantic_hash": "8353bffc29fb7c54cac90ec7245c17e1"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-neighborhood-next-door-is-hotter-than-yours-digital-shsat-practice-test-2.ts": {
+    "mtime": 1792984934.574236,
+    "seen": 1793731485.2290287,
+    "ast_hash": "779adb3ddeec591543110731ecabed91",
+    "semantic_hash": "779adb3ddeec591543110731ecabed91"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-past-and-the-future-of-the-earth-s-oldest-trees-2023-form-a.ts": {
+    "mtime": 1793035381.3286066,
+    "seen": 1793731485.2290287,
+    "ast_hash": "815f7d6040ec216c1e3dc4bcee555879",
+    "semantic_hash": "815f7d6040ec216c1e3dc4bcee555879"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-past-and-the-future-of-the-earth-s-oldest-trees-2024-2025-form-b.ts": {
+    "mtime": 1793668208.218689,
+    "seen": 1793731485.2290287,
+    "ast_hash": "95ce5ad1b694fbda40d1ac669582c5e0",
+    "semantic_hash": "95ce5ad1b694fbda40d1ac669582c5e0"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-past-and-the-future-of-the-earth-s-oldest-trees-2026-2027-form-b.ts": {
+    "mtime": 1793668793.057209,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6294fbfcfa1638be43bc7ef022c6e7c3",
+    "semantic_hash": "6294fbfcfa1638be43bc7ef022c6e7c3"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-puzzle-of-the-riderless-bicycle.ts": {
+    "mtime": 1789087036.8700416,
+    "seen": 1793731485.2290287,
+    "ast_hash": "77546754a4ea0f0d05787c9e70ad148c",
+    "semantic_hash": "77546754a4ea0f0d05787c9e70ad148c"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-road-not-taken.ts": {
+    "mtime": 1789087037.9992316,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f8841f780169e7a4f90905030efebc5d",
+    "semantic_hash": "f8841f780169e7a4f90905030efebc5d"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-spirit-of-the-herd-2019-2020-form-b.ts": {
+    "mtime": 1793684519.7681816,
+    "seen": 1793731485.2290287,
+    "ast_hash": "94c143720877aa8e1ab4416cf40c6898",
+    "semantic_hash": "94c143720877aa8e1ab4416cf40c6898"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-spirit-of-the-herd-2026-2027-form-a.ts": {
+    "mtime": 1793668208.2196894,
+    "seen": 1793731485.2290287,
+    "ast_hash": "03ef51574a43787da8bfec9cf52ccd63",
+    "semantic_hash": "03ef51574a43787da8bfec9cf52ccd63"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2.ts": {
+    "mtime": 1792984934.5752368,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b0efe780b1486e8eb7b0db64eb743732",
+    "semantic_hash": "b0efe780b1486e8eb7b0db64eb743732"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-the-world-has-an-e-waste-problem-2022-2023-form-b.ts": {
+    "mtime": 1793035381.331607,
+    "seen": 1793731485.2290287,
+    "ast_hash": "de0a715ad6cc031052acb9de91a560f1",
+    "semantic_hash": "de0a715ad6cc031052acb9de91a560f1"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-to-autumn-digital-shsat-practice-test-5.ts": {
+    "mtime": 1793403153.9632812,
+    "seen": 1793731485.2290287,
+    "ast_hash": "852e6fe1b428041eb30e4275b6b975df",
+    "semantic_hash": "852e6fe1b428041eb30e4275b6b975df"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-winter-wheat-2021-2022-form-a.ts": {
+    "mtime": 1793603608.4596887,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c30d4a4d1268a1b76a30c62e64cef08a",
+    "semantic_hash": "c30d4a4d1268a1b76a30c62e64cef08a"
+  },
+  "client/src/content/exams/passageSets/excerpt-from-winter-wheat-2023-2024-form-a.ts": {
+    "mtime": 1793585214.9300241,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a0b532a15969e8017e03850b2e40208a",
+    "semantic_hash": "a0b532a15969e8017e03850b2e40208a"
+  },
+  "client/src/content/exams/passageSets/find-time-to-volunteer-2020-2021-form-a.ts": {
+    "mtime": 1793714270.9409838,
+    "seen": 1793731485.2290287,
+    "ast_hash": "86b9b451f6001ebbb84e4e6f8cc92204",
+    "semantic_hash": "86b9b451f6001ebbb84e4e6f8cc92204"
+  },
+  "client/src/content/exams/passageSets/find-time-to-volunteer-2024-2025-form-b.ts": {
+    "mtime": 1793668208.2206895,
+    "seen": 1793731485.2290287,
+    "ast_hash": "969aa2bb3b2acd2bf88a962646976935",
+    "semantic_hash": "969aa2bb3b2acd2bf88a962646976935"
+  },
+  "client/src/content/exams/passageSets/going-solar-in-china-2022-2023-form-b.ts": {
+    "mtime": 1793034715.9906924,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b20b0cab06d6cdebad1c3d9ee74fba49",
+    "semantic_hash": "b20b0cab06d6cdebad1c3d9ee74fba49"
+  },
+  "client/src/content/exams/passageSets/how-a-mountain-becomes-a-volcano-digital-shsat-practice-test-5.ts": {
+    "mtime": 1793403153.9642816,
+    "seen": 1793731485.2290287,
+    "ast_hash": "15ca500e6d703d8b5814b0151a73e903",
+    "semantic_hash": "15ca500e6d703d8b5814b0151a73e903"
+  },
+  "client/src/content/exams/passageSets/indoorPlants.ts": {
+    "mtime": 1793727490.538226,
+    "seen": 1793731485.2290287,
+    "ast_hash": "e5d9878fcf4554098ce94069fcaf3722",
+    "semantic_hash": "e5d9878fcf4554098ce94069fcaf3722"
+  },
+  "client/src/content/exams/passageSets/invention-of-the-telegraph-2018-2019-form-b.ts": {
+    "mtime": 1793641863.1523747,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3ec207477d965aa9bf20ea078c37f89a",
+    "semantic_hash": "3ec207477d965aa9bf20ea078c37f89a"
+  },
+  "client/src/content/exams/passageSets/invention-of-the-telegraph-2020-2021-form-a.ts": {
+    "mtime": 1793035381.3436093,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4493651b30a6bc2256cf5457b0b2a9aa",
+    "semantic_hash": "4493651b30a6bc2256cf5457b0b2a9aa"
+  },
+  "client/src/content/exams/passageSets/invention-of-the-telegraph-2024-2025-form-b.ts": {
+    "mtime": 1793668208.2206895,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f45ed5e45da73e6802008f06a4ab248a",
+    "semantic_hash": "f45ed5e45da73e6802008f06a4ab248a"
+  },
+  "client/src/content/exams/passageSets/invention-of-the-telegraph-2026-2027-form-c.ts": {
+    "mtime": 1793682061.8316953,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1c9c9439731e59bf153f06ee048304b7",
+    "semantic_hash": "1c9c9439731e59bf153f06ee048304b7"
+  },
+  "client/src/content/exams/passageSets/is-it-time-for-term-limits-2019-2020-form-a.ts": {
+    "mtime": 1793194103.4307463,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a7ad477539108b8bb5a70cae860a8b8f",
+    "semantic_hash": "a7ad477539108b8bb5a70cae860a8b8f"
+  },
+  "client/src/content/exams/passageSets/letter-from-brooklyn-2023-2024-form-a.ts": {
+    "mtime": 1793584064.0305955,
+    "seen": 1793731485.2290287,
+    "ast_hash": "deb737873e46960e9cd4d1d2b5f135d5",
+    "semantic_hash": "deb737873e46960e9cd4d1d2b5f135d5"
+  },
+  "client/src/content/exams/passageSets/letter-from-brooklyn-2025-2026-form-b.ts": {
+    "mtime": 1793727490.526223,
+    "seen": 1793731485.2290287,
+    "ast_hash": "83db894a367abba41848110144d685e6",
+    "semantic_hash": "83db894a367abba41848110144d685e6"
+  },
+  "client/src/content/exams/passageSets/letter-from-brooklyn-2026-2027-form-b.ts": {
+    "mtime": 1793668208.2216897,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3733d3984f9ed509bca737f097f462b6",
+    "semantic_hash": "3733d3984f9ed509bca737f097f462b6"
+  },
+  "client/src/content/exams/passageSets/looking-for-the-smallest-spark-of-everything-2019-2020-form-b.ts": {
+    "mtime": 1793684516.2901733,
+    "seen": 1793731485.2290287,
+    "ast_hash": "d29a42df5f895be9810e52363e3fe3f3",
+    "semantic_hash": "d29a42df5f895be9810e52363e3fe3f3"
+  },
+  "client/src/content/exams/passageSets/looking-for-the-smallest-spark-of-everything-2023-form-b.ts": {
+    "mtime": 1793035654.0078142,
+    "seen": 1793731485.2290287,
+    "ast_hash": "77c851f1f5ed0236788d3a1e5942407c",
+    "semantic_hash": "77c851f1f5ed0236788d3a1e5942407c"
+  },
+  "client/src/content/exams/passageSets/looking-for-the-smallest-spark-of-everything-2026-2027-form-b.ts": {
+    "mtime": 1793668208.2216897,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f74b96ca118cc44ee3df0ae9dbfc7fc3",
+    "semantic_hash": "f74b96ca118cc44ee3df0ae9dbfc7fc3"
+  },
+  "client/src/content/exams/passageSets/martial-arts-for-the-mind-and-body-2019-2020-form-b.ts": {
+    "mtime": 1793684166.8381398,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a6083ff70aa61324133c7568388f7b34",
+    "semantic_hash": "a6083ff70aa61324133c7568388f7b34"
+  },
+  "client/src/content/exams/passageSets/martial-arts-for-the-mind-and-body-2021-2022-form-b.ts": {
+    "mtime": 1793603655.8353364,
+    "seen": 1793731485.2290287,
+    "ast_hash": "35ebf8efbf5070debc6e356bc56d3a3d",
+    "semantic_hash": "35ebf8efbf5070debc6e356bc56d3a3d"
+  },
+  "client/src/content/exams/passageSets/martial-arts-for-the-mind-and-body-2023-form-a.ts": {
+    "mtime": 1793403153.9682825,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c821f68de01f0bb6eb598b13950e5795",
+    "semantic_hash": "c821f68de01f0bb6eb598b13950e5795"
+  },
+  "client/src/content/exams/passageSets/massachusetts-lowell-national-historical-park-2019-2020-form-b.ts": {
+    "mtime": 1793684530.1434467,
+    "seen": 1793731485.2290287,
+    "ast_hash": "5ced3253b22375903ef575e1844d3304",
+    "semantic_hash": "5ced3253b22375903ef575e1844d3304"
+  },
+  "client/src/content/exams/passageSets/massachusetts-lowell-national-historical-park-2020-2021-form-b.ts": {
+    "mtime": 1793727490.5282235,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ad87a8642e6acaf2a86a5680e58fc232",
+    "semantic_hash": "ad87a8642e6acaf2a86a5680e58fc232"
+  },
+  "client/src/content/exams/passageSets/massachusetts.ts": {
+    "mtime": 1793727490.5302236,
+    "seen": 1793731485.2290287,
+    "ast_hash": "92d6e338f2d1b53ea674d33d142238eb",
+    "semantic_hash": "92d6e338f2d1b53ea674d33d142238eb"
+  },
+  "client/src/content/exams/passageSets/moving-through-mountains-2017-2018-form-b.ts": {
+    "mtime": 1793684081.7762978,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0c03648cc61eb04532a14dfaa8065f35",
+    "semantic_hash": "0c03648cc61eb04532a14dfaa8065f35"
+  },
+  "client/src/content/exams/passageSets/moving-through-mountains-2018-2019-form-a.ts": {
+    "mtime": 1793641619.5488994,
+    "seen": 1793731485.2290287,
+    "ast_hash": "bcc341570d5d8ef15252ff9310348da9",
+    "semantic_hash": "bcc341570d5d8ef15252ff9310348da9"
+  },
+  "client/src/content/exams/passageSets/moving-through-mountains-2022-2023-form-b.ts": {
+    "mtime": 1793029997.4511724,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f8d2dedd6f29bf35b5e45b4f4e65d69b",
+    "semantic_hash": "f8d2dedd6f29bf35b5e45b4f4e65d69b"
+  },
+  "client/src/content/exams/passageSets/moving-through-mountains-2026-2027-form-d.ts": {
+    "mtime": 1793668208.22269,
+    "seen": 1793731485.2290287,
+    "ast_hash": "214e00b676af44a7e509080d386c9df0",
+    "semantic_hash": "214e00b676af44a7e509080d386c9df0"
+  },
+  "client/src/content/exams/passageSets/new-york-city-and-the-hudson-valley-brickmaking-industry-2026-2027-form-c.ts": {
+    "mtime": 1793668208.22269,
+    "seen": 1793731485.2290287,
+    "ast_hash": "acb2b5c567266ceb5c0c3c796d94e3cc",
+    "semantic_hash": "acb2b5c567266ceb5c0c3c796d94e3cc"
+  },
+  "client/src/content/exams/passageSets/ode-to-fireworks-2019-2020-form-a.ts": {
+    "mtime": 1793193938.774366,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8a6101c96f5e71ca2a2ad2cc84399fe9",
+    "semantic_hash": "8a6101c96f5e71ca2a2ad2cc84399fe9"
+  },
+  "client/src/content/exams/passageSets/ode-to-fireworks-2021-2022-form-a.ts": {
+    "mtime": 1793603618.0118213,
+    "seen": 1793731485.2290287,
+    "ast_hash": "369b2a66f9b3c8a072802da2e047ff56",
+    "semantic_hash": "369b2a66f9b3c8a072802da2e047ff56"
+  },
+  "client/src/content/exams/passageSets/ode-to-fireworks-2026-2027-form-d.ts": {
+    "mtime": 1793668208.2236896,
+    "seen": 1793731485.2290287,
+    "ast_hash": "999acb5f4e218e423e4fdf6f61631faa",
+    "semantic_hash": "999acb5f4e218e423e4fdf6f61631faa"
+  },
+  "client/src/content/exams/passageSets/pursuing-a-hobby-2017-2018-form-a.ts": {
+    "mtime": 1793683990.0081952,
+    "seen": 1793731485.2290287,
+    "ast_hash": "05237d00542b4c1041b72d7ca0855815",
+    "semantic_hash": "05237d00542b4c1041b72d7ca0855815"
+  },
+  "client/src/content/exams/passageSets/reading-passage-1-2017-2018-form-a.ts": {
+    "mtime": 1793683946.9246023,
+    "seen": 1793731485.2290287,
+    "ast_hash": "61cf03f2fe9e191a1adeb66816fb401e",
+    "semantic_hash": "61cf03f2fe9e191a1adeb66816fb401e"
+  },
+  "client/src/content/exams/passageSets/reading-passage-1-2017-2018-form-b.ts": {
+    "mtime": 1793684363.4941041,
+    "seen": 1793731485.2290287,
+    "ast_hash": "bd0a19ede05578bbe5f06f5f8a805bbe",
+    "semantic_hash": "bd0a19ede05578bbe5f06f5f8a805bbe"
+  },
+  "client/src/content/exams/passageSets/reading-passage-2-2017-2018-form-a.ts": {
+    "mtime": 1793684342.92047,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ba8608a35e8c2749a648c469b78d09e6",
+    "semantic_hash": "ba8608a35e8c2749a648c469b78d09e6"
+  },
+  "client/src/content/exams/passageSets/reading-passage-2-2017-2018-form-b.ts": {
+    "mtime": 1793684043.1309516,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3c48020ee14605473d01b1fde3d3de8c",
+    "semantic_hash": "3c48020ee14605473d01b1fde3d3de8c"
+  },
+  "client/src/content/exams/passageSets/reading-passage-3-2017-2018-form-a.ts": {
+    "mtime": 1793683959.2004154,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f6754e1490a18c7fe8cd70316e55099a",
+    "semantic_hash": "f6754e1490a18c7fe8cd70316e55099a"
+  },
+  "client/src/content/exams/passageSets/reading-passage-3-2017-2018-form-b.ts": {
+    "mtime": 1793684367.0836775,
+    "seen": 1793731485.2290287,
+    "ast_hash": "90396ca4a47dc43d7c49ac977c9aa655",
+    "semantic_hash": "90396ca4a47dc43d7c49ac977c9aa655"
+  },
+  "client/src/content/exams/passageSets/reading-passage-4-2017-2018-form-a.ts": {
+    "mtime": 1793684346.4361103,
+    "seen": 1793731485.2290287,
+    "ast_hash": "153d80dbe06a5f74bd53a03a86af455b",
+    "semantic_hash": "153d80dbe06a5f74bd53a03a86af455b"
+  },
+  "client/src/content/exams/passageSets/reading-passage-4-2017-2018-form-b.ts": {
+    "mtime": 1793684056.0652502,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a039aa38165b03de556ac83b1fea7a05",
+    "semantic_hash": "a039aa38165b03de556ac83b1fea7a05"
+  },
+  "client/src/content/exams/passageSets/reading-passage-5-2017-2018-form-a.ts": {
+    "mtime": 1793683971.4798007,
+    "seen": 1793731485.2290287,
+    "ast_hash": "cc6107f6270753e8e5d7af727ea81bbe",
+    "semantic_hash": "cc6107f6270753e8e5d7af727ea81bbe"
+  },
+  "client/src/content/exams/passageSets/reading-passage-5-2017-2018-form-b.ts": {
+    "mtime": 1793684062.3268368,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6c231286e8168a7e510755133642448e",
+    "semantic_hash": "6c231286e8168a7e510755133642448e"
+  },
+  "client/src/content/exams/passageSets/reading-passage-6-2017-2018-form-a.ts": {
+    "mtime": 1793684349.9497066,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3caf2cbd3047bc6fd9c78edb04ee811f",
+    "semantic_hash": "3caf2cbd3047bc6fd9c78edb04ee811f"
+  },
+  "client/src/content/exams/passageSets/reading-passage-6-2017-2018-form-b.ts": {
+    "mtime": 1793684370.729455,
+    "seen": 1793731485.2290287,
+    "ast_hash": "128cb2eeb3877317dfdd4f0e2953fbd5",
+    "semantic_hash": "128cb2eeb3877317dfdd4f0e2953fbd5"
+  },
+  "client/src/content/exams/passageSets/ruins-of-a-fabled-city-2018-2019-form-a.ts": {
+    "mtime": 1793641781.7019734,
+    "seen": 1793731485.2290287,
+    "ast_hash": "edf005cff5ffb539ff4edcb4c9e1b4db",
+    "semantic_hash": "edf005cff5ffb539ff4edcb4c9e1b4db"
+  },
+  "client/src/content/exams/passageSets/scribe-like-an-egyptian.ts": {
+    "mtime": 1793728344.6389673,
+    "seen": 1793731485.2290287,
+    "ast_hash": "667a5fa39d1c3fcf520010361ff95842",
+    "semantic_hash": "667a5fa39d1c3fcf520010361ff95842"
+  },
+  "client/src/content/exams/passageSets/serpent-mound-2019-2020-form-b.ts": {
+    "mtime": 1793684526.6740232,
+    "seen": 1793731485.2290287,
+    "ast_hash": "7b0af19130bab76320794511c04484e0",
+    "semantic_hash": "7b0af19130bab76320794511c04484e0"
+  },
+  "client/src/content/exams/passageSets/serpent-mound-2021-2022-form-b-version-2.ts": {
+    "mtime": 1793668208.2236896,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9ef93ba6961a279f3cd3b617b59f556b",
+    "semantic_hash": "9ef93ba6961a279f3cd3b617b59f556b"
+  },
+  "client/src/content/exams/passageSets/serpent-mound-2026-2027-form-c.ts": {
+    "mtime": 1793668208.224691,
+    "seen": 1793731485.2290287,
+    "ast_hash": "aaae4a6222d354031009e18a296ffbcd",
+    "semantic_hash": "aaae4a6222d354031009e18a296ffbcd"
+  },
+  "client/src/content/exams/passageSets/sixty-summers-on-kestrel-glacier-digital-shsat-practice-test-3.ts": {
+    "mtime": 1793039277.437812,
+    "seen": 1793731485.2290287,
+    "ast_hash": "e99d9dc81b87c0a395709df484363b93",
+    "semantic_hash": "e99d9dc81b87c0a395709df484363b93"
+  },
+  "client/src/content/exams/passageSets/snowy-mountains-2018-2019-form-b.ts": {
+    "mtime": 1793642082.7428799,
+    "seen": 1793731485.2290287,
+    "ast_hash": "2e860326069de085a958c972a33dad7a",
+    "semantic_hash": "2e860326069de085a958c972a33dad7a"
+  },
+  "client/src/content/exams/passageSets/snowy-mountains-2024-2025-form-b.ts": {
+    "mtime": 1793668208.224691,
+    "seen": 1793731485.2290287,
+    "ast_hash": "96b52cc7230cc0628c1238ee06b815b5",
+    "semantic_hash": "96b52cc7230cc0628c1238ee06b815b5"
+  },
+  "client/src/content/exams/passageSets/snowy-mountains-2026-2027-form-a.ts": {
+    "mtime": 1793668208.22569,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a579e7af005096e70f4e0f619ab1c44c",
+    "semantic_hash": "a579e7af005096e70f4e0f619ab1c44c"
+  },
+  "client/src/content/exams/passageSets/snowy-mountains-version-2.ts": {
+    "mtime": 1793727490.5322244,
+    "seen": 1793731485.2290287,
+    "ast_hash": "58386c4f01521cc1086bac9b451740ba",
+    "semantic_hash": "58386c4f01521cc1086bac9b451740ba"
+  },
+  "client/src/content/exams/passageSets/spiritOfTheHerd.ts": {
+    "mtime": 1793603755.4200706,
+    "seen": 1793731485.2290287,
+    "ast_hash": "cf99390ebf30062ff3d585ff17490acf",
+    "semantic_hash": "cf99390ebf30062ff3d585ff17490acf"
+  },
+  "client/src/content/exams/passageSets/the-benefits-of-indoor-plants-2020-2021-form-a.ts": {
+    "mtime": 1793585392.9408798,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ce857513a2be9f1839e0a1e1bb5a3d05",
+    "semantic_hash": "ce857513a2be9f1839e0a1e1bb5a3d05"
+  },
+  "client/src/content/exams/passageSets/the-benefits-of-indoor-plants-2026-2027-form-a.ts": {
+    "mtime": 1793668208.22569,
+    "seen": 1793731485.2290287,
+    "ast_hash": "7e326631fd85608b63ccec575c250248",
+    "semantic_hash": "7e326631fd85608b63ccec575c250248"
+  },
+  "client/src/content/exams/passageSets/the-best-laid-plans-of-ravens-2019-2020-form-b.ts": {
+    "mtime": 1793684512.8418536,
+    "seen": 1793731485.2290287,
+    "ast_hash": "cf2827d9f43233852507f0182ebd0d83",
+    "semantic_hash": "cf2827d9f43233852507f0182ebd0d83"
+  },
+  "client/src/content/exams/passageSets/the-best-laid-plans-of-ravens-2021-2022-form-a.ts": {
+    "mtime": 1793668208.2266908,
+    "seen": 1793731485.2290287,
+    "ast_hash": "be4d27eba01120df6098ea2222dc1973",
+    "semantic_hash": "be4d27eba01120df6098ea2222dc1973"
+  },
+  "client/src/content/exams/passageSets/the-best-laid-plans-of-ravens-2026-2027-form-a.ts": {
+    "mtime": 1793668208.2266908,
+    "seen": 1793731485.2290287,
+    "ast_hash": "e2e60a2af405c03e8e3aca958cdc38bd",
+    "semantic_hash": "e2e60a2af405c03e8e3aca958cdc38bd"
+  },
+  "client/src/content/exams/passageSets/the-end-of-an-era-2023-2024-form-b.ts": {
+    "mtime": 1793579784.8222408,
+    "seen": 1793731485.2290287,
+    "ast_hash": "08e04c6f27f3335e92ec18b88d290f22",
+    "semantic_hash": "08e04c6f27f3335e92ec18b88d290f22"
+  },
+  "client/src/content/exams/passageSets/the-end-of-an-era-2026-2027-form-b.ts": {
+    "mtime": 1793668208.2276907,
+    "seen": 1793731485.2290287,
+    "ast_hash": "33db486c1da6db47aa9d8fdbc80922e0",
+    "semantic_hash": "33db486c1da6db47aa9d8fdbc80922e0"
+  },
+  "client/src/content/exams/passageSets/the-end-of-an-era.ts": {
+    "mtime": 1793727490.540226,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1cffaefd5780a71a95ffb0d01b9e949f",
+    "semantic_hash": "1cffaefd5780a71a95ffb0d01b9e949f"
+  },
+  "client/src/content/exams/passageSets/the-free-college-debate-2020-2021-form-b.ts": {
+    "mtime": 1793714312.3632169,
+    "seen": 1793731485.2290287,
+    "ast_hash": "740d33de80fbdc2a876e6bf7a8bc012a",
+    "semantic_hash": "740d33de80fbdc2a876e6bf7a8bc012a"
+  },
+  "client/src/content/exams/passageSets/the-free-college-debate-2024-2025-form-a.ts": {
+    "mtime": 1793403153.976284,
+    "seen": 1793731485.2290287,
+    "ast_hash": "843eb9abc727c7b9edc48ee8f1488393",
+    "semantic_hash": "843eb9abc727c7b9edc48ee8f1488393"
+  },
+  "client/src/content/exams/passageSets/the-local-library-2017-2018-form-b.ts": {
+    "mtime": 1793684075.27738,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c481a12f786693f2a5c8bbd49dcc2149",
+    "semantic_hash": "c481a12f786693f2a5c8bbd49dcc2149"
+  },
+  "client/src/content/exams/passageSets/the-local-library-2018-2019-form-b.ts": {
+    "mtime": 1793641827.8454661,
+    "seen": 1793731485.2290287,
+    "ast_hash": "e0ee54d6dee72aca3264b3bb2fa83751",
+    "semantic_hash": "e0ee54d6dee72aca3264b3bb2fa83751"
+  },
+  "client/src/content/exams/passageSets/the-orchard-keeps-a-ledger-digital-shsat-practice-test-3.ts": {
+    "mtime": 1793038011.4212556,
+    "seen": 1793731485.2290287,
+    "ast_hash": "5eadc3e17744b40ad750b0ffa95a95be",
+    "semantic_hash": "5eadc3e17744b40ad750b0ffa95a95be"
+  },
+  "client/src/content/exams/passageSets/the-return-of-the-ferry-digital-shsat-practice-test-3.ts": {
+    "mtime": 1793037548.7888587,
+    "seen": 1793731485.2290287,
+    "ast_hash": "befb6c5206c5ece43b24345a5db3d9d8",
+    "semantic_hash": "befb6c5206c5ece43b24345a5db3d9d8"
+  },
+  "client/src/content/exams/passageSets/the-science-of-sourdough-digital-shsat-practice-test-5.ts": {
+    "mtime": 1793403153.977284,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a25435da910fb3797ddea89f5309eeef",
+    "semantic_hash": "a25435da910fb3797ddea89f5309eeef"
+  },
+  "client/src/content/exams/passageSets/the-tunguska-fireball-2018-2019-form-b.ts": {
+    "mtime": 1793641833.5711706,
+    "seen": 1793731485.2290287,
+    "ast_hash": "92d872a7fde4b2889ee2de4c24f0eb5c",
+    "semantic_hash": "92d872a7fde4b2889ee2de4c24f0eb5c"
+  },
+  "client/src/content/exams/passageSets/the-year-without-a-summer-2018-2019-form-a.ts": {
+    "mtime": 1793641793.0793068,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4c632eb1f29892a06d15c4b50fd7e7d1",
+    "semantic_hash": "4c632eb1f29892a06d15c4b50fd7e7d1"
+  },
+  "client/src/content/exams/passageSets/uncovering-the-past-2018-2019-form-b.ts": {
+    "mtime": 1793641851.1804178,
+    "seen": 1793731485.2290287,
+    "ast_hash": "04051aafa050612b9ab6befd43d9f328",
+    "semantic_hash": "04051aafa050612b9ab6befd43d9f328"
+  },
+  "client/src/content/exams/passageSets/unlock-ride-return-2017-2018-form-a.ts": {
+    "mtime": 1793683983.8160653,
+    "seen": 1793731485.2290287,
+    "ast_hash": "64a445d002a9113a5955f28ebd44290e",
+    "semantic_hash": "64a445d002a9113a5955f28ebd44290e"
+  },
+  "client/src/content/exams/passageSets/using-fire-to-keep-a-prairie-healthy-2020-2021-form-b.ts": {
+    "mtime": 1793727490.5422273,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8c76d15b531db9195e61766da7ba6963",
+    "semantic_hash": "8c76d15b531db9195e61766da7ba6963"
+  },
+  "client/src/content/exams/passageSets/using-fire-to-keep-a-prairie-healthy-2023-2024-form-a.ts": {
+    "mtime": 1793584972.0920482,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ef9ff3780a6ee363a44bf623a6241694",
+    "semantic_hash": "ef9ff3780a6ee363a44bf623a6241694"
+  },
+  "client/src/content/exams/passageSets/using-fire-to-keep-a-prairie-healthy-2026-2027-form-b.ts": {
+    "mtime": 1793668793.0582082,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8816aab470e06cdfd14c6e9e40fa7a07",
+    "semantic_hash": "8816aab470e06cdfd14c6e9e40fa7a07"
+  },
+  "client/src/content/exams/passageSets/using-fire-to-keep-a-prairie-healthy.ts": {
+    "mtime": 1793449191.951538,
+    "seen": 1793731485.2290287,
+    "ast_hash": "2180f24abfb791d3bce18c4cfbed2ee7",
+    "semantic_hash": "2180f24abfb791d3bce18c4cfbed2ee7"
+  },
+  "client/src/content/exams/passageSets/what-the-cube-taught-me-digital-shsat-practice-test-3.ts": {
+    "mtime": 1793120328.7450776,
+    "seen": 1793731485.2290287,
+    "ast_hash": "33892d0652c337bac4cc434206518206",
+    "semantic_hash": "33892d0652c337bac4cc434206518206"
+  },
+  "client/src/content/exams/passageSets/winter-wheat.ts": {
+    "mtime": 1793727490.5242229,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f8aeeee679b7d0dbd33d1aacef8af839",
+    "semantic_hash": "f8aeeee679b7d0dbd33d1aacef8af839"
+  },
+  "client/src/content/exams/passageSets/wolves-of-the-sea-2023-2024-form-a.ts": {
+    "mtime": 1793579755.747716,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b41f4ea23538f6fcf6a91af895eeacc4",
+    "semantic_hash": "b41f4ea23538f6fcf6a91af895eeacc4"
+  },
+  "client/src/content/exams/passageSets/wolves-of-the-sea-2026-2027-form-d.ts": {
+    "mtime": 1793668208.228691,
+    "seen": 1793731485.2290287,
+    "ast_hash": "324e134676402ed72d7355746cb54d94",
+    "semantic_hash": "324e134676402ed72d7355746cb54d94"
+  },
+  "client/src/content/exams/playerPresentation.ts": {
+    "mtime": 1793403153.979285,
+    "seen": 1793731485.2290287,
+    "ast_hash": "243a30ae38d3735a31fdc00e617cff9a",
+    "semantic_hash": "243a30ae38d3735a31fdc00e617cff9a"
+  },
+  "client/src/content/exams/standaloneItems.ts": {
+    "mtime": 1793718860.7087095,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ee878127fe6f1a6f42f8d70a7b5bba53",
+    "semantic_hash": "ee878127fe6f1a6f42f8d70a7b5bba53"
+  },
+  "client/src/content/exams/testnavDirections.ts": {
+    "mtime": 1793403153.981285,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b8d95f340dbae9a96031d7d17a178019",
+    "semantic_hash": "b8d95f340dbae9a96031d7d17a178019"
+  },
+  "client/src/content/exams/tests/2017-2018-form-a.ts": {
+    "mtime": 1793684029.8338845,
+    "seen": 1793731485.2290287,
+    "ast_hash": "835ce44a843c862a5948cea34d0b491f",
+    "semantic_hash": "835ce44a843c862a5948cea34d0b491f"
+  },
+  "client/src/content/exams/tests/2017-2018-form-b.ts": {
+    "mtime": 1793684119.8227382,
+    "seen": 1793731485.2290287,
+    "ast_hash": "66a2f466f5bf22e193a34d2aca2fb1cc",
+    "semantic_hash": "66a2f466f5bf22e193a34d2aca2fb1cc"
+  },
+  "client/src/content/exams/tests/2018-2019-form-a.ts": {
+    "mtime": 1793641922.3686552,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4492d7624cd962efdc9e0947928bfc72",
+    "semantic_hash": "4492d7624cd962efdc9e0947928bfc72"
+  },
+  "client/src/content/exams/tests/2018-2019-form-b.ts": {
+    "mtime": 1793641927.5667546,
+    "seen": 1793731485.2290287,
+    "ast_hash": "cce37886078b35043bd75fd68c0656e3",
+    "semantic_hash": "cce37886078b35043bd75fd68c0656e3"
+  },
+  "client/src/content/exams/tests/2019-2020-form-a.ts": {
+    "mtime": 1793198528.429898,
+    "seen": 1793731485.2290287,
+    "ast_hash": "81de5ebb1311fd8f9c7beefd8a6b29f6",
+    "semantic_hash": "81de5ebb1311fd8f9c7beefd8a6b29f6"
+  },
+  "client/src/content/exams/tests/2019-2020-form-b.ts": {
+    "mtime": 1793684200.4451458,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f9c0b670c4f25f0ec208f6f3dda9caa2",
+    "semantic_hash": "f9c0b670c4f25f0ec208f6f3dda9caa2"
+  },
+  "client/src/content/exams/tests/2020-2021-form-a.ts": {
+    "mtime": 1793714308.07236,
+    "seen": 1793731485.2290287,
+    "ast_hash": "2e7c925b8ce3caa89939e788875bf5fd",
+    "semantic_hash": "2e7c925b8ce3caa89939e788875bf5fd"
+  },
+  "client/src/content/exams/tests/2020-2021-form-b.ts": {
+    "mtime": 1793714340.718817,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ffd265da9135224e227b2f2f76d06acc",
+    "semantic_hash": "ffd265da9135224e227b2f2f76d06acc"
+  },
+  "client/src/content/exams/tests/2021-2022-form-a.ts": {
+    "mtime": 1793608108.703961,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3140345972b1c0e2b8eaf93f05fff768",
+    "semantic_hash": "3140345972b1c0e2b8eaf93f05fff768"
+  },
+  "client/src/content/exams/tests/2021-2022-form-b.ts": {
+    "mtime": 1793603992.0108006,
+    "seen": 1793731485.2290287,
+    "ast_hash": "478d769de33ac83bb6cb0d32833d7f85",
+    "semantic_hash": "478d769de33ac83bb6cb0d32833d7f85"
+  },
+  "client/src/content/exams/tests/2022-2023-form-a.ts": {
+    "mtime": 1793023683.2512083,
+    "seen": 1793731485.2290287,
+    "ast_hash": "5dfa7fb832e2c6ee98ea2e3b1c1226bd",
+    "semantic_hash": "5dfa7fb832e2c6ee98ea2e3b1c1226bd"
+  },
+  "client/src/content/exams/tests/2022-2023-form-b.ts": {
+    "mtime": 1793035071.2567852,
+    "seen": 1793731485.2290287,
+    "ast_hash": "56b19f6cd4c5953d44f7726d3eceed9c",
+    "semantic_hash": "56b19f6cd4c5953d44f7726d3eceed9c"
+  },
+  "client/src/content/exams/tests/2023-2024-form-a.ts": {
+    "mtime": 1793592012.3566732,
+    "seen": 1793731485.2290287,
+    "ast_hash": "dee68b4a090f2ac05fa5ea547e24cd38",
+    "semantic_hash": "dee68b4a090f2ac05fa5ea547e24cd38"
+  },
+  "client/src/content/exams/tests/2023-2024-form-b.ts": {
+    "mtime": 1793592020.456194,
+    "seen": 1793731485.2290287,
+    "ast_hash": "bb1102db585835f7c17c412df05cadcb",
+    "semantic_hash": "bb1102db585835f7c17c412df05cadcb"
+  },
+  "client/src/content/exams/tests/2024-2025-form-a.ts": {
+    "mtime": 1793714360.0673485,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f7f79e500f4b0d05b35e59dffd4fbbb4",
+    "semantic_hash": "f7f79e500f4b0d05b35e59dffd4fbbb4"
+  },
+  "client/src/content/exams/tests/2024-2025-form-b.ts": {
+    "mtime": 1793403153.9852865,
+    "seen": 1793731485.2290287,
+    "ast_hash": "be87c8b05e5e0968e4f51ec2415ae771",
+    "semantic_hash": "be87c8b05e5e0968e4f51ec2415ae771"
+  },
+  "client/src/content/exams/tests/2025-2026-form-b.ts": {
+    "mtime": 1793718868.1761496,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a9a418d89718b5556ec8d8977a1b6023",
+    "semantic_hash": "a9a418d89718b5556ec8d8977a1b6023"
+  },
+  "client/src/content/exams/tests/2026-2027-form-a.ts": {
+    "mtime": 1793711608.0791857,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1426b348ddc968996e3b9394a8f7c9ed",
+    "semantic_hash": "1426b348ddc968996e3b9394a8f7c9ed"
+  },
+  "client/src/content/exams/tests/2026-2027-form-b.ts": {
+    "mtime": 1793403153.9872866,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1ea2e55047fcf9815d8c522078e25e2f",
+    "semantic_hash": "1ea2e55047fcf9815d8c522078e25e2f"
+  },
+  "client/src/content/exams/tests/2026-2027-form-c.ts": {
+    "mtime": 1793614737.5311027,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f3eacf56d49108915ae2c02f32d798e7",
+    "semantic_hash": "f3eacf56d49108915ae2c02f32d798e7"
+  },
+  "client/src/content/exams/tests/2026-2027-form-d.ts": {
+    "mtime": 1793403153.9912877,
+    "seen": 1793731485.2290287,
+    "ast_hash": "889cfc53fa983f6782e80e187736e78b",
+    "semantic_hash": "889cfc53fa983f6782e80e187736e78b"
+  },
+  "client/src/content/exams/tests/digital-shsat-practice-test-1.ts": {
+    "mtime": 1792851436.4577274,
+    "seen": 1793731485.2290287,
+    "ast_hash": "47ab432ce6c10116567281e2cf09581b",
+    "semantic_hash": "47ab432ce6c10116567281e2cf09581b"
+  },
+  "client/src/content/exams/tests/digital-shsat-practice-test-2.ts": {
+    "mtime": 1792984934.5752368,
+    "seen": 1793731485.2290287,
+    "ast_hash": "be1107e8da0aeed011318414209517af",
+    "semantic_hash": "be1107e8da0aeed011318414209517af"
+  },
+  "client/src/content/exams/tests/digital-shsat-practice-test-3.ts": {
+    "mtime": 1793127324.671631,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8d3ddfbcc253da0cdeb6db1a481a847f",
+    "semantic_hash": "8d3ddfbcc253da0cdeb6db1a481a847f"
+  },
+  "client/src/content/exams/tests/digital-shsat-practice-test-4.ts": {
+    "mtime": 1793451185.411668,
+    "seen": 1793731485.2290287,
+    "ast_hash": "d411bf77404ac8ead35a10ffba3e9a91",
+    "semantic_hash": "d411bf77404ac8ead35a10ffba3e9a91"
+  },
+  "client/src/content/exams/tests/digital-shsat-practice-test-5.ts": {
+    "mtime": 1793403153.9932876,
+    "seen": 1793731485.2290287,
+    "ast_hash": "30dbc5d2f05f89bb9f46acdd5a7fc21c",
+    "semantic_hash": "30dbc5d2f05f89bb9f46acdd5a7fc21c"
+  },
+  "client/src/content/exams/tests/digital-shsat-practice-test-6.ts": {
+    "mtime": 1793121119.2809126,
+    "seen": 1793731485.2290287,
+    "ast_hash": "75bae7207d6f233b9b6009fe821f9817",
+    "semantic_hash": "75bae7207d6f233b9b6009fe821f9817"
+  },
+  "client/src/content/exams/tests/formA2025_2026.ts": {
+    "mtime": 1793714377.0699854,
+    "seen": 1793731485.2290287,
+    "ast_hash": "14205307d5329ccc0c603b684852c6e5",
+    "semantic_hash": "14205307d5329ccc0c603b684852c6e5"
+  },
+  "client/src/content/exams/tests/grade-9-mini-form.ts": {
+    "mtime": 1793717070.6876483,
+    "seen": 1793731485.2290287,
+    "ast_hash": "01c2778514953ba5faec7995d18c7208",
+    "semantic_hash": "01c2778514953ba5faec7995d18c7208"
+  },
+  "client/src/content/exams/types.ts": {
+    "mtime": 1789061768.722137,
+    "seen": 1793731485.2290287,
+    "ast_hash": "fed68c13df0499f5d36b9dc6d6a86024",
+    "semantic_hash": "fed68c13df0499f5d36b9dc6d6a86024"
+  },
+  "client/src/content/landingPage.ts": {
+    "mtime": 1787963782.8778234,
+    "seen": 1793731485.2290287,
+    "ast_hash": "202589222d612313748b4066109a1bb6",
+    "semantic_hash": "202589222d612313748b4066109a1bb6"
+  },
+  "client/src/content/practice/index.ts": {
+    "mtime": 1791393835.1152034,
+    "seen": 1793731485.2290287,
+    "ast_hash": "456bfe4662b0d7c9a929bdca88d5d343",
+    "semantic_hash": "456bfe4662b0d7c9a929bdca88d5d343"
+  },
+  "client/src/content/practice/questionBanks/authorsPointOfView/easy.ts": {
+    "mtime": 1783940744.3998168,
+    "seen": 1793731485.2290287,
+    "ast_hash": "340dbf3f286763f59eb9fc9e3d6878f4",
+    "semantic_hash": "340dbf3f286763f59eb9fc9e3d6878f4"
+  },
+  "client/src/content/practice/questionBanks/authorsPointOfView/elite.ts": {
+    "mtime": 1783126017.815668,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f438a94a5aad83862bef7a8936dd60b8",
+    "semantic_hash": "f438a94a5aad83862bef7a8936dd60b8"
+  },
+  "client/src/content/practice/questionBanks/authorsPointOfView/hard.ts": {
+    "mtime": 1783126017.076496,
+    "seen": 1793731485.2290287,
+    "ast_hash": "d1c398bce95125cba095e2a71dd870be",
+    "semantic_hash": "d1c398bce95125cba095e2a71dd870be"
+  },
+  "client/src/content/practice/questionBanks/authorsPointOfView/index.ts": {
+    "mtime": 1783126018.5693543,
+    "seen": 1793731485.2290287,
+    "ast_hash": "5d9e1cc698f2c9e2fda656fe39f4f127",
+    "semantic_hash": "5d9e1cc698f2c9e2fda656fe39f4f127"
+  },
+  "client/src/content/practice/questionBanks/authorsPointOfView/medium.ts": {
+    "mtime": 1783129284.4899435,
+    "seen": 1793731485.2290287,
+    "ast_hash": "d0ee0ab25c1506f9dcdb93fdce58d2a6",
+    "semantic_hash": "d0ee0ab25c1506f9dcdb93fdce58d2a6"
+  },
+  "client/src/content/practice/questionBanks/centralIdeaTheme/easy.ts": {
+    "mtime": 1783126020.8598382,
+    "seen": 1793731485.2290287,
+    "ast_hash": "408c1a9a01ba3b6d1566215c7a51a170",
+    "semantic_hash": "408c1a9a01ba3b6d1566215c7a51a170"
+  },
+  "client/src/content/practice/questionBanks/centralIdeaTheme/elite.ts": {
+    "mtime": 1783126023.207898,
+    "seen": 1793731485.2290287,
+    "ast_hash": "83837dd9144dcbe35533d28f24b49756",
+    "semantic_hash": "83837dd9144dcbe35533d28f24b49756"
+  },
+  "client/src/content/practice/questionBanks/centralIdeaTheme/hard.ts": {
+    "mtime": 1783126022.4535947,
+    "seen": 1793731485.2290287,
+    "ast_hash": "14f90783e44e64a03ca44d7cfbc05b5f",
+    "semantic_hash": "14f90783e44e64a03ca44d7cfbc05b5f"
+  },
+  "client/src/content/practice/questionBanks/centralIdeaTheme/index.ts": {
+    "mtime": 1783126023.9841487,
+    "seen": 1793731485.2290287,
+    "ast_hash": "bff0f9a9626935d68e9d377a0b3f81a8",
+    "semantic_hash": "bff0f9a9626935d68e9d377a0b3f81a8"
+  },
+  "client/src/content/practice/questionBanks/centralIdeaTheme/medium.ts": {
+    "mtime": 1789451868.09017,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f0d87e22cc3f3515b7bfd4ab019eee42",
+    "semantic_hash": "f0d87e22cc3f3515b7bfd4ab019eee42"
+  },
+  "client/src/content/practice/questionBanks/evidenceSupport/easy.ts": {
+    "mtime": 1783126154.9447818,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3dbf8856fffb21c4740c15a51f525958",
+    "semantic_hash": "3dbf8856fffb21c4740c15a51f525958"
+  },
+  "client/src/content/practice/questionBanks/evidenceSupport/elite.ts": {
+    "mtime": 1783126157.2722518,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9d69c9a682c78035d7d9991094771254",
+    "semantic_hash": "9d69c9a682c78035d7d9991094771254"
+  },
+  "client/src/content/practice/questionBanks/evidenceSupport/hard.ts": {
+    "mtime": 1783126156.5224247,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3b0ac879e67910df794528a376580235",
+    "semantic_hash": "3b0ac879e67910df794528a376580235"
+  },
+  "client/src/content/practice/questionBanks/evidenceSupport/index.ts": {
+    "mtime": 1783126158.0489533,
+    "seen": 1793731485.2290287,
+    "ast_hash": "d592f8a290bde808de6eeef6ffa01159",
+    "semantic_hash": "d592f8a290bde808de6eeef6ffa01159"
+  },
+  "client/src/content/practice/questionBanks/evidenceSupport/medium.ts": {
+    "mtime": 1783126155.72971,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ea3a3726a1192074c4f83ffdbdfbdb88",
+    "semantic_hash": "ea3a3726a1192074c4f83ffdbdfbdb88"
+  },
+  "client/src/content/practice/questionBanks/figurativeLanguageImagery/easy.ts": {
+    "mtime": 1783126160.3086581,
+    "seen": 1793731485.2290287,
+    "ast_hash": "be6e6f3110c88d6739376fc4d2f7ee51",
+    "semantic_hash": "be6e6f3110c88d6739376fc4d2f7ee51"
+  },
+  "client/src/content/practice/questionBanks/figurativeLanguageImagery/elite.ts": {
+    "mtime": 1783126162.6331897,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0b606141766ec11a13d5335b1448aa29",
+    "semantic_hash": "0b606141766ec11a13d5335b1448aa29"
+  },
+  "client/src/content/practice/questionBanks/figurativeLanguageImagery/hard.ts": {
+    "mtime": 1783126161.8580148,
+    "seen": 1793731485.2290287,
+    "ast_hash": "97c527f5d75262d2efb6e0f249ef8d3e",
+    "semantic_hash": "97c527f5d75262d2efb6e0f249ef8d3e"
+  },
+  "client/src/content/practice/questionBanks/figurativeLanguageImagery/index.ts": {
+    "mtime": 1783126163.3984427,
+    "seen": 1793731485.2290287,
+    "ast_hash": "198a1f4f7cec139b70b0a5762946634c",
+    "semantic_hash": "198a1f4f7cec139b70b0a5762946634c"
+  },
+  "client/src/content/practice/questionBanks/figurativeLanguageImagery/medium.ts": {
+    "mtime": 1783126161.0808308,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a3d14dfe0658dcf8054522c0ecbcfa10",
+    "semantic_hash": "a3d14dfe0658dcf8054522c0ecbcfa10"
+  },
+  "client/src/content/practice/questionBanks/inference/easy.ts": {
+    "mtime": 1783126296.5966673,
+    "seen": 1793731485.2290287,
+    "ast_hash": "25a61980fb4579e44076381cfd56479c",
+    "semantic_hash": "25a61980fb4579e44076381cfd56479c"
+  },
+  "client/src/content/practice/questionBanks/inference/elite.ts": {
+    "mtime": 1783126298.8621783,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c4760a6cd511de848aceb75af32fdc63",
+    "semantic_hash": "c4760a6cd511de848aceb75af32fdc63"
+  },
+  "client/src/content/practice/questionBanks/inference/hard.ts": {
+    "mtime": 1783126298.1360145,
+    "seen": 1793731485.2290287,
+    "ast_hash": "54797519c6aa364d17ad67ccf1fe292a",
+    "semantic_hash": "54797519c6aa364d17ad67ccf1fe292a"
+  },
+  "client/src/content/practice/questionBanks/inference/index.ts": {
+    "mtime": 1783126299.6618845,
+    "seen": 1793731485.2290287,
+    "ast_hash": "851a901a054becfca846f30e2af9996a",
+    "semantic_hash": "851a901a054becfca846f30e2af9996a"
+  },
+  "client/src/content/practice/questionBanks/inference/medium.ts": {
+    "mtime": 1783126297.354841,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ab735e78b3b3bfa8a6a9c70aa34d5e93",
+    "semantic_hash": "ab735e78b3b3bfa8a6a9c70aa34d5e93"
+  },
+  "client/src/content/practice/questionBanks/textStructure/easy.ts": {
+    "mtime": 1783126443.6437876,
+    "seen": 1793731485.2290287,
+    "ast_hash": "04ad04ee906258be78bd34ad2035baff",
+    "semantic_hash": "04ad04ee906258be78bd34ad2035baff"
+  },
+  "client/src/content/practice/questionBanks/textStructure/elite.ts": {
+    "mtime": 1783126445.9608285,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4617fbd481c0ce848de97ca331cc7a6a",
+    "semantic_hash": "4617fbd481c0ce848de97ca331cc7a6a"
+  },
+  "client/src/content/practice/questionBanks/textStructure/hard.ts": {
+    "mtime": 1783126445.1671288,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9c8ba26390af3b9d45e274515611a91a",
+    "semantic_hash": "9c8ba26390af3b9d45e274515611a91a"
+  },
+  "client/src/content/practice/questionBanks/textStructure/index.ts": {
+    "mtime": 1783126446.7115202,
+    "seen": 1793731485.2290287,
+    "ast_hash": "cf6a180b1b2b44bc74dc51aa74446151",
+    "semantic_hash": "cf6a180b1b2b44bc74dc51aa74446151"
+  },
+  "client/src/content/practice/questionBanks/textStructure/medium.ts": {
+    "mtime": 1783126444.3969562,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c3ff7f01ee4c9cfded8fe0cffb72fb3b",
+    "semantic_hash": "c3ff7f01ee4c9cfded8fe0cffb72fb3b"
+  },
+  "client/src/content/practice/questionBanks/toneMood/easy.ts": {
+    "mtime": 1783126301.9603987,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c5bb48ff4368ddc8d1827d70ed442618",
+    "semantic_hash": "c5bb48ff4368ddc8d1827d70ed442618"
+  },
+  "client/src/content/practice/questionBanks/toneMood/elite.ts": {
+    "mtime": 1783126304.2838986,
+    "seen": 1793731485.2290287,
+    "ast_hash": "5bc48e807659098de33dbe174300cf63",
+    "semantic_hash": "5bc48e807659098de33dbe174300cf63"
+  },
+  "client/src/content/practice/questionBanks/toneMood/hard.ts": {
+    "mtime": 1783126303.4997232,
+    "seen": 1793731485.2290287,
+    "ast_hash": "84da515155d6c83d283929a8f9dd380f",
+    "semantic_hash": "84da515155d6c83d283929a8f9dd380f"
+  },
+  "client/src/content/practice/questionBanks/toneMood/index.ts": {
+    "mtime": 1783126305.0460763,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9923dcb62d9f9f85317c928f29233173",
+    "semantic_hash": "9923dcb62d9f9f85317c928f29233173"
+  },
+  "client/src/content/practice/questionBanks/toneMood/medium.ts": {
+    "mtime": 1783126302.6990848,
+    "seen": 1793731485.2290287,
+    "ast_hash": "77db97e537b129355f89cf04ca93257d",
+    "semantic_hash": "77db97e537b129355f89cf04ca93257d"
+  },
+  "client/src/content/practice/questionBanks/wordPhraseMeaning/easy.ts": {
+    "mtime": 1783126449.0006518,
+    "seen": 1793731485.2290287,
+    "ast_hash": "46c73f7bbaea537c0007d6f926550e6f",
+    "semantic_hash": "46c73f7bbaea537c0007d6f926550e6f"
+  },
+  "client/src/content/practice/questionBanks/wordPhraseMeaning/elite.ts": {
+    "mtime": 1783126451.317241,
+    "seen": 1793731485.2290287,
+    "ast_hash": "07a282ebdac7768c4414368811af8f45",
+    "semantic_hash": "07a282ebdac7768c4414368811af8f45"
+  },
+  "client/src/content/practice/questionBanks/wordPhraseMeaning/hard.ts": {
+    "mtime": 1783126450.5444808,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8bc4ecc665a5ce672d073318cc359074",
+    "semantic_hash": "8bc4ecc665a5ce672d073318cc359074"
+  },
+  "client/src/content/practice/questionBanks/wordPhraseMeaning/index.ts": {
+    "mtime": 1783126452.0734093,
+    "seen": 1793731485.2290287,
+    "ast_hash": "38a31b493f5279bd55c123b826a9f568",
+    "semantic_hash": "38a31b493f5279bd55c123b826a9f568"
+  },
+  "client/src/content/practice/questionBanks/wordPhraseMeaning/medium.ts": {
+    "mtime": 1783126449.7683058,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4ad115e5349c9a613652e599a228b92c",
+    "semantic_hash": "4ad115e5349c9a613652e599a228b92c"
+  },
+  "client/src/content/practice/types.ts": {
+    "mtime": 1783147059.2934773,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9da0f583ea316f1efd6e9fa056506776",
+    "semantic_hash": "9da0f583ea316f1efd6e9fa056506776"
+  },
+  "client/src/content/questionBank/index.ts": {
+    "mtime": 1791338936.6711104,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4e83c1bef2f925de0f1ba0a05ce37fc0",
+    "semantic_hash": "4e83c1bef2f925de0f1ba0a05ce37fc0"
+  },
+  "client/src/features/account/AccountActivity.tsx": {
+    "mtime": 1792853075.9905133,
+    "seen": 1793731485.2290287,
+    "ast_hash": "7d6c3f61e2ac3cfe42a64a39b4ccd8dd",
+    "semantic_hash": "7d6c3f61e2ac3cfe42a64a39b4ccd8dd"
+  },
+  "client/src/features/account/LoginStreak.tsx": {
+    "mtime": 1793023434.551835,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c46bfa9e46a0d629fab6e7ecf2330a03",
+    "semantic_hash": "c46bfa9e46a0d629fab6e7ecf2330a03"
+  },
+  "client/src/features/account/account.tsx": {
+    "mtime": 1793023181.9705946,
+    "seen": 1793731485.2290287,
+    "ast_hash": "7e7fcfa73b8c4daa62cbc02a1b6d7cf1",
+    "semantic_hash": "7e7fcfa73b8c4daa62cbc02a1b6d7cf1"
+  },
+  "client/src/features/achievements/Achievements.tsx": {
+    "mtime": 1793196474.254412,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4d65ec1c87ceb42fcee59bd3ed758155",
+    "semantic_hash": "4d65ec1c87ceb42fcee59bd3ed758155"
+  },
+  "client/src/features/answer-sheets/ResponseControl.tsx": {
+    "mtime": 1792431107.8331375,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6a615d1e4a6ffcac830acf795620932d",
+    "semantic_hash": "6a615d1e4a6ffcac830acf795620932d"
+  },
+  "client/src/features/answer-sheets/StudentAnswerSheetList.tsx": {
+    "mtime": 1792431575.59253,
+    "seen": 1793731485.2290287,
+    "ast_hash": "37ac9fc3fe1f83949c19b3c1bd0d653f",
+    "semantic_hash": "37ac9fc3fe1f83949c19b3c1bd0d653f"
+  },
+  "client/src/features/answer-sheets/StudentSheet.tsx": {
+    "mtime": 1792431798.7397568,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1faeb276405ca33afa4a4023bca125da",
+    "semantic_hash": "1faeb276405ca33afa4a4023bca125da"
+  },
+  "client/src/features/answer-sheets/StudentSheetSummary.tsx": {
+    "mtime": 1793718189.5777626,
+    "seen": 1793731485.2290287,
+    "ast_hash": "dca2ba88707e910e06b0b3df28534b42",
+    "semantic_hash": "dca2ba88707e910e06b0b3df28534b42"
+  },
+  "client/src/features/answer-sheets/TeacherSheet.tsx": {
+    "mtime": 1792431997.8833401,
+    "seen": 1793731485.2290287,
+    "ast_hash": "086bf8b392cff00255a94f2b7c5d6f61",
+    "semantic_hash": "086bf8b392cff00255a94f2b7c5d6f61"
+  },
+  "client/src/features/answer-sheets/api.ts": {
+    "mtime": 1792248196.123791,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f648f1dd03a251671d7aba2ca26fdc7c",
+    "semantic_hash": "f648f1dd03a251671d7aba2ca26fdc7c"
+  },
+  "client/src/features/answer-sheets/editorDefaults.ts": {
+    "mtime": 1792431157.2644613,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0122d0f92eaeacea16aa6f6f7787ce72",
+    "semantic_hash": "0122d0f92eaeacea16aa6f6f7787ce72"
+  },
+  "client/src/features/answer-sheets/pasteAnswers.ts": {
+    "mtime": 1792431797.9536338,
+    "seen": 1793731485.2290287,
+    "ast_hash": "2d1c35a8adf4a7011979621419713e96",
+    "semantic_hash": "2d1c35a8adf4a7011979621419713e96"
+  },
+  "client/src/features/answer-sheets/responseLabels.ts": {
+    "mtime": 1792248595.2639458,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6d079b474f175f57f69dc33512e7f53a",
+    "semantic_hash": "6d079b474f175f57f69dc33512e7f53a"
+  },
+  "client/src/features/answer-sheets/sync.ts": {
+    "mtime": 1792250088.4503727,
+    "seen": 1793731485.2290287,
+    "ast_hash": "5e5713f6519a437e05bb38f117ae8686",
+    "semantic_hash": "5e5713f6519a437e05bb38f117ae8686"
+  },
+  "client/src/features/boards/BoardAnnotations.tsx": {
+    "mtime": 1791335558.2298744,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ec07943684d82c4d00833867dd2b6d5d",
+    "semantic_hash": "ec07943684d82c4d00833867dd2b6d5d"
+  },
+  "client/src/features/boards/BoardCanvas.tsx": {
+    "mtime": 1792605659.5196755,
+    "seen": 1793731485.2290287,
+    "ast_hash": "74ad4536c0d7d4e15105c074a800e3c8",
+    "semantic_hash": "74ad4536c0d7d4e15105c074a800e3c8"
+  },
+  "client/src/features/boards/BoardCard.tsx": {
+    "mtime": 1791334981.0409074,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6fc6ed6363c1ea6b343fb1043adc9d8d",
+    "semantic_hash": "6fc6ed6363c1ea6b343fb1043adc9d8d"
+  },
+  "client/src/features/boards/BoardDrawing.tsx": {
+    "mtime": 1792605436.4714196,
+    "seen": 1793731485.2290287,
+    "ast_hash": "aa150b41346f983407199e1c6458c5c6",
+    "semantic_hash": "aa150b41346f983407199e1c6458c5c6"
+  },
+  "client/src/features/boards/BoardLibrary.tsx": {
+    "mtime": 1792230674.93728,
+    "seen": 1793731485.2290287,
+    "ast_hash": "12ac7b65e1623a75b731379b25b87e99",
+    "semantic_hash": "12ac7b65e1623a75b731379b25b87e99"
+  },
+  "client/src/features/boards/BoardPassageViewer.tsx": {
+    "mtime": 1791335152.1644642,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c2bab8f670bd2da89a3a3235bc55c179",
+    "semantic_hash": "c2bab8f670bd2da89a3a3235bc55c179"
+  },
+  "client/src/features/boards/BoardQuestionResponses.tsx": {
+    "mtime": 1793012094.3066707,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a881394b56778c086857af15300100df",
+    "semantic_hash": "a881394b56778c086857af15300100df"
+  },
+  "client/src/features/boards/api.ts": {
+    "mtime": 1792230610.387883,
+    "seen": 1793731485.2290287,
+    "ast_hash": "78fc4224e4fd074874c2aec3a4227974",
+    "semantic_hash": "78fc4224e4fd074874c2aec3a4227974"
+  },
+  "client/src/features/boards/cardContext.ts": {
+    "mtime": 1791334378.8304076,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b0cd5296d8ab390c9b7e8f2cba455468",
+    "semantic_hash": "b0cd5296d8ab390c9b7e8f2cba455468"
+  },
+  "client/src/features/boards/drawing.ts": {
+    "mtime": 1792605435.8876605,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0752b639d299fe9a3b162cf728a85d60",
+    "semantic_hash": "0752b639d299fe9a3b162cf728a85d60"
+  },
+  "client/src/features/boards/session.ts": {
+    "mtime": 1792605303.842261,
+    "seen": 1793731485.2290287,
+    "ast_hash": "74780e87bdf2348561109dc48a343bdd",
+    "semantic_hash": "74780e87bdf2348561109dc48a343bdd"
+  },
+  "client/src/features/games/GameAnswerStatus.tsx": {
+    "mtime": 1792993808.5691347,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f86a4d4d2b1e74b465ec58b1f7f94195",
+    "semantic_hash": "f86a4d4d2b1e74b465ec58b1f7f94195"
+  },
+  "client/src/features/games/GameCursors.tsx": {
+    "mtime": 1792984934.5762365,
+    "seen": 1793731485.2290287,
+    "ast_hash": "df8dcdd0885b3f9d7d4efca7fa0449b0",
+    "semantic_hash": "df8dcdd0885b3f9d7d4efca7fa0449b0"
+  },
+  "client/src/features/games/GameExamPlayer.tsx": {
+    "mtime": 1793040600.7599401,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4d90d3d32fe5e5b6f73325082b95b84b",
+    "semantic_hash": "4d90d3d32fe5e5b6f73325082b95b84b"
+  },
+  "client/src/features/games/GamePlaytestControls.tsx": {
+    "mtime": 1792996001.2277787,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c40fd3bdae70bd7ae7a0b219d1687f1b",
+    "semantic_hash": "c40fd3bdae70bd7ae7a0b219d1687f1b"
+  },
+  "client/src/features/games/GameRooms.tsx": {
+    "mtime": 1793024855.7000177,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a009da34b1ed439bb112c44c77b915bb",
+    "semantic_hash": "a009da34b1ed439bb112c44c77b915bb"
+  },
+  "client/src/features/games/GameStandings.tsx": {
+    "mtime": 1792984934.5792377,
+    "seen": 1793731485.2290287,
+    "ast_hash": "5d18307c4c09e4bf61fbae29849c659d",
+    "semantic_hash": "5d18307c4c09e4bf61fbae29849c659d"
+  },
+  "client/src/features/games/InkBombOverlay.tsx": {
+    "mtime": 1792992213.391987,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8c8d3081a78091e07b89fe59be064187",
+    "semantic_hash": "8c8d3081a78091e07b89fe59be064187"
+  },
+  "client/src/features/games/LandmineOutcome.tsx": {
+    "mtime": 1792992248.3037665,
+    "seen": 1793731485.2290287,
+    "ast_hash": "7d53a553854a959a5a01c0c2ec39858b",
+    "semantic_hash": "7d53a553854a959a5a01c0c2ec39858b"
+  },
+  "client/src/features/games/LandminePlacement.tsx": {
+    "mtime": 1792990186.3763542,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b897024f149f5328c4caee74b44c0bef",
+    "semantic_hash": "b897024f149f5328c4caee74b44c0bef"
+  },
+  "client/src/features/games/SabotageShop.tsx": {
+    "mtime": 1792992116.8302796,
+    "seen": 1793731485.2290287,
+    "ast_hash": "27ed2dc68d780249a93547c4dde6f194",
+    "semantic_hash": "27ed2dc68d780249a93547c4dde6f194"
+  },
+  "client/src/features/games/SharedToolNotes.tsx": {
+    "mtime": 1792993873.3230462,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0b1e0124189f48b3d3cb0b3d5acbcc46",
+    "semantic_hash": "0b1e0124189f48b3d3cb0b3d5acbcc46"
+  },
+  "client/src/features/games/TeamChat.tsx": {
+    "mtime": 1792990655.7435884,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1575de5e99aea1a25356b15e898a5613",
+    "semantic_hash": "1575de5e99aea1a25356b15e898a5613"
+  },
+  "client/src/features/games/TeamObserver.tsx": {
+    "mtime": 1792984934.5802379,
+    "seen": 1793731485.2290287,
+    "ast_hash": "2a6285a6c24ea589b71e405311906836",
+    "semantic_hash": "2a6285a6c24ea589b71e405311906836"
+  },
+  "client/src/features/games/TeamParticipation.tsx": {
+    "mtime": 1792984934.5812376,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3869fe3670ea8d7e6b0ab8b8fe847e7c",
+    "semantic_hash": "3869fe3670ea8d7e6b0ab8b8fe847e7c"
+  },
+  "client/src/features/games/TeamReadyControl.tsx": {
+    "mtime": 1792994346.9581604,
+    "seen": 1793731485.2290287,
+    "ast_hash": "24790f7279609723ffe6a4f4f6d6d57f",
+    "semantic_hash": "24790f7279609723ffe6a4f4f6d6d57f"
+  },
+  "client/src/features/games/api.ts": {
+    "mtime": 1792984934.5812376,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b4cf5114514f6c7a15c31f8d3391f11d",
+    "semantic_hash": "b4cf5114514f6c7a15c31f8d3391f11d"
+  },
+  "client/src/features/games/gameExamContent.ts": {
+    "mtime": 1793040600.161019,
+    "seen": 1793731485.2290287,
+    "ast_hash": "7787f50f62a6a3eb3932bda919cccd59",
+    "semantic_hash": "7787f50f62a6a3eb3932bda919cccd59"
+  },
+  "client/src/features/games/useTeamTools.ts": {
+    "mtime": 1792994055.8142867,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8395979df07573b10f1ffe24dc756d4a",
+    "semantic_hash": "8395979df07573b10f1ffe24dc756d4a"
+  },
+  "client/src/features/games/world/CrystalDefensePanel.tsx": {
+    "mtime": 1793040257.0780947,
+    "seen": 1793731485.2290287,
+    "ast_hash": "fa61e8b2695097bf7b8c197f6ed428d0",
+    "semantic_hash": "fa61e8b2695097bf7b8c197f6ed428d0"
+  },
+  "client/src/features/games/world/TeacherWorldControls.tsx": {
+    "mtime": 1793023511.2645044,
+    "seen": 1793731485.2290287,
+    "ast_hash": "e68e4028293a4dda67b728cb56967fd5",
+    "semantic_hash": "e68e4028293a4dda67b728cb56967fd5"
+  },
+  "client/src/features/games/world/WorldRoom.tsx": {
+    "mtime": 1793024855.6990173,
+    "seen": 1793731485.2290287,
+    "ast_hash": "58b452509c8e8e676245c91d57ad57f5",
+    "semantic_hash": "58b452509c8e8e676245c91d57ad57f5"
+  },
+  "client/src/features/games/world/WorldScene.tsx": {
+    "mtime": 1793025446.4635205,
+    "seen": 1793731485.2290287,
+    "ast_hash": "7d484d68faaa55a72ec298c12e02d77e",
+    "semantic_hash": "7d484d68faaa55a72ec298c12e02d77e"
+  },
+  "client/src/features/games/world/avatars.ts": {
+    "mtime": 1793024735.4374804,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0a4e45123b892bc341a9cf29aa678ecc",
+    "semantic_hash": "0a4e45123b892bc341a9cf29aa678ecc"
+  },
+  "client/src/features/games/world/crystalScene.ts": {
+    "mtime": 1793012185.2939265,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3058c6096fa565e709681aa82e7937b6",
+    "semantic_hash": "3058c6096fa565e709681aa82e7937b6"
+  },
+  "client/src/features/games/world/memeAvatars.ts": {
+    "mtime": 1793025447.0928864,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f8ca10a582094e5fb82b58107755b03a",
+    "semantic_hash": "f8ca10a582094e5fb82b58107755b03a"
+  },
+  "client/src/features/games/world/scenery.ts": {
+    "mtime": 1793007137.162088,
+    "seen": 1793731485.2290287,
+    "ast_hash": "bdde3c9426f3139f17dbdc8237a6176b",
+    "semantic_hash": "bdde3c9426f3139f17dbdc8237a6176b"
+  },
+  "client/src/features/games/world/useWorldConnection.ts": {
+    "mtime": 1793002631.3369973,
+    "seen": 1793731485.2290287,
+    "ast_hash": "26a2c0607f1c6fda3098a2d58ac4555b",
+    "semantic_hash": "26a2c0607f1c6fda3098a2d58ac4555b"
+  },
+  "client/src/features/games/world/worldRenderer.ts": {
+    "mtime": 1793023623.495107,
+    "seen": 1793731485.2290287,
+    "ast_hash": "98e6a5a180065e3617fbff056648df23",
+    "semantic_hash": "98e6a5a180065e3617fbff056648df23"
+  },
+  "client/src/features/math-command/AddToGeneratorPlanner.tsx": {
+    "mtime": 1793648781.66256,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b52bc42e387811b69841be6f3635618c",
+    "semantic_hash": "b52bc42e387811b69841be6f3635618c"
+  },
+  "client/src/features/math-command/CatalogPracticePlayer.tsx": {
+    "mtime": 1793031714.2019832,
+    "seen": 1793731485.2290287,
+    "ast_hash": "addf889bc1445beca0dbf80254fed3e0",
+    "semantic_hash": "addf889bc1445beca0dbf80254fed3e0"
+  },
+  "client/src/features/math-command/GenerationSetEditor.tsx": {
+    "mtime": 1793403153.9942884,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a000a905b7f2f9e33ea2b4e0b70802f7",
+    "semantic_hash": "a000a905b7f2f9e33ea2b4e0b70802f7"
+  },
+  "client/src/features/math-command/GeneratorLibraryTools.tsx": {
+    "mtime": 1793403153.9952886,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8779f98eca4b841a6256cc7a55b1077a",
+    "semantic_hash": "8779f98eca4b841a6256cc7a55b1077a"
+  },
+  "client/src/features/math-command/GeneratorOrganizationPanel.tsx": {
+    "mtime": 1793403153.9952886,
+    "seen": 1793731485.2290287,
+    "ast_hash": "7994f5823ab1786d28dbb8020baea4be",
+    "semantic_hash": "7994f5823ab1786d28dbb8020baea4be"
+  },
+  "client/src/features/math-command/GeneratorPlanner.tsx": {
+    "mtime": 1793728743.0215626,
+    "seen": 1793731485.2290287,
+    "ast_hash": "44b616ef99b755a6bac55daa645dcfc4",
+    "semantic_hash": "44b616ef99b755a6bac55daa645dcfc4"
+  },
+  "client/src/features/math-command/GeneratorWorkshop.tsx": {
+    "mtime": 1793206570.986647,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9c126e7d4af167edab14ed1e8603b15f",
+    "semantic_hash": "9c126e7d4af167edab14ed1e8603b15f"
+  },
+  "client/src/features/math-command/InequalityPractice.tsx": {
+    "mtime": 1793730278.9345758,
+    "seen": 1793731485.2290287,
+    "ast_hash": "59f2695a16715115efb759e763a5a3b9",
+    "semantic_hash": "59f2695a16715115efb759e763a5a3b9"
+  },
+  "client/src/features/math-command/InfiniteHomeworkPage.tsx": {
+    "mtime": 1793153369.5165732,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ff0ab0a5ba7bc67322eb273efa0866a0",
+    "semantic_hash": "ff0ab0a5ba7bc67322eb273efa0866a0"
+  },
+  "client/src/features/math-command/MathAssignmentBuilder.tsx": {
+    "mtime": 1793648879.8121135,
+    "seen": 1793731485.2290287,
+    "ast_hash": "dcafdc39bdebcf72d58806db5ba6bdfa",
+    "semantic_hash": "dcafdc39bdebcf72d58806db5ba6bdfa"
+  },
+  "client/src/features/math-command/MathBankPlayer.tsx": {
+    "mtime": 1793200396.5850327,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f9bcf45c34f786576e251c4ab03f7f2b",
+    "semantic_hash": "f9bcf45c34f786576e251c4ab03f7f2b"
+  },
+  "client/src/features/math-command/MathCommandPage.tsx": {
+    "mtime": 1793025133.2072995,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b47acc1112ecb2558fa151668ab54a23",
+    "semantic_hash": "b47acc1112ecb2558fa151668ab54a23"
+  },
+  "client/src/features/math-command/MathCommandWorkspace.tsx": {
+    "mtime": 1793649383.7391746,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ef431e7881522b48072b74ec29b7c639",
+    "semantic_hash": "ef431e7881522b48072b74ec29b7c639"
+  },
+  "client/src/features/math-command/MathPracticePage.tsx": {
+    "mtime": 1793017084.5869493,
+    "seen": 1793731485.2290287,
+    "ast_hash": "186ee9d7d990eb25f73f1f3a9bc92520",
+    "semantic_hash": "186ee9d7d990eb25f73f1f3a9bc92520"
+  },
+  "client/src/features/math-command/MathStudentInsights.tsx": {
+    "mtime": 1793649908.1918807,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0ae81063738539e0e2dce53cbd603aa8",
+    "semantic_hash": "0ae81063738539e0e2dce53cbd603aa8"
+  },
+  "client/src/features/math-command/PracticeAssignmentContext.tsx": {
+    "mtime": 1793649698.4509854,
+    "seen": 1793731485.2290287,
+    "ast_hash": "abf8e196033559b98276df598ddab70e",
+    "semantic_hash": "abf8e196033559b98276df598ddab70e"
+  },
+  "client/src/features/math-command/PracticeFeedback.tsx": {
+    "mtime": 1793728741.7382581,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ab0d6ac538059f26a661f54eae3dc33e",
+    "semantic_hash": "ab0d6ac538059f26a661f54eae3dc33e"
+  },
+  "client/src/features/math-command/PracticeModuleList.tsx": {
+    "mtime": 1793729353.436216,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9982b559e86e0feaedceef81f4e54fa3",
+    "semantic_hash": "9982b559e86e0feaedceef81f4e54fa3"
+  },
+  "client/src/features/math-command/PracticeSkillPicker.tsx": {
+    "mtime": 1793616459.1754837,
+    "seen": 1793731485.2290287,
+    "ast_hash": "2f05396d215d0c4a3b11db96262e1789",
+    "semantic_hash": "2f05396d215d0c4a3b11db96262e1789"
+  },
+  "client/src/features/math-command/PracticeStars.tsx": {
+    "mtime": 1793728688.0661516,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a78e4fd84bd16f35a6b4edd5cd14d279",
+    "semantic_hash": "a78e4fd84bd16f35a6b4edd5cd14d279"
+  },
+  "client/src/features/math-command/PracticeVideoList.tsx": {
+    "mtime": 1793039851.6173377,
+    "seen": 1793731485.2290287,
+    "ast_hash": "355f65e2b2e698b5a2c85790c896d016",
+    "semantic_hash": "355f65e2b2e698b5a2c85790c896d016"
+  },
+  "client/src/features/math-command/QuestionExplanation.tsx": {
+    "mtime": 1793648621.2101967,
+    "seen": 1793731485.2290287,
+    "ast_hash": "16300e701f4f071d5eae1ff9156ff7b5",
+    "semantic_hash": "16300e701f4f071d5eae1ff9156ff7b5"
+  },
+  "client/src/features/math-command/SkilledField.tsx": {
+    "mtime": 1793193177.9697852,
+    "seen": 1793731485.2290287,
+    "ast_hash": "aa3b7ebb93b6a8c1a63cd999d41499b3",
+    "semantic_hash": "aa3b7ebb93b6a8c1a63cd999d41499b3"
+  },
+  "client/src/features/math-command/SkilledManager.tsx": {
+    "mtime": 1793616947.159534,
+    "seen": 1793731485.2290287,
+    "ast_hash": "566cd285dbdc568d92484431cb8bf5b7",
+    "semantic_hash": "566cd285dbdc568d92484431cb8bf5b7"
+  },
+  "client/src/features/math-command/StudentPracticeShelf.tsx": {
+    "mtime": 1793594767.3182516,
+    "seen": 1793731485.2290287,
+    "ast_hash": "df6d24a3e0a6f6529ae212ce06d9f5a7",
+    "semantic_hash": "df6d24a3e0a6f6529ae212ce06d9f5a7"
+  },
+  "client/src/features/math-command/StudioGeneratorPlanner.tsx": {
+    "mtime": 1793630849.694363,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b9847d34636046863d93e547eabcf6f6",
+    "semantic_hash": "b9847d34636046863d93e547eabcf6f6"
+  },
+  "client/src/features/math-command/TaxonomyEditor.tsx": {
+    "mtime": 1793111861.9031532,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c59d73a1fcde6b43f33bc32691544ba2",
+    "semantic_hash": "c59d73a1fcde6b43f33bc32691544ba2"
+  },
+  "client/src/features/math-command/TeacherLabels.tsx": {
+    "mtime": 1793112869.8606915,
+    "seen": 1793731485.2290287,
+    "ast_hash": "acb374aad8f88c36670c3bf95b5144da",
+    "semantic_hash": "acb374aad8f88c36670c3bf95b5144da"
+  },
+  "client/src/features/math-command/TemplateGeneratorEditor.tsx": {
+    "mtime": 1793201354.7790759,
+    "seen": 1793731485.2290287,
+    "ast_hash": "616b318656f8c23258d1f093d650448d",
+    "semantic_hash": "616b318656f8c23258d1f093d650448d"
+  },
+  "client/src/features/math-command/client.ts": {
+    "mtime": 1793017552.1964672,
+    "seen": 1793731485.2290287,
+    "ast_hash": "89f732131fde8b042fa9589357adf5fc",
+    "semantic_hash": "89f732131fde8b042fa9589357adf5fc"
+  },
+  "client/src/features/math-command/generationSet.ts": {
+    "mtime": 1793200560.0554404,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f41fb02a2f4a240a0ce6c6f341991d9e",
+    "semantic_hash": "f41fb02a2f4a240a0ce6c6f341991d9e"
+  },
+  "client/src/features/math-command/generatorAuthoring.ts": {
+    "mtime": 1793202803.983768,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b7a5a446acc5a699c3d912c8ccedf3cc",
+    "semantic_hash": "b7a5a446acc5a699c3d912c8ccedf3cc"
+  },
+  "client/src/features/math-command/generatorBatchExport.ts": {
+    "mtime": 1793728804.1115763,
+    "seen": 1793731485.2290287,
+    "ast_hash": "472b10086ebcae9d7a30650e5c8107e7",
+    "semantic_hash": "472b10086ebcae9d7a30650e5c8107e7"
+  },
+  "client/src/features/math-command/generatorCodingBrief.ts": {
+    "mtime": 1793634837.00875,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f1ea5fdefffbec381dddf9ab2505dd15",
+    "semantic_hash": "f1ea5fdefffbec381dddf9ab2505dd15"
+  },
+  "client/src/features/math-command/generatorPlannerClient.ts": {
+    "mtime": 1793630849.0679996,
+    "seen": 1793731485.2290287,
+    "ast_hash": "08805943099228fa4e10daad508800af",
+    "semantic_hash": "08805943099228fa4e10daad508800af"
+  },
+  "client/src/features/math-command/generatorPlannerNavigation.ts": {
+    "mtime": 1793631690.4050446,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0787d0191a15a780d2b1c944fbbb4d63",
+    "semantic_hash": "0787d0191a15a780d2b1c944fbbb4d63"
+  },
+  "client/src/features/math-command/generatorPlannerSync.ts": {
+    "mtime": 1793630941.2821968,
+    "seen": 1793731485.2290287,
+    "ast_hash": "15c113fa6de9690ea8fad2dabefd1600",
+    "semantic_hash": "15c113fa6de9690ea8fad2dabefd1600"
+  },
+  "client/src/features/math-command/generatorPreview.ts": {
+    "mtime": 1793191972.8454342,
+    "seen": 1793731485.2290287,
+    "ast_hash": "cae29e9f3d9331cbec69d0dbbbe8648c",
+    "semantic_hash": "cae29e9f3d9331cbec69d0dbbbe8648c"
+  },
+  "client/src/features/math-command/inequalitySession.ts": {
+    "mtime": 1793635313.569628,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6445d9d77bbef1568ad9c93db175f4eb",
+    "semantic_hash": "6445d9d77bbef1568ad9c93db175f4eb"
+  },
+  "client/src/features/math-command/infiniteAssignmentLink.ts": {
+    "mtime": 1793648620.6132104,
+    "seen": 1793731485.2290287,
+    "ast_hash": "85b1489e372285ad3249daffc464383c",
+    "semantic_hash": "85b1489e372285ad3249daffc464383c"
+  },
+  "client/src/features/math-command/practiceChoices.ts": {
+    "mtime": 1793190757.7544625,
+    "seen": 1793731485.2290287,
+    "ast_hash": "af9543fa377bedd338b246a052f0c9b2",
+    "semantic_hash": "af9543fa377bedd338b246a052f0c9b2"
+  },
+  "client/src/features/math-command/practicePreview.ts": {
+    "mtime": 1793730277.7387857,
+    "seen": 1793731485.2290287,
+    "ast_hash": "fa6d511dc6222b07db33cc3f0a036c64",
+    "semantic_hash": "fa6d511dc6222b07db33cc3f0a036c64"
+  },
+  "client/src/features/math-command/practiceSessionStorage.ts": {
+    "mtime": 1793728687.477637,
+    "seen": 1793731485.2290287,
+    "ast_hash": "d58eea5b67927f5bb44e52502728c9e7",
+    "semantic_hash": "d58eea5b67927f5bb44e52502728c9e7"
+  },
+  "client/src/features/math-command/relatedGenerators.ts": {
+    "mtime": 1793648621.8261635,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c2d451fd35ae92e3c859980f52332b38",
+    "semantic_hash": "c2d451fd35ae92e3c859980f52332b38"
+  },
+  "client/src/features/math-command/studioOrganization.ts": {
+    "mtime": 1793403153.998289,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1b18a36375bbd95fab71c4d2e8fa1287",
+    "semantic_hash": "1b18a36375bbd95fab71c4d2e8fa1287"
+  },
+  "client/src/features/math-command/teacherLabelsContext.ts": {
+    "mtime": 1793112752.7975137,
+    "seen": 1793731485.2290287,
+    "ast_hash": "307d88550c79dfcb7d3bc1a45281c9b8",
+    "semantic_hash": "307d88550c79dfcb7d3bc1a45281c9b8"
+  },
+  "client/src/features/math-command/useInfinitePracticeSession.ts": {
+    "mtime": 1793728782.3765771,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ed7d4187d6e79db70a9b500f1843c8b4",
+    "semantic_hash": "ed7d4187d6e79db70a9b500f1843c8b4"
+  },
+  "client/src/features/math-command/usePracticeCatalog.ts": {
+    "mtime": 1793122866.7547026,
+    "seen": 1793731485.2290287,
+    "ast_hash": "72817f1d733cd1a1a31e618d89afd343",
+    "semantic_hash": "72817f1d733cd1a1a31e618d89afd343"
+  },
+  "client/src/hooks/useStudentPortalAccess.ts": {
+    "mtime": 1793026487.974029,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0f370df9a0b787d50dec7693af6496e5",
+    "semantic_hash": "0f370df9a0b787d50dec7693af6496e5"
+  },
+  "client/src/lib/accountSwitching.ts": {
+    "mtime": 1783939700.912431,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4e4ff4f21d81769209a7c83bcae379d5",
+    "semantic_hash": "4e4ff4f21d81769209a7c83bcae379d5"
+  },
+  "client/src/lib/advancedMathEntry.ts": {
+    "mtime": 1793717778.6915672,
+    "seen": 1793731485.2290287,
+    "ast_hash": "bc36a404125ad424fc8d82cd3de6a50b",
+    "semantic_hash": "bc36a404125ad424fc8d82cd3de6a50b"
+  },
+  "client/src/lib/analyticsDetails.ts": {
+    "mtime": 1793725878.384569,
+    "seen": 1793731485.2290287,
+    "ast_hash": "421319aab79d58a124f18d84a4c0b770",
+    "semantic_hash": "421319aab79d58a124f18d84a4c0b770"
+  },
+  "client/src/lib/analyticsScope.ts": {
+    "mtime": 1793726275.1396413,
+    "seen": 1793731485.2290287,
+    "ast_hash": "89059fe7a15090265dd513bcad2a57c0",
+    "semantic_hash": "89059fe7a15090265dd513bcad2a57c0"
+  },
+  "client/src/lib/answerEntry.ts": {
+    "mtime": 1792991118.5543952,
+    "seen": 1793731485.2290287,
+    "ast_hash": "685a15751cb892d5d9198dcab71256fe",
+    "semantic_hash": "685a15751cb892d5d9198dcab71256fe"
+  },
+  "client/src/lib/api.ts": {
+    "mtime": 1793716523.432987,
+    "seen": 1793731485.2290287,
+    "ast_hash": "26635e068f449b149bfc0e8a13d4e530",
+    "semantic_hash": "26635e068f449b149bfc0e8a13d4e530"
+  },
+  "client/src/lib/auth.ts": {
+    "mtime": 1787963714.817667,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3d3635e85bd9c7f264f2848a6a847e14",
+    "semantic_hash": "3d3635e85bd9c7f264f2848a6a847e14"
+  },
+  "client/src/lib/categoryPlacement.ts": {
+    "mtime": 1793611751.6924217,
+    "seen": 1793731485.2290287,
+    "ast_hash": "72ae8928c64413fdf2a38c5c6e81a2bf",
+    "semantic_hash": "72ae8928c64413fdf2a38c5c6e81a2bf"
+  },
+  "client/src/lib/classroomTimer.ts": {
+    "mtime": 1792840876.090584,
+    "seen": 1793731485.2290287,
+    "ast_hash": "98045d36c57bf480c246aba4094985bd",
+    "semantic_hash": "98045d36c57bf480c246aba4094985bd"
+  },
+  "client/src/lib/contentEditorLink.ts": {
+    "mtime": 1793594993.926486,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6e09925fea0332884167b26b73cbd3f0",
+    "semantic_hash": "6e09925fea0332884167b26b73cbd3f0"
+  },
+  "client/src/lib/correctionNavigation.ts": {
+    "mtime": 1791398755.7517493,
+    "seen": 1793731485.2290287,
+    "ast_hash": "651f7d86673a1154531c8065c105d04e",
+    "semantic_hash": "651f7d86673a1154531c8065c105d04e"
+  },
+  "client/src/lib/dashboardResource.ts": {
+    "mtime": 1793403582.9136553,
+    "seen": 1793731485.2290287,
+    "ast_hash": "718406b64485ba585ace0e765ef57b0f",
+    "semantic_hash": "718406b64485ba585ace0e765ef57b0f"
+  },
+  "client/src/lib/exam.ts": {
+    "mtime": 1792984934.583237,
+    "seen": 1793731485.2290287,
+    "ast_hash": "491819d8df4a1c4d583a2d4a529ff877",
+    "semantic_hash": "491819d8df4a1c4d583a2d4a529ff877"
+  },
+  "client/src/lib/examLibrary.ts": {
+    "mtime": 1793013829.9801853,
+    "seen": 1793731485.2290287,
+    "ast_hash": "910edeae49ba973871753755a939ca01",
+    "semantic_hash": "910edeae49ba973871753755a939ca01"
+  },
+  "client/src/lib/examResults.ts": {
+    "mtime": 1793152595.665647,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0295b66b6344bba3ae77cb713c104f13",
+    "semantic_hash": "0295b66b6344bba3ae77cb713c104f13"
+  },
+  "client/src/lib/examReviewAnswer.ts": {
+    "mtime": 1793689730.7733898,
+    "seen": 1793731485.2290287,
+    "ast_hash": "80fe6268718490f0f1221013d1864831",
+    "semantic_hash": "80fe6268718490f0f1221013d1864831"
+  },
+  "client/src/lib/examSessionProgress.ts": {
+    "mtime": 1793403153.999289,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1493b46459ef9137bee2e3efb3f235d8",
+    "semantic_hash": "1493b46459ef9137bee2e3efb3f235d8"
+  },
+  "client/src/lib/examTimer.ts": {
+    "mtime": 1793152639.7138977,
+    "seen": 1793731485.2290287,
+    "ast_hash": "409a801d82eedb0d530f919c8a2c8cf0",
+    "semantic_hash": "409a801d82eedb0d530f919c8a2c8cf0"
+  },
+  "client/src/lib/inlineDropdownTemplate.ts": {
+    "mtime": 1793025078.1935198,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f803b7b1781d7edcd53bf9c3f7eae933",
+    "semantic_hash": "f803b7b1781d7edcd53bf9c3f7eae933"
+  },
+  "client/src/lib/learningPlan.ts": {
+    "mtime": 1793716522.819072,
+    "seen": 1793731485.2290287,
+    "ast_hash": "e45b947f0edd14be60e8332d31718065",
+    "semantic_hash": "e45b947f0edd14be60e8332d31718065"
+  },
+  "client/src/lib/loginDestination.ts": {
+    "mtime": 1793020718.6926768,
+    "seen": 1793731485.2290287,
+    "ast_hash": "fcebebe2ff18bf0451f3692f0877fa4e",
+    "semantic_hash": "fcebebe2ff18bf0451f3692f0877fa4e"
+  },
+  "client/src/lib/mathDragDrop.ts": {
+    "mtime": 1793019458.7670925,
+    "seen": 1793731485.2290287,
+    "ast_hash": "41f21a35e0763dc4dea69f86b4ba3b08",
+    "semantic_hash": "41f21a35e0763dc4dea69f86b4ba3b08"
+  },
+  "client/src/lib/mathDragTable.ts": {
+    "mtime": 1793015696.2492037,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6b9fe8957630f65e1264f4fcd305e74f",
+    "semantic_hash": "6b9fe8957630f65e1264f4fcd305e74f"
+  },
+  "client/src/lib/mathEntryHistory.ts": {
+    "mtime": 1793013896.3588614,
+    "seen": 1793731485.2290287,
+    "ast_hash": "017d45327c74d923832008f0d8b6da6f",
+    "semantic_hash": "017d45327c74d923832008f0d8b6da6f"
+  },
+  "client/src/lib/mathEntryInput.ts": {
+    "mtime": 1792242126.1382196,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8d8dc6bd5ff1249ab24a8113a9b7d091",
+    "semantic_hash": "8d8dc6bd5ff1249ab24a8113a9b7d091"
+  },
+  "client/src/lib/mathStudyHall.ts": {
+    "mtime": 1793122866.0438309,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1c67e0f2a7d55b3e705592454bc9b4a4",
+    "semantic_hash": "1c67e0f2a7d55b3e705592454bc9b4a4"
+  },
+  "client/src/lib/mathTextRuns.ts": {
+    "mtime": 1793608383.0632422,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1cc2ee1c05e5f1c477b26f3604c5dfa8",
+    "semantic_hash": "1cc2ee1c05e5f1c477b26f3604c5dfa8"
+  },
+  "client/src/lib/navigation.ts": {
+    "mtime": 1783938991.7148888,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ed29bc36cfe6314bba3be5e496055989",
+    "semantic_hash": "ed29bc36cfe6314bba3be5e496055989"
+  },
+  "client/src/lib/numberLineInteraction.ts": {
+    "mtime": 1793031181.3920224,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3f9b00b2b1a75c75d5ffee58d2a03398",
+    "semantic_hash": "3f9b00b2b1a75c75d5ffee58d2a03398"
+  },
+  "client/src/lib/passageFamilies.ts": {
+    "mtime": 1793728216.7475815,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0a5c69a3e9cfa2a05a7a846aa1f20978",
+    "semantic_hash": "0a5c69a3e9cfa2a05a7a846aa1f20978"
+  },
+  "client/src/lib/passageOrganization.ts": {
+    "mtime": 1793718926.3407295,
+    "seen": 1793731485.2290287,
+    "ast_hash": "181e57acf0732a20cf6f189726243e4e",
+    "semantic_hash": "181e57acf0732a20cf6f189726243e4e"
+  },
+  "client/src/lib/pointGraphLayout.ts": {
+    "mtime": 1793028826.5069025,
+    "seen": 1793731485.2290287,
+    "ast_hash": "534c70e63373fdc00f98872cd6efda74",
+    "semantic_hash": "534c70e63373fdc00f98872cd6efda74"
+  },
+  "client/src/lib/requestDeadline.ts": {
+    "mtime": 1793403640.1982262,
+    "seen": 1793731485.2290287,
+    "ast_hash": "aba22f5f44423a769ee4f9221946578a",
+    "semantic_hash": "aba22f5f44423a769ee4f9221946578a"
+  },
+  "client/src/lib/resultFilters.ts": {
+    "mtime": 1793152688.7988064,
+    "seen": 1793731485.2290287,
+    "ast_hash": "80a37be126fe0bf478ddef870954d708",
+    "semantic_hash": "80a37be126fe0bf478ddef870954d708"
+  },
+  "client/src/lib/sessionCache.ts": {
+    "mtime": 1785112449.3630135,
+    "seen": 1793731485.2290287,
+    "ast_hash": "398d90b9858c1fe8a314f1056e2593e5",
+    "semantic_hash": "398d90b9858c1fe8a314f1056e2593e5"
+  },
+  "client/src/lib/sessionPreparation.ts": {
+    "mtime": 1793718292.0335252,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6865633b98b08f29cc03a9606b5adcda",
+    "semantic_hash": "6865633b98b08f29cc03a9606b5adcda"
+  },
+  "client/src/lib/shsatCountdown.ts": {
+    "mtime": 1792243340.7496405,
+    "seen": 1793731485.2290287,
+    "ast_hash": "55b00ba12e41bff2256ea2b5bee14a7a",
+    "semantic_hash": "55b00ba12e41bff2256ea2b5bee14a7a"
+  },
+  "client/src/lib/studentAnalytics.ts": {
+    "mtime": 1793726592.5534852,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1f6e66355b23f74e065cc341cc5ff2e6",
+    "semantic_hash": "1f6e66355b23f74e065cc341cc5ff2e6"
+  },
+  "client/src/lib/studentMaterials.ts": {
+    "mtime": 1792246514.4245882,
+    "seen": 1793731485.2290287,
+    "ast_hash": "5fd88d8e125a2f521e2878586d1797d5",
+    "semantic_hash": "5fd88d8e125a2f521e2878586d1797d5"
+  },
+  "client/src/lib/studentPreview.ts": {
+    "mtime": 1785145689.749446,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8ca6847ef8083b31fd48bdb910c4f0d6",
+    "semantic_hash": "8ca6847ef8083b31fd48bdb910c4f0d6"
+  },
+  "client/src/lib/supabase.ts": {
+    "mtime": 1781207626.891322,
+    "seen": 1793731485.2290287,
+    "ast_hash": "7268626e32e5c9948a9a9a4b92504ef5",
+    "semantic_hash": "7268626e32e5c9948a9a9a4b92504ef5"
+  },
+  "client/src/lib/teacherNavigation.ts": {
+    "mtime": 1793154039.858123,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0249c9e4c053330fe5de00de1db1ee62",
+    "semantic_hash": "0249c9e4c053330fe5de00de1db1ee62"
+  },
+  "client/src/main.tsx": {
+    "mtime": 1789062451.9752023,
+    "seen": 1793731485.2290287,
+    "ast_hash": "d822bde6d8081740e63d3c08318f5fab",
+    "semantic_hash": "d822bde6d8081740e63d3c08318f5fab"
+  },
+  "client/src/pages/AdminDashboardPage.tsx": {
+    "mtime": 1786101424.462344,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3cb88ef7d7991a1181c064c5413fc606",
+    "semantic_hash": "3cb88ef7d7991a1181c064c5413fc606"
+  },
+  "client/src/pages/AdvancedPassagePage.tsx": {
+    "mtime": 1793593339.2346625,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b0d4011d07b9637e7c823e69f90a67fd",
+    "semantic_hash": "b0d4011d07b9637e7c823e69f90a67fd"
+  },
+  "client/src/pages/AnswerSheetsPage.tsx": {
+    "mtime": 1792250360.591815,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ad3b820d4fa8f851319ef707d4719aeb",
+    "semantic_hash": "ad3b820d4fa8f851319ef707d4719aeb"
+  },
+  "client/src/pages/AuthPage.tsx": {
+    "mtime": 1793152724.514398,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a13803f48c24b79e97ead2943d8e22f0",
+    "semantic_hash": "a13803f48c24b79e97ead2943d8e22f0"
+  },
+  "client/src/pages/BoardPage.tsx": {
+    "mtime": 1791308379.0474129,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ff1adb8bac5958c1cec21f29d0baa989",
+    "semantic_hash": "ff1adb8bac5958c1cec21f29d0baa989"
+  },
+  "client/src/pages/ClassroomMealsPage.tsx": {
+    "mtime": 1793209465.286166,
+    "seen": 1793731485.2290287,
+    "ast_hash": "627949d3cf7fca64cfd20c0bb297f5a6",
+    "semantic_hash": "627949d3cf7fca64cfd20c0bb297f5a6"
+  },
+  "client/src/pages/ExamCorrectionsPage.tsx": {
+    "mtime": 1793403154.0012896,
+    "seen": 1793731485.2290287,
+    "ast_hash": "ef8c852bbe739e27d205f1c248605e8f",
+    "semantic_hash": "ef8c852bbe739e27d205f1c248605e8f"
+  },
+  "client/src/pages/ExamLaunchPage.tsx": {
+    "mtime": 1793207881.6506705,
+    "seen": 1793731485.2290287,
+    "ast_hash": "6503540d95d787eea0ef679c07087a2b",
+    "semantic_hash": "6503540d95d787eea0ef679c07087a2b"
+  },
+  "client/src/pages/ExamResultsPage.tsx": {
+    "mtime": 1793403154.00229,
+    "seen": 1793731485.2290287,
+    "ast_hash": "71587eca08b8d34e12ca780093a03f5c",
+    "semantic_hash": "71587eca08b8d34e12ca780093a03f5c"
+  },
+  "client/src/pages/ExamSessionPage.tsx": {
+    "mtime": 1793709775.43235,
+    "seen": 1793731485.2290287,
+    "ast_hash": "720d86fa2a006055ae2d882c139815bc",
+    "semantic_hash": "720d86fa2a006055ae2d882c139815bc"
+  },
+  "client/src/pages/HomePage.tsx": {
+    "mtime": 1793114611.9558234,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9ae4989fcd432242bc7175347d1062a3",
+    "semantic_hash": "9ae4989fcd432242bc7175347d1062a3"
+  },
+  "client/src/pages/InfinitePracticePage.tsx": {
+    "mtime": 1793031714.794024,
+    "seen": 1793731485.2290287,
+    "ast_hash": "2f4930605ae51e951b0c5065173197b9",
+    "semantic_hash": "2f4930605ae51e951b0c5065173197b9"
+  },
+  "client/src/pages/LibraryCorrectionsPage.tsx": {
+    "mtime": 1791398048.847716,
+    "seen": 1793731485.2290287,
+    "ast_hash": "efcb3b24c05b2eb4f144a6d6edd5d310",
+    "semantic_hash": "efcb3b24c05b2eb4f144a6d6edd5d310"
+  },
+  "client/src/pages/PracticeStudioPage.tsx": {
+    "mtime": 1793648925.1438706,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3a1118096b0fc2a13ff8daae413c4a74",
+    "semantic_hash": "3a1118096b0fc2a13ff8daae413c4a74"
+  },
+  "client/src/pages/ProfileSettingsPage.tsx": {
+    "mtime": 1793023480.9948761,
+    "seen": 1793731485.2290287,
+    "ast_hash": "bf94eca31e3923825c3376c38ba495e3",
+    "semantic_hash": "bf94eca31e3923825c3376c38ba495e3"
+  },
+  "client/src/pages/StaffDashboardPage.tsx": {
+    "mtime": 1792589788.0971892,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f2c04e497d274292f82ac00ab35cbe39",
+    "semantic_hash": "f2c04e497d274292f82ac00ab35cbe39"
+  },
+  "client/src/pages/StudentAchievementsPage.tsx": {
+    "mtime": 1793196328.7138853,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c5de880f767082a705970e5982381fba",
+    "semantic_hash": "c5de880f767082a705970e5982381fba"
+  },
+  "client/src/pages/StudentAnswerSheetsPage.tsx": {
+    "mtime": 1792431045.148108,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b8953e6f02398806c9d1d71bd6ad1e37",
+    "semantic_hash": "b8953e6f02398806c9d1d71bd6ad1e37"
+  },
+  "client/src/pages/StudentAssessmentsPage.tsx": {
+    "mtime": 1793014241.0774014,
+    "seen": 1793731485.2290287,
+    "ast_hash": "aae24a0c8dfb09d5113d657e9530a9cc",
+    "semantic_hash": "aae24a0c8dfb09d5113d657e9530a9cc"
+  },
+  "client/src/pages/StudentAssignmentsPage.tsx": {
+    "mtime": 1791173315.841105,
+    "seen": 1793731485.2290287,
+    "ast_hash": "b4c8e7a5ec7d9a1f5bc7f45e1f24ff6d",
+    "semantic_hash": "b4c8e7a5ec7d9a1f5bc7f45e1f24ff6d"
+  },
+  "client/src/pages/StudentBoardsPage.tsx": {
+    "mtime": 1791308379.557529,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4db4e546d5a683e8208f76e2fd691db2",
+    "semantic_hash": "4db4e546d5a683e8208f76e2fd691db2"
+  },
+  "client/src/pages/StudentClassroomPage.tsx": {
+    "mtime": 1793404422.5351462,
+    "seen": 1793731485.2290287,
+    "ast_hash": "04597dc3a9012ea7219284385510870c",
+    "semantic_hash": "04597dc3a9012ea7219284385510870c"
+  },
+  "client/src/pages/StudentDashboardPage.tsx": {
+    "mtime": 1793154106.3084173,
+    "seen": 1793731485.2290287,
+    "ast_hash": "4d63542a25cc9850eb01a5d10df06117",
+    "semantic_hash": "4d63542a25cc9850eb01a5d10df06117"
+  },
+  "client/src/pages/StudentGameRoomsPage.tsx": {
+    "mtime": 1792840985.6299908,
+    "seen": 1793731485.2290287,
+    "ast_hash": "9fa9767ac19b992b7205e6c0b211355a",
+    "semantic_hash": "9fa9767ac19b992b7205e6c0b211355a"
+  },
+  "client/src/pages/StudentMaterialsPage.tsx": {
+    "mtime": 1793031712.986024,
+    "seen": 1793731485.2290287,
+    "ast_hash": "51f3c5f2cddf89188e05c0e7dce1f630",
+    "semantic_hash": "51f3c5f2cddf89188e05c0e7dce1f630"
+  },
+  "client/src/pages/StudentResultsPage.tsx": {
+    "mtime": 1793403154.0062907,
+    "seen": 1793731485.2290287,
+    "ast_hash": "3b8e478bb117675c6918ed900f78b856",
+    "semantic_hash": "3b8e478bb117675c6918ed900f78b856"
+  },
+  "client/src/pages/StudentTopicHubPage.tsx": {
+    "mtime": 1791339092.960099,
+    "seen": 1793731485.2290287,
+    "ast_hash": "1017b7d2e44b041a7195f1eac70be520",
+    "semantic_hash": "1017b7d2e44b041a7195f1eac70be520"
+  },
+  "client/src/pages/TeacherCorrectionsPage.tsx": {
+    "mtime": 1792601480.2542694,
+    "seen": 1793731485.2290287,
+    "ast_hash": "a55ced75bab2c782fab7bd89b0cec65d",
+    "semantic_hash": "a55ced75bab2c782fab7bd89b0cec65d"
+  },
+  "client/src/pages/TeacherDashboardPage.tsx": {
+    "mtime": 1793718926.3397288,
+    "seen": 1793731485.2290287,
+    "ast_hash": "e7d170ae4a189f5e1dccbc4401e81fe3",
+    "semantic_hash": "e7d170ae4a189f5e1dccbc4401e81fe3"
+  },
+  "client/src/pages/TeacherLibraryPage.tsx": {
+    "mtime": 1793025227.0301578,
+    "seen": 1793731485.2290287,
+    "ast_hash": "fff3029d44d2661e88f65e82d6e0a611",
+    "semantic_hash": "fff3029d44d2661e88f65e82d6e0a611"
+  },
+  "client/src/pages/TeacherMealsPage.tsx": {
+    "mtime": 1793209502.2608101,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c3faefaf5a5925537d8f97a74d76775f",
+    "semantic_hash": "c3faefaf5a5925537d8f97a74d76775f"
+  },
+  "client/src/pages/TopicPracticePage.tsx": {
+    "mtime": 1787616788.4608543,
+    "seen": 1793731485.2290287,
+    "ast_hash": "c1722b8e6713e5825a41384606943e93",
+    "semantic_hash": "c1722b8e6713e5825a41384606943e93"
+  },
+  "client/src/vite-env.d.ts": {
+    "mtime": 1781168320.3444865,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0352474ba2918efe13895edbc3780d94",
+    "semantic_hash": "0352474ba2918efe13895edbc3780d94"
+  },
+  "client/src/content/exams/README.md": {
+    "mtime": 1793013589.2981477,
+    "seen": 1793731485.2290287,
+    "ast_hash": "f2c7b0375691c1c7b35be3ab6128c29d",
+    "semantic_hash": "f2c7b0375691c1c7b35be3ab6128c29d"
+  },
+  "client/src/content/exams/tests/README.md": {
+    "mtime": 1785109140.5293376,
+    "seen": 1793731485.2290287,
+    "ast_hash": "8a18e67dfd7cec59aab341e62d8be3e0",
+    "semantic_hash": "8a18e67dfd7cec59aab341e62d8be3e0"
+  },
+  "client/src/content/practice/questionBanks/README.md": {
+    "mtime": 1785040451.5256448,
+    "seen": 1793731485.2290287,
+    "ast_hash": "0fe576b41e359c4d480213e0c5951894",
+    "semantic_hash": "0fe576b41e359c4d480213e0c5951894"
+  }
+}

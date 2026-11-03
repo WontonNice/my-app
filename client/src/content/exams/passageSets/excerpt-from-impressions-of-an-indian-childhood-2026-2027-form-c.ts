@@ -19,7 +19,7 @@ const excerptFromImpressionsOfAnIndianChildhood20262027FormCQuestions: ExamQuest
     "points": 1,
     "prompt": "In paragraph 1, the phrases “cool morning breezes swept freely” and “wafting the perfume of sweet grasses” affect the tone of the excerpt by suggesting",
     "promptHtml": "<p>In paragraph 1, the phrases “cool morning breezes swept freely” and “wafting the perfume of sweet grasses” affect the tone of the excerpt by suggesting</p>",
-    "topic": "",
+    "topic": "Tone & Mood",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const excerptFromImpressionsOfAnIndianChildhood20262027FormCQuestions: ExamQuest
     "points": 1,
     "prompt": "The phrase “just as an artist arranges the paints upon his palette” in paragraph 2 suggests that",
     "promptHtml": "<p>The phrase “just as an artist arranges the paints upon his palette” in <span>paragraph 2</span> suggests that</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const excerptFromImpressionsOfAnIndianChildhood20262027FormCQuestions: ExamQuest
     "points": 1,
     "prompt": "The author’s use of sequence in paragraphs 1 and 2 contributes to the development of ideas in the excerpt by",
     "promptHtml": "<p>The author’s use of sequence in paragraphs 1 and 2 contributes to the development of ideas in the excerpt by</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const excerptFromImpressionsOfAnIndianChildhood20262027FormCQuestions: ExamQuest
     "points": 1,
     "prompt": "Which sentence best summarizes the process of beading that is described in the excerpt?",
     "promptHtml": "<p>Which sentence <strong>best</strong> summarizes the process of beading that is described in the excerpt?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const excerptFromImpressionsOfAnIndianChildhood20262027FormCQuestions: ExamQuest
     "points": 1,
     "prompt": "The idea that mastering moccasin design and creation requires experience is best illustrated in the excerpt through",
     "promptHtml": "<p>The idea that mastering moccasin design and creation requires experience is <strong>best</strong> illustrated in the excerpt through</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const excerptFromImpressionsOfAnIndianChildhood20262027FormCQuestions: ExamQuest
     "points": 1,
     "prompt": "How does the author distinguish her point of view from that of her mother?",
     "promptHtml": "<p>How does the author distinguish her point of view from that of her mother?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const excerptFromImpressionsOfAnIndianChildhood20262027FormCQuestions: ExamQuest
     "points": 1,
     "prompt": "Read this sentence from paragraph 7.\n\nAlways after these confining lessons I was wild with surplus spirits, and found joyous relief in running loose in the open again.\n\nWhich sentence best describes how this sentence fits into the overall structure of the excerpt?",
     "promptHtml": "<p>Read this sentence from paragraph 7.</p><blockquote><strong><strong>Always after these confining lessons I was wild with surplus spirits, and found joyous relief in running loose in the open again.</strong></strong></blockquote><p>Which sentence <strong>best</strong> describes how this sentence fits into the overall structure of the excerpt?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",

@@ -19,7 +19,7 @@ const excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20262027FormBQuestions
     "points": 1,
     "prompt": "What is the effect of comparing groups of bristlecone pines to “a city within a cemetery” (paragraph 2)?",
     "promptHtml": "<p>What is the effect of comparing groups of bristlecone pines to “a city within a cemetery” <span>(paragraph 2)?</span></p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20262027FormBQuestions
     "points": 1,
     "prompt": "In paragraph 4, the idea that the bristlecone pine can withstand difficult conditions is illustrated mainly through",
     "promptHtml": "<p>In paragraph 4, the idea that the bristlecone pine can withstand difficult conditions is illustrated <strong>mainly</strong> through</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20262027FormBQuestions
     "points": 1,
     "prompt": "Read this sentence from paragraph 5.\nEmpires rose and fell; wars raged; . . . and the tree from 2500 B.C. continued its implacable slow-motion existence, adding about two-hundredths of an inch to the diameter of its trunk each year.\nThe sentence contributes to the development of ideas in the excerpt by",
     "promptHtml": "<p>Read this sentence from <span>paragraph 5.</span></p> <p data-align=\"indent\"><strong>Empires rose and fell; wars <span>raged; . . .</span> and the tree from <span>2500 <span data-small-caps=\"true\">B.C.</span></span> continued its implacable slow-motion existence, adding about two-hundredths of an inch to the diameter of its trunk each year.</strong></p> <p>The sentence contributes to the development of ideas in the excerpt by</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20262027FormBQuestions
     "points": 1,
     "prompt": "Which claim is best supported by the details in paragraph 5 about the bristlecone pine’s tree-ring record?",
     "promptHtml": "<p>Which claim is <strong>best</strong> supported by the details in <span>paragraph 5</span> about the bristlecone pine’s tree-ring record?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20262027FormBQuestions
     "points": 1,
     "prompt": "The phrases “clings to life” and “stripped of bark” in paragraph 6 are used to highlight",
     "promptHtml": "<p>The phrases “clings to life” and “stripped of bark” in <span>paragraph 6</span> are used to highlight</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20262027FormBQuestions
     "points": 1,
     "prompt": "What is the best summary of the bristlecone pine’s life cycle?",
     "promptHtml": "<p>What is the <strong>best</strong> summary of the bristlecone pine’s life cycle?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20262027FormBQuestions
     "points": 1,
     "prompt": "Throughout the excerpt, the author conveys his point of view mainly by",
     "promptHtml": "<p>Throughout the excerpt, the author conveys his point of view <strong>mainly</strong> by</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",

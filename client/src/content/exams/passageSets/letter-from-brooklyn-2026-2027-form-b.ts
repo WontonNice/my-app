@@ -19,7 +19,7 @@ const letterFromBrooklyn20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the structure of the poem affect the poem’s meaning?",
     "promptHtml": "<p><span>How</span> does the structure of the <span>poem</span> affect the poem’s meaning?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const letterFromBrooklyn20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which lines support the idea that a change in the weather will lessen the speaker’s appreciation for the city?",
     "promptHtml": "<p><span>Which</span> lines <span>support</span> the idea that a change in the weather will lessen the speaker’s appreciation for the city?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const letterFromBrooklyn20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read lines 5–6 from the poem.\nThe weather will turn cold.\nBut that all happens later.\nHow do the lines develop a central theme of the poem?",
     "promptHtml": "<p><span>Read</span> lines 5–6 from the <span>poem</span>.</p> <p data-align=\"indent\"><strong>The weather will turn cold.</strong><br><strong>But that all happens later.</strong></p> <p><span>How</span> do the lines develop a central <span>theme</span> of the poem?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const letterFromBrooklyn20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read lines 7–9 from the poem.\nFor now it is the early edge of fall,\nleaves green still while the air narrows,\nis slightly crisp,\nThe word choice in the lines helps convey the speaker’s belief that",
     "promptHtml": "<p><span>Read</span> lines 7–9 from the <span>poem</span>.</p> <p data-align=\"indent\"><strong>For now it is the early edge of fall,</strong><br><strong>leaves green still while the air narrows,</strong><br><strong>is slightly crisp,</strong></p> <p>The <span>word</span> choice in the lines <span>helps</span> convey the speaker’s belief that</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const letterFromBrooklyn20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which idea does the comparison of the brownstone houses to “a pop-up picture book I could have had as a child, / but didn’t” in lines 20–21 convey?",
     "promptHtml": "<p><span>Which</span> idea does the comparison of the brownstone houses to “a pop-up picture book I could have had as a <span>child, /</span> but didn’t” in <span>lines 20–21</span> convey?</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const letterFromBrooklyn20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read these lines from the poem.\nI can already see how this will end. (line 1)\nHow Brooklyn makes me nostalgic\nfor the moment I am walking inside of. (lines 21–22)\nThe lines develop a central idea of the poem by",
     "promptHtml": "<p><span>Read</span> these lines from the <span>poem</span>.</p> <p data-align=\"indent\"><strong>I can already see how this will end.</strong> (line 1)</p> <p data-align=\"indent\"><strong>How Brooklyn makes me&nbsp;nostalgic</strong><br><strong>for the moment I am walking inside of.</strong> (lines 21–22)</p> <p>The lines develop a central idea of the poem by</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const letterFromBrooklyn20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The speaker’s thoughts throughout the poem develop a theme by showing that",
     "promptHtml": "<p>The speaker’s thoughts throughout the <span>poem</span> develop a <span>theme</span> by showing that</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",

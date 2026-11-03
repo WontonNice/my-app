@@ -19,7 +19,7 @@ const serpentMound20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the poem’s form contribute to the poem’s meaning?",
     "promptHtml": "<p>How does the poem’s form contribute to the poem’s meaning?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const serpentMound20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which lines reveal how the setting affects the speaker and the men from the museum?",
     "promptHtml": "<p>Which lines reveal how the setting affects the speaker and the men from the museum?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const serpentMound20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Lines 1–2 contribute to the development of ideas in the poem by",
     "promptHtml": "<p>Lines 1–2 contribute to the development of ideas in the poem by</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const serpentMound20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read line 28 from the poem.\n\nAt the mouth end, there was an oval mound\n\nHow does the line contribute to the development of ideas in the poem?",
     "promptHtml": "<p>Read line 28 from the poem.</p><blockquote><strong><strong>At the mouth end, there was an oval mound</strong></strong></blockquote><p>How does the line contribute to the development of ideas in the poem?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const serpentMound20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "What impact do the phrases “all but / invisible” and “even less obvious” in lines 16–18 have on the meaning of the poem?",
     "promptHtml": "<p>What impact do the phrases “all but / invisible” and “even less obvious” in <span>lines 16–18</span> have on the meaning of the poem?</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const serpentMound20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "What impact do the words “swish,” “chitter,” and “cry” in lines 12–13 have in the poem?",
     "promptHtml": "<p>What impact do the words “<em>swish</em>,” “chitter,” and “cry” in <span>lines 12–13</span> have in the poem?</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const serpentMound20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the speaker’s interaction with Ruth in lines 37–41 convey a central idea of the poem?",
     "promptHtml": "<p>How does the speaker’s interaction with Ruth in <span>lines 37–41</span> convey a central idea of the poem?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -306,7 +306,7 @@ const serpentMound20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The poet contrasts the speaker’s and Ruth’s points of view regarding the mound by using dialogue to",
     "promptHtml": "<p>The poet contrasts the speaker’s and Ruth’s points of view regarding the mound by using dialogue to</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",

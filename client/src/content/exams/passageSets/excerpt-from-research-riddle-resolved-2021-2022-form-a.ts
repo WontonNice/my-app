@@ -116,7 +116,7 @@ const excerptFromResearchRiddleResolved20212022FormAQuestions: ExamQuestion[] = 
     "points": 1,
     "prompt": "How do paragraphs 4–6 contribute to the development of ideas in the excerpt?",
     "promptHtml": "<p>How do paragraphs 4–6 contribute to the development of ideas in the excerpt?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -162,7 +162,7 @@ const excerptFromResearchRiddleResolved20212022FormAQuestions: ExamQuestion[] = 
     "points": 1,
     "prompt": "How does paragraph 8 fit into the overall structure of the excerpt?",
     "promptHtml": "<p>How does paragraph 8 fit into the overall structure of the excerpt?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -208,7 +208,7 @@ const excerptFromResearchRiddleResolved20212022FormAQuestions: ExamQuestion[] = 
     "points": 1,
     "prompt": "Which sentence gives the best summary of the section “Same and Different” (paragraphs 9–11)?",
     "promptHtml": "<p>Which sentence gives the best summary of the section “Same and Different” (paragraphs 9–11)?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -254,7 +254,7 @@ const excerptFromResearchRiddleResolved20212022FormAQuestions: ExamQuestion[] = 
     "points": 1,
     "prompt": "The details in paragraphs 12–14 about the platypus’s different abilities convey a central idea of the excerpt by",
     "promptHtml": "<p>The details in paragraphs 12–14 about the platypus’s different abilities convey a central idea of the excerpt by</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -346,7 +346,7 @@ const excerptFromResearchRiddleResolved20212022FormAQuestions: ExamQuestion[] = 
     "points": 1,
     "prompt": "How can researching the genomes of other animals inform scientists’ understanding of human health and disease?",
     "promptHtml": "<p>How can researching the genomes of other animals inform scientists’ understanding of human health and disease?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",

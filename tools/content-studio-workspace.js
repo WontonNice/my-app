@@ -1306,6 +1306,34 @@ const studioUI = {
     showSection(this.testSection);
   },
 
+  async addMathQuestionToPlanner(questionId, button) {
+    if (!questionId || button.disabled) return;
+    if (app.mathDirty) { setStatus('Save the math section before adding this question so the planner receives your latest version.', 'warning'); return; }
+    // Open synchronously to preserve the click gesture and keep the editor in place.
+    const plannerWindow = window.open('about:blank', '_blank');
+    if (plannerWindow) plannerWindow.opener = null;
+    button.disabled = true;
+    button.textContent = 'Opening planner…';
+    try {
+      const query = new URLSearchParams({ tab: 'planner', plannerQuestionId: questionId });
+      const { url } = await api('/api/math-command/teacher-workspace', { method: 'POST', body: JSON.stringify({ query: query.toString() }) });
+      if (plannerWindow && !plannerWindow.closed) plannerWindow.location.href = url;
+      else {
+        const link = this.element('a', 'secondary', 'Open planner to choose a batch ↗');
+        link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+        button.parentElement.querySelector('[data-planner-handoff]')?.remove();
+        link.dataset.plannerHandoff = ''; button.after(link);
+      }
+      setStatus('Question selected for your account planner. Choose a batch in the planner to finish adding it.', 'success');
+    } catch (error) {
+      plannerWindow?.close();
+      setStatus(`Could not open your planner: ${error.message}`, 'error');
+    } finally {
+      button.disabled = false;
+      button.textContent = 'Add to planner';
+    }
+  },
+
   mountMath() {
     this.remember('math-exam', app.selectedMathAssessmentId);
     this.remember('math-question', app.mathDraft?.questions[app.selectedMathQuestionIndex]?.id || '');
@@ -1323,6 +1351,11 @@ const studioUI = {
     root.querySelector('.studio-save-bar').prepend(answers);
     const stack = root.querySelector(".math-editor-stack");
     if (stack) {
+      const questionId = app.mathDraft.questions[app.selectedMathQuestionIndex]?.id;
+      const planner = this.element('button', 'secondary', 'Add to planner');
+      planner.type = 'button'; planner.id = 'add-math-to-planner';
+      planner.onclick = () => this.addMathQuestionToPlanner(questionId, planner);
+      stack.querySelector('.math-editor-actions').prepend(planner);
       const grid = stack.querySelector(".question-grid");
       const metadata = this.element("div", "studio-math-metadata");
       ["topic", "subtopic", "skilled"].forEach((key) => metadata.append(grid.querySelector(`[data-math-field='${key}']`).closest(key==='skilled'?'.studio-skilled-field':'label')));

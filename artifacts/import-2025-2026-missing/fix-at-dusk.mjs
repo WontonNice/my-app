@@ -1,0 +1,18 @@
+import fs from 'node:fs/promises';
+import {load} from 'cheerio';
+import {isDeepStrictEqual} from 'node:util';
+const base='http://127.0.0.1:4319';
+const s=await fetch(base+'/api/state').then(r=>r.json());
+const p=s.passages.find(p=>p.id==='at-dusk-2025-2026-form-b'),before=structuredClone(p);
+const lines=JSON.parse(await fs.readFile(new URL('at-dusk-source-lines.json',import.meta.url),'utf8'));
+if(lines.length!==29)throw Error('Unexpected line count');
+p.text=lines.map(x=>x.text).join('\n');
+p.richText=lines.map(line=>{const $=load(line.html,null,false);$('span.glossary-term').replaceWith('<span data-glossary-definition="speaking in a flattering manner" role="link" tabindex="0">wheedling</span>');return '<div data-poetry-line="true">'+$.html()+'</div>';}).join('');
+p.preserveSourceLayout=true;
+await fs.writeFile(new URL('at-dusk-before.json',import.meta.url),JSON.stringify(before,null,2));
+const r=await fetch(base+'/api/passages',{method:'POST',headers:{'Content-Type':'application/json','X-Editor-Token':s.editToken},body:JSON.stringify(p)});
+if(!r.ok)throw Error(await r.text());
+const saved=(await fetch(base+'/api/state').then(r=>r.json())).passages.find(x=>x.id===p.id);
+if(!isDeepStrictEqual(before.questions,saved.questions))throw Error('Questions changed');
+await fs.writeFile(new URL('at-dusk-receipt.json',import.meta.url),JSON.stringify({lineCount:lines.length,questionsUnchanged:true,changedFields:Object.keys(saved).filter(k=>!isDeepStrictEqual(before[k],saved[k]))},null,2));
+console.log('Saved 29 verse lines; questions unchanged');

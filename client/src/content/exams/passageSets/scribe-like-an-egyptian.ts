@@ -203,6 +203,7 @@ export const scribeLikeAnEgyptianPassageSet: ExamPassageSet = {
   passage: createProsePassage({
     id: "scribe-like-an-egyptian",
     title: "Excerpt from “Scribe Like an Egyptian”",
+    author: "Hilary Wilson",
     image: {"alt":"Excerpt from “Scribe Like an Egyptian” illustration","src":"/exam-images/scribe-like-an-egyptian-passage.png"},
     passageType: "informational",
     passageCategory: "official_handbook",

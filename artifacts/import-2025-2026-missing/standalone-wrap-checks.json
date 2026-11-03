@@ -1,0 +1,118 @@
+[
+  {
+    "question": 54,
+    "metrics": [
+      {
+        "class": "exam-question-passage-scroll is-text-selection",
+        "overflow": false,
+        "scrollWidth": 546,
+        "width": 546
+      },
+      {
+        "class": "exam-question-panel",
+        "overflow": false,
+        "scrollWidth": 550,
+        "width": 550
+      }
+    ]
+  },
+  {
+    "question": 55,
+    "metrics": [
+      {
+        "class": "exam-standalone-panel",
+        "overflow": false,
+        "scrollWidth": 760,
+        "width": 760
+      },
+      {
+        "class": "exam-standalone-stimulus exam-highlightable",
+        "overflow": false,
+        "scrollWidth": 748,
+        "width": 748
+      },
+      {
+        "class": "exam-choice ",
+        "overflow": false,
+        "scrollWidth": 760,
+        "width": 760
+      },
+      {
+        "class": "exam-choice ",
+        "overflow": false,
+        "scrollWidth": 760,
+        "width": 760
+      },
+      {
+        "class": "exam-choice ",
+        "overflow": false,
+        "scrollWidth": 760,
+        "width": 760
+      },
+      {
+        "class": "exam-choice ",
+        "overflow": false,
+        "scrollWidth": 760,
+        "width": 760
+      }
+    ]
+  },
+  {
+    "question": 56,
+    "metrics": [
+      {
+        "class": "exam-standalone-panel",
+        "overflow": false,
+        "scrollWidth": 750,
+        "width": 750
+      },
+      {
+        "class": "exam-standalone-stimulus exam-highlightable",
+        "overflow": false,
+        "scrollWidth": 748,
+        "width": 748
+      }
+    ]
+  },
+  {
+    "question": 57,
+    "metrics": [
+      {
+        "class": "exam-standalone-panel",
+        "overflow": false,
+        "scrollWidth": 760,
+        "width": 760
+      },
+      {
+        "class": "exam-standalone-stimulus exam-highlightable",
+        "overflow": false,
+        "scrollWidth": 748,
+        "width": 748
+      },
+      {
+        "class": "exam-choice ",
+        "overflow": false,
+        "scrollWidth": 760,
+        "width": 760
+      },
+      {
+        "class": "exam-choice ",
+        "overflow": false,
+        "scrollWidth": 760,
+        "width": 760
+      },
+      {
+        "class": "exam-choice ",
+        "overflow": false,
+        "scrollWidth": 760,
+        "width": 760
+      },
+      {
+        "class": "exam-choice ",
+        "overflow": false,
+        "scrollWidth": 760,
+        "width": 760
+      }
+    ]
+  }
+]

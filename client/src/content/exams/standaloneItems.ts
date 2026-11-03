@@ -146,17 +146,17 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
       },
       {
         "id": "B",
-        "html": "Although&nbsp;there&nbsp;have&nbsp;been&nbsp;flyby&nbsp;missions&nbsp;near&nbsp;Jupiter&nbsp;since&nbsp;1973,&nbsp;they&nbsp;have&nbsp;allowed&nbsp;scientists&nbsp;to&nbsp;collect&nbsp;data&nbsp;about&nbsp;the&nbsp;planet&nbsp;and&nbsp;its&nbsp;moons.",
+        "html": "Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons.",
         "text": "Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons."
       },
       {
         "id": "C",
-        "html": "Flyby&nbsp;missions&nbsp;near&nbsp;Jupiter,&nbsp;which&nbsp;allow&nbsp;scientists&nbsp;to&nbsp;collect&nbsp;data&nbsp;about&nbsp;the&nbsp;planet&nbsp;and&nbsp;its&nbsp;moons,&nbsp;have&nbsp;been&nbsp;happening&nbsp;since&nbsp;1973.",
+        "html": "Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973.",
         "text": "Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973."
       },
       {
         "id": "D",
-        "html": "Flyby&nbsp;missions&nbsp;have&nbsp;been&nbsp;happening&nbsp;near&nbsp;Jupiter,&nbsp;but&nbsp;scientists&nbsp;have&nbsp;been&nbsp;collecting&nbsp;data&nbsp;about&nbsp;the&nbsp;planet&nbsp;and&nbsp;its&nbsp;moons&nbsp;since&nbsp;1973.",
+        "html": "Flyby missions have been happening near Jupiter, but scientists have been collecting data about the planet and its moons since 1973.",
         "text": "Flyby missions have been happening near Jupiter, but scientists have been collecting data about the planet and its moons since 1973."
       }
     ],
@@ -167,10 +167,13 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "id": "part-b-question-6",
     "points": 1,
     "prompt": "Which sentence in the paragraph contains an error in construction and should be revised?",
-    "promptHtml": "Which&nbsp;sentence&nbsp;in&nbsp;the&nbsp;paragraph&nbsp;contains&nbsp;an&nbsp;error&nbsp;in&nbsp;construction&nbsp;and&nbsp;should&nbsp;be&nbsp;revised?",
+    "promptHtml": "Which sentence in the paragraph contains an error in construction and should be revised?",
     "stimulus": "(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City.  (2) Leaving approximately 73,000 residents without electricity for three long hours, lights did not function, refrigerators did not stay cold, and air conditioners did not work.  (3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier—on the exact same day!  (4) The famous New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.",
-    "stimulusHtml": "(1)&nbsp;On&nbsp;the&nbsp;evening&nbsp;of&nbsp;July&nbsp;13,&nbsp;2019,&nbsp;a&nbsp;major&nbsp;power&nbsp;outage&nbsp;affected&nbsp;the&nbsp;Upper&nbsp;West&nbsp;Side&nbsp;of&nbsp;Manhattan&nbsp;in&nbsp;New&nbsp;York&nbsp;City. &nbsp;(2)&nbsp;Leaving&nbsp;approximately&nbsp;73,000&nbsp;residents&nbsp;without&nbsp;electricity&nbsp;for&nbsp;three&nbsp;long&nbsp;hours,&nbsp;lights&nbsp;did&nbsp;not&nbsp;function,&nbsp;refrigerators&nbsp;did&nbsp;not&nbsp;stay&nbsp;cold,&nbsp;and&nbsp;air&nbsp;conditioners&nbsp;did&nbsp;not&nbsp;work. &nbsp;(3)&nbsp;Longtime&nbsp;city&nbsp;residents&nbsp;were&nbsp;particularly&nbsp;confused&nbsp;because&nbsp;an&nbsp;eerily&nbsp;similar&nbsp;event&nbsp;had&nbsp;occurred&nbsp;years&nbsp;earlier—on&nbsp;the&nbsp;exact&nbsp;same&nbsp;day! &nbsp;(4)&nbsp;The&nbsp;famous&nbsp;New&nbsp;York&nbsp;City&nbsp;Blackout&nbsp;of&nbsp;1977,&nbsp;which&nbsp;lasted&nbsp;for&nbsp;25&nbsp;hours,&nbsp;also&nbsp;happened&nbsp;on&nbsp;July&nbsp;13,&nbsp;an&nbsp;odd&nbsp;coincidence&nbsp;to&nbsp;say&nbsp;the&nbsp;least.",
+    "stimulusHtml": "(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City.  (2) Leaving approximately 73,000 residents without electricity for three long hours, lights did not function, refrigerators did not stay cold, and air conditioners did not work.  (3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier—on the exact same day!  (4) The famous New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.",
     "topic": "Modifiers",
+    "versionLabels": [
+      "2025-2026 Form B"
+    ],
     "versionLabel": "2025-2026 Form B",
     "categories": [
       {
@@ -208,39 +211,39 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "id": "part-b-question-7",
     "points": 1,
     "prompt": "How should the paragraph be revised?",
-    "promptHtml": "How&nbsp;should&nbsp;the&nbsp;paragraph&nbsp;be&nbsp;revised?",
+    "promptHtml": "How should the paragraph be revised?",
     "stimulus": "(1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.",
-    "stimulusHtml": "(1)&nbsp;Danielle&nbsp;<u>spent</u>&nbsp;several&nbsp;hours&nbsp;preparing&nbsp;for&nbsp;an&nbsp;upcoming&nbsp;audition&nbsp;for&nbsp;a&nbsp;<u>play</u>&nbsp;at&nbsp;the&nbsp;community&nbsp;theater. (2)&nbsp;First&nbsp;she&nbsp;<u>did</u>&nbsp;vocal&nbsp;exercises&nbsp;to&nbsp;practice&nbsp;her&nbsp;diction&nbsp;and&nbsp;<u>projection</u>&nbsp;so&nbsp;that&nbsp;her&nbsp;words&nbsp;would&nbsp;carry&nbsp;clearly&nbsp;throughout&nbsp;the&nbsp;large&nbsp;auditorium. (3)&nbsp;Then&nbsp;she&nbsp;<u>studies</u>&nbsp;the&nbsp;text&nbsp;of&nbsp;the&nbsp;monologue&nbsp;to&nbsp;better&nbsp;understand&nbsp;the&nbsp;<u>emotions,</u>&nbsp;and&nbsp;motivations&nbsp;of&nbsp;the&nbsp;character&nbsp;she&nbsp;plans&nbsp;to&nbsp;portray. (4)&nbsp;Finally&nbsp;she&nbsp;<u>recited</u>&nbsp;her&nbsp;monologue&nbsp;in&nbsp;front&nbsp;of&nbsp;a&nbsp;mirror&nbsp;many&nbsp;<u>times,</u>&nbsp;making&nbsp;slight&nbsp;adjustments&nbsp;and&nbsp;improvements&nbsp;to&nbsp;her&nbsp;performance&nbsp;each&nbsp;time.",
+    "stimulusHtml": "(1) Danielle <u>spent</u> several hours preparing for an upcoming audition for a <u>play</u> at the community theater. (2) First she <u>did</u> vocal exercises to practice her diction and <u>projection</u> so that her words would carry clearly throughout the large auditorium. (3) Then she <u>studies</u> the text of the monologue to better understand the <u>emotions,</u> and motivations of the character she plans to portray. (4) Finally she <u>recited</u> her monologue in front of a mirror many <u>times,</u> making slight adjustments and improvements to her performance each time.",
     "topic": "Verbs",
+    "versionLabels": [
+      "2025-2026 Form B",
+      "2019-2020 Form A"
+    ],
     "versionLabel": "2025-2026 Form B",
     "choices": [
       {
         "id": "A",
-        "html": "Sentence&nbsp;1:&nbsp;Change&nbsp;<em><strong>spent</strong></em>&nbsp;to&nbsp;<strong>had&nbsp;spent</strong>,&nbsp;AND&nbsp;insert&nbsp;a&nbsp;comma&nbsp;after&nbsp;<em><strong>play</strong></em>.",
+        "html": "Sentence 1: Change <em><strong>spent</strong></em> to <strong>had spent</strong>, AND insert a comma after <em><strong>play</strong></em>.",
         "text": "Sentence 1: Change \nspent\n to \nhad spent\n, AND insert a comma after \nplay\n."
       },
       {
         "id": "B",
-        "html": "Sentence&nbsp;2:&nbsp;Change&nbsp;<em><strong>did</strong></em>&nbsp;to&nbsp;<strong>does</strong>,&nbsp;AND&nbsp;insert&nbsp;a&nbsp;comma&nbsp;after&nbsp;<em><strong>projection</strong></em>.",
+        "html": "Sentence 2: Change <em><strong>did</strong></em> to <strong>does</strong>, AND insert a comma after <em><strong>projection</strong></em>.",
         "text": "Sentence 2: Change \ndid\n to \ndoes\n, AND insert a comma after \nprojection\n."
       },
       {
         "id": "C",
-        "html": "Sentence&nbsp;3:&nbsp;Change&nbsp;<em><strong>studies</strong></em>&nbsp;to&nbsp;<strong>studied</strong>,&nbsp;AND&nbsp;delete&nbsp;the&nbsp;comma&nbsp;after&nbsp;<em><strong>emotions</strong></em>.",
+        "html": "Sentence 3: Change <em><strong>studies</strong></em> to <strong>studied</strong>, AND delete the comma after <em><strong>emotions</strong></em>.",
         "text": "Sentence 3: Change \nstudies\n to \nstudied\n, AND delete the comma after \nemotions\n."
       },
       {
         "id": "D",
-        "html": "Sentence&nbsp;4:&nbsp;Change&nbsp;<em><strong>recited</strong></em>&nbsp;to&nbsp;<strong>recites</strong>,&nbsp;AND&nbsp;delete&nbsp;the&nbsp;comma&nbsp;after&nbsp;<em><strong>times</strong></em>.",
+        "html": "Sentence 4: Change <em><strong>recited</strong></em> to <strong>recites</strong>, AND delete the comma after <em><strong>times</strong></em>.",
         "text": "Sentence 4: Change \nrecited\n to \nrecites\n, AND delete the comma after \ntimes\n."
       }
     ],
     "correctChoiceId": "C",
-    "type": "multiple_choice",
-    "versionLabels": [
-      "2025-2026 Form B",
-      "2019-2020 Form A"
-    ]
+    "type": "multiple_choice"
   },
   {
     "id": "part-b-question-8",
@@ -1022,8 +1025,8 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     },
     "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-a-9a1d5b75473231601302.png\" alt=\"Official explanation for question 50\">",
     "points": 1,
-    "prompt": "Which sentence in the paragraph contains an error in construction?\n(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.\nMove the answer to the box. There is only one error in construction.",
-    "promptHtml": "<p><span><span>Which</span> <span>sentence</span> in the <span>paragraph</span> contains an error in construction?</span></p> <blockquote data-boxed=\"true\"><span>(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh.&nbsp; <span>(2) Because</span> it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. &nbsp;<span>(3) It</span> must wait patiently for whatever edible matter might float by its mouth. &nbsp;<span>(4) The</span> blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.</span></blockquote> <p><span>Move the <span>answer</span> to the box. There is only one error in construction.</span></p>",
+    "prompt": "Which sentence in the paragraph contains an error in construction?",
+    "promptHtml": "<p>Which sentence in the paragraph contains an error in construction?</p>",
     "topic": "",
     "categories": [
       {
@@ -1034,7 +1037,7 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "correctPlacements": {
       "item-4": "category-1"
     },
-    "instructions": "Move the correct answers to the box.",
+    "instructions": "Move the answer to the box. There is only one error in construction.",
     "items": [
       {
         "html": "<p><span>Sentence 1</span></p>",
@@ -1062,7 +1065,9 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "versionLabels": [
       "2026-2027 Form A"
     ],
-    "versionLabel": "2026-2027 Form A"
+    "versionLabel": "2026-2027 Form A",
+    "stimulus": "(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.",
+    "stimulusHtml": "<p>(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink, gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.</p>"
   },
   {
     "id": "official-shsat-2026-b-47",
@@ -1081,7 +1086,7 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "prompt": "Which part of the paragraph contains an error in sentence structure?\nSelect the one error.",
     "promptHtml": "<p><span><span>Which</span> part of the <span>paragraph</span> contains an error in <span>sentence</span> structure?</span></p> <p><span>Select the one error.</span></p>",
     "selectionHtml": "<blockquote data-boxed=\"true\"><span>In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian&nbsp;</span><span data-choice-id=\"A\"><span>Institution, the</span></span><span> museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a </span><span data-choice-id=\"B\"><span>year. The</span></span><span> museum features more than 30,000 </span><span data-choice-id=\"C\"><span>objects, including</span></span><span> Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation </span><span data-choice-id=\"D\"><span>Proclamation, written</span></span><span> in </span><span>1863</span><span> during the presidency of Abraham Lincoln, is also on display at the museum.</span></blockquote>",
-    "topic": "",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",
@@ -1127,7 +1132,7 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "points": 1,
     "prompt": "Read these sentences.\n(1) Flyby missions near Jupiter have been happening since 1973.\n(2) Flyby missions allow scientists to collect data about Jupiter and its moons.\n\nWhat is the best way to combine the sentences to clarify the relationship between the ideas?",
     "promptHtml": "<p><span><span>Read</span> these <span>sentences</span>.</span></p> <blockquote data-boxed=\"true\"> <p><span>(1) Flyby missions near Jupiter have been happening since&nbsp;</span><span>1973.</span></p> <p><span>(2) Flyby missions allow scientists to collect data about Jupiter and its moons.</span></p> </blockquote> <p>&nbsp;<span><br><span>What</span> is the <span>best</span> way to combine the sentences to clarify the relationship between the ideas?</span></p>",
-    "topic": "",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",
@@ -1173,7 +1178,7 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "points": 1,
     "prompt": "Which sentence in the paragraph contains an error in construction and should be revised?\n(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City. (2) Leaving approximately 73,000 residents without electricity for three long hours, lights did not function, refrigerators did not stay cold, and air conditioners did not work. (3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier—on the exact same day! (4) The famous New York City Blackout of 1977, which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.\nMove the answer to the box. There is only one error in construction.",
     "promptHtml": "<p><span><span>Which</span> <span>sentence</span> in the <span>paragraph</span> contains an error in construction and should be revised?</span></p> <blockquote data-boxed=\"true\"><span>(1) On the evening of July 13, 2019, a major power outage affected the Upper West Side of Manhattan in New York City. &nbsp;(2) Leaving approximately 73,000 residents without electricity for three long </span><span>hours,</span><span> lights did not function, refrigerators did not stay cold, and air conditioners did not work. &nbsp;(3) Longtime city residents were particularly confused because an eerily similar event had occurred years earlier</span><span>—</span><span>on the exact same day! &nbsp;(4) The famous New York City Blackout of </span><span>1977,</span><span> which lasted for 25 hours, also happened on July 13, an odd coincidence to say the least.</span></blockquote> <p><span>Move the <span>answer</span> to the box. There is only one error in construction.</span></p>",
-    "topic": "",
+    "topic": "Modifiers",
     "categories": [
       {
         "id": "category-1",
@@ -1229,7 +1234,7 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "points": 1,
     "prompt": "How should the paragraph be revised?\n(1) Danielle spent several hours preparing for an upcoming audition for a play at the community theater. (2) First she did vocal exercises to practice her diction and projection so that her words would carry clearly throughout the large auditorium. (3) Then she studies the text of the monologue to better understand the emotions, and motivations of the character she plans to portray. (4) Finally she recited her monologue in front of a mirror many times, making slight adjustments and improvements to her performance each time.",
     "promptHtml": "<p><span><span>How</span> should the <span>paragraph</span> be revised?</span></p> <blockquote data-boxed=\"true\"><span>(1) Danielle <span><u>spent</u></span> several hours preparing for an upcoming audition for a <span><u>play</u></span> at the community theater. &nbsp;<span>(2) First</span> she <span><u>did</u></span> vocal exercises to practice her diction and <span><u>projection</u></span> so that her words would carry clearly throughout the large auditorium. &nbsp;<span>(3) Then</span> she <span><u>studies</u></span> the text of the monologue to better understand the <span><u>emotions,</u></span> and motivations of the character she plans to portray. &nbsp;<span>(4) Finally</span> she <span><u>recited</u></span> her monologue in front of a mirror many <span><u>times,</u></span> making slight adjustments and improvements to her performance each time.</span></blockquote>",
-    "topic": "",
+    "topic": "Verbs",
     "choices": [
       {
         "id": "A",
@@ -1275,7 +1280,7 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "points": 1,
     "prompt": "Which sentence contains an error in its construction and should be revised?\n(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.",
     "promptHtml": "<p><span>Which sentence contains an error in its construction and should be revised?</span></p> <blockquote data-boxed=\"true\"><span>(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time.&nbsp; <span>(2) The</span> owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons.&nbsp; <span>(3) The</span> New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals.&nbsp; <span>(4) In</span> 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.</span></blockquote>",
-    "topic": "",
+    "topic": "Modifiers",
     "choices": [
       {
         "id": "A",
@@ -1321,7 +1326,7 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "points": 1,
     "prompt": "Read these sentences.\n(1) Jordan rehearsed his role for weeks.\n(2) He delivered his lines with ease.\n(3) His performance was met with a burst of applause from the audience.\nWhat is the best way to combine the sentences to clarify the relationship between ideas?",
     "promptHtml": "<p><span>Read these sentences.</span></p> <blockquote data-boxed=\"true\"><span>(1) Jordan rehearsed his role for weeks.<br>(2) He delivered his lines with ease.<br>(3) His performance was met with a burst of applause from the audience. &nbsp;&nbsp;</span></blockquote> <p><span>What is the best way to combine the sentences to clarify the relationship between ideas?&nbsp;</span></p>",
-    "topic": "",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",
@@ -1367,7 +1372,7 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "points": 1,
     "prompt": "Which pair of revisions need to be made in this paragraph?\n(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.",
     "promptHtml": "<p><span>Which pair of revisions need to be made in this paragraph?</span></p> <blockquote data-boxed=\"true\"><span>(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people <span><u>wonder:</u></span> what <span><u>is</u></span> the difference between the two?&nbsp; <span>(2) To</span> start <span><u>with,</u></span> the butterfat content is much higher in ice cream than <span><u>it is</u></span> in gelato, making the Italian treat a wiser decision for people looking to make healthier choices.&nbsp; <span>(3) Additionally,</span> the mixing <span><u>process,</u></span> which adds less air to the frozen treat, <span><u>makes</u></span> gelato denser than ice cream.&nbsp; <span>(4) Finally,</span> gelato is served 10 to <span>15 degrees</span> warmer than ice cream, which enhances the texture and flavor of the <span><u>gelato,</u></span> and <span><u>allow</u></span> it to melt more quickly.</span></blockquote>",
-    "topic": "",
+    "topic": "Verbs",
     "choices": [
       {
         "id": "A",
@@ -3165,6 +3170,1287 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
       "2018-2019 Form B"
     ],
     "versionLabel": "2018-2019 Form B"
+  },
+  {
+    "id": "part-b-import-0ea66e24a5c0-72af5644",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-a",
+      "label": "2017-2018 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+      "year": "2017-2018",
+      "form": "A",
+      "sourceQuestion": "1",
+      "pages": [
+        1
+      ]
+    },
+    "explanation": "1. (D) The question asks for the most precise revision for the words talked to some people who did the best in the contest. Option A and Option C do not precisely state how many people the reporter interviewed. Option B specifies the number of people interviewed but uses the imprecise phrase “who did well.” Option D is the only option that precisely states the reporter’s action (“interviewed”) as well as who exactly the reporter interviewed (“the top three contestants”).",
+    "explanationHtml": "<p>1. (D) The question asks for the most precise revision for the words talked to some people who did the best in the contest. Option A and Option C do not precisely state how many people the reporter interviewed. Option B specifies the number of people interviewed but uses the imprecise phrase “who did well.” Option D is the only option that precisely states the reporter’s action (“interviewed”) as well as who exactly the reporter interviewed (“the top three contestants”).</p>",
+    "points": 1,
+    "prompt": "Read this sentence.\n\nWhich of these is the most precise revision for the words talked to some people who did the best in the contest?",
+    "stimulus": "During a nightly-news segment about a cooking contest, a reporter talked to some people who did the best in the contest.",
+    "stimulusHtml": "<p>During a nightly-news segment about a cooking contest, a reporter talked to some people who did the best in the contest.</p>",
+    "promptHtml": "<p>Read this sentence.</p><p>Which of these is the most precise revision for the words <strong><em>talked to some people who did the best in the contest</em></strong>?</p>",
+    "topic": "Word Choice & Precision",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>conversed with some of the people who won the contest</p>",
+        "text": "conversed with some of the people who won the contest"
+      },
+      {
+        "id": "B",
+        "html": "<p>spoke to the three contestants who did well</p>",
+        "text": "spoke to the three contestants who did well"
+      },
+      {
+        "id": "C",
+        "html": "<p>discussed the contest with some of the winners</p>",
+        "text": "discussed the contest with some of the winners"
+      },
+      {
+        "id": "D",
+        "html": "<p>interviewed the top three contestants</p>",
+        "text": "interviewed the top three contestants"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form A"
+    ],
+    "versionLabel": "2017-2018 Form A"
+  },
+  {
+    "id": "part-b-import-55ca9287c304-58585284",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-a",
+      "label": "2017-2018 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+      "year": "2017-2018",
+      "form": "A",
+      "sourceQuestion": "2",
+      "pages": [
+        2
+      ]
+    },
+    "explanation": "2. (G) The question asks for the identification of a sentence with an inappropriate shift in verb tense. Option E, Option F, and Option H identify sentences that use past tense. Sentence 3 (Option C) demonstrates an incorrect shift into the present tense with the clause “as natural gas becomes more common,” which should be “as natural gas became more common.”",
+    "explanationHtml": "<p>2. (G) The question asks for the identification of a sentence with an inappropriate shift in verb tense. Option E, Option F, and Option H identify sentences that use past tense. Sentence 3 (Option C) demonstrates an incorrect shift into the present tense with the clause “as natural gas becomes more common,” which should be “as natural gas became more common.”</p>",
+    "points": 1,
+    "prompt": "Read this paragraph.\n\nWhich sentence should be revised to correct an inappropriate shift in verb tense?",
+    "stimulus": "(1) When coal was used to heat homes, it frequently left a soot stain on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company, created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day, Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
+    "stimulusHtml": "<p>(1) When coal was used to heat homes, it frequently left a soot stain on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company, created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day, Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.</p>",
+    "promptHtml": "<p>Read this paragraph.</p><p>Which sentence should be revised to correct an inappropriate shift in verb tense?</p>",
+    "topic": "Verbs",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>sentence 1</p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p>sentence 2</p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p>sentence 3</p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p>sentence 4</p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form A"
+    ],
+    "versionLabel": "2017-2018 Form A"
+  },
+  {
+    "id": "part-b-import-be10ff9dae9c-bd9b9422",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-a",
+      "label": "2017-2018 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+      "year": "2017-2018",
+      "form": "A",
+      "sourceQuestion": "3",
+      "pages": [
+        2
+      ]
+    },
+    "explanation": "3. (C) The sentence in the box needs a comma to separate items in a series. Option A would remove the necessary comma before the nonrestrictive clause “which is located on Midway Street.” Option B is incorrect because while the phrase that ends with the word “volunteer” can stand on its own as an independent clause, a comma is not needed before the explanation of what the volunteers would help do. Option D would delete a necessary comma between two items in a series. Option C is the only option that would place a necessary comma to separate items “walking dogs” and “cleaning kennels” in the series.",
+    "explanationHtml": "<p>3. (C) The sentence in the box needs a comma to separate items in a series. Option A would remove the necessary comma before the nonrestrictive clause “which is located on Midway Street.” Option B is incorrect because while the phrase that ends with the word “volunteer” can stand on its own as an independent clause, a comma is not needed before the explanation of what the volunteers would help do. Option D would delete a necessary comma between two items in a series. Option C is the only option that would place a necessary comma to separate items “walking dogs” and “cleaning kennels” in the series.</p>",
+    "points": 1,
+    "prompt": "Read this sentence.\n\nWhich edit should be made in this sentence?",
+    "stimulus": "The animal shelter, which is located on Midway Street, is looking for volunteers to help with a variety of tasks, such as walking dogs cleaning kennels, hand-feeding newborn kittens, and supporting the pet adoption process.",
+    "stimulusHtml": "<p>The animal shelter, which is located on Midway Street, is looking for volunteers to help with a variety of tasks, such as walking dogs cleaning kennels, hand-feeding newborn kittens, and supporting the pet adoption process.</p>",
+    "promptHtml": "<p>Read this sentence.</p><p>Which edit should be made in this sentence?</p>",
+    "topic": "Punctuation",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>delete the comma after <strong><em>shelter</em></strong></p>",
+        "text": "delete the comma after shelter"
+      },
+      {
+        "id": "B",
+        "html": "<p>insert a comma after <strong><em>volunteers</em></strong></p>",
+        "text": "insert a comma after volunteers"
+      },
+      {
+        "id": "C",
+        "html": "<p>insert a comma after <strong><em>dogs</em></strong></p>",
+        "text": "insert a comma after dogs"
+      },
+      {
+        "id": "D",
+        "html": "<p>delete the comma after <strong><em>kennels</em></strong></p>",
+        "text": "delete the comma after kennels"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form A"
+    ],
+    "versionLabel": "2017-2018 Form A"
+  },
+  {
+    "id": "part-b-import-4669ed81b4aa-903f4032",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-a",
+      "label": "2017-2018 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+      "year": "2017-2018",
+      "form": "A",
+      "sourceQuestion": "4",
+      "pages": [
+        3
+      ]
+    },
+    "explanation": "4. (E) The question asks for the best way to combine the sentences to clarify the relationship between the ideas. Option F is incorrect because the conjunction “although” suggests that scientists were allowed to collect data even though there were flyby missions, which is inaccurate. In Option G, the phrase “which have been happening since 1973” is incorrectly modifying “the planet and its moons.” In Option H, the conjunction “but” suggests an adverse relationship between ideas, which is also incorrect. Option E is the only option that accurately reflects the relationship between the ideas by using the nonrestrictive phrase “which allow scientists to collect data about the planet and its moons” to describe the purpose of the flyby missions.",
+    "explanationHtml": "<p>4. (E) The question asks for the best way to combine the sentences to clarify the relationship between the ideas. Option F is incorrect because the conjunction “although” suggests that scientists were allowed to collect data even though there were flyby missions, which is inaccurate. In Option G, the phrase “which have been happening since 1973” is incorrectly modifying “the planet and its moons.” In Option H, the conjunction “but” suggests an adverse relationship between ideas, which is also incorrect. Option E is the only option that accurately reflects the relationship between the ideas by using the nonrestrictive phrase “which allow scientists to collect data about the planet and its moons” to describe the purpose of the flyby missions.</p>",
+    "points": 1,
+    "prompt": "Read these sentences.(2) Flyby missions allow scientists to collect data about Jupiter and its moons.What is the best way to combine these sentences to clarify the relationship between the ideas?",
+    "stimulus": "(1) Flyby missions near Jupiter have been happening since 1973.",
+    "stimulusHtml": "<p>(1) Flyby missions near Jupiter have been happening since 1973.</p>",
+    "promptHtml": "<p>Read these sentences.</p><blockquote data-boxed=\"true\">(2) Flyby missions allow scientists to collect data about Jupiter and its moons.</blockquote><p>What is the best way to combine these sentences to clarify the relationship between the ideas?</p>",
+    "topic": "Sentence Structure",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973.</p>",
+        "text": "Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973."
+      },
+      {
+        "id": "B",
+        "html": "<p>Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons.</p>",
+        "text": "Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons."
+      },
+      {
+        "id": "C",
+        "html": "<p>Flyby missions near Jupiter allow scientists to collect data about the planet and its moons, which have been happening since 1973.</p>",
+        "text": "Flyby missions near Jupiter allow scientists to collect data about the planet and its moons, which have been happening since 1973."
+      },
+      {
+        "id": "D",
+        "html": "<p>Since 1973 flyby missions have been happening near Jupiter, but they allow scientists to collect data about the planet and its moons.</p>",
+        "text": "Since 1973 flyby missions have been happening near Jupiter, but they allow scientists to collect data about the planet and its moons."
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form A"
+    ],
+    "versionLabel": "2017-2018 Form A"
+  },
+  {
+    "id": "part-b-import-1bc95d788614-c76e5943",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-a",
+      "label": "2017-2018 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+      "year": "2017-2018",
+      "form": "A",
+      "sourceQuestion": "5",
+      "pages": [
+        3
+      ]
+    },
+    "explanation": "5. (C) The question asks the student to identify a vague pronoun in a sentence in the box. Sentence 1 (Option A) correctly uses the plural pronouns “their”/”they” to refer to both Eliza and Brianna. Sentence 2 (Option B)\n\nuses the pronoun “they” to correctly refer to both girls again. Sentence 4 (Option D) uses the pronoun “they” to correctly refer to “both girls.” Sentence 3 (Option C) is the only sentence where the pronoun is vague. The sentence uses the pronoun “she” near the beginning, but whether “she” refers to Eliza or Brianna is unclear.",
+    "explanationHtml": "<p>5. (C) The question asks the student to identify a vague pronoun in a sentence in the box. Sentence 1 (Option A) correctly uses the plural pronouns “their”/”they” to refer to both Eliza and Brianna. Sentence 2 (Option B)</p><p>uses the pronoun “they” to correctly refer to both girls again. Sentence 4 (Option D) uses the pronoun “they” to correctly refer to “both girls.” Sentence 3 (Option C) is the only sentence where the pronoun is vague. The sentence uses the pronoun “she” near the beginning, but whether “she” refers to Eliza or Brianna is unclear.</p>",
+    "points": 1,
+    "prompt": "Read this paragraph.\n\nWhich sentence should be revised to correct a vague pronoun?",
+    "stimulus": "(1) Eliza and Brianna have been singing in their school chorus since they were in fourth grade. (2) The girls always sing a duet at the school talent show, and they take turns singing the national anthem before school sporting events. (3) Outside of school, she also sings in a choir made up of young and old members of her community. (4) Both girls hope that they will be able to continue singing for many more years.",
+    "stimulusHtml": "<p>(1) Eliza and Brianna have been singing in their school chorus since they were in fourth grade. (2) The girls always sing a duet at the school talent show, and they take turns singing the national anthem before school sporting events. (3) Outside of school, she also sings in a choir made up of young and old members of her community. (4) Both girls hope that they will be able to continue singing for many more years.</p>",
+    "promptHtml": "<p>Read this paragraph.</p><p>Which sentence should be revised to correct a vague pronoun?</p>",
+    "topic": "Pronouns",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>sentence 1</p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p>sentence 2</p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p>sentence 3</p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p>sentence 4</p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form A"
+    ],
+    "versionLabel": "2017-2018 Form A"
+  },
+  {
+    "id": "part-b-import-58cd1c48131d-1dd438a6",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-a",
+      "label": "2017-2018 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+      "year": "2017-2018",
+      "form": "A",
+      "sourceQuestion": "6",
+      "pages": [
+        3
+      ]
+    },
+    "explanation": "6. (E) The sentence in the box needs a comma to separate coordinate adjectives. Option F incorrectly adds a comma between the subject and the verb. Option G incorrectly adds a comma between two adjectives, but they are not coordinate adjectives. Option H is incorrect because a comma is not needed to set off the phrase “to score 100 points in a single game.” Option E is the only option that places a comma where it is needed, between the coordinate adjectives “agile” and “athletic.”",
+    "explanationHtml": "<p>6. (E) The sentence in the box needs a comma to separate coordinate adjectives. Option F incorrectly adds a comma between the subject and the verb. Option G incorrectly adds a comma between two adjectives, but they are not coordinate adjectives. Option H is incorrect because a comma is not needed to set off the phrase “to score 100 points in a single game.” Option E is the only option that places a comma where it is needed, between the coordinate adjectives “agile” and “athletic.”</p>",
+    "points": 1,
+    "prompt": "Read this sentence.\n\nWhich edit should be made to correct this sentence?",
+    "stimulus": "In 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.",
+    "stimulusHtml": "<p>In 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.</p>",
+    "promptHtml": "<p>Read this sentence.</p><p>Which edit should be made to correct this sentence?</p>",
+    "topic": "Punctuation",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>insert a comma after <strong><em>agile</em></strong></p>",
+        "text": "insert a comma after agile"
+      },
+      {
+        "id": "B",
+        "html": "<p>insert a comma after <strong><em>Chamberlain</em></strong></p>",
+        "text": "insert a comma after Chamberlain"
+      },
+      {
+        "id": "C",
+        "html": "<p>insert a comma after <strong><em>only</em></strong></p>",
+        "text": "insert a comma after only"
+      },
+      {
+        "id": "D",
+        "html": "<p>insert a comma after <strong><em>States</em></strong></p>",
+        "text": "insert a comma after States"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form A"
+    ],
+    "versionLabel": "2017-2018 Form A"
+  },
+  {
+    "id": "part-b-import-d51ef5a4da25-097e5f95",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-b",
+      "label": "2017-2018 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_b.pdf",
+      "year": "2017-2018",
+      "form": "B",
+      "sourceQuestion": "1",
+      "pages": [
+        1
+      ]
+    },
+    "explanation": "1. (A) The question asks for the identification of a run-on sentence that needs to be corrected. Option B, Option C, and Option D identify complete sentences that are not run-ons. Option A identifies a sentence made up of two independent clauses that need to be more definitively separated between “opened” and “as,” using either a semicolon or a period.",
+    "explanationHtml": "<p>1. (A) The question asks for the identification of a run-on sentence that needs to be corrected. Option B, Option C, and Option D identify complete sentences that are not run-ons. Option A identifies a sentence made up of two independent clauses that need to be more definitively separated between “opened” and “as,” using either a semicolon or a period.</p>",
+    "points": 1,
+    "prompt": "Read this paragraph.\n\nWhich sentence should be revised to correct a run-on?",
+    "stimulus": "(1) In September 2016, the National Museum of African American History and Culture opened, as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. (2) Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. (3) The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. (4) A commemorative copy of the Emancipation Proclamation, which was written in 1863 during the presidency of Abraham Lincoln, is also available for viewing at the museum.",
+    "stimulusHtml": "<p>(1) In September 2016, the National Museum of African American History and Culture opened, as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. (2) Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. (3) The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. (4) A commemorative copy of the Emancipation Proclamation, which was written in 1863 during the presidency of Abraham Lincoln, is also available for viewing at the museum.</p>",
+    "promptHtml": "<p>Read this paragraph.</p><p>Which sentence should be revised to correct a run-on?</p>",
+    "topic": "Sentence Structure",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>sentence 1</p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p>sentence 2</p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p>sentence 3</p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p>sentence 4</p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form B"
+    ],
+    "versionLabel": "2017-2018 Form B"
+  },
+  {
+    "id": "part-b-import-98dc205aa3e8-2094d5e0",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-b",
+      "label": "2017-2018 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_b.pdf",
+      "year": "2017-2018",
+      "form": "B",
+      "sourceQuestion": "2",
+      "pages": [
+        2
+      ]
+    },
+    "explanation": "2. (G) The sentence in the box demonstrates the use of a misplaced modifier. In Option E and Option F, the phrase “to promote their club” incorrectly modifies “a bake sale.” While Option H makes it clearer that “to promote their club” refers to the “members of the debate team,” the rest of the sentence is poorly written. Option G is the only option in which the phrase “to promote their club” clearly modifies “members of the debate team” and that clarifies that the bake sale is on Wednesday.",
+    "explanationHtml": "<p>2. (G) The sentence in the box demonstrates the use of a misplaced modifier. In Option E and Option F, the phrase “to promote their club” incorrectly modifies “a bake sale.” While Option H makes it clearer that “to promote their club” refers to the “members of the debate team,” the rest of the sentence is poorly written. Option G is the only option in which the phrase “to promote their club” clearly modifies “members of the debate team” and that clarifies that the bake sale is on Wednesday.</p>",
+    "points": 1,
+    "prompt": "Read this sentence.\n\nHow should this sentence be revised?",
+    "stimulus": "To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.",
+    "stimulusHtml": "<p>To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</p>",
+    "promptHtml": "<p>Read this sentence.</p><p>How should this sentence be revised?</p>",
+    "topic": "Sentence Structure",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>",
+        "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team."
+      },
+      {
+        "id": "B",
+        "html": "<p>On Wednesday to promote their club, a bake sale will be sponsored by members of the debate team.</p>",
+        "text": "On Wednesday to promote their club, a bake sale will be sponsored by members of the debate team."
+      },
+      {
+        "id": "C",
+        "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>",
+        "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday."
+      },
+      {
+        "id": "D",
+        "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>",
+        "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form B"
+    ],
+    "versionLabel": "2017-2018 Form B"
+  },
+  {
+    "id": "part-b-import-54658f33bda8-f23b8b56",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-b",
+      "label": "2017-2018 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_b.pdf",
+      "year": "2017-2018",
+      "form": "B",
+      "sourceQuestion": "3",
+      "pages": [
+        2
+      ]
+    },
+    "explanation": "3. (C) All the sentences should have a main verb in the past tense. For Option A (sentence 1), Option B (sentence 2), and Option D (sentence 4), the main verbs in the sentences are in the past tense (“spent,” “did,” “recited”). For Option C (sentence 3), the main verb in the sentence inappropriately shifts to the present tense (“studies”) and should be revised to the past tense (“studied”).",
+    "explanationHtml": "<p>3. (C) All the sentences should have a main verb in the past tense. For Option A (sentence 1), Option B (sentence 2), and Option D (sentence 4), the main verbs in the sentences are in the past tense (“spent,” “did,” “recited”). For Option C (sentence 3), the main verb in the sentence inappropriately shifts to the present tense (“studies”) and should be revised to the past tense (“studied”).</p>",
+    "points": 1,
+    "prompt": "Read this paragraph.\n\nWhich sentence should be revised to correct an inappropriate shift in verb tense?",
+    "stimulus": "(1) Devon spent several hours preparing for an upcoming audition. (2) First, he did vocal exercises to practice his diction and projection. (3) Then, he studies the text of the monologue to better understand the emotions and motivations of the character he plans to portray. (4) Finally, he recited his monologue in front of a mirror many times, making slight adjustments and improvements to his performance each time.",
+    "stimulusHtml": "<p>(1) Devon spent several hours preparing for an upcoming audition. (2) First, he did vocal exercises to practice his diction and projection. (3) Then, he studies the text of the monologue to better understand the emotions and motivations of the character he plans to portray. (4) Finally, he recited his monologue in front of a mirror many times, making slight adjustments and improvements to his performance each time.</p>",
+    "promptHtml": "<p>Read this paragraph.</p><p>Which sentence should be revised to correct an inappropriate shift in verb tense?</p>",
+    "topic": "Verbs",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>sentence 1</p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p>sentence 2</p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p>sentence 3</p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p>sentence 4</p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form B"
+    ],
+    "versionLabel": "2017-2018 Form B"
+  },
+  {
+    "id": "part-b-import-5491bf3aee6b-dca7c6a1",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-b",
+      "label": "2017-2018 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_b.pdf",
+      "year": "2017-2018",
+      "form": "B",
+      "sourceQuestion": "4",
+      "pages": [
+        2
+      ]
+    },
+    "explanation": "4. (F) The sentence in the box needs a comma to set off the nonrestrictive clause “which is considered one of the New Seven Wonders of the World.” Option E would remove the comma between a city and country, which would be incorrect. Option G would incorrectly remove the comma at the end of a nonrestrictive clause, which is set off by commas at the beginning and the end. Option H is incorrect because a comma is not necessary before the conjunction “and” to connect a dependent clause. Option F is the only option that places a comma where it is needed, after “Italy,” to set off the nonrestrictive clause that follows.",
+    "explanationHtml": "<p>4. (F) The sentence in the box needs a comma to set off the nonrestrictive clause “which is considered one of the New Seven Wonders of the World.” Option E would remove the comma between a city and country, which would be incorrect. Option G would incorrectly remove the comma at the end of a nonrestrictive clause, which is set off by commas at the beginning and the end. Option H is incorrect because a comma is not necessary before the conjunction “and” to connect a dependent clause. Option F is the only option that places a comma where it is needed, after “Italy,” to set off the nonrestrictive clause that follows.</p>",
+    "points": 1,
+    "prompt": "Read this sentence.\n\nWhich edit should be made to correct this sentence?",
+    "stimulus": "The Colosseum in Rome, Italy which is considered one of the New Seven Wonders of the World, is the largest amphitheater ever built and could hold more than 50,000 spectators.",
+    "stimulusHtml": "<p>The Colosseum in Rome, Italy which is considered one of the New Seven Wonders of the World, is the largest amphitheater ever built and could hold more than 50,000 spectators.</p>",
+    "promptHtml": "<p>Read this sentence.</p><p>Which edit should be made to correct this sentence?</p>",
+    "topic": "Punctuation",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>delete the comma after <strong><em>Rome</em></strong></p>",
+        "text": "delete the comma after Rome"
+      },
+      {
+        "id": "B",
+        "html": "<p>insert a comma after <strong><em>Italy</em></strong></p>",
+        "text": "insert a comma after Italy"
+      },
+      {
+        "id": "C",
+        "html": "<p>delete the comma after <strong><em>World</em></strong></p>",
+        "text": "delete the comma after World"
+      },
+      {
+        "id": "D",
+        "html": "<p>insert a comma after <strong><em>built</em></strong></p>",
+        "text": "insert a comma after built"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form B"
+    ],
+    "versionLabel": "2017-2018 Form B"
+  },
+  {
+    "id": "part-b-import-113c673c387b-c66e9563",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2017-2018-form-b",
+      "label": "2017-2018 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_b.pdf",
+      "year": "2017-2018",
+      "form": "B",
+      "sourceQuestion": "5",
+      "pages": [
+        3
+      ]
+    },
+    "explanation": "5. (B) The question asks for the most precise revision for the words The engineers tried some other things. Option A and Option C use the word “materials” rather than precisely identifying what the engineers used. Option D identifies the materials, but the imprecise verb “worked with” does not specify what the engineers were doing. Option B is the only option that revises the words to be precise by using the specific words “tested” for the verb and “foam and fiberglass” for the materials.",
+    "explanationHtml": "<p>5. (B) The question asks for the most precise revision for the words The engineers tried some other things. Option A and Option C use the word “materials” rather than precisely identifying what the engineers used. Option D identifies the materials, but the imprecise verb “worked with” does not specify what the engineers were doing. Option B is the only option that revises the words to be precise by using the specific words “tested” for the verb and “foam and fiberglass” for the materials.</p>",
+    "points": 1,
+    "prompt": "Read this sentence.\n\nWhat is the most precise revision for the words The engineers tried some other things?",
+    "stimulus": "The engineers tried some other things in the hope of finding a more effective insulation for the compartment.",
+    "stimulusHtml": "<p>The engineers tried some other things in the hope of finding a more effective insulation for the compartment.</p>",
+    "promptHtml": "<p>Read this sentence.</p><p>What is the most precise revision for the words <strong><em>The engineers tried some other things</em></strong>?</p>",
+    "topic": "Word Choice & Precision",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>The engineers did experiments with several new materials</p>",
+        "text": "The engineers did experiments with several new materials"
+      },
+      {
+        "id": "B",
+        "html": "<p>The engineers tested foam and fiberglass</p>",
+        "text": "The engineers tested foam and fiberglass"
+      },
+      {
+        "id": "C",
+        "html": "<p>The engineers did tests with two new materials</p>",
+        "text": "The engineers did tests with two new materials"
+      },
+      {
+        "id": "D",
+        "html": "<p>The engineers worked with foam and fiberglass</p>",
+        "text": "The engineers worked with foam and fiberglass"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2017-2018 Form B"
+    ],
+    "versionLabel": "2017-2018 Form B"
+  },
+  {
+    "id": "part-b-import-9d14715150af-39798b2c",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2019-2020-form-b",
+      "label": "2019-2020 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20192020_form_b.pdf",
+      "year": "2019-2020",
+      "form": "B",
+      "sourceQuestion": "1",
+      "pages": [
+        1
+      ]
+    },
+    "explanation": "1 . The question asks for the identification of the sentence that contains an error in its construction and should be revised .\n\nD: Correct . Sentence 4 contains an error because the sentence uses the plural pronoun “them” to refer to “The blobfish’s,” which is singular in number . The word “them” should be changed to “it .” The paragraph refers to the blobfish as a singular species in each of its four sentences, and sentence 4 should be revised to match .\n\nA: Incorrect . There are no errors in sentence 1 . The singular pronoun “its” matches the number of the word it refers to, the singular noun ”blobfish .” Additionally, the clause “a creature that certainly resembles its name,” is correctly set off by commas to provide an additional, but not essential, detail about the blobfish .\n\nB: Incorrect . There are no errors in sentence 2 . The singular pronoun “its” matches the number of the word it refers to, the singular noun ”blobfish .” Additionally, the structure of the sentence correctly shows that the clause “Because it has very few muscles and its density is close to that of water” modifies the words “the blobfish .”\n\nC: Incorrect . There are no errors in sentence 3 . The “it” in the sentences refers to “the blobfish” mentioned in the previous sentence . The use of singular pronouns in sentence 3 is consistent with the rest of the paragraph .",
+    "explanationHtml": "<p><strong>1 .</strong> The question asks for the identification of the sentence that contains an error in its construction and should be revised .</p><p><strong>D: Correct .</strong> Sentence 4 contains an error because the sentence uses the plural pronoun “them” to refer to “The blobfish’s,” which is singular in number . The word “them” should be changed to “it .” The paragraph refers to the blobfish as a singular species in each of its four sentences, and sentence 4 should be revised to match .</p><p><strong>A:</strong> Incorrect . There are no errors in sentence 1 . The singular pronoun “its” matches the number of the word it refers to, the singular noun ”blobfish .” Additionally, the clause “a creature that certainly resembles its name,” is correctly set off by commas to provide an additional, but not essential, detail about the blobfish .</p><p><strong>B:</strong> Incorrect . There are no errors in sentence 2 . The singular pronoun “its” matches the number of the word it refers to, the singular noun ”blobfish .” Additionally, the structure of the sentence correctly shows that the clause “Because it has very few muscles and its density is close to that of water” modifies the words “the blobfish .”</p><p><strong>C:</strong> Incorrect . There are no errors in sentence 3 . The “it” in the sentences refers to “the blobfish” mentioned in the previous sentence . The use of singular pronouns in sentence 3 is consistent with the rest of the paragraph .</p>",
+    "points": 1,
+    "prompt": "Read this paragraph.\n\nWhich sentence contains an error in its construction and should be revised?",
+    "stimulus": "(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.",
+    "stimulusHtml": "<p>(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.</p>",
+    "promptHtml": "<p>Read this paragraph.</p><p>Which sentence contains an error in its construction and should be revised?</p>",
+    "topic": "Sentence Structure",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>sentence 1</p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p>sentence 2</p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p>sentence 3</p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p>sentence 4</p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2019-2020 Form B"
+    ],
+    "versionLabel": "2019-2020 Form B"
+  },
+  {
+    "id": "part-b-import-a6c479c6476d-70d39721",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2019-2020-form-b",
+      "label": "2019-2020 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20192020_form_b.pdf",
+      "year": "2019-2020",
+      "form": "B",
+      "sourceQuestion": "2",
+      "pages": [
+        2
+      ]
+    },
+    "explanation": "2 . The question asks for the revisions that are needed to correct errors in the paragraph .\n\nH: Correct . Deleting the comma after “gelato” would include the clause “and allow it to melt more quickly” with the first part of the clause “which enhances the texture and flavor of the gelato .” In this clause, the word “and” indicates that the two verb phrases (“enhances the texture and flavor of gelato” and “allow it to melt more quickly”) share a subject, “which” (referring to the act of serving gelato 10 to 15 degrees warmer than ice cream) . The two ideas should not be separated by a comma within the clause . The entire clause “which enhances the texture and flavor of the gelato and allow it to melt more quickly” should be separated from the main clause only by the comma after “cream” because the entire clause is a nonrestrictive clause . This clause provides additional, but not essential, information about the purpose of serving gelato at a warmer temperature than when serving ice cream . Changing the verb “allow” to “allows” is also necessary to match the use of the singular noun “gelato,” which is the subject of the sentence .\n\nE: Incorrect . The revisions in Option E introduce new errors . The colon after “wonder” is needed to set off the question “what is the difference between the two?” from the rest of the sentence . In addition, changing the verb “is” to “are” would be incorrect with the use of the singular noun “difference,” which is the subject of the question, “what is the difference between the two?”\n\nF: Incorrect . The revisions in Option F introduce new errors . The comma following the introductory phrase “To start with” helps with clarity and is needed to separate the phrase from the rest of the sentence . Changing “it is” to “they are” would be incorrect with the use of the singular noun “butterfat content,” which is what the words “it is” refer to in the sentence .\n\nG: Incorrect . The revisions in Option G introduce new errors . The comma following “process” is necessary to set off the nonrestrictive clause “which adds less air to the frozen treat” from the rest of the sentence . This\n\nclause is considered a nonrestrictive clause because it provides additional, but not essential, information about the mixing process . Changing the verb “makes” to “make” would be incorrect with the use of the singular noun “mixing process,” which is the subject of the sentence .",
+    "explanationHtml": "<p><strong>2 .</strong> The question asks for the revisions that are needed to correct errors in the paragraph .</p><p><strong>H: Correct .</strong> Deleting the comma after “gelato” would include the clause “and allow it to melt more quickly” with the first part of the clause “which enhances the texture and flavor of the gelato .” In this clause, the word “and” indicates that the two verb phrases (“enhances the texture and flavor of gelato” and “allow it to melt more quickly”) share a subject, “which” (referring to the act of serving gelato 10 to 15 degrees warmer than ice cream) . The two ideas should not be separated by a comma within the clause . The entire clause “which enhances the texture and flavor of the gelato and allow it to melt more quickly” should be separated from the main clause only by the comma after “cream” because the entire clause is a nonrestrictive clause . This clause provides additional, but not essential, information about the purpose of serving gelato at a warmer temperature than when serving ice cream . Changing the verb “allow” to “allows” is also necessary to match the use of the singular noun “gelato,” which is the subject of the sentence .</p><p><strong>E:</strong> Incorrect . The revisions in Option E introduce new errors . The colon after “wonder” is needed to set off the question “what is the difference between the two?” from the rest of the sentence . In addition, changing the verb “is” to “are” would be incorrect with the use of the singular noun “difference,” which is the subject of the question, “what is the difference between the two?”</p><p><strong>F:</strong> Incorrect . The revisions in Option F introduce new errors . The comma following the introductory phrase “To start with” helps with clarity and is needed to separate the phrase from the rest of the sentence . Changing “it is” to “they are” would be incorrect with the use of the singular noun “butterfat content,” which is what the words “it is” refer to in the sentence .</p><p><strong>G:</strong> Incorrect . The revisions in Option G introduce new errors . The comma following “process” is necessary to set off the nonrestrictive clause “which adds less air to the frozen treat” from the rest of the sentence . This</p><p>clause is considered a nonrestrictive clause because it provides additional, but not essential, information about the mixing process . Changing the verb “makes” to “make” would be incorrect with the use of the singular noun “mixing process,” which is the subject of the sentence .</p>",
+    "points": 1,
+    "prompt": "Read this paragraph.\n\nWhich revisions correct the errors in the paragraph?",
+    "stimulus": "(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.",
+    "stimulusHtml": "<p>(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.</p>",
+    "promptHtml": "<p>Read this paragraph.</p><p>Which revisions correct the errors in the paragraph?</p>",
+    "topic": "Topic & Transitions",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>Sentence 1: Delete the colon after <strong><em>wonder</em></strong> AND change <strong><em>is</em></strong> to <strong>are</strong>.</p>",
+        "text": "Sentence 1: Delete the colon after wonder AND change is to are."
+      },
+      {
+        "id": "B",
+        "html": "<p>Sentence 2: Delete the comma after <strong><em>with</em></strong> AND change <strong><em>it is</em></strong> to <strong>they are</strong>.</p>",
+        "text": "Sentence 2: Delete the comma after with AND change it is to they are."
+      },
+      {
+        "id": "C",
+        "html": "<p>Sentence 3: Delete the comma after <strong><em>process</em></strong> AND change <strong><em>makes</em></strong> to <strong>make</strong>.</p>",
+        "text": "Sentence 3: Delete the comma after process AND change makes to make."
+      },
+      {
+        "id": "D",
+        "html": "<p>Sentence 4: Delete the comma after <strong><em>gelato</em></strong> AND change <strong><em>allow</em></strong> to <strong>allows</strong>.</p>",
+        "text": "Sentence 4: Delete the comma after gelato AND change allow to allows."
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2019-2020 Form B"
+    ],
+    "versionLabel": "2019-2020 Form B"
+  },
+  {
+    "id": "part-b-import-bbccdcd22a0c-c496117b",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "sourceId": "official-shsat-2019-2020-form-b",
+      "label": "2019-2020 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20192020_form_b.pdf",
+      "year": "2019-2020",
+      "form": "B",
+      "sourceQuestion": "3",
+      "pages": [
+        2
+      ]
+    },
+    "explanation": "3 . The question asks for the revision that corrects the error in sentence structure in the paragraph .\n\nA: Correct . As written, the first sentence (“In 1967 Katherine Switzer  .  .  . legendary race .”) is a run-on sentence because a comma is used to combine two independent clauses . Independent clauses are complete sentences with a subject and a verb . The clauses—“In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name” and “at that time, only men were permitted to officially register and receive a number for the legendary race”—should be separated with a period instead . The revision in Option A correctly places a period after the word “name” and capitalizes the word “At” to separate the two independent clauses into two sentences .\n\nB: Incorrect . The revision in Option B introduces an error into the paragraph and does not revise the run-on in the first sentence . The clause “Once officials realized a woman was attempting to run in the race” is a modifying phrase that provides information about “they” (which refers to the “officials”) . The phrase cannot stand alone without the rest of the sentence . Changing the comma after the word “race” to a period would incorrectly separate the phrase from the rest of the sentence .\n\nC: Incorrect . The revision in Option C introduces an error into the paragraph and does not revise the run-on in the first sentence . The sentence “Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women” is a complex sentence, which combines an independent clause (“Switzer prevailed and finished in just over four hours”) and a dependent clause (“paving the way for the official rule change that allowed for the inclusion of women”) . The clause “paving the way for the official rule change that allowed for the inclusion of women” is not a complete sentence and must stay connected to the first part of the sentence . Changing the comma after “hours” to a period would incorrectly separate the dependent clause from the rest of the sentence .\n\nD: Incorrect . The revision in Option D introduces an error into the paragraph and does not revise the run-on in the first sentence . Changing the comma after “261” to a period would incorrectly separate the modifying clause “the same number she had worn in that first run in 1967” from the words it describes (“number 261”) . Additionally, the clause “the same number she had worn in that first run in 1967” is not a complete sentence .\n\nMartial Arts for the Mind and Body",
+    "explanationHtml": "<p><strong>3 .</strong> The question asks for the revision that corrects the error in sentence structure in the paragraph .</p><p><strong>A: Correct .</strong> As written, the first sentence (“In 1967 Katherine Switzer  .  .  . legendary race .”) is a run-on sentence because a comma is used to combine two independent clauses . Independent clauses are complete sentences with a subject and a verb . The clauses—“In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name” and “at that time, only men were permitted to officially register and receive a number for the legendary race”—should be separated with a period instead . The revision in Option A correctly places a period after the word “name” and capitalizes the word “At” to separate the two independent clauses into two sentences .</p><p><strong>B:</strong> Incorrect . The revision in Option B introduces an error into the paragraph and does not revise the run-on in the first sentence . The clause “Once officials realized a woman was attempting to run in the race” is a modifying phrase that provides information about “they” (which refers to the “officials”) . The phrase cannot stand alone without the rest of the sentence . Changing the comma after the word “race” to a period would incorrectly separate the phrase from the rest of the sentence .</p><p><strong>C:</strong> Incorrect . The revision in Option C introduces an error into the paragraph and does not revise the run-on in the first sentence . The sentence “Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women” is a complex sentence, which combines an independent clause (“Switzer prevailed and finished in just over four hours”) and a dependent clause (“paving the way for the official rule change that allowed for the inclusion of women”) . The clause “paving the way for the official rule change that allowed for the inclusion of women” is not a complete sentence and must stay connected to the first part of the sentence . Changing the comma after “hours” to a period would incorrectly separate the dependent clause from the rest of the sentence .</p><p><strong>D:</strong> Incorrect . The revision in Option D introduces an error into the paragraph and does not revise the run-on in the first sentence . Changing the comma after “261” to a period would incorrectly separate the modifying clause “the same number she had worn in that first run in 1967” from the words it describes (“number 261”) . Additionally, the clause “the same number she had worn in that first run in 1967” is not a complete sentence .</p><h3>Martial Arts for the Mind and Body</h3>",
+    "points": 1,
+    "prompt": "Read this paragraph.\n\nWhich revision corrects the error in sentence structure in the paragraph?",
+    "stimulus": "In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name, at that time, only men were permitted to officially register and receive a number for the legendary race. Once officials realized a woman was attempting to run in the race, they made efforts to remove her from the competition. Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women. In 2017, to mark the fiftieth anniversary of this pioneering event, a seventy-year-old Switzer repeated her run, wearing the number 261, the same number she had worn in that first run in 1967.",
+    "stimulusHtml": "<p>In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name, at that time, only men were permitted to officially register and receive a number for the legendary race. Once officials realized a woman was attempting to run in the race, they made efforts to remove her from the competition. Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women. In 2017, to mark the fiftieth anniversary of this pioneering event, a seventy-year-old Switzer repeated her run, wearing the number 261, the same number she had worn in that first run in 1967.</p>",
+    "promptHtml": "<p>Read this paragraph.</p><p>Which revision corrects the error in sentence structure in the paragraph?</p>",
+    "topic": "Sentence Structure",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>name. At</p>",
+        "text": "name. At"
+      },
+      {
+        "id": "B",
+        "html": "<p>race. They</p>",
+        "text": "race. They"
+      },
+      {
+        "id": "C",
+        "html": "<p>hours. Paving</p>",
+        "text": "hours. Paving"
+      },
+      {
+        "id": "D",
+        "html": "<p>261. The</p>",
+        "text": "261. The"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2019-2020 Form B"
+    ],
+    "versionLabel": "2019-2020 Form B"
+  },
+  {
+    "id": "part-b-import-aae3824ad548-4d372338",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "label": "2020-2021 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_a.pdf",
+      "year": "2020-2021",
+      "form": "A",
+      "sourceQuestion": "1",
+      "pages": [
+        1
+      ]
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+    "points": 1,
+    "prompt": "What is the best way to combine the sentences?\n\n(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.\n\n(2) One of Jupiter’s moons is named Io.\n\n(3) Io has the greatest number of active volcanoes in the solar system.",
+    "promptHtml": "<p>What is the best way to combine the sentences?</p><blockquote data-boxed=\"true\">(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.<br>(2) One of Jupiter’s moons is named Io.<br>(3) Io has the greatest number of active volcanoes in the solar system.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>",
+        "text": "Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons."
+      },
+      {
+        "id": "B",
+        "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.</p>",
+        "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system."
+      },
+      {
+        "id": "C",
+        "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.</p>",
+        "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system."
+      },
+      {
+        "id": "D",
+        "html": "<p>Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>",
+        "text": "Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2020-2021 Form A"
+    ],
+    "versionLabel": "2020-2021 Form A"
+  },
+  {
+    "id": "part-b-import-d7cf6fc5ab7b-dd9ab404",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "label": "2020-2021 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_a.pdf",
+      "year": "2020-2021",
+      "form": "A",
+      "sourceQuestion": "5",
+      "pages": [
+        3
+      ]
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q5-1-png-passage.png\" alt=\"Supplied explanation for question 5\"></p><p><img src=\"/exam-images/restore-20202021-form-a-answers-q5-2-png-passage.png\" alt=\"Supplied explanation for question 5\"></p>",
+    "points": 1,
+    "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
+    "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) When coal was used to heat <u>homes</u>, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product <u>company</u> created a doughy substance to help people remove this soot. (3) Over time, as natural gas <u>becomes</u> more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he <u>remarketed</u> the product as the toy known today as Play-Doh.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>",
+        "text": "Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became."
+      },
+      {
+        "id": "B",
+        "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>",
+        "text": "Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed."
+      },
+      {
+        "id": "C",
+        "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>",
+        "text": "Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became."
+      },
+      {
+        "id": "D",
+        "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>",
+        "text": "Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2020-2021 Form A"
+    ],
+    "versionLabel": "2020-2021 Form A"
+  },
+  {
+    "id": "part-b-import-4918f97e972b-078ff032",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "label": "2020-2021 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+      "year": "2020-2021",
+      "form": "B",
+      "sourceQuestion": "1",
+      "pages": [
+        1
+      ]
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+    "points": 1,
+    "prompt": "Which revision corrects the error in sentence structure in the paragraph?\n\nThe land on Earth has not always been separated into the seven continents, at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface. Additionally, the supercontinent was surrounded by ocean waters called Panthalassa, much of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s crust. In fact, experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.",
+    "promptHtml": "<p>Which revision corrects the error in sentence structure in the paragraph?</p><blockquote data-boxed=\"true\">The land on Earth has not always been separated into the seven <u>continents, at</u> one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s <u>surface. Additionally,</u> the supercontinent was surrounded by ocean waters called <u>Panthalassa, much</u> of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s <u>crust. In fact,</u> experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>continents. At</p>",
+        "text": "continents. At"
+      },
+      {
+        "id": "B",
+        "html": "<p>surface; additionally,</p>",
+        "text": "surface; additionally,"
+      },
+      {
+        "id": "C",
+        "html": "<p>Panthalassa. Much</p>",
+        "text": "Panthalassa. Much"
+      },
+      {
+        "id": "D",
+        "html": "<p>crust, in fact,</p>",
+        "text": "crust, in fact,"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2020-2021 Form B"
+    ],
+    "versionLabel": "2020-2021 Form B"
+  },
+  {
+    "id": "part-b-import-9c2f067e7c86-17e7d0e4",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "label": "2020-2021 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+      "year": "2020-2021",
+      "form": "B",
+      "sourceQuestion": "2",
+      "pages": [
+        2
+      ]
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q2-1-png-passage.png\" alt=\"Supplied explanation for question 2\"></p>",
+    "points": 1,
+    "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.",
+    "promptHtml": "<p>Which sentence contains an error in its construction and should be revised?</p><blockquote data-boxed=\"true\">(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>sentence 1</p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p>sentence 2</p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p>sentence 3</p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p>sentence 4</p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2020-2021 Form B"
+    ],
+    "versionLabel": "2020-2021 Form B"
+  },
+  {
+    "id": "part-b-import-2462ba9281da-812fa1d4",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "label": "2020-2021 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+      "year": "2020-2021",
+      "form": "B",
+      "sourceQuestion": "3",
+      "pages": [
+        2
+      ]
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q3-1-png-passage.png\" alt=\"Supplied explanation for question 3\"></p>",
+    "points": 1,
+    "prompt": "Which edit should be made to correct the sentence?\n\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and once could hold up to 50,000 spectators.",
+    "promptHtml": "<p>Which edit should be made to correct the sentence?</p><blockquote data-boxed=\"true\">The Colosseum in <u>Rome,</u> <u>Italy</u> which is considered one of the “new” Seven Wonders of the <u>World,</u> is the largest amphitheater ever <u>built</u> and once could hold up to 50,000 spectators.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>Delete the comma after <em><strong>Rome</strong></em>.</p>",
+        "text": "Delete the comma after Rome."
+      },
+      {
+        "id": "B",
+        "html": "<p>Insert a comma after <em><strong>Italy</strong></em>.</p>",
+        "text": "Insert a comma after Italy."
+      },
+      {
+        "id": "C",
+        "html": "<p>Delete the comma after <em><strong>World</strong></em>.</p>",
+        "text": "Delete the comma after World."
+      },
+      {
+        "id": "D",
+        "html": "<p>Insert a comma after <em><strong>built</strong></em>.</p>",
+        "text": "Insert a comma after built."
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2020-2021 Form B"
+    ],
+    "versionLabel": "2020-2021 Form B"
+  },
+  {
+    "id": "part-b-import-a90ecb961d8a-f9bf88c1",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "label": "2020-2021 Form B",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+      "year": "2020-2021",
+      "form": "B",
+      "sourceQuestion": "4",
+      "pages": [
+        3
+      ]
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q4-1-png-passage.png\" alt=\"Supplied explanation for question 4\"></p><p><img src=\"/exam-images/restore-20202021-form-b-answers-q4-2-png-passage.png\" alt=\"Supplied explanation for question 4\"></p>",
+    "points": 1,
+    "prompt": "How should this sentence be revised?\n\nTo promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.",
+    "promptHtml": "<p>How should this sentence be revised?</p><blockquote data-boxed=\"true\">To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>",
+        "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team."
+      },
+      {
+        "id": "B",
+        "html": "<p>On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.</p>",
+        "text": "On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team."
+      },
+      {
+        "id": "C",
+        "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>",
+        "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday."
+      },
+      {
+        "id": "D",
+        "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>",
+        "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2020-2021 Form B"
+    ],
+    "versionLabel": "2020-2021 Form B"
+  },
+  {
+    "id": "part-b-import-a230dac54eb9-0577ee73",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "label": "2024-2025 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+      "year": "2024-2025",
+      "form": "A",
+      "sourceQuestion": "1",
+      "pages": [
+        3
+      ]
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+    "points": 1,
+    "prompt": "Read this sentence.\n\nThe engineers tried some other things in the hope of finding a more effective insulation for the compartment.\n\nWhat is the most precise revision for the words The engineers tried some other things?",
+    "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\"><u>The engineers tried some other things</u> in the hope of finding a more effective insulation for the compartment.</blockquote><p>What is the <strong>most</strong> precise revision for the words <em><strong>The engineers tried some other things</strong></em>?</p>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>The engineers did experiments with several new materials</p>",
+        "text": "The engineers did experiments with several new materials"
+      },
+      {
+        "id": "B",
+        "html": "<p>The engineers tested foam and fiberglass</p>",
+        "text": "The engineers tested foam and fiberglass"
+      },
+      {
+        "id": "C",
+        "html": "<p>The engineers examined two new materials</p>",
+        "text": "The engineers examined two new materials"
+      },
+      {
+        "id": "D",
+        "html": "<p>The engineers worked with foam and fiberglass</p>",
+        "text": "The engineers worked with foam and fiberglass"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2024-2025 Form A"
+    ],
+    "versionLabel": "2024-2025 Form A"
+  },
+  {
+    "id": "part-b-import-6e34e1a52059-024cf95e",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "label": "2024-2025 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+      "year": "2024-2025",
+      "form": "A",
+      "sourceQuestion": "2",
+      "pages": [
+        3
+      ]
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q2-1-png-passage.png\" alt=\"Supplied explanation for question 2\"></p>",
+    "points": 1,
+    "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.",
+    "promptHtml": "<p>Which sentence contains an error in its construction and should be revised?</p><blockquote data-boxed=\"true\">(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>sentence 1</p>",
+        "text": "sentence 1"
+      },
+      {
+        "id": "B",
+        "html": "<p>sentence 2</p>",
+        "text": "sentence 2"
+      },
+      {
+        "id": "C",
+        "html": "<p>sentence 3</p>",
+        "text": "sentence 3"
+      },
+      {
+        "id": "D",
+        "html": "<p>sentence 4</p>",
+        "text": "sentence 4"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2024-2025 Form A"
+    ],
+    "versionLabel": "2024-2025 Form A"
+  },
+  {
+    "id": "part-b-import-30519d115cab-1f91a2d7",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "label": "2024-2025 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+      "year": "2024-2025",
+      "form": "A",
+      "sourceQuestion": "3",
+      "pages": [
+        4
+      ]
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q3-1-png-passage.png\" alt=\"Supplied explanation for question 3\"></p>",
+    "points": 1,
+    "prompt": "Which edit should be made to correct the sentence?\n\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and once could hold up to 50,000 spectators.",
+    "promptHtml": "<p>Which edit should be made to correct the sentence?</p><blockquote data-boxed=\"true\">The Colosseum in <u>Rome,</u> <u>Italy</u> which is considered one of the “new” Seven Wonders of the <u>World,</u> is the largest amphitheater ever <u>built</u> and once could hold up to 50,000 spectators.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>Delete the comma after <em><strong>Rome</strong></em>.</p>",
+        "text": "Delete the comma after Rome."
+      },
+      {
+        "id": "B",
+        "html": "<p>Insert a comma after <em><strong>Italy</strong></em>.</p>",
+        "text": "Insert a comma after Italy."
+      },
+      {
+        "id": "C",
+        "html": "<p>Delete the comma after <em><strong>World</strong></em>.</p>",
+        "text": "Delete the comma after World."
+      },
+      {
+        "id": "D",
+        "html": "<p>Insert a comma after <em><strong>built</strong></em>.</p>",
+        "text": "Insert a comma after built."
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2024-2025 Form A"
+    ],
+    "versionLabel": "2024-2025 Form A"
+  },
+  {
+    "id": "part-b-import-383f7188a8c8-b7196781",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "pdf",
+      "playerProfile": "testnav",
+      "label": "2024-2025 Form A",
+      "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+      "year": "2024-2025",
+      "form": "A",
+      "sourceQuestion": "4",
+      "pages": [
+        4
+      ]
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q4-1-png-passage.png\" alt=\"Supplied explanation for question 4\"></p><p><img src=\"/exam-images/restore-20242025-form-a-answers-q4-2-png-passage.png\" alt=\"Supplied explanation for question 4\"></p>",
+    "points": 1,
+    "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.",
+    "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people <u>wonder:</u> what <u>is</u> the difference between the two? (2) To start <u>with,</u> the butterfat content is much higher in ice cream than <u>it is</u> in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing <u>process,</u> which adds less air to the frozen treat, <u>makes</u> gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the <u>gelato,</u> and <u>allow</u> it to melt more quickly.</blockquote>",
+    "topic": "",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>Sentence 1: Delete the colon after <em><strong>wonder</strong></em> AND change <em><strong>is</strong></em> to <strong>are</strong>.</p>",
+        "text": "Sentence 1: Delete the colon after wonder AND change is to are."
+      },
+      {
+        "id": "B",
+        "html": "<p>Sentence 2: Delete the comma after <em><strong>with</strong></em> AND change <em><strong>it is</strong></em> to <strong>they are</strong>.</p>",
+        "text": "Sentence 2: Delete the comma after with AND change it is to they are."
+      },
+      {
+        "id": "C",
+        "html": "<p>Sentence 3: Delete the comma after <em><strong>process</strong></em> AND change <em><strong>makes</strong></em> to <strong>make</strong>.</p>",
+        "text": "Sentence 3: Delete the comma after process AND change makes to make."
+      },
+      {
+        "id": "D",
+        "html": "<p>Sentence 4: Delete the comma after <em><strong>gelato</strong></em> AND change <em><strong>allow</strong></em> to <strong>allows</strong>.</p>",
+        "text": "Sentence 4: Delete the comma after gelato AND change allow to allows."
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2024-2025 Form A"
+    ],
+    "versionLabel": "2024-2025 Form A"
+  },
+  {
+    "id": "part-b-import-69ac133f53cf-d313d3e2",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "label": "2025-2026 Form B",
+      "url": "https://adam.testnav.com/client/index.html",
+      "year": "2025-2026",
+      "form": "B",
+      "section": "English",
+      "sourceQuestion": "54"
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/2025-2026-form-b-q54-explanation-passage.png\" alt=\"Official TestNav explanation for question 54\"></p>",
+    "points": 1,
+    "prompt": "Which part of the paragraph contains an error in sentence structure?",
+    "instructions": "Select the one error.",
+    "promptHtml": "Which part of the paragraph contains an error in sentence structure?",
+    "selectionHtml": "<p>In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian <span data-choice-id=\"A\">Institution, the</span> museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a <span data-choice-id=\"B\">year. The</span> museum features more than 30,000 <span data-choice-id=\"C\">objects, including</span> Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation <span data-choice-id=\"D\">Proclamation, written</span> in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.</p>",
+    "topic": "Sentence Structure",
+    "choices": [
+      {
+        "id": "A",
+        "html": "Institution, the",
+        "text": "Institution, the"
+      },
+      {
+        "id": "B",
+        "html": "year. The",
+        "text": "year. The"
+      },
+      {
+        "id": "C",
+        "html": "objects, including",
+        "text": "objects, including"
+      },
+      {
+        "id": "D",
+        "html": "Proclamation, written",
+        "text": "Proclamation, written"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2025-2026 Form B"
+    ],
+    "versionLabel": "2025-2026 Form B"
   }
 ];
 

@@ -1,0 +1,306 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "prompt": "Read this sentence.\n\nThe engineers tried some other things in the hope of finding a more effective insulation for the compartment.\n\nWhat is the most precise revision for the words The engineers tried some other things?",
+      "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\"><u>The engineers tried some other things</u> in the hope of finding a more effective insulation for the compartment.</blockquote><p>What is the <strong>most</strong> precise revision for the words <em><strong>The engineers tried some other things</strong></em>?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "The engineers did experiments with several new materials",
+          "html": "<p>The engineers did experiments with several new materials</p>"
+        },
+        {
+          "id": "B",
+          "text": "The engineers tested foam and fiberglass",
+          "html": "<p>The engineers tested foam and fiberglass</p>"
+        },
+        {
+          "id": "C",
+          "text": "The engineers examined two new materials",
+          "html": "<p>The engineers examined two new materials</p>"
+        },
+        {
+          "id": "D",
+          "text": "The engineers worked with foam and fiberglass",
+          "html": "<p>The engineers worked with foam and fiberglass</p>"
+        }
+      ],
+      "id": "20242025-form-a-q001",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20242025_form_a.pdf",
+        "sourceQuestion": "1",
+        "sourcePages": [
+          3
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20242025_form_a_-_answers.pdf",
+          "sourcePages": [
+            65
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20242025_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        }
+      },
+      "correctChoiceId": "B",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+      "sourceQuestion": "1",
+      "versionLabels": [
+        "2024-2025 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "label": "2024-2025 Form A",
+        "year": "2024-2025",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+        "sourceQuestion": "1",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Source 20242025_form_a.pdf; question 1."
+      ]
+    },
+    {
+      "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.",
+      "promptHtml": "<p>Which sentence contains an error in its construction and should be revised?</p><blockquote data-boxed=\"true\">(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.</blockquote>",
+      "choices": [
+        {
+          "id": "E",
+          "text": "sentence 1",
+          "html": "<p>sentence 1</p>"
+        },
+        {
+          "id": "F",
+          "text": "sentence 2",
+          "html": "<p>sentence 2</p>"
+        },
+        {
+          "id": "G",
+          "text": "sentence 3",
+          "html": "<p>sentence 3</p>"
+        },
+        {
+          "id": "H",
+          "text": "sentence 4",
+          "html": "<p>sentence 4</p>"
+        }
+      ],
+      "id": "20242025-form-a-q002",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20242025_form_a.pdf",
+        "sourceQuestion": "2",
+        "sourcePages": [
+          3
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20242025_form_a_-_answers.pdf",
+          "sourcePages": [
+            65
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20242025_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        }
+      },
+      "correctChoiceId": "E",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q2-1-png-passage.png\" alt=\"Supplied explanation for question 2\"></p>",
+      "sourceQuestion": "2",
+      "versionLabels": [
+        "2024-2025 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "label": "2024-2025 Form A",
+        "year": "2024-2025",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+        "sourceQuestion": "2",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Source 20242025_form_a.pdf; question 2."
+      ]
+    },
+    {
+      "prompt": "Which edit should be made to correct the sentence?\n\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and once could hold up to 50,000 spectators.",
+      "promptHtml": "<p>Which edit should be made to correct the sentence?</p><blockquote data-boxed=\"true\">The Colosseum in <u>Rome,</u> <u>Italy</u> which is considered one of the “new” Seven Wonders of the <u>World,</u> is the largest amphitheater ever <u>built</u> and once could hold up to 50,000 spectators.</blockquote>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Delete the comma after Rome.",
+          "html": "<p>Delete the comma after <em><strong>Rome</strong></em>.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Insert a comma after Italy.",
+          "html": "<p>Insert a comma after <em><strong>Italy</strong></em>.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Delete the comma after World.",
+          "html": "<p>Delete the comma after <em><strong>World</strong></em>.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Insert a comma after built.",
+          "html": "<p>Insert a comma after <em><strong>built</strong></em>.</p>"
+        }
+      ],
+      "id": "20242025-form-a-q003",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20242025_form_a.pdf",
+        "sourceQuestion": "3",
+        "sourcePages": [
+          4
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20242025_form_a_-_answers.pdf",
+          "sourcePages": [
+            65
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20242025_form_a_-_answers.pdf",
+          "sourcePages": [
+            2
+          ]
+        }
+      },
+      "correctChoiceId": "B",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q3-1-png-passage.png\" alt=\"Supplied explanation for question 3\"></p>",
+      "sourceQuestion": "3",
+      "versionLabels": [
+        "2024-2025 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "label": "2024-2025 Form A",
+        "year": "2024-2025",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+        "sourceQuestion": "3",
+        "pages": [
+          4
+        ]
+      },
+      "notes": [
+        "Source 20242025_form_a.pdf; question 3."
+      ]
+    },
+    {
+      "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.",
+      "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people <u>wonder:</u> what <u>is</u> the difference between the two? (2) To start <u>with,</u> the butterfat content is much higher in ice cream than <u>it is</u> in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing <u>process,</u> which adds less air to the frozen treat, <u>makes</u> gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the <u>gelato,</u> and <u>allow</u> it to melt more quickly.</blockquote>",
+      "choices": [
+        {
+          "id": "E",
+          "text": "Sentence 1: Delete the colon after wonder AND change is to are.",
+          "html": "<p>Sentence 1: Delete the colon after <em><strong>wonder</strong></em> AND change <em><strong>is</strong></em> to <strong>are</strong>.</p>"
+        },
+        {
+          "id": "F",
+          "text": "Sentence 2: Delete the comma after with AND change it is to they are.",
+          "html": "<p>Sentence 2: Delete the comma after <em><strong>with</strong></em> AND change <em><strong>it is</strong></em> to <strong>they are</strong>.</p>"
+        },
+        {
+          "id": "G",
+          "text": "Sentence 3: Delete the comma after process AND change makes to make.",
+          "html": "<p>Sentence 3: Delete the comma after <em><strong>process</strong></em> AND change <em><strong>makes</strong></em> to <strong>make</strong>.</p>"
+        },
+        {
+          "id": "H",
+          "text": "Sentence 4: Delete the comma after gelato AND change allow to allows.",
+          "html": "<p>Sentence 4: Delete the comma after <em><strong>gelato</strong></em> AND change <em><strong>allow</strong></em> to <strong>allows</strong>.</p>"
+        }
+      ],
+      "id": "20242025-form-a-q004",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20242025_form_a.pdf",
+        "sourceQuestion": "4",
+        "sourcePages": [
+          4
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20242025_form_a_-_answers.pdf",
+          "sourcePages": [
+            65
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20242025_form_a_-_answers.pdf",
+          "sourcePages": [
+            2,
+            3
+          ]
+        }
+      },
+      "correctChoiceId": "H",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q4-1-png-passage.png\" alt=\"Supplied explanation for question 4\"></p><p><img src=\"/exam-images/restore-20242025-form-a-answers-q4-2-png-passage.png\" alt=\"Supplied explanation for question 4\"></p>",
+      "sourceQuestion": "4",
+      "versionLabels": [
+        "2024-2025 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "label": "2024-2025 Form A",
+        "year": "2024-2025",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+        "sourceQuestion": "4",
+        "pages": [
+          4
+        ]
+      },
+      "notes": [
+        "Source 20242025_form_a.pdf; question 4."
+      ]
+    }
+  ]
+}

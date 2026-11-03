@@ -1,0 +1,531 @@
+1 [{'score': 0.9621, 'parent': 'standalone', 'id': 'part-b-import-3cbd8c08e674-296b74d3'}]
+Read this sentence.
+
+During a nightly-news segment about a cooking contest, a reporter talked to some people who did the best in the contest.
+
+Which of these is the most precise revision for the words talked to some people who did the best in the contest?
+A: conversed with some of the people who won the contest | B: spoke to the three contestants who did well | C: discussed the contest with some of the winners | D: interviewed the top three contestants
+2 [{'score': 0.7793, 'parent': 'standalone', 'id': 'pdf-shsat-2024-2025-b-q004'}]
+Read this paragraph.
+
+(1) When coal was used to heat homes, it frequently left a soot stain on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company, created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day, Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.
+
+Which sentence should be revised to correct an inappropriate shift in verb tense?
+E: sentence 1 | F: sentence 2 | G: sentence 3 | H: sentence 4
+3 [{'score': 0.4952, 'parent': 'standalone', 'id': 'part-b-import-5ce9007a70b7-82667959'}]
+Read this sentence.
+
+The animal shelter, which is located on Midway Street, is looking for volunteers to help with a variety of tasks, such as walking dogs cleaning kennels, hand-feeding newborn kittens, and supporting the pet adoption process.
+
+Which edit should be made in this sentence?
+A: delete the comma after shelter | B: insert a comma after volunteers | C: insert a comma after dogs | D: delete the comma after kennels
+4 [{'score': 0.9101, 'parent': 'standalone', 'id': 'official-shsat-2026-b-48'}]
+Read these sentences.
+
+(1) Flyby missions near Jupiter have been happening since 1973.
+
+(2) Flyby missions allow scientists to collect data about Jupiter and its moons.
+
+What is the best way to combine these sentences to clarify the relationship between the ideas?
+E: Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973. | F: Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons. | G: Flyby missions near Jupiter allow scientists to collect data about the planet and its moons, which have been happening since 1973. | H: Since 1973 flyby missions have been happening near Jupiter, but they allow scientists to collect data about the planet and its moons.
+5 [{'score': 0.8754, 'parent': 'standalone', 'id': 'standalone-vague-pronoun-1'}]
+Read this paragraph.
+
+(1) Eliza and Brianna have been singing in their school chorus since they were in fourth grade. (2) The girls always sing a duet at the school talent show, and they take turns singing the national anthem before school sporting events. (3) Outside of school, she also sings in a choir made up of young and old members of her community. (4) Both girls hope that they will be able to continue singing for many more years.
+
+Which sentence should be revised to correct a vague pronoun?
+A: sentence 1 | B: sentence 2 | C: sentence 3 | D: sentence 4
+6 [{'score': 0.8425, 'parent': 'standalone', 'id': 'part-b-question-9'}]
+Read this sentence.
+
+In 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.
+
+Which edit should be made to correct this sentence?
+E: insert a comma after agile | F: insert a comma after Chamberlain | G: insert a comma after only | H: insert a comma after States
+7 [{'score': 0.3254, 'parent': 'the-local-library-2018-2019-form-b', 'id': 'the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q005'}]
+Which sentence should replace sentence 4 to more clearly introduce the topic of this passage?
+A: Bike share programs have become an accessible and environmentally friendly solution for many urban travelers. | B: Bike share programs are successful because both residents and tourists can use the bicycles to travel within a city. | C: Bike share programs offer an alternative form of transportation in urban areas that is faster than using a car or taxi. | D: Bike share programs have created an affordable mode of transportation for people in large cities throughout the world.
+8 [{'score': 0.3048, 'parent': 'the-free-college-debate-2024-2025-form-a', 'id': 'the-free-college-debate-2024-2025-form-a-4'}]
+Which sentence can best follow sentence 6 to help develop the ideas in the second paragraph (sentences 5–10)?
+E: Bike sharing stations that are located near tourist destinations or major transportation hubs are the most popular. | F: A person obtains a bike from one station, rides it for a period of time, and then returns the bike to the original station or to another station within the system. | G: A mechanism called a dock keeps each bicycle securely locked to the station until a user comes along, releases the lock, and starts a ride. | H: Bike sharing stations have been built in many of the largest cities in the United States, including Boston, San Francisco, Chicago, Minneapolis, and Denver.
+9 [{'score': 0.3156, 'parent': 'martial-arts-for-the-mind-and-body-2021-2022-form-b', 'id': 'martial-arts-for-the-mind-and-body-2021-2022-form-b-pdf-shsat-2021-2022-b-q005'}]
+What is the best way to combine sentences 8 and 9 to clarify the relationship between the ideas?
+A: Although they prefer bike sharing over ownership, many city bikers are not responsible for the bike’s storage or its maintenance. | B: Many city bikers prefer bike sharing over ownership, and they are not responsible for the bike’s storage or its maintenance. | C: Since many city bikers prefer bike sharing over ownership, they are not responsible for the bike’s storage or its maintenance. | D: Many city bikers prefer bike sharing over ownership because they are not responsible for the bike’s storage or its maintenance.
+10 [{'score': 0.3596, 'parent': 'standalone', 'id': 'part-b-question-8'}]
+Which revision of sentence 14 uses the most precise language?
+E: In 2016, data revealed that Citi Bike was used for millions of trips, which shows that the program had a 40 percent increase in ridership from the previous year. | F: In 2016, nearly 14 million trips were recorded by Citi Bike, which adds up to a huge increase in ridership compared with the previous year. | G: In 2016, Citi Bike documented nearly 14 million trips, which amounted to an astonishing 40 percent increase in ridership from the previous year. | H: In 2016, Citi Bike saw several million trips, which turned out to be a big increase in ridership from the previous year.
+11 [{'score': 0.3306, 'parent': 'the-local-library-2018-2019-form-b', 'id': 'the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q008'}]
+Which sentence should be added before sentence 17 to improve the organization of the fourth paragraph (sentences 17–18)?
+A: Experts increasingly want to discuss the positive effects of bike sharing programs, such as Citi Bike, in big cities. | B: While bike sharing programs offer clear benefits to riders, some people cite another reason for their support of the bike share model. | C: If bike sharing programs are going to continue to increase in popularity, it is important for communities to discuss all the benefits these programs offer. | D: Citi Bike is an innovative program that can cite positive statistics about ridership from one year to another.
+12 [{'score': 0.3425, 'parent': 'new-york-city-and-the-hudson-valley-brickmaking-industry-2026-2027-form-c', 'id': 'new-york-city-and-the-hudson-valley-brickmaking-industry-2026-2027-form-c-official-shsat-2026-c-47'}]
+Which sentence could best follow sentence 18 and support the main point of the fourth paragraph (sentences 17–18)?
+E: Bike share programs are developed in cities mainly to improve air quality. | F: Participating in a bike share program is the main way travelers can improve air quality in cities. | G: Cities may begin to experience improved air quality as more travelers use bike share programs. | H: Bike share programs may be more effective at improving air quality in some cities than they are in other cities.
+13 [{'score': 0.8372, 'parent': 'find-time-to-volunteer-2024-2025-form-b', 'id': 'find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q007'}]
+Which sentence is irrelevant to the ideas in the third paragraph (sentences 11–16) and should be deleted?
+A: sentence 12 | B: sentence 13 | C: sentence 15 | D: sentence 16
+14 [{'score': 0.4076, 'parent': 'what-the-cube-taught-me-digital-shsat-practice-test-3', 'id': 'what-the-cube-taught-me-digital-shsat-practice-test-3-6'}]
+Which concluding sentence should replace sentence 20 to better support the information presented in the passage?
+E: Over time, bike sharing may become a routine part of modern urban life. | F: Even small-or medium-sized cities can benefit from implementing a bike share program. | G: Compared with other solutions, bike sharing seems to have the most potential. | H: Ultimately, bike sharing is an interesting and unique way for tourists to explore a city.
+15 [{'score': 0.4168, 'parent': 'cracking-the-code-2019-2020-form-a', 'id': 'cracking-the-code-2019-2020-form-a-2019-form-a-ela-q06'}]
+Which sentence should follow sentence 3 to state the main claim of the passage?
+A: Hobbies offer a variety of benefits, and people should set aside time to pursue them. | B: People should select a hobby carefully before investing the time and resources. | C: Hobbies are a productive way to spend free time, so people should pursue them. | D: People should find hobbies that bring them pleasure and enjoyment.
+16 [{'score': 0.77, 'parent': 'the-benefits-of-indoor-plants-2020-2021-form-a', 'id': 'the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-12'}]
+Which transition word or phrase should be added to the beginning of sentence 6?
+E: For example | F: Indeed | G: As a result | H: Also
+17 [{'score': 0.4852, 'parent': 'the-end-of-an-era-2023-2024-form-b', 'id': 'the-end-of-an-era-2023-2024-form-b-pdf-shsat-2023-2024-b-q008'}]
+Read this sentence.
+
+Active hobbies, such as jogging or yoga, can also provide relief from some of the effects of stress, because they prompt the body to release chemicals called endorphins, which can promote positive feelings.
+
+Where should this sentence be added to best support the ideas in the second paragraph (sentences 4–9)?
+A: between sentences 6 and 7 | B: between sentences 7 and 8 | C: between sentences 8 and 9 | D: at the end of the paragraph (after sentence 9)
+18 [{'score': 0.3764, 'parent': 'standalone', 'id': 'part-b-question-8'}]
+Which revision of sentence 16 uses the most precise language?
+E: A hobbyist might try to learn more about a hobby or go to events with other people who also like the same hobby. | F: A hobbyist might enroll in a course related to the hobby or attend a convention with other people who enjoy the hobby. | G: A hobbyist might try to find new information about a hobby or go to places where other people are involved with the hobby. | H: A hobbyist might want to expand his or her knowledge of a hobby or do an activity with other people who pursue the same hobby.
+19 [{'score': 0.4, 'parent': 'the-free-college-debate-2024-2025-form-a', 'id': 'the-free-college-debate-2024-2025-form-a-4'}]
+Which sentence would best follow sentence 17 to support the ideas in the fourth paragraph (sentences 15–17)?
+A: Meaningful friendships are associated with an increased sense of self-confidence and happiness. | B: Participating in a hobby with friends is usually more enjoyable than pursuing a hobby alone. | C: Friends who enjoy pursing a hobby together will likely enjoy pursuing other hobbies together. | D: Forming deep and rich friendships can become more challenging as people get older.
+20 [{'score': 0.8839, 'parent': 'find-time-to-volunteer-2024-2025-form-b', 'id': 'find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q007'}]
+Which sentence is irrelevant to the ideas presented in the third paragraph (sentences 10–14) and should be deleted?
+E: sentence 10 | F: sentence 11 | G: sentence 13 | H: sentence 14
+21 [{'score': 1.0, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051'}]
+Which of the following best tells what this passage is about?
+A: the belief of some religious leaders that the end of the world was coming in 1816 | B: a summer of strange weather and its probable cause | C: the importance of summer weather to agriculture in New England | D: a comparison of the weather of 1816 and 1991
+22 [{'score': 0.9034, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q052'}]
+What is the most likely reason farmers persisted in replanting their crops?
+E: They believed that the cold weather could not continue all summer long. | F: They thought that crops would be able to survive even though the weather remained cold. | G: The weather had warmed up by July. | H: They thought the June snowfalls would provide needed moisture.
+23 [{'score': 1.0, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q053'}]
+In the winter that followed the summer of 1816, New Englanders most likely experienced
+A: new weather events that they had not encountered before. | B: temperatures that were warmer than usual for that time of year. | C: shortages of fruits, vegetables, and other essential crops. | D: difficulty adjusting to a different time line for planting crops.
+24 [{'score': 0.9783, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q056'}]
+Which of the following is implied by the phrase “the global nature of weather” (line 70)?
+E: Understanding weather events around the world is important for making weather predictions. | F: Extreme weather conditions in some parts of the world can have a lasting impact on a geographical area. | G: Natural disasters tend to occur in different parts of the world at the same time. | H: Conditions in one part of the world can affect weather in another part of the world.
+25 [{'score': 0.8006, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q055'}]
+The author includes the details about the eruption of Mount Tambora in lines 57–65 in order to
+A: emphasize that the aftermath of the eruption still affects the environment today. | B: highlight the severe impact that the eruption had on the atmosphere. | C: provide details about what happens during a volcanic eruption. | D: suggest that weather events around the world caused the eruption.
+26 [{'score': 0.9861, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q057'}]
+The cold summer of 1816 was most likely caused by
+E: unusual sunspot activity. | F: the excessive use of lightning rods. | G: damage to the ozone layer. | H: an increase in dust in the atmosphere.
+27 [{'score': 0.9831, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q054'}]
+How does the third paragraph contribute to the passage?
+A: It presents the most probable cause of the 1816 weather. | B: It shows how nineteenth-century people explained the 1816 weather. | C: It presents a theory about the 1816 weather that some skeptics doubted. | D: It includes eyewitness reports to describe the source of the 1816 weather.
+28 [{'score': 0.3697, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051'}]
+Which of the following best tells what this passage is about?
+E: Dickens’s motivations for becoming a writer | F: Dickens’s childhood relationship with his parents | G: the autobiographical basis for Dickens’s David Copperfield | H: the characters created by Dickens for David Copperfield
+29 [{'score': 0.3313, 'parent': 'excerpt-from-a-tramp-abroad-2018-2019-form-a', 'id': 'excerpt-from-a-tramp-abroad-2018-2019-form-a-pdf-shsat-2018-2019-a-q028'}]
+In the fourth paragraph, the author includes details about Dickens’s experiences as an adult in order to
+A: highlight that the time Dickens spent working in the factory affected him throughout his life. | B: emphasize that Dickens made sure he would never have to work in a factory again. | C: highlight that Dickens did not readily share details about his childhood with others. | D: emphasize that Dickens did not want his own children to experience hardships.
+30 [{'score': 0.3563, 'parent': 'excerpt-from-winter-wheat-2021-2022-form-a', 'id': 'excerpt-from-winter-wheat-2021-2022-form-a-pdf-shsat-2021-2022-a-q021'}]
+The details in the second and third paragraphs suggest that young Dickens
+E: struggled to perform his job in the factory. | F: worried about the financial situation of his family. | G: wished he had a better relationship with his parents. | H: preferred attending school to working in a factory.
+31 [{'score': 0.322, 'parent': 'excerpt-from-do-them-no-harm-2023-form-a', 'id': 'excerpt-from-do-them-no-harm-2023-form-a-2023-form-a-q27'}]
+Which of the following is the most likely reason that Dickens wrote David Copperfield?
+A: He needed money from the novel to help pay his family’s debts. | B: He needed a way to cope with the difficulties of his childhood. | C: He wanted to avoid telling his children about his experiences in the factory. | D: He wanted to explain how his childhood had influenced his adult life.
+32 [{'score': 0.3004, 'parent': '2022-2023-form-bMath.ts', 'id': '2022-2023-form-b-q104'}]
+Based on the details in the third paragraph, what can be concluded about the relationship between Dickens and his mother?
+E: He avoided her after he was allowed to return to school. | F: He resented her for putting the need for his wages above his happiness. | G: He hoped she would understand why attending school was important to him. | H: He recognized that she had the authority to negotiate on his behalf.
+33 [{'score': 0.3333, 'parent': '2026-2027-form-cMath.ts', 'id': 'official-shsat-2026-c-67'}]
+What most directly enabled Charles Dickens to return to school?
+A: the discussion between his mother and his boss | B: the argument between his father and his boss | C: getting fired from the factory | D: getting support from his father
+34 [{'score': 0.4537, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051'}]
+Which of the following best tells what this passage is about?
+E: the relationship between smell and taste | F: the science of how taste buds work | G: the analysis and creation of flavors | H: the difficulty of producing artificial flavors
+35 [{'score': 0.3074, 'parent': 'the-tunguska-fireball-2018-2019-form-b', 'id': 'the-tunguska-fireball-2018-2019-form-b-pdf-shsat-2018-2019-b-q014'}]
+What is the principal goal of the scientific research described in the third paragraph?
+A: to predict consumer taste preferences in food | B: to develop food with strong flavors | C: to produce synthetic equivalents of natural food flavors | D: to improve the natural flavors in unprocessed food
+36 [{'score': 0.2572, 'parent': 'excerpt-from-how-exercise-could-help-you-learn-a-new-language-2024-2025-form-b', 'id': 'excerpt-from-how-exercise-could-help-you-learn-a-new-language-2024-2025-form-b-pdf-shsat-2024-2025-b-q022'}]
+Which of the following can be concluded from the collection of aromas during food preparation?
+E: Creating artificial flavors from captured aromas is a difficult process. | F: Certain chemical components of a food’s flavor are present in its aroma. | G: Most people cannot tell the difference between natural flavors and artificial flavors. | H: The natural flavor of a food is usually enhanced during the cooking process.
+37 [{'score': 0.3053, 'parent': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a', 'id': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-25'}]
+Why does the author mention orange soda in the fourth paragraph?
+A: to suggest that consumer preferences for natural or artificial flavors vary | B: to explain why natural flavors are more expensive than artificial substitutes | C: to demonstrate that consumers sometimes prefer artificial flavors to natural flavors | D: to give an example of a natural flavor that may become difficult to find in the future
+38 [{'score': 0.321, 'parent': 'cross-purposes-2018-2019-form-a', 'id': 'cross-purposes-2018-2019-form-a-pdf-shsat-2018-2019-a-q050'}]
+The author describes the role that the sense of smell plays when experiencing a flavor (lines 6–13) in order to
+E: emphasize that it is easier for a person to sense the aroma of a flavor than its taste. | F: highlight that the aroma of a flavor influences how a person perceives its taste. | G: emphasize that synthetic flavors need to have both an aroma and a taste. | H: highlight that synthetic flavors tend to have a stronger aroma than taste.
+39 [{'score': 0.3543, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q055'}]
+The author includes details about the uses for synthetic flavors in lines 25–28 in order to
+A: show that synthetic flavors are easy to create. | B: demonstrate that many items are made with the same synthetic flavor. | C: suggest that synthetic flavors are healthier than natural flavors. | D: highlight that synthetic flavors are found in a variety of everyday items.
+40 [{'score': 1.0, 'parent': 'ruins-of-a-fabled-city-2018-2019-form-a', 'id': 'ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q036'}]
+Which statement best describes the central idea of the passage?
+E: Great Zimbabwe was an enormous stone city thought to be home to some of the greatest treasure of ancient history. | F: Mysteries related to Great Zimbabwe continue to interest historians and explorers even though archaeologists have confirmed its origins. | G: The history of Great Zimbabwe was subject to much speculation until modern archaeologists definitively determined its origins. | H: Early missteps in the study and excavation of the Great Zimbabwe ruins led to the loss of valuable evidence about the city.
+41 [{'score': 0.9795, 'parent': 'ruins-of-a-fabled-city-2018-2019-form-a', 'id': 'ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q037'}]
+What was the main way that Karl Mauch’s conclusions about Great Zimbabwe (lines 45–47) affected later archaeological investigations?
+A: Archaeologists from all over Europe became interested in excavating the area. | B: Archaeologists made assumptions about the history of the ruins before excavating. | C: Archaeologists started to believe that many of the past accounts recorded about the ruins were true. | D: Archaeologists realized it was unlikely that an ancient culture could build such a grand structure.
+42 [{'score': 0.8426, 'parent': 'ruins-of-a-fabled-city-2018-2019-form-a', 'id': 'ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q039'}]
+What was “one mystery of Great Zimbabwe” (line 76) that had been solved?
+E: when the settlement was abandoned and why | F: why there was no ivory or gold found in the ruins | G: why the ruins remained undiscovered until the 1870s | H: who had built the settlement and when
+43 [{'score': 0.9693, 'parent': 'ruins-of-a-fabled-city-2018-2019-form-a', 'id': 'ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q040'}]
+Which of the following statements about the Shona people is best supported by the passage?
+A: They live along the east coast of Africa. | B: They are descendants of the people who built Great Zimbabwe. | C: They lived in the Middle East before settling in Africa. | D: They were once ruled by King Solomon and the Queen of Sheba.
+44 [{'score': 0.8784, 'parent': 'ruins-of-a-fabled-city-2018-2019-form-a', 'id': 'ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q041'}]
+The conclusions of David Randall-MacIver and Gertrude Caton-Thompson were significant mostly because they
+E: proved that Great Zimbabwe was much older than previously thought. | F: questioned why the Shona people left Great Zimbabwe. | G: supported the idea that ancient Shona society was robust. | H: revealed that Great Zimbabwe was created by the ancient Shona people.
+45 [{'score': 0.3871, 'parent': 'ruins-of-a-fabled-city-2018-2019-form-a', 'id': 'ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q038'}]
+Which of the following best describes the relationship of Portuguese explorers to Great Zimbabwe?
+A: They searched for it but were never able to find it. | B: They hoped it was as grand as they had been told by traders. | C: They knew it was unlikely they would find the stone city. | D: They had to rely on information from others in order to search for it.
+46 [{'score': 0.3641, 'parent': 'ruins-of-a-fabled-city-2018-2019-form-a', 'id': 'ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q036'}]
+Which statement best reflects the central idea of this passage?
+E: Bats provide numerous benefits to the environment and should be protected. | F: Bats are still considered pests even though people understand that bats are helpful. | G: Bats help limit the spread of disease by eating insects that carry diseases. | H: Bats are responsible for pollinating a variety of rain forest plants across great distances.
+47 [{'score': 0.2852, 'parent': 'excerpt-from-the-food-business-incubator-2023-form-a', 'id': 'excerpt-from-the-food-business-incubator-2023-form-a-2023-form-a-q35'}]
+Which of the following best describes animal species that function as a “keystone” (line 35)?
+A: They can be threatened with extinction. | B: They are a food source for other animals. | C: They pollinate many different types of plants. | D: They help maintain the balance of their environment.
+48 [{'score': 0.284, 'parent': 'the-best-laid-plans-of-ravens-2021-2022-form-a', 'id': 'the-best-laid-plans-of-ravens-2021-2022-form-a-pdf-shsat-2021-2022-a-q017'}]
+Which statement best describes the author’s opinion about bat conservation?
+E: Allowing bats to occasionally eat crops and fruit from cultivated trees is a good way to prevent bats from becoming endangered. | F: Because bats can support the growth of many different species, they should be relocated to areas with struggling ecosystems. | G: Although bats may seem to be a nuisance, it is vitally important that they are protected and managed in humane ways. | H: Protecting the bat population takes priority over concerns about bats ruining cultivated trees and crops.
+49 [{'score': 0.4283, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q013'}]
+Which evidence best supports the claim that the bat is important to the survival of certain species?
+A: the details about how bats pollinate the iroko tree | B: the information about how bats help maintain genetic diversity | C: the details about how bats sometimes eat cultivated fruit trees | D: the information about how bats consume mainly mosquitoes
+50 [{'score': 0.3416, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q055'}]
+In the third paragraph, the author includes the details about the bat’s role as a keystone species in order to
+E: convey that bats help distribute seeds throughout the rain forest. | F: show that bats provide food and shelter for other animals. | G: emphasize that threats to bats would affect the rain forest ecosystem. | H: highlight that bats help maintain the levels of oxygen in the atmosphere.
+51 [{'score': 0.3345, 'parent': 'form-a-raven-plans', 'id': 'raven-plans-6'}]
+What does the author intend to convey by the statement “ugliness is only skin deep” (line 69)?
+A: Certain species of bats have a less appealing physical appearance than other species of bats. | B: People should avoid making assumptions about bats based on the animals’ physical appearance. | C: People should avoid removing bats from certain areas because of the physical appearance of bats. | D: Efforts to conserve bats are worthwhile even though people dislike the animals’ physical appearance.
+52 [{'score': 0.3774, 'parent': 'the-year-without-a-summer-2018-2019-form-a', 'id': 'the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051'}]
+Which of the following best tells what this passage is about?
+E: the Russian writers Boris Pasternak and Anna Akhmatova | F: the poetry published in the Soviet Union during the twentieth century | G: censorship in the Soviet Union and the underground system that arose in response | H: the reasons for banning writers who criticized the Soviet government
+53 [{'score': 0.3257, 'parent': 'digital-shsat-practice-test-5Math.ts', 'id': 'satcc-digital-shsat-practice-test-5-v2-math-33'}]
+Which of the following is most likely an example of material circulated in the earliest phase of samizdat?
+A: a letter protesting a writer’s imprisonment | B: a short story | C: a list of political prisoners | D: an article from a foreign newspaper
+54 [{'score': 0.3427, 'parent': 'ode-to-fireworks-2019-2020-form-a', 'id': 'ode-to-fireworks-2019-2020-form-a-2019-form-a-ela-q21'}]
+The phrase “a knock at his door in the middle of the night” (lines 44–45) most likely refers to a visit by
+E: the secret police. | F: a representative from a major publisher. | G: a participant in the samizdat network. | H: people from other countries.
+55 [{'score': 0.2244, 'parent': '2024-2025-form-bMath.ts', 'id': 'pdf-shsat-2024-2025-b-q061'}]
+Which event led to a change in how samizdat was created and shared?
+A: government authorities censoring Akhmatova’s work | B: the increase in the distribution of political essays | C: Pasternak winning the Nobel Prize | D: the rise in the use of computers and computer networks
+56 [{'score': 0.2772, 'parent': 'uncovering-the-past-2018-2019-form-b', 'id': 'uncovering-the-past-2018-2019-form-b-pdf-shsat-2018-2019-b-q037'}]
+What is the most likely reason that samizdat materials were unsigned or signed with false names?
+E: to allow the materials to be smuggled out of the country | F: to protect the writer from punishment | G: to avoid breaking censorship laws | H: to differentiate between original and copied works
+57 [{'score': 0.2893, 'parent': 'an-early-warning-2018-2019-form-a', 'id': 'an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q012'}]
+Why did samizdat networks quickly disappear in 1989?
+A: Samizdat networks were unnecessary after censorship was abolished. | B: Samizdat networks became regular publishing companies. | C: Samizdat networks were replaced by the use of computers. | D: Samizdat networks went deeper underground than ever before.
+58 [{'score': 0.9381, 'parent': '2026-2027-form-aMath.ts', 'id': '2026-2027-form-a-math-item-9'}]
+x° R Q
+
+72° P S
+
+In the figure above, PQRS is a parallelogram. What is the value of x ?
+
+59 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q059'}]
+The owner of a tree farm plants pine trees and oak trees in a ratio of 8:3. How many oak trees are planted if 264 pine trees are planted?
+
+60 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q060'}]
+For what value of w is 4w = 2w − 8 ?
+
+61 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q061'}]
+A survey asked students what pets they have. Based on the results, the following statements are all true.
+
+• 20 students have cats.
+
+• 23 students have dogs.
+
+• 3 students have both dogs and cats.
+
+• 5 students have no dogs or cats.
+
+How many students were surveyed?
+
+62 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q062'}]
+The sum of two consecutive integers is −15. If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?
+
+63 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q063'}]
+The set of possible values of m is {5, 7, 9}. What is the set of possible values of k if 2k = m + 3 ?
+A: {3, 4, 5} | B: {4, 5, 6} | C: {8, 10, 12} | D: {10, 14, 18}
+64 [{'score': 0.3704, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q073'}]
+One bottle contains 500 milliliters of juice. How many liters of juice are there in 24 of these bottles?
+E: 12 L | F: 120 L | G: 1,200 L | H: 12,000 L
+65 [{'score': 0.95, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q065'}]
+In a certain school, course grades range from 0 to 100. Adrianna took 4 courses and her average course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto’s average?
+A: 72 | B: 80 | C: 90 | D: 92
+66 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q066'}]
+Jenny starts a game with twice as many marbles as Keiko. Jenny gives Keiko 5 marbles, but she still has 10 more than Keiko. How many marbles did Jenny have to start with?
+E: 25 | F: 30 | G: 35 | H: 40
+67 [{'score': 0.9518, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q067'}]
+In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?
+A: 0.001 in. | B: 0.01 in. | C: 0.1 in. | D: 0.12 in.
+68 [{'score': 0.8444, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q068'}]
+PEOPLE PER VEHICLE AT CHECKPOINT
+
+Number of People Percent of in Vehicle Vehicles
+
+1 40%
+
+2 35%
+
+3 15%
+
+4 7%
+
+5 or more 3%
+
+A researcher recorded the number of people in each vehicle that passed through a checkpoint. The table above shows the percent distribution for the 420 vehicles that passed through the checkpoint yesterday morning. How many of the 420 vehicles contained at least 3 people?
+E: 42 | F: 63 | G: 105 | H: 315
+69 [{'score': 0.9673, 'parent': '2025-2026-form-aMath.ts', 'id': 'square-pyramid-lateral-surface-area'}]
+R
+
+N
+
+M P
+
+S
+
+Q
+
+In the pyramid above, each triangular face has the same area, and the base MNPQ is a square that measures 8 centimeters on each side. If the length of RS = 6 centimeters, what is the surface area of the pyramid excluding the base?
+A: 48 sq cm | B: 96 sq cm | C: 128 sq cm | D: 160 sq cm
+70 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q070'}]
+The perimeter of a rectangle is 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions of this rectangle?
+E: 150 cm by 105 cm | F: 153 cm by 102 cm | G: 158 cm by 97 cm | H: 165 cm by 90 cm
+71 [{'score': 0.7746, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q071'}]
+Which number line below shows the solution to the inequality −4 < x < 2 ? 2
+A: –10 –5 0 5 10 | B: –10 –5 0 5 10 | C: –10 –5 0 5 10 | D: –10 –5 0 5 10
+72 [{'score': 1.0, 'parent': '2025-2026-form-aMath.ts', 'id': 'lorgs-dalts-dollar-exchange'}]
+1 dollar = 7 lorgs 1 dollar = 0.5 dalt
+
+Kevin has 140 lorgs and 16 dalts. If he exchanges the lorgs and dalts for dollars according to the rates above, how many dollars will he receive?
+E: $28 | F: $52 | G: $182 | H: $282
+73 [{'score': 0.9712, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q073'}]
+A box of colored pencils contains exactly 6 red
+
+pencils. The probability of choosing a red 2 pencil from the box is . How many of the 7 pencils in the box are not red?
+A: 5 | B: 15 | C: 21 | D: 30
+74 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q074'}]
+The sum of the numbers x , y , and z is 50. The ratio of x to y is 1:4, and the ratio of y to z is 4:5. What is the value of y ?
+E: 4 | F: 8 | G: 10 | H: 20
+75 [{'score': 0.9641, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q075'}]
+y
+
+2
+
+1
+
+x O 1 2
+
+What is the area of the shaded region in the graph above?
+A: 0.25 square unit | B: 0.5 square unit | C: 1 square unit | D: 1.5 square units
+76 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q076'}]
+In Centerville, 45% of the population is female, and 60% of the population commutes to work daily. Of the total Centerville population, 21% are females who commute to work daily. What percentage of the total Centerville population are males who do not commute to work daily?
+E: 15% | F: 16% | G: 24% | H: 39%
+77 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q077'}]
+Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, not including tax. What was the price per pound of the meat?
+A: $2.80 | B: $3.25 | C: $14.40 | D: $22.40
+78 [{'score': 0.9518, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q078'}]
+In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?
+
+2
+E: 15
+
+4 | F: 25
+
+3 | G: 10
+
+1 | H: 3
+79 [{'score': 1.0, 'parent': '2025-2026-form-aMath.ts', 'id': 'most-valuable-coin'}]
+1 sind = 4 lorgs 2 plunks = 5 dalts 5 sinds = 2 harps 1 plunk = 3 harps
+
+A nation has five types of coins: sinds, dalts, lorgs, harps, and plunks. The relationship between the coins is shown above. Which coin is most valuable?
+A: sind | B: dalt | C: harp | D: plunk
+80 [{'score': 0.7125, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q080'}]
+SCORES ON MATH QUIZ
+
+Score Number of Students
+
+85 4
+
+75 4
+
+65 2
+
+What is the mean score of the 10 students in the table above?
+E: 22.5 | F: 75 | G: 77 | H: 85
+86 [{'score': 0.8909, 'parent': '2026-2027-form-aMath.ts', 'id': '2026-2027-form-a-math-item-2'}]
+A car is traveling 55 miles per hour, and 1 mile = 5,280 feet. Which of the following calculations would give the car’s speed in feet per second?
+
+55 i 5,280
+E: 1 55 i 5,280 | F: 3,600 55 i 3,600 | G: 5,280 55 i 5,280 | H: 60
+87 [{'score': 0.9365, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q087'}]
+1 Today, Tien’s age is of Jordan’s age. In 4 1 2 years, Tien’s age will be of Jordan’s age. 3 How old is Jordan today?
+A: 4 years old | B: 6 years old | C: 12 years old | D: 16 years old
+88 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q088'}]
+How many positive even factors of 48 are greater than 24 and less than 48?
+E: 0 | F: 1 | G: 2 | H: 12
+89 [{'score': 0.9438, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q089'}]
+The least of 5 consecutive integers is l, and the l+ g greatest is g. What is the value of in 2 terms of l?
+A: 2l | B: 3l | C: l + 2 | D: l + 5
+90 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q090'}]
+Johan leased a car for three years. He paid a one-time fee of $1,000, and an additional $300 per month for the full three years. At the end of the three years, what is the total amount Johan paid for leasing this car?
+E: $1,900 | F: $4,600 | G: $10,800 | H: $11,800
+91 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q091'}]
+There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?
+A: 12 | B: 15 | C: 30 | D: 36
+92 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q092'}]
+For a presentation, Deion can create 5 slides in 20 minutes, working at a constant rate. Kyra can create 3 slides in 10 minutes, working at her own constant rate. What is the total number of slides the two of them can create in one hour?
+E: 16 | F: 30 | G: 33 | H: 55
+93 [{'score': 0.958, 'parent': '2025-2026-form-aMath.ts', 'id': 'point-between-fraction-number-line'}]
+L N
+
+1 On the number line above, LN = . Point M 8 (not shown) is located between point L and
+
+point N. Which value below is a possible value
+
+for M?
+A: 4.26 | B: 4.31 | C: 4.35 | D: 4.58
+94 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q094'}]
+An unmarked straight stick will be laid end over end to measure a distance of exactly 72 feet. The same stick will be used in the same way to measure a distance of exactly 30 feet. What is the length of the longest possible stick that can be used for both measurements?
+E: 3 ft | F: 4 ft | G: 6 ft | H: 8 ft
+95 [{'score': 0.8701, 'parent': '2026-2027-form-aMath.ts', 'id': '2026-2027-form-a-math-item-33'}]
+Ryan must read 150 pages for school this weekend. It took him 30 minutes to read the first 20 pages. At this rate, how much additional time will it take him to finish the reading?
+
+1
+A: 2 hr 6
+
+1 | B: 3 hr 4
+
+3 | C: 3 hr 4
+
+1 | D: 7 hr 2
+96 [{'score': 0.7727, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q096'}]
+w y Suppose M = , N = , and w, x, y, and z x z M do not equal 0. What is in terms of w, x, y, N and z ?
+
+wx
+E: yz wy | F: xz
+
+wz | G: xy xy | H: wz
+97 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q097'}]
+In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of neither 2 nor 3?
+A: 5 | B: 6 | C: 13 | D: 15
+98 [{'score': 0.8827, 'parent': '2026-2027-form-aMath.ts', 'id': '2026-2027-form-a-math-item-41'}]
+NUMBER OF SCHOOLS IN FIVE CITIES 10 9 8 7 6 Number 5 of 4 Schools 3 2 1 0 M N P Q R City
+
+The graph above shows the number of schools per city for five small cities. Cities M and N each have 500 students per school. City P has 400 students per school. Cities Q and R each have 700 students per school. Which of the five cities has the greatest number of students?
+E: City M | F: City P | G: City Q | H: City R
+99 [{'score': 0.9581, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q099'}]
+A box contains 5 strawberry candies, 3 banana candies, and 2 orange candies. If Braden selects 2 candies at random from this box, without replacement, what is the probability that both candies are not banana?
+
+1
+A: 15
+
+9 | B: 100
+
+7 | C: 15
+
+49 | D: 100
+100 [{'score': 0.8941, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q100'}]
+= x z
+
+In the equation above, w , x , y , and z are positive numbers. Which of these is equal to z?
+E: x | F: xy
+
+w | G: xy xy | H: w
+101 [{'score': 0.802, 'parent': '2026-2027-form-aMath.ts', 'id': '2026-2027-form-a-math-item-39'}]
+W X Y Z
+
+–10 0 8
+
+On the number line above, points W, X, Y, and Z are integers, and WX:XY:YZ = 4:2:3. What is the value of WY?
+A: 8 | B: 11 | C: 12 | D: 18
+102 [{'score': 0.9581, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q102'}]
+A metal plate used in an electronic device must have a thickness of 0.02 inch, with an allowable error of 1 percent. What is the greatest allowable thickness of the metal plate?
+E: 0.0002 in. | F: 0.02 in. | G: 0.0202 in. | H: 0.03 in.
+103 [{'score': 0.8776, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q103'}]
+SCORES ON BIOLOGY TEST
+
+Section Lowest Score Range
+
+I 65 28
+
+II 62 25
+
+III 67 22
+
+Mr. Blake’s biology class is divided into three sections. The same test was given to each section. The table above shows both the lowest score and the range of scores on this test for each section. What is the overall range of all scores in all three sections?
+A: 25 | B: 27 | C: 28 | D: 31
+104 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q104'}]
+If 3n is a positive even number, how many odd numbers are in the range from 3n up to and including 3n + 5 ?
+E: 2 | F: 3 | G: 4 | H: 5
+105 [{'score': 0.9292, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q105'}]
+10 = 0.769230 13
+
+In the infinitely repeating decimal above, 7 is the first digit in the repeating pattern. What is the 391st digit?
+A: 0 | B: 3 | C: 6 | D: 7
+106 [{'score': 0.9536, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q106'}]
+A car travels at 4,400 feet per minute. The
+
+radius of each tire on the car is 1 foot. How
+
+many revolutions does one of these tires make 22 in 1 minute? (Use the approximation for 7 (cid:31) .)
+E: 700 | F: 1,925 | G: 13,828 | H: 15,400
+107 [{'score': 0.015, 'parent': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a', 'id': '5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-29'}]
+100(2 + 0.1)2 − 100 =
+A: 101 | B: 200 | C: 301 | D: 341
+108 [{'score': 0.9518, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q108'}]
+A sports store has a container of handballs: 4 blue, 5 red, 8 yellow, 9 white, and 11 green. If one ball is picked from the container at random, what is the probability that it will be yellow?
+
+1
+E: 37
+
+1 | F: 8
+
+8 | G: 37
+
+8 | H: 29
+109 [{'score': 1.0, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q109'}]
+Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s profit if he makes and sells 25 chairs in 1 week?
+A: $1,875 | B: $2,500 | C: $3,125 | D: $4,375
+110 [{'score': 0.9592, 'parent': '2026-2027-form-aMath.ts', 'id': '2026-2027-form-a-math-item-46'}]
+Using the approximation 2.54 centimeters = 1 inch, how many centimeters are in 4 feet 7 inches?
+E: 21.65 cm | F: 119.38 cm | G: 121.92 cm | H: 139.70 cm
+111 [{'score': 0.6058, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q111'}]
+J K L M
+
+3 8
+
+1 On the number line above, JK = 3 , 2 3 1 JM = 9 , and LM = 1 . What is the 4 8 position of point L ?
+
+1
+A: 5 8
+
+1 | B: 5 4
+
+1 | C: 5 2
+
+1 | D: 6 4
+112 [{'score': 0.6909, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q112'}]
+If 4x − 3y = 12 , what is x in terms of y ?
+
+3
+E: x = y + 12 4
+
+3 | F: x = − y + 12 4
+
+3 | G: x = y + 3 4
+
+3 | H: x = − y + 3 4
+113 [{'score': 0.9356, 'parent': '2026-2027-form-aMath.ts', 'id': '2026-2027-form-a-math-item-49'}]
+SERVINGS OF FRUITS AND VEGETABLES
+
+Number of Servings of Number of Students Fruits and Vegetables
+
+0 5
+
+1 7
+
+2 3
+
+3 4
+
+4 0
+
+5 1
+
+There are 20 students in a class. The frequency table above shows the number of students in this class who ate 0, 1, 2, 3, 4, or 5 servings of fruits and vegetables yesterday. What is the mean number of servings of fruits and vegetables eaten yesterday per student in this class?
+
+1
+A: 1 2 | B: 3
+
+1 | C: 3 3 | D: 4
+114 [{'score': 0.6678, 'parent': '2018-2019-form-aMath.ts', 'id': '2018-2019-form-a-pdf-shsat-2018-2019-a-q114'}]
+A paste is made by mixing the following ingredients by weight: 4 parts powder, 3 parts water, 2 parts resin, and 1 part hardener. One billboard requires 30 pounds of this paste. How many total pounds of resin are required for 4 billboards?
+E: 6 lb | F: 8 lb | G: 24 lb | H: 48 lb
+
+THIS IS THE END OF THE TEST. IF TIME REMAINS, YOU MAY CHECK YOUR ANSWERS. BE SURE THAT THERE ARE NO STRAY MARKS, PARTIALLY FILLED ANSWER CIRCLES, OR INCOMPLETE ERASURES ON YOUR ANSWER SHEET. j

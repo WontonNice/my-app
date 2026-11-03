@@ -1,0 +1,1117 @@
+=== PAGE 1 ===
+547.1,34.0,94.0: B
+48.7,40.7,100.7: SAMPLE TEST – ENGLISH LANGUAGE ARTS B
+48.7,57.1,75.1: EXPLANATIONS OF CORRECT ANSWERS
+494.4,62.3,73.3: FORM
+46.5,112.1,124.1: REVISING/EDITING PART A REVISING/EDITING PART B
+42.0,132.4,141.9: 1. (A) The question asks for the identification of a run-on
+318.0,138.1,151.1: The Local Library
+42.0,143.9,153.4: sentence that needs to be corrected. Option B, Option C,
+42.0,155.4,164.9: and Option D identify complete sentences that are not
+318.0,158.5,168.0: 6. (E) The question asks for a sentence that should
+42.0,166.9,176.4: run-ons. Option A identifies a sentence made up of two
+318.0,170.0,179.5: replace sentence 4 to introduce the main claim in the
+42.0,178.4,187.9: independent clauses that need to be more definitively
+318.0,181.5,191.0: passage. Option F states that going to the library can be
+42.0,189.9,199.4: separated between “opened” and “as,” using either a
+318.0,193.0,202.5: a learning experience. This idea is implied in sentences
+42.0,201.4,210.9: semicolon or a period.
+318.0,204.5,214.0: 17 and 18, but it is not the main claim of the passage.
+318.0,216.0,225.5: Option G states that the resources at a public library
+42.0,227.5,239.4: 2. (G) The sentence in the box demonstrates the use of a are most useful for students, which is discussed in the
+42.0,239.0,250.9: misplaced modifier. In Option E and Option F, the phrase third and fourth paragraphs. The idea that the library
+42.0,250.5,262.4: “to promote their club” incorrectly modifies “a bake sale.” is useful for students is offered as evidence for the
+42.0,262.0,273.9: While Option H makes it clearer that “to promote their main claim. Option H states the fact that local libraries
+42.0,273.5,285.4: club” refers to the “members of the debate team,” the rest provide services to help improve communities, which is
+42.0,285.0,296.9: of the sentence is poorly written. Option G is the only explained in sentences 15–18, but this statement does
+42.0,296.5,308.4: option in which the phrase “to promote their club” clearly not present an argument. Option E best presents the
+42.0,308.0,319.9: modifies “members of the debate team” and that clarifies argument that the public library is a valuable resource
+42.0,319.5,331.4: that the bake sale is on Wednesday. and should be used by community members.
+42.0,348.0,359.9: 3. (C) All the sentences should have a main verb in the 7. (D) This question asks for the best way to combine
+42.0,359.5,371.4: past tense. For Option A (sentence 1), Option B (sentence sentences 6 and 7 to clarify the relationship between
+42.0,371.0,382.9: 2), and Option D (sentence 4), the main verbs in the ideas. Option A makes an incorrect connection that
+42.0,382.6,394.5: sentences are in the past tense (“spent,” “did,” “recited”). the explosion of digital media happened “since” people
+42.0,394.1,406.0: For Option C (sentence 3), the main verb in the sentence can communicate instantaneously. Option B makes an
+42.0,405.6,417.5: inappropriately shifts to the present tense (“studies”) incorrect connection because the use of the conjunction
+42.0,417.1,429.0: and should be revised to the past tense (“studied”). “although” suggests that the explosion of digital media
+318.0,428.6,438.1: in recent years led to something different before allowing
+318.0,440.1,449.6: people to communicate instantaneously, which does
+42.0,448.0,457.5: 4. (F) The sentence in the box needs a comma to set off
+318.0,451.6,461.1: not make sense. Option C suggests that instantaneous
+42.0,459.5,469.0: the nonrestrictive clause “which is considered one of
+318.0,463.1,472.6: communication is in addition to the explosion of digital
+42.0,471.0,480.5: the New Seven Wonders of the World.” Option E would
+318.0,474.6,484.1: media, rather than an effect. Option D is the only option
+42.0,482.5,492.0: remove the comma between a city and country, which
+318.0,486.1,495.6: that accurately connects the ideas in sentences 6 and 7 to
+42.0,494.0,503.5: would be incorrect. Option G would incorrectly remove
+318.0,497.6,507.1: show that the explosion of digital media has contributed
+42.0,505.5,515.0: the comma at the end of a nonrestrictive clause, which is
+318.0,509.1,518.6: to the ability of people to instantaneously communicate.
+42.0,517.0,526.5: set off by commas at the beginning and the end. Option
+42.0,528.5,538.0: H is incorrect because a comma is not necessary before
+42.0,537.6,549.5: the conjunction “and” to connect a dependent clause. 8. (H) Sentence 9 expresses the idea that the library
+42.0,549.1,561.0: Option F is the only option that places a comma where it helps community members meet the need for human
+42.0,560.6,572.5: is needed, after “Italy,” to set off the nonrestrictive clause connection and companionship. Option E references the
+42.0,572.1,584.0: that follows. history of the library, which does not support the ideas in
+318.0,583.6,593.1: sentence 9 or the main argument in the passage. Option
+318.0,595.1,604.6: F introduces the idea of community meetings, but it does
+42.0,603.0,612.5: 5. (B) The question asks for the most precise revision
+318.0,606.6,616.1: not support the idea in sentence 9. Option G mentions
+42.0,614.5,624.0: for the words The engineers tried some other things.
+318.0,618.1,627.6: an expectation of the community, but it does not support
+42.0,626.0,635.5: Option A and Option C use the word “materials” rather
+318.0,629.6,639.1: the ideas in sentence 9, and it brings up a new idea
+42.0,637.5,647.0: than precisely identifying what the engineers used.
+318.0,641.1,650.6: unrelated to the main claim in the passage. Option H is
+42.0,649.0,658.5: Option D identifies the materials, but the imprecise verb
+318.0,652.6,662.1: the only option that provides support for sentence 9 and
+42.0,660.5,670.0: “worked with” does not specify what the engineers were
+318.0,664.2,673.7: strengthens the connection between the information in
+42.0,672.0,681.5: doing. Option B is the only option that revises the words
+318.0,675.7,685.2: sentence 9 and the main argument in the passage by
+42.0,683.5,693.0: to be precise by using the specific words “tested” for the
+318.0,687.2,696.7: listing examples of how people can connect at the library.
+42.0,695.1,704.6: verb and “foam and fiberglass” for the materials.
+297.2,756.7,767.2: 127
+=== PAGE 2 ===
+42.0,46.7,77.1: SAMPLE TEST – ENGLISH LANGUAGE ARTS B
+521.6,52.7,62.7: Form
+42.0,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,107.9,118.4: 9. (B) Sentence 11 provides an example of a way that to the argument of the passage, which is that the library
+42.0,119.4,129.9: a person can use the library, and sentence 12 offers promotes a sense of community and offers assistance.
+42.0,130.9,141.4: another way. Option A suggests that sentence 12 This sentence should be deleted.
+42.0,142.4,151.9: is an example of the idea in sentence 11. Option C
+42.0,153.9,163.4: suggests that sentence 12 confirms the point made
+318.0,160.4,169.9: 13. (B) The question asks for a concluding sentence
+42.0,165.4,174.9: in sentence 11. Option D suggests that sentence 12
+318.0,171.9,181.4: that would follow sentence 21 to support the argument
+42.0,176.9,186.4: is a result of sentence 11. Option B is the only option
+318.0,183.4,192.9: presented in the passage. Option A does not provide
+42.0,188.4,197.9: that demonstrates that sentence 12 provides a similar
+318.0,194.9,204.4: a logical conclusion to support the argument that
+42.0,199.9,209.4: example of a person who can use the library.
+318.0,206.4,215.9: the public library is a valuable resource because the
+318.0,217.9,227.4: sentence addresses the patrons of the library more than
+42.0,228.4,238.9: 10. (E) The question asks for a revision of sentence 14 the function of the library. Option C presents the idea
+42.0,239.9,250.4: that best maintains the formal style established in the that the library has been in existence since 1833, but it
+42.0,251.4,261.9: passage. Both Option F and Option H use the second does not logically support the main claim of the passage
+42.0,262.9,273.4: person and directly address the reader, which is more as a concluding sentence because it focuses only on this
+42.0,274.4,284.9: informal. Also, Option H uses the informal phrase one idea. Option D states a new claim, that community
+42.0,285.9,296.4: “whatever you need to do.” Option G does not use second leaders must work together to support library events,
+42.0,297.4,307.9: person, but it uses informal language like “work on” instead of a claim supporting the argument of the
+42.0,308.9,319.4: and “things.” Option E is the only option that maintains passage. Option B is correct because it logically follows
+42.0,320.4,330.9: the formal style by using “people” instead of “you” and sentence 21 and supports the argument that the public
+42.0,332.0,342.5: the more formal language “resources available” and library is a valuable part of a community by urging
+42.0,343.5,354.0: “accomplish many tasks.” community members to use, maintain, and support their
+318.0,356.0,365.5: local public library.
+42.0,372.0,381.5: 11. (C) The question asks for where sentence 19 should
+42.0,383.5,393.0: be moved in order to improve the organization of the
+318.0,390.1,403.1: Moving Through Mountains
+42.0,395.0,404.5: fourth paragraph. Sentence 19 describes a typical
+42.0,406.5,416.0: librarian and the direction he or she provides in the
+318.0,410.5,420.0: 14. (E) Sentence 4 is the reason for the situation
+42.0,418.0,427.5: library. Option A places this sentence before the main
+318.0,422.0,431.5: described in sentence 5. In Option F, the phrase “even
+42.0,429.5,439.0: idea of the paragraph, which states that public libraries
+318.0,433.5,443.0: though” changes the relationship between ideas so that
+42.0,441.0,450.5: offer a variety of resources. Sentence 19 is an example
+318.0,445.0,454.5: the sentence illogically implies that needing to navigate
+42.0,452.5,462.0: of one of the resources, so it would not be placed at the
+318.0,456.5,466.0: around and through the mountains should have made
+42.0,464.0,473.5: beginning of the paragraph before the main idea. Option
+318.0,468.0,477.5: transportation easy. Option G is incorrect because it
+42.0,475.5,485.0: B places the sentence before the librarian is introduced
+318.0,479.5,489.0: states that traveling around the mountains or through
+42.0,487.0,496.5: in the paragraph. Both sentences 17 and 18 (Option
+318.0,491.0,500.5: winding tunnels emphasized that transporting people
+42.0,498.5,508.0: D) have moved on from the topic of the librarian, so
+318.0,502.5,512.0: and goods was difficult rather than clarifying that
+42.0,510.0,519.5: sentence 19 would not logically fit between them. Option
+318.0,514.0,523.5: this difficulty was an effect of having to travel around
+42.0,521.5,531.0: C correctly places sentence 19 after the librarian is
+318.0,525.5,535.0: the mountains or through winding tunnels. Option H
+42.0,533.0,542.5: introduced in sentence 16, with an example of what else
+318.0,537.0,546.5: reverses the relationship between the ideas. Only Option
+42.0,544.5,554.0: the librarian does.
+318.0,548.5,558.0: E makes it clear that the transportation of people and
+318.0,560.0,569.5: goods was difficult because roads and railways had to
+42.0,571.5,582.5: 12. (G) The question asks for a sentence that is navigate around and through the mountains.
+42.0,584.5,594.0: irrelevant to the argument presented in the passage.
+42.0,596.0,605.5: Option E is relevant because sentence 3 makes reference
+318.0,600.0,609.5: 15. (C) The correct answer should state the main topic of
+42.0,607.5,617.0: to the library being one of the oldest yet best resources.
+318.0,611.5,621.0: the passage. Option A offers overly detailed information
+42.0,619.0,628.5: Option F is relevant because sentence 11 provides
+318.0,623.0,632.5: about the funding to build the Gotthard Base Tunnel,
+42.0,630.5,640.0: an example of how a person can get assistance at the
+318.0,634.6,644.1: but it does not explain what or where it is. Option B
+42.0,642.1,651.6: library, the main idea of the third paragraph. Option H is
+318.0,646.1,655.6: gives details about the opening of the tunnel but does
+42.0,653.6,663.1: relevant because sentence 20 emphasizes the important
+318.0,657.6,667.1: not provide a description of the tunnel. Option D offers
+42.0,665.1,674.6: idea that libraries are accessible. Option G, while related
+318.0,669.1,678.6: a result of the Gotthard Base Tunnel, rather than a
+42.0,676.6,686.1: to the topic of the library because it states the selection
+318.0,680.6,690.1: description of what and where it is. Only Option C
+42.0,688.1,697.6: of materials available, does not contribute
+318.0,692.1,701.6: specifically states and clarifies the Gotthard Base Tunnel
+318.0,703.6,713.1: as the main topic.
+297.2,756.7,767.2: 128
+=== PAGE 3 ===
+41.5,46.7,77.1: SAMPLE TEST – ENGLISH LANGUAGE ARTS B
+521.1,52.7,62.7: Form
+41.5,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.5,107.2,117.4: 16. (F) The correct answer needs to provide details about 19. (D) The correct answer must be a sentence that is
+42.5,118.7,128.9: the tunnel-boring machines used to build the Gotthard irrelevant to the topic. Sentence 3 (Option A) introduces
+42.5,130.2,140.4: Base Tunnel to supplement the general description of the obstacle that the Gotthard Base Tunnel was built
+42.5,141.7,151.9: the machines in sentence 8. Option E offers information to overcome, so sentence 3 should not be removed.
+42.5,153.2,163.4: about how tunnel-boring machines were an improvement, Sentence 11 (Option B) should not be removed because
+42.5,164.7,174.9: which does not explain how the machines work. Option G the sentence helps the reader understand that building
+42.5,176.2,186.4: is incorrect because it describes how the tunnel could not the tunnel was a massive job. Sentence 13 (Option
+42.5,187.7,197.9: be completed until advances were made in tunnel-boring C) helps the reader understand how the tunnel will
+42.5,199.2,209.4: machine technology and does not describe the machines improve transportation through the Alps, so it should
+42.5,210.7,220.9: used for this tunnel. Option H explains that there are not be removed. However, the information about the
+42.5,222.2,232.4: different types of machines for different geologies, but the Channel Tunnel in sentence 17 (Option D) does not help
+42.5,233.7,243.9: geology of the tunnel area is not discussed in sentence 8 the reader understand the Gotthard Base Tunnel, so
+42.5,245.2,255.4: or the rest of the paragraph and the sentence does not sentence 17 should be removed.
+42.5,256.7,266.2: explain how the machines work. Only Option F gives
+42.5,268.2,277.7: specific details about the tunnel-boring machines used to
+318.0,274.4,283.9: 20. (F) The correct answer needs to support key points
+42.5,279.7,289.2: create the Gotthard Base Tunnel.
+318.0,285.9,295.4: from earlier in the passage. Option E would not be an
+318.0,297.4,306.9: effective concluding sentence because the economies of
+42.5,308.2,318.4: 17. (D) The correct answer must be a location in which surrounding areas were never mentioned in the passage.
+42.5,319.7,329.9: the sentence completes the detailed steps of how the Option G might seem attractive because building the
+42.5,331.2,341.5: tunnel was built. Option A, placing the sentence at Gotthard Base Tunnel appears to have required many
+42.5,342.7,353.0: the beginning of the paragraph (before sentence 7), people to work together. However, the passage does not
+42.5,354.2,364.5: would not make sense because the topic has not been explicitly mention people or groups working together.
+42.5,365.7,376.0: introduced. Similarly, Option B, placing the sentence Option H would not be an effective concluding sentence
+42.5,377.2,387.5: after sentence 7, would not make sense because adding because it focuses on the cost of the Gotthard Base
+42.5,388.7,399.0: concrete would have to happen after the rock was broken Tunnel, which is referred to in only sentence 11 of the
+42.5,400.2,410.5: down and removed from the tunnel. Similarly, Option passage. Only Option F, which supports key elements
+42.5,411.7,422.0: C, placing the sentence between sentences 9 and 10, from the introductory paragraph, would make an
+42.5,423.2,433.5: would not make sense because the use of concrete did effective concluding sentence.
+42.5,434.7,444.2: not take place before the removal of “28 million tons of
+42.5,446.2,455.7: rock.” Option D, placing the sentence between sentences
+322.5,452.1,464.1: READING COMPREHENSION
+42.5,457.7,467.2: 10 and 11, is correct because placing the sentence there
+42.5,469.2,478.7: helps the reader understand the full sequence of steps in
+42.5,478.1,491.1: constructing the tunnel before the cost of the project is Debates
+42.5,492.2,501.7: introduced.
+318.0,498.5,508.0: 21. (C) The passage is primarily about the participants
+318.0,510.0,519.5: in the first televised presidential debate (lines 10−24),
+42.5,520.7,531.0: 18. (G) The correct answer must be a transition that details about how both Nixon and Kennedy acted during
+42.5,532.2,542.5: clarifies the relationship between the ideas in sentences the debate (lines 25−47), and the impact of the debate
+42.5,543.7,554.0: 14 and 15. Option E, “even so,” suggests that travel (lines 47−61). All of these details are best stated by
+42.5,555.2,565.5: between Zurich and Milan would not be affected by Option C. The reasons Nixon was expected to win (Option
+42.5,566.7,577.0: the tunnel. Option F may seem attractive because A), the discussion of domestic issues (Option B), and the
+42.5,578.3,588.5: “additionally” is used to show that sentence 15 gives qualifications of each candidate (Option D) are important
+42.5,589.8,600.0: a new idea related to the earlier one in sentence 14. details related to the debates but are not the overall
+42.5,601.3,611.5: However, sentence 15 doesn’t add an idea related to topic.
+42.5,612.8,622.3: faster travel time. Option H, “therefore,” is used to show
+42.5,624.3,633.8: that one idea or event is the result of another. However,
+318.0,630.5,640.0: 22. (F) Some observers suggested that had the debate
+42.5,635.8,645.3: the one-hour reduction in travel time from Zurich to
+318.0,642.0,651.5: not been on television, it is more likely that Nixon, not
+42.5,647.3,656.8: Milan mentioned in sentence 15 is not a result of travel
+318.0,653.5,663.0: Kennedy, would have won the election (lines 64−67),
+42.5,658.8,668.3: being faster from northern to southern Europe but a
+318.0,665.0,674.5: which is Option F. The passage states that Nixon was
+42.5,670.3,679.8: detail to show one trip that will be faster. Only Option
+318.0,676.5,686.0: well known, ahead in the polls, and more experienced
+42.5,681.8,691.3: G, “for example,” correctly shows that the reduced travel
+318.0,688.0,697.5: than Kennedy (lines 16−20), so it is unlikely that
+42.5,693.3,702.8: time from Zurich to Milan is an example of faster travel
+318.0,699.5,709.0: Kennedy would have won anyway (Option E) or that the
+42.5,704.8,714.3: between northern and southern Europe.
+297.2,756.7,767.2: 129
+=== PAGE 4 ===
+42.0,46.7,77.1: SAMPLE TEST – ENGLISH LANGUAGE ARTS B
+521.6,52.7,62.7: Form
+42.0,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,107.9,117.4: election results would have been closer (Option G). The 26. (F) The answer is given in lines 3–9, which explains
+42.0,119.4,128.9: idea that the debates would not have become a tradition that the debates of 1960 were the first time presidential
+42.0,130.9,140.4: (Option H) is not supported by the passage. debates were broadcast on television and reached a
+318.0,142.4,151.9: greater audience than ever before, including people who
+318.0,153.9,163.4: were not interested in politics. This is summarized in
+42.0,159.4,168.9: 23. (C) The answer to this question can be found in the
+318.0,165.4,174.9: Option F. Option E is a true statement, but it does not
+42.0,170.9,180.4: fourth paragraph. Lines 57–59 state that “Some feared
+318.0,176.9,186.4: explain why people not interested in politics would have
+42.0,182.4,191.9: that the better TV performer was bound to come across
+318.0,188.4,197.9: watched the debates. The text does not indicate that
+42.0,193.9,203.4: as being the better candidate.” This concern is best
+318.0,199.9,209.4: Kennedy’s youth and charisma were the main reasons
+42.0,205.4,214.9: reflected in Option C. The less well-known candidates
+318.0,211.4,220.9: people watched the debates, ruling out Option G. The
+42.0,216.9,226.4: have to encounter more experienced candidates
+318.0,222.9,232.4: idea that people wanted to verify the newspaper polls
+42.0,228.4,237.9: whether the political debates are televised or not, which
+318.0,234.4,243.9: (Option H) is not supported by the passage.
+42.0,239.9,249.4: rules out Option A. While certain candidates may be
+42.0,251.4,260.9: uncomfortable on live television, this was not the main
+42.0,262.9,272.4: concern described in the fourth paragraph, ruling out
+318.0,268.6,281.6: Ice
+42.0,274.4,283.9: Option B. Multiple debates were planned before the first
+42.0,285.9,295.4: debate took place, so the idea in Option D would not
+318.0,289.0,298.5: 27. (B) The passage begins by asking why ice is
+42.0,297.4,306.9: be considered an undesirable consequence of televised
+318.0,300.5,310.0: slippery (lines 2–5) and then reviews several theories
+42.0,308.9,318.4: debates.
+318.0,312.0,321.5: of slipperiness: smoothness, friction, pressure, and
+318.0,323.5,333.0: Faraday’s theory. Option B best states the topic of
+42.0,335.0,346.9: 24. (F) Details in lines 49−52 show that the televised the passage. The circumstances that allow ice to melt
+42.0,346.5,358.4: debates benefitted Kennedy by allowing him to display (Option A), the discoveries of Michael Faraday (Option
+42.0,358.0,370.0: his “charm, poise, and confident manner,” which were C), and the processes of freezing and melting (Option D)
+42.0,369.5,381.5: favorable characteristics that convinced viewers he had are details related to the theories of ice slipperiness, but
+42.0,381.0,393.0: the maturity to be president. This benefit is summarized they do not express the main idea of the passage.
+42.0,395.0,404.5: by Option F. Option E is incorrect because it can be
+42.0,406.5,416.0: inferred that both candidates appeared to have an
+318.0,409.5,419.0: 28. (E) The most likely reason that the author mentions
+42.0,418.0,427.5: equal understanding of domestic issues since they are
+318.0,421.0,430.5: lead and diamond crystals (lines 70–71) is to illustrate
+42.0,429.5,439.0: described as having “dealt with the issues calmly and
+318.0,432.5,442.0: that solids other than ice have slippery surfaces and
+42.0,441.0,450.5: carefully” (lines 31–33). Both Nixon and Kennedy took
+318.0,444.0,453.5: indicate that other substances can contain this property
+42.0,452.5,462.0: questions from reporters (lines 29−31), but there is no
+318.0,455.5,465.0: under the right circumstances (lines 72−73). This is
+42.0,464.0,473.5: indication that Kennedy had a better relationship with
+318.0,467.0,476.5: best stated in Option E. Option F cannot be correct,
+42.0,475.5,485.0: reporters than Nixon did, which rules out Option G. The
+318.0,478.5,488.0: because these crystals are not made of frozen water. The
+42.0,487.0,496.5: debate may have persuaded some viewers to agree with
+318.0,490.0,499.5: properties of lead and diamond crystals are not related
+42.0,498.5,508.0: Kennedy’s positons on domestic issues (Option H), but
+318.0,501.5,511.0: to Faraday’s theory, ruling out Option G. While lead and
+42.0,510.0,519.5: the passage does not support that this was an advantage
+318.0,513.1,522.6: diamond crystals may demonstrate the slipperiness
+42.0,521.5,531.0: for Kennedy because of the debates being televised.
+318.0,524.6,534.1: property under certain temperature and pressure
+318.0,536.1,545.6: conditions (Option H), the author does not list these
+42.0,547.6,559.5: 25. (D) The detail in Option D supports the last sentence substances in order to show the effects of temperature
+42.0,559.1,571.0: of the passage: Nixon’s greater experience (lines 16–20) and pressure on their slipperiness.
+42.0,573.0,582.5: may have been more apparent to radio listeners who
+42.0,584.5,594.0: would not have been distracted by his poor television
+318.0,587.6,597.1: 29. (C) According to Faraday, the liquid on the ice cubes’
+42.0,596.0,605.5: appearance. While lines 53−54 state that fewer people
+318.0,599.1,608.6: surfaces freezes solid when the surfaces make contact
+42.0,607.5,617.0: watched the later debates (Option A), this does not
+318.0,610.6,620.1: (lines 42–45). This information is restated in Option C.
+42.0,619.0,628.5: support the idea that Nixon would have won had the
+318.0,622.1,631.6: Option A is incorrect because Faraday’s explanation does
+42.0,630.5,640.0: debates not been televised. The idea that both Nixon and
+318.0,633.6,643.1: not include the concept of friction. Neither the pressure
+42.0,642.1,651.6: Kennedy responded to questions calmly and carefully
+318.0,645.1,654.6: theory, described in the third paragraph, nor Faraday’s
+42.0,653.6,663.1: (lines 31−33) also does not indicate that Nixon would
+318.0,656.6,666.1: theory, described in lines 35–42, support the idea that
+42.0,665.1,674.6: have won, ruling out Option B. While Nixon was ill just
+318.0,668.1,677.6: applied pressure forces ice cubes to stick together, ruling
+42.0,676.6,686.1: before the debate (lines 40−41), this does not support the
+318.0,679.6,689.1: out Option B. Smoothness (Option D) was a discredited
+42.0,688.1,697.6: idea that Nixon was the favorite to win before the debate,
+318.0,691.1,700.6: explanation for slipperiness, not for why two ice cubes
+42.0,699.6,709.1: ruling out Option C.
+318.0,702.6,712.1: fuse when held together.
+297.2,756.7,767.2: 130
+=== PAGE 5 ===
+41.5,46.7,77.1: SAMPLE TEST – ENGLISH LANGUAGE ARTS B
+521.1,52.7,62.7: Form
+41.5,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,107.4,120.4: 30. (E) The experiment at Lawrence Berkeley Laboratory Marsh
+42.0,119.4,128.9: is mentioned in lines 51–57. The author most likely
+318.0,127.8,137.3: 34. (H) The second through fifth paragraphs of the
+42.0,130.9,140.4: mentions the experiment because the data provide
+318.0,139.3,148.8: passage primarily describe Marsh’s personal experiences
+42.0,142.4,151.9: evidence that the ice surface remains liquid-like, creating
+318.0,150.8,160.3: and his ideas about nature, and the final paragraph
+42.0,153.9,163.4: a slippery layer of molecules on the ice surface (Option
+318.0,162.3,171.8: explains how his ideas are the basis for the conservation
+42.0,165.4,174.9: E). In the past, studying ice molecules was impossible
+318.0,173.9,183.4: movement. This is best stated in Option H. Option
+42.0,176.9,186.4: (lines 46−48), but the experiment at Lawrence Berkeley
+318.0,185.4,194.9: E focuses mainly on Marsh’s early life and does not
+42.0,188.4,197.9: Laboratory does not indicate the difficulty of studying
+318.0,196.9,206.4: address his influence. Option F describes specific details
+42.0,199.9,209.4: ice molecules presently, ruling out Option F. Option G is
+318.0,208.4,217.9: about Marsh’s beliefs but does not explain who he was
+42.0,211.4,220.9: incorrect because the experiment described in the fifth
+318.0,219.9,229.4: or how he affected the conservation movement. Option
+42.0,222.9,232.4: paragraph did lead to the conclusion that the molecules
+318.0,231.4,240.9: G emphasizes that Marsh’s ideas were radical and
+42.0,234.4,243.9: vibrated only up and down (lines 63−64). Ice cubes
+318.0,242.9,252.4: influential but does not provide any information about
+42.0,245.9,255.4: freezing together refers to Faraday’s observations in
+318.0,254.4,263.9: what Marsh’s beliefs were.
+42.0,257.4,266.9: lines 41−42 (Option H), but the experiment at the lab in
+42.0,268.9,278.4: 1996 is included to present observations about ice on a
+42.0,280.4,292.4: molecular level. 35. (D) Marsh attributed people’s practices to “the
+318.0,294.4,303.9: popular belief that nature could heal any damage that
+318.0,305.9,315.4: people inflict upon it” (lines 43–45), which suggests a
+42.0,308.9,318.4: 31. (B) The distinction between the two terms is
+318.0,317.4,326.9: lack of understanding, or ignorance, of nature (lines
+42.0,320.4,329.9: made in lines 63–65. The surface of ice is liquid-like
+318.0,328.9,338.4: 31–32). This is best stated in Option D. Although
+42.0,332.0,341.5: because the surface molecules move only up and down,
+318.0,340.4,349.9: future generations are working to solve environmental
+42.0,343.5,353.0: which is Option B. Option A describes the results of
+318.0,351.9,361.4: problems, there is no indication in the passage that
+42.0,355.0,364.5: the experiment, not the ice surface itself. The passage
+318.0,363.4,372.9: Marsh believed that people in his time expected future
+42.0,366.5,376.0: does not state that the liquid-like state is related to
+318.0,374.9,384.4: generations to solve environmental problems, ruling
+42.0,378.0,387.5: temperature (Option C) or pressure (Option D).
+318.0,386.4,395.9: out Option A. While the people of Marsh’s time made
+318.0,397.9,407.4: advances in industry, Marsh did not indicate that
+42.0,406.5,418.9: 32. (H) The friction theory of slipperiness is explained he believed that people thought industrial progress
+42.0,418.0,430.4: in the second paragraph, which concludes that the outweighed efforts to protect the environment (Option B).
+42.0,429.5,441.9: theory cannot explain why ice is slippery for someone Option C is incorrect because there is also no evidence in
+42.0,441.0,453.4: who stands motionless, essentially creating no friction. the passage to suggest that Marsh believed that people
+42.0,452.5,465.0: Something that a theory cannot explain can be said to were unwilling to change their practices.
+42.0,464.0,473.5: weaken, or undermine, the theory. Option H, “a person
+42.0,475.5,485.0: slipping while standing immobile on an icy surface,”
+318.0,484.0,493.5: 36. (F) Lines 1–9 lead the reader to expect that Marsh
+42.0,487.0,496.5: is the best answer. Option E undermines the pressure
+318.0,495.5,505.0: was part of the modern environmental movement that
+42.0,498.5,508.0: theory, not the friction theory. Option F and Option G
+318.0,507.0,516.5: began in the 1960s. Therefore, the fact that Marsh’s
+42.0,510.0,519.5: neither support nor undermine the friction theory.
+318.0,518.5,528.0: influential book was published 100 years earlier is
+318.0,530.0,539.5: surprising (Option F). While Marsh’s ideas have had
+42.0,538.5,551.0: 33. (A) The author includes the information about the a resurgence in popularity since the 1960s (lines 7–9),
+42.0,550.0,562.5: pressure theory to highlight that there are different Marsh’s observations about deforestation in Vermont
+42.0,561.5,574.0: perspectives on the validity of the pressure theory (lines 16–19) and land mismanagement in Italy (lines
+42.0,573.0,585.5: between what is presented in textbooks and what 25–30) indicate that his ideas were just as applicable in
+42.0,584.5,597.0: researchers believe to be true (lines 25−29). This is best his time as they are today, ruling out Option E. While
+42.0,596.0,608.5: stated in Option A. Option B is incorrect because the Marsh could not have been aware that his ideas would
+42.0,607.5,620.0: liquid-like theory, not the pressure theory, has gained lead to the start of a conservation movement (Option
+42.0,619.0,631.5: more acceptance recently. Even if scientists have tested G), line 12 indicates that the surprising part is that
+42.0,630.5,643.0: the pressure theory (Option C), the pressure theory still Marsh had these ideas 100 years before the conservation
+42.0,642.1,654.5: raises questions about why ice is still slippery when movement became popular. While it’s possible a greater
+42.0,653.6,666.0: less pressure is applied (lines 29−34). There is scientific awareness of human impact on the environment
+42.0,665.1,677.5: support for a plausible theory (Option D), but that during Marsh’s time could have prevented certain
+42.0,676.6,689.0: support is for Faraday’s theory, not the pressure theory. environmental issues today (Option H), this is conjecture
+318.0,691.0,700.5: and does not explain the author’s purpose for using the
+318.0,702.5,712.0: word “surprisingly.”
+297.2,756.7,767.2: 131
+=== PAGE 6 ===
+42.0,46.7,77.1: SAMPLE TEST – ENGLISH LANGUAGE ARTS B
+521.6,52.7,62.7: Form
+42.0,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,107.9,117.5: 37. (C) The concept that Marsh’s theories about nature electricity is mentioned in lines 54–56, but this detail
+42.0,119.4,129.0: were accurate is best supported by the statement that is explained only at the end of the passage, ruling out
+42.0,130.9,140.5: ideas from his book are now considered basic knowledge Option H.
+42.0,142.4,151.9: in the field of environmental science (lines 51–54),
+42.0,153.9,163.4: which is Option C. While Marsh made observations of
+318.0,159.5,169.0: 41. (B) The idea that windmills were an important
+42.0,165.4,174.9: environmental degradation (lines 13–22, lines 25–27),
+318.0,171.0,180.5: resource in the western United States is best supported
+42.0,176.9,186.4: this does not provide evidence that his theories were
+318.0,182.5,192.0: by the information about the use of windmills to pump
+42.0,188.4,197.9: accurate, ruling out Option A. While Marsh’s writing did
+318.0,194.0,203.5: water for farms and livestock in lines 44–45 (“essential
+42.0,199.9,209.4: inspire a conservation movement (lines 77–80), these
+318.0,205.5,215.0: role in pumping water”) and lines 47–50 (“over six
+42.0,211.4,220.9: details do not call attention to the accuracy of his ideas,
+318.0,217.0,226.5: million small windmills were installed . . . for watering
+42.0,222.9,232.4: which rules out Option B. Option D is incorrect because
+318.0,228.5,238.0: livestock and meeting other water needs”). This is best
+42.0,234.4,243.9: it refers to personal opinions (lines 58–59, lines 67–70),
+318.0,240.0,249.5: stated in Option B. The details about the development
+42.0,245.9,255.4: not his theories, which are considered true today.
+318.0,251.5,261.0: and use of wind farms in lines 68–71 (Option A) support
+318.0,263.1,272.6: the idea of wind being an alternative energy source but
+42.0,274.4,284.1: 38. (H) Details about Marsh’s approval of the Suez Canal are not limited to a specific region. The energy crisis of
+42.0,285.9,295.6: (lines 63–67) show that Marsh did not oppose certain 1970 (Option C) was not limited to the western United
+42.0,297.4,307.1: human activates because the advantages—improved States, and steam power (Option D) led to a decline in
+42.0,308.9,318.6: transportation and commerce—improved human the use of windmills.
+42.0,320.4,329.9: life and outweighed negative environmental damage
+42.0,332.0,341.5: (lines 67–70). Option H best summarizes that idea.
+318.0,337.6,347.1: 42. (E) The author describes the different tasks
+42.0,343.5,353.0: Option E is not relevant to the statement in question.
+318.0,349.1,358.6: windmills were used for mainly to emphasize that
+42.0,355.0,364.5: Option F acknowledges Marsh’s contributions to the
+318.0,360.6,370.1: windmills and wind energy can be used to serve a variety
+42.0,366.5,376.0: environmental movement but does not relate to his
+318.0,372.1,381.6: of purposes and were important in the production of
+42.0,378.0,387.5: attitudes about certain alterations to the environment.
+318.0,383.6,393.1: goods before steam power was harnessed. This purpose
+42.0,389.5,399.0: Option G is incorrect because it relates to a time when
+318.0,395.1,404.6: is best stated in Option E. While windmills did replace
+42.0,401.0,410.5: Marsh observed environmental degradation in a foreign
+318.0,406.6,416.1: water wheels (lines 26–31), this is not the idea the
+42.0,412.5,422.0: country.
+318.0,418.1,427.6: author is emphasizing by including a list of the tasks
+318.0,429.6,439.1: windmills were adapted to perform, ruling out Option
+42.0,441.0,450.6: 39. (C) Marsh’s main contribution to the modern F. The passage does explain that windmills had been
+42.0,452.5,462.1: environmental movement is given in lines 5–7—the used for many years (lines 15–23), but this idea is not
+42.0,464.0,473.6: idea that Western society was causing irreparable harm highlighted by the list of tasks, which rules out Option G.
+42.0,475.5,485.1: to the environment. Option C restates that idea. While Option H is incorrect because it relates to the idea that
+42.0,487.0,496.6: Marsh did believe that some human alterations to the Holland was famous for its windmills (line 32), which
+42.0,498.5,508.1: environment are necessary (lines 67–70; Option A), that is not proved or emphasized by the tasks listed in lines
+42.0,510.0,519.6: people lacked an understanding of nature (lines 30–32; 36–40.
+42.0,521.5,531.0: Option B), and that environmental degradation had been
+42.0,533.0,542.5: occurring for many years (lines 27–30; Option D), it is
+318.0,538.6,548.1: 43. (C) The need for wind machines to produce electricity
+42.0,544.5,554.0: clear from the information in the first paragraph that the
+318.0,550.1,559.6: on American farms before the 1950s is discussed in
+42.0,556.0,565.5: impact of human activity was his most influential idea.
+318.0,561.6,571.1: lines 54–59. The next two sentences explain that the
+318.0,573.2,582.7: need for windmills decreased in the 1950s because most
+318.0,584.7,594.2: homes were connected to an electric utility and no longer
+42.0,590.1,603.1: Wind Energy
+318.0,596.2,605.7: depended on windmills for electrical power (Option C).
+42.0,607.7,620.0: 40. (E) Option E best describes what the passage is The energy crisis happened in the 1970s and prompted a
+42.0,619.2,631.5: about, which is how wind energy has been used in a renewed interest in wind energy, which rules out Option
+42.0,630.7,643.0: variety of ways from ancient sailboats to medieval A. The idea that coal and natural gas generate more
+42.0,642.2,654.5: windmills to modern turbines. Wind farms are a more power than wind turbines (Option B) is not supported in
+42.0,653.7,666.0: modern development, and they are mentioned only in the passage as the main reason for the decline in the use
+42.0,665.2,677.5: lines 68–74, which rules out Option F as the main topic of wind machines in the 1950s. Electrical connectivity,
+42.0,676.7,689.0: of the passage. Option G is incorrect because the second not wind farms, reduced the need for individual
+42.0,688.2,700.5: and third paragraphs explain in detail about windmills windmills (Option D).
+42.0,702.5,712.0: that were used in other areas of the world, not just
+42.0,714.0,723.5: the United States. Developing windmills to generate
+297.2,756.7,767.2: 132
+=== PAGE 7 ===
+41.5,46.7,77.1: SAMPLE TEST – ENGLISH LANGUAGE ARTS B
+521.1,52.7,62.7: Form
+41.5,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,107.9,117.4: 44. (H) The author’s opinion regarding the future use of 49. (B) Tree-ring dating helped reveal that the Pueblo
+42.0,119.4,128.9: wind energy is discussed in the last paragraph: “wind villages were likely abandoned during a long drought
+42.0,130.9,140.4: farms may prove to be as important in the future as (Option B). Option C first led archaeologists to realize
+42.0,142.4,151.9: earlier windmills were in the past” (lines 72–74). Option that the villages had been abandoned. Option A and
+42.0,153.9,163.4: H best conveys the author’s optimism that wind farms Option D contributed to establishing the chronology but
+42.0,165.4,174.9: will be a major source of electricity in the future. Option do not explain why the villages were abandoned.
+42.0,176.9,186.4: E is incorrect, given the author’s optimism. Option F
+42.0,188.4,197.9: and Option G relate to the present state of wind farming
+318.0,193.9,203.4: 50. (E) The third paragraph describes the development of
+42.0,199.9,209.4: more than the author’s vision of the future.
+318.0,205.4,214.9: a floating chronology that did not overlap the established
+318.0,216.9,226.4: chronology that went back to 1260. This implies that
+42.0,227.4,237.9: 45. (B) The country of Holland most notably used the years of the floating chronology preceded the years
+42.0,238.9,249.4: windmills to pump seawater away from bogs and reclaim of the established chronology, which is stated in Option
+42.0,250.4,260.9: large areas of land (lines 32–36), as stated in Option B. E. Option F is incorrect because the pattern of tree-rings
+42.0,261.9,272.4: The pumping of water to remote locations (Option A) was in the logs reveals more about the chronology than the
+42.0,273.4,283.9: more important in the United States than in Holland. number of tree-rings does. Archaeologists knew that the
+42.0,284.9,295.4: While Holland is famous for its windmills (line 32), the Pueblo villages were abandoned before the Hopi villages
+42.0,296.4,306.9: passage clearly states that windmills were most notably were established because the Hopi villages had been
+42.0,307.9,318.4: used for practical purposes, such as clearing bogs (lines continuously inhabited (lines 31–33), ruling out Option
+42.0,319.5,329.9: 33–34) or processing goods (line 39), which rules out G. Option H is incorrect because the size of the logs does
+42.0,331.0,341.5: Option C. The use of windmills to process goods was not not provide information about their connection to the
+42.0,342.5,353.0: limited to or most notably done by the Dutch, which rules established chronology.
+42.0,354.0,363.5: out Option D.
+318.0,372.0,381.5: 51. (C) Lines 41–44 suggest that archaeologists
+42.0,382.1,395.1: Pueblo compared samples from both villages in hopes of finding
+318.0,395.0,404.5: a beam where the patterns matched (Option C). The
+42.0,402.5,412.0: 46. (H) Option E cannot be the topic of the passage
+318.0,406.5,416.0: discovery of the key beam is described later in the
+42.0,414.0,423.5: because only the first paragraph discusses how weather
+318.0,418.0,427.5: passage. Option A, Option B, and Option D are related
+42.0,425.5,435.0: conditions affect tree growth. Option F is too broad
+318.0,429.5,439.0: to information that can be gathered from examining
+42.0,437.0,446.5: to be a good statement of the topic. The reason for
+318.0,441.0,450.5: the logs, but the options do not accurately explain the
+42.0,448.5,458.0: the abandonment of the Pueblo villages (Option G) is
+318.0,452.5,462.0: archaeologists’ purpose of finding a key beam.
+42.0,460.0,469.5: mentioned only in the last paragraph, so it is not the
+42.0,471.5,481.0: main topic. Option H offers the best statement of the
+42.0,483.0,492.5: topic of the passage.
+318.0,486.6,499.6: American Scene
+318.0,507.0,516.5: 52. (H) The correct answer is found in lines 65–68;
+42.0,510.5,520.0: 47. (D) Option A is true but can be proved without a key
+318.0,518.5,528.0: the general public identified with American Scene art
+42.0,522.0,531.5: beam. Option B is not related to the key beam. Option C
+318.0,530.0,539.5: because the paintings presented common images and
+42.0,533.5,543.0: misrepresents the importance of the key beam. Option
+318.0,541.5,551.0: mirrored the lives of many people, which is best stated
+42.0,545.0,554.5: D is correct. The key beam, with its overlapping ring
+318.0,553.0,562.5: in Option H. While farm life was depicted in a subset of
+42.0,556.5,566.0: patterns from the established and floating chronologies,
+318.0,564.5,574.0: American Scene art (Regionalist art; lines 16−32), this is
+42.0,568.0,577.5: allowed archaeologists to connect the two chronologies.
+318.0,576.0,585.5: not an explanation of why people identified with the art,
+318.0,587.5,597.0: which rules out Option E. Option G is incorrect because
+42.0,595.5,605.0: 48. (F) The size of the tree rings provides information
+318.0,599.0,608.5: American Scene art primarily focused on painting the
+42.0,607.0,616.5: about the health of the tree and insight about
+318.0,610.5,620.0: changing United States as the artists saw it (lines
+42.0,618.5,628.0: environmental factors and weather patterns (Option
+318.0,622.0,631.5: 11−15). Option F may seem true, but the emphasis of the
+42.0,630.0,639.5: F). The fact that archaeologists rely on tree-ring dating
+318.0,633.5,643.0: passage is on the relatability of the scenes depicted in
+42.0,641.6,651.1: suggests that it is accurate (Option E), but this does not
+318.0,645.0,654.5: American Scene art, not the beauty.
+42.0,653.1,662.6: explain why the author describes ring widths. Option G
+42.0,664.6,674.1: is incorrect because the passage explains that trees that
+42.0,673.5,685.6: live in a specific place at the same time will have the 53. (A) According to the third paragraph, Urban Realists
+42.0,685.0,697.1: same tree-ring pattern. Option H is incorrect because it “painted the drab realities of the contemporary urban
+42.0,696.5,708.6: does not offer an explanation about the conclusions that environment” (lines 34–36) and depicted “the high
+42.0,708.0,720.1: can be made from the size of tree rings. price paid by individual men and women struggling to
+318.0,719.5,729.0: survive the Depression” (lines 41–43). The subject that
+297.2,756.7,767.2: 133
+=== PAGE 8 ===
+42.0,46.7,77.1: SAMPLE TEST – ENGLISH LANGUAGE ARTS B
+521.6,52.7,62.7: Form
+42.0,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+41.4,108.1,117.6: best matches that description is Option A. Option B and
+41.4,119.6,129.1: Option D may be set in an urban environment, but they
+41.4,131.1,140.6: do not fit the description of Urban Realist art given in
+41.4,142.6,152.1: the passage. Option C is incorrect because it does not
+41.4,154.1,163.6: describe an American city scene.
+41.4,182.6,192.1: 54. (G) Lines 49–53 provide the correct answer. Edward
+41.4,194.1,203.6: Hopper, the painter of Nighthawks, portrayed dingy
+41.4,205.6,215.1: urban streets; however, he often found beauty in the
+41.4,217.1,226.6: midst of a city’s drab surroundings, which is expressed
+41.4,228.6,238.1: in Option G. Option E and Option H do not state clear
+41.4,240.1,249.6: contrasts to the Urban Realist style. The international
+41.4,251.6,261.1: style had not yet developed, ruling out Option F.
+41.4,280.1,289.6: 55. (B) The fourth paragraph is about Edward Hopper
+41.4,291.6,301.1: and his association with American Scene art. The
+41.4,303.1,312.6: paragraph highlights that Hopper’s work was unique
+41.4,314.6,324.1: and hard to classify because of the way he found beauty
+41.4,326.1,335.6: in otherwise drab urban settings (lines 49–53). This
+41.4,337.6,347.1: is best stated in Option B. The end of the American
+41.4,349.1,358.6: Scene movement is described in the fifth paragraph, not
+41.4,360.7,370.2: the fourth, ruling out Option A. Option C is incorrect
+41.4,372.2,381.7: because Hopper’s work has been remembered. Option
+41.4,383.7,393.2: D is incorrect because the fourth paragraph focuses
+41.4,395.2,404.7: on Hopper’s contribution to the art style of the time.
+41.4,406.7,416.2: Additionally, Urban Realist style is a subcategory of
+41.4,418.2,427.7: American Scene style, and most typically contrasted with
+41.4,429.7,439.2: Regionalist art (lines 33–37).
+41.4,458.2,467.7: 56. (E) The phrase “without apology” (lines 59−60) refers
+41.4,469.7,479.2: to how Hopper saw and portrayed his subjects. In his art,
+41.4,481.2,490.7: he presented people and places as he saw them, as in his
+41.4,492.7,502.2: painting Nighthawks (lines 55−57). This is described in
+41.4,504.2,513.7: Option E. While Hopper did paint scenes of real places
+41.4,515.7,525.2: (Option F), the phrase is about how he chose to portray
+41.4,527.2,536.7: those scenes in his work. Hopper’s works became well
+41.4,538.7,548.2: known (Option G), but the phrase does not relate to the
+41.4,550.2,559.7: popularity of his work. The passage says that Hopper
+41.4,561.7,571.2: “escaped further classification” (line 49), but the phrase
+41.4,573.2,582.7: does not relate to the classification of his art style, which
+41.4,584.7,594.2: rules out Option H.
+41.4,613.2,622.7: 57. (C) Regionalist art, with its pleasant and familiar
+41.4,624.7,634.2: subjects, retained some of its popularity because it
+41.4,636.2,645.7: showed American life as people wished to remember it
+41.4,647.7,657.2: (lines 8−11, lines 19−23). This is best stated in Option
+41.4,659.2,668.7: C. It did not retain some of its popularity because it
+41.4,670.8,680.3: portrayed modern life (Option A) or the time in which
+41.4,682.3,691.8: it was painted (Option B). Regionalist art did not depict
+41.4,693.8,703.3: Americans overcoming the Depression or life during
+41.4,705.3,714.8: World War II, ruling out Option D.
+297.2,756.7,767.2: 134
+=== PAGE 9 ===
+547.7,33.9,93.9: B
+48.7,40.6,100.6: SAMPLE TEST – MATHEMATICS B
+48.7,57.1,75.1: EXPLANATIONS OF CORRECT ANSWERS
+495.0,62.2,73.2: FORM
+42.0,107.9,117.9: 58. (120) There are 5 choices for the first digit, 4 64. (E) Find the missing angle, angle QPT, of triangle
+85.3,119.9,130.5: choices for the second digit, 3 choices for the PQT: 180°−70°−50° = 60°
+85.3,131.9,141.9: third digit, 2 choices for the fourth digit, and
+356.2,137.9,147.9: In parallelogram PQRS, angle QPT is
+85.3,143.9,153.9: 1 choice for the final digit. The total number
+356.2,149.9,159.9: congruent to angle QRS, so the measure of
+85.3,155.9,166.5: of possibilities is 5×4×3×2×1 =120.
+356.2,161.9,171.9: angle QRS is also 60°.
+84.0,184.0,194.6: 147−x
+42.0,188.2,199.4: 59. (3) =12
+93.9,194.2,205.7: 12 65. (D) Break the equations apart to each equal M:
+82.0,212.3,224.5: 147−x =144 M = 3N
+83.4,231.5,242.1: x = 3
+386.2,239.1,249.1: P
+358.7,243.9,254.5: M =
+386.6,250.8,260.8: 4
+42.0,261.9,273.9: 60. (–3.4) (−6)−(−5)+4.2 − 3−9.6 = 3.2 − −6.6
+89.1,274.9,288.5: = 3.2−6.6 =−3.4 M = Q+5
+386.5,301.1,311.1: R
+358.7,305.9,316.5: M =
+42.0,310.0,322.8: 61. (300) Let x be the total number of pages in the 7
+85.7,322.0,332.0: workbook. Then, 20% of x is 60. Set up a
+356.2,329.2,339.2: Pick a number to substitute into the
+85.7,334.0,344.0: proportion and solve for x:
+356.2,341.2,351.2: equations, and solve the equations to find the
+87.1,353.2,363.2: 20 60 values of M, N, P, Q, and R.
+105.7,358.6,368.6: =
+84.0,364.9,374.9: 100 x
+356.2,371.2,382.2: Let M = 2. Since all the equations are equal
+82.8,381.7,393.2: 20x = 6,000 to 2, substitute 2 to find each variable.
+105.2,400.9,410.9: 6,000
+83.4,406.0,419.4: x = = 300 pages M = 3N
+111.7,412.9,422.9: 20
+358.1,427.9,438.5: 2 = 3N
+42.0,444.4,457.1: 62. (65) Call the missing angle in the top half of 2
+370.8,451.9,462.5: = N
+81.0,456.4,468.7: the figure x. The sum of the four angles 3
+81.0,468.4,478.4: on the top of the figure is equal to 180°.
+83.4,481.4,492.9: x+ y+30+60 =180 P
+358.7,487.7,498.2: M =
+386.6,494.5,504.5: 4
+81.0,500.4,510.4: Since x is a vertical angle with the 25° angle,
+81.0,511.1,522.4: then x is also 25°. Use that to solve for y. P
+358.1,515.9,526.5: 2 =
+381.2,522.8,532.8: 4
+82.8,531.9,542.5: 25+ y+30+60 =180
+357.8,539.4,550.0: 8 = P
+83.8,551.1,561.7: y+115 =180
+358.7,563.6,574.2: M = Q+5
+83.8,570.2,580.8: y = 65
+358.1,582.9,593.5: 2 = Q+5
+357.2,596.4,608.1: −3 = Q
+42.0,603.1,615.3: 63. (D) x(x−2y)= 9[9−2(−7)]= 9(9+14)
+82.4,619.3,629.9: = 9(23) = 207
+386.5,624.4,634.4: R
+358.7,629.3,639.8: M =
+386.9,636.1,646.1: 7
+381.1,648.1,658.1: R
+358.1,652.9,663.5: 2 =
+381.5,659.8,669.8: 7
+357.2,671.8,682.4: 14 = R
+356.2,694.2,704.2: Variable R has the greatest value.
+297.2,756.7,767.2: 135
+=== PAGE 10 ===
+42.0,46.7,77.1: SAMPLE TEST – MATHEMATICS B
+521.6,52.7,62.7: Form
+42.0,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,107.9,117.9: 66. (G) Set up a proportion: 70. (F) The total number of desserts ordered is
+358.1,121.9,132.5: 42+23+47+48 =160.
+90.7,127.1,137.1: x 3
+106.6,132.5,142.5: =
+84.8,137.9,148.7: 416 96 The probability that ice cream was chosen is
+82.6,155.6,167.8: 96x =1,248 48 3
+381.0,162.6,173.1: = = 30%.
+359.2,169.4,179.4: 160 10
+83.4,174.9,185.5: x =13bundles
+317.2,200.2,210.2: 71. (C) Since 18 and 24 are both multiples of 6, find
+42.0,208.2,218.2: 67. (C) Set up an inequality to compare the costs:
+356.2,212.2,222.2: the least common multiple of only 18 and 24.
+82.6,227.4,240.2: 0.15x ≤10.50 Multiples of 18: 18, 36, 54, 72…
+83.4,246.5,258.2: x ≤70 Multiples of 24: 24, 48, 72…
+81.0,265.2,276.2: Therefore, 70 individual sheets of paper would The least common multiple of 6, 18, and 24
+81.0,277.2,288.2: cost $10.50, so 69 is the greatest number of is 72.
+81.0,289.2,299.2: individual sheets of paper that Macie can
+81.0,301.2,311.2: buy that would be less expensive than the
+81.0,310.6,323.2: package. 72. (F) Let x be the number of dozens of eggs for 300
+356.2,322.6,332.6: customers. Set up a proportion:
+365.8,341.9,351.9: x 15
+42.0,345.6,357.2: 68. (F) 7:00 p.m. is 6 hours after 1:00 p.m. Calculate =
+359.8,353.5,363.5: 300 200
+81.0,357.6,367.6: the number of degrees the temperature
+81.0,369.6,380.9: dropped in 6 hours: 3×6 =18 degrees. 200x = 4500
+81.0,384.9,397.6: Subtract that from the starting point x = 22.5dozeneggs.
+81.0,399.6,409.6: (8 degrees) to find the solution:
+356.3,403.6,413.6: Round up to 23 because you can't have half an
+82.6,410.5,422.2: 8−18 =−10 degrees.
+356.3,415.6,425.6: egg.
+317.3,448.0,458.0: 73. (C) The total number of bottles of juice in the
+42.0,453.0,463.0: 69. (D) The ratio of red to blue to green is 15:7:3.
+356.3,460.0,470.6: cooler is 5+3+6 =14.
+81.0,474.0,484.0: Find the proportion of blue marbles. Add the
+356.2,478.0,488.0: The number of bottles of juice that are not
+356.2,490.0,500.0: apple juice (grape juice and fruit punch) is
+81.0,495.0,505.0: numbers of the ratio and use the total sum as
+357.8,505.0,515.6: 3+6 = 9.
+182.6,511.2,521.2: 7 7
+81.0,516.0,526.6: the denominator: = . Find the
+165.8,522.8,533.4: 15+7+3 25
+356.2,526.0,536.0: So the probability is
+458.1,521.2,531.2: 9
+468.5,526.0,536.0: .
+220.9,532.2,542.8: 3 14
+81.0,537.0,547.0: proportion of green marbles: . Since there
+218.3,543.8,553.8: 25
+81.0,558.0,568.0: are a total of 75 marbles, the number of blue
+138.0,574.2,584.2: 7
+81.0,579.0,589.6: marbles is ×75 = 21. The number of
+135.4,585.8,595.8: 25
+166.7,595.2,605.2: 3
+81.0,600.0,610.6: green marbles is ×75 = 9. The number
+164.1,606.8,616.8: 25
+81.0,621.0,631.6: of red marbles is 75−21−9 = 45.
+81.0,639.0,649.0: If 2 blue marbles are removed and replaced
+81.0,651.0,661.0: with 2 green marbles, the number of blue
+81.0,663.0,673.0: marbles is now 19 and the number of green
+81.0,675.0,685.0: marbles is now 11. The ratio of red marbles to
+81.0,687.0,697.0: green marbles is 45:11.
+297.2,756.7,767.2: 136
+=== PAGE 11 ===
+41.5,46.7,77.1: SAMPLE TEST – MATHEMATICS B
+521.1,52.7,62.7: Form
+41.5,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,110.0,120.0: 74. (H) The radius of the large plate is 20 cm. Use 77. (A) Substitute 3 for y and solve for x:
+81.0,122.0,132.0: that to find the area of the large plate:
+359.8,129.8,139.8: 36
+376.2,134.6,145.2: = 4x
+84.0,141.4,155.3: A = πr 2 = π(20 2) = 400πsqcm y
+359.8,160.1,170.1: 36
+81.0,164.0,175.5: The circumference of the smaller plate is = 4x
+362.6,171.8,181.8: 3
+82.8,176.0,186.5: 20πcm. Use that to find the radius, and then
+81.0,188.0,199.2: the area, of the smaller plate: 12 = 4x
+82.6,207.7,218.3: C = 2πr 3 = x
+82.8,226.9,237.5: 20π = 2πr
+317.2,239.4,250.0: 78. (H) Since XY = 20cm, use that to find YZ :
+82.8,246.1,256.6: r =10
+84.0,259.1,274.5: A = πr 2 = π(10 2) =100πsqcm YZ = 3 XY = 3 (20)=12cm
+388.1,270.7,280.7: 5 5
+81.0,283.0,295.5: Subtract the area of the small plate from the XZ = XY + YZ = 20+12 = 32 cm
+81.0,295.0,305.0: area of the large plate:
+82.8,311.9,322.5: 400π−100π = 300πsqcm
+317.2,318.8,328.8: 79. (C) Calculate the cost of the cloth before tax:
+365.7,338.7,348.7: 3 7
+357.2,343.5,354.1: 1 ×8 = ×8 = $14
+42.0,348.4,360.3: 75. (D) The question says that an equal number (x) 4 4
+81.0,360.4,370.4: of each type of space was purchased. To find
+356.2,366.8,376.8: Now find the tax for $14 worth of cloth:
+81.0,372.4,382.4: the number of each type of space that was
+81.0,384.4,396.7: purchased, multiply the price per type by x 8
+357.2,391.5,402.1: 14×8% =14× = $1.12
+81.0,396.4,408.3: and set it equal to the total amount spent, 100
+81.0,408.4,418.4: then solve for x:
+356.2,414.8,424.8: Finally, add the cost of the fabric and the tax:
+82.8,428.0,438.5: 200x+350x+600x =11,500
+357.8,435.5,446.1: $14 +$1.12 = $15.12
+82.0,447.1,457.7: 1,500x =11,500
+83.4,466.3,478.7: x =10 80. (F) To find M, subtract N−M and set it equal to
+356.2,480.2,490.2: the length:
+81.0,483.4,493.4: Thus, the store purchased 10 units of each
+81.0,495.4,505.4: type of space. To find the total amount of
+365.1,499.7,509.7: 1 5
+81.0,504.5,517.4: page space purchased, multiply each type of 1 −M = 5
+365.4,511.3,521.3: 3 6
+81.0,519.4,529.4: space by 10, and add:
+398.1,523.4,533.4: 5 1
+357.2,527.0,538.8: −M = 5 −1
+398.0,535.0,545.0: 6 3
+81.8,541.9,562.4: ( 1 ) ( 1 )
+85.3,546.7,557.6: 10× page + 10× page +(10×1page) 5 2
+110.5,550.7,563.6: 4 2 −M = 5 −1
+398.0,558.7,568.7: 6 6
+106.4,565.6,575.6: 1
+82.4,570.4,581.0: =17 pages 3
+106.8,574.4,587.2: 2 −M = 4
+398.7,582.4,592.4: 6
+398.5,594.5,604.5: 1
+357.8,598.1,609.8: M =−4
+398.9,606.1,616.1: 2
+42.0,610.8,620.8: 76. (E) In the second quadrant, where point R is
+81.0,622.8,632.8: located, the x-values are negative and the
+81.0,634.8,644.8: y-values are positive. Any point in the second
+81.0,646.8,656.8: quadrant will have a y-value greater than the
+81.0,658.8,668.8: x-value. So, the answer is point R.
+297.2,756.7,767.2: 137
+=== PAGE 12 ===
+42.0,46.7,77.1: SAMPLE TEST – MATHEMATICS B
+521.6,52.7,62.7: Form
+42.0,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,107.9,117.9: 81. (B) Add the four values in the ratio 85. (C) Let x be the original amount of the chemical.
+81.7,119.9,130.5: (177+12+7+4 = 200) and use the sum as It loses 20% after each week, which means
+81.0,131.9,141.9: the denominator. Use that to find the fraction 80% of the chemical remains at the end of
+81.0,143.9,153.9: of zinc in one of the coins. Then reduce the each week.
+81.0,155.9,165.9: fraction:
+356.2,161.9,171.9: End of first week: 0.80x
+87.2,175.8,185.8: 12 3
+106.6,179.9,191.1: = At the end of the second week, 80% of the
+84.8,187.4,197.4: 200 50
+356.2,191.9,201.9: amount left at the end of the first week
+356.2,203.9,213.9: remains.
+81.0,209.9,219.9: Multiply this fraction by 8 to find the number
+81.0,221.9,231.9: of grams of zinc in decimal form: End of second week:
+357.8,234.9,245.5: 0.80(0.80x) = 0.64xor64%
+87.4,241.8,251.8: 3 24
+99.1,246.6,257.1: ×8 = = 0.48g
+84.6,253.4,263.4: 50 50
+317.2,266.2,276.2: 86. (G) One more than an odd integer must be even.
+42.0,284.2,294.8: 82. (G) Jack scored a mean of 15 points per game in One more than w−1 is w, therefore w must
+81.0,296.2,306.2: each of the first 3 games, so he earned a total be even. Two times an even integer must be
+81.0,308.2,318.2: of 45 points for the first 3 games. Use that even, therefore 2w is even. An even integer
+81.0,320.2,330.2: information to calculate the mean over the decreased by 2 must be even.
+81.0,332.2,342.2: four games:
+356.2,338.2,348.8: Therefore, 2w−2 must be even.
+84.8,351.3,362.1: 45 + 27 72
+126.0,356.9,367.5: = =18
+99.8,363.8,373.8: 4 4
+317.2,370.6,380.6: 87. (B) Find the least common multiple of 2, 3, and
+356.2,382.6,392.6: 4 — which is 12. So, it takes 12 minutes
+356.2,394.6,404.6: before all three are back at the starting line.
+42.0,400.6,410.6: 83. (B) Find the number of liters that need to be
+356.2,406.6,416.6: Ann completes 1 lap every 2 minutes, so in 12
+145.0,413.8,423.8: 1 2
+81.0,418.6,428.6: added. Since of the oil drum is full, of minutes she has completed 6 laps.
+145.3,425.4,435.4: 3 3
+81.0,436.6,446.6: the drum remains empty:
+317.2,451.0,461.6: 88. (F) 4(7−3x)−(5−x)= 28−12x−5+ x
+84.8,456.5,466.5: 2
+93.7,461.3,471.9: ×4,320 = 2,880liters
+84.7,465.4,478.1: 3 = 23−11x
+81.0,484.6,495.2: Use the conversion 1kL =1,000L to find the
+81.0,495.4,506.6: number of kL: 89. (D) First, add the number of students for each
+356.2,507.4,517.4: category to find out how many total students
+84.8,516.1,526.1: 2,880
+113.8,519.4,531.9: = 2.88kL were in the survey: 12+16+7+5 = 40
+84.4,528.1,538.1: 1,000
+356.2,537.4,547.4: The number of students who had at least
+356.2,549.4,559.4: 2 pets are the ones who have 2 pets (7) plus
+42.0,559.0,571.4: 84. (F) First, find out how old Nicole and Carmen are the ones who have 3 or more (5). The total
+81.0,571.0,583.4: now. number of students with at least 2 pets is
+81.0,586.4,598.6: Let N = Nicole’s age now. 7+5 =12.
+81.0,603.4,615.6: Let C = Carmen’s age now. The probability of a student in the survey
+356.2,615.4,625.4: having at least two pets is:
+82.6,624.3,634.9: C +2 =17
+157.3,635.3,650.7: , 12 = 3
+82.6,643.7,654.3: C =15(Carmensagenow)
+360.1,646.9,656.9: 40 10
+83.4,663.1,673.6: N = 3C
+83.4,682.0,692.6: N = 3(15) = 45 (Nicole’s age now)
+83.4,699.0,709.6: N −5 = 45−5 = 40 (Nicole’s age 5 years ago)
+297.2,756.7,767.2: 138
+=== PAGE 13 ===
+41.5,46.7,77.1: SAMPLE TEST – MATHEMATICS B
+521.1,52.7,62.7: Form
+41.5,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,108.9,118.9: 90. (E) Let x be the total number of liters the 92. (E) The length of one side of the square is 6
+81.0,120.9,130.9: container can hold.
+356.2,126.9,136.9: cm. Since R, S, and T are midpoints, then
+85.0,140.1,150.6: n+10 n+16
+115.1,144.9,155.5: = 60% and = 75% TM, MR, RN, and NS are all equal to 3
+95.0,151.7,161.7: x x
+356.3,162.9,172.9: cm. Triangles TMR and RNS are both right
+81.0,168.9,178.9: First, solve each equation for x:
+356.3,180.9,190.9: triangles, so the area of one of the triangles is
+81.0,186.9,196.9: Equation 1:
+359.7,194.4,204.4: 1 9
+369.0,198.9,209.8: ×3×3 = . The triangles are congruent,
+85.0,206.0,217.0: n+10 60 2 2
+115.1,211.8,222.1: = 9 9
+95.0,216.9,228.1: x 100 so the sum of the areas is + = 9 sqcm.
+480.1,223.7,233.7: 2 2
+85.0,234.9,245.5: n+10 3
+115.1,240.3,250.3: =
+95.0,246.5,256.5: x 5
+317.2,253.9,263.9: 93. (D) Let x be the amount spent on planned expense
+82.6,258.8,269.4: 3x = 5(n+10)
+356.2,265.9,275.9: in one year:
+105.2,273.2,283.8: 5n+50
+83.4,278.0,288.6: x =
+117.8,284.8,295.0: 3 x 5
+394.7,290.4,300.4: =
+360.1,296.7,306.7: 29,600 8
+81.0,301.9,311.9: Equation 2:
+380.5,310.6,320.6: 5
+358.7,315.4,326.0: x = (29,600)=18,500
+85.0,321.8,332.4: n+16 75 8
+115.1,327.2,337.2: =
+95.0,333.4,343.4: x 100
+85.0,345.5,356.1: n+16 3
+115.1,350.9,363.2: = 94. (G) First, figure out how many different topping
+95.0,357.1,367.1: x 4
+356.2,365.2,375.2: pairs are possible. Use 1, 2, 3, 4, 5, 6, 7 to
+82.6,369.4,380.0: 3x = 4(n+16)
+356.2,377.2,387.2: represent the toppings and create a list of
+105.4,383.8,394.4: 4n+64
+83.4,388.6,399.2: x = possible pairs:
+118.2,395.4,405.4: 3
+356.2,407.2,417.2: 1,2; 1,3; 1,4; 1,5; 1,6; 1,7
+81.0,412.9,422.9: Now, set the two equations equal to each
+356.2,419.2,429.2: 2,3; 2,4; 2,5; 2,6; 2,7
+81.0,424.9,434.9: other and solve for n.
+356.2,431.2,441.2: 3,4; 3,5; 3,6; 3,7
+84.6,443.2,454.6: 5n+50 4n+64 4,5; 4,6; 4,7
+120.6,449.4,459.4: =
+97.2,455.2,465.6: 3 3 5,6; 5,7
+356.2,467.2,477.2: 6,7
+82.6,472.4,483.0: 5n+50 = 4n+64
+356.2,485.2,495.2: So there are 21 different topping
+83.0,491.6,502.2: n+50 = 64
+356.2,497.2,507.2: combinations for one pizza.
+83.0,511.0,521.6: n =14liters
+356.2,515.2,525.2: Since there are 3 pizza sizes, multiply the
+356.2,527.2,537.2: total number of combinations by 3 to get the
+93.7,539.2,549.4: 3 1 total number of different pizzas Cody can
+42.0,544.2,554.8: 91. (B) 5x +3x+9+
+156.5,551.2,564.6: x2 create: 3×21 = 63.
+82.4,571.4,586.8: = 5(10 3) +3(10)+9+ 1
+190.9,583.6,596.7: 102 95. (D) To find by what percent the number of
+356.2,595.6,605.6: families with 1 cat is greater than the number
+180.7,598.7,608.7: 1
+82.4,603.5,614.1: = 5,000+30+9+ = 5,039.01
+175.2,607.6,620.3: 100 of families with 2 cats, calculate the difference
+356.2,619.6,629.6: between the two numbers and divide by the
+356.2,631.6,641.6: number of families with 2 cats:
+360.1,651.5,662.1: 42−35 7 1
+395.6,656.3,666.9: = = = 0.20or20%.
+369.6,663.1,673.1: 35 35 5
+297.2,756.7,767.2: 139
+=== PAGE 14 ===
+42.0,46.7,77.1: SAMPLE TEST – MATHEMATICS B
+521.6,52.7,62.7: Form
+42.0,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,107.9,121.1: 96. (H) One side of the square base is 3 ft long. Since 100. (E) Both x+1 and y+2 are radii. So, set them
+81.0,119.9,132.5: the height of the box is 3 times the length, equal to each other and solve for y.
+81.0,131.9,142.5: then the height is 3×3 = 9ft. The volume of
+81.0,141.6,154.5: a rectangular prism is length × height y+2 = x+1
+81.3,155.9,166.5: × width. The volume of the wooden box is
+359.1,160.8,171.4: y = x−1
+82.6,175.6,186.1: V = 3×3×9 = 81cuft.
+317.2,193.9,203.9: 101. (C) There are 5 sections between M and T. To find
+42.0,205.9,217.2: 97. (B) Calculate each mean speed: the length of one of these sections, find the
+356.2,217.9,227.9: distance between M and T and divide by 5:
+107.5,227.0,237.0: 65
+83.6,231.9,242.4: R = =13kph
+110.2,237.7,258.3: 5 (5
+372.9,243.1,253.1: −
+383.2,237.7,258.3: (− 1))
+414.6,243.1,253.1: ÷
+428.1,237.7,247.7: 5
+438.8,243.1,253.1: =
+363.2,249.4,259.4: 8 4 1
+106.4,255.5,265.5: 72
+83.0,260.3,282.4: S = =18kph (5 2) 5
+109.1,267.1,277.2: 4 + ÷ =
+363.2,273.4,283.4: 8 8 1
+81.0,284.3,295.6: Then calculate the difference of both mean 7 5 7 1 7
+370.0,290.9,300.9: ÷ = × =
+81.0,296.3,307.2: speeds: 8 1 8 5 40
+83.0,313.9,326.5: S− R =18−13 = 5kph R is 3 sections away from M, so add:
+357.2,333.8,354.4: − 1 +3 ( 7 ) =− 10 + 21 = 11
+367.9,345.4,355.4: 4 40 40 40 40
+42.0,349.6,359.6: 98. (G)
+428.1,364.1,374.1: 11
+356.2,368.9,378.9: R is located at .
+428.4,375.7,385.7: 40
+317.2,401.3,411.3: 102. (H) Let x be the number of minutes Phan used his
+356.2,413.3,423.3: internet service in the month. Phan’s monthly
+81.0,416.9,426.9: Find the midpoint of PQ and RS:
+169.5,425.3,440.1: −1−(−3) 2 charges were 18+0.024x. Since Deion’s
+81.0,434.9,447.3: Midpoint of PQ = = =1unit. charges were the same as Phan’s, set the
+190.9,441.7,451.7: 2 2
+356.2,449.3,459.3: expression equal to 30 and solve for x:
+81.0,452.9,462.9: The midpoint of PQ is located 1 unit from
+81.0,463.9,474.9: each endpoint, so the midpoint is at −2.
+357.2,468.8,479.4: 18+0.024x = 30
+169.0,478.1,488.7: 2−0 2
+81.0,482.9,493.5: Midpoint of RS = = =1unit.
+178.4,488.0,499.7: 2 2 0.024x =12
+81.0,500.9,510.9: The midpoint of RS is located 1 unit from
+358.6,507.1,517.7: x = 500
+81.0,512.9,522.9: each endpoint, so the midpoint is at 1.
+356.2,524.3,534.3: Phan used his service for 500 minutes.
+81.0,530.9,540.9: The distance between the two midpoints is
+82.0,543.5,555.5: 1−(−2)= 3units.
+42.0,578.3,588.9: 99. (D) If 1L =1,000cucm,then1L =1,000mL.
+81.0,590.3,600.9: Set up a proportion, letting x = the
+81.0,602.3,612.3: amount of cubic millimeters in 1,000 cubic
+81.0,614.3,624.3: centimeters.
+84.0,633.4,643.4: 1,000cumm xcumm
+145.3,639.6,649.6: =
+103.1,645.8,655.8: 1L 1,000cumm
+81.0,665.3,675.3: Solve for x: 1,000,000cubic millimeters are in
+81.0,677.3,687.3: 1,000 cubic centimeters.
+297.2,756.7,767.2: 140
+=== PAGE 15 ===
+41.5,46.7,77.1: SAMPLE TEST – MATHEMATICS B
+521.1,52.7,62.7: Form
+41.5,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+40.8,107.7,117.7: 103. (B) Create a chart using the given information 107. (C) Separate the compound inequality into two
+79.8,119.7,129.7: and use subtraction to figure out how many pieces:
+79.8,131.7,141.7: cars are not red and do not have a back-up
+357.5,139.4,150.0: 2x−2≤ yandy≤ 4x+10
+79.8,143.7,153.7: camera:
+355.6,158.7,169.2: Substitute y =1 into each inequality and
+129.2,165.5,175.0: Red Not Red TOTAL
+355.6,170.7,180.7: solve for x:
+48.1,180.5,190.0: Back-up 4 6 10
+48.1,189.9,201.6: Camera (10-4) 2x−2≤1
+48.1,207.1,219.7: No back-up 32 2x ≤3
+48.1,218.6,228.1: Camera (38-6)
+380.2,228.2,238.2: 3
+48.1,233.1,243.6: TOTAL 12 38 50 x ≤
+380.3,239.9,249.9: 2
+183.6,245.1,254.6: (50-12)
+356.6,256.5,267.1: 1≤ 4x+10
+79.8,269.2,281.5: The probability of selecting a car that meet −9≤ 4x
+79.8,285.3,300.7: both conditions from the total of 50 cars at the − 9 ≤ x
+367.3,296.9,306.9: 4
+145.3,300.4,310.4: 32 16
+79.8,305.2,315.8: dealership is = .
+145.3,312.0,322.0: 50 25
+355.6,319.7,329.7: The solution is the number line that shows
+527.0,332.9,342.9: 1
+355.6,336.5,347.7: that x is greater than or equal to −2 and
+527.3,344.5,354.5: 4
+122.2,350.7,360.9: 6 1
+40.8,355.6,366.1: 104. (E) 0.06 = . Simplify the fraction to find the less than or equal to 1 .
+116.5,362.4,372.5: 100 2
+81.0,373.6,383.6: answer:
+358.8,389.8,400.2: 14 p
+88.5,393.4,411.8: 6 = 3 so,x = 3. 108. (G) 21 = 7
+82.8,405.1,415.1: 100 50
+357.5,418.8,429.4: 21p = 7(14)
+40.8,435.9,448.6: 105. (C) The height of the triangle is 4 units. The 21p = 98
+79.8,447.9,458.5: length of the base is n−m. So the area is
+380.7,457.2,467.2: 98 14
+358.7,462.0,472.6: p = =
+106.3,467.8,478.8: 1 21 3
+82.8,472.6,483.2: A = (n−m)(4)= 2(n−m).
+106.7,479.4,489.4: 2
+316.6,502.4,512.4: 109. (A) The total number of balls in the box is
+40.8,515.4,526.3: 106. (F) The total number of cards in the box is 7+14 +21 = 42.
+81.4,532.4,544.9: 8+6+5+4 +1 = 24. Set up a proportion The probability that the ball is black is
+362.1,548.6,558.6: 7 1
+79.8,552.3,564.0: to figure out which card has exactly a 1 in 4 = .
+359.5,560.2,570.2: 42 6
+246.2,565.5,575.5: x 1
+79.8,570.3,580.9: chance of being picked at random. =
+242.9,577.1,587.1: 24 4
+79.8,588.3,598.9: or x = 6. The dog card has a 1 in 4 chance of
+79.8,606.3,616.3: being randomly selected.
+297.2,756.7,767.2: 141
+=== PAGE 16 ===
+42.0,46.7,77.1: SAMPLE TEST – MATHEMATICS B
+521.6,52.7,62.7: Form
+42.0,61.1,73.1: EXPLANATIONS OF CORRECT ANSWERS continued...
+42.0,107.9,121.1: 110. (G) None of the 80 students (800−720) who 113. (D) The shelf, when full, holds 36 cans. When the
+81.0,119.9,133.1: answered “no” to Question A (800−720) shelf is half full, it holds 18 cans.
+81.0,134.5,144.5: could have answered “yes” to both questions.
+358.7,139.6,150.1: x−4 =18
+81.0,146.5,156.5: Therefore, the least possible number of
+81.0,156.9,168.5: students who could have answered “yes” to x = 22
+81.0,170.5,180.5: both questions, can be found by subtracting
+81.0,182.5,192.5: the 80 who answered “no” to Question A from
+317.2,189.2,199.2: 114. (G) The probability of the cup landing on its
+81.0,194.5,204.5: the 640 who answered “yes” to Question B or
+356.2,201.2,211.2: side is 72%. Carlos tossed the cup a total of
+82.6,206.5,217.1: 640−80 = 560.
+356.2,213.2,223.8: 200 times (50+150). The number of times
+356.3,225.2,235.2: the cup lands on its side is 72% of 200:
+42.0,238.2,248.9: 111. (A) Raoul is at least 3 years older than Vahn, 0.72×200 =144.
+81.0,250.9,260.9: which can be written as
+82.8,270.6,281.2: r ≥ v+3
+81.0,289.9,299.9: Rewrite this inequality to match the answer
+81.0,301.9,311.9: options:
+82.8,321.6,332.2: r−v≥3
+42.0,355.3,365.3: 112. (F) Since 5.6 ricks and 12.88 dalts are both equal
+81.0,367.3,377.8: to 1 sind, then 5.6ricks =12.88 dalts. To
+81.0,379.3,389.3: calculate the number of dalts (d) in 1 rick, set
+81.0,391.3,401.3: up a proportion:
+89.7,410.3,420.3: 5.6 1
+113.8,415.7,425.7: =
+84.0,421.9,431.9: 12.88 d
+82.6,438.9,449.5: 5.6d =12.88
+83.0,458.3,468.9: d = 2.3
+209.5,510.4,523.4: Answer Key for Sample Form B
+88.8,534.5,544.1: 1. A 13. B 25. D 37. C 49. B 61. 300 73. C 85. C 97. B 109. A
+88.8,549.5,559.1: 2. G 14. E 26. F 38. H 50. E 62. 65 74. H 86. G 98. G 110. G
+88.8,564.5,574.1: 3. C 15. C 27. B 39. C 51. C 63. D 75. D 87. B 99. D 111. A
+88.8,579.5,589.1: 4. F 16. F 28. E 40. E 52. H 64. E 76. E 88. F 100. E 112. F
+88.8,594.5,604.1: 5. B 17. D 29. C 41. B 53. A 65. D 77. A 89. D 101. C 113. D
+88.8,609.5,619.1: 6. E 18. G 30. E 42. E 54. G 66. G 78. H 90. E 102. H 114. G
+88.8,624.5,634.0: 7. D 19. D 31. B 43. C 55. B 67. C 79. C 91. B 103. B
+88.8,639.5,649.0: 8. H 20. F 32. H 44. H 56. E 68. F 80. F 92. E 104. E
+88.8,654.5,664.0: 9. B 21. C 33. A 45. B 57. C 69. D 81. B 93. D 105. C
+88.8,669.5,679.0: 10. E 22. F 34. H 46. H 58. 120 70. F 82. G 94. G 106. F
+88.8,684.5,694.0: 11. C 23. C 35. D 47. D 59. 3 71. C 83. B 95. D 107. C
+88.8,699.5,709.0: 12. G 24. F 36. F 48. F 60. –3.4 72. F 84. F 96. H 108. G
+297.2,756.7,767.2: 142

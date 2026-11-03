@@ -19,7 +19,7 @@ const excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormC
     "points": 1,
     "prompt": "What is the best summary of the astronauts’ process for Project Plant Habitat-04?",
     "promptHtml": "<p>What is the <strong>best</strong> summary of the astronauts’ process for Project Plant <span>Habitat-04?</span></p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormC
     "points": 1,
     "prompt": "Read this sentence from paragraph 5.\nThough astronauts can spend upwards of 100 days in space, their on-mission meals come dehydrated and pre-packaged; their vitamins and minerals are isolated in supplements, which lose nutritional value the longer they’re stored.\nThe sentence contributes to the overall meaning of the excerpt by",
     "promptHtml": "<p>Read this sentence from <span>paragraph 5.</span></p> <p data-align=\"indent\"><strong>Though astronauts can spend upwards of <span>100 days</span> in space, their <span>on-mission</span> meals come dehydrated and pre-packaged; their vitamins and minerals are isolated in supplements, which lose nutritional value the longer they’re stored.</strong></p> <p>The sentence contributes to the overall meaning of the excerpt by</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormC
     "points": 1,
     "prompt": "Which statement best explains why Lashelle Spencer is a relevant source of information for the excerpt?",
     "promptHtml": "<p>Which statement <strong>best</strong> explains why Lashelle Spencer is a relevant source of information for the excerpt?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormC
     "points": 1,
     "prompt": "How does the author support the claim in paragraph 4 that the APH is a complex plant growth system?",
     "promptHtml": "<p>How does the author support the claim in <span>paragraph 4</span> that the APH is a complex plant growth system?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -184,7 +184,7 @@ const excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormC
     "prompt": "Which two sentences in paragraphs 5–9 best support the idea that the astronauts working in space enjoyed participating in the food-growing experiment?\nSelect the two correct answers.",
     "promptHtml": "<p>Which <strong>two </strong>sentences in paragraphs 5–9 <strong>best</strong> support the idea that the astronauts working in space enjoyed participating in the food-growing experiment?</p> <p>Select the <strong>two </strong>correct answers.</p>",
     "selectionHtml": "<p><strong>5</strong>  It’s the day after Thanksgiving, and Spencer has been at Kennedy since <span data-no-break=\"true\">5 a.m.</span> to facilitate the peppers’ final harvest. As part of the project team, she played a crucial role in preparing the seeds that were sent hurtling into space in June and guiding the astronauts through maintaining the plants in <span data-no-break=\"true\">orbit. . . .</span> Though astronauts can spend upwards of <span data-no-break=\"true\">100 days</span> in space, their <span data-no-break=\"true\">on-mission</span> meals come dehydrated and pre-packaged; their vitamins and minerals are isolated in supplements, which lose nutritional value the longer they’re stored. Spencer's goal is to create the conditions necessary for cultivating healthy plants in space, so those plants can sustain healthy astronauts on long-term missions.&nbsp;Astronaut food is great, she <span data-no-break=\"true\">says—</span>“especially the shrimp cocktail. <span data-choice-id=\"A\">But you're missing that crunch. You're missing that fresh pop of flavor, the green flavor that's not there in that packaged food.”</span></p><p><strong>6</strong>  The sensory experience of growing productive crops can also help mitigate the psychological effects of long-term space <span data-no-break=\"true\">travel. . . .</span> <span data-choice-id=\"B\">Spencer says the team cracked open the door of the APH every day to observe their vegetable companions with all the tenderness of home gardeners.</span>&nbsp;<span data-choice-id=\"C\">When harvest day came, they batted their bounty around the ISS, taking selfies and delighting in watching the fruits pirouetting around the spacecraft.</span><span data-no-break=\"true\">. . .</span></p><p><strong>7</strong> <span data-choice-id=\"D\"> “We were thinking no heat, so that [the peppers] wouldn’t be dangerous, but maybe the astronauts need a little spice in their life,” says Paul Bosland</span>, who along with his colleagues at the Chile Pepper Institute genetically engineered the NuMex Española Improved chile pepper seeds grown in Plant <span data-no-break=\"true\">Habitat-04. . . .</span></p><p><strong>8</strong>  Working with NASA, Bosland cultivated a variety that could accommodate both the nutritional needs of astronauts as well as the logistics of growing a plant in space. . . .</p><p><strong>9</strong>  . . . The experiment is helping gather the data necessary to determine the nutritional content of crops grown in space, and therefore how many people they can feed, and for how long.&nbsp;Though much is still unknown, Spencer is certain of one thing that future astronauts will need to do: <span data-choice-id=\"E\">“I think in an optimal world, a scientist like me would say that they would be growing plants from day one</span>. From the day they left to the day they came back, they would be growing them.”</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -234,7 +234,7 @@ const excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormC
     "points": 1,
     "prompt": "The description in paragraph 5 of Lashelle Spencer’s goal develops a central idea of the excerpt by",
     "promptHtml": "<p>The description in paragraph 5 of Lashelle Spencer’s goal develops a central idea of the excerpt by</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -278,7 +278,7 @@ const excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormC
     "prompt": "What is the relationship between the scientists and the astronauts in carrying out the plant-growing experiments?\nMove the correct answer to each box.",
     "promptHtml": "<p>What is the relationship between the scientists and the astronauts in carrying out the plant-growing experiments?</p> <p>Move the correct answer to each box.</p>",
     "dragDropContentHtml": "<p>Scientists on earth are primarily responsible for&nbsp;{{slot-1}} for conducting plant experiments in space, while the astronauts aboard the International Space Station are responsible for&nbsp;{{slot-2}} for the experiment.</p>",
-    "topic": "Uncategorized",
+    "topic": "Inference",
     "allowReuse": false,
     "dragDropStyle": "outlined",
     "dragDropContent": [
@@ -335,7 +335,7 @@ const excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormC
     "points": 1,
     "prompt": "How is the quotation from Lashelle Spencer at the end of paragraph 9 relevant to the discussion of the peppers referred to in paragraph 2?",
     "promptHtml": "<p>How is the quotation from Lashelle Spencer at the end of <span>paragraph 9</span> relevant to the discussion of the peppers referred to in <span>paragraph 2?</span></p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -376,7 +376,7 @@ const excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormC
     "points": 1,
     "prompt": "How is the discussion of the genetic engineering of the peppers consumed on the ISS (paragraphs 7–8) important to the excerpt as a whole?",
     "promptHtml": "<p>How is the discussion of the genetic engineering of the peppers consumed on the ISS <span>(paragraphs 7–8)</span> important to the excerpt as a whole?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -417,7 +417,7 @@ const excerptFromGrowingPeppersOnTheIssIsJustTheStartOfSpaceFarming20262027FormC
     "points": 1,
     "prompt": "With which statement would the author most likely agree?",
     "promptHtml": "<p>With which statement would the author <strong>most likely</strong> agree?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",

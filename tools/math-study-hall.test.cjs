@@ -18,10 +18,13 @@ test('Math Study Hall follows the managed hierarchy and reserves topic resource 
     const category=mathStudyCategories[0], topic=category.topics[0];
     const output={root:render(mathStudyHref()),category:render(mathStudyHref(category.label)),topic:render(mathStudyHref(category.label,topic)),modules:render(mathStudyHref('Algebra','Inequalities')),unknown:render(mathStudyHref('Removed category')),unknownTopic:render(mathStudyHref(category.label,'Removed topic')),search:render(mathStudyHref(),topic),empty:render(mathStudyHref(),'NO MATCH EXISTS'),href:mathStudyHref('Ratios & rates','Percentages & proportions')};
     output.categories=mathStudyCategories.map(category=>render(mathStudyHref(category.label)));
+    globalThis.localStorage={getItem:key=>key==='infinite-practice:best:v1:preview%3Astudent%3Ateacher:all'?'30':key.startsWith('infinite-practice:best:v1:')?'50':null};
+    output.starredCategory=render(mathStudyHref('Algebra'));
+    globalThis.localStorage={getItem:()=>null};
     globalThis.qaTaxonomy=[{label:'Statistics and Probability',topics:['Data Displays','Probability','Set Relationships','Averages & Spread']}];
     output.managed=render(mathStudyHref('Statistics and Probability'));output.customModuleName=render(mathStudyHref('Statistics and Probability','Overlapping Groups'));
     globalThis.qaTaxonomy=null;output.loading=render(mathStudyHref());globalThis.qaTaxonomyError='Categories unavailable';output.failed=render(mathStudyHref());console.log(JSON.stringify(output));
-  `, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic', loader: { '.css': 'empty' }, define:{'import.meta.env':'{}'},plugins:[{name:'defer-browser-player',setup(plugin){plugin.onLoad({filter:/usePracticeCatalog\.ts$/},()=>({loader:'ts',contents:'import {defaultPracticeCatalog} from '+JSON.stringify(resolve(__dirname,'../server/src/shared/practiceCatalog.ts'))+'; const taxonomy='+JSON.stringify(taxonomy.categories)+'; export function usePracticeCatalog(){return {catalog:defaultPracticeCatalog(),taxonomy:globalThis.qaTaxonomy===undefined?taxonomy:globalThis.qaTaxonomy,error:globalThis.qaTaxonomyError??"",loading:globalThis.qaTaxonomy===null,reload:async()=>{}};}'}));plugin.onLoad({filter:/InequalityPractice\.tsx$/},()=>({loader:'tsx',contents:'export function InequalityPractice(){return null;}'}));}}] });
+  `, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic', loader: { '.css': 'empty' }, define:{'import.meta.env':'{}'},plugins:[{name:'defer-browser-player',setup(plugin){plugin.onLoad({filter:/usePracticeCatalog\.ts$/},()=>({loader:'ts',contents:'import {defaultPracticeCatalog} from '+JSON.stringify(resolve(__dirname,'../server/src/shared/practiceCatalog.ts'))+'; const taxonomy='+JSON.stringify(taxonomy.categories)+'; export function usePracticeCatalog(){const catalog=defaultPracticeCatalog();catalog.modules=catalog.modules.filter(module=>module.category!==taxonomy[0].label||module.topic!==taxonomy[0].topics[0]);return {catalog,taxonomy:globalThis.qaTaxonomy===undefined?taxonomy:globalThis.qaTaxonomy,error:globalThis.qaTaxonomyError??"",loading:globalThis.qaTaxonomy===null,reload:async()=>{}};}'}));plugin.onLoad({filter:/InequalityPractice\.tsx$/},()=>({loader:'tsx',contents:'export function InequalityPractice(){return null;}'}));}}] });
   let output;
   vm.runInNewContext(result.outputFiles[0].text, { require, console: { log: value => { output = JSON.parse(value); } }, process, URL, URLSearchParams, TextEncoder, TextDecoder, Buffer, setTimeout, clearTimeout, setImmediate, clearImmediate, queueMicrotask, AbortController, ReadableStream, WritableStream, TransformStream });
   const escape = text => text.replaceAll('&', '&amp;').replaceAll("'", '&#x27;').replaceAll('"', '&quot;').replaceAll('>', '&gt;').replaceAll('<', '&lt;');
@@ -36,11 +39,17 @@ test('Math Study Hall follows the managed hierarchy and reserves topic resource 
   assert.equal((output.category.match(/class="math-study-topic"/g) || []).length, taxonomy.categories[0].topics.length);
   assert.match(output.category, /category=.*&amp;topic=/);
   assert.match(output.category, /preview=student/);
+  assert.match(output.category,/General Practice stars: 0 of 5/);
+  assert.match(output.starredCategory,/General Practice stars: 3 of 5/,'General Practice supplies the count even when Foundation and individual skills have five stars');
   assert.match(output.topic, /aria-labelledby="math-worksheets-title"/);
   assert.match(output.topic, /aria-labelledby="math-infinite-title"/);
   assert.match(output.topic, /No practice modules yet/);
   assert.match(output.topic,/YouTube videos/);
   assert.match(output.modules,/aria-label="Infinite practice modules"/);
+  assert.doesNotMatch(output.modules,/See included families|practice-module-contents/);
+  assert.match(output.modules,/Longest streak/);assert.match(output.modules,/Questions checked/);
+  assert.match(output.modules,/0 of 5 streak stars earned/);
+  assert.ok(output.modules.indexOf('id="math-infinite-title"')<output.modules.indexOf('id="math-worksheets-title"'));
   assert.match(output.modules,/Start or resume Foundation Building/);assert.match(output.modules,/Start or resume General Practice/);assert.doesNotMatch(output.modules,/Start One-step Inequalities/);
   assert.doesNotMatch(output.modules,/Start Inequalities: Variables on Both Sides|Start Writing Inequalities/);
   assert.equal((output.modules.match(/class="practice-module-group"/g)||[]).length,2);
@@ -71,7 +80,8 @@ test('student practice lists show parent modules while nested modules remain par
   vm.runInNewContext(result.outputFiles[0].text,{require,console:{log:value=>{html=value;}},process,URL,URLSearchParams,TextEncoder,TextDecoder,Buffer,setTimeout,clearTimeout,setImmediate,clearImmediate,queueMicrotask,AbortController,ReadableStream,WritableStream,TransformStream});
   assert.match(html,/Start or resume Foundation Building/);assert.doesNotMatch(html,/Foundation Building settings|practice-module-settings-toggle/);
   assert.doesNotMatch(html,/Start Writing Inequalities/);assert.match(html,/Start or resume General Practice/);
-  assert.doesNotMatch(html,/Start One-step Inequalities|Start Inequalities: Variables on Both Sides|INSIDE FOUNDATION BUILDING|practice-contained-module/);
+  assert.doesNotMatch(html,/One-step Inequalities|Inequalities: Variables on Both Sides|Writing Inequalities|Focused practice|practice-contained-module/);
+  assert.equal((html.match(/<article\b/g)||[]).length,2,'Students see only Foundation Building and General Practice');
   assert.match(html,/4 generators/,'The parent still includes its own generators and the nested modules');
 });
 

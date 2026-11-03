@@ -1,0 +1,306 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "prompt": "Which revision corrects the error in sentence structure in the paragraph?\n\nThe land on Earth has not always been separated into the seven continents, at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface. Additionally, the supercontinent was surrounded by ocean waters called Panthalassa, much of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s crust. In fact, experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.",
+      "promptHtml": "<p>Which revision corrects the error in sentence structure in the paragraph?</p><blockquote data-boxed=\"true\">The land on Earth has not always been separated into the seven <u>continents, at</u> one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s <u>surface. Additionally,</u> the supercontinent was surrounded by ocean waters called <u>Panthalassa, much</u> of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s <u>crust. In fact,</u> experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.</blockquote>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "continents. At",
+          "html": "<p>continents. At</p>"
+        },
+        {
+          "id": "B",
+          "text": "surface; additionally,",
+          "html": "<p>surface; additionally,</p>"
+        },
+        {
+          "id": "C",
+          "text": "Panthalassa. Much",
+          "html": "<p>Panthalassa. Much</p>"
+        },
+        {
+          "id": "D",
+          "text": "crust, in fact,",
+          "html": "<p>crust, in fact,</p>"
+        }
+      ],
+      "id": "20202021-form-b-q001",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20202021_form_b.pdf",
+        "sourceQuestion": "1",
+        "sourcePages": [
+          1
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_b_-_answers.pdf",
+          "sourcePages": [
+            52
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20202021_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        }
+      },
+      "correctChoiceId": "A",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+      "sourceQuestion": "1",
+      "versionLabels": [
+        "2020-2021 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "label": "2020-2021 Form B",
+        "year": "2020-2021",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+        "sourceQuestion": "1",
+        "pages": [
+          1
+        ]
+      },
+      "notes": [
+        "Source 20202021_form_b.pdf; question 1."
+      ]
+    },
+    {
+      "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.",
+      "promptHtml": "<p>Which sentence contains an error in its construction and should be revised?</p><blockquote data-boxed=\"true\">(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.</blockquote>",
+      "choices": [
+        {
+          "id": "E",
+          "text": "sentence 1",
+          "html": "<p>sentence 1</p>"
+        },
+        {
+          "id": "F",
+          "text": "sentence 2",
+          "html": "<p>sentence 2</p>"
+        },
+        {
+          "id": "G",
+          "text": "sentence 3",
+          "html": "<p>sentence 3</p>"
+        },
+        {
+          "id": "H",
+          "text": "sentence 4",
+          "html": "<p>sentence 4</p>"
+        }
+      ],
+      "id": "20202021-form-b-q002",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20202021_form_b.pdf",
+        "sourceQuestion": "2",
+        "sourcePages": [
+          2
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_b_-_answers.pdf",
+          "sourcePages": [
+            52
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20202021_form_b_-_answers.pdf",
+          "sourcePages": [
+            2
+          ]
+        }
+      },
+      "correctChoiceId": "E",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q2-1-png-passage.png\" alt=\"Supplied explanation for question 2\"></p>",
+      "sourceQuestion": "2",
+      "versionLabels": [
+        "2020-2021 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "label": "2020-2021 Form B",
+        "year": "2020-2021",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+        "sourceQuestion": "2",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Source 20202021_form_b.pdf; question 2."
+      ]
+    },
+    {
+      "prompt": "Which edit should be made to correct the sentence?\n\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and once could hold up to 50,000 spectators.",
+      "promptHtml": "<p>Which edit should be made to correct the sentence?</p><blockquote data-boxed=\"true\">The Colosseum in <u>Rome,</u> <u>Italy</u> which is considered one of the “new” Seven Wonders of the <u>World,</u> is the largest amphitheater ever <u>built</u> and once could hold up to 50,000 spectators.</blockquote>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Delete the comma after Rome.",
+          "html": "<p>Delete the comma after <em><strong>Rome</strong></em>.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Insert a comma after Italy.",
+          "html": "<p>Insert a comma after <em><strong>Italy</strong></em>.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Delete the comma after World.",
+          "html": "<p>Delete the comma after <em><strong>World</strong></em>.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Insert a comma after built.",
+          "html": "<p>Insert a comma after <em><strong>built</strong></em>.</p>"
+        }
+      ],
+      "id": "20202021-form-b-q003",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20202021_form_b.pdf",
+        "sourceQuestion": "3",
+        "sourcePages": [
+          2
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_b_-_answers.pdf",
+          "sourcePages": [
+            52
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20202021_form_b_-_answers.pdf",
+          "sourcePages": [
+            2
+          ]
+        }
+      },
+      "correctChoiceId": "B",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q3-1-png-passage.png\" alt=\"Supplied explanation for question 3\"></p>",
+      "sourceQuestion": "3",
+      "versionLabels": [
+        "2020-2021 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "label": "2020-2021 Form B",
+        "year": "2020-2021",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+        "sourceQuestion": "3",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Source 20202021_form_b.pdf; question 3."
+      ]
+    },
+    {
+      "prompt": "How should this sentence be revised?\n\nTo promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.",
+      "promptHtml": "<p>How should this sentence be revised?</p><blockquote data-boxed=\"true\">To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</blockquote>",
+      "choices": [
+        {
+          "id": "E",
+          "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.",
+          "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>"
+        },
+        {
+          "id": "F",
+          "text": "On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.",
+          "html": "<p>On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.</p>"
+        },
+        {
+          "id": "G",
+          "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday.",
+          "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>"
+        },
+        {
+          "id": "H",
+          "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.",
+          "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>"
+        }
+      ],
+      "id": "20202021-form-b-q004",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20202021_form_b.pdf",
+        "sourceQuestion": "4",
+        "sourcePages": [
+          3
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_b_-_answers.pdf",
+          "sourcePages": [
+            52
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20202021_form_b_-_answers.pdf",
+          "sourcePages": [
+            2,
+            3
+          ]
+        }
+      },
+      "correctChoiceId": "G",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q4-1-png-passage.png\" alt=\"Supplied explanation for question 4\"></p><p><img src=\"/exam-images/restore-20202021-form-b-answers-q4-2-png-passage.png\" alt=\"Supplied explanation for question 4\"></p>",
+      "sourceQuestion": "4",
+      "versionLabels": [
+        "2020-2021 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "label": "2020-2021 Form B",
+        "year": "2020-2021",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+        "sourceQuestion": "4",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Source 20202021_form_b.pdf; question 4."
+      ]
+    }
+  ]
+}

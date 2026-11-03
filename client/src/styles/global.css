@@ -6390,7 +6390,6 @@ button {
 
 .exam-transition-chip[hidden] { display: none; }
 .exam-transition-chip[aria-pressed="true"] { outline: 2px solid #075ca8; outline-offset: 3px; }
-.exam-transition-help { display: block; margin: 8px 0 20px; font-size: 12px; line-height: 1.5; color: #53657a; }
 
 .exam-transition-sentence {
   margin: 0;
@@ -14684,6 +14683,8 @@ button {
 :is(.exam-rich-text,.exam-review-text,.exam-highlightable) :is(th,td) { border: 1px solid currentColor; padding: .3em .65em; text-align: center; }
 :is(.exam-rich-text,.exam-review-text,.exam-highlightable) caption { margin-bottom: .4em; font-weight: 700; }
 :is(.exam-rich-text,.exam-review-text,.exam-highlightable) table[data-table-style="compact"] { margin: 10px auto; }
+:is(.exam-rich-text,.exam-review-text,.exam-highlightable) table[data-table-style="compact"][data-align="left"] { margin-left:0; margin-right:auto; }
+:is(.exam-rich-text,.exam-review-text,.exam-highlightable) table[data-table-style="compact"][data-align="right"] { margin-left:auto; margin-right:0; }
 :is(.exam-rich-text,.exam-review-text,.exam-highlightable) table[data-table-style="compact"] :is(th,td) { border: 1px solid #808080; padding: 1px; line-height: 24px; }
 :is(.exam-rich-text,.exam-review-text,.exam-highlightable) table[data-table-style="compact"] caption { margin: 0; font-weight: 400; line-height: 24px; }
 :is(.exam-rich-text,.exam-review-text,.exam-highlightable) figure { margin: 1em 0; }
@@ -14701,6 +14702,7 @@ button {
 .exam-text-selection.is-correct-answer { background: #dff3e6; border-color: #27784c; }
 
 .exam-source-hotspot { position: absolute; transform: translate(-50%,-50%); padding: 0; width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgb(0 0 255 / 50%); background: transparent; cursor: pointer; }
+.exam-source-point-graph .exam-source-hotspot:not(.is-selected) { width: 14px; height: 14px; border: 1px solid blue; }
 .exam-source-hotspot.is-selected { width: 18px; height: 18px; background: transparent; border: 5px solid blue; box-shadow: none; }
 .exam-source-hotspot:focus-visible { outline: 3px solid #125a9c; outline-offset: 3px; }
 .exam-source-hotspot.is-eliminated::after { content: '×'; color: #a81720; font-size: 24px; }
@@ -14740,7 +14742,7 @@ button {
 .exam-session-shell[data-player-profile="testnav"] .exam-category-sort { padding-top: 26px; gap: 34px; }
 .exam-session-shell[data-player-profile="testnav"] .exam-category-bank { width: 100%; border: 0; padding: 0; gap: 8px; justify-items: center; }
 .exam-session-shell[data-player-profile="testnav"] .exam-category-sort.is-single-category .exam-category-bank .exam-category-card { box-sizing: content-box; width: 65%; }
-.exam-session-shell[data-player-profile="testnav"] .exam-category-sort.is-single-category .exam-category-target-grid { order: 0; width: 100%; justify-items: center; }
+.exam-session-shell[data-player-profile="testnav"] .exam-category-sort.is-single-category .exam-category-target-grid { order: -1; width: 100%; justify-items: center; }
 .exam-session-shell[data-player-profile="testnav"] .exam-category-sort.is-single-category .exam-category-target { box-sizing: content-box; width: 65%; min-height: 80px; padding: 12px 4px; border: 1px solid #ccc; border-radius: 5px; background: #f3f3f3; }
 .exam-math-panel .exam-choice-list.is-two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .exam-math-drag-response.is-outlined .exam-rich-response-template p { line-height: 28px; }
@@ -14751,6 +14753,7 @@ button {
 }
 .exam-session-shell[data-player-profile="testnav"] .exam-category-sort:not(.is-single-category) .exam-category-bank .exam-category-card { box-sizing: content-box; width: 65%; }
 .exam-session-shell[data-player-profile="testnav"] .exam-category-card p { margin: 0 0 10px; font: inherit; }
+.exam-session-shell[data-player-profile="testnav"] .exam-category-sort.is-single-category .exam-category-card:not(:has(p)) { padding-bottom: 22px; }
 .exam-session-shell[data-player-profile="testnav"] .exam-category-sort:not(.is-single-category) .exam-category-target-grid { display: flex; justify-content: center; gap: 8.45px; margin: 0; }
 .exam-session-shell[data-player-profile="testnav"] .exam-category-sort:not(.is-single-category) .exam-category-target {
   box-sizing: content-box; width: 44%; min-height: 80px; padding: 12px 4px;
@@ -14852,3 +14855,33 @@ button {
 .exam-session-shell .is-category-sort .exam-standalone-category-target h2 { margin: 0 0 10px; color: #666; font: 700 16px/20px Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif; }
 .exam-session-shell .is-category-sort .exam-standalone-category-target-items { width: 100%; margin: 0; justify-items: center; }
 .exam-session-shell .is-category-sort .exam-standalone-category-target .exam-standalone-category-card { box-sizing: border-box; width: 100%; }
+
+/* Form A Q50: TestNav's four sentence tiles above a single answer box. */
+.exam-session-shell [data-question-id="official-shsat-2026-a-50"] {
+  width: min(calc(100% - 30px), 1170px);
+  padding-bottom: 16px;
+}
+.exam-session-shell [data-question-id="official-shsat-2026-a-50"] .exam-standalone-stimulus {
+  margin: 10px 0;
+  padding: 8px;
+  color: inherit;
+}
+.exam-session-shell [data-question-id="official-shsat-2026-a-50"] .exam-standalone-stimulus p { margin: 0; }
+.exam-session-shell [data-question-id="official-shsat-2026-a-50"] .exam-standalone-instructions {
+  margin: 0;
+  color: inherit;
+}
+.exam-session-shell [data-question-id="official-shsat-2026-a-50"] .exam-standalone-category-bank {
+  margin: 28px 0 18px;
+}
+.exam-session-shell [data-question-id="official-shsat-2026-a-50"] .exam-standalone-category-bank .exam-standalone-category-card {
+  box-sizing: border-box;
+  width: 160px;
+  max-width: calc(50% - 9px);
+  min-height: 56px;
+}
+.exam-session-shell [data-question-id="official-shsat-2026-a-50"] .exam-standalone-category-target {
+  box-sizing: border-box;
+  width: min(498px, 100%);
+  min-height: 106px;
+}

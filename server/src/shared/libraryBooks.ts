@@ -1,9 +1,22 @@
+import { coordinateAnswerComplete } from './coordinateResponse';
 import type { ExamPassage, ExamPassageSet, ExamQuestion } from "./examTypes";
 import { isExamQuestionCorrect, type SelectedAnswer } from "./examGrading";
 
-export type PassageBook = { id: string; passageSet: ExamPassageSet; versions: { id: string; label: string; category?: ExamPassage["passageCategory"] }[]; questionPassages: Record<string, ExamPassage> };
+export type PassageBook = { id: string; passageSet: ExamPassageSet; versions: { id: string; label: string; category?: ExamPassage["passageCategory"]; questionIds?: string[]; questionKeys?: string[]; coverageVerified?: boolean }[]; questionPassages: Record<string, ExamPassage> };
+export type LibrarySnapshotStat = { questionId: string; isCorrect: boolean; questionSnapshot?: ExamQuestion; passageSnapshot?: ExamPassage; versionCoverage?: { contentId: string; questionIds: string[]; questionKeys?: string[] }[] };
+/** Only server-frozen membership can establish scores for a combined book's versions. */
+export function verifiedLibraryVersions(stats: LibrarySnapshotStat[]) {
+  const byId = new Map(stats.map(stat => [stat.questionId, stat]));
+  return (stats[0]?.versionCoverage ?? []).flatMap(version => {
+    if (!version.questionIds.length || !version.questionIds.every(id => byId.get(id)?.questionSnapshot && byId.get(id)?.passageSnapshot)) return [];
+    return [{ contentId: version.contentId, questionKeys: version.questionKeys, passageKey: libraryPassageKey(byId.get(version.questionIds[0])!.passageSnapshot!), total: version.questionIds.length, correct: version.questionIds.filter(id => byId.get(id)!.isCorrect).length }];
+  });
+}
 function text(value: string) {
   return value.normalize("NFKC").replace(/&nbsp;|&#160;/gi, " ").replace(/&amp;/gi, "&").replace(/&quot;/gi, '"').replace(/&#39;|&apos;/gi, "'").replace(/[“”]/g, '"').replace(/[‘’]/g, "'").replace(/\s+/g, " ").trim();
+}
+export function libraryPassageKey(passage: ExamPassage) {
+  return JSON.stringify([passage.format === "poem" ? "poem" : "prose", passage.lines.filter(line => !["title", "byline"].includes(line.kind ?? "")).map(line => [text(line.text || line.html || ""), line.image ?? null])]);
 }
 function presentation(value: unknown): unknown {
   if (typeof value === "string") return text(value);
@@ -38,15 +51,15 @@ export function groupPassageBooks(sets: ExamPassageSet[]): PassageBook[] {
   }
   return [...groups.values()].map(versions => {
     const first = versions[0], id = versions.length > 1 ? `book-${first.passage.id}` : first.passage.id;
-    const seen = new Set<string>(), questions: ExamQuestion[] = [], questionPassages: Record<string, ExamPassage> = {};
+    const seen = new Map<string, string>(), questions: ExamQuestion[] = [], questionPassages: Record<string, ExamPassage> = {};
     for (const version of versions) for (const question of version.questions) {
       const key = libraryQuestionKey(question); if (seen.has(key)) continue;
       let questionId = question.id;
       if (questionPassages[questionId]) questionId = `${question.id}::${version.passage.id}`;
       while (questionPassages[questionId]) questionId += "-copy";
-      seen.add(key); questions.push(questionId === question.id ? question : { ...question, id: questionId }); questionPassages[questionId] = version.passage;
+      seen.set(key, questionId); questions.push(questionId === question.id ? question : { ...question, id: questionId }); questionPassages[questionId] = version.passage;
     }
-    return { id, passageSet: { ...first, id, passage: { ...first.passage, id }, questions, questionCount: questions.length }, versions: versions.map(version => ({ id: version.passage.id, label: version.passage.versionLabel || version.passage.title, category: version.passage.passageCategory })), questionPassages };
+    return { id, passageSet: { ...first, id, passage: { ...first.passage, id }, questions, questionCount: questions.length }, versions: versions.map(version => ({ id: version.passage.id, label: version.passage.versionLabel || version.passage.title, category: version.passage.passageCategory, questionIds: version.questions.map(question => seen.get(libraryQuestionKey(question))!), questionKeys: version.questions.map(libraryQuestionKey), coverageVerified: version.questions.every(question => libraryPassageKey(questionPassages[seen.get(libraryQuestionKey(question))!]) === libraryPassageKey(version.passage)) })), questionPassages };
   });
 }
 export function libraryAnswer(value: string): SelectedAnswer {
@@ -60,6 +73,7 @@ export function libraryQuestionAnswered(question: ExamQuestion, value: string) {
   if (!answer || typeof answer !== "object") return false;
   if (question.type === "inline_dropdown") return Boolean(question.dropdowns?.every(menu => answer[menu.id]));
   if (question.type === "math_drag_drop" || question.type === 'transition_drop' && question.dragDropSlots?.length) return Boolean(question.dragDropSlots?.every(slot => answer[slot.id]));
+  if (question.type === "coordinate_response") return coordinateAnswerComplete(question, answer);
   if (question.type === "number_line_response") return Boolean(typeof answer.value === "string" && answer.value.trim() && answer.direction && answer.endpoint);
   return Object.keys(answer).length === (question.requiredPlacements || Object.keys(question.correctPlacements ?? {}).length);
 }
@@ -87,6 +101,8 @@ export function gradeLibraryBook(book: PassageBook, input: unknown) {
     }
     if (question.type === "multi_select" && (!Array.isArray(answer) || new Set(answer).size !== answer.length || answer.some(id => !question.choices?.some(choice => choice.id === id)))) throw new Error("Choose included answers.");
     const correct = libraryCorrectAnswer(question);
-    return { questionId: question.id, questionNumber: index + 1, selectedAnswerId: row.selectedAnswerId, correctAnswerId: typeof correct === "string" ? correct : JSON.stringify(correct), isCorrect: isExamQuestionCorrect(question, answer), timeSpentSeconds: typeof row.timeSpentSeconds === "number" && Number.isFinite(row.timeSpentSeconds) ? Math.max(0, Math.min(86400, Math.round(row.timeSpentSeconds))) : 0 };
+    return { questionId: question.id, questionNumber: index + 1, selectedAnswerId: row.selectedAnswerId, correctAnswerId: typeof correct === "string" ? correct : JSON.stringify(correct), isCorrect: isExamQuestionCorrect(question, answer), timeSpentSeconds: typeof row.timeSpentSeconds === "number" && Number.isFinite(row.timeSpentSeconds) ? Math.max(0, Math.min(86400, Math.round(row.timeSpentSeconds))) : 0,
+      questionSnapshot: structuredClone(question), passageSnapshot: structuredClone(book.questionPassages[question.id] ?? book.passageSet.passage),
+      ...(index === 0 ? { versionCoverage: book.versions.filter(version => version.coverageVerified && version.questionIds?.length).map(version => ({ contentId: version.id, questionIds: [...version.questionIds!], questionKeys: version.questionKeys })) } : {}) };
   });
 }

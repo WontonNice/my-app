@@ -1,0 +1,13 @@
+import fs from 'node:fs/promises';import {isDeepStrictEqual} from 'node:util';import path from 'node:path';import {fileURLToPath} from 'node:url';import {createRequire} from 'node:module';
+const root=path.dirname(fileURLToPath(import.meta.url)),read=async f=>JSON.parse(await fs.readFile(path.join(root,f),'utf8'));const before=await read('before.json'),after=await fetch('http://127.0.0.1:4319/api/state').then(r=>r.json());delete after.editToken;await fs.writeFile(path.join(root,'after.json'),JSON.stringify(after));const receipts=await read('receipts.json'),results=[];let changes=[];
+for(const [id,r] of Object.entries(receipts)){const test=after.tests.find(t=>t.assessmentId===id),oldTest=before.tests.find(t=>t.assessmentId===id);const section=after.mathSections.find(m=>m.fileName===test.mathSectionFileName),oldSection=before.mathSections.find(m=>m.fileName===oldTest.mathSectionFileName);const english=test.passageIds.reduce((n,p)=>n+after.passages.find(x=>x.id===p).questions.length,0)+test.standaloneItemIds.length;
+ if((!id.startsWith('2025-2026') && english!==57)||section.questions.length!==57)throw Error(id+' incomplete '+english+' '+section.questions.length);
+ for(const q of oldSection?.questions||[]){const now=section.questions.find(x=>x.id===q.id);if(!isDeepStrictEqual(q,now))changes.push({id,questionId:q.id,fields:[...new Set([...Object.keys(q),...Object.keys(now||{})])].filter(k=>!isDeepStrictEqual(q[k],now?.[k]))});}
+ for(const p of oldTest.passageIds){const b=before.passages.find(x=>x.id===p),a=after.passages.find(x=>x.id===p);if(!isDeepStrictEqual(b,a))changes.push({id,passage:p});}
+ for(const sid of oldTest.standaloneItemIds){if(!isDeepStrictEqual(before.standaloneItems.find(x=>x.id===sid),after.standaloneItems.find(x=>x.id===sid)))changes.push({id,standalone:sid});}
+ if(r.mathSourceOrder?.some((x,i)=>x.sourceQuestion!==i+58||section.questions[i].id!==x.id))throw Error('Wrong source math order');
+ const added=section.questions.filter(q=>r.math?.added.includes(q.id));for(const q of added){if(q.type==='multiple_choice'&&!q.correctChoiceId)throw Error('Missing key '+q.id);if(!q.promptHtml)throw Error('Missing html '+q.id);for(const src of [...JSON.stringify(q).matchAll(/\/exam-images\/[a-zA-Z0-9._-]+/g)].map(m=>m[0]))await fs.access(path.join('client/public',src));}
+ results.push({exam:id,english,math:section.questions.length,addedEnglish:r.standalones.length+r.passages.reduce((s,p)=>s+p.count,0),addedMath:r.math?.added.length||0,standalones:test.standaloneItemIds.length,mathSourceOrderVerified:!r.math||!!r.mathOrdered});
+}
+await fs.writeFile(path.join(root,'verification.json'),JSON.stringify({results,changes},null,2));console.log(JSON.stringify({results,changes},null,2));
+

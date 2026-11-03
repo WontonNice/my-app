@@ -1,0 +1,18 @@
+{
+  "deleted": "form-a-raven-plans",
+  "retained": [
+    {
+      "id": "the-best-laid-plans-of-ravens-2019-2020-form-b",
+      "label": "2019-2020 Form B"
+    },
+    {
+      "id": "the-best-laid-plans-of-ravens-2021-2022-form-a",
+      "label": "2021-2022 Form A"
+    },
+    {
+      "id": "the-best-laid-plans-of-ravens-2026-2027-form-a",
+      "label": "2026-2027 Form A"
+    }
+  ],
+  "examsUnchanged": true
+}

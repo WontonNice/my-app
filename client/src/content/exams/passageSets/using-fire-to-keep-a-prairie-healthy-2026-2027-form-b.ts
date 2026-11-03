@@ -19,7 +19,7 @@ const usingFireToKeepAPrairieHealthy20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "According to the passage, how did fires started by natural causes prompt American Indians to begin practicing controlled burns?",
     "promptHtml": "<p>According to the <span>passage</span>, <span>how</span> did fires started by natural <span>causes</span> prompt American Indians to begin practicing controlled burns?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const usingFireToKeepAPrairieHealthy20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Targeting red cedar trees in controlled burns affects the animals that live on the prairie mostly by",
     "promptHtml": "<p>Targeting red cedar trees in controlled burns affects the animals that live on the prairie <span>mostly</span> by</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const usingFireToKeepAPrairieHealthy20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 6.\nThe patch-burn system is so successful that the conservationists at the preserve provide training to prairie farmers about conducting controlled burns on their own land.\nThe author includes this sentence to show that",
     "promptHtml": "<p><span>Read</span> this <span>sentence</span> from <span><span>paragraph</span> 6.</span></p> <p data-align=\"indent\"><strong>The patch-burn system is so successful that the conservationists at the preserve provide training to prairie farmers about conducting controlled burns on their own land.</strong></p> <p>The <span>author</span> includes this sentence to <span>show</span> that</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const usingFireToKeepAPrairieHealthy20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence supports the idea that farmers and people who manage land may be concerned about using fire as a way to benefit the land?",
     "promptHtml": "<p><span>Which</span> <span>sentence</span> <span>supports</span> the idea that farmers and people <span>who</span> manage land may be concerned about <span>using</span> fire as a way to benefit the land?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const usingFireToKeepAPrairieHealthy20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 6.\nBurning land to make it healthy may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for hundreds of years and, with careful management, will continue to do so.\nThe words “counterintuitive” and “strategic” in the sentence convey the idea that",
     "promptHtml": "<p><span>Read</span> this <span>sentence</span> from <span><span>paragraph</span> 6.</span></p> <p data-align=\"indent\"><strong>Burning land to make it healthy may seem counterintuitive, but strategic controlled fires have helped the prairie sustain life for hundreds of years and, with careful management, will continue to do so.</strong></p> <p>The <span>words</span> “counterintuitive” and “strategic” in the sentence convey the idea that</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const usingFireToKeepAPrairieHealthy20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "With which statement would the author most likely agree?",
     "promptHtml": "<p><span>With</span> <span>which</span> <span>statement</span> would the <span>author</span> <span><strong>most likely</strong></span> agree?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const usingFireToKeepAPrairieHealthy20262027FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How do the diagram and its text provide additional support for the topic presented in the passage?",
     "promptHtml": "<p><span>How</span> do the diagram and its <span>text</span> provide additional <span>support</span> for the <span>topic</span> presented in the <span>passage</span>?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",

@@ -1,0 +1,68 @@
+{
+  "reviewedQuestions": 200,
+  "changedQuestions": 112,
+  "mathClassified": 100,
+  "englishNewLabels": 7,
+  "englishCorrections": 5,
+  "unchangedEnglish": 88,
+  "stats": {
+    "B": {
+      "English": {
+        "total": 50,
+        "unclassified": 0
+      },
+      "Math": {
+        "total": 50,
+        "unclassified": 0
+      }
+    },
+    "C": {
+      "English": {
+        "total": 50,
+        "unclassified": 0
+      },
+      "Math": {
+        "total": 50,
+        "unclassified": 0
+      }
+    }
+  },
+  "existingTaxonomyPreserved": true,
+  "contentAndAnswersPreserved": true,
+  "otherFormsPreserved": true,
+  "localMathCommandCatalogVerified": true,
+  "exportChanges": [
+    {
+      "file": "server/data/assessments.json",
+      "labelChanges": 212
+    },
+    {
+      "file": "server/data/exam-content.json",
+      "labelChanges": 212
+    },
+    {
+      "file": "server/data/learning-catalog.json",
+      "labelChanges": 4
+    },
+    {
+      "file": "server/data/board-content.json",
+      "labelChanges": 5
+    },
+    {
+      "file": "server/data/library-books.json",
+      "labelChanges": 5
+    },
+    {
+      "file": "server/data/math-import-review.json",
+      "labelChanges": 0
+    }
+  ],
+  "checks": {
+    "typecheck": "passed",
+    "targetedTests": {
+      "passed": 15,
+      "failed": 0
+    },
+    "diffWhitespaceCheck": "passed"
+  }
+}

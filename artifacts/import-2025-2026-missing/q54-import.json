@@ -1,0 +1,59 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "id": "official-shsat-2025-b-54",
+      "sourceQuestion": "54",
+      "type": "multiple_choice",
+      "points": 1,
+      "topic": "Sentence Structure",
+      "versionLabels": [
+        "2025-2026 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "label": "2025-2026 Form B",
+        "year": "2025-2026",
+        "form": "B",
+        "section": "English",
+        "sourceQuestion": "54",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "prompt": "Which part of the paragraph contains an error in sentence structure?",
+      "promptHtml": "Which part of the paragraph contains an error in sentence structure?",
+      "stimulus": "",
+      "selectionHtml": "<p data-boxed=\"true\">In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian <span data-choice-id=\"A\">Institution, the</span> museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a <span data-choice-id=\"B\">year. The</span> museum features more than 30,000 <span data-choice-id=\"C\">objects, including</span> Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation <span data-choice-id=\"D\">Proclamation, written</span> in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.</p>",
+      "instructions": "Select the one error.",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Institution, the",
+          "html": "Institution, the"
+        },
+        {
+          "id": "B",
+          "text": "year. The",
+          "html": "year. The"
+        },
+        {
+          "id": "C",
+          "text": "objects, including",
+          "html": "objects, including"
+        },
+        {
+          "id": "D",
+          "text": "Proclamation, written",
+          "html": "Proclamation, written"
+        }
+      ],
+      "correctChoiceId": "A",
+      "explanation": "",
+      "explanationHtml": "<p><img src=\"/exam-images/2025-2026-form-b-q54-explanation-passage.png\" alt=\"Official TestNav explanation for question 54\"></p>",
+      "notes": [
+        "Source paragraph preserved in selectionHtml for inline phrase selection. Answer A confirmed by the official TestNav exhibit."
+      ]
+    }
+  ]
+}

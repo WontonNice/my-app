@@ -1,0 +1,18 @@
+import fs from 'node:fs/promises';
+import {isDeepStrictEqual} from 'node:util';
+const base='http://127.0.0.1:4319';
+const s=await fetch(base+'/api/state').then(r=>r.json());
+const p=s.passages.find(p=>p.id==='excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil');
+const before=structuredClone(p),q=p.questions[2];
+if(!q.prompt.includes('two phrases'))throw Error('Unexpected question');
+q.promptHtml='Which <strong>two</strong> phrases from paragraph 3 <strong>most</strong> affect the tone of the excerpt?';
+q.instructionsHtml='Move the <strong>two</strong> correct answers to the box.';
+q.items=q.items.map(item=>({...item,html:item.text}));
+await fs.writeFile(new URL('ela-q3-before.json',import.meta.url),JSON.stringify(before,null,2));
+const r=await fetch(base+'/api/passages',{method:'POST',headers:{'Content-Type':'application/json','X-Editor-Token':s.editToken},body:JSON.stringify(p)});
+if(!r.ok)throw Error(await r.text());
+const now=(await fetch(base+'/api/state').then(r=>r.json())).passages.find(x=>x.id===p.id);
+const changed=before.questions.flatMap((q,i)=>isDeepStrictEqual(q,now.questions[i])?[]:[i+1]);
+if(JSON.stringify(changed)!=='[3]')throw Error('Unexpected changes '+changed);
+await fs.writeFile(new URL('ela-q3-receipt.json',import.meta.url),JSON.stringify({changedQuestions:changed,question:now.questions[2]},null,2));
+console.log('Saved English question 3; other questions unchanged.');

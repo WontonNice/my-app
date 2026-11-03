@@ -1,3 +1,4 @@
+import { correctCoordinateAnswer, coordinateAnswerCorrect } from './coordinateResponse';
 import { resolveSkilled, skilledLabel as classificationLabel } from './mathClassificationSkills';
 import type { ExamQuestion } from "./examTypes";
 import { isMathAnswerComplete, normalizeMathAnswer } from "./mathAnswer";
@@ -117,6 +118,7 @@ export function mathAnswerStatus(q: ExamQuestion): {hasAnswer:boolean;valid:bool
     const points=q.graph?.points||[], keys=q.correctPointIds||[];
     return {hasAnswer:keys.length>0,valid:keys.length>0&&hasUniqueIds(points)&&unique(keys).length===keys.length&&keys.every(id=>points.some(p=>p.id===id)),signals};
   }
+  if(q.type==="coordinate_response") { const key=correctCoordinateAnswer(q); return {hasAnswer:Object.keys(key).length>0,valid:coordinateAnswerCorrect(q,key),signals}; }
   if(q.type==="number_line_response"){
     const n=q.numberLineResponse; const hasAnswer=n?.correctValue!==null&&n?.correctValue!==undefined;
     return {hasAnswer,valid:Boolean(hasAnswer&&n&&Number.isFinite(n.correctValue)&&n.min<n.max&&n.tickStep>0&&n.labelStep>0&&n.correctValue!>=n.min&&n.correctValue!<=n.max&&["left","right"].includes(n.correctDirection)&&["open","closed"].includes(n.correctEndpoint)),signals};

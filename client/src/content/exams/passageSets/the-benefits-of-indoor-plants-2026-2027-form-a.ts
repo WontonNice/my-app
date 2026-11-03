@@ -19,7 +19,7 @@ const theBenefitsOfIndoorPlants20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence should follow sentence 3 to best introduce the topic of the passage?",
     "promptHtml": "<p><span><span>Which</span> <span>sentence</span> should follow <span>sentence 3</span> to <span><strong>best</strong></span> <span>introduce</span> the <span>topic</span> of the <span>passage</span>?</span></p>",
-    "topic": "",
+    "topic": "Topic & Transitions",
     "choices": [
       {
         "id": "A",
@@ -63,7 +63,7 @@ const theBenefitsOfIndoorPlants20262027FormAQuestions: ExamQuestion[] = [
     "prompt": "Which transition word or phrase should be added to the beginning of sentence 5 to emphasize the relationship between sentences 4 and 5?\nMove the correct answer to the box.",
     "promptHtml": "<p><span><span>Which</span> <span>transition</span> <span>word</span> or <span>phrase</span> should be added to the <span>beginning</span> of <span>sentence</span> 5 to emphasize the relationship between sentences 4 and 5?</span></p> <p><span>Move the correct <span>answer</span> to the box.</span></p>",
     "dragDropContentHtml": "<p><span>(5) </span>{{slot-1}}<span> spending<em> </em>prolonged periods of time indoors, away from plants, deprives people of these benefits.</span></p>",
-    "topic": "Uncategorized",
+    "topic": "Topic & Transitions",
     "allowReuse": false,
     "dragDropStyle": "outlined",
     "dragDropContent": [
@@ -110,7 +110,7 @@ const theBenefitsOfIndoorPlants20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence could best follow sentence 13 to support the ideas in the third paragraph (sentences 11–14)?",
     "promptHtml": "<p><span><span>Which</span> <span>sentence</span> could <span><strong>best</strong></span> follow <span>sentence 13</span> to <span>support</span> the ideas in the third <span>paragraph</span> </span><span><span>(sentences </span><span>11–14)?</span></span></p>",
-    "topic": "",
+    "topic": "Relevance & Conclusion",
     "choices": [
       {
         "id": "A",
@@ -151,7 +151,7 @@ const theBenefitsOfIndoorPlants20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence presents ideas irrelevant to the topic of the passage and should be deleted?",
     "promptHtml": "<p><span><span>Which</span> <span>sentence</span> </span><span>presents</span><span> ideas irrelevant to the <span>topic</span> of the <span>passage</span> and should be deleted?</span></p>",
-    "topic": "",
+    "topic": "Relevance & Conclusion",
     "choices": [
       {
         "id": "A",
@@ -192,7 +192,7 @@ const theBenefitsOfIndoorPlants20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which concluding sentence should follow sentence 17 to best support the information presented in the passage?",
     "promptHtml": "<p><span><span>Which</span> <span>concluding sentence</span> should follow </span><span><span><span>sentence</span> 17</span></span><span> to <span><strong>best</strong></span> <span>support</span> the information presented in the <span>passage</span>?</span></p>",
-    "topic": "",
+    "topic": "Relevance & Conclusion",
     "choices": [
       {
         "id": "A",

@@ -1,0 +1,23 @@
+import { build } from 'esbuild';
+import { join, basename } from 'node:path';
+import reactAliases from './react-build-aliases.cjs';
+let bundle;
+export async function examPreviewAsset(root, pathname) {
+  if (pathname === '/exam-preview/') return { type: 'text/html', body: `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Saved exam</title><link rel="stylesheet" href="/exam-preview/exam-preview.css"></head><body><div id="root"><p role="status" style="font:14px Arial,sans-serif;padding:16px">Loading saved exam…</p></div><script>
+window.addEventListener('error', function(event) {
+  if (event.target && event.target.tagName === 'LINK') return;
+  var root = document.getElementById('root');
+  if (!root || root.querySelector('main')) return;
+  root.textContent = '';
+  var message = document.createElement('p');
+  message.setAttribute('role', 'alert');
+  message.style.cssText = 'font:14px/1.6 Arial,sans-serif;padding:16px';
+  message.textContent = 'The exam preview could not load. Refresh Content Studio to retry. Your content is still in the editor.';
+  root.append(message);
+}, true);
+</script><script type="module" src="/exam-preview/exam-preview.js"></script></body></html>` };
+  bundle ||= build({ alias:reactAliases(root), entryPoints: [join(root,'tools/exam-preview.tsx')], bundle: true, write: false, outdir: join(root,'tools/.content-drafts/exam-preview-build'), format: 'esm', jsx: 'automatic', minify: true, define: { 'import.meta.env': '{}', 'process.env.NODE_ENV': '"production"' }, loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file' } }).catch(error => { bundle = undefined; throw error; });
+  const output = (await bundle).outputFiles.find(file => '/exam-preview/' + basename(file.path) === pathname);
+  if (!output) return null;
+  return { type: pathname.endsWith('.js') ? 'text/javascript' : pathname.endsWith('.css') ? 'text/css' : 'application/octet-stream', body: output.contents };
+}

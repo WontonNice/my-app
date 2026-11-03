@@ -5,6 +5,9 @@ import type { User } from "@supabase/supabase-js";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
 import { getDatabaseProgress } from "./progress";
+import { isFullExamResult } from "../shared/examCompletion";
+import { verifiedLibraryVersions, type LibrarySnapshotStat } from "../shared/libraryBooks";
+import { passagePreview } from "../lib/learningPlanStore";
 import { assignmentDetail, assignmentSummaries, checkStorage, fromAssignmentRow, learningCatalog, listColumns, reconcileCompletions, toAssignmentRow, updateAssignment } from "../lib/learningPlanStore";
 import { activeStatuses, assignmentStatuses, inventory, planSummary, practiceAnswered, todayInNewYork, validDate, validateDraft, weekDays, type PlanAssignment, type PlanContent, type PlanSettings, type PriorContentActivity } from "../shared/learningPlan";
 
@@ -42,53 +45,73 @@ learningPlanRouter.use("/student", (_request, response, next) => {
   response.locals.student = user; next();
 });
 
-async function priorActivity(student: User, catalog: PlanContent[]): Promise<PriorContentActivity[]> {
-  const progress = await getDatabaseProgress(student);
+async function priorActivity(student: User, catalog: PlanContent[]): Promise<PriorContentActivity[] & { issues?: string[] }> {
+  const issues: string[] = [];
+  const progress = await getDatabaseProgress(student, true).catch(() => { issues.push("Exam history unavailable"); return { examResults: [], examHistory: [] }; });
   const passages = catalog.filter(item => item.kind === "passage");
-  const alias = new Map(passages.flatMap(item => item.aliases.map(id => [id, item.id] as const)));
+  const alias = new Map(passages.flatMap(item => item.aliases.filter(id => !id.startsWith("book-")).map(id => [id, item.id] as const)));
   const result: PriorContentActivity[] = [];
-  for (const exam of progress.examResults) {
+  const seenExams = new Set<string>();
+  for (const exam of [...progress.examResults, ...(progress.examHistory ?? [])]) {
+    const identity = `${exam.assessmentId}:${exam.attemptId ?? exam.completedAt}`;
+    if (seenExams.has(identity)) continue; seenExams.add(identity);
     if (exam.completionStatus === "in_progress") continue;
     const at = typeof exam.completedAt === "string" && Number.isFinite(Date.parse(exam.completedAt)) ? exam.completedAt : null;
-    if (exam.completionStatus !== "english_complete" && exam.completionStatus !== "math_complete" && catalog.some(item => item.kind === "exam" && item.id === exam.assessmentId)) result.push({ contentId: String(exam.assessmentId), at, source: "Existing exam result", correct: typeof exam.correct === "number" ? exam.correct : undefined, total: typeof exam.total === "number" ? exam.total : undefined });
+    if (isFullExamResult(exam) && catalog.some(item => item.kind === "exam" && item.id === exam.assessmentId)) result.push({ contentId: String(exam.assessmentId), at, source: "Existing exam result", reference: String(exam.attemptId ?? exam.assessmentId), assessmentId: String(exam.assessmentId), coverage: "verified", correct: typeof exam.correct === "number" ? exam.correct : undefined, total: typeof exam.total === "number" ? exam.total : undefined });
     for (const value of Array.isArray(exam.passages) ? exam.passages : []) {
       const contentId = alias.get(value.id);
-      if (contentId && value.total > 0 && exam.completionStatus !== "math_complete") result.push({ contentId, at, correct: value.correct, total: value.total, source: "Existing exam passage result", reference: String(exam.assessmentId) });
+      if (contentId && value.total > 0 && exam.completionStatus !== "math_complete") result.push({ contentId, at, correct: value.correct, total: value.total, source: "Existing exam passage result", reference: String(exam.attemptId ?? exam.assessmentId), assessmentId: String(exam.assessmentId), coverage: "recorded" });
     }
   }
   const [attempts, fallback] = await Promise.all([
     priorLibraryAttempts(student.id),
-    supabase.from("student_practice_progress").select("topic_slug,progress").eq("user_id", student.id).like("topic_slug", "english-library:%"),
+    progressRecords(student.id, "english-library:%"),
   ]);
-  const rows = [...(attempts.error ? [] : attempts.data ?? []), ...(fallback.error ? [] : (fallback.data ?? []).flatMap(row => Array.isArray(row.progress?.attempts) ? row.progress.attempts : []))];
+  if (attempts.error && attempts.error.code !== "PGRST205") issues.push("Library history unavailable");
+  if (fallback.error) issues.push("Compatibility history unavailable");
+  const rows = [...attempts.data, ...(fallback.error ? [] : (fallback.data ?? []).flatMap(row => Array.isArray(row.progress?.attempts) ? row.progress.attempts : []))];
   const seen = new Set<string>();
   for (const row of rows) {
+    const verified = verifiedLibraryVersions(Array.isArray(row.question_stats) ? row.question_stats : []);
     const contentIds = passages.filter(item => item.id === row.book_id || item.aliases.includes(row.book_id)).map(item => item.id);
     for (const contentId of contentIds) {
       const key = `${row.id}:${contentId}`;
       if (seen.has(key) || !(row.total_questions > 0)) continue;
-      seen.add(key); result.push({ contentId, at: typeof row.completed_at === "string" && Number.isFinite(Date.parse(row.completed_at)) ? row.completed_at : null, correct: row.score, total: row.total_questions, source: "Saved library attempt", reference: row.id });
+      const version = verified.find(item => item.contentId === contentId);
+      const current = passages.find(item => item.id === contentId);
+      const changed = !!version && (!!(version.questionKeys && current?.questionSetKey && createHash("sha256").update(JSON.stringify([...version.questionKeys].sort())).digest("hex") !== current.questionSetKey) || !!(current?.passageTextKey && createHash("sha256").update(version.passageKey).digest("hex") !== current.passageTextKey));
+      const direct = contentId === row.book_id;
+      seen.add(key); result.push({ contentId, at: typeof row.completed_at === "string" && Number.isFinite(Date.parse(row.completed_at)) ? row.completed_at : null, ...(version ? { correct: version.correct, total: version.total } : direct ? { correct: row.score, total: row.total_questions } : {}), coverage: changed ? "related" : version ? "verified" : direct ? "recorded" : "related", source: "Saved library attempt", reference: row.id, assessmentId: `library:${row.book_id}` });
     }
   }
-  return result;
+  return Object.assign(result, { issues });
 }
 async function priorLibraryAttempts(studentId: string) {
-  const rows: { id: string; book_id: string; score: number; total_questions: number; completed_at: string }[] = [];
+  const rows: { id: string; book_id: string; score: number; total_questions: number; completed_at: string; question_stats?: LibrarySnapshotStat[] }[] = [];
   for (let offset = 0; ; offset += 1000) {
-    const result = await supabase.from("student_library_attempts").select("id,book_id,score,total_questions,completed_at").eq("user_id", studentId).order("id").range(offset, offset + 999);
+    const result = await supabase.from("student_library_attempts").select("id,book_id,score,total_questions,completed_at,question_stats").eq("user_id", studentId).order("id").range(offset, offset + 999);
     if (result.error) return { data: rows, error: result.error };
     rows.push(...(result.data ?? []));
     if ((result.data?.length ?? 0) < 1000) return { data: rows, error: null };
   }
 }
-async function getOverview(student: User, isTeacher: boolean) {
+async function progressRecords(userId: string, pattern: string) {
+  const rows: { topic_slug: string; progress: Record<string, any> }[] = [];
+  for (let offset = 0; ; offset += 1000) {
+    const result = await supabase.from("student_practice_progress").select("topic_slug,progress").eq("user_id", userId).like("topic_slug", pattern).order("topic_slug").range(offset, offset + 999);
+    if (result.error) return { data: rows, error: result.error };
+    rows.push(...(result.data ?? []));
+    if ((result.data?.length ?? 0) < 1000) return { data: rows, error: null };
+  }
+}
+async function getOverview(student: User, isTeacher: boolean, actorId?: string) {
   const catalog = (await assignmentCatalog()).filter(item => !item.classId || getEnrolledClassIds(student.app_metadata).includes(item.classId));
   let assignments = await assignmentSummaries(student.id);
   // Repair completion tracking from canonical saves if a write hook was deferred.
   // Passage evidence from an exam is historical usage, not completion of a separately assigned passage task.
-  const prior = isTeacher || assignments.some(item => activeStatuses.includes(item.status)) ? await priorActivity(student, catalog) : [];
+  const prior = isTeacher || assignments.some(item => activeStatuses.includes(item.status)) ? await priorActivity(student, catalog) : Object.assign([] as PriorContentActivity[], { issues: [] as string[] });
   const active = assignments.filter(item => activeStatuses.includes(item.status));
-  const candidates = prior.filter(item => item.at && ["Saved library attempt", "Existing exam result"].includes(item.source) && active.some(task => task.contentId === item.contentId)).map(activity => ({
+  const candidates = prior.filter(item => item.coverage === "verified" && item.at && ["Saved library attempt", "Existing exam result"].includes(item.source) && active.some(task => task.contentId === item.contentId)).map(activity => ({
     kind: catalog.find(item => item.id === activity.contentId)!.kind, contentId: activity.contentId,
     completion: { source: activity.source === "Existing exam result" ? "exam" as const : "library" as const, at: activity.at!, reference: activity.reference, correct: activity.correct, total: activity.total },
   }));
@@ -105,10 +128,31 @@ async function getOverview(student: User, isTeacher: boolean) {
   const schedule = visible.filter(item => days.includes(item.status === "planned" ? item.plannedDate ?? "" : item.dueDate ?? ""));
   if (!isTeacher) return { summary, schedule, catalog: catalog.filter(item => visible.some(task => task.kind === item.kind && task.contentId === item.id)) };
   const settingsQuery = await supabase.from("student_learning_plans").select("*").eq("student_id", student.id).maybeSingle(); checkStorage(settingsQuery.error);
-  const content = inventory(catalog, assignments, prior).map(row => ({ content: row.content, status: row.status, hasBeenAssigned: row.hasBeenAssigned, hasCompleted: row.hasCompleted, lastActivity: row.lastActivity, lastCompletedAt: row.lastCompletedAt, latestScore: row.latestScore, dueDate: row.active?.dueDate ?? null, plannedDate: row.planned?.plannedDate ?? null, assignmentCount: row.history.length, priorCount: row.evidence.length }));
-  return { summary, schedule, catalog, inventory: content, settings: settingsFromRow(student.id, settingsQuery.data) };
+  const content = inventory(catalog, assignments, prior, !prior.issues?.length).map(row => ({ content: row.content, status: row.status, hasBeenAssigned: row.hasBeenAssigned, hasCompleted: row.hasCompleted, historyComplete: row.historyComplete, evidence: row.evidence, lastActivity: row.lastActivity, lastCompletedAt: row.lastCompletedAt, latestScore: row.latestScore, dueDate: row.active?.dueDate ?? null, plannedDate: row.planned?.plannedDate ?? null, assignmentCount: row.history.length, priorCount: row.evidence.length }));
+  const relations = actorId ? await progressRecords(actorId, "passage-relation:%") : null;
+  if (relations?.error) { prior.issues?.push("Confirmed passage relationships unavailable"); for (const row of content) { row.historyComplete = false; if (row.status === "Never assigned") row.status = "History unavailable"; } }
+  return { summary, schedule, catalog, inventory: content, historyIssues: prior.issues ?? [], passageRelations: (relations?.data ?? []).map(row => ({ ...row.progress, stale: row.progress.aTextKey !== catalog.find(item => item.id === row.progress.a)?.passageTextKey || row.progress.bTextKey !== catalog.find(item => item.id === row.progress.b)?.passageTextKey })), settings: settingsFromRow(student.id, settingsQuery.data) };
 }
-learningPlanRouter.get("/teacher/:studentId", async (_request, response) => { response.json(await getOverview(response.locals.student, true)); });
+learningPlanRouter.get("/teacher/:studentId", async (_request, response) => { response.json(await getOverview(response.locals.student, true, response.locals.user.id)); });
+learningPlanRouter.get("/teacher/:studentId/passage-preview/:contentId", (request, response) => {
+  const preview = passagePreview(request.params.contentId);
+  if (!preview) throw fail("Passage source unavailable.", 404);
+  response.json(preview);
+});
+// Teacher-owned, revision-checked metadata uses the existing namespaced JSON store.
+// Relationships affect familiarity only, never grading or version completion.
+learningPlanRouter.put("/teacher/:studentId/passage-relations", async (request, response) => {
+  const { a, b, relation, revision = 0 } = request.body ?? {};
+  const passages = learningCatalog().filter(item => item.kind === "passage");
+  if (typeof a !== "string" || typeof b !== "string" || a === b || ![a, b].every(id => passages.some(item => item.id === id)) || !["same", "revised", "different"].includes(relation) || !Number.isInteger(revision) || revision < 0) throw fail("Choose two existing passages and their relationship.");
+  const ids = [a, b].sort(), slug = `passage-relation:${createHash("sha256").update(JSON.stringify(ids)).digest("hex")}`;
+  const progress = { a: ids[0], b: ids[1], aTextKey: passages.find(item => item.id === ids[0])?.passageTextKey, bTextKey: passages.find(item => item.id === ids[1])?.passageTextKey, relation, revision: revision + 1, updatedAt: new Date().toISOString() };
+  const row = { user_id: response.locals.user.id, topic_slug: slug, progress, updated_at: progress.updatedAt };
+  const saved = revision === 0 ? await supabase.from("student_practice_progress").insert(row).select("progress").single() : await supabase.from("student_practice_progress").update({ progress, updated_at: row.updated_at }).eq("user_id", row.user_id).eq("topic_slug", slug).eq("progress->>revision", String(revision)).select("progress").maybeSingle();
+  if (saved.error?.code === "23505" || !saved.error && !saved.data) throw fail("This relationship changed. Reload before saving.", 409);
+  if (saved.error) throw fail("Could not save the relationship. Retry.", 503);
+  response.json({ relationship: progress });
+});
 learningPlanRouter.get("/teacher/:studentId/published", async (_request, response) => { response.json(await getOverview(response.locals.student, false)); });
 learningPlanRouter.get("/student", async (_request, response) => { response.json(await getOverview(response.locals.student, false)); });
 

@@ -1,0 +1,130 @@
+{
+  "assets": [
+    {
+      "contentType": "image/png",
+      "id": "94595b6ca1ccc9bd",
+      "kind": "image",
+      "name": "SHB25-021-G9_exhibit.png",
+      "path": "C:\\Users\\NATHAN~1\\AppData\\Local\\Temp/browser-use/assets/5ce9482a-bc58-4151-9816-80d5c887496b/94595b6ca1ccc9bd.png",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401709/3/SHB25-021-G9_exhibit.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "8f06e3d312e9e1de",
+      "kind": "image",
+      "name": "SHM96-052_exp_exhibit.png",
+      "path": "C:\\Users\\NATHAN~1\\AppData\\Local\\Temp/browser-use/assets/5ce9482a-bc58-4151-9816-80d5c887496b/8f06e3d312e9e1de.png",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401719/3/SHM96-052_exp_exhibit.png"
+    },
+    {
+      "contentType": "image/png",
+      "id": "e25a551dd8b44433",
+      "kind": "image",
+      "name": "SHM05-095_exhibit.png",
+      "path": "C:\\Users\\NATHAN~1\\AppData\\Local\\Temp/browser-use/assets/5ce9482a-bc58-4151-9816-80d5c887496b/e25a551dd8b44433.png",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401720/3/SHM05-095_exhibit.png"
+    },
+    {
+      "contentType": "image/svg+xml",
+      "id": "191f7e6be013448a",
+      "kind": "image",
+      "name": "SHM05-095_1.svgz",
+      "path": "C:\\Users\\NATHAN~1\\AppData\\Local\\Temp/browser-use/assets/5ce9482a-bc58-4151-9816-80d5c887496b/191f7e6be013448a.svgz",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401720/3/SHM05-095_1.svgz"
+    }
+  ],
+  "directoryPath": "C:\\Users\\NATHAN~1\\AppData\\Local\\Temp/browser-use/assets/5ce9482a-bc58-4151-9816-80d5c887496b",
+  "failures": [
+    {
+      "contentType": null,
+      "id": "e74b450ec9ba06a3",
+      "name": "SHM89-238_exp_exhibit.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401708/3/SHM89-238_exp_exhibit.png"
+    },
+    {
+      "contentType": null,
+      "id": "391e76b064f6b07e",
+      "name": "SHM91-501_exp_exhibit.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401710/3/SHM91-501_exp_exhibit.png"
+    },
+    {
+      "contentType": null,
+      "id": "bbd41d32fdbb146b",
+      "name": "SHM12-016_exp_exhibit.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401711/3/SHM12-016_exp_exhibit.png"
+    },
+    {
+      "contentType": null,
+      "id": "073d53d79b329f1e",
+      "name": "SHB25-015-G9_exhibit.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401712/3/SHB25-015-G9_exhibit.png"
+    },
+    {
+      "contentType": null,
+      "id": "561967b5499268c6",
+      "name": "SHM06-065_exp_exhibit.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401713/3/SHM06-065_exp_exhibit.png"
+    },
+    {
+      "contentType": null,
+      "id": "acb791e81fd961b7",
+      "name": "SHM06-065_1.svgz",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401713/3/SHM06-065_1.svgz"
+    },
+    {
+      "contentType": null,
+      "id": "9d76e081e4995644",
+      "name": "SHB25-022-G9_exhibit.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401714/3/SHB25-022-G9_exhibit.png"
+    },
+    {
+      "contentType": null,
+      "id": "fddd3693bfad7b05",
+      "name": "SHM13-346_exp_exhibit.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401715/3/SHM13-346_exp_exhibit.png"
+    },
+    {
+      "contentType": null,
+      "id": "c0d1a46af7f6b7f6",
+      "name": "SHM09-010_exp_exhibit.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401716/3/SHM09-010_exp_exhibit.png"
+    },
+    {
+      "contentType": null,
+      "id": "5958b4f5c18c9e46",
+      "name": "SHM09-010_1.svgz",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401716/3/SHM09-010_1.svgz"
+    },
+    {
+      "contentType": null,
+      "id": "7ae4e1820f5a849a",
+      "name": "SHM14-045_exp_exhibit.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401717/3/SHM14-045_exp_exhibit.png"
+    },
+    {
+      "contentType": null,
+      "id": "7d88a24d846a6b12",
+      "name": "SHB25-007-G9_exhibit.png",
+      "reason": "Loaded resource fetch failed: Asset bundling failed; page fetch failed: Browser Use encountered an error interacting with this webpage: Error: Asset request failed with HTTP 500\n    at Soe (<anonymous>:1:103)",
+      "url": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401718/3/SHB25-007-G9_exhibit.png"
+    }
+  ],
+  "manifestPath": "C:\\Users\\NATHAN~1\\AppData\\Local\\Temp/browser-use/assets/5ce9482a-bc58-4151-9816-80d5c887496b/manifest.json",
+  "summary": {
+    "downloadedCount": 4,
+    "elapsedMs": 299296.8857,
+    "failedCount": 12,
+    "requestedCount": 16
+  }
+}

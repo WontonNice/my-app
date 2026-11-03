@@ -39,6 +39,11 @@ export function learningCatalog(): PlanContent[] {
   });
   return [...base, ...bankCatalog(readQuestionBank()), ...exams.filter(exam => exam.questionCount > 0)];
 }
+export function passagePreview(id: string): { title: string; text: string } | undefined {
+  const sources = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../../data/board-content.json"), "utf8")) as { id: string; title: string; text: string }[];
+  const source = sources.find(item => item.id === id);
+  return source ? { title: source.title, text: source.text } : undefined;
+}
 export async function assignmentDetail(studentId: string, id: string) {
   const result = await supabase.from("student_assignments").select("*").eq("student_id", studentId).eq("id", id).maybeSingle();
   checkStorage(result.error);

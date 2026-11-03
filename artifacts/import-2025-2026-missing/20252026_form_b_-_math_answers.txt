@@ -1,0 +1,646 @@
+
+===== PDF PAGE 1 =====
+EXPLANATIONS
+
+===== PDF PAGE 2 =====
+(D) x (x − 2y) = 9 [ 9 − 2 (− 7) ] = 9 (9 + 14)
+58.
+= 9 (23) = 207
+= _6 _6 = _3 =
+59. (A) 0.06 . Simplify the fraction to find the answer: , so x 3.
+100 100 50
+60. There were 47 students surveyed, and 12 students like only soccer.
+To determine how many students were surveyed, start with the total number of students who
+like basketball and soccer separately and subtract the number of students who were
+counted twice.
+There were 25 students who like basketball, 19 students who like soccer, and 7 students who
+like both basketball and soccer.
++ − =
+So, the total number of students who like basketball or soccer is ( 25 19) 7 37.
+Then, add the students who don’t like either basketball or soccer: 10 students don't like
+either sport.
++ =
+Total students surveyed: 3 7 10 47
+To determine how many students like only soccer, subtract the number of students who like
+both basketball and soccer from the total number of students who like soccer.
+− =
+Students who like only soccer: 19 7 12
+
+===== PDF PAGE 3 =====
+61. The three correct answers are:
+_18 = _x
+150 250
+_ 150 = _25 0
+18 x
+_ x = _250
+18 150
+Set up a proportion to compare the number of buns per customer. These are all equivalent:
+_ 1_8_ d_o_z_e _ n_ b_u_n_s_ = _ x_ _ d_o_z_e _n _ b_u_n_s_
+150 customers 250 customers
+To check for equivalency, solve each proportion for x .
+Each of the three correct proportions simplifies to 150x = 18 (250) .
+Then solve for x to determine how many dozen buns are needed for 250 lunch customers:
+=
+150x 4,500
+x
+= _4,500
+150
+x
+=
+30
+
+===== PDF PAGE 4 =====
+62. Step 1: Convert the zogs to minks.
+= ÷ =
+Since 1 mink 3 zogs, divide the number of zogs Maria has by 3 : 60 3 20.
+So, 60 zogs = 2 0 minks.
+Step 2: Convert the barts to minks.
+= _1
+Since 1 mink bart, multiply the number of barts by 4 (because 1 bart is equal to 4 minks):
+4
+× =
+24 4 96.
+So, 24 barts = 96 minks.
+Step 3: Add the mink conversions.
+Add the results from Steps 1 and 2 to find the total number of minks Maria will receive:
++ =
+20 96 116.
+63. (120) There are 5 choices for the first digit, 4 choices for the second digit, 3 choices for the
+third digit, 2 choices for the fourth digit, and 1 choice for the final digit. The total number of
+× × × × =
+possibilities is 5 4 3 2 1 120.
+64. (A) Find the missing angle, angle QPT, of triangle PQT: 180°−70°−50° = 60°
+In parallelogram PQRS, angle QPT is congruent to angle QRS, so the measure of angle QRS
+is also 6 0°.
+
+===== PDF PAGE 5 =====
+65. (D) Break the equations apart to each equal M:
+=
+M 3N
+= _P
+M
+4
+= +
+M Q 5
+= _R
+M
+7
+Pick a number to substitute into the equations, and solve the equations to find the values of
+M, N, P, Q, and R.
+=
+Let M 2. Since all the equations are equal to 2, substitute 2 to find each variable.
+=
+M 2N
+=
+2 3N
+_2 =
+N
+3
+= _P
+M
+4
+= _P
+2
+4
+=
+8 P
+= +
+M Q 5
+= +
+2 Q 5
+− =
+3 Q
+= _R
+M
+7
+= _R
+2
+7
+=
+14 R
+Variable R has the greatest value.
+66. (C) Set up a proportion:
+_x = _3
+416 96
+=
+96x 1,248
+=
+x 13 bundles
+
+===== PDF PAGE 6 =====
+67. (C) Set up an inequality to compare the costs:
+0.15x
+≤
+10.50
+x
+≤
+70
+Therefore, 70 individual sheets of paper would cost $10.50, so 69 is the greatest number of
+individual sheets of paper that Macie can buy that would be less expensive than the package.
+68. (B) 7:00 p.m. is 6 hours after 1:00 p.m. Calculate the number of degrees the temperature
+× =
+dropped in 6 hours: 3 6 18 degrees. Subtract that from the starting point (8 degrees) to
+find the solution: 8 − 18 = −10 degrees.
+69. (D) The ratio of red to blue to green is 15:7:3. Find the proportion of blue marbles. Add the
+_____7______ = _7
+numbers of the ratio and use the total sum as the denominator: . Find the
++ +
+15 7 3 25
+_3
+proportion of green marbles: .
+25
+_7 × =
+Since there are a total of 75 marbles, the number of blue marbles is 75 21.
+25
+_3 × =
+The number of green marbles is 75 9.
+25
+− − =
+The number of red marbles is 75 21 9 45. If 2 blue marbles are removed and
+replaced with 2 green marbles, the number of blue marbles will be 19 and the number of green
+marbles will be 11. The ratio of red marbles to green marbles will be 45:11.
++ + + =
+70. (B) The total number of desserts ordered is 42 23 47 48 160.
+_48 = _3 =
+The probability that ice cream was chosen is 30%.
+160 10
+
+===== PDF PAGE 7 =====
+71. (C) Since 18 and 24 are both multiples of 6, find the least common multiple of only 18 and 24.
+Multiples of 18: 18, 36, 54, 72, . . .
+Multiples of 24: 24, 48, 72, . . .
+The least common multiple of 6, 18, and 24 is 72.
+72. The total number of fruits is:
+3(apples)
++
+4(oranges)
++
+5(bananas)
++
+8(pears)
+=
+20 fruits
+The probability of picking a pear is:
+_ 8 (pe ars) = _ 8
+or 0.4
+20 (total) 20
++ + =
+73. (C) The total number of bottles of juice in the cooler is 5 3 6 14.
+The number of bottles of juice that are not apple juice (grape juice and orange juice) is
++ =
+3 6 9.
+_9
+So the probability is .
+14
+
+===== PDF PAGE 8 =====
+74. (D) The radius of the large plate is 2 0 cm. Use 2 0 cm to find the area of the large plate:
+A = π r 2 = π ( 20 2 ) = 400π sq cm
+The circumference of the smaller plate is 20π cm. Use that to find the radius, and then the area,
+of the smaller plate:
+C = 2π
+20π = 2πr
+=
+r 10
+A = π r 2 = ( 10 2 ) = 100π sq cm
+Subtract the area of the small plate from the area of the large plate:
+400π − 100π = 300π sq cm
+75. The two tables that represent a proportional relationship are tables A and C.
+In table A, the total costs divided by the numbers of books for each set of quantities are:
+_40 =
+4
+; _60 =
+4
+; _ 80 =
+4
+; _ 100 =
+4
+10 15 20 25
+These ratios are equivalent; therefore, these quantities are in a proportional relationship.
+In table C, the total costs divided by the numbers of books for each set of quantities are:
+_80 =
+8
+; _120 =
+8
+; _ 160 =
+8
+; _ 200 =
+8
+10 15 20 25
+These ratios are equivalent; therefore, these quantities are in a proportional relationship.
+
+===== PDF PAGE 9 =====
+76. (15) Solve the inequality for x.
++ <
+x 7 23
+<
+x 16
+There are 15 positive integers that are less than 16.
+77. (A) Substitute 3 for y and solve for x:
+_36 =
+4x
+y
+_36 =
+4x
+3
+=
+12 4x
+=
+3 x
+‾ = ‾
+78. (D) Since X Y 20 cm, use that to find Y Z :
+YZ = _3 XY = _ 3 (20) = 12 cm
+5 5
+= + = + =
+XZ XY YZ 20 12 32 cm
+
+===== PDF PAGE 10 =====
+79. (C) Calculate the cost of the cloth before tax:
+1
+_3 ×
+8
+= _7 ×
+8
+=
+$14
+4 4
+Find the tax for $14 worth of cloth:
+14
+×
+8%
+=
+14
+× _8 =
+$1.12
+100
+Add the cost of the cloth and the tax:
+$14
++
+$1.12
+=
+$15.12
+80. (B) To find M , subtract N −M and set it equal to the length:
+_1 − = _5
+1 M 5
+3 6
+− = _5 − _1
+M 5 1
+6 3
+− = _5 − _2
+M 5 1
+6 6
+− = _3
+M 4
+6
+= − _1
+M 4
+2
+
+===== PDF PAGE 11 =====
+81. (B) Add the four values in the ratio ( 177 + 12 + 7 + 4 = 200) and use the sum as the
+denominator. Use that to find the fraction of zinc in one of the coins. Then reduce the fraction:
+_12 = _3
+200 50
+Multiply this fraction by 8 to find the number of grams of zinc in decimal form:
+_3 ×
+8
+= _ 24 =
+0.48 g
+50 50
+82. (C) Jack scored a mean of 15 points per game in each of the first 3 games, so he earned a total
+of 45 points for the first 3 games. Use that information to calculate the mean over the 4
++
+_45 27 = _72 =
+games: 18
+4 4
+_1 _2
+83. (B) Find the number of liters that need to be added. Since of the oil drum is full, of the
+3 3
+drum remains empty:
+_2 × =
+4,320 2,880 liters.
+3
+= _2,880 =
+Use the conversion 1 kL 1,000 L to find the number of kL: 2.88 kL
+1,000
+
+===== PDF PAGE 12 =====
+84. (B) To find out how old Nicole was 5 years ago, find out how old Nicole and Carmen are now.
+Let N = Nicole’s age now.
+Let C = Carmen’s age now.
++ = =
+C 2 17, so C 15
+=
+N 3C
+= =
+N 3(15) 45 (Nicole’s age now)
+− = − =
+N 5 45 5 40 (Nicole’s age 5 years ago)
+85. (C) Let x be the original amount of the chemical. It loses 20% after each week, which means
+80% of the chemical remains at the end of each week. End of first week: 0.80x
+At the end of the second week, 80% of the amount left at the end of the first week remains.
+End of second week: 0 .80 (0.80x) = 0.64x or 64%
+86. (C) One more than an odd integer must be even.
+−
+One more than w 1 is w, therefore w must be even. Two times an even integer must be
+even, therefore 2 w is even. An even integer decreased by 2 must be even.
+−
+Therefore, 2w 2 must be even.
+87. (B) Find the least common multiple of 2, 3, and 4, which is 12. So, it takes 12 minutes before
+all three are back at the starting line. Ann completes 1 lap every 2 minutes, so in 12 minutes
+she has completed 6 laps.
+
+===== PDF PAGE 13 =====
+88. (B)
+4 (7 − 3x) − (5 − x) = 28 − 12x − 5 + x
+= −
+23 11x
+89. (D) Add the numbers of students for each category to find out how many total students were in
++ + + =
+the survey: 12 16 7 5 40
+The number of students who had at least 2 pets are the ones who have 2 pets (7) plus the ones
++ =
+who have 3 or more (5). The total number of students with at least 2 pets is 7 5 12.
+_12 = _3
+The probability of a student in the survey having at least two pets is .
+40 10
+90. Solution:
+25π
+The area of a circle is its radius squared times π.
+A = π r 2
+=
+r 5
+A = π (5) 2
+A = 25π
+
+===== PDF PAGE 14 =====
+91. (B)
+5 x 3 + 3x + 9 + _ 1
+x 2
+= 5 ( 10 3 ) + 3 ( 1 0) + 9 + _ 1
+10 2
+= + + + _1 =
+5,000 30 9 5,039.01
+100
+92. (A) The length of one side of the square is 6 cm. Since R, S, and T are midpoints, then
+‾ ‾ ‾ ‾
+TM , MR , RN , and NS are all equal to 3 cm. Triangles TMR and RNS are both right triangles, so
+_1 × × = _9
+the area of one of the triangles is 3 3 . The triangles are congruent, so the sum
+2 2
+_9 + _9 =
+of the areas is 9 sq cm.
+2 2
+93. (D) Let x be the amount spent on planned expenses in one year:
+_x = _5
+29,600 8
+x = _5 (29,600) = 18,500
+8
+
+===== PDF PAGE 15 =====
+94. (C) Figure out how many different topping pairs are possible. Use 1, 2, 3, 4, 5, 6, 7 to
+represent the toppings, and create a list of possible pairs:
+1,2; 1,3; 1,4; 1,5; 1,6; 1,7
+2,3; 2,4; 2,5; 2,6; 2,7
+3,4; 3,5; 3,6; 3,7
+4,5; 4,6; 4,7
+5,6; 5,7
+6,7
+So there are 21 different topping combinations for one pizza.
+Since there are 3 pizza sizes, multiply the total number of combinations by 3 to get the total
+× =
+number of different pizzas Cody can create: 3 21 63.
+95. (C) None of the 80 students (800 − 720) who answered “no” to Question A could have
+answered “yes” to both questions. Therefore, the least possible number of students who could
+have answered “yes” to both questions can be found by subtracting the 80 who answered “no”
+− =
+to Question A from the 640 who answered “yes” to Question B, or 640 80 560.
+96. (D) One side of the square base is 3 ft long. Since the height of the box is 3 times the length,
+× = × ×
+then the height is 3 3 9 ft. The volume of a rectangular prism is length height width.
+= × × =
+The volume of the wooden box is V 3 3 9 81 cu ft.
+
+===== PDF PAGE 16 =====
+97. (B) Calculate each mean speed:
+= _65 =
+R 13 kph
+5
+= _72 =
+S 18 kph
+4
+Then calculate the difference of both mean speeds:
+S
+−
+R
+=
+18
+−
+3
+=
+5 kph
+98. (C)
+P Q R S
+–3 –2 –1 0 1 2 3
+Find the midpoint of P Q and RS:
+= _ −1 − ( −3) = _2 =
+Midpoint of P Q 1 unit.
+2 2
+−
+The midpoint of P Q is located 1 unit from each endpoint, so the midpoint is at 2.
+−
+= _2 0 = _2 =
+Midpoint of R S 1 unit.
+2 2
+The midpoint of R S is located 1 unit from each endpoint, so the midpoint is at 1. The distance
+between the two midpoints is 1 − (−2) = 3 units.
+
+===== PDF PAGE 17 =====
+= =
+99. (D) If 1 L=1,000 cu cm, then 1 L 1,000 mL. Set up a proportion, letting x the amount of
+cubic millimeters in 1,000 cubic centimeters.
+_1_,0_0__0_ c_u _ _c_m_ = _ __x _c_u _ m__m_ __
+1 L 1,000 cu mm
+Solve for x: 1,000,000 cubic millimeters are in 1,000 cubic centimeters.
++ +
+100. (A) Both x 1 and y 2 are radii (each is a radius). So, set them equal to each other and
+solve for y:
+y
++
+2
+=
+x
++
+1
+y
+=
+x
+−
+1
+
+===== PDF PAGE 18 =====
+101. (C) There are 5 sections between M and T. To find the length of one of these sections, find the
+distance between M and T and divide by 5:
+_5 − −_1 ÷ _5 =
+( ( ))
+8 4 1
+_5 + _2 ÷ _ 5 =
+( )
+8 8 1
+_7 ÷ _5 = _7 × _1 = _7
+8 1 8 5 40
+R is 3 sections away from M, so add:
+− _1 +
+3
+_7 = − _10 + _ 21 = _ 11
+( )
+4 40 40 40 40
+_11
+R is located at .
+40
+102. (D) Let x be the number of minutes Phan used his Internet service in the month. Phan’s
++
+monthly charges were 18 0.024x. Since Deion’s charges were the same as Phan’s, set the
+expression equal to 30 and solve for x:
+18
++
+0.024x
+=
+30
+=
+0.024x 12
+x
+=
+500
+Phan used his service for 500 minutes.
+
+===== PDF PAGE 19 =====
+103. (B) Create a chart using the given information and use subtraction to figure out how many cars
+are not red and do not have a backup camera:
+Red Not Red TOTAL
+Backup 6
+4 10
+Camera (10 − 4)
+No Backup 32
+Camera (38 − 6)
+38
+TOTAL 12 50
+(50 − 12)
+The probability of selecting a car that meet both conditions from the total of 50 cars at the
+_32 = _16
+dealership is .
+50 25
+104. (3)
+−
+_147 x =
+12
+12
+− =
+147 x 144
+=
+x 3
+−
+105. (C) The height of the triangle is 4 units. The length of the base is n m.
+So, the area is A = _ 1 (n − m) (4) = 2 (n − m) .
+2
++ + + + =
+106. (B) The total number of cards in the box is 8 6 5 4 1 24. Set up a proportion
+_x = _1
+to figure out which card has exactly a 1 in 4 chance of being picked at random: or
+24 4
+=
+x 6. The dog card has a 1 in 4 chance of being randomly selected.
+
+===== PDF PAGE 20 =====
+107. (C) Separate the compound inequality into two pieces:
+2x
+−
+2
+≤
+y and y
+≤
+4x
++
+10
+=
+Substitute y 1 into each inequality and solve for x:
+− ≤
+2x 2 1
+≤
+2x 3
+≤ _3
+x
+2
+≤ +
+1 4x 10
+− ≤
+9 4x
+−_9 ≤
+x
+4
+The solution is the number line that shows that x is greater than or equal to −2 _ 1 and less than
+4
+_1
+or equal to 1 .
+2
+108. (C)
+_14 = _ p
+21 7
+=
+21p 7(14)
+=
+21p 98
+= _98 = _14
+p
+21 3
++ + =
+109. (A) The total number of balls in the box is 7 14 21 42.
+_7 = _1
+The probability that the ball is black is .
+42 6
+
+===== PDF PAGE 21 =====
+= +
+110. Solution: y 20x 50
++ =
+An equation of the form p x q r can be used to represent the total amount Amiya will pay.
+Using the information from the scenario, the onetime setup fee of $50 is the constant term (q ),
+and the $ 20 per month of service is the coefficient ( p ) of the number of months ( x ).
+So, the equation that can be used to determine the total amount Amiya will pay, y , for x
+= +
+months of service is y 20x 50.
+≥ +
+111. (A) Raoul is at least 3 years older than Vahn, which can be written as r v 3.
+Rewrite this inequality to match the answer options:
+r
+−
+v
+≥
+3.
+112. (B) Since 5.6 ricks and 12.88 dalts are both equal to 1 sind, then 5.6 ricks = 12.88 dalts. To
+calculate the number of dalts (d) in 1 rick, set up a proportion:
+_5.6 = _1
+12.88 d
+=
+5.6d 12.88
+=
+d 2.3
+113. (D) The shelf, when full, holds 36 cans. When the shelf is half full, it holds 18 cans.
+x
+−
+4
+=
+18
+x
+=
+22
+
+===== PDF PAGE 22 =====
+114. (C) The probability of the cup landing on its side is 72%. Carlos tossed the cup a total of 200
++
+times (50 150). The number of times the cup lands on its side is 72% of 200:
+0.72
+×
+200
+=
+144

@@ -67,6 +67,16 @@ test('expression generators can opt into a variable key and keyboard entry', () 
   assert.equal(advancedMathKeypad.flat().filter(Boolean).length, 30);
 });
 
+test('multiple calculator variables use adjacent buttons and allow only their keyboard letters', () => {
+  const rows = advancedMathKeypadForVariable('x, y');
+  assert.deepEqual(rows[0].slice(5).map(key => key?.latex ?? null), ['x', 'y', null]);
+  for (const key of ['x', 'y']) assert.equal(isAdvancedMathCharacter(key, 'x, y'), true);
+  assert.equal(isAdvancedMathCharacter('z', 'x, y'), false);
+  assert.equal(advancedMathKeypadForVariable('x, x')[0].filter(key => key?.label === 'Variable x').length, 1);
+  assert.equal(advancedMathKeypadForVariable('a,b,c,d'), advancedMathKeypad);
+  assert.equal(advancedMathKeypad[0][5], null);
+});
+
 test('undo and redo restore a deleted fraction digit and its denominator caret', () => {
   const field = { value: String.raw`\frac{1}{100}`, selection: {ranges:[[5,5]]}, setValue(value) { this.value=value; this.selection={ranges:[[99,99]]}; } };
   const history = new MathEntryHistory(field);

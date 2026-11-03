@@ -15,6 +15,7 @@ async function loadRenderer() {
           import React from 'react';
           import { renderToStaticMarkup } from 'react-dom/server';
           import { ExamSessionPage } from './client/src/pages/ExamSessionPage';
+          import { createExamPreviewSession } from './tools/exam-preview-content';
           import { resolveExamContent } from './client/src/content/exams';
           export { getExamSectionAccess, getOpenExamSubject } from './client/src/lib/examSessionProgress';
           export { createAssessmentSectionLines } from './client/src/lib/exam';
@@ -22,6 +23,11 @@ async function loadRenderer() {
           export { generalDirectionsParts } from './client/src/components/ExamGeneralDirections';
           import assessments from './server/data/assessments.json';
           export { assessments };
+          export function renderStudioPreview(id, subject) {
+            const assessment = assessments.find(item => item.id === id);
+            const session = createExamPreviewSession(resolveExamContent(assessment), subject, () => {});
+            return renderToStaticMarkup(<ExamSessionPage previewSession={session} />);
+          }
           export function renderExam(id, screen, transform = content => content, sessionOptions = {}) {
             const assessment = { ...assessments.find(item => item.id === id), sectionAccess: { english: true, math: true } };
             const content = transform(resolveExamContent(assessment));
@@ -58,6 +64,21 @@ async function loadRenderer() {
   })();
   return renderer;
 }
+
+test('Content Studio mounts the student player with isolated teacher navigation and answer controls', async () => {
+  const { renderStudioPreview } = await loadRenderer();
+  for (const subject of ['english', 'math']) {
+    const html = renderStudioPreview('2026-2027-form-b', subject);
+    assert.match(html, /data-player-profile="testnav"/);
+    assert.match(html, /Specialized High Schools Admissions Test/);
+    assert.match(html, /Next item/);
+    assert.match(html, /Notepad tool/);
+    assert.doesNotMatch(html, /Supabase auth is not configured/);
+    assert.match(html, /Jump to question/);
+    assert.match(html, /Reveal correct answer/);
+    assert.match(html, /Math 50/);
+  }
+});
 
 test('2021–2022 Form A renders a math question with no English passages', async () => {
   const { renderExam } = await loadRenderer();

@@ -1,0 +1,879 @@
+{
+  "format": "nathan-tutors-official-passage-v1",
+  "source": {
+    "sourceFamily": "official_shsat",
+    "sourceFormat": "testnav",
+    "playerProfile": "testnav",
+    "sourceId": "grade-9-mini-nyc",
+    "label": "Grade 9 Mini Form — NYC"
+  },
+  "mathQuestions": [
+    {
+      "id": "grade-9-mini-nyc-1",
+      "sourceQuestion": "1",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "Which number has a value that is located between 7 and 8 on a number line?",
+      "promptHtml": "<p><span>Which number has a value that is located between 7 and 8 on a number line?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb239008-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 1\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "1",
+        "moduleQuestion": "nyc-1",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "1",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737767/1/shb239008_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737767/1/shb239008_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "\\(\\sqrt{37}\\)",
+          "html": "<p><span>\\(\\sqrt{37}\\)</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "\\(\\sqrt{47}\\)",
+          "html": "<p><span>\\(\\sqrt{47}\\)</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "\\(\\sqrt{57}\\)",
+          "html": "<p><span>\\(\\sqrt{57}\\)</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "\\(\\sqrt{67}\\)",
+          "html": "<p><span>\\(\\sqrt{67}\\)</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "C"
+    },
+    {
+      "id": "grade-9-mini-nyc-2",
+      "sourceQuestion": "2",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "In the figure above, \\(k\\parallel m.\\) Straight line p intersects both line k and line m. The measure of \\(∠\\text{T}\\) is 47°. What is the measure of \\(∠\\text{J}\\)?",
+      "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/grade9-mini-shb239005-1-svgz-passage.svgz\" alt=\"The image of 2 parallel lines, K and M, which are cut by a transversal of line P forming angles T and J.  \" width=\"253\" height=\"188\"></p><p><span>In the figure above, </span><span>\\(k\\parallel m.\\)</span><span>&nbsp;Straight <span data-no-break=\"true\">line <em>p</em></span> intersects both <span data-no-break=\"true\">line <em>k</em></span> and <span data-no-break=\"true\">line <em>m</em>.</span> The measure of </span><span>\\(∠\\text{T}\\)</span><span> is 47°. What is the measure of </span><span>\\(∠\\text{J}\\)</span><span>?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb239005-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 2\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "2",
+        "moduleQuestion": "nyc-2",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "2",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737768/1/SHB239005_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737768/1/SHB239005_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "43°",
+          "html": "<p><span>43°</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "47°",
+          "html": "<p><span>47°</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "133°",
+          "html": "<p><span>133°</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "137°",
+          "html": "<p><span>137°</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "C"
+    },
+    {
+      "id": "grade-9-mini-nyc-3",
+      "sourceQuestion": "3",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "Which of these numbers is irrational?",
+      "promptHtml": "<p><span>Which of these numbers is irrational?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb239007-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 3\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "3",
+        "moduleQuestion": "nyc-3",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "3",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737769/1/SHB239007_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737769/1/SHB239007_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "\\(0.\\overline{7}\\)",
+          "html": "<p><span>\\(0.\\overline{7}\\)</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "\\(\\sqrt{9}\\)",
+          "html": "<p><span>\\(\\sqrt{9}\\)</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "\\(\\frac{9}{7}\\)",
+          "html": "<p><span>\\(\\frac{9}{7}\\)</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "\\(\\sqrt{7}\\)",
+          "html": "<p><span>\\(\\sqrt{7}\\)</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "D"
+    },
+    {
+      "id": "grade-9-mini-nyc-4",
+      "sourceQuestion": "4",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "Determine whether each function is linear or non-linear.\nSelect one answer in each row.",
+      "promptHtml": "<p><span>Determine whether each function is linear or non-linear.</span></p><p><span>Select one answer in each row.</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-m269264-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 4\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "4",
+        "moduleQuestion": "nyc-4",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "4",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737770/1/M269264_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737770/1/M269264_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "type": "matrix_choice",
+      "items": [
+        {
+          "id": "item-1",
+          "text": "\\(y=\\frac{x}{4}\\)",
+          "html": "<p><span>\\(y=\\frac{x}{4}\\)</span></p>"
+        },
+        {
+          "id": "item-2",
+          "text": "\\(y=\\frac{2}{x}+1\\)",
+          "html": "<p><span>\\(y=\\frac{2}{x}+1\\)</span></p>"
+        },
+        {
+          "id": "item-3",
+          "text": "\\(y=-5x+9\\)",
+          "html": "<p><span>\\(y=-5x+9\\)</span></p>"
+        }
+      ],
+      "categories": [
+        {
+          "id": "category-1",
+          "title": "Linear"
+        },
+        {
+          "id": "category-2",
+          "title": "Non-linear"
+        }
+      ],
+      "correctPlacements": {
+        "item-1": "category-1",
+        "item-2": "category-2",
+        "item-3": "category-1"
+      },
+      "requiredPlacements": 3,
+      "tableHeaders": {
+        "row": "Function",
+        "answer": ""
+      },
+      "matrixStyle": "compact"
+    },
+    {
+      "id": "grade-9-mini-nyc-5",
+      "sourceQuestion": "5",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "Triangles \\(\\text{JKL}\\) and \\({\\text{J}}^{''}{\\text{K}}^{''}{\\text{L}}^{''}\\) are congruent triangles.\n\nWhich two transformations were used to transform \\(\\text{JKL}\\) to \\({\\text{J}}^{''}{\\text{K}}^{''}{\\text{L}}^{''}\\)?",
+      "promptHtml": "<p><span>Triangles </span><span>\\(\\text{JKL}\\)</span><span> and </span><span>\\({\\text{J}}^{''}{\\text{K}}^{''}{\\text{L}}^{''}\\)</span><span>&nbsp;are congruent triangles.</span></p><p data-align=\"center\"><img src=\"/exam-images/grade9-mini-shb239004-1-svgz-passage.svgz\" alt=\"The image of triangles JKL and JKL double prime are shown on a Cartesian plane. \" width=\"290\" height=\"252\"></p><p><span>Which two transformations were used to transform </span><span>\\(\\text{JKL}\\)</span><span> to </span><span>\\({\\text{J}}^{''}{\\text{K}}^{''}{\\text{L}}^{''}\\)</span><span>?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb239004-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 5\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "5",
+        "moduleQuestion": "nyc-5",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "5",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737771/1/SHB239004_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737771/1/SHB239004_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "A translation to the right, and then a reflection across the y-axis",
+          "html": "<p><span>A translation to the right, and then a reflection across the </span><span data-no-break=\"true\"><span><em>y</em>-<span></span>axis</span></span></p>"
+        },
+        {
+          "id": "B",
+          "text": "A reflection across the x-axis, and then a clockwise rotation of 270°",
+          "html": "<p><span>A reflection across the </span><span><em>x</em>-axis,</span><span> and then a clockwise rotation of 270°</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "A rotation of 180° about the origin, and then a translation across the x-axis",
+          "html": "<p><span>A rotation of 180° about the origin, and then a translation across the </span><span data-no-break=\"true\"><span><em>x-<span></span></em>axis</span></span></p>"
+        },
+        {
+          "id": "D",
+          "text": "A reflection across the y-axis, and then a counterclockwise rotation of 90° about its center",
+          "html": "<p><span>A reflection across the </span><span><em>y</em>-axis,</span><span> and then a counterclockwise rotation of 90° about its center</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "D"
+    },
+    {
+      "type": "math_drag_drop",
+      "promptHtml": "<p><span>Determine whether each graph represents a function or not.</span></p><p><span>Move the correct answer to each box. Each answer may be used more than once.</span></p>",
+      "prompt": "Determine whether each graph represents a function or not.\nMove the correct answer to each box. Each answer may be used more than once.",
+      "items": [
+        {
+          "id": "function",
+          "text": "Function"
+        },
+        {
+          "id": "not-function",
+          "text": "Not a Function"
+        }
+      ],
+      "allowReuse": true,
+      "dragDropStyle": "compact",
+      "dragDropContent": [
+        "{{slot-1}} {{slot-2}} {{slot-3}} {{slot-4}}"
+      ],
+      "dragDropSlots": [
+        {
+          "id": "slot-1",
+          "correctItemId": "function",
+          "left": 61,
+          "top": 235,
+          "width": 100,
+          "height": 28
+        },
+        {
+          "id": "slot-2",
+          "correctItemId": "not-function",
+          "left": 323,
+          "top": 235,
+          "width": 100,
+          "height": 28
+        },
+        {
+          "id": "slot-3",
+          "correctItemId": "function",
+          "left": 61,
+          "top": 528,
+          "width": 100,
+          "height": 28
+        },
+        {
+          "id": "slot-4",
+          "correctItemId": "not-function",
+          "left": 323,
+          "top": 528,
+          "width": 100,
+          "height": 28
+        }
+      ],
+      "dragDropImage": {
+        "src": "/exam-images/grade9-mini-m260262-1-svgz-passage.svgz",
+        "alt": "Four coordinate graphs arranged in two rows, each with an answer box below.",
+        "width": 498,
+        "height": 562
+      },
+      "id": "grade-9-mini-nyc-6",
+      "points": 1,
+      "topic": "Uncategorized",
+      "sourceQuestion": "6",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "6",
+        "moduleQuestion": "nyc-6",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-m269262-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 6\">",
+      "review": {
+        "sourceQuestion": "6",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737772/1/M269262_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737772/1/M269262_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      }
+    },
+    {
+      "id": "grade-9-mini-nyc-7",
+      "sourceQuestion": "7",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "The scatter plot shows a set of data.\n\nWhich equation represents the most accurate line of best fit for the data shown in the scatter plot?",
+      "promptHtml": "<p><span>The scatter plot shows a set of </span><span>data.</span></p><p data-align=\"center\"><img src=\"/exam-images/grade9-mini-shb239015-1-svgz-passage.svgz\" alt=\"An image of a coordinate grid with the x and y axees going from 8 to negative 8 with points scattered in quadrant 1 \" width=\"307\" height=\"310\"></p><p><span>Which equation represents the most accurate line of best fit for the </span><span>data</span><span> shown in the scatter plot?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb239015-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 7\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "7",
+        "moduleQuestion": "nyc-7",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "7",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737773/1/SHB239015_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737773/1/SHB239015_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "\\(y=(-x)\\)",
+          "html": "<p><span>\\(y=(-x)\\)</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "\\(y=x\\)",
+          "html": "<p><span>\\(y=x\\)</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "\\(y=(-x)+2\\)",
+          "html": "<p><span>\\(y=(-x)+2\\)</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "\\(y=x+2\\)",
+          "html": "<p><span>\\(y=x+2\\)</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "B"
+    },
+    {
+      "id": "grade-9-mini-nyc-8",
+      "sourceQuestion": "8",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "What is the point of intersection of the graphs of \\(y=-4x+3\\) and \\(y=2x+5\\)?",
+      "promptHtml": "<p><span>What is the point of intersection of the graphs of </span><span>\\(y=-4x+3\\)</span><span> and </span><span>\\(y=2x+5\\)</span><span>?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb239011-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 8\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "8",
+        "moduleQuestion": "nyc-8",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "8",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737774/1/SHB239011_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737774/1/SHB239011_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "\\(\\left(-\\frac{1}{3}, 4\\frac{1}{3}\\right)\\)",
+          "html": "<p><span>\\(\\left(-\\frac{1}{3}, 4\\frac{1}{3}\\right)\\)</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "\\(\\left(-\\frac{1}{3}, 5\\frac{2}{3}\\right)\\)",
+          "html": "<p><span>\\(\\left(-\\frac{1}{3}, 5\\frac{2}{3}\\right)\\)</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "\\(\\left(\\frac{1}{3}, 1\\frac{2}{3}\\right)\\)",
+          "html": "<p><span>\\(\\left(\\frac{1}{3}, 1\\frac{2}{3}\\right)\\)</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "\\(\\left(\\frac{1}{3}, 5\\frac{2}{3}\\right)\\)",
+          "html": "<p><span>\\(\\left(\\frac{1}{3}, 5\\frac{2}{3}\\right)\\)</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "A"
+    },
+    {
+      "id": "grade-9-mini-nyc-9",
+      "sourceQuestion": "9",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "The table below represents a linear function.\n\\(x\\) \\(y\\)\n12 30\n24 40\n36 50\n\nA second linear function is represented by the equation \\(y=4x+3.\\) Which statement comparing the rates of change of the two functions is true?",
+      "promptHtml": "<p><span>The table below represents a linear function.</span></p><table data-align=\"left\" data-table-style=\"compact\" width=\"156\"><tbody><tr><th width=\"70\" scope=\"col\"><span>\\(x\\)</span></th><th width=\"70\" scope=\"col\"><span>\\(y\\)</span></th></tr><tr><td data-align=\"center\" width=\"70\"><span>12</span></td><td data-align=\"center\" width=\"70\"><span>30</span></td></tr><tr><td data-align=\"center\" width=\"70\"><span>24</span></td><td data-align=\"center\" width=\"70\"><span>40</span></td></tr><tr><td data-align=\"center\" width=\"70\"><span>36</span></td><td data-align=\"center\" width=\"70\"><span>50</span></td></tr></tbody></table> <p>&nbsp;</p><p><span>A second linear function is represented by the equation </span><span>\\(y=4x+3.\\)</span><span> Which statement comparing the rates of change of the two functions is true?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb239012-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 9\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "9",
+        "moduleQuestion": "nyc-9",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "9",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737775/1/SHB239012_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737775/1/SHB239012_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "The rate of change for \\(y=4x+3\\) is less because \\(3<20\\).",
+          "html": "<p><span>The rate of change for </span><span>\\(y=4x+3\\)</span><span> is less because </span><span>\\(3&lt;20\\)</span><span>.</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "The rate of change for \\(y=4x+3\\) is less because \\(-\\frac{3}{4}>-24\\).",
+          "html": "<p><span>The rate of change for </span><span>\\(y=4x+3\\)</span><span> is less because </span><span>\\(-\\frac{3}{4}&gt;-24\\)</span><span>.</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "The rate of change for \\(y=4x+3\\) is greater because \\(4>\\frac{5}{6}\\).",
+          "html": "<p><span>The rate of change for </span><span>\\(y=4x+3\\)</span><span> is greater because </span><span>\\(4&gt;\\frac{5}{6}\\)</span><span>.</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "The rate of change for \\(y=4x+3\\) is greater because \\(-\\frac{3}{4}<\\frac{5}{6}\\).",
+          "html": "<p><span>The rate of change for </span><span>\\(y=4x+3\\)</span><span> is greater because </span><span>\\(-\\frac{3}{4}&lt;\\frac{5}{6}\\)</span><span>.</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "C"
+    },
+    {
+      "id": "grade-9-mini-nyc-10",
+      "sourceQuestion": "10",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "The function \\(y=2x-4\\) is graphed. The line of the graph travels through point \\((0, -4)\\) and point \\((12, y).\\) What is the value of y in point \\((12, y)\\)?",
+      "promptHtml": "<p><span>The function </span><span>\\(y=2x-4\\)</span><span> is graphed. The line of the graph travels through point </span><span>\\((0, -4)\\)</span><span> and point </span><span>\\((12, y).\\)</span><span>&nbsp;What is the value of <em>y</em> in point </span><span>\\((12, y)\\)</span><span>?</span></p><div><p>\n</p>\n\n<p></p></div>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb239003-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 10\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "10",
+        "moduleQuestion": "nyc-10",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "10",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737776/1/SHB239003_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737776/1/SHB239003_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "type": "short_response",
+      "correctTextAnswers": [
+        "20"
+      ]
+    },
+    {
+      "id": "grade-9-mini-nyc-11",
+      "sourceQuestion": "11",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "How many solutions are there to the equation \\(\\left|4x+6\\right|=-2\\)?",
+      "promptHtml": "<p><span>How many solutions are there to the equation </span><span>\\(\\left|4x+6\\right|=-2\\)</span><span>?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb239009-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 11\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "11",
+        "moduleQuestion": "nyc-11",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "11",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737777/1/SHB239009_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737777/1/SHB239009_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "No solutions",
+          "html": "<p><span>No solutions</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "One solution",
+          "html": "<p><span>One solution</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "Two solutions",
+          "html": "<p><span>Two solutions</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "An infinite number of solutions",
+          "html": "<p><span>An infinite number of solutions</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "A"
+    },
+    {
+      "type": "coordinate_response",
+      "promptHtml": "<p><span>The metered fare for a taxi in New York City is:</span></p> <ul><li><span>\\(\\text{\\$}3\\text{.}00\\)</span><span> initial charge</span></li><li><span>Plus </span><span>\\(\\text{\\$}0\\text{.}70\\)</span><span> per </span><span>\\(\\frac{1}{5}\\)</span><span>&nbsp;mile</span></li><li><span>Plus </span><span>\\(\\text{\\$}0\\text{.}50\\)</span><span>&nbsp;MTA State Surcharge for all trips ending in New York City</span></li><li><span>Plus </span><span>\\(\\text{\\$}1\\text{.}00\\)</span><span>&nbsp;Improvement Surcharge</span></li><li><span>Plus </span><span>\\(\\text{\\$}2\\text{.}50\\)</span><span> Rush Hour Surcharge from </span><span>\\(4\\)</span><span>&nbsp;p.m. to </span><span>\\(8\\)</span><span>&nbsp;p.m. on weekdays</span></li></ul> <p><span>Create the graph of the linear function that models the cost, </span><span>\\(y\\text{,}\\)</span><span> of a taxi ride on a Saturday for </span><span>\\(x\\)</span><span>&nbsp;miles that ends in New York City.</span></p><p><span>Select a location on the coordinate grid to plot each data point. A line will connect the points.</span></p>",
+      "prompt": "The metered fare for a taxi in New York City is:\n\\(\\text{\\$}3\\text{.}00\\) initial charge\nPlus \\(\\text{\\$}0\\text{.}70\\) per \\(\\frac{1}{5}\\) mile\nPlus \\(\\text{\\$}0\\text{.}50\\) MTA State Surcharge for all trips ending in New York City\nPlus \\(\\text{\\$}1\\text{.}00\\) Improvement Surcharge\nPlus \\(\\text{\\$}2\\text{.}50\\) Rush Hour Surcharge from \\(4\\) p.m. to \\(8\\) p.m. on weekdays\nCreate the graph of the linear function that models the cost, \\(y\\text{,}\\) of a taxi ride on a Saturday for \\(x\\) miles that ends in New York City.\nSelect a location on the coordinate grid to plot each data point. A line will connect the points.",
+      "coordinateResponse": {
+        "width": 467,
+        "height": 467,
+        "plot": {
+          "left": 77,
+          "top": 53,
+          "width": 344,
+          "height": 344
+        },
+        "title": "Taxi Ride Cost",
+        "xMin": 0,
+        "xMax": 6,
+        "yMin": 0,
+        "yMax": 12,
+        "xStep": 0.5,
+        "yStep": 1,
+        "xSnap": 0.25,
+        "ySnap": 0.5,
+        "tools": [
+          {
+            "id": "line",
+            "kind": "line",
+            "label": "Line",
+            "color": "#0000ff",
+            "correctPoints": [
+              {
+                "x": 0,
+                "y": 4.5
+              },
+              {
+                "x": 1,
+                "y": 8
+              }
+            ]
+          }
+        ],
+        "background": {
+          "src": "/exam-images/grade9-mini-nyc-12-grid-passage.svgz",
+          "alt": "Coordinate plane for drawing the response."
+        }
+      },
+      "id": "grade-9-mini-nyc-12",
+      "points": 1,
+      "topic": "Uncategorized",
+      "sourceQuestion": "12",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "12",
+        "moduleQuestion": "nyc-12",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-m269265-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 12\">",
+      "review": {
+        "sourceQuestion": "12",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737778/1/M269265_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737778/1/M269265_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      }
+    },
+    {
+      "id": "grade-9-mini-nyc-13",
+      "sourceQuestion": "13",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "\\(0.44=\\frac{x}{25}\\)\nWhat is the value of x in the equation?",
+      "promptHtml": "<p data-align=\"left\"><span>\\(0.44=\\frac{x}{25}\\)</span></p> <p><span>What is the value of <em>x</em> in the equation?</span></p><div><p>\n</p>\n\n<p></p></div>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb239001-exp-exh-png-passage.png\" alt=\"Official answer and explanation for nyc question 13\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-nyc",
+        "label": "SHSAT Grade 9 Sample Items",
+        "section": "Math",
+        "sourceQuestion": "13",
+        "moduleQuestion": "nyc-13",
+        "url": "https://nyc.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "13",
+        "sourceFile": "SHSAT Grade 9 Sample Items",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737779/1/SHB239001_exp_exh.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737779/1/SHB239001_exp_exh.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "type": "short_response",
+      "correctTextAnswers": [
+        "11"
+      ]
+    }
+  ],
+  "review": {
+    "expectedQuestionCount": 13,
+    "warnings": [],
+    "classificationReviewed": false,
+    "completenessReviewed": false,
+    "sourceReviewed": false
+  },
+  "batch": {
+    "sourceId": "grade-9-mini-nyc",
+    "jobId": "grade-9-mini-form-nyc",
+    "section": "math",
+    "sourceLabel": "Grade 9 Mini Form — NYC",
+    "requestedScope": "all 13 source questions",
+    "expectedQuestions": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13"
+    ],
+    "expectedTotal": 13,
+    "inventoryConfirmed": true,
+    "chunkId": "complete",
+    "completedQuestions": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13"
+    ],
+    "unresolvedQuestions": [],
+    "nextScope": ""
+  }
+}

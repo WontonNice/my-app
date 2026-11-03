@@ -23,7 +23,7 @@ export function mathMLToLatex(html) {
   if(name==='msubsup')return `{${parts[0]||''}}_{${parts[1]||''}}^{${parts[2]||''}}`;
   if(name==='msqrt')return `\\sqrt{${inside}}`;
   if(name==='mroot')return `\\sqrt[${parts[1]||''}]{${parts[0]||''}}`;
-  if(name==='mfenced')return `\\left${a.open==='{'?'\\{':a.open||'('}${parts.join(a.separators??',')}\\right${a.close==='}'?'\\}':a.close||')'}`;
+  if(name==='mfenced')return `\\left${a.open==='{'?'\\{':a.open||'('}${parts.join(a.separators??',')}\\right${a.close==='}'?'\\}':a.close!=null&&!a.close.trim()?'.':a.close||')'}`;
   if(name==='mtext')return inside.trim()?`\\text{${inside.replace(/[{}]/g,'')}}`: '\\ ';
   if(name==='mspace')return a.linebreak==='newline'?'\\\\':'\\ ';
   if(name==='mtable')return `\\begin{matrix}${parts.join('\\\\')}\\end{matrix}`;
@@ -51,6 +51,7 @@ export function cleanHtml(html, assets=new Map()) {
  $('.small-caps').attr('data-small-caps','true');
  $('.nobreak').attr('data-no-break','true');
  $('table[border="1"]').attr('data-table-style','compact');
+ $('table,th,td').each((_,el)=>{const width=Number(($(el).attr('style')||'').match(/(?:^|;)\s*width\s*:\s*(\d+)px\b/)?.[1]);if(width>=1&&width<=1600)$(el).attr('width',width);});
  $('.abbi-richtext,.abbi-image,.abbi-table,.abbi-inline-gap-text-wrapper').each((_,el)=>$(el).replaceWith($(el).html()||''));
  $('img').each((_,el)=>{const src=$(el).attr('src');if(assets.has(src))$(el).attr('src',assets.get(src).destination);});
  $('[style]').each((_,el)=>{const s=$(el).attr('style')||'';const align=s.match(/text-align\s*:\s*(left|right|center|justify)/)?.[1];if(align)$(el).attr('data-align',align);});

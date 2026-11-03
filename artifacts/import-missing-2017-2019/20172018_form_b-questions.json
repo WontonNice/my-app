@@ -1,0 +1,5895 @@
+{
+  "1": {
+    "number": 1,
+    "page": 1,
+    "box": [
+      49.9299,
+      345.6804,
+      568,
+      737
+    ],
+    "prompt": "Read this paragraph.\n\n(1) In September 2016, the National Museum of African American History and Culture opened, as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. (2) Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. (3) The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. (4) A commemorative copy of the Emancipation Proclamation, which was written in 1863 during the presidency of Abraham Lincoln, is also available for viewing at the museum.\n\nWhich sentence should be revised to correct a run-on?",
+    "promptHtml": "<p>Read this paragraph.</p><blockquote data-boxed=\"true\">(1) In September 2016, the National Museum of African American History and Culture opened, as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most popular site. (2) Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a year. (3) The museum features more than 30,000 objects, including Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. (4) A commemorative copy of the Emancipation Proclamation, which was written in 1863 during the presidency of Abraham Lincoln, is also available for viewing at the museum.</blockquote><p>Which sentence should be revised to correct a run-on?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "sentence 1",
+        "html": "<p>sentence 1</p>"
+      },
+      {
+        "id": "B",
+        "text": "sentence 2",
+        "html": "<p>sentence 2</p>"
+      },
+      {
+        "id": "C",
+        "text": "sentence 3",
+        "html": "<p>sentence 3</p>"
+      },
+      {
+        "id": "D",
+        "text": "sentence 4",
+        "html": "<p>sentence 4</p>"
+      }
+    ],
+    "boxes": [
+      [
+        75.4299,
+        375.9169,
+        562.3349,
+        479.91790000000003
+      ]
+    ],
+    "matches": [
+      {
+        "score": 0.8459,
+        "parent": "standalone",
+        "id": "part-b-import-09119fae8b50-506b3190"
+      },
+      {
+        "score": 0.8156,
+        "parent": "standalone",
+        "id": "part-b-question-10"
+      },
+      {
+        "score": 0.8156,
+        "parent": "standalone",
+        "id": "part-b-import-63ff15016dc9-8d09d754"
+      }
+    ]
+  },
+  "2": {
+    "number": 2,
+    "page": 2,
+    "box": [
+      48.5648,
+      53.44889999999998,
+      568,
+      264.59090000000003
+    ],
+    "prompt": "Read this sentence.\n\nTo promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.\n\nHow should this sentence be revised?",
+    "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\">To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</blockquote><p>How should this sentence be revised?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.",
+        "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>"
+      },
+      {
+        "id": "F",
+        "text": "On Wednesday to promote their club, a bake sale will be sponsored by members of the debate team.",
+        "html": "<p>On Wednesday to promote their club, a bake sale will be sponsored by members of the debate team.</p>"
+      },
+      {
+        "id": "G",
+        "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday.",
+        "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>"
+      },
+      {
+        "id": "H",
+        "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.",
+        "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>"
+      }
+    ],
+    "boxes": [
+      [
+        74.0648,
+        83.68539999999996,
+        512.0398,
+        122.68639999999994
+      ]
+    ],
+    "matches": [
+      {
+        "score": 0.9964,
+        "parent": "standalone",
+        "id": "part-b-import-8f756ef5b720-d07b4e8f"
+      },
+      {
+        "score": 0.9392,
+        "parent": "standalone",
+        "id": "part-b-import-89aa1af30631-fdac2918"
+      },
+      {
+        "score": 0.3448,
+        "parent": "the-end-of-an-era-2023-2024-form-b",
+        "id": "the-end-of-an-era-2023-2024-form-b-pdf-shsat-2023-2024-b-q008"
+      }
+    ]
+  },
+  "3": {
+    "number": 3,
+    "page": 2,
+    "box": [
+      48.5663,
+      265.59090000000003,
+      568,
+      489.7179000000001
+    ],
+    "prompt": "Read this paragraph.\n\n(1) Devon spent several hours preparing for an upcoming audition. (2) First, he did vocal exercises to practice his diction and projection. (3) Then, he studies the text of the monologue to better understand the emotions and motivations of the character he plans to portray. (4) Finally, he recited his monologue in front of a mirror many times, making slight adjustments and improvements to his performance each time.\n\nWhich sentence should be revised to correct an inappropriate shift in verb tense?",
+    "promptHtml": "<p>Read this paragraph.</p><blockquote data-boxed=\"true\">(1) Devon spent several hours preparing for an upcoming audition. (2) First, he did vocal exercises to practice his diction and projection. (3) Then, he studies the text of the monologue to better understand the emotions and motivations of the character he plans to portray. (4) Finally, he recited his monologue in front of a mirror many times, making slight adjustments and improvements to his performance each time.</blockquote><p>Which sentence should be revised to correct an inappropriate shift in verb tense?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "sentence 1",
+        "html": "<p>sentence 1</p>"
+      },
+      {
+        "id": "B",
+        "text": "sentence 2",
+        "html": "<p>sentence 2</p>"
+      },
+      {
+        "id": "C",
+        "text": "sentence 3",
+        "html": "<p>sentence 3</p>"
+      },
+      {
+        "id": "D",
+        "text": "sentence 4",
+        "html": "<p>sentence 4</p>"
+      }
+    ],
+    "boxes": [
+      [
+        74.0648,
+        295.8234,
+        558.1558,
+        373.82439999999997
+      ]
+    ],
+    "matches": [
+      {
+        "score": 0.7008,
+        "parent": "standalone",
+        "id": "part-b-import-be9fbdda08ee-cb4b54d9"
+      },
+      {
+        "score": 0.6544,
+        "parent": "standalone",
+        "id": "part-b-question-7"
+      },
+      {
+        "score": 0.6544,
+        "parent": "standalone",
+        "id": "part-b-import-ae2365ec0e7f-bdcbc920"
+      }
+    ]
+  },
+  "4": {
+    "number": 4,
+    "page": 2,
+    "box": [
+      48.5663,
+      490.7179000000001,
+      568,
+      737
+    ],
+    "prompt": "Read this sentence.\n\nThe Colosseum in Rome, Italy which is considered one of the New Seven Wonders of the World, is the largest amphitheater ever built and could hold more than 50,000 spectators.\n\nWhich edit should be made to correct this sentence?",
+    "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\">The Colosseum in Rome, Italy which is considered one of the New Seven Wonders of the World, is the largest amphitheater ever built and could hold more than 50,000 spectators.</blockquote><p>Which edit should be made to correct this sentence?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "delete the comma after Rome",
+        "html": "<p>delete the comma after Rome</p>"
+      },
+      {
+        "id": "F",
+        "text": "insert a comma after Italy",
+        "html": "<p>insert a comma after Italy</p>"
+      },
+      {
+        "id": "G",
+        "text": "delete the comma after World",
+        "html": "<p>delete the comma after World</p>"
+      },
+      {
+        "id": "H",
+        "text": "insert a comma after built",
+        "html": "<p>insert a comma after built</p>"
+      }
+    ],
+    "boxes": [
+      [
+        74.0648,
+        520.9624,
+        562.0648,
+        559.9634
+      ]
+    ],
+    "matches": [
+      {
+        "score": 0.9948,
+        "parent": "standalone",
+        "id": "part-b-import-5ce9007a70b7-82667959"
+      },
+      {
+        "score": 0.3606,
+        "parent": "standalone",
+        "id": "official-shsat-2026-d-49"
+      },
+      {
+        "score": 0.3514,
+        "parent": "standalone",
+        "id": "part-b-import-82a8231a8843-a770392e"
+      }
+    ]
+  },
+  "5": {
+    "number": 5,
+    "page": 3,
+    "box": [
+      48.7673,
+      53.24890000000005,
+      568,
+      737
+    ],
+    "prompt": "Read this sentence.\n\nThe engineers tried some other things in the hope of finding a more effective insulation for the compartment.\n\nWhat is the most precise revision for the words The engineers tried some other things?",
+    "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\">The engineers tried some other things in the hope of finding a more effective insulation for the compartment.</blockquote><p>What is the most precise revision for the words The engineers tried some other things?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The engineers did experiments with several new materials",
+        "html": "<p>The engineers did experiments with several new materials</p>"
+      },
+      {
+        "id": "B",
+        "text": "The engineers tested foam and fiberglass",
+        "html": "<p>The engineers tested foam and fiberglass</p>"
+      },
+      {
+        "id": "C",
+        "text": "The engineers did tests with two new materials",
+        "html": "<p>The engineers did tests with two new materials</p>"
+      },
+      {
+        "id": "D",
+        "text": "The engineers worked with foam and fiberglass",
+        "html": "<p>The engineers worked with foam and fiberglass</p>"
+      }
+    ],
+    "boxes": [
+      [
+        74.2673,
+        83.48540000000003,
+        550.9243,
+        122.4864
+      ]
+    ],
+    "matches": [
+      {
+        "score": 0.7545,
+        "parent": "standalone",
+        "id": "part-b-import-11fdbe8f497f-4770de9a"
+      },
+      {
+        "score": 0.7545,
+        "parent": "standalone",
+        "id": "part-b-import-685e4caef796-3cbc3b40"
+      },
+      {
+        "score": 0.3524,
+        "parent": "standalone",
+        "id": "part-b-import-3cbd8c08e674-296b74d3"
+      }
+    ]
+  },
+  "6": {
+    "number": 6,
+    "page": 4,
+    "box": [
+      48.932,
+      591.9506000000003,
+      568,
+      737
+    ],
+    "prompt": "Which sentence should replace sentence 4 to best introduce the main claim of the passage?",
+    "promptHtml": "<p>Which sentence should replace sentence 4 to best introduce the main claim of the passage?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "The public library is a valuable resource that all members of a community should use.",
+        "html": "<p>The public library is a valuable resource that all members of a community should use.</p>"
+      },
+      {
+        "id": "F",
+        "text": "Going to the public library to gather information can be a valuable learning experience.",
+        "html": "<p>Going to the public library to gather information can be a valuable learning experience.</p>"
+      },
+      {
+        "id": "G",
+        "text": "The resources available at a public library are most useful for students.",
+        "html": "<p>The resources available at a public library are most useful for students.</p>"
+      },
+      {
+        "id": "H",
+        "text": "A public library offers many services to those who are interested in improving their communities.",
+        "html": "<p>A public library offers many services to those who are interested in improving their communities.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.7381,
+        "parent": "the-local-library-2018-2019-form-b",
+        "id": "the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q005"
+      },
+      {
+        "score": 0.3939,
+        "parent": "find-time-to-volunteer-2024-2025-form-b",
+        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q006"
+      },
+      {
+        "score": 0.3816,
+        "parent": "the-local-library-2018-2019-form-b",
+        "id": "the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q009"
+      }
+    ]
+  },
+  "7": {
+    "number": 7,
+    "page": 5,
+    "box": [
+      48.5649,
+      54.40890000000002,
+      568,
+      209.68039999999996
+    ],
+    "prompt": "What is the best way to combine sentences 6 and 7 to clarify the relationship between ideas?",
+    "promptHtml": "<p>What is the best way to combine sentences 6 and 7 to clarify the relationship between ideas?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "There has been an explosion of digital media in recent years, since people in different places can now communicate almost instantaneously.",
+        "html": "<p>There has been an explosion of digital media in recent years, since people in different places can now communicate almost instantaneously.</p>"
+      },
+      {
+        "id": "B",
+        "text": "There has been an explosion of digital media in recent years, although it now allows people in different places to communicate almost instantaneously.",
+        "html": "<p>There has been an explosion of digital media in recent years, although it now allows people in different places to communicate almost instantaneously.</p>"
+      },
+      {
+        "id": "C",
+        "text": "In addition to the explosion of digital media in recent years, people in different places can communicate almost instantaneously.",
+        "html": "<p>In addition to the explosion of digital media in recent years, people in different places can communicate almost instantaneously.</p>"
+      },
+      {
+        "id": "D",
+        "text": "With the explosion of digital media in recent years, people in different places can now communicate almost instantaneously.",
+        "html": "<p>With the explosion of digital media in recent years, people in different places can now communicate almost instantaneously.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3592,
+        "parent": "cracking-the-code-2019-2020-form-a",
+        "id": "cracking-the-code-2019-2020-form-a-2019-form-a-ela-q05"
+      },
+      {
+        "score": 0.3592,
+        "parent": "cracking-the-code-2022-2023-form-a",
+        "id": "cracking-the-code-2022-2023-form-a-1"
+      },
+      {
+        "score": 0.3235,
+        "parent": "the-science-of-sourdough-digital-shsat-practice-test-5",
+        "id": "the-science-of-sourdough-digital-shsat-practice-test-5-satcc-digital-shsat-practice-test-5-v2-ela-42"
+      }
+    ]
+  },
+  "8": {
+    "number": 8,
+    "page": 5,
+    "box": [
+      48.56490000000001,
+      210.68039999999996,
+      568,
+      365.95189999999997
+    ],
+    "prompt": "Which sentence can best follow and support sentence 9?",
+    "promptHtml": "<p>Which sentence can best follow and support sentence 9?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Libraries, which have been around for centuries and are found throughout the world today, help preserve the history of a community.",
+        "html": "<p>Libraries, which have been around for centuries and are found throughout the world today, help preserve the history of a community.</p>"
+      },
+      {
+        "id": "F",
+        "text": "The public library is often used as a place for community leaders and organizers to host community events, such as hearings or town halls.",
+        "html": "<p>The public library is often used as a place for community leaders and organizers to host community events, such as hearings or town halls.</p>"
+      },
+      {
+        "id": "G",
+        "text": "Libraries rely on a combination of local, state, and federal dollars to provide the kinds of services and programs that community members have come to expect.",
+        "html": "<p>Libraries rely on a combination of local, state, and federal dollars to provide the kinds of services and programs that community members have come to expect.</p>"
+      },
+      {
+        "id": "H",
+        "text": "At a public library, people can interact with others through a variety of programs, including teen book clubs, toddler story times, and senior-citizen exercise classes.",
+        "html": "<p>At a public library, people can interact with others through a variety of programs, including teen book clubs, toddler story times, and senior-citizen exercise classes.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9907,
+        "parent": "the-local-library-2018-2019-form-b",
+        "id": "the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q006"
+      },
+      {
+        "score": 0.3178,
+        "parent": "the-local-library-2018-2019-form-b",
+        "id": "the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q005"
+      },
+      {
+        "score": 0.3039,
+        "parent": "cracking-the-code-2019-2020-form-a",
+        "id": "cracking-the-code-2019-2020-form-a-2019-form-a-ela-q08"
+      }
+    ]
+  },
+  "9": {
+    "number": 9,
+    "page": 5,
+    "box": [
+      48.56490000000001,
+      366.95189999999997,
+      568,
+      470.2274
+    ],
+    "prompt": "Which transition word or phrase should be added to the beginning of sentence 12?",
+    "promptHtml": "<p>Which transition word or phrase should be added to the beginning of sentence 12?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "For example",
+        "html": "<p>For example</p>"
+      },
+      {
+        "id": "B",
+        "text": "Similarly",
+        "html": "<p>Similarly</p>"
+      },
+      {
+        "id": "C",
+        "text": "Indeed",
+        "html": "<p>Indeed</p>"
+      },
+      {
+        "id": "D",
+        "text": "As a result",
+        "html": "<p>As a result</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.7087,
+        "parent": "the-benefits-of-indoor-plants-2020-2021-form-a",
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-12"
+      },
+      {
+        "score": 0.6736,
+        "parent": "martial-arts-for-the-mind-and-body-2021-2022-form-b",
+        "id": "martial-arts-for-the-mind-and-body-2021-2022-form-b-pdf-shsat-2021-2022-b-q008"
+      },
+      {
+        "score": 0.6736,
+        "parent": "martial-arts-for-the-mind-and-body-2023-form-a",
+        "id": "martial-arts-for-the-mind-and-body-2023-form-a-2023-form-a-q14"
+      }
+    ]
+  },
+  "10": {
+    "number": 10,
+    "page": 5,
+    "box": [
+      48.56490000000001,
+      471.2274,
+      568,
+      574.5029
+    ],
+    "prompt": "Which revision of sentence 14 best maintains the formal style established in the passage?",
+    "promptHtml": "<p>Which revision of sentence 14 best maintains the formal style established in the passage?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "The resources available at the library can help people accomplish many tasks.",
+        "html": "<p>The resources available at the library can help people accomplish many tasks.</p>"
+      },
+      {
+        "id": "F",
+        "text": "All the materials you can get at the library can help you do many different tasks.",
+        "html": "<p>All the materials you can get at the library can help you do many different tasks.</p>"
+      },
+      {
+        "id": "G",
+        "text": "Everything in the library can help people work on a lot of different things.",
+        "html": "<p>Everything in the library can help people work on a lot of different things.</p>"
+      },
+      {
+        "id": "H",
+        "text": "The resources you can find at the library can help you do whatever you need to do.",
+        "html": "<p>The resources you can find at the library can help you do whatever you need to do.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9622,
+        "parent": "the-local-library-2018-2019-form-b",
+        "id": "the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q007"
+      },
+      {
+        "score": 0.3575,
+        "parent": "the-local-library-2018-2019-form-b",
+        "id": "the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q009"
+      },
+      {
+        "score": 0.3265,
+        "parent": "excerpt-from-do-them-no-harm-2023-form-a",
+        "id": "excerpt-from-do-them-no-harm-2023-form-a-2023-form-a-q26"
+      }
+    ]
+  },
+  "11": {
+    "number": 11,
+    "page": 5,
+    "box": [
+      48.56490000000001,
+      575.5029,
+      568,
+      737
+    ],
+    "prompt": "Where should sentence 19 be moved to improve the organization of the fourth paragraph (sentences 15–19)?",
+    "promptHtml": "<p>Where should sentence 19 be moved to improve the organization of the fourth paragraph (sentences 15–19)?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "to the beginning of the paragraph (before sentence 15)",
+        "html": "<p>to the beginning of the paragraph (before sentence 15)</p>"
+      },
+      {
+        "id": "B",
+        "text": "between sentences 15 and 16",
+        "html": "<p>between sentences 15 and 16</p>"
+      },
+      {
+        "id": "C",
+        "text": "between sentences 16 and 17",
+        "html": "<p>between sentences 16 and 17</p>"
+      },
+      {
+        "id": "D",
+        "text": "between sentences 17 and 18",
+        "html": "<p>between sentences 17 and 18</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8299,
+        "parent": "martial-arts-for-the-mind-and-body-2021-2022-form-b",
+        "id": "martial-arts-for-the-mind-and-body-2021-2022-form-b-pdf-shsat-2021-2022-b-q006"
+      },
+      {
+        "score": 0.8299,
+        "parent": "martial-arts-for-the-mind-and-body-2023-form-a",
+        "id": "martial-arts-for-the-mind-and-body-2023-form-a-2023-form-a-q12"
+      },
+      {
+        "score": 0.8131,
+        "parent": "moving-through-mountains-2018-2019-form-a",
+        "id": "moving-through-mountains-2018-2019-form-a-pdf-shsat-2018-2019-a-q006"
+      }
+    ]
+  },
+  "12": {
+    "number": 12,
+    "page": 6,
+    "box": [
+      48.5648,
+      53.44889999999998,
+      568,
+      156.72439999999995
+    ],
+    "prompt": "Which sentence is irrelevant to the argument presented in the passage and should be deleted?",
+    "promptHtml": "<p>Which sentence is irrelevant to the argument presented in the passage and should be deleted?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "sentence 3",
+        "html": "<p>sentence 3</p>"
+      },
+      {
+        "id": "F",
+        "text": "sentence 11",
+        "html": "<p>sentence 11</p>"
+      },
+      {
+        "id": "G",
+        "text": "sentence 13",
+        "html": "<p>sentence 13</p>"
+      },
+      {
+        "id": "H",
+        "text": "sentence 20",
+        "html": "<p>sentence 20</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.7871,
+        "parent": "find-time-to-volunteer-2024-2025-form-b",
+        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q007"
+      },
+      {
+        "score": 0.7586,
+        "parent": "indoor-plants",
+        "id": "indoor-plants-4"
+      },
+      {
+        "score": 0.7586,
+        "parent": "the-benefits-of-indoor-plants-2020-2021-form-a",
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-14"
+      }
+    ]
+  },
+  "13": {
+    "number": 13,
+    "page": 6,
+    "box": [
+      48.564800000000005,
+      157.72439999999995,
+      568,
+      737
+    ],
+    "prompt": "Which concluding sentence should be added after sentence 21 to support the argument presented in the passage?",
+    "promptHtml": "<p>Which concluding sentence should be added after sentence 21 to support the argument presented in the passage?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Finally, patrons of the public library can grow in both their interpersonal life and their level of community engagement.",
+        "html": "<p>Finally, patrons of the public library can grow in both their interpersonal life and their level of community engagement.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Clearly, it is in the best interest of community members to maintain, support, and use their public library.",
+        "html": "<p>Clearly, it is in the best interest of community members to maintain, support, and use their public library.</p>"
+      },
+      {
+        "id": "C",
+        "text": "After all, the public library has been a part of American communities since the first one was founded in 1833.",
+        "html": "<p>After all, the public library has been a part of American communities since the first one was founded in 1833.</p>"
+      },
+      {
+        "id": "D",
+        "text": "In the end, community leaders must work together to find ways to generate more involvement in public library events.",
+        "html": "<p>In the end, community leaders must work together to find ways to generate more involvement in public library events.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9335,
+        "parent": "the-local-library-2018-2019-form-b",
+        "id": "the-local-library-2018-2019-form-b-pdf-shsat-2018-2019-b-q009"
+      },
+      {
+        "score": 0.377,
+        "parent": "moving-through-mountains-2018-2019-form-a",
+        "id": "moving-through-mountains-2018-2019-form-a-pdf-shsat-2018-2019-a-q009"
+      },
+      {
+        "score": 0.377,
+        "parent": "moving-through-mountains-2022-2023-form-b",
+        "id": "moving-through-mountains-2022-2023-form-b-6"
+      }
+    ]
+  },
+  "14": {
+    "number": 14,
+    "page": 7,
+    "box": [
+      48.5693,
+      464.72800000000046,
+      568,
+      737
+    ],
+    "prompt": "What is the best way to combine sentences 4 and 5 to clarify the relationship between ideas?",
+    "promptHtml": "<p>What is the best way to combine sentences 4 and 5 to clarify the relationship between ideas?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, making the transportation of people and goods difficult and time consuming.",
+        "html": "<p>Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, making the transportation of people and goods difficult and time consuming.</p>"
+      },
+      {
+        "id": "F",
+        "text": "Even though roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, the transportation of people and goods was difficult and time consuming.",
+        "html": "<p>Even though roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, the transportation of people and goods was difficult and time consuming.</p>"
+      },
+      {
+        "id": "G",
+        "text": "Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, emphasizing that the transportation of people and goods was difficult and time consuming.",
+        "html": "<p>Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, emphasizing that the transportation of people and goods was difficult and time consuming.</p>"
+      },
+      {
+        "id": "H",
+        "text": "Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, since the transportation of people and goods was difficult and time consuming.",
+        "html": "<p>Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains, since the transportation of people and goods was difficult and time consuming.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2925,
+        "parent": "standalone",
+        "id": "satcc-digital-shsat-practice-test-5-v2-ela-49"
+      },
+      {
+        "score": 0.2785,
+        "parent": "standalone",
+        "id": "part-b-question-5"
+      },
+      {
+        "score": 0.2681,
+        "parent": "standalone",
+        "id": "official-shsat-2026-b-48"
+      }
+    ]
+  },
+  "15": {
+    "number": 15,
+    "page": 8,
+    "box": [
+      48.5649,
+      53.44889999999998,
+      568,
+      208.72039999999993
+    ],
+    "prompt": "Which sentence should follow sentence 6 to most clearly introduce the topic of the passage?",
+    "promptHtml": "<p>Which sentence should follow sentence 6 to most clearly introduce the topic of the passage?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The Gotthard Base Tunnel was approved by Swiss voters in 1992 and was funded by tolls, fuel taxes, and government loans.",
+        "html": "<p>The Gotthard Base Tunnel was approved by Swiss voters in 1992 and was funded by tolls, fuel taxes, and government loans.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Leaders from several European countries attended the opening ceremonies for the Gotthard Base Tunnel.",
+        "html": "<p>Leaders from several European countries attended the opening ceremonies for the Gotthard Base Tunnel.</p>"
+      },
+      {
+        "id": "C",
+        "text": "The Gotthard Base Tunnel is the world’s longest and deepest railway tunnel, stretching 35.5 miles straight through the base of the Swiss Alps.",
+        "html": "<p>The Gotthard Base Tunnel is the world’s longest and deepest railway tunnel, stretching 35.5 miles straight through the base of the Swiss Alps.</p>"
+      },
+      {
+        "id": "D",
+        "text": "The construction of the Gotthard Base Tunnel continues to help reduce the number of freight trucks on the roadways.",
+        "html": "<p>The construction of the Gotthard Base Tunnel continues to help reduce the number of freight trucks on the roadways.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.904,
+        "parent": "moving-through-mountains-2018-2019-form-a",
+        "id": "moving-through-mountains-2018-2019-form-a-pdf-shsat-2018-2019-a-q004"
+      },
+      {
+        "score": 0.904,
+        "parent": "moving-through-mountains-2022-2023-form-b",
+        "id": "moving-through-mountains-2022-2023-form-b-1"
+      },
+      {
+        "score": 0.904,
+        "parent": "moving-through-mountains-2026-2027-form-d",
+        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-41"
+      }
+    ]
+  },
+  "16": {
+    "number": 16,
+    "page": 8,
+    "box": [
+      48.56490000000001,
+      209.72039999999993,
+      568,
+      364.99189999999993
+    ],
+    "prompt": "Which sentence could be added to follow and support sentence 8?",
+    "promptHtml": "<p>Which sentence could be added to follow and support sentence 8?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "The tunnel-boring machine is helpful to tunnel builders in the modern era and has been an improvement over dynamite.",
+        "html": "<p>The tunnel-boring machine is helpful to tunnel builders in the modern era and has been an improvement over dynamite.</p>"
+      },
+      {
+        "id": "F",
+        "text": "These enormous tunnel-boring machines function somewhat like a cheese grater, grinding slowly through rock and stone.",
+        "html": "<p>These enormous tunnel-boring machines function somewhat like a cheese grater, grinding slowly through rock and stone.</p>"
+      },
+      {
+        "id": "G",
+        "text": "Engineers had considered making a tunnel under the mountains for many years, but it was impossible to do without modern tunnel-boring machines.",
+        "html": "<p>Engineers had considered making a tunnel under the mountains for many years, but it was impossible to do without modern tunnel-boring machines.</p>"
+      },
+      {
+        "id": "H",
+        "text": "Different types of tunnel-boring machines are used depending on the geology of the area where the tunnel is being created.",
+        "html": "<p>Different types of tunnel-boring machines are used depending on the geology of the area where the tunnel is being created.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9473,
+        "parent": "moving-through-mountains-2018-2019-form-a",
+        "id": "moving-through-mountains-2018-2019-form-a-pdf-shsat-2018-2019-a-q005"
+      },
+      {
+        "score": 0.9473,
+        "parent": "moving-through-mountains-2022-2023-form-b",
+        "id": "moving-through-mountains-2022-2023-form-b-2"
+      },
+      {
+        "score": 0.9473,
+        "parent": "moving-through-mountains-2026-2027-form-d",
+        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-42"
+      }
+    ]
+  },
+  "17": {
+    "number": 17,
+    "page": 8,
+    "box": [
+      48.56490000000001,
+      365.99189999999993,
+      568,
+      482.2664
+    ],
+    "prompt": "Where should sentence 12 be moved to improve the organization of the second paragraph (sentences 7–12)?",
+    "promptHtml": "<p>Where should sentence 12 be moved to improve the organization of the second paragraph (sentences 7–12)?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "to the beginning of the paragraph (before sentence 7)",
+        "html": "<p>to the beginning of the paragraph (before sentence 7)</p>"
+      },
+      {
+        "id": "B",
+        "text": "between sentences 7 and 8",
+        "html": "<p>between sentences 7 and 8</p>"
+      },
+      {
+        "id": "C",
+        "text": "between sentences 9 and 10",
+        "html": "<p>between sentences 9 and 10</p>"
+      },
+      {
+        "id": "D",
+        "text": "between sentences 10 and 11",
+        "html": "<p>between sentences 10 and 11</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8564,
+        "parent": "martial-arts-for-the-mind-and-body-2021-2022-form-b",
+        "id": "martial-arts-for-the-mind-and-body-2021-2022-form-b-pdf-shsat-2021-2022-b-q006"
+      },
+      {
+        "score": 0.8564,
+        "parent": "martial-arts-for-the-mind-and-body-2023-form-a",
+        "id": "martial-arts-for-the-mind-and-body-2023-form-a-2023-form-a-q12"
+      },
+      {
+        "score": 0.844,
+        "parent": "moving-through-mountains-2018-2019-form-a",
+        "id": "moving-through-mountains-2018-2019-form-a-pdf-shsat-2018-2019-a-q006"
+      }
+    ]
+  },
+  "18": {
+    "number": 18,
+    "page": 8,
+    "box": [
+      48.56490000000001,
+      483.2664,
+      568,
+      737
+    ],
+    "prompt": "Which transition word or phrase should be added to the beginning of sentence 15?",
+    "promptHtml": "<p>Which transition word or phrase should be added to the beginning of sentence 15?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Even so",
+        "html": "<p>Even so</p>"
+      },
+      {
+        "id": "F",
+        "text": "Additionally",
+        "html": "<p>Additionally</p>"
+      },
+      {
+        "id": "G",
+        "text": "For example",
+        "html": "<p>For example</p>"
+      },
+      {
+        "id": "H",
+        "text": "Therefore",
+        "html": "<p>Therefore</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.7177,
+        "parent": "the-benefits-of-indoor-plants-2020-2021-form-a",
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-12"
+      },
+      {
+        "score": 0.7041,
+        "parent": "martial-arts-for-the-mind-and-body-2021-2022-form-b",
+        "id": "martial-arts-for-the-mind-and-body-2021-2022-form-b-pdf-shsat-2021-2022-b-q008"
+      },
+      {
+        "score": 0.7041,
+        "parent": "martial-arts-for-the-mind-and-body-2023-form-a",
+        "id": "martial-arts-for-the-mind-and-body-2023-form-a-2023-form-a-q14"
+      }
+    ]
+  },
+  "19": {
+    "number": 19,
+    "page": 9,
+    "box": [
+      48.56689999999999,
+      53.44450000000006,
+      568,
+      156.69899999999996
+    ],
+    "prompt": "Which sentence is irrelevant to the topic presented in the passage and should be removed?",
+    "promptHtml": "<p>Which sentence is irrelevant to the topic presented in the passage and should be removed?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "sentence 3",
+        "html": "<p>sentence 3</p>"
+      },
+      {
+        "id": "B",
+        "text": "sentence 11",
+        "html": "<p>sentence 11</p>"
+      },
+      {
+        "id": "C",
+        "text": "sentence 13",
+        "html": "<p>sentence 13</p>"
+      },
+      {
+        "id": "D",
+        "text": "sentence 17",
+        "html": "<p>sentence 17</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.7642,
+        "parent": "find-time-to-volunteer-2024-2025-form-b",
+        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q007"
+      },
+      {
+        "score": 0.7598,
+        "parent": "indoor-plants",
+        "id": "indoor-plants-4"
+      },
+      {
+        "score": 0.7598,
+        "parent": "the-benefits-of-indoor-plants-2020-2021-form-a",
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-14"
+      }
+    ]
+  },
+  "20": {
+    "number": 20,
+    "page": 9,
+    "box": [
+      48.5669,
+      157.69899999999996,
+      568,
+      737
+    ],
+    "prompt": "Which concluding sentence should be added after sentence 19 to support the topic presented in the passage?",
+    "promptHtml": "<p>Which concluding sentence should be added after sentence 19 to support the topic presented in the passage?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "There is proof that underground tunnels like the Gotthard Base Tunnel are beneficial to the economy of the surrounding areas.",
+        "html": "<p>There is proof that underground tunnels like the Gotthard Base Tunnel are beneficial to the economy of the surrounding areas.</p>"
+      },
+      {
+        "id": "F",
+        "text": "The Gotthard Base Tunnel is an extraordinary example of how human ingenuity and persistence can overcome great obstacles.",
+        "html": "<p>The Gotthard Base Tunnel is an extraordinary example of how human ingenuity and persistence can overcome great obstacles.</p>"
+      },
+      {
+        "id": "G",
+        "text": "The completion of the Gotthard Base Tunnel shows that people can work together to achieve important goals.",
+        "html": "<p>The completion of the Gotthard Base Tunnel shows that people can work together to achieve important goals.</p>"
+      },
+      {
+        "id": "H",
+        "text": "The Swiss government is confident that the economic impact of the Gotthard Base Tunnel will be worth its construction cost.",
+        "html": "<p>The Swiss government is confident that the economic impact of the Gotthard Base Tunnel will be worth its construction cost.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9867,
+        "parent": "moving-through-mountains-2018-2019-form-a",
+        "id": "moving-through-mountains-2018-2019-form-a-pdf-shsat-2018-2019-a-q009"
+      },
+      {
+        "score": 0.9867,
+        "parent": "moving-through-mountains-2022-2023-form-b",
+        "id": "moving-through-mountains-2022-2023-form-b-6"
+      },
+      {
+        "score": 0.9867,
+        "parent": "moving-through-mountains-2026-2027-form-d",
+        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-46"
+      }
+    ]
+  },
+  "21": {
+    "number": 21,
+    "page": 11,
+    "box": [
+      48.5649,
+      53.44889999999998,
+      306,
+      209.72839999999997
+    ],
+    "prompt": "Which of the following best tells what this passage is about?",
+    "promptHtml": "<p>Which of the following best tells what this passage is about?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "the reasons Nixon was expected to defeat Kennedy in the 1960 election",
+        "html": "<p>the reasons Nixon was expected to defeat Kennedy in the 1960 election</p>"
+      },
+      {
+        "id": "B",
+        "text": "the discussion of domestic issues in the 1960 presidential debates",
+        "html": "<p>the discussion of domestic issues in the 1960 presidential debates</p>"
+      },
+      {
+        "id": "C",
+        "text": "the events related to the first televised presidential debate",
+        "html": "<p>the events related to the first televised presidential debate</p>"
+      },
+      {
+        "id": "D",
+        "text": "the qualifications of Nixon and Kennedy for the role of president",
+        "html": "<p>the qualifications of Nixon and Kennedy for the role of president</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3538,
+        "parent": "the-year-without-a-summer-2018-2019-form-a",
+        "id": "the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051"
+      },
+      {
+        "score": 0.2917,
+        "parent": "2024-2025-form-aMath.ts",
+        "id": "2024-2025-form-a-q81"
+      },
+      {
+        "score": 0.255,
+        "parent": "2022-2023-form-bMath.ts",
+        "id": "2022-2023-form-b-q104"
+      }
+    ]
+  },
+  "24": {
+    "number": 24,
+    "page": 11,
+    "box": [
+      318.5724,
+      53.448900000000094,
+      568,
+      209.72840000000008
+    ],
+    "prompt": "How did Kennedy benefit from the debates?",
+    "promptHtml": "<p>How did Kennedy benefit from the debates?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "He was able to prove that he knew more about domestic issues than Nixon did.",
+        "html": "<p>He was able to prove that he knew more about domestic issues than Nixon did.</p>"
+      },
+      {
+        "id": "F",
+        "text": "He was able to display favorable personal characteristics despite his inexperience.",
+        "html": "<p>He was able to display favorable personal characteristics despite his inexperience.</p>"
+      },
+      {
+        "id": "G",
+        "text": "He was able to show that he had a more positive relationship with reporters than Nixon did.",
+        "html": "<p>He was able to show that he had a more positive relationship with reporters than Nixon did.</p>"
+      },
+      {
+        "id": "H",
+        "text": "He was able to persuade viewers to agree with his positions on domestic issues.",
+        "html": "<p>He was able to persuade viewers to agree with his positions on domestic issues.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2787,
+        "parent": "wolves-of-the-sea-2023-2024-form-a",
+        "id": "wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q055"
+      },
+      {
+        "score": 0.2787,
+        "parent": "wolves-of-the-sea-2026-2027-form-d",
+        "id": "wolves-of-the-sea-2026-2027-form-d-official-shsat-2026-d-18"
+      },
+      {
+        "score": 0.2636,
+        "parent": "wolves-of-the-sea-2023-2024-form-a",
+        "id": "wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q053"
+      }
+    ]
+  },
+  "22": {
+    "number": 22,
+    "page": 11,
+    "box": [
+      48.56490000000001,
+      210.72839999999997,
+      306,
+      380.0069
+    ],
+    "prompt": "Which of the following would have been the most likely result if the candidates had not debated on television in 1960?",
+    "promptHtml": "<p>Which of the following would have been the most likely result if the candidates had not debated on television in 1960?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Kennedy would have won the election anyway.",
+        "html": "<p>Kennedy would have won the election anyway.</p>"
+      },
+      {
+        "id": "F",
+        "text": "Nixon would have had a better chance of winning the election.",
+        "html": "<p>Nixon would have had a better chance of winning the election.</p>"
+      },
+      {
+        "id": "G",
+        "text": "The election results would have been much closer.",
+        "html": "<p>The election results would have been much closer.</p>"
+      },
+      {
+        "id": "H",
+        "text": "The debates would not have become a tradition.",
+        "html": "<p>The debates would not have become a tradition.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2618,
+        "parent": "digital-shsat-practice-test-3Math.ts",
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-26"
+      },
+      {
+        "score": 0.2615,
+        "parent": "the-tunguska-fireball-2018-2019-form-b",
+        "id": "the-tunguska-fireball-2018-2019-form-b-pdf-shsat-2018-2019-b-q015"
+      },
+      {
+        "score": 0.2527,
+        "parent": "form-a-raven-plans",
+        "id": "raven-plans-6"
+      }
+    ]
+  },
+  "25": {
+    "number": 25,
+    "page": 11,
+    "box": [
+      318.5724,
+      210.72840000000008,
+      568,
+      367.00790000000006
+    ],
+    "prompt": "What evidence does the author provide to support the last sentence of the passage?",
+    "promptHtml": "<p>What evidence does the author provide to support the last sentence of the passage?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Kennedy and Nixon drew much smaller audiences for their later debates.",
+        "html": "<p>Kennedy and Nixon drew much smaller audiences for their later debates.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Kennedy and Nixon responded to questions calmly and carefully.",
+        "html": "<p>Kennedy and Nixon responded to questions calmly and carefully.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Nixon participated in the debate despite having been recently ill.",
+        "html": "<p>Nixon participated in the debate despite having been recently ill.</p>"
+      },
+      {
+        "id": "D",
+        "text": "Nixon was more experienced and well-known than Kennedy.",
+        "html": "<p>Nixon was more experienced and well-known than Kennedy.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3138,
+        "parent": "invention-of-the-telegraph-2020-2021-form-a",
+        "id": "invention-of-the-telegraph-2020-2021-form-a-invention-of-the-telegraph-56"
+      },
+      {
+        "score": 0.3138,
+        "parent": "invention-of-the-telegraph-2024-2025-form-b",
+        "id": "invention-of-the-telegraph-2024-2025-form-b-pdf-shsat-2024-2025-b-q040"
+      },
+      {
+        "score": 0.3101,
+        "parent": "invention-of-the-telegraph-2018-2019-form-b",
+        "id": "invention-of-the-telegraph-2018-2019-form-b-pdf-shsat-2018-2019-b-q055"
+      }
+    ]
+  },
+  "26": {
+    "number": 26,
+    "page": 11,
+    "box": [
+      318.5724,
+      368.00790000000006,
+      568,
+      737
+    ],
+    "prompt": "Why did people who were not normally interested in politics tune in to the first of the Great Debates?",
+    "promptHtml": "<p>Why did people who were not normally interested in politics tune in to the first of the Great Debates?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Vice President Nixon was a popular politician.",
+        "html": "<p>Vice President Nixon was a popular politician.</p>"
+      },
+      {
+        "id": "F",
+        "text": "Television had never before been used in this way.",
+        "html": "<p>Television had never before been used in this way.</p>"
+      },
+      {
+        "id": "G",
+        "text": "They had heard that Kennedy was young and charismatic.",
+        "html": "<p>They had heard that Kennedy was young and charismatic.</p>"
+      },
+      {
+        "id": "H",
+        "text": "They wanted to see whether the newspaper polls were correct.",
+        "html": "<p>They wanted to see whether the newspaper polls were correct.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2777,
+        "parent": "the-year-without-a-summer-2018-2019-form-a",
+        "id": "the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q053"
+      },
+      {
+        "score": 0.2684,
+        "parent": "excerpt-from-the-key-of-the-garden-digital-shsat-practice-test-3",
+        "id": "excerpt-from-the-key-of-the-garden-digital-shsat-practice-test-3-passage-3"
+      },
+      {
+        "score": 0.2505,
+        "parent": "ruins-of-a-fabled-city-2018-2019-form-a",
+        "id": "ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q040"
+      }
+    ]
+  },
+  "23": {
+    "number": 23,
+    "page": 11,
+    "box": [
+      48.56490000000001,
+      381.0069,
+      306,
+      737
+    ],
+    "prompt": "Which of the following did critics in 1960 think could be an undesirable consequence of televised presidential debates?",
+    "promptHtml": "<p>Which of the following did critics in 1960 think could be an undesirable consequence of televised presidential debates?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Candidates who are less well-known would have to debate experienced politicians.",
+        "html": "<p>Candidates who are less well-known would have to debate experienced politicians.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Candidates might have difficulty overcoming the pressure of being on live television.",
+        "html": "<p>Candidates might have difficulty overcoming the pressure of being on live television.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Candidates would be evaluated based on their performance rather than their positions.",
+        "html": "<p>Candidates would be evaluated based on their performance rather than their positions.</p>"
+      },
+      {
+        "id": "D",
+        "text": "Candidates would need to participate in multiple televised debates to fully cover important issues.",
+        "html": "<p>Candidates would need to participate in multiple televised debates to fully cover important issues.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2651,
+        "parent": "indoor-plants",
+        "id": "indoor-plants-3"
+      },
+      {
+        "score": 0.2651,
+        "parent": "the-benefits-of-indoor-plants-2020-2021-form-a",
+        "id": "the-benefits-of-indoor-plants-2020-2021-form-a-benefits-of-indoor-plants-13"
+      },
+      {
+        "score": 0.2651,
+        "parent": "the-benefits-of-indoor-plants-2026-2027-form-a",
+        "id": "the-benefits-of-indoor-plants-2026-2027-form-a-official-shsat-2026-a-45"
+      }
+    ]
+  },
+  "27": {
+    "number": 27,
+    "page": 13,
+    "box": [
+      48.5648,
+      53.44889999999998,
+      306,
+      170.72090000000003
+    ],
+    "prompt": "Which of the following best tells what this passage is about?",
+    "promptHtml": "<p>Which of the following best tells what this passage is about?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "the circumstances that allow ice to melt",
+        "html": "<p>the circumstances that allow ice to melt</p>"
+      },
+      {
+        "id": "B",
+        "text": "the theories behind what makes ice slippery",
+        "html": "<p>the theories behind what makes ice slippery</p>"
+      },
+      {
+        "id": "C",
+        "text": "the discoveries of Michael Faraday",
+        "html": "<p>the discoveries of Michael Faraday</p>"
+      },
+      {
+        "id": "D",
+        "text": "the processes of freezing and melting",
+        "html": "<p>the processes of freezing and melting</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.386,
+        "parent": "the-year-without-a-summer-2018-2019-form-a",
+        "id": "the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051"
+      },
+      {
+        "score": 0.3382,
+        "parent": "digital-shsat-practice-test-3Math.ts",
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-32"
+      },
+      {
+        "score": 0.3178,
+        "parent": "2022-2023-form-bMath.ts",
+        "id": "2022-2023-form-b-q112"
+      }
+    ]
+  },
+  "31": {
+    "number": 31,
+    "page": 13,
+    "box": [
+      318.5723,
+      53.448900000000094,
+      568,
+      210.9674000000001
+    ],
+    "prompt": "According to researchers at the Lawrence Berkeley Laboratory, why is the surface of ice liquid-like rather than a true liquid?",
+    "promptHtml": "<p>According to researchers at the Lawrence Berkeley Laboratory, why is the surface of ice liquid-like rather than a true liquid?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "because electrons rebound from the ice surface",
+        "html": "<p>because electrons rebound from the ice surface</p>"
+      },
+      {
+        "id": "B",
+        "text": "because the ice surface molecules vibrate only up and down",
+        "html": "<p>because the ice surface molecules vibrate only up and down</p>"
+      },
+      {
+        "id": "C",
+        "text": "because the ice surface is a different temperature",
+        "html": "<p>because the ice surface is a different temperature</p>"
+      },
+      {
+        "id": "D",
+        "text": "because the ice surface is under pressure",
+        "html": "<p>because the ice surface is under pressure</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3233,
+        "parent": "2024-2025-form-bMath.ts",
+        "id": "pdf-shsat-2024-2025-b-q061"
+      },
+      {
+        "score": 0.254,
+        "parent": "how-a-mountain-becomes-a-volcano-digital-shsat-practice-test-5",
+        "id": "how-a-mountain-becomes-a-volcano-digital-shsat-practice-test-5-satcc-digital-shsat-practice-test-5-v2-ela-33"
+      },
+      {
+        "score": 0.2526,
+        "parent": "digital-shsat-practice-test-5Math.ts",
+        "id": "satcc-digital-shsat-practice-test-5-v2-math-17"
+      }
+    ]
+  },
+  "28": {
+    "number": 28,
+    "page": 13,
+    "box": [
+      48.564800000000005,
+      171.72090000000003,
+      306,
+      340.99940000000004
+    ],
+    "prompt": "What is the most likely reason that the author mentions lead and diamond crystals in the last paragraph?",
+    "promptHtml": "<p>What is the most likely reason that the author mentions lead and diamond crystals in the last paragraph?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "to point out that solids other than ice have slippery surfaces",
+        "html": "<p>to point out that solids other than ice have slippery surfaces</p>"
+      },
+      {
+        "id": "F",
+        "text": "to suggest that ice, lead, and diamonds are composed of the same materials",
+        "html": "<p>to suggest that ice, lead, and diamonds are composed of the same materials</p>"
+      },
+      {
+        "id": "G",
+        "text": "to cast doubt on Faraday’s theory of slipperiness",
+        "html": "<p>to cast doubt on Faraday’s theory of slipperiness</p>"
+      },
+      {
+        "id": "H",
+        "text": "to illustrate the effects of temperature and pressure on slipperiness",
+        "html": "<p>to illustrate the effects of temperature and pressure on slipperiness</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.4468,
+        "parent": "uncovering-the-past-2018-2019-form-b",
+        "id": "uncovering-the-past-2018-2019-form-b-pdf-shsat-2018-2019-b-q037"
+      },
+      {
+        "score": 0.3842,
+        "parent": "the-tunguska-fireball-2018-2019-form-b",
+        "id": "the-tunguska-fireball-2018-2019-form-b-pdf-shsat-2018-2019-b-q015"
+      },
+      {
+        "score": 0.3037,
+        "parent": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a",
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-25"
+      }
+    ]
+  },
+  "32": {
+    "number": 32,
+    "page": 13,
+    "box": [
+      318.5723,
+      211.9674000000001,
+      568,
+      355.23740000000015
+    ],
+    "prompt": "According to the passage, which of the following undermines the friction theory of slipperiness?",
+    "promptHtml": "<p>According to the passage, which of the following undermines the friction theory of slipperiness?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "a person wearing flat-bottomed shoes gliding across an icy surface",
+        "html": "<p>a person wearing flat-bottomed shoes gliding across an icy surface</p>"
+      },
+      {
+        "id": "F",
+        "text": "two ice cubes fusing together",
+        "html": "<p>two ice cubes fusing together</p>"
+      },
+      {
+        "id": "G",
+        "text": "electrons bouncing off the surface of ice",
+        "html": "<p>electrons bouncing off the surface of ice</p>"
+      },
+      {
+        "id": "H",
+        "text": "a person sliding while standing immobile on an icy surface",
+        "html": "<p>a person sliding while standing immobile on an icy surface</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3014,
+        "parent": "2022-2023-form-bMath.ts",
+        "id": "2022-2023-form-b-q77"
+      },
+      {
+        "score": 0.2978,
+        "parent": "digital-shsat-practice-test-5Math.ts",
+        "id": "satcc-digital-shsat-practice-test-5-v2-math-30"
+      },
+      {
+        "score": 0.2507,
+        "parent": "digital-shsat-practice-test-3Math.ts",
+        "id": "digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-26"
+      }
+    ]
+  },
+  "29": {
+    "number": 29,
+    "page": 13,
+    "box": [
+      48.564800000000005,
+      341.99940000000004,
+      306,
+      498.2789
+    ],
+    "prompt": "According to Faraday, why do two ice cubes fuse when held together?",
+    "promptHtml": "<p>According to Faraday, why do two ice cubes fuse when held together?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Friction causes the surfaces of the ice to melt and refreeze.",
+        "html": "<p>Friction causes the surfaces of the ice to melt and refreeze.</p>"
+      },
+      {
+        "id": "B",
+        "text": "The applied pressure forces the surfaces of the cubes to stick to each other.",
+        "html": "<p>The applied pressure forces the surfaces of the cubes to stick to each other.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Liquid layers on the surfaces freeze together when the surfaces make contact.",
+        "html": "<p>Liquid layers on the surfaces freeze together when the surfaces make contact.</p>"
+      },
+      {
+        "id": "D",
+        "text": "The liquid layers on the surfaces of the ice are perfectly smooth.",
+        "html": "<p>The liquid layers on the surfaces of the ice are perfectly smooth.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3175,
+        "parent": "2018-2019-form-aMath.ts",
+        "id": "2018-2019-form-a-pdf-shsat-2018-2019-a-q083"
+      },
+      {
+        "score": 0.3175,
+        "parent": "2021-2022-form-aMath.ts",
+        "id": "2021-2022-form-a-q83"
+      },
+      {
+        "score": 0.3175,
+        "parent": "2025-2026-form-aMath.ts",
+        "id": "triangular-banner-scale-drawing"
+      }
+    ]
+  },
+  "33": {
+    "number": 33,
+    "page": 13,
+    "box": [
+      318.5723,
+      356.23740000000015,
+      568,
+      737
+    ],
+    "prompt": "The author includes details about the pressure theory in the third paragraph in order to",
+    "promptHtml": "<p>The author includes details about the pressure theory in the third paragraph in order to</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "highlight that there are different ideas regarding this theory about the slipperiness of ice.",
+        "html": "<p>highlight that there are different ideas regarding this theory about the slipperiness of ice.</p>"
+      },
+      {
+        "id": "B",
+        "text": "describe the most recently accepted theory for the slipperiness of ice.",
+        "html": "<p>describe the most recently accepted theory for the slipperiness of ice.</p>"
+      },
+      {
+        "id": "C",
+        "text": "emphasize that this theory has been tested by scientists who study the slipperiness of ice.",
+        "html": "<p>emphasize that this theory has been tested by scientists who study the slipperiness of ice.</p>"
+      },
+      {
+        "id": "D",
+        "text": "show that there is scientific support for a plausible theory about the slipperiness of ice.",
+        "html": "<p>show that there is scientific support for a plausible theory about the slipperiness of ice.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3931,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q012"
+      },
+      {
+        "score": 0.3724,
+        "parent": "the-tunguska-fireball-2018-2019-form-b",
+        "id": "the-tunguska-fireball-2018-2019-form-b-pdf-shsat-2018-2019-b-q015"
+      },
+      {
+        "score": 0.3309,
+        "parent": "wolves-of-the-sea-2023-2024-form-a",
+        "id": "wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q053"
+      }
+    ]
+  },
+  "30": {
+    "number": 30,
+    "page": 13,
+    "box": [
+      48.564800000000005,
+      499.2789,
+      306,
+      737
+    ],
+    "prompt": "What is the most likely reason that the author mentions the 1996 experiment at Lawrence Berkeley Laboratory?",
+    "promptHtml": "<p>What is the most likely reason that the author mentions the 1996 experiment at Lawrence Berkeley Laboratory?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "to provide evidence about the surface of ice",
+        "html": "<p>to provide evidence about the surface of ice</p>"
+      },
+      {
+        "id": "F",
+        "text": "to illustrate that studying ice molecules is difficult",
+        "html": "<p>to illustrate that studying ice molecules is difficult</p>"
+      },
+      {
+        "id": "G",
+        "text": "to show how experiments on ice are inconclusive",
+        "html": "<p>to show how experiments on ice are inconclusive</p>"
+      },
+      {
+        "id": "H",
+        "text": "to explain why ice cubes freeze together",
+        "html": "<p>to explain why ice cubes freeze together</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3327,
+        "parent": "uncovering-the-past-2018-2019-form-b",
+        "id": "uncovering-the-past-2018-2019-form-b-pdf-shsat-2018-2019-b-q037"
+      },
+      {
+        "score": 0.3029,
+        "parent": "going-solar-in-china-2022-2023-form-b",
+        "id": "going-solar-in-china-2022-2023-form-b-2"
+      },
+      {
+        "score": 0.2907,
+        "parent": "looking-for-the-smallest-spark-of-everything-2023-form-b",
+        "id": "looking-for-the-smallest-spark-of-everything-2023-form-b-2023-form-b-q46"
+      }
+    ]
+  },
+  "34": {
+    "number": 34,
+    "page": 15,
+    "box": [
+      48.5648,
+      53.44889999999998,
+      306,
+      365.7269
+    ],
+    "prompt": "Which statement best describes the central idea of the passage?",
+    "promptHtml": "<p>Which statement best describes the central idea of the passage?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Marsh’s experience growing up on a farm allowed him to witness firsthand how human demands on nature can lead to problems, and as an adult he wrote one of the first books about conservation.",
+        "html": "<p>Marsh’s experience growing up on a farm allowed him to witness firsthand how human demands on nature can lead to problems, and as an adult he wrote one of the first books about conservation.</p>"
+      },
+      {
+        "id": "F",
+        "text": "Marsh challenged the notion that nature could repair the damage people cause to it, but he also supported human-made modifications to nature that improve transportation and commerce.",
+        "html": "<p>Marsh challenged the notion that nature could repair the damage people cause to it, but he also supported human-made modifications to nature that improve transportation and commerce.</p>"
+      },
+      {
+        "id": "G",
+        "text": "Marsh’s ideas about the environment were considered radical in his lifetime, but they later gained popularity during the environmental movement in the twentieth century.",
+        "html": "<p>Marsh’s ideas about the environment were considered radical in his lifetime, but they later gained popularity during the environmental movement in the twentieth century.</p>"
+      },
+      {
+        "id": "H",
+        "text": "Marsh was a radical thinker who believed that people’s actions could dramatically affect nature, and his writings are considered foundational to the conservation movement.",
+        "html": "<p>Marsh was a radical thinker who believed that people’s actions could dramatically affect nature, and his writings are considered foundational to the conservation movement.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9954,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q010"
+      },
+      {
+        "score": 0.3063,
+        "parent": "excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1",
+        "id": "excerpt-from-narrative-of-the-life-of-frederick-douglass-digital-shsat-practice-test-1-passage-1"
+      },
+      {
+        "score": 0.2741,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q012"
+      }
+    ]
+  },
+  "36": {
+    "number": 36,
+    "page": 15,
+    "box": [
+      318.5723,
+      53.448900000000094,
+      568,
+      261.7244000000002
+    ],
+    "prompt": "What is the most likely reason the author uses the word “surprisingly” in line 11?",
+    "promptHtml": "<p>What is the most likely reason the author uses the word “surprisingly” in line 11?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "to argue that Marsh’s ideas are more applicable in the present than they were during his lifetime",
+        "html": "<p>to argue that Marsh’s ideas are more applicable in the present than they were during his lifetime</p>"
+      },
+      {
+        "id": "F",
+        "text": "to show that Marsh introduced ideas a century before they became widely accepted",
+        "html": "<p>to show that Marsh introduced ideas a century before they became widely accepted</p>"
+      },
+      {
+        "id": "G",
+        "text": "to emphasize that Marsh was unaware that his ideas would help begin a conservation movement",
+        "html": "<p>to emphasize that Marsh was unaware that his ideas would help begin a conservation movement</p>"
+      },
+      {
+        "id": "H",
+        "text": "to prove that there would be fewer issues with the environment today if people had accepted Marsh’s ideas earlier",
+        "html": "<p>to prove that there would be fewer issues with the environment today if people had accepted Marsh’s ideas earlier</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9819,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q012"
+      },
+      {
+        "score": 0.3259,
+        "parent": "wolves-of-the-sea-2023-2024-form-a",
+        "id": "wolves-of-the-sea-2023-2024-form-a-pdf-shsat-2023-2024-a-q055"
+      },
+      {
+        "score": 0.3259,
+        "parent": "wolves-of-the-sea-2026-2027-form-d",
+        "id": "wolves-of-the-sea-2026-2027-form-d-official-shsat-2026-d-18"
+      }
+    ]
+  },
+  "37": {
+    "number": 37,
+    "page": 15,
+    "box": [
+      318.5723,
+      262.7244000000002,
+      568,
+      737
+    ],
+    "prompt": "Which evidence supports the idea that Marsh’s theories about nature were accurate?",
+    "promptHtml": "<p>Which evidence supports the idea that Marsh’s theories about nature were accurate?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "the details about Marsh’s observations of environmental degradation",
+        "html": "<p>the details about Marsh’s observations of environmental degradation</p>"
+      },
+      {
+        "id": "B",
+        "text": "the details about how Marsh’s writing inspired a conservation movement",
+        "html": "<p>the details about how Marsh’s writing inspired a conservation movement</p>"
+      },
+      {
+        "id": "C",
+        "text": "the details about how Marsh’s ideas are essential to modern environmental science",
+        "html": "<p>the details about how Marsh’s ideas are essential to modern environmental science</p>"
+      },
+      {
+        "id": "D",
+        "text": "the details about Marsh’s opinion on human alterations to the environment",
+        "html": "<p>the details about Marsh’s opinion on human alterations to the environment</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9571,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q013"
+      },
+      {
+        "score": 0.3512,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q014"
+      },
+      {
+        "score": 0.3508,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q012"
+      }
+    ]
+  },
+  "35": {
+    "number": 35,
+    "page": 15,
+    "box": [
+      48.564800000000005,
+      366.7269,
+      306,
+      737
+    ],
+    "prompt": "Marsh believed that the people of his time caused harm to the environment mostly because",
+    "promptHtml": "<p>Marsh believed that the people of his time caused harm to the environment mostly because</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "they assumed future generations would solve any environmental problems.",
+        "html": "<p>they assumed future generations would solve any environmental problems.</p>"
+      },
+      {
+        "id": "B",
+        "text": "they thought industrial progress was more important than protecting nature.",
+        "html": "<p>they thought industrial progress was more important than protecting nature.</p>"
+      },
+      {
+        "id": "C",
+        "text": "they were unwilling to change farming and waste-disposal practices.",
+        "html": "<p>they were unwilling to change farming and waste-disposal practices.</p>"
+      },
+      {
+        "id": "D",
+        "text": "they lacked knowledge of nature and natural processes.",
+        "html": "<p>they lacked knowledge of nature and natural processes.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9835,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q011"
+      },
+      {
+        "score": 0.3472,
+        "parent": "ruins-of-a-fabled-city-2018-2019-form-a",
+        "id": "ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q041"
+      },
+      {
+        "score": 0.3139,
+        "parent": "cross-purposes-2018-2019-form-a",
+        "id": "cross-purposes-2018-2019-form-a-pdf-shsat-2018-2019-a-q049"
+      }
+    ]
+  },
+  "38": {
+    "number": 38,
+    "page": 16,
+    "box": [
+      48.5649,
+      53.44889999999998,
+      306,
+      737
+    ],
+    "prompt": "Which detail about Marsh provides support for the author’s statement in lines 55–58?",
+    "promptHtml": "<p>Which detail about Marsh provides support for the author’s statement in lines 55–58?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "his reputation as a radical thinker",
+        "html": "<p>his reputation as a radical thinker</p>"
+      },
+      {
+        "id": "F",
+        "text": "his contribution to the conservation movement",
+        "html": "<p>his contribution to the conservation movement</p>"
+      },
+      {
+        "id": "G",
+        "text": "his experience working as an ambassador",
+        "html": "<p>his experience working as an ambassador</p>"
+      },
+      {
+        "id": "H",
+        "text": "his approval of beneficial human-made projects in nature",
+        "html": "<p>his approval of beneficial human-made projects in nature</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9616,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q014"
+      },
+      {
+        "score": 0.339,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q013"
+      },
+      {
+        "score": 0.3234,
+        "parent": "snowy-mountains-2026-2027-form-a",
+        "id": "snowy-mountains-2026-2027-form-a-official-shsat-2026-a-7"
+      }
+    ]
+  },
+  "39": {
+    "number": 39,
+    "page": 16,
+    "box": [
+      318.56190000000004,
+      53.44889999999998,
+      568,
+      737
+    ],
+    "prompt": "Which of Marsh’s ideas most influenced the environmental movement of the 1960s?",
+    "promptHtml": "<p>Which of Marsh’s ideas most influenced the environmental movement of the 1960s?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Some human alterations to the environment are necessary.",
+        "html": "<p>Some human alterations to the environment are necessary.</p>"
+      },
+      {
+        "id": "B",
+        "text": "People lack an understanding of the environment.",
+        "html": "<p>People lack an understanding of the environment.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Human activities could damage the environment.",
+        "html": "<p>Human activities could damage the environment.</p>"
+      },
+      {
+        "id": "D",
+        "text": "Environmental degradation has been occurring for many years.",
+        "html": "<p>Environmental degradation has been occurring for many years.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q015"
+      },
+      {
+        "score": 0.2765,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q013"
+      },
+      {
+        "score": 0.2594,
+        "parent": "letter-from-brooklyn-2023-2024-form-a",
+        "id": "letter-from-brooklyn-2023-2024-form-a-pdf-shsat-2023-2024-a-q023"
+      }
+    ]
+  },
+  "40": {
+    "number": 40,
+    "page": 18,
+    "box": [
+      48.567,
+      53.44889999999998,
+      306,
+      209.72840000000008
+    ],
+    "prompt": "Which of the following best tells what this passage is about?",
+    "promptHtml": "<p>Which of the following best tells what this passage is about?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "the ways people have harnessed wind power throughout history",
+        "html": "<p>the ways people have harnessed wind power throughout history</p>"
+      },
+      {
+        "id": "F",
+        "text": "reasons for developing wind farms to generate electricity",
+        "html": "<p>reasons for developing wind farms to generate electricity</p>"
+      },
+      {
+        "id": "G",
+        "text": "how windmills are used in the United States",
+        "html": "<p>how windmills are used in the United States</p>"
+      },
+      {
+        "id": "H",
+        "text": "why windmills were modified to generate electricity",
+        "html": "<p>why windmills were modified to generate electricity</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3458,
+        "parent": "the-year-without-a-summer-2018-2019-form-a",
+        "id": "the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051"
+      },
+      {
+        "score": 0.3021,
+        "parent": "ruins-of-a-fabled-city-2018-2019-form-a",
+        "id": "ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q040"
+      },
+      {
+        "score": 0.2965,
+        "parent": "uncovering-the-past-2018-2019-form-b",
+        "id": "uncovering-the-past-2018-2019-form-b-pdf-shsat-2018-2019-b-q032"
+      }
+    ]
+  },
+  "43": {
+    "number": 43,
+    "page": 18,
+    "box": [
+      318.5849999999999,
+      53.448900000000094,
+      568,
+      222.7274
+    ],
+    "prompt": "Why were fewer American farms dependent on wind machines for electrical power after the 1950s?",
+    "promptHtml": "<p>Why were fewer American farms dependent on wind machines for electrical power after the 1950s?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The energy crisis had prompted interest in other fuel sources.",
+        "html": "<p>The energy crisis had prompted interest in other fuel sources.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Coal and natural gas could generate more power than wind turbines.",
+        "html": "<p>Coal and natural gas could generate more power than wind turbines.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Centralized power systems connected most places.",
+        "html": "<p>Centralized power systems connected most places.</p>"
+      },
+      {
+        "id": "D",
+        "text": "Wind farms had reduced the need for individual windmills.",
+        "html": "<p>Wind farms had reduced the need for individual windmills.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2752,
+        "parent": "standalone",
+        "id": "part-b-import-11fdbe8f497f-4770de9a"
+      },
+      {
+        "score": 0.2752,
+        "parent": "standalone",
+        "id": "part-b-import-685e4caef796-3cbc3b40"
+      },
+      {
+        "score": 0.225,
+        "parent": "the-year-without-a-summer-2018-2019-form-a",
+        "id": "the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q053"
+      }
+    ]
+  },
+  "41": {
+    "number": 41,
+    "page": 18,
+    "box": [
+      48.57749999999993,
+      210.72840000000008,
+      306,
+      381.00440000000003
+    ],
+    "prompt": "What evidence best supports the idea that windmills were important resources in the western United States?",
+    "promptHtml": "<p>What evidence best supports the idea that windmills were important resources in the western United States?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "the details about the development and use of wind farms",
+        "html": "<p>the details about the development and use of wind farms</p>"
+      },
+      {
+        "id": "B",
+        "text": "the details about how windmills provided water for farms and livestock",
+        "html": "<p>the details about how windmills provided water for farms and livestock</p>"
+      },
+      {
+        "id": "C",
+        "text": "the details about the role of wind energy during the energy crisis of the 1970s",
+        "html": "<p>the details about the role of wind energy during the energy crisis of the 1970s</p>"
+      },
+      {
+        "id": "D",
+        "text": "the details about how steam engines influenced the use of windmills",
+        "html": "<p>the details about how steam engines influenced the use of windmills</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3677,
+        "parent": "champion-of-the-channel-2020-2021-form-a",
+        "id": "champion-of-the-channel-2020-2021-form-a-champion-of-the-channel-q22"
+      },
+      {
+        "score": 0.3677,
+        "parent": "champion-of-the-channel-2024-2025-form-a",
+        "id": "champion-of-the-channel-2024-2025-form-a-8"
+      },
+      {
+        "score": 0.3677,
+        "parent": "champion-of-the-channel-2026-2027-form-a",
+        "id": "champion-of-the-channel-2026-2027-form-a-official-shsat-2026-a-27"
+      }
+    ]
+  },
+  "44": {
+    "number": 44,
+    "page": 18,
+    "box": [
+      318.57449999999994,
+      223.7274,
+      568,
+      392.99540000000013
+    ],
+    "prompt": "Which of the following best expresses the author’s opinion regarding the future use of wind energy?",
+    "promptHtml": "<p>Which of the following best expresses the author’s opinion regarding the future use of wind energy?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Wind farming methods are unlikely to increase electrical output.",
+        "html": "<p>Wind farming methods are unlikely to increase electrical output.</p>"
+      },
+      {
+        "id": "F",
+        "text": "Wind farms will most likely be used to provide energy in rural areas.",
+        "html": "<p>Wind farms will most likely be used to provide energy in rural areas.</p>"
+      },
+      {
+        "id": "G",
+        "text": "Wind farming output will likely supplement other sources of energy.",
+        "html": "<p>Wind farming output will likely supplement other sources of energy.</p>"
+      },
+      {
+        "id": "H",
+        "text": "Wind farms may become an important source of electricity.",
+        "html": "<p>Wind farms may become an important source of electricity.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2956,
+        "parent": "going-solar-in-china-2022-2023-form-b",
+        "id": "going-solar-in-china-2022-2023-form-b-2"
+      },
+      {
+        "score": 0.2624,
+        "parent": "the-year-without-a-summer-2018-2019-form-a",
+        "id": "the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q057"
+      },
+      {
+        "score": 0.2622,
+        "parent": "going-solar-in-china-2022-2023-form-b",
+        "id": "going-solar-in-china-2022-2023-form-b-5"
+      }
+    ]
+  },
+  "42": {
+    "number": 42,
+    "page": 18,
+    "box": [
+      48.56699999999999,
+      382.00440000000003,
+      306,
+      737
+    ],
+    "prompt": "The author describes the tasks windmills were used for in lines 36–40 in order to",
+    "promptHtml": "<p>The author describes the tasks windmills were used for in lines 36–40 in order to</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "emphasize that windmills served a variety of purposes.",
+        "html": "<p>emphasize that windmills served a variety of purposes.</p>"
+      },
+      {
+        "id": "F",
+        "text": "highlight that windmills are more efficient than water wheels.",
+        "html": "<p>highlight that windmills are more efficient than water wheels.</p>"
+      },
+      {
+        "id": "G",
+        "text": "emphasize that windmills were used for many years.",
+        "html": "<p>emphasize that windmills were used for many years.</p>"
+      },
+      {
+        "id": "H",
+        "text": "convey that some countries used windmills more than other countries.",
+        "html": "<p>convey that some countries used windmills more than other countries.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2616,
+        "parent": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b",
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-3"
+      },
+      {
+        "score": 0.2616,
+        "parent": "excerpt-from-impressions-of-an-indian-childhood-2022-2023-form-b",
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2022-2023-form-b-3"
+      },
+      {
+        "score": 0.2616,
+        "parent": "excerpt-from-impressions-of-an-indian-childhood-2024-2025-form-a-version-2",
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2024-2025-form-a-version-2-2"
+      }
+    ]
+  },
+  "45": {
+    "number": 45,
+    "page": 18,
+    "box": [
+      318.5849999999999,
+      393.99540000000013,
+      568,
+      737
+    ],
+    "prompt": "According to the passage, the people of Holland most notably used windmills to",
+    "promptHtml": "<p>According to the passage, the people of Holland most notably used windmills to</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "pump water to remote locations.",
+        "html": "<p>pump water to remote locations.</p>"
+      },
+      {
+        "id": "B",
+        "text": "turn bogs into usable land.",
+        "html": "<p>turn bogs into usable land.</p>"
+      },
+      {
+        "id": "C",
+        "text": "make the country famous.",
+        "html": "<p>make the country famous.</p>"
+      },
+      {
+        "id": "D",
+        "text": "process a variety of goods.",
+        "html": "<p>process a variety of goods.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3095,
+        "parent": "2024-2025-form-aMath.ts",
+        "id": "2024-2025-form-a-q112"
+      },
+      {
+        "score": 0.2909,
+        "parent": "excerpt-from-the-fix-it-saturdays",
+        "id": "excerpt-from-the-fix-it-saturdays-7"
+      },
+      {
+        "score": 0.2718,
+        "parent": "2024-2025-form-aMath.ts",
+        "id": "2024-2025-form-a-q68"
+      }
+    ]
+  },
+  "46": {
+    "number": 46,
+    "page": 20,
+    "box": [
+      48.5648,
+      53.44889999999998,
+      306,
+      196.72939999999994
+    ],
+    "prompt": "Which of the following best tells what this passage is about?",
+    "promptHtml": "<p>Which of the following best tells what this passage is about?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "how variations in weather conditions affect tree growth",
+        "html": "<p>how variations in weather conditions affect tree growth</p>"
+      },
+      {
+        "id": "F",
+        "text": "recent breakthroughs in understanding Native American cultures",
+        "html": "<p>recent breakthroughs in understanding Native American cultures</p>"
+      },
+      {
+        "id": "G",
+        "text": "why the Pueblo villages were abandoned",
+        "html": "<p>why the Pueblo villages were abandoned</p>"
+      },
+      {
+        "id": "H",
+        "text": "how tree-ring dating can establish the age of archaeological findings",
+        "html": "<p>how tree-ring dating can establish the age of archaeological findings</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.4219,
+        "parent": "the-year-without-a-summer-2018-2019-form-a",
+        "id": "the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q051"
+      },
+      {
+        "score": 0.3271,
+        "parent": "ruins-of-a-fabled-city-2018-2019-form-a",
+        "id": "ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q040"
+      },
+      {
+        "score": 0.2792,
+        "parent": "the-year-without-a-summer-2018-2019-form-a",
+        "id": "the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q056"
+      }
+    ]
+  },
+  "49": {
+    "number": 49,
+    "page": 20,
+    "box": [
+      318.5723,
+      53.45939999999996,
+      568,
+      209.72839999999997
+    ],
+    "prompt": "Which evidence best supports the idea that tree-ring dating helped archaeologists understand why the Pueblo villages were abandoned?",
+    "promptHtml": "<p>Which evidence best supports the idea that tree-ring dating helped archaeologists understand why the Pueblo villages were abandoned?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "the details about the Hopi village Oraibi",
+        "html": "<p>the details about the Hopi village Oraibi</p>"
+      },
+      {
+        "id": "B",
+        "text": "the details about the twenty-three-year drought",
+        "html": "<p>the details about the twenty-three-year drought</p>"
+      },
+      {
+        "id": "C",
+        "text": "the details about the discovery of the Pueblo villages",
+        "html": "<p>the details about the discovery of the Pueblo villages</p>"
+      },
+      {
+        "id": "D",
+        "text": "the details about the floating chronology",
+        "html": "<p>the details about the floating chronology</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.4414,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q013"
+      },
+      {
+        "score": 0.3641,
+        "parent": "winter-wheat",
+        "id": "winter-wheat-1"
+      },
+      {
+        "score": 0.3393,
+        "parent": "snowy-mountains-2018-2019-form-b",
+        "id": "snowy-mountains-2018-2019-form-b-pdf-shsat-2018-2019-b-q043"
+      }
+    ]
+  },
+  "47": {
+    "number": 47,
+    "page": 20,
+    "box": [
+      48.564800000000005,
+      197.72939999999994,
+      306,
+      354.0088999999999
+    ],
+    "prompt": "What was the importance of the key beam described in the fourth paragraph?",
+    "promptHtml": "<p>What was the importance of the key beam described in the fourth paragraph?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "It proved that trees of the same age would have identical tree-ring patterns.",
+        "html": "<p>It proved that trees of the same age would have identical tree-ring patterns.</p>"
+      },
+      {
+        "id": "B",
+        "text": "It helped archaeologists determine why the villages had been built at that time.",
+        "html": "<p>It helped archaeologists determine why the villages had been built at that time.</p>"
+      },
+      {
+        "id": "C",
+        "text": "It revealed a new floating chronology for archaeologists to investigate.",
+        "html": "<p>It revealed a new floating chronology for archaeologists to investigate.</p>"
+      },
+      {
+        "id": "D",
+        "text": "It connected the floating chronology to the established chronology.",
+        "html": "<p>It connected the floating chronology to the established chronology.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2676,
+        "parent": "a-miracle-mile-2019-2020-form-a",
+        "id": "a-miracle-mile-2019-2020-form-a-2019-form-a-ela-q14"
+      },
+      {
+        "score": 0.2676,
+        "parent": "a-miracle-mile",
+        "id": "a-miracle-mile-5"
+      },
+      {
+        "score": 0.2672,
+        "parent": "excerpt-from-the-food-business-incubator-2023-form-a",
+        "id": "excerpt-from-the-food-business-incubator-2023-form-a-2023-form-a-q33"
+      }
+    ]
+  },
+  "50": {
+    "number": 50,
+    "page": 20,
+    "box": [
+      318.5723,
+      210.72839999999997,
+      568,
+      419.0025
+    ],
+    "prompt": "Why did the archaeologists conclude that the buildings in the abandoned Pueblo villages were constructed before A.D. 1260?",
+    "promptHtml": "<p>Why did the archaeologists conclude that the buildings in the abandoned Pueblo villages were constructed before A.D. 1260?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "The logs in the Pueblo buildings did not share any ring patterns with the established chronology from the Hopi village.",
+        "html": "<p>The logs in the Pueblo buildings did not share any ring patterns with the established chronology from the Hopi village.</p>"
+      },
+      {
+        "id": "F",
+        "text": "The logs in the Pueblo buildings had fewer rings than the logs from the buildings in the Hopi village.",
+        "html": "<p>The logs in the Pueblo buildings had fewer rings than the logs from the buildings in the Hopi village.</p>"
+      },
+      {
+        "id": "G",
+        "text": "The Pueblo villages were abandoned before the Hopi village was established.",
+        "html": "<p>The Pueblo villages were abandoned before the Hopi village was established.</p>"
+      },
+      {
+        "id": "H",
+        "text": "The Pueblo villages and the Hopi village were constructed from logs of similar size.",
+        "html": "<p>The Pueblo villages and the Hopi village were constructed from logs of similar size.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2418,
+        "parent": "2020-2021-form-bMath.ts",
+        "id": "2020-2021-form-b-q113"
+      },
+      {
+        "score": 0.2418,
+        "parent": "2024-2025-form-bMath.ts",
+        "id": "pdf-shsat-2024-2025-b-q113"
+      },
+      {
+        "score": 0.227,
+        "parent": "ruins-of-a-fabled-city-2018-2019-form-a",
+        "id": "ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q039"
+      }
+    ]
+  },
+  "48": {
+    "number": 48,
+    "page": 20,
+    "box": [
+      48.564800000000005,
+      355.0088999999999,
+      306,
+      737
+    ],
+    "prompt": "The author explains the causes of wide and narrow tree rings in lines 8–13 in order to",
+    "promptHtml": "<p>The author explains the causes of wide and narrow tree rings in lines 8–13 in order to</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "emphasize that tree-ring dating is highly accurate.",
+        "html": "<p>emphasize that tree-ring dating is highly accurate.</p>"
+      },
+      {
+        "id": "F",
+        "text": "highlight how tree rings help determine past weather patterns.",
+        "html": "<p>highlight how tree rings help determine past weather patterns.</p>"
+      },
+      {
+        "id": "G",
+        "text": "emphasize that a tree’s ring patterns grow in a unique way.",
+        "html": "<p>emphasize that a tree’s ring patterns grow in a unique way.</p>"
+      },
+      {
+        "id": "H",
+        "text": "highlight the importance of studying tree rings.",
+        "html": "<p>highlight the importance of studying tree rings.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3151,
+        "parent": "the-year-without-a-summer-2018-2019-form-a",
+        "id": "the-year-without-a-summer-2018-2019-form-a-pdf-shsat-2018-2019-a-q055"
+      },
+      {
+        "score": 0.2781,
+        "parent": "letter-from-brooklyn-2023-2024-form-a",
+        "id": "letter-from-brooklyn-2023-2024-form-a-pdf-shsat-2023-2024-a-q020"
+      },
+      {
+        "score": 0.2781,
+        "parent": "letter-from-brooklyn-2025-2026-form-b",
+        "id": "letter-from-brooklyn-2025-2026-form-b-4"
+      }
+    ]
+  },
+  "51": {
+    "number": 51,
+    "page": 20,
+    "box": [
+      318.562,
+      420.0025,
+      568,
+      737
+    ],
+    "prompt": "Why did archaeologists compare the logs from buildings in the abandoned Pueblo villages with logs from the Hopi village?",
+    "promptHtml": "<p>Why did archaeologists compare the logs from buildings in the abandoned Pueblo villages with logs from the Hopi village?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "to find the oldest and most recent logs used in the Pueblo villages",
+        "html": "<p>to find the oldest and most recent logs used in the Pueblo villages</p>"
+      },
+      {
+        "id": "B",
+        "text": "to find evidence that would help explain what caused people to leave the Pueblo villages",
+        "html": "<p>to find evidence that would help explain what caused people to leave the Pueblo villages</p>"
+      },
+      {
+        "id": "C",
+        "text": "to find a log from the Pueblo villages that had tree rings that matched logs from the Hopi village",
+        "html": "<p>to find a log from the Pueblo villages that had tree rings that matched logs from the Hopi village</p>"
+      },
+      {
+        "id": "D",
+        "text": "to find evidence that the Pueblo villages were constructed before the Hopi village",
+        "html": "<p>to find evidence that the Pueblo villages were constructed before the Hopi village</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2917,
+        "parent": "an-early-warning-2018-2019-form-a",
+        "id": "an-early-warning-2018-2019-form-a-pdf-shsat-2018-2019-a-q012"
+      },
+      {
+        "score": 0.2679,
+        "parent": "excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2",
+        "id": "excerpt-from-the-story-of-my-life-digital-shsat-practice-test-2-passage-2"
+      },
+      {
+        "score": 0.2281,
+        "parent": "ruins-of-a-fabled-city-2018-2019-form-a",
+        "id": "ruins-of-a-fabled-city-2018-2019-form-a-pdf-shsat-2018-2019-a-q039"
+      }
+    ]
+  },
+  "52": {
+    "number": 52,
+    "page": 22,
+    "box": [
+      48.5649,
+      53.44889999999998,
+      306,
+      222.7274
+    ],
+    "prompt": "Why did ordinary people in the 1930s identify with the art of the American Scene painters?",
+    "promptHtml": "<p>Why did ordinary people in the 1930s identify with the art of the American Scene painters?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "The artists were primarily concerned with painting farm life.",
+        "html": "<p>The artists were primarily concerned with painting farm life.</p>"
+      },
+      {
+        "id": "F",
+        "text": "People appreciated the beauty reflected in the paintings.",
+        "html": "<p>People appreciated the beauty reflected in the paintings.</p>"
+      },
+      {
+        "id": "G",
+        "text": "People wanted paintings to show social and cultural change.",
+        "html": "<p>People wanted paintings to show social and cultural change.</p>"
+      },
+      {
+        "id": "H",
+        "text": "The paintings reflected the times in ways that were familiar to most viewers.",
+        "html": "<p>The paintings reflected the times in ways that were familiar to most viewers.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2637,
+        "parent": "2022-2023-form-aMath.ts",
+        "id": "2022-2023-form-a-q69"
+      },
+      {
+        "score": 0.2628,
+        "parent": "2022-2023-form-aMath.ts",
+        "id": "2022-2023-form-a-q88"
+      },
+      {
+        "score": 0.2628,
+        "parent": "2026-2027-form-cMath.ts",
+        "id": "official-shsat-2026-c-74"
+      }
+    ]
+  },
+  "55": {
+    "number": 55,
+    "page": 22,
+    "box": [
+      318.5724,
+      53.448900000000094,
+      568,
+      209.72840000000008
+    ],
+    "prompt": "How does the fourth paragraph contribute to the passage?",
+    "promptHtml": "<p>How does the fourth paragraph contribute to the passage?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "It describes the end of the American Scene movement.",
+        "html": "<p>It describes the end of the American Scene movement.</p>"
+      },
+      {
+        "id": "B",
+        "text": "It highlights Edward Hopper as a unique American Scene painter.",
+        "html": "<p>It highlights Edward Hopper as a unique American Scene painter.</p>"
+      },
+      {
+        "id": "C",
+        "text": "It explains why Edward Hopper’s work has been forgotten.",
+        "html": "<p>It explains why Edward Hopper’s work has been forgotten.</p>"
+      },
+      {
+        "id": "D",
+        "text": "It contrasts the American Scene and Urban Realist styles.",
+        "html": "<p>It contrasts the American Scene and Urban Realist styles.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3903,
+        "parent": "excerpt-from-how-exercise-could-help-you-learn-a-new-language-2023-form-b",
+        "id": "excerpt-from-how-exercise-could-help-you-learn-a-new-language-2023-form-b-2023-form-b-q33"
+      },
+      {
+        "score": 0.3903,
+        "parent": "excerpt-from-how-exercise-could-help-you-learn-a-new-language-2024-2025-form-b",
+        "id": "excerpt-from-how-exercise-could-help-you-learn-a-new-language-2024-2025-form-b-pdf-shsat-2024-2025-b-q016"
+      },
+      {
+        "score": 0.3859,
+        "parent": "excerpt-from-message-at-the-speed-of-air-digital-shsat-practice-test-5",
+        "id": "excerpt-from-message-at-the-speed-of-air-digital-shsat-practice-test-5-satcc-digital-shsat-practice-test-5-v2-ela-17"
+      }
+    ]
+  },
+  "56": {
+    "number": 56,
+    "page": 22,
+    "box": [
+      318.5724,
+      210.72840000000008,
+      568,
+      328.0004000000001
+    ],
+    "prompt": "The author uses the phrase “without apology” (lines 59–60) to explain that Hopper did not think he needed to justify",
+    "promptHtml": "<p>The author uses the phrase “without apology” (lines 59–60) to explain that Hopper did not think he needed to justify</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "how he portrayed his subjects.",
+        "html": "<p>how he portrayed his subjects.</p>"
+      },
+      {
+        "id": "F",
+        "text": "painting scenes of real places.",
+        "html": "<p>painting scenes of real places.</p>"
+      },
+      {
+        "id": "G",
+        "text": "why his paintings became popular.",
+        "html": "<p>why his paintings became popular.</p>"
+      },
+      {
+        "id": "H",
+        "text": "the classification of his art style.",
+        "html": "<p>the classification of his art style.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2767,
+        "parent": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b",
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2020-2021-shsat-sample-test-form-b-2"
+      },
+      {
+        "score": 0.2767,
+        "parent": "excerpt-from-impressions-of-an-indian-childhood-2022-2023-form-b",
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2022-2023-form-b-2"
+      },
+      {
+        "score": 0.2767,
+        "parent": "excerpt-from-impressions-of-an-indian-childhood-2024-2025-form-a-version-2",
+        "id": "excerpt-from-impressions-of-an-indian-childhood-2024-2025-form-a-version-2-3"
+      }
+    ]
+  },
+  "53": {
+    "number": 53,
+    "page": 22,
+    "box": [
+      48.56490000000001,
+      223.7274,
+      306,
+      380.00690000000003
+    ],
+    "prompt": "Which of the following subjects would an Urban Realist painter be most likely to represent?",
+    "promptHtml": "<p>Which of the following subjects would an Urban Realist painter be most likely to represent?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "a scene with factory workers going home from work",
+        "html": "<p>a scene with factory workers going home from work</p>"
+      },
+      {
+        "id": "B",
+        "text": "a scene with children playing games in a street",
+        "html": "<p>a scene with children playing games in a street</p>"
+      },
+      {
+        "id": "C",
+        "text": "a scene of a bustling European city",
+        "html": "<p>a scene of a bustling European city</p>"
+      },
+      {
+        "id": "D",
+        "text": "a scene showing the stores along the main street in a city",
+        "html": "<p>a scene showing the stores along the main street in a city</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3325,
+        "parent": "digital-shsat-practice-test-5Math.ts",
+        "id": "satcc-digital-shsat-practice-test-5-v2-math-33"
+      },
+      {
+        "score": 0.3052,
+        "parent": "excerpt-from-do-them-no-harm-2023-form-a",
+        "id": "excerpt-from-do-them-no-harm-2023-form-a-2023-form-a-q27"
+      },
+      {
+        "score": 0.3052,
+        "parent": "excerpt-from-do-them-no-harm-2023-2024-form-a",
+        "id": "excerpt-from-do-them-no-harm-2023-2024-form-a-pdf-shsat-2023-2024-a-q030"
+      }
+    ]
+  },
+  "57": {
+    "number": 57,
+    "page": 22,
+    "box": [
+      318.5724,
+      329.0004000000001,
+      568,
+      737
+    ],
+    "prompt": "What is the most likely reason that Regionalist art has retained some of its popularity while Urban Realist art has not?",
+    "promptHtml": "<p>What is the most likely reason that Regionalist art has retained some of its popularity while Urban Realist art has not?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Regionalist art depicts modern life as well as life in the past, while Urban Realist art depicts only the past.",
+        "html": "<p>Regionalist art depicts modern life as well as life in the past, while Urban Realist art depicts only the past.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Regionalist art more accurately portrays the time in which it was painted than Urban Realist art does.",
+        "html": "<p>Regionalist art more accurately portrays the time in which it was painted than Urban Realist art does.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Regionalist art shows American life as people wish to remember it, while Urban Realist art does not.",
+        "html": "<p>Regionalist art shows American life as people wish to remember it, while Urban Realist art does not.</p>"
+      },
+      {
+        "id": "D",
+        "text": "Regionalist art depicts Americans overcoming the Depression, while Urban Realist art depicts life during World War II.",
+        "html": "<p>Regionalist art depicts Americans overcoming the Depression, while Urban Realist art depicts life during World War II.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2892,
+        "parent": "excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4",
+        "id": "excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-ela-21"
+      },
+      {
+        "score": 0.222,
+        "parent": "a-memory-revolution-2021-2022-form-b",
+        "id": "a-memory-revolution-2021-2022-form-b-pdf-shsat-2021-2022-b-q056"
+      },
+      {
+        "score": 0.222,
+        "parent": "a-memory-revolution-2023-2024-form-a",
+        "id": "a-memory-revolution-2023-2024-form-a-pdf-shsat-2023-2024-a-q015"
+      }
+    ]
+  },
+  "54": {
+    "number": 54,
+    "page": 22,
+    "box": [
+      48.56490000000001,
+      381.00690000000003,
+      306,
+      737
+    ],
+    "prompt": "Hopper’s paintings contrast with the work of the Urban Realist painters by",
+    "promptHtml": "<p>Hopper’s paintings contrast with the work of the Urban Realist painters by</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "showing the ugliness of a city environment.",
+        "html": "<p>showing the ugliness of a city environment.</p>"
+      },
+      {
+        "id": "F",
+        "text": "illustrating the move toward an international style.",
+        "html": "<p>illustrating the move toward an international style.</p>"
+      },
+      {
+        "id": "G",
+        "text": "revealing the ways that dull urban life can include beauty.",
+        "html": "<p>revealing the ways that dull urban life can include beauty.</p>"
+      },
+      {
+        "id": "H",
+        "text": "focusing on the portrayal of people rather than on the setting.",
+        "html": "<p>focusing on the portrayal of people rather than on the setting.</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.2928,
+        "parent": "snowy-mountains-2018-2019-form-b",
+        "id": "snowy-mountains-2018-2019-form-b-pdf-shsat-2018-2019-b-q038"
+      },
+      {
+        "score": 0.2928,
+        "parent": "snowy-mountains-version-2",
+        "id": "snowy-mountains-version-2-1"
+      },
+      {
+        "score": 0.2928,
+        "parent": "snowy-mountains-2024-2025-form-b",
+        "id": "snowy-mountains-2024-2025-form-b-pdf-shsat-2024-2025-b-q041"
+      }
+    ]
+  },
+  "58": {
+    "number": 58,
+    "page": 23,
+    "box": [
+      48.9278,
+      439.687,
+      306,
+      566.457
+    ],
+    "prompt": "How many 5-digit numbers can be created using the digits 2, 3, 5, 7, and 8 without repeating any digits within that 5-digit number?",
+    "promptHtml": "<p>How many 5-digit numbers can be created using the digits 2, 3, 5, 7, and 8 without repeating any digits within that 5-digit number?</p>",
+    "choices": [],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q058"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q058"
+      },
+      {
+        "score": 0.8899,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-55"
+      }
+    ]
+  },
+  "60": {
+    "number": 60,
+    "page": 23,
+    "box": [
+      318.9278,
+      441.6172,
+      568,
+      737
+    ],
+    "prompt": "(−6) − (−5) + 4.2 − 3 − 9.6 =",
+    "promptHtml": "<p>(−6) − (−5) + 4.2 − 3 − 9.6 =</p>",
+    "choices": [],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.0051,
+        "parent": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a",
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-29"
+      },
+      {
+        "score": 0.0051,
+        "parent": "5-reasons-physical-books-might-be-better-than-e-books-2024-2025-form-a",
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2024-2025-form-a-3"
+      },
+      {
+        "score": 0.0045,
+        "parent": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a",
+        "id": "5-reasons-physical-books-might-be-better-than-e-books-2020-2021-form-a-books-vs-ebooks-30"
+      }
+    ]
+  },
+  "59": {
+    "number": 59,
+    "page": 23,
+    "box": [
+      48.92779999999999,
+      567.457,
+      306,
+      737
+    ],
+    "prompt": "147−x = 12 12\n\nWhat is the value of x in the equation shown above?",
+    "promptHtml": "<p>147−x = 12 12</p><p>What is the value of x in the equation shown above?</p>",
+    "choices": [],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.96,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q059"
+      },
+      {
+        "score": 0.96,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q059"
+      },
+      {
+        "score": 0.785,
+        "parent": "2022-2023-form-aMath.ts",
+        "id": "2022-2023-form-a-q66"
+      }
+    ]
+  },
+  "61": {
+    "number": 61,
+    "page": 24,
+    "box": [
+      48.5,
+      61.75490000000002,
+      306,
+      737
+    ],
+    "prompt": "Tyler has completed 60 pages in his French workbook. This is 20% of the total number of pages in the workbook. How many pages are in the workbook?",
+    "promptHtml": "<p>Tyler has completed 60 pages in his French workbook. This is 20% of the total number of pages in the workbook. How many pages are in the workbook?</p>",
+    "choices": [],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q061"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q061"
+      },
+      {
+        "score": 0.3216,
+        "parent": "2018-2019-form-aMath.ts",
+        "id": "2018-2019-form-a-pdf-shsat-2018-2019-a-q104"
+      }
+    ]
+  },
+  "62": {
+    "number": 62,
+    "page": 24,
+    "box": [
+      318.5,
+      61.75490000000002,
+      568,
+      737
+    ],
+    "prompt": "30°\n\ny° 60° P\n\n25°\n\nFour straight lines intersect at point P as shown above. What is the value of y ?",
+    "promptHtml": "<p>30°</p><p>y° 60° P</p><p>25°</p><p>Four straight lines intersect at point P as shown above. What is the value of y ?</p>",
+    "choices": [],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q062"
+      },
+      {
+        "score": 0.9,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q062"
+      },
+      {
+        "score": 0.5915,
+        "parent": "2019-2020-form-aMath.ts",
+        "id": "2019-2020-form-a-q82"
+      }
+    ]
+  },
+  "63": {
+    "number": 63,
+    "page": 25,
+    "box": [
+      48.9273,
+      193.14099999999996,
+      306,
+      310.92099999999994
+    ],
+    "prompt": "If x = 9 and y = −7, what is the value of x(x − 2y)?",
+    "promptHtml": "<p>If x = 9 and y = −7, what is the value of x(x − 2y)?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "18",
+        "html": "<p>18</p>"
+      },
+      {
+        "id": "B",
+        "text": "45",
+        "html": "<p>45</p>"
+      },
+      {
+        "id": "C",
+        "text": "144",
+        "html": "<p>144</p>"
+      },
+      {
+        "id": "D",
+        "text": "207",
+        "html": "<p>207</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q063"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q063"
+      },
+      {
+        "score": 1.0,
+        "parent": "2025-2026-form-bMath.ts",
+        "id": "2025-2026-form-b-math-1"
+      }
+    ]
+  },
+  "65": {
+    "number": 65,
+    "page": 25,
+    "box": [
+      318.9223,
+      193.13699999999994,
+      568,
+      367.92099999999994
+    ],
+    "prompt": "P R M = 3N = = Q + 5 = > 0 4 7 Based on the statement above, which variable has the greatest value?",
+    "promptHtml": "<p>P R M = 3N = = Q + 5 = &gt; 0 4 7 Based on the statement above, which variable has the greatest value?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "M",
+        "html": "<p>M</p>"
+      },
+      {
+        "id": "B",
+        "text": "N",
+        "html": "<p>N</p>"
+      },
+      {
+        "id": "C",
+        "text": "P",
+        "html": "<p>P</p>"
+      },
+      {
+        "id": "D",
+        "text": "R",
+        "html": "<p>R</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8919,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q065"
+      },
+      {
+        "score": 0.8919,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q065"
+      },
+      {
+        "score": 0.8919,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-57"
+      }
+    ]
+  },
+  "64": {
+    "number": 64,
+    "page": 25,
+    "box": [
+      48.926,
+      311.92099999999994,
+      306,
+      737
+    ],
+    "prompt": "Q R\n\n50°\n\n70° P T S\n\nIn the figure above, PQRS is a parallelogram. The measure of ∠PQT is 50°, and the measure of ∠PTQ is 70°. What is the measure of ∠QRS?",
+    "promptHtml": "<p>Q R</p><p>50°</p><p>70° P T S</p><p>In the figure above, PQRS is a parallelogram. The measure of ∠PQT is 50°, and the measure of ∠PTQ is 70°. What is the measure of ∠QRS?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "60°",
+        "html": "<p>60°</p>"
+      },
+      {
+        "id": "F",
+        "text": "70°",
+        "html": "<p>70°</p>"
+      },
+      {
+        "id": "G",
+        "text": "80°",
+        "html": "<p>80°</p>"
+      },
+      {
+        "id": "H",
+        "text": "120°",
+        "html": "<p>120°</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8137,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-56"
+      },
+      {
+        "score": 0.7483,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q064"
+      },
+      {
+        "score": 0.7483,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q064"
+      }
+    ]
+  },
+  "66": {
+    "number": 66,
+    "page": 25,
+    "box": [
+      318.9248000000001,
+      368.92099999999994,
+      568,
+      521.7009999999999
+    ],
+    "prompt": "A roofing contractor uses shingles at a rate of 3 bundles for every 96 square feet of roof covered. At this rate, how many bundles of shingles will he need in order to cover a roof that is 416 square feet?",
+    "promptHtml": "<p>A roofing contractor uses shingles at a rate of 3 bundles for every 96 square feet of roof covered. At this rate, how many bundles of shingles will he need in order to cover a roof that is 416 square feet?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "5",
+        "html": "<p>5</p>"
+      },
+      {
+        "id": "F",
+        "text": "12",
+        "html": "<p>12</p>"
+      },
+      {
+        "id": "G",
+        "text": "13",
+        "html": "<p>13</p>"
+      },
+      {
+        "id": "H",
+        "text": "14",
+        "html": "<p>14</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q066"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q070"
+      },
+      {
+        "score": 1.0,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-58"
+      }
+    ]
+  },
+  "67": {
+    "number": 67,
+    "page": 25,
+    "box": [
+      318.9248000000001,
+      522.7009999999999,
+      568,
+      737
+    ],
+    "prompt": "To make party invitations, Macie could buy a package of paper for $10.50, or she could buy x individual sheets of the same paper for $0.15 each. What is the largest value of x that would make buying the individual sheets less expensive than buying the package?",
+    "promptHtml": "<p>To make party invitations, Macie could buy a package of paper for $10.50, or she could buy x individual sheets of the same paper for $0.15 each. What is the largest value of x that would make buying the individual sheets less expensive than buying the package?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "60",
+        "html": "<p>60</p>"
+      },
+      {
+        "id": "B",
+        "text": "65",
+        "html": "<p>65</p>"
+      },
+      {
+        "id": "C",
+        "text": "69",
+        "html": "<p>69</p>"
+      },
+      {
+        "id": "D",
+        "text": "70",
+        "html": "<p>70</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q067"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q067"
+      },
+      {
+        "score": 1.0,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-59"
+      }
+    ]
+  },
+  "68": {
+    "number": 68,
+    "page": 26,
+    "box": [
+      48.4976,
+      62.89099999999996,
+      306,
+      249.67099999999994
+    ],
+    "prompt": "At 1:00 p.m. one day, the temperature was 8 degrees above zero. During the rest of the day, the temperature fell 3 degrees per hour. What was the temperature at 7:00 p.m. that day?",
+    "promptHtml": "<p>At 1:00 p.m. one day, the temperature was 8 degrees above zero. During the rest of the day, the temperature fell 3 degrees per hour. What was the temperature at 7:00 p.m. that day?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "−13°",
+        "html": "<p>−13°</p>"
+      },
+      {
+        "id": "F",
+        "text": "−10°",
+        "html": "<p>−10°</p>"
+      },
+      {
+        "id": "G",
+        "text": "−7°",
+        "html": "<p>−7°</p>"
+      },
+      {
+        "id": "H",
+        "text": "5°",
+        "html": "<p>5°</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9467,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q068"
+      },
+      {
+        "score": 0.9467,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q068"
+      },
+      {
+        "score": 0.9467,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-60"
+      }
+    ]
+  },
+  "70": {
+    "number": 70,
+    "page": 26,
+    "box": [
+      318.49760000000003,
+      62.89099999999996,
+      568,
+      413.2972
+    ],
+    "prompt": "DESSERT CHOICES\n\nDessert Number of Times Ordered\n\nCookies 42\n\nPie 23\n\nCake 47\n\nIce Cream 48\n\nThe table above shows the number of times that different desserts were ordered at a restaurant. Based on this information, what is the probability of a customer ordering ice cream as a dessert?",
+    "promptHtml": "<p>DESSERT CHOICES</p><blockquote data-boxed=\"true\"><strong>Dessert Number of Times Ordered</strong></blockquote><blockquote data-boxed=\"true\">Cookies 42</blockquote><blockquote data-boxed=\"true\">Pie 23</blockquote><blockquote data-boxed=\"true\">Cake 47</blockquote><blockquote data-boxed=\"true\">Ice Cream 48</blockquote><p>The table above shows the number of times that different desserts were ordered at a restaurant. Based on this information, what is the probability of a customer ordering ice cream as a dessert?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "25%",
+        "html": "<p>25%</p>"
+      },
+      {
+        "id": "F",
+        "text": "30%",
+        "html": "<p>30%</p>"
+      },
+      {
+        "id": "G",
+        "text": "40%",
+        "html": "<p>40%</p>"
+      },
+      {
+        "id": "H",
+        "text": "48%",
+        "html": "<p>48%</p>"
+      }
+    ],
+    "boxes": [
+      [
+        362.8456,
+        115.27099999999996,
+        522.1496,
+        249.77099999999996
+      ]
+    ],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-62"
+      },
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q070"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q066"
+      }
+    ]
+  },
+  "69": {
+    "number": 69,
+    "page": 26,
+    "box": [
+      48.497600000000006,
+      250.67099999999994,
+      306,
+      737
+    ],
+    "prompt": "A bag contains 75 marbles that are red, blue, or green. The ratio of red to blue marbles is 15:7, and the ratio of blue to green marbles is 7:3. If 2 blue marbles are removed and replaced with 2 green marbles, what will be the new ratio of red to green marbles?",
+    "promptHtml": "<p>A bag contains 75 marbles that are red, blue, or green. The ratio of red to blue marbles is 15:7, and the ratio of blue to green marbles is 7:3. If 2 blue marbles are removed and replaced with 2 green marbles, what will be the new ratio of red to green marbles?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3:1",
+        "html": "<p>3:1</p>"
+      },
+      {
+        "id": "B",
+        "text": "5:1",
+        "html": "<p>5:1</p>"
+      },
+      {
+        "id": "C",
+        "text": "7:5",
+        "html": "<p>7:5</p>"
+      },
+      {
+        "id": "D",
+        "text": "45:11",
+        "html": "<p>45:11</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9929,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q069"
+      },
+      {
+        "score": 0.9929,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q069"
+      },
+      {
+        "score": 0.9929,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-61"
+      }
+    ]
+  },
+  "71": {
+    "number": 71,
+    "page": 26,
+    "box": [
+      318.4976,
+      414.2972,
+      568,
+      531.0772
+    ],
+    "prompt": "What is the least common multiple of 24, 6, and 18?",
+    "promptHtml": "<p>What is the least common multiple of 24, 6, and 18?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "36",
+        "html": "<p>36</p>"
+      },
+      {
+        "id": "B",
+        "text": "48",
+        "html": "<p>48</p>"
+      },
+      {
+        "id": "C",
+        "text": "72",
+        "html": "<p>72</p>"
+      },
+      {
+        "id": "D",
+        "text": "144",
+        "html": "<p>144</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q071"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q071"
+      },
+      {
+        "score": 0.5122,
+        "parent": "2020-2021-form-bMath.ts",
+        "id": "2020-2021-form-b-q90"
+      }
+    ]
+  },
+  "72": {
+    "number": 72,
+    "page": 26,
+    "box": [
+      318.4976,
+      532.0772,
+      568,
+      737
+    ],
+    "prompt": "One day, the Early Bird Restaurant used 15 dozen eggs for 200 breakfast customers. At this rate, approximately how many dozen eggs are needed for 300 breakfast customers?",
+    "promptHtml": "<p>One day, the Early Bird Restaurant used 15 dozen eggs for 200 breakfast customers. At this rate, approximately how many dozen eggs are needed for 300 breakfast customers?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "20",
+        "html": "<p>20</p>"
+      },
+      {
+        "id": "F",
+        "text": "23",
+        "html": "<p>23</p>"
+      },
+      {
+        "id": "G",
+        "text": "25",
+        "html": "<p>25</p>"
+      },
+      {
+        "id": "H",
+        "text": "30",
+        "html": "<p>30</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q072"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q072"
+      },
+      {
+        "score": 0.3709,
+        "parent": "2025-2026-form-bMath.ts",
+        "id": "2025-2026-form-b-math-2"
+      }
+    ]
+  },
+  "73": {
+    "number": 73,
+    "page": 27,
+    "box": [
+      48.4976,
+      62.89099999999996,
+      306,
+      284.28099999999995
+    ],
+    "prompt": "A cooler contains three types of beverages: 5 bottles of apple juice, 3 bottles of grape juice, and 6 bottles of fruit punch. What is the probability that a bottle chosen at random from this cooler is not apple juice?\n\n1",
+    "promptHtml": "<p>A cooler contains three types of beverages: 5 bottles of apple juice, 3 bottles of grape juice, and 6 bottles of fruit punch. What is the probability that a bottle chosen at random from this cooler is not apple juice?</p><p>1</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "9\n\n5",
+        "html": "<p>9</p><p>5</p>"
+      },
+      {
+        "id": "B",
+        "text": "14\n\n9",
+        "html": "<p>14</p><p>9</p>"
+      },
+      {
+        "id": "C",
+        "text": "14\n\n2",
+        "html": "<p>14</p><p>2</p>"
+      },
+      {
+        "id": "D",
+        "text": "3",
+        "html": "<p>3</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9243,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q073"
+      },
+      {
+        "score": 0.9243,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q073"
+      },
+      {
+        "score": 0.9243,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-64"
+      }
+    ]
+  },
+  "75": {
+    "number": 75,
+    "page": 27,
+    "box": [
+      318.49760000000003,
+      62.89099999999996,
+      568,
+      737
+    ],
+    "prompt": "PRICES FOR AD SPACE\n\nSpace Price\n\n1 200 4\n\n1 350 2\n\nfull page 600\n\nThe table above shows prices for newspaper 1 advertising. A store purchased pages, 4 1 pages, and full pages of space in equal 2 numbers for a total of $11,500. What is the\n\ntotal amount of page space the store\n\npurchased?\n\n3",
+    "promptHtml": "<p>PRICES FOR AD SPACE</p><h3>Space Price</h3><p>1 200 4</p><p>1 350 2</p><p>full page 600</p><p>The table above shows prices for newspaper 1 advertising. A store purchased pages, 4 1 pages, and full pages of space in equal 2 numbers for a total of $11,500. What is the</p><p>total amount of page space the store</p><p>purchased?</p><p>3</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 pages 4",
+        "html": "<p>1 pages 4</p>"
+      },
+      {
+        "id": "B",
+        "text": "10 pages\n\n1",
+        "html": "<p>10 pages</p><p>1</p>"
+      },
+      {
+        "id": "C",
+        "text": "16 pages 2\n\n1",
+        "html": "<p>16 pages 2</p><p>1</p>"
+      },
+      {
+        "id": "D",
+        "text": "17 pages 2",
+        "html": "<p>17 pages 2</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8014,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q075"
+      },
+      {
+        "score": 0.8014,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q075"
+      },
+      {
+        "score": 0.3733,
+        "parent": "2022-2023-form-bMath.ts",
+        "id": "2022-2023-form-b-q95"
+      }
+    ]
+  },
+  "74": {
+    "number": 74,
+    "page": 27,
+    "box": [
+      48.497600000000006,
+      285.28099999999995,
+      306,
+      737
+    ],
+    "prompt": "A large circular dinner plate has a radius of 20 centimeters. A smaller circular plate with a circumference of 20(cid:31) centimeters is placed in the center of the larger dinner plate. What is the area of the part of the larger dinner plate that is not covered by the smaller plate?",
+    "promptHtml": "<p>A large circular dinner plate has a radius of 20 centimeters. A smaller circular plate with a circumference of 20(cid:31) centimeters is placed in the center of the larger dinner plate. What is the area of the part of the larger dinner plate that is not covered by the smaller plate?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "20(cid:31) sq cm",
+        "html": "<p>20(cid:31) sq cm</p>"
+      },
+      {
+        "id": "F",
+        "text": "100(cid:31) sq cm",
+        "html": "<p>100(cid:31) sq cm</p>"
+      },
+      {
+        "id": "G",
+        "text": "200(cid:31) sq cm",
+        "html": "<p>200(cid:31) sq cm</p>"
+      },
+      {
+        "id": "H",
+        "text": "300(cid:31) sq cm",
+        "html": "<p>300(cid:31) sq cm</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9531,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-65"
+      },
+      {
+        "score": 0.9253,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q074"
+      },
+      {
+        "score": 0.9253,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q074"
+      }
+    ]
+  },
+  "76": {
+    "number": 76,
+    "page": 28,
+    "box": [
+      48.4976,
+      62.89099999999996,
+      306,
+      362.0532
+    ],
+    "prompt": "y\n\nR S T x\n\nU V\n\nFor which point on the graph above is the value of the y-coordinate greater than the value of the x-coordinate?",
+    "promptHtml": "<p>y</p><p>R S T x</p><p>U V</p><p>For which point on the graph above is the value of the y-coordinate greater than the value of the x-coordinate?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "R",
+        "html": "<p>R</p>"
+      },
+      {
+        "id": "F",
+        "text": "T",
+        "html": "<p>T</p>"
+      },
+      {
+        "id": "G",
+        "text": "U",
+        "html": "<p>U</p>"
+      },
+      {
+        "id": "H",
+        "text": "V",
+        "html": "<p>V</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.3562,
+        "parent": "2022-2023-form-aMath.ts",
+        "id": "2022-2023-form-a-q68"
+      },
+      {
+        "score": 0.3399,
+        "parent": "2019-2020-form-aMath.ts",
+        "id": "2019-2020-form-a-q91"
+      },
+      {
+        "score": 0.3399,
+        "parent": "2023-2024-form-aMath.ts",
+        "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q091"
+      }
+    ]
+  },
+  "79": {
+    "number": 79,
+    "page": 28,
+    "box": [
+      318.4976,
+      62.89110000000005,
+      568,
+      207.67110000000014
+    ],
+    "prompt": "3 Bryana bought 1 yards of cloth at $8.00 per 4 yard. If there was an 8% sales tax, what was\n\nthe total cost of the cloth?",
+    "promptHtml": "<p>3 Bryana bought 1 yards of cloth at $8.00 per 4 yard. If there was an 8% sales tax, what was</p><p>the total cost of the cloth?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "$12.96",
+        "html": "<p>$12.96</p>"
+      },
+      {
+        "id": "B",
+        "text": "$14.08",
+        "html": "<p>$14.08</p>"
+      },
+      {
+        "id": "C",
+        "text": "$15.12",
+        "html": "<p>$15.12</p>"
+      },
+      {
+        "id": "D",
+        "text": "$16.08",
+        "html": "<p>$16.08</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9626,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q079"
+      },
+      {
+        "score": 0.9626,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q079"
+      },
+      {
+        "score": 0.9626,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-70"
+      }
+    ]
+  },
+  "80": {
+    "number": 80,
+    "page": 28,
+    "box": [
+      318.5063,
+      208.67110000000014,
+      568,
+      514.1541
+    ],
+    "prompt": "M N\n\n1 1 3\n\n5 On the number line above, MN = 5 . What 6 is the position of point M ?\n\n1",
+    "promptHtml": "<p>M N</p><p>1 1 3</p><p>5 On the number line above, MN = 5 . What 6 is the position of point M ?</p><p>1</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "−7 6\n\n1",
+        "html": "<p>−7 6</p><p>1</p>"
+      },
+      {
+        "id": "F",
+        "text": "−4 2\n\n1",
+        "html": "<p>−4 2</p><p>1</p>"
+      },
+      {
+        "id": "G",
+        "text": "4 2\n\n1",
+        "html": "<p>4 2</p><p>1</p>"
+      },
+      {
+        "id": "H",
+        "text": "7 6",
+        "html": "<p>7 6</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.6497,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-71"
+      },
+      {
+        "score": 0.6335,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q080"
+      },
+      {
+        "score": 0.6335,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q080"
+      }
+    ]
+  },
+  "77": {
+    "number": 77,
+    "page": 28,
+    "box": [
+      48.4976,
+      363.0532,
+      306,
+      487.83309999999994
+    ],
+    "prompt": "36 If = 4x , what is the value of x when y y = 3 ?",
+    "promptHtml": "<p>36 If = 4x , what is the value of x when y y = 3 ?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "3",
+        "html": "<p>3</p>"
+      },
+      {
+        "id": "B",
+        "text": "4",
+        "html": "<p>4</p>"
+      },
+      {
+        "id": "C",
+        "text": "9",
+        "html": "<p>9</p>"
+      },
+      {
+        "id": "D",
+        "text": "12",
+        "html": "<p>12</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8649,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q077"
+      },
+      {
+        "score": 0.8649,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q077"
+      },
+      {
+        "score": 0.8649,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-68"
+      }
+    ]
+  },
+  "78": {
+    "number": 78,
+    "page": 28,
+    "box": [
+      48.5026,
+      488.83309999999994,
+      306,
+      737
+    ],
+    "prompt": "Points X , Y, and Z are on a straight line, and 3 Y is between X and Z . Length YZ = XY, 5 and length XY = 20 centimeters. What is the\n\nlength of XZ?",
+    "promptHtml": "<p>Points X , Y, and Z are on a straight line, and 3 Y is between X and Z . Length YZ = XY, 5 and length XY = 20 centimeters. What is the</p><p>length of XZ?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "12 cm",
+        "html": "<p>12 cm</p>"
+      },
+      {
+        "id": "F",
+        "text": "24 cm",
+        "html": "<p>24 cm</p>"
+      },
+      {
+        "id": "G",
+        "text": "30 cm",
+        "html": "<p>30 cm</p>"
+      },
+      {
+        "id": "H",
+        "text": "32 cm",
+        "html": "<p>32 cm</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.7267,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-69"
+      },
+      {
+        "score": 0.6686,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q078"
+      },
+      {
+        "score": 0.6686,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q078"
+      }
+    ]
+  },
+  "81": {
+    "number": 81,
+    "page": 28,
+    "box": [
+      318.49850000000004,
+      515.1541,
+      568,
+      737
+    ],
+    "prompt": "A United States presidential coin is made from an alloy of four metals—copper, zinc, manganese, and nickel—with weights in the ratio of 177:12:7:4, respectively. The coin weighs a total of 8 grams. What is the weight of the zinc in this coin?",
+    "promptHtml": "<p>A United States presidential coin is made from an alloy of four metals—copper, zinc, manganese, and nickel—with weights in the ratio of 177:12:7:4, respectively. The coin weighs a total of 8 grams. What is the weight of the zinc in this coin?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "0.28 g",
+        "html": "<p>0.28 g</p>"
+      },
+      {
+        "id": "B",
+        "text": "0.48 g",
+        "html": "<p>0.48 g</p>"
+      },
+      {
+        "id": "C",
+        "text": "0.96 g",
+        "html": "<p>0.96 g</p>"
+      },
+      {
+        "id": "D",
+        "text": "48 g",
+        "html": "<p>48 g</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9691,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-72"
+      },
+      {
+        "score": 0.9623,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q081"
+      },
+      {
+        "score": 0.9623,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q081"
+      }
+    ]
+  },
+  "82": {
+    "number": 82,
+    "page": 29,
+    "box": [
+      48.4976,
+      62.89099999999996,
+      306,
+      203.67099999999994
+    ],
+    "prompt": "Jack scored an average of 15 points per game in his first 3 basketball games. In his 4th game, he scored 27 points. What is his average score for the first 4 games?",
+    "promptHtml": "<p>Jack scored an average of 15 points per game in his first 3 basketball games. In his 4th game, he scored 27 points. What is his average score for the first 4 games?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "15",
+        "html": "<p>15</p>"
+      },
+      {
+        "id": "F",
+        "text": "17",
+        "html": "<p>17</p>"
+      },
+      {
+        "id": "G",
+        "text": "18",
+        "html": "<p>18</p>"
+      },
+      {
+        "id": "H",
+        "text": "21",
+        "html": "<p>21</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9283,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q082"
+      },
+      {
+        "score": 0.9283,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q082"
+      },
+      {
+        "score": 0.3849,
+        "parent": "2024-2025-form-aMath.ts",
+        "id": "2024-2025-form-a-q98"
+      }
+    ]
+  },
+  "86": {
+    "number": 86,
+    "page": 29,
+    "box": [
+      318.4988,
+      62.894499999999994,
+      568,
+      214.6671
+    ],
+    "prompt": "If w − 1 is an odd integer, which one of the following must be an even integer?",
+    "promptHtml": "<p>If w − 1 is an odd integer, which one of the following must be an even integer?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "w + 1",
+        "html": "<p>w + 1</p>"
+      },
+      {
+        "id": "F",
+        "text": "2w − 1",
+        "html": "<p>2w − 1</p>"
+      },
+      {
+        "id": "G",
+        "text": "2w − 2",
+        "html": "<p>2w − 2</p>"
+      },
+      {
+        "id": "H",
+        "text": "2w + 1",
+        "html": "<p>2w + 1</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q086"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q086"
+      },
+      {
+        "score": 1.0,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-75"
+      }
+    ]
+  },
+  "83": {
+    "number": 83,
+    "page": 29,
+    "box": [
+      48.497600000000006,
+      204.67099999999994,
+      306,
+      389.44450000000006
+    ],
+    "prompt": "A cylindrical oil drum can hold 4,320 liters\n\nwhen it is completely full. Currently, the drum 1 is full of oil. How many kiloliters of oil 3 need to be added in order to fill the drum\n\ncompletely?",
+    "promptHtml": "<p>A cylindrical oil drum can hold 4,320 liters</p><p>when it is completely full. Currently, the drum 1 is full of oil. How many kiloliters of oil 3 need to be added in order to fill the drum</p><p>completely?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1.44 kL",
+        "html": "<p>1.44 kL</p>"
+      },
+      {
+        "id": "B",
+        "text": "2.88 kL",
+        "html": "<p>2.88 kL</p>"
+      },
+      {
+        "id": "C",
+        "text": "4.32 kL",
+        "html": "<p>4.32 kL</p>"
+      },
+      {
+        "id": "D",
+        "text": "14.10 kL",
+        "html": "<p>14.10 kL</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9532,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q083"
+      },
+      {
+        "score": 0.9532,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q083"
+      },
+      {
+        "score": 0.3155,
+        "parent": "2023-2024-form-bMath.ts",
+        "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q114"
+      }
+    ]
+  },
+  "87": {
+    "number": 87,
+    "page": 29,
+    "box": [
+      318.4976,
+      215.6671,
+      568,
+      404.4471
+    ],
+    "prompt": "Three students stand at the starting line of a running track and begin running laps at the same time. Ann completes 1 lap every 2 minutes, Jack completes 1 lap every 3 minutes, and Lee completes 1 lap every 4 minutes. How many laps does Ann complete before all three runners are once again at the starting line at the same time?",
+    "promptHtml": "<p>Three students stand at the starting line of a running track and begin running laps at the same time. Ann completes 1 lap every 2 minutes, Jack completes 1 lap every 3 minutes, and Lee completes 1 lap every 4 minutes. How many laps does Ann complete before all three runners are once again at the starting line at the same time?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "4",
+        "html": "<p>4</p>"
+      },
+      {
+        "id": "B",
+        "text": "6",
+        "html": "<p>6</p>"
+      },
+      {
+        "id": "C",
+        "text": "12",
+        "html": "<p>12</p>"
+      },
+      {
+        "id": "D",
+        "text": "20",
+        "html": "<p>20</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q087"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q087"
+      },
+      {
+        "score": 0.3408,
+        "parent": "2019-2020-form-aMath.ts",
+        "id": "2019-2020-form-a-q109"
+      }
+    ]
+  },
+  "84": {
+    "number": 84,
+    "page": 29,
+    "box": [
+      48.49880000000001,
+      390.44450000000006,
+      306,
+      519.2245
+    ],
+    "prompt": "Nicole’s age now is three times Carmen’s age. If Carmen will be 17 in two years, how old was Nicole 5 years ago?",
+    "promptHtml": "<p>Nicole’s age now is three times Carmen’s age. If Carmen will be 17 in two years, how old was Nicole 5 years ago?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "38 yr",
+        "html": "<p>38 yr</p>"
+      },
+      {
+        "id": "F",
+        "text": "40 yr",
+        "html": "<p>40 yr</p>"
+      },
+      {
+        "id": "G",
+        "text": "45 yr",
+        "html": "<p>45 yr</p>"
+      },
+      {
+        "id": "H",
+        "text": "50 yr",
+        "html": "<p>50 yr</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.98,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-73"
+      },
+      {
+        "score": 0.8347,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q084"
+      },
+      {
+        "score": 0.8347,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q084"
+      }
+    ]
+  },
+  "88": {
+    "number": 88,
+    "page": 29,
+    "box": [
+      318.4976,
+      405.4471,
+      568,
+      737
+    ],
+    "prompt": "Simplify this expression:\n\n4(7 − 3x) − (5 − x)",
+    "promptHtml": "<p>Simplify this expression:</p><p>4(7 − 3x) − (5 − x)</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "23 − 4x",
+        "html": "<p>23 − 4x</p>"
+      },
+      {
+        "id": "F",
+        "text": "23 − 11x",
+        "html": "<p>23 − 11x</p>"
+      },
+      {
+        "id": "G",
+        "text": "28 − 4x",
+        "html": "<p>28 − 4x</p>"
+      },
+      {
+        "id": "H",
+        "text": "28 − 12x",
+        "html": "<p>28 − 12x</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q088"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q088"
+      },
+      {
+        "score": 0.8364,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-76"
+      }
+    ]
+  },
+  "85": {
+    "number": 85,
+    "page": 29,
+    "box": [
+      48.49880000000002,
+      520.2245,
+      306,
+      737
+    ],
+    "prompt": "A chemical decays in such a way that the amount left at the end of each week is 20% less than the amount at the beginning of that same week. What percent of the original amount is left after two weeks?",
+    "promptHtml": "<p>A chemical decays in such a way that the amount left at the end of each week is 20% less than the amount at the beginning of that same week. What percent of the original amount is left after two weeks?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "40%",
+        "html": "<p>40%</p>"
+      },
+      {
+        "id": "B",
+        "text": "60%",
+        "html": "<p>60%</p>"
+      },
+      {
+        "id": "C",
+        "text": "64%",
+        "html": "<p>64%</p>"
+      },
+      {
+        "id": "D",
+        "text": "80%",
+        "html": "<p>80%</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q085"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q085"
+      },
+      {
+        "score": 0.991,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-74"
+      }
+    ]
+  },
+  "89": {
+    "number": 89,
+    "page": 30,
+    "box": [
+      48.49759999999998,
+      63.2761999999999,
+      306,
+      471.5126
+    ],
+    "prompt": "PET SURVEY\n\nNumber of Pets Number of Students\n\n0 12\n\n1 16\n\n2 7\n\n3 or more 5\n\nAmy surveyed students at her school about the number of pets they have. What is the probability that a student who participated in the survey has at least 2 pets?\n\n7",
+    "promptHtml": "<p>PET SURVEY</p><blockquote data-boxed=\"true\"><strong>Number of Pets Number of Students</strong></blockquote><blockquote data-boxed=\"true\">0 12</blockquote><blockquote data-boxed=\"true\">1 16</blockquote><blockquote data-boxed=\"true\">2 7</blockquote><blockquote data-boxed=\"true\">3 or more 5</blockquote><p>Amy surveyed students at her school about the number of pets they have. What is the probability that a student who participated in the survey has at least 2 pets?</p><p>7</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "40\n\n1",
+        "html": "<p>40</p><p>1</p>"
+      },
+      {
+        "id": "B",
+        "text": "12\n\n1",
+        "html": "<p>12</p><p>1</p>"
+      },
+      {
+        "id": "C",
+        "text": "8\n\n3",
+        "html": "<p>8</p><p>3</p>"
+      },
+      {
+        "id": "D",
+        "text": "10",
+        "html": "<p>10</p>"
+      }
+    ],
+    "boxes": [
+      [
+        92.4336,
+        114.82799999999997,
+        252.5616,
+        249.32799999999997
+      ]
+    ],
+    "matches": [
+      {
+        "score": 0.9606,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-77"
+      },
+      {
+        "score": 0.9606,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q089"
+      },
+      {
+        "score": 0.9606,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q089"
+      }
+    ]
+  },
+  "91": {
+    "number": 91,
+    "page": 30,
+    "box": [
+      318.4976,
+      62.89099999999996,
+      568,
+      205.6671
+    ],
+    "prompt": "3 1 5x + 3x + 9 + 2 x If x = 10, what is the value of the expression above?",
+    "promptHtml": "<p>3 1 5x + 3x + 9 + 2 x If x = 10, what is the value of the expression above?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "2,539.01",
+        "html": "<p>2,539.01</p>"
+      },
+      {
+        "id": "B",
+        "text": "5,039.01",
+        "html": "<p>5,039.01</p>"
+      },
+      {
+        "id": "C",
+        "text": "5,039.1",
+        "html": "<p>5,039.1</p>"
+      },
+      {
+        "id": "D",
+        "text": "5,139",
+        "html": "<p>5,139</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9296,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q091"
+      },
+      {
+        "score": 0.9296,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q091"
+      },
+      {
+        "score": 0.626,
+        "parent": "2022-2023-form-aMath.ts",
+        "id": "2022-2023-form-a-q64"
+      }
+    ]
+  },
+  "92": {
+    "number": 92,
+    "page": 30,
+    "box": [
+      318.4976,
+      206.6671,
+      568,
+      560.2762
+    ],
+    "prompt": "N S P\n\nR 6 cm\n\nM T Q\n\nR, S, and T are midpoints of the sides of square MNPQ, as shown above. What is the sum of the areas of the shaded triangles?",
+    "promptHtml": "<p>N S P</p><blockquote data-boxed=\"true\">R 6 cm</blockquote><p>M T Q</p><p>R, S, and T are midpoints of the sides of square MNPQ, as shown above. What is the sum of the areas of the shaded triangles?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "9 sq cm",
+        "html": "<p>9 sq cm</p>"
+      },
+      {
+        "id": "F",
+        "text": "12 sq cm",
+        "html": "<p>12 sq cm</p>"
+      },
+      {
+        "id": "G",
+        "text": "18 sq cm",
+        "html": "<p>18 sq cm</p>"
+      },
+      {
+        "id": "H",
+        "text": "36 sq cm",
+        "html": "<p>36 sq cm</p>"
+      }
+    ],
+    "boxes": [
+      [
+        377.90959999999995,
+        255.82799999999997,
+        521.5776,
+        399.494
+      ]
+    ],
+    "matches": [
+      {
+        "score": 0.959,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-79"
+      },
+      {
+        "score": 0.8521,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q092"
+      },
+      {
+        "score": 0.8521,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q092"
+      }
+    ]
+  },
+  "90": {
+    "number": 90,
+    "page": 30,
+    "box": [
+      48.4976,
+      472.5126,
+      306,
+      737
+    ],
+    "prompt": "A large container is partially filled with n liters of water. Ito adds 10 liters of water to the container, making it 60% full. If Ito adds 6 more liters of water, the container will be 75% full. What is the value of n ?",
+    "promptHtml": "<p>A large container is partially filled with n liters of water. Ito adds 10 liters of water to the container, making it 60% full. If Ito adds 6 more liters of water, the container will be 75% full. What is the value of n ?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "14",
+        "html": "<p>14</p>"
+      },
+      {
+        "id": "F",
+        "text": "15",
+        "html": "<p>15</p>"
+      },
+      {
+        "id": "G",
+        "text": "26",
+        "html": "<p>26</p>"
+      },
+      {
+        "id": "H",
+        "text": "30",
+        "html": "<p>30</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9775,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q090"
+      },
+      {
+        "score": 0.9775,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q090"
+      },
+      {
+        "score": 0.3913,
+        "parent": "digital-shsat-practice-test-4Math.ts",
+        "id": "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-19"
+      }
+    ]
+  },
+  "93": {
+    "number": 93,
+    "page": 30,
+    "box": [
+      318.4976,
+      561.2762,
+      568,
+      737
+    ],
+    "prompt": "The Chens spend $5 of every $8 they earn on planned expenses. If the family earns $29,600 in one year, how much will they spend on planned expenses that year?",
+    "promptHtml": "<p>The Chens spend $5 of every $8 they earn on planned expenses. If the family earns $29,600 in one year, how much will they spend on planned expenses that year?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "$1,850",
+        "html": "<p>$1,850</p>"
+      },
+      {
+        "id": "B",
+        "text": "$3,700",
+        "html": "<p>$3,700</p>"
+      },
+      {
+        "id": "C",
+        "text": "$5,920",
+        "html": "<p>$5,920</p>"
+      },
+      {
+        "id": "D",
+        "text": "$18,500",
+        "html": "<p>$18,500</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q093"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q093"
+      },
+      {
+        "score": 1.0,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-80"
+      }
+    ]
+  },
+  "94": {
+    "number": 94,
+    "page": 31,
+    "box": [
+      48.4976,
+      62.89099999999996,
+      306,
+      241.27699999999902
+    ],
+    "prompt": "A pizza shop offers a choice of 3 sizes (small, medium, and large) and 7 different toppings. Different pizzas can be created by changing the size and/or the choice of toppings. If Cody wants to order a pizza with exactly 2 different toppings, how many different pizzas can he create?",
+    "promptHtml": "<p>A pizza shop offers a choice of 3 sizes (small, medium, and large) and 7 different toppings. Different pizzas can be created by changing the size and/or the choice of toppings. If Cody wants to order a pizza with exactly 2 different toppings, how many different pizzas can he create?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "6",
+        "html": "<p>6</p>"
+      },
+      {
+        "id": "F",
+        "text": "21",
+        "html": "<p>21</p>"
+      },
+      {
+        "id": "G",
+        "text": "63",
+        "html": "<p>63</p>"
+      },
+      {
+        "id": "H",
+        "text": "126",
+        "html": "<p>126</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9979,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q094"
+      },
+      {
+        "score": 0.9979,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q094"
+      },
+      {
+        "score": 0.9935,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-81"
+      }
+    ]
+  },
+  "97": {
+    "number": 97,
+    "page": 31,
+    "box": [
+      318.49760000000003,
+      62.891000000000076,
+      568,
+      215.67100000000005
+    ],
+    "prompt": "On a bike trip, Rajiv traveled 65 kilometers in 5 hours, while Shaina traveled 72 kilometers in 4 hours. How much less was Rajiv’s mean speed, in kilometers per hour (kph), than Shaina’s?",
+    "promptHtml": "<p>On a bike trip, Rajiv traveled 65 kilometers in 5 hours, while Shaina traveled 72 kilometers in 4 hours. How much less was Rajiv’s mean speed, in kilometers per hour (kph), than Shaina’s?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1 kph",
+        "html": "<p>1 kph</p>"
+      },
+      {
+        "id": "B",
+        "text": "5 kph",
+        "html": "<p>5 kph</p>"
+      },
+      {
+        "id": "C",
+        "text": "7 kph",
+        "html": "<p>7 kph</p>"
+      },
+      {
+        "id": "D",
+        "text": "9 kph",
+        "html": "<p>9 kph</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9613,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q097"
+      },
+      {
+        "score": 0.9613,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q097"
+      },
+      {
+        "score": 0.9613,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-84"
+      }
+    ]
+  },
+  "98": {
+    "number": 98,
+    "page": 31,
+    "box": [
+      318.49760000000003,
+      216.67100000000005,
+      568,
+      360.447
+    ],
+    "prompt": "Points P, Q, R, and S represent −3, −1, 0, and 2, respectively, on a number line. How many units is the midpoint of PQ from the midpoint of RS ?",
+    "promptHtml": "<p>Points P, Q, R, and S represent −3, −1, 0, and 2, respectively, on a number line. How many units is the midpoint of PQ from the midpoint of RS ?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "1",
+        "html": "<p>1</p>"
+      },
+      {
+        "id": "F",
+        "text": "2",
+        "html": "<p>2</p>"
+      },
+      {
+        "id": "G",
+        "text": "3",
+        "html": "<p>3</p>"
+      },
+      {
+        "id": "H",
+        "text": "4",
+        "html": "<p>4</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8548,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-85"
+      },
+      {
+        "score": 0.803,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q098"
+      },
+      {
+        "score": 0.803,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q098"
+      }
+    ]
+  },
+  "95": {
+    "number": 95,
+    "page": 31,
+    "box": [
+      48.500099999999975,
+      242.27699999999902,
+      306,
+      594.181
+    ],
+    "prompt": "SURVEY OF CATS PER FAMILY\n\nNumber of Cats Number of Families\n\n0 15\n\n1 42\n\n2 35\n\n3 or more 8\n\nThe table above shows the number of cats per family in 100 households in the Blaine neighborhood. By what percentage is the number of families with 1 cat greater than the number of families with 2 cats?",
+    "promptHtml": "<p>SURVEY OF CATS PER FAMILY</p><blockquote data-boxed=\"true\"><strong>Number of Cats Number of Families</strong></blockquote><blockquote data-boxed=\"true\">0 15</blockquote><blockquote data-boxed=\"true\">1 42</blockquote><blockquote data-boxed=\"true\">2 35</blockquote><blockquote data-boxed=\"true\">3 or more 8</blockquote><p>The table above shows the number of cats per family in 100 households in the Blaine neighborhood. By what percentage is the number of families with 1 cat greater than the number of families with 2 cats?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "7%",
+        "html": "<p>7%</p>"
+      },
+      {
+        "id": "B",
+        "text": "10%",
+        "html": "<p>10%</p>"
+      },
+      {
+        "id": "C",
+        "text": "17%",
+        "html": "<p>17%</p>"
+      },
+      {
+        "id": "D",
+        "text": "20%",
+        "html": "<p>20%</p>"
+      }
+    ],
+    "boxes": [
+      [
+        93.1756,
+        293.859,
+        251.8156,
+        428.359
+      ]
+    ],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q095"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q095"
+      },
+      {
+        "score": 0.413,
+        "parent": "2024-2025-form-aMath.ts",
+        "id": "2024-2025-form-a-q62"
+      }
+    ]
+  },
+  "99": {
+    "number": 99,
+    "page": 31,
+    "box": [
+      318.5001,
+      361.447,
+      568,
+      737
+    ],
+    "prompt": "There are 1,000 cubic centimeters in 1 liter, and 1,000 cubic millimeters in 1 milliliter. How many cubic millimeters are there in 1,000 cubic centimeters?",
+    "promptHtml": "<p>There are 1,000 cubic centimeters in 1 liter, and 1,000 cubic millimeters in 1 milliliter. How many cubic millimeters are there in 1,000 cubic centimeters?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "1,000",
+        "html": "<p>1,000</p>"
+      },
+      {
+        "id": "B",
+        "text": "10,000",
+        "html": "<p>10,000</p>"
+      },
+      {
+        "id": "C",
+        "text": "100,000",
+        "html": "<p>100,000</p>"
+      },
+      {
+        "id": "D",
+        "text": "1,000,000",
+        "html": "<p>1,000,000</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q099"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q099"
+      },
+      {
+        "score": 0.3155,
+        "parent": "2023-2024-form-bMath.ts",
+        "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q091"
+      }
+    ]
+  },
+  "96": {
+    "number": 96,
+    "page": 31,
+    "box": [
+      48.497600000000006,
+      595.181,
+      306,
+      737
+    ],
+    "prompt": "A wooden box has a square base. The height of this box is 3 times the length of one side of the base. If one side of the base is 3 feet long, what is the volume of this box?",
+    "promptHtml": "<p>A wooden box has a square base. The height of this box is 3 times the length of one side of the base. If one side of the base is 3 feet long, what is the volume of this box?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "9 cu ft",
+        "html": "<p>9 cu ft</p>"
+      },
+      {
+        "id": "F",
+        "text": "27 cu ft",
+        "html": "<p>27 cu ft</p>"
+      },
+      {
+        "id": "G",
+        "text": "36 cu ft",
+        "html": "<p>36 cu ft</p>"
+      },
+      {
+        "id": "H",
+        "text": "81 cu ft",
+        "html": "<p>81 cu ft</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-83"
+      },
+      {
+        "score": 0.9503,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q096"
+      },
+      {
+        "score": 0.9503,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q096"
+      }
+    ]
+  },
+  "100": {
+    "number": 100,
+    "page": 32,
+    "box": [
+      48.4976,
+      62.89099999999996,
+      306,
+      737
+    ],
+    "prompt": "1 + x\n\ny 2\n\nIn the quarter circle above, what is y in terms of x ?",
+    "promptHtml": "<p>1 + x</p><p>y 2</p><p>In the quarter circle above, what is y in terms of x ?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "x − 1",
+        "html": "<p>x − 1</p>"
+      },
+      {
+        "id": "F",
+        "text": "x + 1\n\nx+1",
+        "html": "<p>x + 1</p><p>x+1</p>"
+      },
+      {
+        "id": "G",
+        "text": "2 (x+1)2",
+        "html": "<p>2 (x+1)<sup>2</sup></p>"
+      },
+      {
+        "id": "H",
+        "text": "2",
+        "html": "<p>2</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8644,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q100"
+      },
+      {
+        "score": 0.8644,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q100"
+      },
+      {
+        "score": 0.8031,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-86"
+      }
+    ]
+  },
+  "101": {
+    "number": 101,
+    "page": 32,
+    "box": [
+      318.4976,
+      60.89110000000005,
+      568,
+      348.1967
+    ],
+    "prompt": "M R T\n\n1 5 − 4 8\n\nThe hash marks on the number line above are evenly spaced. What is the coordinate of point R?\n\n7",
+    "promptHtml": "<p>M R T</p><p>1 5 − 4 8</p><p>The hash marks on the number line above are evenly spaced. What is the coordinate of point R?</p><p>7</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "40\n\n9",
+        "html": "<p>40</p><p>9</p>"
+      },
+      {
+        "id": "B",
+        "text": "40\n\n11",
+        "html": "<p>40</p><p>11</p>"
+      },
+      {
+        "id": "C",
+        "text": "40\n\n21",
+        "html": "<p>40</p><p>21</p>"
+      },
+      {
+        "id": "D",
+        "text": "40",
+        "html": "<p>40</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8844,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-87"
+      },
+      {
+        "score": 0.8585,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q101"
+      },
+      {
+        "score": 0.8585,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q101"
+      }
+    ]
+  },
+  "102": {
+    "number": 102,
+    "page": 32,
+    "box": [
+      318.4975,
+      349.1967,
+      568,
+      737
+    ],
+    "prompt": "Phan chose an Internet service that charges $18.00 per month plus $0.024 per minute. Deion chose an Internet service that charges $30.00 per month for unlimited usage. At the end of the month, Phan’s and Deion’s charges were identical. For how many minutes did Phan use the Internet service that month?",
+    "promptHtml": "<p>Phan chose an Internet service that charges $18.00 per month plus $0.024 per minute. Deion chose an Internet service that charges $30.00 per month for unlimited usage. At the end of the month, Phan’s and Deion’s charges were identical. For how many minutes did Phan use the Internet service that month?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "50 min",
+        "html": "<p>50 min</p>"
+      },
+      {
+        "id": "F",
+        "text": "60 min",
+        "html": "<p>60 min</p>"
+      },
+      {
+        "id": "G",
+        "text": "100 min",
+        "html": "<p>100 min</p>"
+      },
+      {
+        "id": "H",
+        "text": "500 min",
+        "html": "<p>500 min</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9765,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q102"
+      },
+      {
+        "score": 0.9765,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q102"
+      },
+      {
+        "score": 0.9765,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-88"
+      }
+    ]
+  },
+  "103": {
+    "number": 103,
+    "page": 33,
+    "box": [
+      48.4976,
+      62.89099999999996,
+      306,
+      320.28099999999995
+    ],
+    "prompt": "In a sample of 50 cars at a local dealership, there are 12 red cars and 10 cars with backup cameras. Of the 12 red cars, 4 have backup cameras. If a car is selected at random from the given sample, what is the probability that both of the following are true: the car is not red and does not have a backup camera?\n\n3",
+    "promptHtml": "<p>In a sample of 50 cars at a local dealership, there are 12 red cars and 10 cars with backup cameras. Of the 12 red cars, 4 have backup cameras. If a car is selected at random from the given sample, what is the probability that both of the following are true: the car is not red and does not have a backup camera?</p><p>3</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "5\n\n16",
+        "html": "<p>5</p><p>16</p>"
+      },
+      {
+        "id": "B",
+        "text": "25\n\n19",
+        "html": "<p>25</p><p>19</p>"
+      },
+      {
+        "id": "C",
+        "text": "25\n\n4",
+        "html": "<p>25</p><p>4</p>"
+      },
+      {
+        "id": "D",
+        "text": "5",
+        "html": "<p>5</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9695,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q103"
+      },
+      {
+        "score": 0.9695,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q105"
+      },
+      {
+        "score": 0.9695,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-89"
+      }
+    ]
+  },
+  "105": {
+    "number": 105,
+    "page": 33,
+    "box": [
+      318.4976,
+      62.89099999999996,
+      568,
+      737
+    ],
+    "prompt": "y\n\n4\n\nx O m n\n\nWhat is the area of the shaded triangle shown above?",
+    "promptHtml": "<p>y</p><p>4</p><p>x O m n</p><p>What is the area of the shaded triangle shown above?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "m + n",
+        "html": "<p>m + n</p>"
+      },
+      {
+        "id": "B",
+        "text": "n − m",
+        "html": "<p>n − m</p>"
+      },
+      {
+        "id": "C",
+        "text": "2(n − m)",
+        "html": "<p>2(n − m)</p>"
+      },
+      {
+        "id": "D",
+        "text": "4(n − m)",
+        "html": "<p>4(n − m)</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9455,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q105"
+      },
+      {
+        "score": 0.9455,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q103"
+      },
+      {
+        "score": 0.8125,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-91"
+      }
+    ]
+  },
+  "104": {
+    "number": 104,
+    "page": 33,
+    "box": [
+      48.497600000000006,
+      321.28099999999995,
+      306,
+      737
+    ],
+    "prompt": "The decimal 0.06 can be written as the x fraction . What is the value of x ? 50",
+    "promptHtml": "<p>The decimal 0.06 can be written as the x fraction . What is the value of x ? 50</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "3",
+        "html": "<p>3</p>"
+      },
+      {
+        "id": "F",
+        "text": "6",
+        "html": "<p>6</p>"
+      },
+      {
+        "id": "G",
+        "text": "12",
+        "html": "<p>12</p>"
+      },
+      {
+        "id": "H",
+        "text": "30",
+        "html": "<p>30</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9242,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q104"
+      },
+      {
+        "score": 0.9242,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q104"
+      },
+      {
+        "score": 0.9242,
+        "parent": "2025-2026-form-bMath.ts",
+        "id": "2025-2026-form-b-math-3"
+      }
+    ]
+  },
+  "106": {
+    "number": 106,
+    "page": 34,
+    "box": [
+      48.4976,
+      62.89099999999996,
+      306,
+      428.7971
+    ],
+    "prompt": "ANIMAL CARDS\n\nNumber of Cards Picture on Card\n\n8 cat\n\n6 dog\n\n5 bird\n\n4 fish\n\n1 horse\n\nThe cards in the table above are mixed in a box. Which animal pictured on a card has exactly a 1 in 4 chance of being picked at random from the box?",
+    "promptHtml": "<p>ANIMAL CARDS</p><blockquote data-boxed=\"true\"><strong>Number of Cards Picture on Card</strong></blockquote><blockquote data-boxed=\"true\">8 cat</blockquote><blockquote data-boxed=\"true\">6 dog</blockquote><blockquote data-boxed=\"true\">5 bird</blockquote><blockquote data-boxed=\"true\">4 fish</blockquote><blockquote data-boxed=\"true\">1 horse</blockquote><p>The cards in the table above are mixed in a box. Which animal pictured on a card has exactly a 1 in 4 chance of being picked at random from the box?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "cat",
+        "html": "<p>cat</p>"
+      },
+      {
+        "id": "F",
+        "text": "dog",
+        "html": "<p>dog</p>"
+      },
+      {
+        "id": "G",
+        "text": "fish",
+        "html": "<p>fish</p>"
+      },
+      {
+        "id": "H",
+        "text": "horse",
+        "html": "<p>horse</p>"
+      }
+    ],
+    "boxes": [
+      [
+        98.1056,
+        115.27099999999996,
+        246.88959999999997,
+        277.27099999999996
+      ]
+    ],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-92"
+      },
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q106"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q106"
+      }
+    ]
+  },
+  "108": {
+    "number": 108,
+    "page": 34,
+    "box": [
+      318.49760000000003,
+      72.51710000000003,
+      568,
+      275.601
+    ],
+    "prompt": "= 21 7\n\nIn the equation above, what is the value of p ?\n\n2",
+    "promptHtml": "<p>= 21 7</p><p>In the equation above, what is the value of p ?</p><p>2</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "3",
+        "html": "<p>3</p>"
+      },
+      {
+        "id": "F",
+        "text": "3\n\n14",
+        "html": "<p>3</p><p>14</p>"
+      },
+      {
+        "id": "G",
+        "text": "3",
+        "html": "<p>3</p>"
+      },
+      {
+        "id": "H",
+        "text": "14",
+        "html": "<p>14</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8288,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q108"
+      },
+      {
+        "score": 0.8288,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q108"
+      },
+      {
+        "score": 0.8288,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-94"
+      }
+    ]
+  },
+  "109": {
+    "number": 109,
+    "page": 34,
+    "box": [
+      318.4962999999999,
+      276.601,
+      568,
+      485.991
+    ],
+    "prompt": "A ball is selected at random from a box that contains 7 black balls, 14 green balls, and 21 red balls. What is the probability that the ball selected is black?\n\n1",
+    "promptHtml": "<p>A ball is selected at random from a box that contains 7 black balls, 14 green balls, and 21 red balls. What is the probability that the ball selected is black?</p><p>1</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "6\n\n1",
+        "html": "<p>6</p><p>1</p>"
+      },
+      {
+        "id": "B",
+        "text": "5\n\n1",
+        "html": "<p>5</p><p>1</p>"
+      },
+      {
+        "id": "C",
+        "text": "3\n\n5",
+        "html": "<p>3</p><p>5</p>"
+      },
+      {
+        "id": "D",
+        "text": "6",
+        "html": "<p>6</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.9433,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q109"
+      },
+      {
+        "score": 0.9433,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q109"
+      },
+      {
+        "score": 0.9433,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-95"
+      }
+    ]
+  },
+  "107": {
+    "number": 107,
+    "page": 34,
+    "box": [
+      48.4976,
+      429.7971,
+      306,
+      737
+    ],
+    "prompt": "Which number line below shows the solution set for 2x − 2 ≤ y ≤ 4x + 10 when y = 1 ?",
+    "promptHtml": "<p>Which number line below shows the solution set for 2x − 2 ≤ y ≤ 4x + 10 when y = 1 ?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "–3 –2 –1 0 1 2 3",
+        "html": "<p>–3 –2 –1 0 1 2 3</p>"
+      },
+      {
+        "id": "B",
+        "text": "–3 –2 –1 0 1 2 3",
+        "html": "<p>–3 –2 –1 0 1 2 3</p>"
+      },
+      {
+        "id": "C",
+        "text": "–3 –2 –1 0 1 2 3",
+        "html": "<p>–3 –2 –1 0 1 2 3</p>"
+      },
+      {
+        "id": "D",
+        "text": "–3 –2 –1 0 1 2 3",
+        "html": "<p>–3 –2 –1 0 1 2 3</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.7778,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q107"
+      },
+      {
+        "score": 0.7778,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q107"
+      },
+      {
+        "score": 0.7778,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-93"
+      }
+    ]
+  },
+  "110": {
+    "number": 110,
+    "page": 34,
+    "box": [
+      318.4962999999999,
+      486.991,
+      568,
+      737
+    ],
+    "prompt": "At North High School, a survey asked two questions, Question A and Question B. For each question, students could answer either “yes” or “no.” Of the 800 students who responded to the survey, 720 answered “yes” to Question A, and 640 answered “yes” to Question B. What is the least possible number of these students who could have answered “yes” to both questions?",
+    "promptHtml": "<p>At North High School, a survey asked two questions, Question A and Question B. For each question, students could answer either “yes” or “no.” Of the 800 students who responded to the survey, 720 answered “yes” to Question A, and 640 answered “yes” to Question B. What is the least possible number of these students who could have answered “yes” to both questions?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "80",
+        "html": "<p>80</p>"
+      },
+      {
+        "id": "F",
+        "text": "160",
+        "html": "<p>160</p>"
+      },
+      {
+        "id": "G",
+        "text": "560",
+        "html": "<p>560</p>"
+      },
+      {
+        "id": "H",
+        "text": "640",
+        "html": "<p>640</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q110"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q110"
+      },
+      {
+        "score": 1.0,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-82"
+      }
+    ]
+  },
+  "111": {
+    "number": 111,
+    "page": 35,
+    "box": [
+      48.4976,
+      62.89099999999996,
+      306,
+      240.67099999999994
+    ],
+    "prompt": "Raoul is at least 3 years older than Vahn. Which of the following inequalities gives the relationship between Raoul’s age ( r ) and Vahn’s age ( v )?",
+    "promptHtml": "<p>Raoul is at least 3 years older than Vahn. Which of the following inequalities gives the relationship between Raoul’s age ( r ) and Vahn’s age ( v )?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "r − v ≥ 3",
+        "html": "<p>r − v ≥ 3</p>"
+      },
+      {
+        "id": "B",
+        "text": "r − v ≤ 3",
+        "html": "<p>r − v ≤ 3</p>"
+      },
+      {
+        "id": "C",
+        "text": "3 − v ≤ r",
+        "html": "<p>3 − v ≤ r</p>"
+      },
+      {
+        "id": "D",
+        "text": "3 − r ≤ v",
+        "html": "<p>3 − r ≤ v</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.969,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q111"
+      },
+      {
+        "score": 0.969,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q111"
+      },
+      {
+        "score": 0.969,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-97"
+      }
+    ]
+  },
+  "113": {
+    "number": 113,
+    "page": 35,
+    "box": [
+      318.49760000000003,
+      62.89099999999996,
+      568,
+      206.66700000000003
+    ],
+    "prompt": "There are now x cans stacked on a shelf that holds 36 cans when full. If 4 of these cans were removed, the shelf would be half full. What is the value of x ?",
+    "promptHtml": "<p>There are now x cans stacked on a shelf that holds 36 cans when full. If 4 of these cans were removed, the shelf would be half full. What is the value of x ?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "14",
+        "html": "<p>14</p>"
+      },
+      {
+        "id": "B",
+        "text": "16",
+        "html": "<p>16</p>"
+      },
+      {
+        "id": "C",
+        "text": "18",
+        "html": "<p>18</p>"
+      },
+      {
+        "id": "D",
+        "text": "22",
+        "html": "<p>22</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 1.0,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q113"
+      },
+      {
+        "score": 1.0,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q113"
+      },
+      {
+        "score": 1.0,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-98"
+      }
+    ]
+  },
+  "114": {
+    "number": 114,
+    "page": 35,
+    "box": [
+      318.4976,
+      207.66700000000003,
+      568,
+      737
+    ],
+    "prompt": "Carlos tossed a paper cup in the air 50 times and found that the probability of it landing on its side was 72%. If he tosses the cup in the air 150 more times, what is the total number of times he can expect the cup to land on its side?",
+    "promptHtml": "<p>Carlos tossed a paper cup in the air 50 times and found that the probability of it landing on its side was 72%. If he tosses the cup in the air 150 more times, what is the total number of times he can expect the cup to land on its side?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "72",
+        "html": "<p>72</p>"
+      },
+      {
+        "id": "F",
+        "text": "108",
+        "html": "<p>108</p>"
+      },
+      {
+        "id": "G",
+        "text": "144",
+        "html": "<p>144</p>"
+      },
+      {
+        "id": "H",
+        "text": "158\n\nTHIS IS THE END OF THE TEST. IF TIME REMAINS, YOU MAY CHECK YOUR ANSWERS. BE SURE THAT THERE ARE NO STRAY MARKS, PARTIALLY FILLED ANSWER CIRCLES, OR INCOMPLETE ERASURES ON YOUR ANSWER SHEET. j",
+        "html": "<p>158</p><p>THIS IS THE END OF THE TEST. IF TIME REMAINS, YOU MAY CHECK YOUR ANSWERS. BE SURE THAT THERE ARE NO STRAY MARKS, PARTIALLY FILLED ANSWER CIRCLES, OR INCOMPLETE ERASURES ON YOUR ANSWER SHEET. j</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.7175,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q114"
+      },
+      {
+        "score": 0.7175,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q114"
+      },
+      {
+        "score": 0.7175,
+        "parent": "2026-2027-form-bMath.ts",
+        "id": "official-shsat-2026-b-99"
+      }
+    ]
+  },
+  "112": {
+    "number": 112,
+    "page": 35,
+    "box": [
+      48.49760000000002,
+      241.67099999999994,
+      306,
+      737
+    ],
+    "prompt": "1 sind = 5.6 ricks 1 sind = 12.88 dalts\n\nUsing the conversion above, how many dalts are equal to 1 rick?",
+    "promptHtml": "<p>1 sind = 5.6 ricks 1 sind = 12.88 dalts</p><p>Using the conversion above, how many dalts are equal to 1 rick?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "0.43 dalt",
+        "html": "<p>0.43 dalt</p>"
+      },
+      {
+        "id": "F",
+        "text": "2.30 dalts",
+        "html": "<p>2.30 dalts</p>"
+      },
+      {
+        "id": "G",
+        "text": "7.28 dalts",
+        "html": "<p>7.28 dalts</p>"
+      },
+      {
+        "id": "H",
+        "text": "18.48 dalts",
+        "html": "<p>18.48 dalts</p>"
+      }
+    ],
+    "boxes": [],
+    "matches": [
+      {
+        "score": 0.8357,
+        "parent": "2018-2019-form-bMath.ts",
+        "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q112"
+      },
+      {
+        "score": 0.8357,
+        "parent": "2021-2022-form-bMath.ts",
+        "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q112"
+      },
+      {
+        "score": 0.3692,
+        "parent": "2025-2026-form-aMath.ts",
+        "id": "lorgs-dalts-dollar-exchange"
+      }
+    ]
+  }
+}

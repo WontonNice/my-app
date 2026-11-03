@@ -1,0 +1,14 @@
+{
+  "runs": [
+    {
+      "date": "2026-11-03T18:44:45.328050+00:00",
+      "input_tokens": null,
+      "output_tokens": null,
+      "files": 529,
+      "token_usage_status": "Unavailable from host agent API; totals exclude this unmetered semantic run."
+    }
+  ],
+  "total_input_tokens": 0,
+  "total_output_tokens": 0,
+  "token_usage_status": "Totals exclude unmetered runs; do not interpret zero as measured free usage."
+}

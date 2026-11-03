@@ -1,10 +1,14 @@
+import { contentScope, evidenceArea, topicArea } from "./analyticsScope";
 import type { ExamContent } from "../content/exams";
 import type { ExamPassageResult, ExamSubjectResult, ExamResult } from "./examResults";
 import { reviewQuestions, type ReviewQuestion } from "../../../server/src/shared/examCorrections";
 import { passageCategory, passageCategoryLabel, type PassageCategory } from "../../../server/src/shared/passageCategories";
 import { isFullExamResult, examScopeLabel } from "../../../server/src/shared/examCompletion";
+import type { SheetGrade } from "../../../server/src/shared/answerSheets";
+import { libraryQuestionKey } from "../../../server/src/shared/libraryBooks";
 
 export type AnalyticsInput = {
+  origin?: "current" | "archive";
   kind?: "exam" | "practice" | "passage";
   sourceLabel?: string;
   responses?: { questionId: string; isCorrect: boolean; selectedAnswerId: string; correctAnswerId: string; timeSpentSeconds?: number; questionNumber?: number }[];
@@ -14,7 +18,15 @@ export type AnalyticsInput = {
   subjects: ExamSubjectResult[];
   passages: ExamPassageResult[];
 };
+/** A successful history batch supersedes lightweight roster copies, including stale snapshots. */
+export function mergeAnalyticsInputs(initial: AnalyticsInput[], loaded: AnalyticsInput[]) {
+  const authoritative = new Set(loaded.filter(input => input.origin === "current").map(input => input.result.assessmentId));
+  const archived = new Set(loaded.filter(input => input.origin === "archive").map(input => JSON.stringify([input.result.assessmentId, input.result.attemptId ?? input.result.completedAt])));
+  return [...initial.filter(input => !authoritative.has(input.result.assessmentId) && !archived.has(JSON.stringify([input.result.assessmentId, input.result.attemptId ?? input.result.completedAt]))), ...loaded];
+}
 export type Evidence = ReviewQuestion & {
+  skillArea?: import("./analyticsScope").SkillArea;
+  contentSource?: import("./analyticsScope").ContentSource;
   key: string;
   examKey: string;
   examTitle: string;
@@ -26,7 +38,8 @@ export type Evidence = ReviewQuestion & {
   storedCorrectAnswer?: string;
   provenance: string;
   correction?: NonNullable<AnalyticsInput["corrections"]>[number];
-  status: "Correct" | "Incorrect" | "Unanswered";
+  status: "Correct" | "Incorrect" | "Unanswered" | "Pending";
+  points?: { earned: number | null; possible: number };
   seconds?: number;
 };
 export type AnalyticsExam = AnalyticsInput & {
@@ -43,6 +56,9 @@ export type AnalyticsExam = AnalyticsInput & {
   total: number | null;
   comparableKey: string;
   evidence: Evidence[];
+  points?: { earned: number | null; possible: number; pending: number };
+  recordedCounts?: { correct: number; incorrect: number; unanswered: number; pending: number; partial: number };
+  sheetSections?: { id: string; title: string; correct: number; total: number; pending: number; earned: number | null; possible: number }[];
 };
 export type SkillMetric = {
   key: string;
@@ -90,9 +106,10 @@ export function sortResponseGroups(groups: ResponseGroup[], sort: ResponseSort, 
 export function groupResponseEvidence(evidence: Evidence[], dimension: ResponseDimension) {
   const groups = new Map<string, ResponseGroup>();
   for (const row of evidence) {
+    if (row.status === "Pending") continue;
     if (dimension === "subtopic" && row.section !== "math") continue;
     const category = row.passage ? passageCategory(row.passage.passageCategory) : undefined;
-    const key = dimension === "subtopic" ? JSON.stringify([row.question.topic, row.question.subtopic || "Unclassified"]) : dimension === "type" ? row.question.type : dimension === "skill" ? `${row.section}:${row.question.topic}` : dimension === "category" ? category ?? "" : row.passage?.id ?? "";
+    const key = dimension === "subtopic" ? JSON.stringify([row.question.topic, row.question.subtopic || "Unclassified"]) : dimension === "type" ? row.question.type : dimension === "skill" ? evidenceSkillKey({ ...row, kind: "exam" }) : dimension === "category" ? category ?? "" : row.passage?.id ?? "";
     if (!key) continue;
     const group = groups.get(key) ?? { key, versionLabel: dimension === "passage" ? row.passage?.versionLabel : undefined, label: dimension === "subtopic" ? `${row.question.topic} › ${row.question.subtopic || "Unclassified"}` : dimension === "type" ? row.question.type.replace(/_/g, " ") : dimension === "skill" ? row.question.topic : dimension === "category" ? passageCategoryLabel(category) : row.passage!.title, category: dimension === "category" || dimension === "passage" ? category : undefined, subject: row.section === "english" ? "English" : "Math", correct: 0, total: 0, incorrect: 0, unanswered: 0, assessments: new Set<string>(), lastAttempt: null };
     if (group.subject !== (row.section === "english" ? "English" : "Math")) group.subject = "English + Math";
@@ -107,7 +124,12 @@ export function groupResponseEvidence(evidence: Evidence[], dimension: ResponseD
   return sortResponseGroups([...groups.values()], "accuracy", "asc");
 }
 
-export function evidenceSkillKey(row: Pick<Evidence,"kind"|"section"|"question">) { return `${row.kind === "exam" ? "" : row.kind + ":"}${row.section}:${row.question.topic}`; }
+export function evidenceSkillKey(row: Pick<Evidence,"kind"|"section"|"question"|"skillArea">) {
+  const area = evidenceArea(row);
+  // Keep a differently tagged area distinct while preserving canonical skill links.
+  const suffix = area === topicArea(row.section, row.question.topic) ? "" : `:${area}`;
+  return `${row.kind === "exam" ? "" : row.kind + ":"}${row.section}:${row.question.topic}${suffix}`;
+}
 
 export function buildStudentAnalytics(inputs: AnalyticsInput[], basis = "all") {
   const richness = (input: AnalyticsInput) => (input.responses?.length ?? 0) + Object.keys(input.result.answers ?? {}).length;
@@ -131,19 +153,20 @@ export function buildStudentAnalytics(inputs: AnalyticsInput[], basis = "all") {
     if (seen.has(identity)) return false; seen.add(identity); return true;
   }).map((input, index) => {
     const { result, subjects } = input;
-    const sheetResult = result.source === "answer_sheet" && result.answerSheet && typeof result.answerSheet === "object" ? result.answerSheet as { analysisContent?: ExamContent } : undefined;
+    const sheetResult = result.source === "answer_sheet" && result.answerSheet && typeof result.answerSheet === "object" ? result.answerSheet as { sections?: { id: string; title: string; itemIds: string[] }[]; analysisContent?: ExamContent; grade?: SheetGrade; mapping?: { items?: { itemId: string; questionId: string }[] } } : undefined;
     const snapshot = result.analysisContent as ExamContent | undefined;
     const content = sheetResult?.analysisContent ?? snapshot ?? input.content;
     const date = typeof result.completedAt === "string" && Number.isFinite(Date.parse(result.completedAt)) ? result.completedAt : null;
     const key = attemptIdentity(input) ?? `${String(result.assessmentId ?? "exam")}:${date ?? "undated"}:${index}`;
     const title = String(result.title ?? content?.title ?? "Assessment");
     const source = input.sourceLabel ?? (result.source === "manual" ? "Paper" : result.source === "answer_sheet" ? "Answer sheet" : "Digital");
-    const complete = (input.kind ?? "exam") === "exam" && isFullExamResult(result);
+    const complete = (input.kind ?? "exam") === "exam" && !sheetResult?.grade?.pending && isFullExamResult(result);
     const english = subjects.find(item => item.subject === "English Language Arts" && item.total > 0);
     const math = subjects.find(item => item.subject === "Mathematics" && item.total > 0);
     const answersAvailable = result.answers && typeof result.answers === "object" && !Array.isArray(result.answers)
       && (source === "Digital" || Object.keys(result.answers).length > 0);
     const candidates = content && answersAvailable ? reviewQuestions(content, result as unknown as ExamResult) : [];
+    const scope = contentScope(content);
     const sectionCounts = candidates.reduce((counts, row) => { counts[row.section]++; return counts; }, { english: 0, math: 0 });
     const evidence: Evidence[] = candidates.filter(item => {
       if (input.responses) return input.responses.some(response => response.questionId === item.question.id);
@@ -155,24 +178,34 @@ export function buildStudentAnalytics(inputs: AnalyticsInput[], basis = "all") {
       return matchedTotals || Object.hasOwn(result.answers as object, item.question.id);
     }).map(item => {
       const stored = input.responses?.find(response => response.questionId === item.question.id);
+      const sheetItem = sheetResult?.mapping?.items?.find(mapping => mapping.questionId === item.question.id);
+      const sheetGrade = sheetResult?.grade?.items.find(grade => grade.itemId === sheetItem?.itemId);
       const rawSeconds = stored?.timeSpentSeconds ?? (result.questionTimes && typeof result.questionTimes === "object" ? number((result.questionTimes as Record<string, unknown>)[item.question.id]) : undefined);
       const sectionDate = (result.sectionCompletedAt as Record<string, unknown> | undefined)?.[item.section];
       return { ...item, ...(stored ? { number: stored.questionNumber ?? item.number, isCorrect: stored.isCorrect, storedCorrectAnswer: stored.correctAnswerId } : {}),
-        key: `${key}:${item.question.id}`, identity: JSON.stringify([item.question.id,item.question.prompt,item.question.choices,item.question.correctChoiceId,item.question.correctChoiceIds,item.question.correctTextAnswers]), attempt: key, kind: input.kind ?? "exam", examKey: key, examTitle: title,
+        key: `${key}:${item.question.id}`, identity: JSON.stringify([item.question.id, libraryQuestionKey(item.question), item.passage?.lines]), attempt: key, kind: input.kind ?? "exam", examKey: key, examTitle: title,
         date: typeof sectionDate === "string" && Number.isFinite(Date.parse(sectionDate)) ? sectionDate : date, source,
+        skillArea: item.section === "math" ? "math" : scope.areas.get(item.question.id) ?? topicArea(item.section, item.question.topic), contentSource: scope.source(item),
         provenance: snapshot || sheetResult?.analysisContent ? "Stored content snapshot" : stored ? "Original recorded grade · current matching content" : "Reconstructed from current content · historical grade may differ",
         correction: input.corrections?.find(response => response.questionId === item.question.id),
-        status: responseIsBlank(item.submittedAnswer) ? "Unanswered" as const : (stored?.isCorrect ?? item.isCorrect) ? "Correct" as const : "Incorrect" as const,
+        ...(sheetGrade ? { isCorrect: sheetGrade.status === "correct", points: { earned: sheetGrade.earned, possible: sheetGrade.possible } } : {}),
+        status: sheetGrade?.status === "pending" ? "Pending" as const : sheetGrade?.status === "unanswered" || responseIsBlank(item.submittedAnswer) ? "Unanswered" as const : (sheetGrade ? sheetGrade.status === "correct" : stored?.isCorrect ?? item.isCorrect) ? "Correct" as const : "Incorrect" as const,
         seconds: typeof rawSeconds === "number" && rawSeconds > 0 && Number.isFinite(rawSeconds) ? rawSeconds : undefined,
       };
     });
     const total = number(result.total);
     const correct = number(result.correct);
     return { ...input, content, key, title, date, source, complete, scope: input.kind === "practice" ? "Practice set" : input.kind === "passage" ? "Passage" : examScopeLabel(result),
-      overall: complete ? number(result.percentage) ?? (correct !== null && total !== null ? percentage(correct, total) : null) : null,
-      english: english ? percentage(english.correct, english.total) : null,
-      math: math ? percentage(math.correct, math.total) : null, correct, total,
+      overall: complete ? (correct !== null && total !== null ? percentage(correct, total) : number(result.percentage)) : null,
+      ...(sheetResult?.grade ? { points: { earned: sheetResult.grade.earned, possible: sheetResult.grade.possible, pending: sheetResult.grade.pending }, recordedCounts: { correct: sheetResult.grade.items.filter(item => item.status === "correct").length, incorrect: sheetResult.grade.items.filter(item => item.status === "incorrect").length, unanswered: sheetResult.grade.items.filter(item => item.status === "unanswered").length, pending: sheetResult.grade.pending, partial: sheetResult.grade.items.filter(item => item.earned !== null && item.earned > 0 && item.earned < item.possible).length } } : {}),
+      english: english && !sheetResult?.grade?.pending ? percentage(english.correct, english.total) : null,
+      math: math && !sheetResult?.grade?.pending ? percentage(math.correct, math.total) : null, correct, total,
       comparableKey: `${total ?? "unknown"}:${english?.total ?? "unknown"}:${math?.total ?? "unknown"}`,
+      sheetSections: sheetResult?.grade && sheetResult.sections?.map(section => {
+        const items = sheetResult.grade!.items.filter(item => section.itemIds.includes(item.itemId));
+        const pending = items.filter(item => item.status === "pending").length;
+        return { id: section.id, title: section.title, total: items.length, correct: items.filter(item => item.status === "correct").length, pending, earned: pending ? null : items.reduce((sum, item) => sum + (item.earned ?? 0), 0), possible: items.reduce((sum, item) => sum + item.possible, 0) };
+      }),
       evidence,
     };
   }).sort((a, b) => (a.date ? Date.parse(a.date) : Infinity) - (b.date ? Date.parse(b.date) : Infinity));
@@ -186,8 +219,8 @@ export function buildStudentAnalytics(inputs: AnalyticsInput[], basis = "all") {
   const skills = new Map<string, SkillMetric>();
   for (const exam of exams) {
     const grouped = new Map<string, { label: string; section: string; correct: number; total: number; evidence: Evidence[] }>();
-    for (const row of exam.evidence) {
-      const label = row.question.topic;
+    for (const row of exam.evidence.filter(row => row.status !== "Pending")) {
+      const label = row.question.topic?.trim() || "Unclassified";
       const key = evidenceSkillKey(row);
       const group = grouped.get(key) ?? { label, section: row.section, correct: 0, total: 0, evidence: [] };
       group.correct += row.isCorrect ? 1 : 0;
@@ -200,7 +233,7 @@ export function buildStudentAnalytics(inputs: AnalyticsInput[], basis = "all") {
       const fallback = Array.isArray(exam.result.topics) ? exam.result.topics as { topic: string; correct: number; total: number }[] : [];
       for (const topic of topics.length ? topics : fallback.map(item => ({ ...item, section: "unspecified" }))) {
         if (!topic || typeof topic.topic !== "string" || !Number.isFinite(topic.correct) || !(topic.total > 0)) continue;
-        grouped.set(`${topic.section}:${topic.topic}`, { label: topic.topic, section: topic.section, correct: topic.correct, total: topic.total, evidence: [] });
+        grouped.set(`${exam.kind && exam.kind !== "exam" ? exam.kind + ":" : ""}${topic.section}:${topic.topic}`, { label: topic.topic, section: topic.section, correct: topic.correct, total: topic.total, evidence: [] });
       }
     }
     for (const [key, group] of grouped) {
@@ -238,8 +271,12 @@ export function scoresAreComparable(a: AnalyticsExam, b: AnalyticsExam, metric: 
   return totalA !== undefined && totalA > 0 && totalA === totalB;
 }
 
+export function metricDate(exam: AnalyticsExam, metric: "overall" | "english" | "math") {
+  const sectionDate = metric !== "overall" ? (exam.result.sectionCompletedAt as Record<string, string> | undefined)?.[metric] : undefined;
+  return sectionDate && Number.isFinite(Date.parse(sectionDate)) ? sectionDate : exam.date;
+}
 export function progression(exams: AnalyticsExam[], metric: "overall" | "english" | "math") {
-  const measured = exams.filter(exam => (exam.kind ?? "exam") === "exam" && exam.date && exam[metric] !== null);
+  const measured = exams.filter(exam => (exam.kind ?? "exam") === "exam" && metricDate(exam, metric) && exam[metric] !== null).sort((a, b) => Date.parse(metricDate(a, metric)!) - Date.parse(metricDate(b, metric)!));
   const latest = measured.at(-1);
   const compatible = latest ? measured.filter(exam => scoresAreComparable(exam, latest, metric)) : [];
   const first = compatible[0];

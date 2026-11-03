@@ -1,0 +1,4174 @@
+{
+  "format": "nathan-tutors-official-passage-v1",
+  "source": {
+    "sourceFamily": "official_shsat",
+    "sourceFormat": "pdf",
+    "playerProfile": "testnav",
+    "label": "2020-2021 Form A",
+    "year": "2020-2021",
+    "form": "A",
+    "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_a.pdf"
+  },
+  "englishQuestions": [
+    {
+      "prompt": "What is the best way to combine the sentences?\n\n(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.\n\n(2) One of Jupiter’s moons is named Io.\n\n(3) Io has the greatest number of active volcanoes in the solar system.",
+      "promptHtml": "<p>What is the best way to combine the sentences?</p><blockquote data-boxed=\"true\">(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.<br>(2) One of Jupiter’s moons is named Io.<br>(3) Io has the greatest number of active volcanoes in the solar system.</blockquote>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+          "html": "<p>Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.",
+          "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.",
+          "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+          "html": "<p>Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>"
+        }
+      ],
+      "id": "20202021-form-a-q001",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "1",
+        "sourcePages": [
+          1
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ]
+        }
+      },
+      "correctChoiceId": "C",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>"
+    },
+    {
+      "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
+      "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) When coal was used to heat <u>homes</u>, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product <u>company</u> created a doughy substance to help people remove this soot. (3) Over time, as natural gas <u>becomes</u> more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he <u>remarketed</u> the product as the toy known today as Play-Doh.</blockquote>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became.",
+          "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed.",
+          "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became.",
+          "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed.",
+          "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>"
+        }
+      ],
+      "id": "20202021-form-a-q005",
+      "type": "multiple_choice",
+      "points": 1,
+      "explanation": "",
+      "topic": "",
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "5",
+        "sourcePages": [
+          3
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            3,
+            4
+          ]
+        }
+      },
+      "correctChoiceId": "C",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q5-1-png-passage.png\" alt=\"Supplied explanation for question 5\"></p><p><img src=\"/exam-images/restore-20202021-form-a-answers-q5-2-png-passage.png\" alt=\"Supplied explanation for question 5\"></p>"
+    }
+  ],
+  "passages": [
+    {
+      "title": "Find Time to Volunteer",
+      "author": "",
+      "format": "sentence_prose",
+      "passageType": "informational",
+      "passageCategory": "official_handbook",
+      "section": "revising_editing_a",
+      "label": "2020-2021 Form A",
+      "versionLabel": "2020-2021 Form A",
+      "text": "(1) Many people believe that they gain a greater sense of purpose by giving their time to serve others. (2) These are the people who spend their free time volunteering at various places within the community. (3) Those who are served benefit from the work of these volunteers. (4) However, research shows that those who volunteer also receive benefits.\n\n(5) For many students, this proposition may sound impossible. (6) Schoolwork can require hours of study each week. (7) Volunteering at a retirement center or homeless shelter requires both time and energy. (8) Extracurricular activities fill up after-school time. (9) Family obligations and part-time jobs often have to be worked into the schedule, too. (10) However, if students can find time to volunteer, even for a few hours a month, they may find that the benefits outweigh the scheduling difficulties.\n\n(11) To begin with, students who engage in volunteer activities acquire valuable skills and experience, which can help them focus on potential fields of study and career options. (12) Furthermore, when students list volunteer work on college applications, admissions counselors see applicants who care about making their community and college campus a better place.\n\n(13) Volunteerism benefits more than students applying to college. (14) This type of experience is equally important for students moving directly into the workforce after high school. (15) Volunteering demonstrates initiative, dedication, and a strong work ethic, qualities that companies value in a potential employee. (16) In a CareerBuilder study, 60 percent of managers regarded volunteerism as a significant asset when considering applicants.\n\n(17) Students who volunteer undoubtedly make a positive investment in their future, but they also affect their present quality of life. (18) Studies have shown that volunteering is good for both the mind and the body. (19) Volunteering can boost mood levels and reduce anxiety. (20) According to the Mayo Clinic,1 the feeling of doing something meaningful and the appreciation received from that action can reduce stress.\n\n(21) Even the busiest of students can find a way to donate some time to a worthy cause. (22) Though managing different commitments may seem overwhelming at times, students are sure to feel a sense of fulfillment in volunteerism.",
+      "richText": "<p>(1) Many people believe that they gain a greater sense of purpose by giving their time to serve others. (2) These are the people who spend their free time volunteering at various places within the community. (3) Those who are served benefit from the work of these volunteers. (4) However, research shows that those who volunteer also receive benefits.</p><p>(5) For many students, this proposition may sound impossible. (6) Schoolwork can require hours of study each week. (7) Volunteering at a retirement center or homeless shelter requires both time and energy. (8) Extracurricular activities fill up after-school time. (9) Family obligations and part-time jobs often have to be worked into the schedule, too. (10) However, if students can find time to volunteer, even for a few hours a month, they may find that the benefits outweigh the scheduling difficulties.</p><p>(11) To begin with, students who engage in volunteer activities acquire valuable skills and experience, which can help them focus on potential fields of study and career options. (12) Furthermore, when students list volunteer work on college applications, admissions counselors see applicants who care about making their community and college campus a better place.</p><p>(13) Volunteerism benefits more than students applying to college. (14) This type of experience is equally important for students moving directly into the workforce after high school. (15) Volunteering demonstrates initiative, dedication, and a strong work ethic, qualities that companies value in a potential employee. (16) In a CareerBuilder study, 60 percent of managers regarded volunteerism as a significant asset when considering applicants.</p><p>(17) Students who volunteer undoubtedly make a positive investment in their future, but they also affect their present quality of life. (18) Studies have shown that volunteering is good for both the mind and the body. (19) Volunteering can boost mood levels and reduce anxiety. (20) According to the <span data-glossary-definition=\"a nonprofit medical organization dedicated to treatment and research\" role=\"link\" tabindex=\"0\">Mayo Clinic</span>,<sup><strong>1</strong></sup> the feeling of doing something meaningful and the appreciation received from that action can reduce stress.</p><p>(21) Even the busiest of students can find a way to donate some time to a worthy cause. (22) Though managing different commitments may seem overwhelming at times, students are sure to feel a sense of fulfillment in volunteerism.</p>",
+      "questions": [
+        {
+          "prompt": "Which revision of sentence 2 uses the most precise language?",
+          "promptHtml": "<p>Which revision of sentence 2 uses the most precise language?</p>",
+          "choices": [
+            {
+              "id": "E",
+              "text": "These are the people who spend their free time volunteering at animal shelters, helping with activities in community centers, or cleaning up parks.",
+              "html": "<p>These are the people who spend their free time volunteering at animal shelters, helping with activities in community centers, or cleaning up parks.</p>"
+            },
+            {
+              "id": "F",
+              "text": "These are the people who spend their free time helping others in numerous ways at a variety of places, events, or organizations that need support.",
+              "html": "<p>These are the people who spend their free time helping others in numerous ways at a variety of places, events, or organizations that need support.</p>"
+            },
+            {
+              "id": "G",
+              "text": "These are the people who spend their free time working at local establishments that help people, animals, or other groups in need of assistance.",
+              "html": "<p>These are the people who spend their free time working at local establishments that help people, animals, or other groups in need of assistance.</p>"
+            },
+            {
+              "id": "H",
+              "text": "These are the people who spend a lot of time volunteering at places where they can help people in many ways.",
+              "html": "<p>These are the people who spend a lot of time volunteering at places where they can help people in many ways.</p>"
+            }
+          ],
+          "id": "20202021-form-a-q006",
+          "type": "multiple_choice",
+          "points": 1,
+          "explanation": "",
+          "topic": "",
+          "review": {
+            "sourceFile": "20202021_form_a.pdf",
+            "sourceQuestion": "6",
+            "sourcePages": [
+              6
+            ],
+            "sourceReviewed": false,
+            "classificationReviewed": false,
+            "completenessReviewed": false,
+            "answerSource": {
+              "sourceFile": "20202021_form_a_-_answers.pdf",
+              "sourcePages": [
+                49
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "20202021_form_a_-_answers.pdf",
+              "sourcePages": [
+                4
+              ]
+            }
+          },
+          "correctChoiceId": "E",
+          "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q6-1-png-passage.png\" alt=\"Supplied explanation for question 6\"></p>"
+        },
+        {
+          "prompt": "Which sentence should follow sentence 4 to introduce the main claim of the passage?",
+          "promptHtml": "<p>Which sentence should follow sentence 4 to introduce the main claim of the passage?</p>",
+          "choices": [
+            {
+              "id": "A",
+              "text": "With that in mind, high school students should consider engaging in some form of regular volunteerism.",
+              "html": "<p>With that in mind, high school students should consider engaging in some form of regular volunteerism.</p>"
+            },
+            {
+              "id": "B",
+              "text": "Fortunately for students, these benefits are guaranteed to produce both immediate and long-term results.",
+              "html": "<p>Fortunately for students, these benefits are guaranteed to produce both immediate and long-term results.</p>"
+            },
+            {
+              "id": "C",
+              "text": "In fact, studies have confirmed that volunteerism can be beneficial for students, the family, and the community.",
+              "html": "<p>In fact, studies have confirmed that volunteerism can be beneficial for students, the family, and the community.</p>"
+            },
+            {
+              "id": "D",
+              "text": "For this reason, high school students should learn about how helping others can strengthen their communities.",
+              "html": "<p>For this reason, high school students should learn about how helping others can strengthen their communities.</p>"
+            }
+          ],
+          "id": "20202021-form-a-q007",
+          "type": "multiple_choice",
+          "points": 1,
+          "explanation": "",
+          "topic": "",
+          "review": {
+            "sourceFile": "20202021_form_a.pdf",
+            "sourceQuestion": "7",
+            "sourcePages": [
+              6
+            ],
+            "sourceReviewed": false,
+            "classificationReviewed": false,
+            "completenessReviewed": false,
+            "answerSource": {
+              "sourceFile": "20202021_form_a_-_answers.pdf",
+              "sourcePages": [
+                49
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "20202021_form_a_-_answers.pdf",
+              "sourcePages": [
+                4
+              ]
+            }
+          },
+          "correctChoiceId": "A",
+          "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q7-1-png-passage.png\" alt=\"Supplied explanation for question 7\"></p>"
+        },
+        {
+          "prompt": "Which sentence is least relevant to the ideas presented in the second paragraph (sentences 5–10) and should be deleted?",
+          "promptHtml": "<p>Which sentence is least relevant to the ideas presented in the second paragraph (sentences 5–10) and should be deleted?</p>",
+          "choices": [
+            {
+              "id": "E",
+              "text": "sentence 6",
+              "html": "<p>sentence 6</p>"
+            },
+            {
+              "id": "F",
+              "text": "sentence 7",
+              "html": "<p>sentence 7</p>"
+            },
+            {
+              "id": "G",
+              "text": "sentence 8",
+              "html": "<p>sentence 8</p>"
+            },
+            {
+              "id": "H",
+              "text": "sentence 9",
+              "html": "<p>sentence 9</p>"
+            }
+          ],
+          "id": "20202021-form-a-q008",
+          "type": "multiple_choice",
+          "points": 1,
+          "explanation": "",
+          "topic": "",
+          "review": {
+            "sourceFile": "20202021_form_a.pdf",
+            "sourceQuestion": "8",
+            "sourcePages": [
+              6
+            ],
+            "sourceReviewed": false,
+            "classificationReviewed": false,
+            "completenessReviewed": false,
+            "answerSource": {
+              "sourceFile": "20202021_form_a_-_answers.pdf",
+              "sourcePages": [
+                49
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "20202021_form_a_-_answers.pdf",
+              "sourcePages": [
+                5
+              ]
+            }
+          },
+          "correctChoiceId": "F",
+          "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q8-1-png-passage.png\" alt=\"Supplied explanation for question 8\"></p>"
+        },
+        {
+          "prompt": "Which of these would best follow sentence 12 and support the ideas presented in the third paragraph (sentences 11–12)?",
+          "promptHtml": "<p>Which of these would best follow sentence 12 and support the ideas presented in the third paragraph (sentences 11–12)?</p>",
+          "choices": [
+            {
+              "id": "A",
+              "text": "These students show that they are likely to be responsible, reliable, and helpful young adults. Admissions counselors know that character traits like these will benefit the applicants as well as whomever they interact with.",
+              "html": "<p>These students show that they are likely to be responsible, reliable, and helpful young adults. Admissions counselors know that character traits like these will benefit the applicants as well as whomever they interact with.</p>"
+            },
+            {
+              "id": "B",
+              "text": "Volunteering can help students meet new people who can provide references and advice to the students when they are applying to colleges. It can also be an invaluable opportunity for students to meet possible future employers.",
+              "html": "<p>Volunteering can help students meet new people who can provide references and advice to the students when they are applying to colleges. It can also be an invaluable opportunity for students to meet possible future employers.</p>"
+            },
+            {
+              "id": "C",
+              "text": "The counselors hope that young adults who demonstrate this behavior will go on to volunteer during their college years, working on campus in student government and leadership programs or serving in the community at hospitals, schools, and homeless shelters.",
+              "html": "<p>The counselors hope that young adults who demonstrate this behavior will go on to volunteer during their college years, working on campus in student government and leadership programs or serving in the community at hospitals, schools, and homeless shelters.</p>"
+            },
+            {
+              "id": "D",
+              "text": "Many colleges are looking for students who are not just academically successful but who also work well with others and care about improving and serving surrounding communities.",
+              "html": "<p>Many colleges are looking for students who are not just academically successful but who also work well with others and care about improving and serving surrounding communities.</p>"
+            }
+          ],
+          "id": "20202021-form-a-q009",
+          "type": "multiple_choice",
+          "points": 1,
+          "explanation": "",
+          "topic": "",
+          "review": {
+            "sourceFile": "20202021_form_a.pdf",
+            "sourceQuestion": "9",
+            "sourcePages": [
+              7
+            ],
+            "sourceReviewed": false,
+            "classificationReviewed": false,
+            "completenessReviewed": false,
+            "answerSource": {
+              "sourceFile": "20202021_form_a_-_answers.pdf",
+              "sourcePages": [
+                49
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "20202021_form_a_-_answers.pdf",
+              "sourcePages": [
+                6
+              ]
+            }
+          },
+          "correctChoiceId": "D",
+          "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q9-1-png-passage.png\" alt=\"Supplied explanation for question 9\"></p>"
+        },
+        {
+          "prompt": "Which concluding sentence should replace sentence 22 to provide the best support for the argument presented in the passage?",
+          "promptHtml": "<p>Which concluding sentence should replace sentence 22 to provide the best support for the argument presented in the passage?</p>",
+          "choices": [
+            {
+              "id": "E",
+              "text": "In every city, there are homeless shelters, food pantries, youth centers, and political campaigns that depend on the support and commitment of hardworking young people.",
+              "html": "<p>In every city, there are homeless shelters, food pantries, youth centers, and political campaigns that depend on the support and commitment of hardworking young people.</p>"
+            },
+            {
+              "id": "F",
+              "text": "Clearly, students who volunteer will experience a host of benefits, such as learning new skills meeting interesting people, opening up opportunities for the future, and gaining a sense of satisfaction.",
+              "html": "<p>Clearly, students who volunteer will experience a host of benefits, such as learning new skills meeting interesting people, opening up opportunities for the future, and gaining a sense of satisfaction.</p>"
+            },
+            {
+              "id": "G",
+              "text": "When students carefully evaluate their activities and prioritize volunteerism, they find a way to work it into their schedule and are soon encouraging their peers to do the same.",
+              "html": "<p>When students carefully evaluate their activities and prioritize volunteerism, they find a way to work it into their schedule and are soon encouraging their peers to do the same.</p>"
+            },
+            {
+              "id": "H",
+              "text": "Whether they are seeking admission to college, preparing to enter the workforce, or simply looking to reduce stress, high school students who volunteer can help themselves as much a they help others.",
+              "html": "<p>Whether they are seeking admission to college, preparing to enter the workforce, or simply looking to reduce stress, high school students who volunteer can help themselves as much a they help others.</p>"
+            }
+          ],
+          "id": "20202021-form-a-q010",
+          "type": "multiple_choice",
+          "points": 1,
+          "explanation": "",
+          "topic": "",
+          "review": {
+            "sourceFile": "20202021_form_a.pdf",
+            "sourceQuestion": "10",
+            "sourcePages": [
+              7
+            ],
+            "sourceReviewed": false,
+            "classificationReviewed": false,
+            "completenessReviewed": false,
+            "answerSource": {
+              "sourceFile": "20202021_form_a_-_answers.pdf",
+              "sourcePages": [
+                49
+              ]
+            },
+            "explanationSource": {
+              "sourceFile": "20202021_form_a_-_answers.pdf",
+              "sourcePages": [
+                7
+              ]
+            }
+          },
+          "correctChoiceId": "H",
+          "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q10-1-png-passage.png\" alt=\"Supplied explanation for question 10\"></p>"
+        }
+      ],
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourcePages": [
+          5,
+          6,
+          7
+        ],
+        "expectedQuestionCount": 5,
+        "sourceReviewed": false,
+        "completenessReviewed": false
+      }
+    }
+  ],
+  "mathQuestions": [
+    {
+      "id": "pdf-shsat-2020-2021-a-q058",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Simplify:\n\\[-3.8+2.3-(-1.1)\\]",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Integers & Absolute Value",
+      "correctTextAnswers": [
+        "-0.4"
+      ],
+      "type": "short_response",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Integers & Absolute Value"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "58",
+        "sourcePages": [
+          38
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            31
+          ]
+        }
+      },
+      "promptHtml": "<p>Simplify:</p><p>\\[-3.8+2.3-(-1.1)\\]</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q58-1-png-passage.png\" alt=\"Supplied explanation for question 58\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q059",
+      "skilled": "057217b6-5a0d-4c3e-aef9-be5e38a5d0e9",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Angle M and angle R are supplementary. The measure of angle R is 5 times the measure of angle M. What is the measure of angle R, in degrees?",
+      "topic": "Geometry",
+      "subtopic": "Lines & Angles",
+      "correctTextAnswers": [
+        "150"
+      ],
+      "type": "short_response",
+      "commandMetadata": {
+        "category": "Geometry",
+        "subcategory": "Lines & Angles"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "59",
+        "sourcePages": [
+          38
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            31
+          ]
+        }
+      },
+      "promptHtml": "<p>Angle M and angle R are supplementary. The measure of angle R is 5 times the measure of angle M. What is the measure of angle R, in degrees?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q59-1-png-passage.png\" alt=\"Supplied explanation for question 59\"></p><p><img src=\"/exam-images/restore-20202021-form-a-answers-q59-2-png-passage.png\" alt=\"Supplied explanation for question 59\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q060",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "A juice mixture contains \\(\\frac{3}{16}\\) gallon of apple juice and \\(\\frac{3}{40}\\) gallon of cranberry juice. How many gallons of apple juice per gallon of cranberry juice does the mixture contain? (Express your answer as a decimal.)",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Ratios & Proportions",
+      "correctTextAnswers": [
+        "2.5"
+      ],
+      "type": "short_response",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "60",
+        "sourcePages": [
+          38
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            31
+          ]
+        }
+      },
+      "promptHtml": "<p>A juice mixture contains \\(\\frac{3}{16}\\) gallon of apple juice and \\(\\frac{3}{40}\\) gallon of cranberry juice. How many gallons of apple juice per gallon of cranberry juice does the mixture contain? (Express your answer as a decimal.)</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q60-1-png-passage.png\" alt=\"Supplied explanation for question 60\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q061",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Mr. Chan’s lawn grows \\(2\\frac{1}{8}\\) inches every 2 weeks. He mows his lawn every 2 weeks and cuts off the top \\(1\\frac{3}{4}\\) inches of lawn. If Mr. Chan’s lawn was 4 inches tall at the beginning of the season, how many inches tall, in decimal form, is Mr. Chan’s lawn after 8 weeks?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Rates & Unit Rates",
+      "correctTextAnswers": [
+        "5.5"
+      ],
+      "type": "short_response",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "61",
+        "sourcePages": [
+          39
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            32
+          ]
+        }
+      },
+      "promptHtml": "<p>Mr. Chan’s lawn grows \\(2\\frac{1}{8}\\) inches every 2 weeks. He mows his lawn every 2 weeks and cuts off the top \\(1\\frac{3}{4}\\) inches of lawn. If Mr. Chan’s lawn was 4 inches tall at the beginning of the season, how many inches tall, in decimal form, is Mr. Chan’s lawn after 8 weeks?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q61-1-png-passage.png\" alt=\"Supplied explanation for question 61\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q062",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "The table above shows the number of children in each of 110 families. What is the median number of children in these families?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q62-df0d4f228bee92e8.png\" alt=\"Math diagram\" width=\"250\">The table above shows the number of children in each of 110 families. What is the median number of children in these families?",
+      "topic": "Statistics and Probability",
+      "subtopic": "Averages & Spread",
+      "correctTextAnswers": [
+        "1"
+      ],
+      "type": "short_response",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "62",
+        "sourcePages": [
+          39
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            32
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q62-1-png-passage.png\" alt=\"Supplied explanation for question 62\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q063",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Mr. Jones has 550 goats, which is 10% more than Mr. King has. How many more goats does Mr. Jones have than Mr. King?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Percentages",
+      "choices": [
+        {
+          "id": "A",
+          "text": "50",
+          "html": "50"
+        },
+        {
+          "id": "B",
+          "text": "55",
+          "html": "55"
+        },
+        {
+          "id": "C",
+          "text": "495",
+          "html": "495"
+        },
+        {
+          "id": "D",
+          "text": "500",
+          "html": "500"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Percentages"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "63",
+        "sourcePages": [
+          40
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            33
+          ]
+        }
+      },
+      "promptHtml": "<p>Mr. Jones has 550 goats, which is 10% more than Mr. King has. How many more goats does Mr. Jones have than Mr. King?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q63-1-png-passage.png\" alt=\"Supplied explanation for question 63\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q064",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "If \\(\\frac{2y}{x}-\\frac{y}{2x}=\\frac{\\square}{2x}\\) and \\(x\\ne0\\), what expression is represented by \\(\\square\\)?",
+      "topic": "Algebra",
+      "subtopic": "Algebraic Expressions",
+      "choices": [
+        {
+          "id": "A",
+          "math": "y",
+          "text": "y",
+          "html": "\\(y\\)"
+        },
+        {
+          "id": "B",
+          "math": "2y",
+          "text": "two y",
+          "html": "\\(2y\\)"
+        },
+        {
+          "id": "C",
+          "math": "3y",
+          "text": "three y",
+          "html": "\\(3y\\)"
+        },
+        {
+          "id": "D",
+          "math": "4y",
+          "text": "four y",
+          "html": "\\(4y\\)"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Algebra",
+        "subcategory": "Algebraic Expressions"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "64",
+        "sourcePages": [
+          40
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            33
+          ]
+        }
+      },
+      "promptHtml": "<p>If \\(\\frac{2y}{x}-\\frac{y}{2x}=\\frac{\\square}{2x}\\) and \\(x\\ne0\\), what expression is represented by \\(\\square\\)?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q64-1-png-passage.png\" alt=\"Supplied explanation for question 64\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q065",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "In the figure above, PQRS is a square. Point S is the center of the circle, and points P and R are on the circle. If the area of the square is 4 square centimeters, what is the area, in square centimeters, of the shaded quarter of the circle?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q65-462850127733b234.png\" alt=\"Math diagram\" width=\"250\">In the figure above, PQRS is a square. Point S is the center of the circle, and points P and R are on the circle. If the area of the square is 4 square centimeters, what is the area, in square centimeters, of the shaded quarter of the circle?",
+      "topic": "Geometry",
+      "subtopic": "Circles",
+      "choices": [
+        {
+          "id": "A",
+          "math": "\\frac{\\pi}{4}",
+          "text": "pi over four",
+          "html": "\\(\\frac{\\pi}{4}\\)"
+        },
+        {
+          "id": "B",
+          "math": "\\pi",
+          "text": "pi",
+          "html": "\\(\\pi\\)"
+        },
+        {
+          "id": "C",
+          "math": "2\\pi",
+          "text": "two pi",
+          "html": "\\(2\\pi\\)"
+        },
+        {
+          "id": "D",
+          "math": "4\\pi",
+          "text": "four pi",
+          "html": "\\(4\\pi\\)"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Geometry",
+        "subcategory": "Circles"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "65",
+        "sourcePages": [
+          40
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            33
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q65-1-png-passage.png\" alt=\"Supplied explanation for question 65\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q066",
+      "skilled": "6ef8aa5f-caf0-4820-9d24-eaf0e4b2c21e",
+      "explanation": "",
+      "points": 1,
+      "prompt": "A list of consecutive integers begins with \\(m\\) and ends with \\(n\\). If \\(n-m=66\\), how many integers are in the list?",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Number Types & Properties",
+      "choices": [
+        {
+          "id": "A",
+          "text": "2",
+          "html": "2"
+        },
+        {
+          "id": "B",
+          "text": "33",
+          "html": "33"
+        },
+        {
+          "id": "C",
+          "text": "66",
+          "html": "66"
+        },
+        {
+          "id": "D",
+          "text": "67",
+          "html": "67"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Number Types & Properties"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "66",
+        "sourcePages": [
+          41
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            34
+          ]
+        }
+      },
+      "promptHtml": "<p>A list of consecutive integers begins with \\(m\\) and ends with \\(n\\). If \\(n-m=66\\), how many integers are in the list?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q66-1-png-passage.png\" alt=\"Supplied explanation for question 66\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q067",
+      "skilled": "9abd5350-a5f2-4fad-9822-c1e064977942",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Simplify:\n\\[\\frac{\\frac{39(x-3)}{3}+39}{13}\\]",
+      "topic": "Algebra",
+      "subtopic": "Algebraic Expressions",
+      "choices": [
+        {
+          "id": "A",
+          "math": "x",
+          "text": "x",
+          "html": "\\(x\\)"
+        },
+        {
+          "id": "B",
+          "math": "x-2",
+          "text": "x minus two",
+          "html": "\\(x-2\\)"
+        },
+        {
+          "id": "C",
+          "math": "13x-36",
+          "text": "thirteen x minus thirty-six",
+          "html": "\\(13x-36\\)"
+        },
+        {
+          "id": "D",
+          "math": "x+\\frac{36}{13}",
+          "text": "x plus thirty-six thirteenths",
+          "html": "\\(x+\\frac{36}{13}\\)"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "67",
+        "sourcePages": [
+          41
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            34
+          ]
+        }
+      },
+      "promptHtml": "<p>Simplify:</p><p>\\[\\frac{\\frac{39(x-3)}{3}+39}{13}\\]</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q67-1-png-passage.png\" alt=\"Supplied explanation for question 67\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q068",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Jar 1 and Jar 2 each contain \\(\\frac12\\) cup of water. If \\(\\frac14\\) of the water in Jar 1 is poured into Jar 2, how much water is now in Jar 2?",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Fractions & Decimals",
+      "choices": [
+        {
+          "id": "A",
+          "math": "\\frac18\\text{ cup}",
+          "text": "one-eighth cup",
+          "html": "\\(\\frac18\\text{ cup}\\)"
+        },
+        {
+          "id": "B",
+          "math": "\\frac14\\text{ cup}",
+          "text": "one-fourth cup",
+          "html": "\\(\\frac14\\text{ cup}\\)"
+        },
+        {
+          "id": "C",
+          "math": "\\frac58\\text{ cup}",
+          "text": "five-eighths cup",
+          "html": "\\(\\frac58\\text{ cup}\\)"
+        },
+        {
+          "id": "D",
+          "math": "\\frac34\\text{ cup}",
+          "text": "three-fourths cup",
+          "html": "\\(\\frac34\\text{ cup}\\)"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Fractions & Decimals"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "68",
+        "sourcePages": [
+          41
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            34
+          ]
+        }
+      },
+      "promptHtml": "<p>Jar 1 and Jar 2 each contain \\(\\frac12\\) cup of water. If \\(\\frac14\\) of the water in Jar 1 is poured into Jar 2, how much water is now in Jar 2?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q68-1-png-passage.png\" alt=\"Supplied explanation for question 68\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q069",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "If \\(n\\) is a whole number, and 0.01 is between \\(\\frac1n\\) and \\(\\frac1{n+2}\\), what is the value of \\(n\\)?",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Fractions & Decimals",
+      "choices": [
+        {
+          "id": "A",
+          "text": "0",
+          "html": "0"
+        },
+        {
+          "id": "B",
+          "text": "1",
+          "html": "1"
+        },
+        {
+          "id": "C",
+          "text": "2",
+          "html": "2"
+        },
+        {
+          "id": "D",
+          "text": "99",
+          "html": "99"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Fractions & Decimals"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "69",
+        "sourcePages": [
+          41
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            34
+          ]
+        }
+      },
+      "promptHtml": "<p>If \\(n\\) is a whole number, and 0.01 is between \\(\\frac1n\\) and \\(\\frac1{n+2}\\), what is the value of \\(n\\)?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q69-1-png-passage.png\" alt=\"Supplied explanation for question 69\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q070",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "When asked a certain question in a poll, 72% of the people polled answered yes. If 56 people did not answer yes to that question, what is the total number of people who were polled?",
+      "promptHtml": "When asked a certain question in a poll, 72% of the people polled answered yes. If 56 people did <strong>not </strong>answer yes to that question, what is the total number of people who were polled?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Percentages",
+      "choices": [
+        {
+          "id": "A",
+          "text": "78",
+          "html": "78"
+        },
+        {
+          "id": "B",
+          "text": "128",
+          "html": "128"
+        },
+        {
+          "id": "C",
+          "text": "144",
+          "html": "144"
+        },
+        {
+          "id": "D",
+          "text": "200",
+          "html": "200"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "70",
+        "sourcePages": [
+          42
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            34
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q70-1-png-passage.png\" alt=\"Supplied explanation for question 70\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q071",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "A museum has a room in the shape of a rectangle. The area of the floor is 960 square feet. In a scale drawing of the museum, 1 inch = 20 feet. If the length of the room is 2 inches in the scale drawing, what is the width of this room in the scale drawing?",
+      "topic": "Geometry",
+      "subtopic": "Similarity & Scale Drawings",
+      "choices": [
+        {
+          "id": "A",
+          "math": "1\\frac15\\text{ in.}",
+          "text": "one and one-fifth inches",
+          "html": "\\(1\\frac15\\text{ in.}\\)"
+        },
+        {
+          "id": "B",
+          "math": "1\\frac14\\text{ in.}",
+          "text": "one and one-fourth inches",
+          "html": "\\(1\\frac14\\text{ in.}\\)"
+        },
+        {
+          "id": "C",
+          "text": "24 in.",
+          "html": "24 in."
+        },
+        {
+          "id": "D",
+          "text": "40 in.",
+          "html": "40 in."
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Geometry",
+        "subcategory": "Similarity & Scale Drawings"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "71",
+        "sourcePages": [
+          42
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            35
+          ]
+        }
+      },
+      "promptHtml": "<p>A museum has a room in the shape of a rectangle. The area of the floor is 960 square feet. In a scale drawing of the museum, 1 inch = 20 feet. If the length of the room is 2 inches in the scale drawing, what is the width of this room in the scale drawing?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q71-1-png-passage.png\" alt=\"Supplied explanation for question 71\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q072",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "A program on a computer randomly generates a sequence of whole numbers from 1 to 9, inclusive. If the computer generates a sequence of 300 numbers, what is the best prediction of the number of odd numbers in the sequence?",
+      "topic": "Statistics and Probability",
+      "subtopic": "Data Displays & Sampling",
+      "choices": [
+        {
+          "id": "A",
+          "text": "120",
+          "html": "120"
+        },
+        {
+          "id": "B",
+          "text": "133",
+          "html": "133"
+        },
+        {
+          "id": "C",
+          "text": "150",
+          "html": "150"
+        },
+        {
+          "id": "D",
+          "text": "167",
+          "html": "167"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Statistics and Probability",
+        "subcategory": "Data Displays & Sampling"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "72",
+        "sourcePages": [
+          42
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            35
+          ]
+        }
+      },
+      "promptHtml": "<p>A program on a computer randomly generates a sequence of whole numbers from 1 to 9, inclusive. If the computer generates a sequence of 300 numbers, what is the best prediction of the number of odd numbers in the sequence?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q72-1-png-passage.png\" alt=\"Supplied explanation for question 72\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q073",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "A truck rental company charges a one-time fee of $40 plus $1 per mile driven. Dalia rented a truck and used a coupon for 20% off the total rental cost. After the coupon was applied, she spent a total of $60. How many miles did she drive?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Percentages",
+      "choices": [
+        {
+          "id": "A",
+          "text": "8",
+          "html": "8"
+        },
+        {
+          "id": "B",
+          "text": "20",
+          "html": "20"
+        },
+        {
+          "id": "C",
+          "text": "32",
+          "html": "32"
+        },
+        {
+          "id": "D",
+          "text": "35",
+          "html": "35"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Percentages"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "73",
+        "sourcePages": [
+          42
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            35
+          ]
+        }
+      },
+      "promptHtml": "<p>A truck rental company charges a one-time fee of $40 plus $1 per mile driven. Dalia rented a truck and used a coupon for 20% off the total rental cost. After the coupon was applied, she spent a total of $60. How many miles did she drive?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q73-1-png-passage.png\" alt=\"Supplied explanation for question 73\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q074",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "The probability of drawing a red candy at random from a bag of 25 candies is \\(\\frac25\\). After 5 red candies are removed from the bag, what is the probability of randomly drawing a red candy from the bag?",
+      "topic": "Statistics and Probability",
+      "subtopic": "Probability",
+      "choices": [
+        {
+          "id": "A",
+          "text": "0",
+          "html": "0"
+        },
+        {
+          "id": "B",
+          "math": "\\frac1{10}",
+          "text": "one-tenth",
+          "html": "\\(\\frac1{10}\\)"
+        },
+        {
+          "id": "C",
+          "math": "\\frac15",
+          "text": "one-fifth",
+          "html": "\\(\\frac15\\)"
+        },
+        {
+          "id": "D",
+          "math": "\\frac14",
+          "text": "one-fourth",
+          "html": "\\(\\frac14\\)"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Statistics and Probability",
+        "subcategory": "Probability"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "74",
+        "sourcePages": [
+          43
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            36
+          ]
+        }
+      },
+      "promptHtml": "<p>The probability of drawing a red candy at random from a bag of 25 candies is \\(\\frac25\\). After 5 red candies are removed from the bag, what is the probability of randomly drawing a red candy from the bag?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q74-1-png-passage.png\" alt=\"Supplied explanation for question 74\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q075",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Each number in a sequence is formed by doubling the previous number and then adding 1. If the 9th number in the sequence is 63, what is the 10th number minus the 7th number?",
+      "topic": "Algebra",
+      "subtopic": "Patterns & Sequences",
+      "choices": [
+        {
+          "id": "A",
+          "text": "96",
+          "html": "96"
+        },
+        {
+          "id": "B",
+          "text": "111",
+          "html": "111"
+        },
+        {
+          "id": "C",
+          "text": "112",
+          "html": "112"
+        },
+        {
+          "id": "D",
+          "text": "127",
+          "html": "127"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Algebra",
+        "subcategory": "Patterns & Sequences"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "75",
+        "sourcePages": [
+          43
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            36,
+            37
+          ]
+        }
+      },
+      "promptHtml": "<p>Each number in a sequence is formed by doubling the previous number and then adding 1. If the 9th number in the sequence is 63, what is the 10th number minus the 7th number?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q75-1-png-passage.png\" alt=\"Supplied explanation for question 75\"></p><p><img src=\"/exam-images/restore-20202021-form-a-answers-q75-2-png-passage.png\" alt=\"Supplied explanation for question 75\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q076",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "8.9, 8.2, 8.5, 9.0, 8.4, 8.6, 8.8\n\nAt a skating championship, there are seven judges who each award a score for each skater’s performance. The highest and lowest scores given to each skater are discarded, and the mean of the remaining scores is then calculated and reported as the skater’s final score. What is the final score for the skater who received the scores shown above from the judges?",
+      "topic": "Statistics and Probability",
+      "subtopic": "Averages & Spread",
+      "choices": [
+        {
+          "id": "A",
+          "text": "8.60",
+          "html": "8.60"
+        },
+        {
+          "id": "B",
+          "text": "8.62",
+          "html": "8.62"
+        },
+        {
+          "id": "C",
+          "text": "8.64",
+          "html": "8.64"
+        },
+        {
+          "id": "D",
+          "text": "8.70",
+          "html": "8.70"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "76",
+        "sourcePages": [
+          43
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            37
+          ]
+        }
+      },
+      "promptHtml": "<p>8.9, 8.2, 8.5, 9.0, 8.4, 8.6, 8.8</p><p>At a skating championship, there are seven judges who each award a score for each skater’s performance. The highest and lowest scores given to each skater are discarded, and the mean of the remaining scores is then calculated and reported as the skater’s final score. What is the final score for the skater who received the scores shown above from the judges?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q76-1-png-passage.png\" alt=\"Supplied explanation for question 76\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q077",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "A piece of wood that is \\(4\\frac12\\) feet long is cut into 2 pieces of different lengths. The shorter piece has a length of \\(x\\) feet. Which inequality expresses all possible values of \\(x\\)?",
+      "topic": "Algebra",
+      "subtopic": "Inequalities",
+      "choices": [
+        {
+          "id": "A",
+          "math": "0<x<2\\frac14",
+          "text": "zero less than x less than two and one-fourth",
+          "html": "\\(0<x<2\\frac14\\)"
+        },
+        {
+          "id": "B",
+          "math": "0\\le x\\le 2\\frac14",
+          "text": "zero less than or equal to x less than or equal to two and one-fourth",
+          "html": "\\(0\\le x\\le 2\\frac14\\)"
+        },
+        {
+          "id": "C",
+          "math": "0<x<4\\frac12",
+          "text": "zero less than x less than four and one-half",
+          "html": "\\(0<x<4\\frac12\\)"
+        },
+        {
+          "id": "D",
+          "math": "2\\frac14<x<4\\frac12",
+          "text": "two and one-fourth less than x less than four and one-half",
+          "html": "\\(2\\frac14<x<4\\frac12\\)"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "77",
+        "sourcePages": [
+          43
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            37
+          ]
+        }
+      },
+      "promptHtml": "<p>A piece of wood that is \\(4\\frac12\\) feet long is cut into 2 pieces of different lengths. The shorter piece has a length of \\(x\\) feet. Which inequality expresses all possible values of \\(x\\)?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q77-1-png-passage.png\" alt=\"Supplied explanation for question 77\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q078",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "What is the area, in square units, of the shaded region shown in the figure above?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q78-760d3a078450c895.png\" alt=\"Math diagram\" width=\"200\">What is the area, in square units, of the shaded region shown in the figure above?",
+      "topic": "Geometry",
+      "subtopic": "Area & Perimeter",
+      "choices": [
+        {
+          "id": "A",
+          "text": "75",
+          "html": "75"
+        },
+        {
+          "id": "B",
+          "text": "125",
+          "html": "125"
+        },
+        {
+          "id": "C",
+          "text": "150",
+          "html": "150"
+        },
+        {
+          "id": "D",
+          "text": "200",
+          "html": "200"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "78",
+        "sourcePages": [
+          44
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            38
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q78-1-png-passage.png\" alt=\"Supplied explanation for question 78\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q079",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "\\[F=\\frac95 C+32\\]\n\nYesterday in Centerville, the highest Fahrenheit temperature, F, was 86°, and the lowest was 68°. What was the difference between these temperatures, in degrees Celsius, C?",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Units & Conversions",
+      "choices": [
+        {
+          "id": "A",
+          "text": "10.0° C",
+          "html": "10.0° C"
+        },
+        {
+          "id": "B",
+          "text": "15.0° C",
+          "html": "15.0° C"
+        },
+        {
+          "id": "C",
+          "text": "20.0° C",
+          "html": "20.0° C"
+        },
+        {
+          "id": "D",
+          "text": "32.4° C",
+          "html": "32.4° C"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Units & Conversions"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "79",
+        "sourcePages": [
+          44
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            38,
+            39
+          ]
+        }
+      },
+      "promptHtml": "<p>\\[F=\\frac95 C+32\\]</p><p>Yesterday in Centerville, the highest Fahrenheit temperature, F, was 86°, and the lowest was 68°. What was the difference between these temperatures, in degrees Celsius, C?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q79-1-png-passage.png\" alt=\"Supplied explanation for question 79\"></p><p><img src=\"/exam-images/restore-20202021-form-a-answers-q79-2-png-passage.png\" alt=\"Supplied explanation for question 79\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q080",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Let \\(x\\) be an odd number. In terms of \\(x\\), what is the sum of the two even numbers closest to \\(x\\)?",
+      "topic": "Algebra",
+      "subtopic": "Algebraic Expressions",
+      "choices": [
+        {
+          "id": "A",
+          "math": "x",
+          "text": "x",
+          "html": "\\(x\\)"
+        },
+        {
+          "id": "B",
+          "math": "2x",
+          "text": "two x",
+          "html": "\\(2x\\)"
+        },
+        {
+          "id": "C",
+          "math": "2x-2",
+          "text": "two x minus two",
+          "html": "\\(2x-2\\)"
+        },
+        {
+          "id": "D",
+          "math": "2x-4",
+          "text": "two x minus four",
+          "html": "\\(2x-4\\)"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "80",
+        "sourcePages": [
+          44
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            39
+          ]
+        }
+      },
+      "promptHtml": "<p>Let \\(x\\) be an odd number. In terms of \\(x\\), what is the sum of the two even numbers closest to \\(x\\)?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q80-1-png-passage.png\" alt=\"Supplied explanation for question 80\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q081",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "In 1991, the total public debt of the United States was about $3,600,000,000,000. In that year, there were about 250,000,000 people in the United States. Which amount is the best estimate of the public debt per person for that year?",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Order of Operations",
+      "choices": [
+        {
+          "id": "A",
+          "text": "$1,440",
+          "html": "$1,440"
+        },
+        {
+          "id": "B",
+          "text": "$14,400",
+          "html": "$14,400"
+        },
+        {
+          "id": "C",
+          "text": "$144,000",
+          "html": "$144,000"
+        },
+        {
+          "id": "D",
+          "text": "$14,400,000,000",
+          "html": "$14,400,000,000"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Order of Operations"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "81",
+        "sourcePages": [
+          44
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            39
+          ]
+        }
+      },
+      "promptHtml": "<p>In 1991, the total public debt of the United States was about $3,600,000,000,000. In that year, there were about 250,000,000 people in the United States. Which amount is the best estimate of the public debt per person for that year?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q81-1-png-passage.png\" alt=\"Supplied explanation for question 81\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q082",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "In the figure above, N is the midpoint of \\(\\overline{MQ}\\). Which segment has length \\(2x-y\\) centimeters?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q82-72e7a9312c5129ed.png\" alt=\"Math diagram\" width=\"320\">In the figure above, N is the midpoint of \\(\\overline{MQ}\\). Which segment has length \\(2x-y\\) centimeters?",
+      "topic": "Geometry",
+      "subtopic": "Coordinates & Segment Relationships",
+      "choices": [
+        {
+          "id": "A",
+          "math": "\\overline{PQ}",
+          "text": "segment P Q",
+          "html": "\\(\\overline{PQ}\\)"
+        },
+        {
+          "id": "B",
+          "math": "\\overline{NP}",
+          "text": "segment N P",
+          "html": "\\(\\overline{NP}\\)"
+        },
+        {
+          "id": "C",
+          "math": "\\overline{MQ}",
+          "text": "segment M Q",
+          "html": "\\(\\overline{MQ}\\)"
+        },
+        {
+          "id": "D",
+          "math": "\\overline{MP}",
+          "text": "segment M P",
+          "html": "\\(\\overline{MP}\\)"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Geometry",
+        "subcategory": "Coordinates & Segment Relationships"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "82",
+        "sourcePages": [
+          45
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            39
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q82-1-png-passage.png\" alt=\"Supplied explanation for question 82\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q083",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "What is the area of the parallelogram shown above?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q83-3abac7950499027d.png\" alt=\"Math diagram\" width=\"260\">What is the area of the parallelogram shown above?",
+      "topic": "Geometry",
+      "subtopic": "Area & Perimeter",
+      "choices": [
+        {
+          "id": "A",
+          "text": "750 sq ft",
+          "html": "750 sq ft"
+        },
+        {
+          "id": "B",
+          "text": "600 sq ft",
+          "html": "600 sq ft"
+        },
+        {
+          "id": "C",
+          "text": "500 sq ft",
+          "html": "500 sq ft"
+        },
+        {
+          "id": "D",
+          "text": "300 sq ft",
+          "html": "300 sq ft"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "83",
+        "sourcePages": [
+          45
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            39
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q83-1-png-passage.png\" alt=\"Supplied explanation for question 83\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q084",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "On Wednesday, a baker produced 100 more loaves of bread than were produced on Tuesday. On Thursday, the baker produced 50 fewer loaves than were produced on Tuesday. If the total number of loaves produced on all three days was 230, how many loaves were produced on Wednesday?",
+      "topic": "Algebra",
+      "subtopic": "Equations & Systems",
+      "choices": [
+        {
+          "id": "A",
+          "text": "60",
+          "html": "60"
+        },
+        {
+          "id": "B",
+          "text": "80",
+          "html": "80"
+        },
+        {
+          "id": "C",
+          "text": "120",
+          "html": "120"
+        },
+        {
+          "id": "D",
+          "text": "160",
+          "html": "160"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Algebra",
+        "subcategory": "Equations & Systems"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "84",
+        "sourcePages": [
+          45
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            40
+          ]
+        }
+      },
+      "promptHtml": "<p>On Wednesday, a baker produced 100 more loaves of bread than were produced on Tuesday. On Thursday, the baker produced 50 fewer loaves than were produced on Tuesday. If the total number of loaves produced on all three days was 230, how many loaves were produced on Wednesday?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q84-1-png-passage.png\" alt=\"Supplied explanation for question 84\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q085",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "In the table above, what is the mean quiz score?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q85-516b0a39ea7de6e9.png\" alt=\"Math diagram\" width=\"250\">In the table above, what is the mean quiz score?",
+      "topic": "Statistics and Probability",
+      "subtopic": "Averages & Spread",
+      "choices": [
+        {
+          "id": "A",
+          "text": "60",
+          "html": "60"
+        },
+        {
+          "id": "B",
+          "text": "70",
+          "html": "70"
+        },
+        {
+          "id": "C",
+          "text": "75",
+          "html": "75"
+        },
+        {
+          "id": "D",
+          "text": "80",
+          "html": "80"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "85",
+        "sourcePages": [
+          45
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            40
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q85-1-png-passage.png\" alt=\"Supplied explanation for question 85\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q086",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Which graph represents the solution to the inequality \\(x+4\\ge3\\)?",
+      "topic": "Algebra",
+      "subtopic": "Inequalities",
+      "choices": [
+        {
+          "id": "A",
+          "numberLine": {
+            "endClosed": true,
+            "extendRight": true,
+            "labelStep": 1,
+            "max": 7,
+            "min": -4,
+            "solutionEnd": -1,
+            "solutionStart": -1,
+            "startClosed": true,
+            "tickStep": 1
+          },
+          "text": "Closed circle at −1; ray to the right.",
+          "html": "Closed circle at −1; ray to the right."
+        },
+        {
+          "id": "B",
+          "numberLine": {
+            "endClosed": true,
+            "extendRight": true,
+            "labelStep": 1,
+            "max": 7,
+            "min": -4,
+            "solutionEnd": 1,
+            "solutionStart": 1,
+            "startClosed": true,
+            "tickStep": 1
+          },
+          "text": "Closed circle at 1; ray to the right.",
+          "html": "Closed circle at 1; ray to the right."
+        },
+        {
+          "id": "C",
+          "numberLine": {
+            "endClosed": true,
+            "extendRight": true,
+            "labelStep": 1,
+            "max": 7,
+            "min": -4,
+            "solutionEnd": 3,
+            "solutionStart": 3,
+            "startClosed": true,
+            "tickStep": 1
+          },
+          "text": "Closed circle at 3; ray to the right.",
+          "html": "Closed circle at 3; ray to the right."
+        },
+        {
+          "id": "D",
+          "numberLine": {
+            "endClosed": true,
+            "extendRight": true,
+            "labelStep": 1,
+            "max": 7,
+            "min": -4,
+            "solutionEnd": 4,
+            "solutionStart": 4,
+            "startClosed": true,
+            "tickStep": 1
+          },
+          "text": "Closed circle at 4; ray to the right.",
+          "html": "Closed circle at 4; ray to the right."
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "86",
+        "sourcePages": [
+          46
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            41
+          ]
+        }
+      },
+      "promptHtml": "<p>Which graph represents the solution to the inequality \\(x+4\\ge3\\)?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q86-1-png-passage.png\" alt=\"Supplied explanation for question 86\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q087",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "The reciprocal of \\(\\frac14\\) is added to the reciprocal of 3. What is the reciprocal of this sum?",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Fractions & Decimals",
+      "choices": [
+        {
+          "id": "A",
+          "math": "\\frac3{13}",
+          "text": "three thirteenths",
+          "html": "\\(\\frac3{13}\\)"
+        },
+        {
+          "id": "B",
+          "math": "\\frac34",
+          "text": "three fourths",
+          "html": "\\(\\frac34\\)"
+        },
+        {
+          "id": "C",
+          "math": "\\frac45",
+          "text": "four fifths",
+          "html": "\\(\\frac45\\)"
+        },
+        {
+          "id": "D",
+          "math": "\\frac{13}{4}",
+          "text": "thirteen fourths",
+          "html": "\\(\\frac{13}{4}\\)"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Fractions & Decimals"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "87",
+        "sourcePages": [
+          46
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            41
+          ]
+        }
+      },
+      "promptHtml": "<p>The reciprocal of \\(\\frac14\\) is added to the reciprocal of 3. What is the reciprocal of this sum?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q87-1-png-passage.png\" alt=\"Supplied explanation for question 87\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q088",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Nura made a square poster with a side length of 13 inches. Latrice made a square poster with a side length of 15 inches. What is the difference, in square inches, between the area of Latrice’s poster and the area of Nura’s poster?",
+      "topic": "Geometry",
+      "subtopic": "Area & Perimeter",
+      "choices": [
+        {
+          "id": "A",
+          "text": "56",
+          "html": "56"
+        },
+        {
+          "id": "B",
+          "text": "8",
+          "html": "8"
+        },
+        {
+          "id": "C",
+          "text": "4",
+          "html": "4"
+        },
+        {
+          "id": "D",
+          "text": "2",
+          "html": "2"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "88",
+        "sourcePages": [
+          46
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            41
+          ]
+        }
+      },
+      "promptHtml": "<p>Nura made a square poster with a side length of 13 inches. Latrice made a square poster with a side length of 15 inches. What is the difference, in square inches, between the area of Latrice’s poster and the area of Nura’s poster?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q88-1-png-passage.png\" alt=\"Supplied explanation for question 88\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q089",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "The table shows the cups of ingredients used to make 4 servings of oatmeal. What is the unit rate for cups of oats per cup of water?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q89-05f04732aa0dfa56.png\" alt=\"Math diagram\" width=\"180\">The table shows the cups of ingredients used to make 4 servings of oatmeal. What is the unit rate for cups of oats per cup of water?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Rates & Unit Rates",
+      "choices": [
+        {
+          "id": "A",
+          "math": "\\frac16",
+          "text": "one sixth",
+          "html": "\\(\\frac16\\)"
+        },
+        {
+          "id": "B",
+          "math": "\\frac8{39}",
+          "text": "eight thirty-ninths",
+          "html": "\\(\\frac8{39}\\)"
+        },
+        {
+          "id": "C",
+          "math": "\\frac{13}{16}",
+          "text": "thirteen sixteenths",
+          "html": "\\(\\frac{13}{16}\\)"
+        },
+        {
+          "id": "D",
+          "math": "\\frac{13}{8}",
+          "text": "thirteen eighths",
+          "html": "\\(\\frac{13}{8}\\)"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "89",
+        "sourcePages": [
+          46
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            42
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q89-1-png-passage.png\" alt=\"Supplied explanation for question 89\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q090",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "If \\(\\left(\\frac35-\\frac12\\right)x=\\frac14+\\frac23\\), what is the value of \\(x\\)?",
+      "topic": "Algebra",
+      "subtopic": "Equations & Systems",
+      "choices": [
+        {
+          "id": "A",
+          "math": "\\frac{11}{120}",
+          "text": "eleven over one hundred twenty",
+          "html": "\\(\\frac{11}{120}\\)"
+        },
+        {
+          "id": "B",
+          "math": "\\frac27",
+          "text": "two sevenths",
+          "html": "\\(\\frac27\\)"
+        },
+        {
+          "id": "C",
+          "math": "\\frac56",
+          "text": "five sixths",
+          "html": "\\(\\frac56\\)"
+        },
+        {
+          "id": "D",
+          "math": "\\frac{55}{6}",
+          "text": "fifty-five sixths",
+          "html": "\\(\\frac{55}{6}\\)"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "90",
+        "sourcePages": [
+          47
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            42
+          ]
+        }
+      },
+      "promptHtml": "<p>If \\(\\left(\\frac35-\\frac12\\right)x=\\frac14+\\frac23\\), what is the value of \\(x\\)?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q90-1-png-passage.png\" alt=\"Supplied explanation for question 90\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q091",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "In a certain state, the sales tax rate increased from 7.0% to 7.5%. What was the increase in the sales tax on a $200 item?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Percentages",
+      "choices": [
+        {
+          "id": "A",
+          "text": "$1",
+          "html": "$1"
+        },
+        {
+          "id": "B",
+          "text": "$10",
+          "html": "$10"
+        },
+        {
+          "id": "C",
+          "text": "$14",
+          "html": "$14"
+        },
+        {
+          "id": "D",
+          "text": "$15",
+          "html": "$15"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Percentages"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "91",
+        "sourcePages": [
+          47
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            42
+          ]
+        }
+      },
+      "promptHtml": "<p>In a certain state, the sales tax rate increased from 7.0% to 7.5%. What was the increase in the sales tax on a $200 item?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q91-1-png-passage.png\" alt=\"Supplied explanation for question 91\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q092",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Evaluate:\n\\[\\left|(-8)-12+(-17)-(-31)\\right|-|24|\\]",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Integers & Absolute Value",
+      "choices": [
+        {
+          "id": "A",
+          "text": "−30",
+          "html": "−30"
+        },
+        {
+          "id": "B",
+          "text": "−18",
+          "html": "−18"
+        },
+        {
+          "id": "C",
+          "text": "18",
+          "html": "18"
+        },
+        {
+          "id": "D",
+          "text": "44",
+          "html": "44"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Integers & Absolute Value"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "92",
+        "sourcePages": [
+          47
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            43
+          ]
+        }
+      },
+      "promptHtml": "<p>Evaluate:</p><p>\\[\\left|(-8)-12+(-17)-(-31)\\right|-|24|\\]</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q92-1-png-passage.png\" alt=\"Supplied explanation for question 92\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q093",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "The table above shows cell phone sales by color. What percentage of the cell phones sold were blue?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q93-8b61b67a73b3c2dd.png\" alt=\"Math diagram\" width=\"250\">The table above shows cell phone sales by color. What percentage of the cell phones sold were blue?",
+      "topic": "Algebra",
+      "subtopic": "Equations & Systems",
+      "choices": [
+        {
+          "id": "A",
+          "text": "18%",
+          "html": "18%"
+        },
+        {
+          "id": "B",
+          "text": "20%",
+          "html": "20%"
+        },
+        {
+          "id": "C",
+          "text": "22%",
+          "html": "22%"
+        },
+        {
+          "id": "D",
+          "text": "28%",
+          "html": "28%"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "93",
+        "sourcePages": [
+          47
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            43
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q93-1-png-passage.png\" alt=\"Supplied explanation for question 93\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q094",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "On the number line above, the distance between X and Y is 1 unit, and the distance between Y and Z is 2 units. What is the distance, in units, between Y and the midpoint of X and Z?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q94-e7e9a4316c6fd542.png\" alt=\"Math diagram\" width=\"300\">On the number line above, the distance between X and Y is 1 unit, and the distance between Y and Z is 2 units. What is the distance, in units, between Y and the midpoint of X and Z?",
+      "topic": "Geometry",
+      "subtopic": "Coordinates & Segment Relationships",
+      "choices": [
+        {
+          "id": "A",
+          "math": "\\frac12",
+          "text": "one half",
+          "html": "\\(\\frac12\\)"
+        },
+        {
+          "id": "B",
+          "text": "1",
+          "html": "1"
+        },
+        {
+          "id": "C",
+          "math": "1\\frac12",
+          "text": "one and one half",
+          "html": "\\(1\\frac12\\)"
+        },
+        {
+          "id": "D",
+          "text": "3",
+          "html": "3"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Geometry",
+        "subcategory": "Coordinates & Segment Relationships"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "94",
+        "sourcePages": [
+          48
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            44
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q94-1-png-passage.png\" alt=\"Supplied explanation for question 94\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q095",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "By what percent did the price of a cup of coffee increase if its price was increased from $1.25 to $1.35?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Percentages",
+      "choices": [
+        {
+          "id": "A",
+          "text": "7%",
+          "html": "7%"
+        },
+        {
+          "id": "B",
+          "text": "8%",
+          "html": "8%"
+        },
+        {
+          "id": "C",
+          "text": "10%",
+          "html": "10%"
+        },
+        {
+          "id": "D",
+          "text": "12%",
+          "html": "12%"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Percentages"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "95",
+        "sourcePages": [
+          48
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            44
+          ]
+        }
+      },
+      "promptHtml": "<p>By what percent did the price of a cup of coffee increase if its price was increased from $1.25 to $1.35?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q95-1-png-passage.png\" alt=\"Supplied explanation for question 95\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q096",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Raquel is cutting out pieces of cardboard to make a pyramid. She will use a square piece for the base and identical triangular pieces for the sides. The figure above shows the dimensions of the triangle for each side. What will be the total surface area, in square inches, of the pyramid, including the square base?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q96-4fdc761a7f760cbe.png\" alt=\"Math diagram\" width=\"250\">Raquel is cutting out pieces of cardboard to make a pyramid. She will use a square piece for the base and identical triangular pieces for the sides. The figure above shows the dimensions of the triangle for each side. What will be the total surface area, in square inches, of the pyramid, including the square base?",
+      "topic": "Geometry",
+      "subtopic": "Surface Area & Volume",
+      "choices": [
+        {
+          "id": "A",
+          "text": "280",
+          "html": "280"
+        },
+        {
+          "id": "B",
+          "text": "295",
+          "html": "295"
+        },
+        {
+          "id": "C",
+          "text": "340",
+          "html": "340"
+        },
+        {
+          "id": "D",
+          "text": "360",
+          "html": "360"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Geometry",
+        "subcategory": "Surface Area & Volume"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "96",
+        "sourcePages": [
+          48
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            44
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q96-1-png-passage.png\" alt=\"Supplied explanation for question 96\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q097",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "The price of a sandwich was raised from $6.25 to $6.75. What was the percent increase in the price?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Percentages",
+      "choices": [
+        {
+          "id": "A",
+          "text": "5%",
+          "html": "5%"
+        },
+        {
+          "id": "B",
+          "text": "8%",
+          "html": "8%"
+        },
+        {
+          "id": "C",
+          "text": "7%",
+          "html": "7%"
+        },
+        {
+          "id": "D",
+          "text": "50%",
+          "html": "50%"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Percentages"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "97",
+        "sourcePages": [
+          48
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            44
+          ]
+        }
+      },
+      "promptHtml": "<p>The price of a sandwich was raised from $6.25 to $6.75. What was the percent increase in the price?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q97-1-png-passage.png\" alt=\"Supplied explanation for question 97\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q098",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Terrell played 5 computer games and earned a mean score of 8 points per game. If his mean score for the first 4 games was 7 points per game, how many points was his score in the fifth game?",
+      "topic": "Statistics and Probability",
+      "subtopic": "Averages & Spread",
+      "choices": [
+        {
+          "id": "A",
+          "text": "9",
+          "html": "9"
+        },
+        {
+          "id": "B",
+          "text": "11",
+          "html": "11"
+        },
+        {
+          "id": "C",
+          "text": "12",
+          "html": "12"
+        },
+        {
+          "id": "D",
+          "text": "14",
+          "html": "14"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "98",
+        "sourcePages": [
+          49
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            45
+          ]
+        }
+      },
+      "promptHtml": "<p>Terrell played 5 computer games and earned a mean score of 8 points per game. If his mean score for the first 4 games was 7 points per game, how many points was his score in the fifth game?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q98-1-png-passage.png\" alt=\"Supplied explanation for question 98\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q099",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Lian bought enough oranges to fill 4 bags. Each bag contains 8 oranges. The total cost was $11.52. At that rate, how much would Lian pay for 42 oranges?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Rates & Unit Rates",
+      "choices": [
+        {
+          "id": "A",
+          "text": "$17.28",
+          "html": "$17.28"
+        },
+        {
+          "id": "B",
+          "text": "$15.12",
+          "html": "$15.12"
+        },
+        {
+          "id": "C",
+          "text": "$15.02",
+          "html": "$15.02"
+        },
+        {
+          "id": "D",
+          "text": "$12.52",
+          "html": "$12.52"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "99",
+        "sourcePages": [
+          49
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            45
+          ]
+        }
+      },
+      "promptHtml": "<p>Lian bought enough oranges to fill 4 bags. Each bag contains 8 oranges. The total cost was $11.52. At that rate, how much would Lian pay for 42 oranges?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q99-1-png-passage.png\" alt=\"Supplied explanation for question 99\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q100",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "\\[3.6\\div0.018=\\]",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Fractions & Decimals",
+      "choices": [
+        {
+          "id": "A",
+          "text": "0.005",
+          "html": "0.005"
+        },
+        {
+          "id": "B",
+          "text": "0.648",
+          "html": "0.648"
+        },
+        {
+          "id": "C",
+          "text": "20",
+          "html": "20"
+        },
+        {
+          "id": "D",
+          "text": "200",
+          "html": "200"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Fractions & Decimals"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "100",
+        "sourcePages": [
+          49
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            45
+          ]
+        }
+      },
+      "promptHtml": "<p>\\[3.6\\div0.018=\\]</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q100-1-png-passage.png\" alt=\"Supplied explanation for question 100\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q101",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "A tank with a 500-gallon capacity currently contains 75 gallons of water. Additional water is poured into this tank at a rate of 5 gallons per minute. After 45 minutes of adding water, what percentage of the tank’s total capacity will be filled? (Assume that there is no loss of water from the tank.)",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Percentages",
+      "choices": [
+        {
+          "id": "A",
+          "text": "45%",
+          "html": "45%"
+        },
+        {
+          "id": "B",
+          "text": "55%",
+          "html": "55%"
+        },
+        {
+          "id": "C",
+          "text": "60%",
+          "html": "60%"
+        },
+        {
+          "id": "D",
+          "text": "70%",
+          "html": "70%"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "101",
+        "sourcePages": [
+          49
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            45
+          ]
+        }
+      },
+      "promptHtml": "<p>A tank with a 500-gallon capacity currently contains 75 gallons of water. Additional water is poured into this tank at a rate of 5 gallons per minute. After 45 minutes of adding water, what percentage of the tank’s total capacity will be filled? (Assume that there is no loss of water from the tank.)</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q101-1-png-passage.png\" alt=\"Supplied explanation for question 101\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q102",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Misha wants to use ribbon to make 2 straps for a backpack. The ribbon costs $5.00 a yard. If each strap requires \\(1\\frac14\\) yards of ribbon, how much will Misha pay for the ribbon (not including tax)?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Rates & Unit Rates",
+      "choices": [
+        {
+          "id": "A",
+          "text": "$4.00",
+          "html": "$4.00"
+        },
+        {
+          "id": "B",
+          "text": "$6.25",
+          "html": "$6.25"
+        },
+        {
+          "id": "C",
+          "text": "$11.25",
+          "html": "$11.25"
+        },
+        {
+          "id": "D",
+          "text": "$12.50",
+          "html": "$12.50"
+        }
+      ],
+      "correctChoiceId": "D",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "102",
+        "sourcePages": [
+          49
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            45
+          ]
+        }
+      },
+      "promptHtml": "<p>Misha wants to use ribbon to make 2 straps for a backpack. The ribbon costs $5.00 a yard. If each strap requires \\(1\\frac14\\) yards of ribbon, how much will Misha pay for the ribbon (not including tax)?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q102-1-png-passage.png\" alt=\"Supplied explanation for question 102\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q103",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "A graph shows the proportional relationship between the number of test questions a student gets correct, \\(x\\), and the student’s test score, \\(y\\). The ordered pair \\(\\left(1,1\\frac14\\right)\\) is on the graph. What does the y-coordinate of the ordered pair represent in this relationship?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Ratios & Proportions",
+      "choices": [
+        {
+          "id": "A",
+          "html": "The test will last \\(1\\frac{1}{4}\\) hours.",
+          "text": "The test will last \\(1\\frac{1}{4}\\) hours."
+        },
+        {
+          "id": "B",
+          "html": "Each test question is worth \\(1\\frac{1}{4}\\) points.",
+          "text": "Each test question is worth \\(1\\frac{1}{4}\\) points."
+        },
+        {
+          "id": "C",
+          "text": "An average student can answer 5 questions in 4 minutes.",
+          "html": "An average student can answer 5 questions in 4 minutes."
+        },
+        {
+          "id": "D",
+          "text": "A student who answers 5 questions correctly will earn 4 points.",
+          "html": "A student who answers 5 questions correctly will earn 4 points."
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Ratios & Proportions"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "103",
+        "sourcePages": [
+          50
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            46
+          ]
+        }
+      },
+      "promptHtml": "<p>A graph shows the proportional relationship between the number of test questions a student gets correct, \\(x\\), and the student’s test score, \\(y\\). The ordered pair \\(\\left(1,1\\frac14\\right)\\) is on the graph. What does the y-coordinate of the ordered pair represent in this relationship?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q103-1-png-passage.png\" alt=\"Supplied explanation for question 103\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q104",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "In a survey of 200 adults in the town of Waskegon, 45 reported reading the online version of the Waskegon Bulletin the previous day. If 25,000 adults live in Waskegon, which number is the best estimate of the number of adults who read the online version of the Waskegon Bulletin the previous day?",
+      "promptHtml": "In a survey of 200 adults in the town of Waskegon, 45 reported reading the online version of the <em>Waskegon Bulletin</em> the previous day. If 25,000 adults live in Waskegon, which number is the best estimate of the number of adults who read the online version of the <em>Waskegon Bulletin</em> the previous day?",
+      "topic": "Statistics and Probability",
+      "subtopic": "Data Displays & Sampling",
+      "choices": [
+        {
+          "id": "A",
+          "text": "5,600",
+          "html": "5,600"
+        },
+        {
+          "id": "B",
+          "text": "9,000",
+          "html": "9,000"
+        },
+        {
+          "id": "C",
+          "text": "11,300",
+          "html": "11,300"
+        },
+        {
+          "id": "D",
+          "text": "24,800",
+          "html": "24,800"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Statistics and Probability",
+        "subcategory": "Data Displays & Sampling"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "104",
+        "sourcePages": [
+          50
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            46
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q104-1-png-passage.png\" alt=\"Supplied explanation for question 104\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q105",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "A hiker plans on hiking 17 miles in 3 days. Which equation describes the relationship between the number of days hiked, \\(x\\), and the number of miles traveled, \\(y\\)?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Ratios & Proportions",
+      "choices": [
+        {
+          "id": "A",
+          "math": "y=\\frac3{17}x",
+          "text": "y equals three seventeenths x",
+          "html": "\\(y=\\frac3{17}x\\)"
+        },
+        {
+          "id": "B",
+          "math": "y=3x",
+          "text": "y equals three x",
+          "html": "\\(y=3x\\)"
+        },
+        {
+          "id": "C",
+          "math": "y=\\frac{17}{3}x",
+          "text": "y equals seventeen thirds x",
+          "html": "\\(y=\\frac{17}{3}x\\)"
+        },
+        {
+          "id": "D",
+          "math": "y=17x",
+          "text": "y equals seventeen x",
+          "html": "\\(y=17x\\)"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Ratios & Proportions"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "105",
+        "sourcePages": [
+          50
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            46
+          ]
+        }
+      },
+      "promptHtml": "<p>A hiker plans on hiking 17 miles in 3 days. Which equation describes the relationship between the number of days hiked, \\(x\\), and the number of miles traveled, \\(y\\)?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q105-1-png-passage.png\" alt=\"Supplied explanation for question 105\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q106",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Carolyn walked 3 miles from her house to the library and then \\(2\\frac12\\) miles farther to the grocery store. Returning home by the same route, she walked \\(1\\frac23\\) miles before stopping at a friend’s house. How many miles did Carolyn have left to walk home?",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Fractions & Decimals",
+      "choices": [
+        {
+          "id": "A",
+          "math": "3\\frac56",
+          "text": "three and five sixths",
+          "html": "\\(3\\frac56\\)"
+        },
+        {
+          "id": "B",
+          "math": "4\\frac16",
+          "text": "four and one sixth",
+          "html": "\\(4\\frac16\\)"
+        },
+        {
+          "id": "C",
+          "math": "4\\frac23",
+          "text": "four and two thirds",
+          "html": "\\(4\\frac23\\)"
+        },
+        {
+          "id": "D",
+          "math": "7\\frac16",
+          "text": "seven and one sixth",
+          "html": "\\(7\\frac16\\)"
+        }
+      ],
+      "correctChoiceId": "A",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Fractions & Decimals"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "106",
+        "sourcePages": [
+          50
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            46
+          ]
+        }
+      },
+      "promptHtml": "<p>Carolyn walked 3 miles from her house to the library and then \\(2\\frac12\\) miles farther to the grocery store. Returning home by the same route, she walked \\(1\\frac23\\) miles before stopping at a friend’s house. How many miles did Carolyn have left to walk home?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q106-1-png-passage.png\" alt=\"Supplied explanation for question 106\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q107",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "A child grows \\(1\\frac14\\) inches in \\(\\frac13\\) of a year. What would be his yearly growth rate in inches per year?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Rates & Unit Rates",
+      "choices": [
+        {
+          "id": "A",
+          "math": "\\frac5{12}",
+          "text": "five twelfths",
+          "html": "\\(\\frac5{12}\\)"
+        },
+        {
+          "id": "B",
+          "math": "3\\frac14",
+          "text": "three and one fourth",
+          "html": "\\(3\\frac14\\)"
+        },
+        {
+          "id": "C",
+          "math": "3\\frac34",
+          "text": "three and three fourths",
+          "html": "\\(3\\frac34\\)"
+        },
+        {
+          "id": "D",
+          "math": "4\\frac14",
+          "text": "four and one fourth",
+          "html": "\\(4\\frac14\\)"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {},
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "107",
+        "sourcePages": [
+          51
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            47
+          ]
+        }
+      },
+      "promptHtml": "<p>A child grows \\(1\\frac14\\) inches in \\(\\frac13\\) of a year. What would be his yearly growth rate in inches per year?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q107-1-png-passage.png\" alt=\"Supplied explanation for question 107\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q108",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "\\[3(0.01)-3(0.1)=\\]",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Fractions & Decimals",
+      "choices": [
+        {
+          "id": "A",
+          "text": "−0.33",
+          "html": "−0.33"
+        },
+        {
+          "id": "B",
+          "text": "−0.27",
+          "html": "−0.27"
+        },
+        {
+          "id": "C",
+          "text": "0",
+          "html": "0"
+        },
+        {
+          "id": "D",
+          "text": "0.33",
+          "html": "0.33"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Fractions & Decimals"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "108",
+        "sourcePages": [
+          51
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            47
+          ]
+        }
+      },
+      "promptHtml": "<p>\\[3(0.01)-3(0.1)=\\]</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q108-1-png-passage.png\" alt=\"Supplied explanation for question 108\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q109",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "What is the value of \\(10\\frac12+\\left(-5\\frac13\\right)-\\left(-2\\frac34\\right)\\)?",
+      "topic": "Arithmetic & Number Sense",
+      "subtopic": "Fractions & Decimals",
+      "choices": [
+        {
+          "id": "A",
+          "math": "2\\frac5{12}",
+          "text": "two and five twelfths",
+          "html": "\\(2\\frac5{12}\\)"
+        },
+        {
+          "id": "B",
+          "math": "7\\frac{11}{12}",
+          "text": "seven and eleven twelfths",
+          "html": "\\(7\\frac{11}{12}\\)"
+        },
+        {
+          "id": "C",
+          "math": "13\\frac1{12}",
+          "text": "thirteen and one twelfth",
+          "html": "\\(13\\frac1{12}\\)"
+        },
+        {
+          "id": "D",
+          "math": "18\\frac7{12}",
+          "text": "eighteen and seven twelfths",
+          "html": "\\(18\\frac7{12}\\)"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Fractions & Decimals"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "109",
+        "sourcePages": [
+          51
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            47
+          ]
+        }
+      },
+      "promptHtml": "<p>What is the value of \\(10\\frac12+\\left(-5\\frac13\\right)-\\left(-2\\frac34\\right)\\)?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q109-1-png-passage.png\" alt=\"Supplied explanation for question 109\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q110",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "Carlos has $350 in a savings account that earns 5% simple interest each year. How much will he have in the account after 1 year, if there is no money withdrawn?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Percentages",
+      "choices": [
+        {
+          "id": "A",
+          "text": "$17.50",
+          "html": "$17.50"
+        },
+        {
+          "id": "B",
+          "text": "$175.00",
+          "html": "$175.00"
+        },
+        {
+          "id": "C",
+          "text": "$367.50",
+          "html": "$367.50"
+        },
+        {
+          "id": "D",
+          "text": "$525.00",
+          "html": "$525.00"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Percentages"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "110",
+        "sourcePages": [
+          51
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            47
+          ]
+        }
+      },
+      "promptHtml": "<p>Carlos has $350 in a savings account that earns 5% simple interest each year. How much will he have in the account after 1 year, if there is no money withdrawn?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q110-1-png-passage.png\" alt=\"Supplied explanation for question 110\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q111",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "The probability of an event occurring is 0.05. What is the chance that the event will occur?",
+      "topic": "Statistics and Probability",
+      "subtopic": "Probability",
+      "choices": [
+        {
+          "id": "A",
+          "text": "likely",
+          "html": "likely"
+        },
+        {
+          "id": "B",
+          "text": "unlikely",
+          "html": "unlikely"
+        },
+        {
+          "id": "C",
+          "text": "impossible",
+          "html": "impossible"
+        },
+        {
+          "id": "D",
+          "text": "neither likely nor unlikely",
+          "html": "neither likely nor unlikely"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Statistics and Probability",
+        "subcategory": "Probability"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "111",
+        "sourcePages": [
+          52
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            48
+          ]
+        }
+      },
+      "promptHtml": "<p>The probability of an event occurring is 0.05. What is the chance that the event will occur?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q111-1-png-passage.png\" alt=\"Supplied explanation for question 111\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q112",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "The table below shows the number of cups of red paint and blue paint used to make a purple paint mixture.\nBased on the relationship between the number of cups of red paint and the number of cups of blue paint, what is the value of \\(y\\)?",
+      "promptHtml": "The table below shows the number of cups of red paint and blue paint used to make a purple paint mixture.<br><img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q112-04437b696fff44c8.png\" alt=\"Math diagram\" width=\"250\">Based on the relationship between the number of cups of red paint and the number of cups of blue paint, what is the value of \\(y\\)?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Ratios & Proportions",
+      "choices": [
+        {
+          "id": "A",
+          "text": "10.5",
+          "html": "10.5"
+        },
+        {
+          "id": "B",
+          "text": "13",
+          "html": "13"
+        },
+        {
+          "id": "C",
+          "text": "16.5",
+          "html": "16.5"
+        },
+        {
+          "id": "D",
+          "text": "24",
+          "html": "24"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Ratios & Proportions"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "112",
+        "sourcePages": [
+          52
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            48
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q112-1-png-passage.png\" alt=\"Supplied explanation for question 112\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q113",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "On the number line above, what is the distance, in units, between the midpoint of \\(\\overline{PQ}\\) and the midpoint of \\(\\overline{QR}\\)?",
+      "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q113-b2c1a1fd34c48c4d.png\" alt=\"Math diagram\" width=\"360\">On the number line above, what is the distance, in units, between the midpoint of \\(\\overline{PQ}\\) and the midpoint of \\(\\overline{QR}\\)?",
+      "topic": "Geometry",
+      "subtopic": "Coordinates & Segment Relationships",
+      "choices": [
+        {
+          "id": "A",
+          "text": "3",
+          "html": "3"
+        },
+        {
+          "id": "B",
+          "text": "4",
+          "html": "4"
+        },
+        {
+          "id": "C",
+          "text": "5",
+          "html": "5"
+        },
+        {
+          "id": "D",
+          "text": "6",
+          "html": "6"
+        }
+      ],
+      "correctChoiceId": "C",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Geometry",
+        "subcategory": "Coordinates & Segment Relationships"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "113",
+        "sourcePages": [
+          53
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            48
+          ]
+        }
+      },
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q113-1-png-passage.png\" alt=\"Supplied explanation for question 113\"></p>"
+    },
+    {
+      "id": "pdf-shsat-2020-2021-a-q114",
+      "skilled": "TBD",
+      "explanation": "",
+      "points": 1,
+      "prompt": "An ice cream shop sells 16 cups of ice cream for $48 and 4 cups for $12. There is a proportional relationship between the number of cups of ice cream and the cost. What is the constant of proportionality for this relationship?",
+      "topic": "Ratios and Proportional Relationships",
+      "subtopic": "Ratios & Proportions",
+      "choices": [
+        {
+          "id": "A",
+          "text": "3 cups per dollar",
+          "html": "3 cups per dollar"
+        },
+        {
+          "id": "B",
+          "text": "3 dollars per cup",
+          "html": "3 dollars per cup"
+        },
+        {
+          "id": "C",
+          "text": "4 cups per dollar",
+          "html": "4 cups per dollar"
+        },
+        {
+          "id": "D",
+          "text": "4 dollars per cup",
+          "html": "4 dollars per cup"
+        }
+      ],
+      "correctChoiceId": "B",
+      "type": "multiple_choice",
+      "commandMetadata": {
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Ratios & Proportions"
+      },
+      "review": {
+        "sourceFile": "20202021_form_a.pdf",
+        "sourceQuestion": "114",
+        "sourcePages": [
+          53
+        ],
+        "sourceReviewed": false,
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "answerSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            49
+          ]
+        },
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "explanationSource": {
+          "sourceFile": "20202021_form_a_-_answers.pdf",
+          "sourcePages": [
+            48
+          ]
+        }
+      },
+      "promptHtml": "<p>An ice cream shop sells 16 cups of ice cream for $48 and 4 cups for $12. There is a proportional relationship between the number of cups of ice cream and the cost. What is the constant of proportionality for this relationship?</p>",
+      "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q114-1-png-passage.png\" alt=\"Supplied explanation for question 114\"></p>"
+    }
+  ],
+  "review": {
+    "expectedQuestionCount": 57,
+    "sourceReviewed": false,
+    "completenessReviewed": false
+  }
+}

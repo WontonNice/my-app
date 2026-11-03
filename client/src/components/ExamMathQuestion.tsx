@@ -1,3 +1,4 @@
+import { CoordinateResponse } from './CoordinateResponse';
 import { EXAM_PLAYER_PROFILE } from "../content/exams/playerPresentation";
 import { RichResponseTemplate } from "./RichResponseTemplate";
 // One math question renderer for the student player and Content Studio preview.
@@ -305,7 +306,7 @@ function MathDragDropResponse({
         aria-pressed={placedItem ? selected?.slotId === slotId : undefined}
         className={`exam-math-drag-slot ${placedItem ? "is-filled" : ""} ${selected?.slotId === slotId ? "is-selected" : ""} ${selected && !placedItem ? "is-drop-target" : ""}`}
         data-answer-slot={slotId}
-        style={width ? { width, maxWidth: 'calc(100% - 2px)', boxSizing: 'content-box', minHeight: 26 } : undefined}
+        style={question.dragDropImage ? {width:'100%',height:'100%',minWidth:0,minHeight:0,margin:0,padding:0,boxSizing:'border-box',fontSize:14} : width ? { width, maxWidth: 'calc(100% - 2px)', boxSizing: 'content-box', minHeight: 26 } : undefined}
         draggable={false}
         key={key}
         onClick={() => {
@@ -333,7 +334,7 @@ function MathDragDropResponse({
   }
 
   return (
-    <div ref={responseRef} className={`exam-math-drag-response is-${dragStyle} ${table ? "is-table" : ""} ${(question.dragDropContent?.length ?? 0) === 1 ? "is-single-line" : ""}`}
+    <div ref={responseRef} className={`exam-math-drag-response is-${dragStyle} ${table ? "is-table" : ""} ${question.dragDropImage ? "is-image" : ""} ${(question.dragDropContent?.length ?? 0) === 1 ? "is-single-line" : ""}`}
       onPointerMove={movePointer} onPointerUp={endPointer}
       onPointerCancel={() => { pointer.current = undefined; setDragged(undefined); setSelected(undefined); }}
       onClickCapture={event => { if (suppressClick.current) { suppressClick.current = false; if (event.detail > 0) { event.preventDefault(); event.stopPropagation(); } } }}
@@ -367,7 +368,10 @@ function MathDragDropResponse({
           </button>
         ))}
       </div>
-      {question.dragDropContentHtml ? <RichResponseTemplate html={question.dragDropContentHtml} renderText={(text,key)=>renderLine(text,key)} /> : table ? (
+      {question.dragDropImage ? <div className="exam-math-drag-image" style={{position:'relative',width:question.dragDropImage.width,maxWidth:'100%'}}>
+        <img src={question.dragDropImage.src} alt={question.dragDropImage.alt} style={{display:'block',width:'100%',height:'auto'}} />
+        {slots.map(slot=><div key={slot.id} style={{position:'absolute',left:`${100*(slot.left??0)/question.dragDropImage!.width}%`,top:`${100*(slot.top??0)/question.dragDropImage!.height}%`,width:`${100*(slot.width??100)/question.dragDropImage!.width}%`,height:`${100*(slot.height??28)/question.dragDropImage!.height}%`}}>{renderSlot(slot.id,slot.id)}</div>)}
+      </div> : question.dragDropContentHtml ? <RichResponseTemplate html={question.dragDropContentHtml} renderText={(text,key)=>renderLine(text,key)} /> : table ? (
         <div className="exam-math-drag-table-wrap">
           <table className="exam-math-drag-table">
             {table.caption && <caption>{renderInteractionMath(table.caption, "drag-caption")}</caption>}
@@ -459,7 +463,7 @@ function GraphPointResponse({
 }) {
   const graph = question.graph;
   if (!graph) return null;
-  if (graph.sourceImage) return <div className="exam-source-hotspots" style={{position:'relative',width:graph.sourceImage.width,maxWidth:'100%'}}>
+  if (graph.sourceImage) return <div className="exam-source-hotspots exam-source-point-graph" style={{position:'relative',width:graph.sourceImage.width,maxWidth:'100%'}}>
     <img src={graph.sourceImage.src} alt={graph.sourceImage.alt} style={{display:'block',width:'100%',height:'auto'}} />
     {graph.points.map(point => <button key={point.id} type="button" className={`exam-source-hotspot${selectedIds.includes(point.id) ? ' is-selected' : ''}${eliminatedIds.includes(point.id) ? ' is-eliminated' : ''}`} aria-label={`Point ${point.x}, ${point.y}`} aria-pressed={selectedIds.includes(point.id)} onClick={() => onToggle(point.id)} style={{left:`${100 * (point.sourceX ?? 0) / graph.sourceImage!.width}%`,top:`${100 * (point.sourceY ?? 0) / graph.sourceImage!.height}%`}} />)}
   </div>;
@@ -870,7 +874,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
           } ${isInlineDropdownQuestion(question) ? "is-inline-dropdown" : ""} ${question.type === "graph_point_select" ? "is-point-graph" : ""} ${question.type === "number_line_response" ? "is-number-line-response" : ""} ${
             question.image ? "is-image-question" : ""
           } ${question.type === "math_drag_drop" ? `is-math-drag ${parseMathDragTable(question.dragDropContent) ? "is-math-table-drag" : ""} ${question.dragDropStyle === "outlined" ? "is-math-outlined-drag" : ""}` : ""
-          } ${answerFeedback ? `has-answer-feedback is-${answerFeedback}` : ''}`}
+          } ${question.type === 'coordinate_response' ? 'is-coordinate-response' : ''} ${answerFeedback ? `has-answer-feedback is-${answerFeedback}` : ''}`}
           onMouseUp={onTextSelection}
         >
           <Panel key={question.id} className="exam-standalone-panel exam-math-panel" onSubmit={event => event.preventDefault()}>
@@ -953,6 +957,8 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
                 onChange={(value) => onChange(value)}
                 question={question}
               />
+            ) : question.type === "coordinate_response" ? (
+              <CoordinateResponse key={question.id} question={question} answer={answer} onChange={onChange} />
             ) : question.type === "graph_point_select" ? (
               <GraphPointResponse
                 onToggle={(pointId) => onEliminatePoint ? onEliminatePoint(pointId) : select(pointId, onTogglePoint)}
@@ -978,9 +984,9 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
                 ))}
               </div>
             ) : question.type === 'matrix_choice' && question.items && question.categories ? (
-              <div className="exam-matrix-choice-wrap"><table className="exam-matrix-choice-table"><thead><tr><th>{question.tableHeaders?.row || ''}</th>{question.categories.map(category=><th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(item=><tr key={item.id}><th scope="row">{renderInteractionMath(item.text,item.id)}</th>{question.categories!.map(category=><td key={category.id}><label><input type="radio" name={question.id+'-'+item.id} aria-label={item.text+': '+category.title} checked={placements(answer)[item.id]===category.id} onChange={()=>onChange({...placements(answer),[item.id]:category.id})}/></label></td>)}</tr>)}</tbody></table></div>
+              <div className={`exam-matrix-choice-wrap${question.matrixStyle === "compact" ? " is-compact-matrix" : ""}`}><table className="exam-matrix-choice-table"><thead><tr><th>{question.tableHeaders?.row || ''}</th>{question.categories.map(category=><th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(item=><tr key={item.id}><th scope="row">{renderInteractionMath(item.text,item.id)}</th>{question.categories!.map(category=><td key={category.id}><label><input type="radio" name={question.id+'-'+item.id} aria-label={item.text+': '+category.title} checked={placements(answer)[item.id]===category.id} onChange={()=>onChange({...placements(answer),[item.id]:category.id})}/></label></td>)}</tr>)}</tbody></table></div>
             ) : choices.length > 0 ? (
-              <div className={`exam-choice-list exam-standalone-choice-list${question.choiceColumns === 2 ? ' is-two-column' : ''}`}>
+              <div className={`exam-choice-list exam-standalone-choice-list${question.choiceColumns === 2 ? ' is-two-column' : ''}${question.hideChoiceLabels ? ' is-unlettered' : ''}`}>
                 {choices.map((choice) => (
                   <label
                     className={`exam-choice ${
@@ -999,7 +1005,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
                       onChange={() => select(choice.id, onSelectChoice)}
                       type={question.type === "multi_select" ? "checkbox" : "radio"}
                     />
-                    <span>{choice.id}.</span>
+                    {!question.hideChoiceLabels && <span>{choice.id}.</span>}
                     <span
                       aria-label={choice.math ? choice.text : undefined}
                       className={

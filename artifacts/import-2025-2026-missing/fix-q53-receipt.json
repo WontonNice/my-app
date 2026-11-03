@@ -1,0 +1,37 @@
+{
+  "changedQuestions": [
+    53
+  ],
+  "question": {
+    "id": "2025-2026-form-b-official-shsat-2025-b-110",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "label": "2025-2026 Form B",
+      "url": "https://www.stuyprep.nyc/16tests.html",
+      "year": "2025-2026",
+      "form": "B",
+      "section": "Math",
+      "sourceQuestion": "110"
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/restore-20252026-form-b-math-answers-q110-1-png-passage.png\" alt=\"Supplied explanation for question 110\"></p>",
+    "skilled": "TBD",
+    "explanation": "",
+    "points": 1,
+    "prompt": "Amiya subscribes to an online streaming service. She pays a onetime setup fee of \\(\\$50\\text{,}\\) plus \\(\\$20\\) per month for service.\nWrite an equation that can be used to determine the total amount Amiya will pay, \\(y\\text{,}\\) for \\(x\\) months of service.\nEnter your equation in the space provided. Enter only the equation.",
+    "promptHtml": "<p><span>Amiya subscribes to an online streaming service. She pays a onetime setup fee of </span><span><span>\\(\\$50\\text{,}\\)</span></span><span> plus </span><span><span>\\(\\$20\\)</span></span> <span><span>per</span><span> month </span><span>for </span><span>service.</span></span></p> <p><span><span>Write an equation</span><span> that </span><span>can </span><span>be </span><span>used </span><span>to </span><span>determine </span><span>the </span><span>total</span> <span>amount</span><span> Amiya </span><span>will </span><span>pay, </span></span><span><span>\\(y\\text{,}\\)</span></span><span> for </span><span data-no-break=\"true\"><span><span>\\(x\\)</span></span><span> months</span></span><span> of service.</span></p><p><span><span>Enter </span><span>your </span><span>equation</span><span> in </span><span>the </span><span>space </span><span>provided. </span><span>Enter </span><span>only</span><span> the </span><span>equation.</span></span></p>",
+    "topic": "Algebra",
+    "subtopic": "Functions & Graphs",
+    "correctTextAnswers": [
+      "y=20x+50"
+    ],
+    "entryLayout": "plain",
+    "entryVariable": "x, y",
+    "type": "expression_entry",
+    "commandMetadata": {},
+    "importNeedsEditing": true,
+    "importSource": "https://www.stuyprep.nyc/16tests.html · Question 110",
+    "importNotes": []
+  }
+}

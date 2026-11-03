@@ -1,0 +1,869 @@
+
+===== PDF PAGE 1 =====
+EXPLANATIONS
+
+===== PDF PAGE 2 =====
+58. (A) Let x be the number of inches representing 1 foot. Set up a proportion and solve for x :
+_x = _0.125
+1 125
+=
+x 0.001 in.
+59. (B) Divide the rate (55 miles per hour) by the number of seconds in an hour (60 minutes x 60
+seconds = 3,600 seconds):
+_55
+miles per second
+3,600
+Multiply by the number of feet in a mile (5, 280):
+×
+_5_5_ __ _5_,_2_8_0_
+feet per second
+3,600
+60. (
+−
+4 )
+= −
+4w 2w 8
+2 w
+= −
+8
+= −
+w 4
+
+===== PDF PAGE 3 =====
+= =
+61. (45) Let x number of students with only cats as pets. Let y number of students with
+only dogs as pets.
+Calculate x and y using the given information:
+There are 20 students who have cats, and of those 20 students, 3 have both cats and dogs.
+= − =
+If 3 out of 20 students also have dogs, then x 20 3 17.
+There are 23 students who have dogs, and of those 23 students, 3 have both cats and dogs.
+= − =
+If 3 out of 23 students also have cats, then y 23 3 20.
+To find the total number of students surveyed, add the number of students who only have cats
+(x), the number of students who only have dogs (y), the number of students who have both
+(3), and the number of students who have neither (5):
+3
++
+5
++
+x
++
+y
+=
+8
++
+17
++
+20
+=
+45
+
+===== PDF PAGE 4 =====
+62. (D) Since both ratios have y in common, solve for x and z in terms of y in both equations.
+: = :
+Using y x 1 4, solve for x in terms of y:
+_x = _1
+y 4
+= _1
+x y
+4
+: = :
+Using the ratio y z 4 5, solve for z in terms of y :
+_ y = _4
+z 5
+= _5
+z y
+4
++ + =
+The question states x y z 50. Substitute from the two equations above and
+solve for y:
+_1 + + _5 =
+y y y 50
+4 4
+_10 =
+y 50
+4
+=
+10y 200
+=
+y 20
+
+===== PDF PAGE 5 =====
++
+63. (B) 2k
+=
+m
++
+3, so k
+= _m 3
+.
+2
+Substitute each value of m to find the values of k:
++
+= _5 3 = _8 =
+k 4
+2 2
++
+= _7 3 = _10 =
+k 5
+2 2
++
+= _9 3 = _12 =
+k 6
+2 2
+The set k is { 4, 5, 6} .
+64. (A) 7
++
+3n
++
+6
+−
+4n
+−
+8
+=
++ − + − =
+(7 6 8) (3n 4n)
+5
+−
+n
+65. (A) The sum of Adrianna’s course grades equals 4 times the mean (average) of her grades:
+90
+×
+4
+=
+360
+Roberto has the same sum ( 360) as Adrianna. Find the mean of his course grades:
+360
+÷
+5
+=
+72
+
+===== PDF PAGE 6 =====
+=
+66. Liam originally has twice as many stamps as Kevin, so the equation is L 2K.
+− = + +
+After Liam gives 8 stamps to Kevin, the equation becomes L 8 (K 8) 12, which
+− = +
+simplifies to L 8 K 20.
+= − = +
+Substitute L 2K into the equation: 2 K 8 K 20.
+Solve for K:
+2K
+−
+K
+=
+20
++
+8
+K
+=
+28
+= = × =
+Substitute to find L : L 2K 2 28 56.
+So, Liam started with 5 6 stamps.
+67. (162) To find angle the x, first find the measure of angle PQR by finding the measure of
+angle PSR:
+m
+∠
+PSR
+=
+m
+∠
+PQR
+∠ = −
+m PSR 180 72
+m
+∠
+PSR
+=
+108
+The measure of angle PQR is also 108.
+Find the measure of angle x:
++ + =
+108 90 x 360
++ =
+198 x 360
+=
+x 162
+
+===== PDF PAGE 7 =====
+68. Add the three expressions: 5 − n + 3(2n + 7) + ( −2) (2.5n + 4).
+Distribute 3 and −2 : 5 − n + 6n + 21 − 5n − 8.
+Combine the variable terms and combine the constants:
+(−n + 6n − 5n) + (5 + 21 − 8) = 18.
+‾ ‾
+69. (B) Line segment RS is the altitude, or height, of t riangle QRP. The length of QP is 8 cm.
+Use the information to find the area of triangle QRP:
+= _1 = _1 =
+A bh (8)(6) 24 sq cm.
+2 2
+There are 4 congruent triangles in the pyramid, so the surface area of the pyramid excluding
+× =
+the base is 4 24 96 sq cm.
+
+===== PDF PAGE 8 =====
+= =
+70. (B) Let 2x the width and 3 x the length.
+Draw the rectangle to help visualize.
+3x
+2x
++ =
+Since 2 times width 2 times length perimeter:
+2(2x)
++
+2(3x)
+=
+510
++ =
+4x 6x 510
+=
+10x 510
+=
+x 51
+2x
+=
+102 cm and 3x
+=
+153 cm
+71. (D) Multiply each term by 2 to eliminate the fraction, and isolate x :
+− 4(2) < ( _x ) (2) < 2 (2)
+2
+− < <
+8 x 4
+Therefore, x must be between −8 and 4 .
+
+===== PDF PAGE 9 =====
++
+72. (63) If x is the smaller consecutive integer, then x 1 is the larger consecutive integer. Use
+their sum ( −15) to find x:
+x
++
+(x
++
+1)
+= −
+15
++ = −
+2x 1 15
+= −
+2x 16
+x
+= −
+8
+The two consecutive integers are −8 and −7.
+One is added to the smaller integer: − 8 + 1 = −7, and 2 is subtracted from the larger
+integer: −7 − 2 = −9.
+Find the product: −7 × −9 = 63
+73. (B) Let x be the total number of colored pencils in the box.
+Set up a proportion to find x:
+_2 = _6
+7 x
+=
+2x 42
+=
+x 21
+− =
+If there are 6 red pencils, then the number of pencils that are not red is 21 6 15.
+
+===== PDF PAGE 10 =====
+74. (B) Use proportions to make the conversions:
+Lorgs to dollars:
+_140 = _7
+x 1
+=
+7x 140
+=
+x $20
+Dalts to dollars:
+_16 = _0.5
+x 1
+=
+0.5x 16
+=
+x $32
+Total dollars = 20 + 32 = $52
+75. (B) The shaded region is a right triangle. Each leg is 1 unit in length.
+= _1 = _1 = _1
+So the area is A bh (1)(1) or 0.5 square units.
+2 2 2
+
+===== PDF PAGE 11 =====
+76. To create an expression equivalent to | (−8) − (−3) + 6 | − | 6 − 11 | :
+Step 1: Simplify the first absolute value term.
+(
+−
+8)
+−
+(
+−
+3)
+= −
+8
++
+3
+= −
+5
+−
+5
++
+6
+=
+1
+Simplify the second absolute value term.
+6
+−
+11
+= −
+5
+Therefore the equivalent expression is
+|
+1
+| − |−
+5
+|
+.
+77. (A) Let x be the price per pound of the meat. Set up an equation to show what
+Mrs. Cranston spent:
+5(0.90)
++
+8x
+=
+26.90
++ =
+4.50 8x 26.90
+=
+8x 22.40
+x
+=
+2.80
+The price per pound of the meat was $2.80.
+
+===== PDF PAGE 12 =====
+78. (A) The probability that both cards are not blue is the same as the probability that both
+cards are red.
+_4
+There are 4 red cards out of the 10, so the probability of the first card being red is .
+10
+Now there are 9 cards left, and 3 of those are red, so the probability of the second card being
+_3
+red is .
+9
+Multiply the two probabilities to find the probability that both cards are red (not blue):
+_4 × _3 = _ 12 = _2
+10 9 90 15
+79. (D) 1 sind = 4 lorgs, so 1 sind > 1 lorg.
+2 harps = 5 sinds, so 1 harp > 1 sind.
+1 plunk = 3 harps, so 1 plunk > 1 harp, meaning that 1 plunk > 1 sind and 1 lorg.
+2 plunks = 5 dalts, so 1 plunk > 1 dalt.
+Therefore, the plunk is the most valuable.
+80. (B) Let x be the number of second-, third-, and fourth- year students. Then the total number of
++
+students in the college is 663 x.
+Set up a proportion and solve for x:
++
+_15 = _663 x
+1 179
+663 + x = 1 79 (15)
++ =
+663 x 2,685
+=
+x 2,022
+
+===== PDF PAGE 13 =====
+81. (B) According to the chart, 22% of people walk to work and 4% ride a bicycle.
+Subtract to find the percentage of how many more people walk than bicycle:
+22%
+−
+4%
+=
+18%
+To find the exact number of people, multiply 18% (0.18) by the number of people working in
+Center City ( 15,000) :
+15,000
+×
+0.18
+=
+2,700
+82. (B) To find the smallest factor of 91, list the factors: 1, 7, 13, and 91.
+The smallest factor (other than 1) is 7.
+Of the options listed (30, 35, 39, and 44), only 35 is a multiple of 7.
+83. (D) Let x be the remaining side of the actual banner.
+Set up a proportion:
+_x = _36
+16 12
+=
+x 48 ft
+
+===== PDF PAGE 14 =====
+84. (C) For each row, multiply the number of students by the score.
+Add the products together and divide by the total number of students to find the mean
+(average) of the 10 students:
+_8_5 ( _4_ ) _ + __ _75_ ( _4_ ) _ + __ 6_5_ ( _2_ ) = _3_40_ _ + _ _3_0_0_ _ + _ _1_30_
+10 10
+= _770 =
+77
+10
++ + +
+85. (C) The first integer is l, so the second is l 1, the third is l 2, then l 3, and
++
+finally l 4.
+= +
+Since g is the fifth and greatest of the integers, g l 4.
++
+Substitute l 4 for g and simplify:
+_ l + g = _l + l + 4 = _ 2l + 4 =
+l
++
+2
+2 2 2
+86. (99) Let x be the number of oak trees when 264 pine trees are planted.
+Set up a proportion and solve for x:
+_x = _3
+264 8
+=
+8x 762
+=
+x 99
+
+===== PDF PAGE 15 =====
+87. (D) Set up an equation to express Tien’s age (T) and Jordan’s age ( J) today:
+T
+= _1
+J
+4
++ +
+Two years from now, Tien’s age will be T 2 and Jordan’s age will be J 2. Set up an
+equation about the relationship between Tien’s age and Jordan’s age in two years:
+T
++
+2
+= _1
+(J
++
+2)
+3
+Solve the above equation for T:
+T
+= _1
+(J
++
+2)
+−
+2
+3
+Now set the two equations equal to each other and solve for J:
+_1 J = _1 (J + 2) − 2
+4 3
+_1 = _1 − _4
+J J
+4 3 3
+−_1 = −_4
+J
+12 3
+= −_4 −_12
+J
+( )
+3 1
+=
+J 16
+
+===== PDF PAGE 16 =====
+88. Solution:
+Answer for second equation: −4
+Answer for third equation: 2 8
+Answer for fourth equation: −56
+24
+= −
+0.5(x
++
+8)
+Distribute the −0.5 on the right side of the equation: 24 = −0.5x − 4.
+Add 4 to both sides of the equation to eliminate the −4 on the right side: 2 8 = −0.5x.
+Divide both sides by −0.5: −56 = x.
+89. (D) 2
+_ 1 +
+3
+_ 3 +
+4
+_ 2 +
+5
+_1
+5 10 5 2
+Convert all the fractions to a common denominator ( 10):
+_2 + _3 + _4 + _5
+2 3 4 5
+10 10 10 10
++ + +
+= (2 + 3 + 4 + 5) + _2 _ _ _3_ _ _ 4_ __ _5
+( )
+10
+= + _4 = _2
+14 1 15
+10 5
+90. (C) The length of the stick must be the greatest common factor of 72 and 30. The factors of 30
+are 1, 2, 3, 5, 6, 10, 15, and 30. Of those, only 1, 2, 3, and 6 are also factors of 72. The
+greatest of these is 6.
+
+===== PDF PAGE 17 =====
+91. (B) Create a list of the possible pairs. Let the cookies be named A, B, C, D, E, and F.
+AB, AC, AD, AE, AF
+BC, BD, BE, BF
+CD, CE, CF
+DE, DF
+EF
+There are a total of 15 possible pairs of cookies that Aiden can choose.
+
+===== PDF PAGE 18 =====
+92. (C) Set up proportions to figure out how many slides Deion and Kyra can create in 1 hour:
+Deion
+_5 = _x
+20 60
+=
+20x 300
+=
+x 15
+Deion can create 15 slides in 1 hour.
+Kyra
+_3 = _x
+10 60
+=
+10x 180
+=
+x 18
+Kyra can create 18 slides in 1 hour.
+Add the two rates to figure out how many slides they can create together in 1 hour:
+15
++
+18
+=
+33
+= _1 _5 + _1 = _7
+93. (C) Since L N , point N is located at 4 4 .
+8 16 8 16
+_5 _7
+So M must be between point L, 4 , and point N , 4 .
+16 16
+Point L can also be written as 4.3125, and point N can be written as 4.4375.
+The only option given that lies between those two points is 4.35.
+
+===== PDF PAGE 19 =====
+94. Solution:
+= +
+Start with 6 x 9x 13.
+Subtract 9 x from both sides to move all terms involving x to one side.
+6x
+−
+9x
+=
+13
+Combine like terms.
+−
+3x
+=
+13
+Divide both sides by −3 to solve for x .
+x
+= − _13
+3
+x
+= −
+4
+_ 1
+3
+−
+95. (B) Ryan has 130 pages left to read ( 150 20). He read 20 pages in 30 minutes, which
+means he read at a rate of 40 pages per 1 hour. To find out how much longer it will take him to
+finish the assignment, divide the total number of pages remaining (130) by the number of
+pages he is able to read per hour (40):
+_130 =
+3
+_1
+40 4
+_M ÷
+96. (C) It is easier to rewrite as M N since they are both fractions.
+N
+M
+÷
+N
+= _ w ÷ _ y = _ w × _ z = _wz
+x z x y xy
+
+===== PDF PAGE 20 =====
+97. (B) The question asks for integers from 12 to 30 that are not divisible by 2 or 3.
+The set of consecutive integers is {12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26,
+27, 28, 29, 30}.
+Since all even numbers are divisible by 2, eliminate all even numbers, leaving the odd numbers
+in the set: {13, 15, 17, 19, 21, 23, 25, 27, 29}.
+Eliminate those integers that are multiples of 3 (15, 21, and 27). The remaining integers are:
+{13, 17, 19, 23, 25, 29}. herefore, there are 6 numbers in the set that are multiples of
+neither 2 nor 3.
++ + + +
+98. (B) Since 3 n is even, then 3 n 1 must be odd. If 3 n 1 is odd, then 3 n 3 and 3 n 5
+are also odd. So there are a total of 3 numbers in this range that are odd.
+
+===== PDF PAGE 21 =====
+99. Solution:
+There are three correct points: (1, 3), (3, 9), and (4, 12).
+_12 =
+Find the cost per notebook: 3.
+4
+=
+The equation of the line is y 3x, where y is the total cost of x notebooks.
+=
+Check each point by plugging the x- value into the equation y 3x. If the y- value from the
+=
+equation matches the y- value of the point, then the point is on the line y 3x.
+Check all seven points:
+(1, 1) y = 3 (1) = 3 y- values do not match; incorrect point
+(1, 3) y = 3 (1) = 3 y- values match; CORRECT point
+(2, 5) y = 3 (2) = 6 y- values do not match; incorrect point
+(3, 7) y = 3 (3) = 9 y- values do not match; incorrect point
+(3, 9) y = 3 (3) = 9 y- values match; CORRECT point
+(4, 12) y = 3 (4) = 12 y- values match; CORRECT point
+(5, 14) y = 3 (5) = 15 y- values do not match; incorrect point
+100. (D) Solve the equation for z:
+_w = _ y
+x z
+=
+wz x y
+xy
+= _
+z
+w
+
+===== PDF PAGE 22 =====
+101. (C) Convert the ratios into fractions of WZ. Use the sum of the ratios for the denominator.
+=
+WX:XY:YZ 4:2:3
+= _4 = _4
+WX
++ +
+4 2 3 9
+= _2 = _2
+XY
++ +
+4 2 3 9
+The part of WZ that is WY is the sum of those fractions:
+= _4 + _2 = _6 = _2
+WY
+9 9 9 3
+Find the length of WZ:
+WZ = 8 − ( −10) = 18
+_2 =
+The value of WY is (18) 12.
+3
+× _1 =
+102. (C) Find 1% of 0.02: 0 .02 0.0002
+100
++ =
+The greatest allowable thickness would be 0 .02 0.0002 0.0202 inch.
+103. (D) Calculate the highest score for each section by adding the lowest score to the range:
++ =
+Section I: 6 5 28 93
++ =
+Section II: 6 2 25 87
++ =
+Section III: 6 7 22 89
+The overall highest score is 93, and the overall lowest score is 62.
+Subtract the lowest score from the highest score to find the overall range:
+− =
+93 62 31
+
+===== PDF PAGE 23 =====
+104. (C) Take each city’s number of schools and multiply by the number of students. It is not
+necessary to calculate all 5 of these. Cities M and N have the same number of students, so just
+calculate the number of students in City M because it has more schools than City N. The same
+goes for Q and R — only Q needs to be calculated because it has more schools than R.
+M
+=
+8
+×
+500
+=
+4,000
+= × =
+P 9 400 3,600
+= × =
+Q 6 700 4,200
+City Q has the greatest number of students.
+105. (D) There are 6 digits in the repeating decimal (769230), so 7 would be the first, seventh,
+thirteenth digit and so on. To find the 391st digit, divide 391 by 6.
+391
+÷
+6
+=
+65 R 1
+Since the remainder is 1, that means the 391st digit is the same as the 1st digit, which is 7.
+
+===== PDF PAGE 24 =====
+106. Solution:
+–5 0 5
+Solve the inequality for x, then graph the solution on the number line:
+−
+3
+≤
+2x
+−
+5
+≤
+Add 5 to both sides of the inequality: 2 2x
+≤
+Divide both sides by 2: 1 x
+≥
+Rewrite the inequality with x on the left side: x 1
+≥
+The graph of x 1 is a closed ray (solid point) beginning at 1 and extending to the right on
+the number line.
+107.
+(D) 100 ( 2 + 0.1) 2 − 100 = 100 ( 2. 1 2 ) − 100
+= − = − =
+100(4.41) 100 441 100 341
++ + + + =
+108. (C) The total number of handballs in the container is 4 5 8 9 11 37.
+_8
+Since there are 8 yellow handballs, the probability of selecting a yellow handball is .
+37
+
+===== PDF PAGE 25 =====
+109. (A) Each chair costs Leon $150 to make, and he sells the chair for $275. His profit is found by
+subtracting the cost from the price:
+− =
+$275 $150 $125 per chair
+× =
+If Leon makes and sells 25 chairs in a week, his initial profit is 2 5 $125 $3,125. However,
+Leon has additional fixed expenses of $1,250 per week, so this cost must also be subtracted to
+arrive at the profit.
+− =
+His final profit is $ 3,125 $1,250 $1,875.
+110. (D) Convert 4 ft 7 in. to inches.
+=
+Since 12 in. 1 ft
+4 (12) + 7 = 55 inches
+Multiply that by the conversion:
+=
+2.54 cm 1 in.
+× =
+55 2.54 139.70 cm
+
+===== PDF PAGE 26 =====
+_1
+111. (C) Find the location of J by using J K = 3 :
+2
+_3 − = _1
+J 3
+8 2
+= _3 − _1 = − _1
+J 3 3
+8 2 8
+_3
+Find the location of M by using JM = 9 :
+4
+− _1 = _3
+M- 3 9
+(
+8
+)
+4
+M
++
+3
+_ 1 =
+9
+_3
+8 4
+= _3 − _1 = _5
+M 9 3 6
+4 8 8
+_1
+Use LM = 1 to find the location of L :
+8
+_5 − = _1
+6 L 1
+8 8
+= _5 − _1 = _4 = _1
+L 6 1 5 5
+8 8 8 2
+112. (C)
+− =
+4x 3y 12
+= +
+4x 3y 12
+x
+= _3
+y
++ _ 12
+4 4
+= _3 +
+x 3
+4
+
+===== PDF PAGE 27 =====
+113. (A) Determine the total number of servings of fruits and vegetables that the students ate by
+multiplying the number of servings by the number of students in each row of the table. Then
+add that column to get the total number of servings:
+Number of
+Number of Servings
+Servings of Number of
+×
+Fruits and Students
+Number of Students
+Vegetables
+0 5 0
+1 7 7
+2 3 6
+3 4 12
+4 0 0
+5 1 5
+Total: 30
+Calculate the mean by dividing the total number of servings of fruits and vegetables by the
+total number of students:
+_30 =
+1
+_1
+20 2
+
+===== PDF PAGE 28 =====
+114. Solution:
+_7
+5
+_c _4
+= = = _d + _c _5 + _4
+Substitute b 3, c 4, and d 5 in : .
+_c d _4 5
+b 3
+Then simplify the complex fraction by multiplying the complex fraction by a form of 1,
+⎛ ⎞ ⎛ ⎞
+⎜ _3 ⎟ _4 _4 ⎜ _3 ⎟
+_4 _5 + _4 = _5 _4 + _4
+: .
+⎝
+_3
+⎠
+_4 5 _4
+⎝
+_3
+⎠
+5
+4 3 3 4
+(
+_4
+) (
+_3
+)
+_3
+_5 4 + _4 = _5 + _4
+Simplify after multiplying by a form of 1: .
+(
+_4
+) (
+_3
+)
+5 1 5
+3 4
+_3
+_5 + _4 = _3 + _4 = _7
+Then simplify again and add the two fractions: .
+1 5 5 5 5

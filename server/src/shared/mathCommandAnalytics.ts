@@ -1,3 +1,4 @@
+import { correctCoordinateAnswer } from './coordinateResponse';
 import type { ExamContent, ExamQuestion } from "./examTypes";
 import type { ExamResult, SelectedAnswer, SelectedAnswers } from "./examGrading";
 import { isExamQuestionCorrect } from "./examGrading";
@@ -43,6 +44,7 @@ export function mathCorrectAnswer(q: ExamQuestion): SelectedAnswer | null {
   if (["short_response", "numeric_entry", "expression_entry", "grid_in"].includes(q.type)) return q.correctTextAnswers?.filter(x => x.trim()).join(" or ") || null;
   if (q.type === "math_drag_drop" || q.type === "transition_drop") return q.dragDropSlots?.length && q.dragDropSlots.every(x => x.correctItemId) ? Object.fromEntries(q.dragDropSlots.map(x=>[x.id,x.correctItemId])) : null;
   if (q.type === "inline_dropdown") return q.dropdowns?.length && q.dropdowns.every(x=>x.correctChoiceId) ? Object.fromEntries(q.dropdowns.map(x=>[x.id,x.correctChoiceId!])) : null;
+  if (q.type === "coordinate_response") return correctCoordinateAnswer(q);
   if (q.type === "number_line_response") return q.numberLineResponse?.correctValue != null ? {value:String(q.numberLineResponse.correctValue),direction:q.numberLineResponse.correctDirection,endpoint:q.numberLineResponse.correctEndpoint} : null;
   return q.correctPlacements && Object.keys(q.correctPlacements).length ? q.correctPlacements : null;
 }

@@ -1,7 +1,7 @@
-import { createPlainTextPassage } from "../formatters";
+import { createSourcePassage } from "../formatters";
 import type { ExamPassageSet, ExamQuestion } from "../types";
 
-const atDusk20252026FormBPassageText = "At first I think she is calling a child,\n\nmy neighbor, leaning through her doorway\n\nat dusk, street lamps just starting to hum\n\nthe backdrop of evening. Then I hear\n\nthe high-pitched wheedling we send out\n\nto animals who know only sound, not\n\nthe meanings of our words—here here—\n\nnor how they sometimes fall short.\n\nIn another yard, beyond my neighbor’s\n\nsight, the cat lifts her ears, turns first\n\ntoward the voice, then back\n\nto the constellation of fireflies flickering\n\nnear her head. It’s as if she can’t decide\n\nwhether to leap over the low hedge,\n\nthe neat row of flowers, and bound\n\nonto the porch, into the steady circle\n\nof light, or stay where she is: luminous\n\npossibility—all that would keep her\n\naway from home—flitting before her.\n\nI listen as my neighbor’s voice trails off.\n\nShe’s given up calling for now, left me\n\nto imagine her inside the house waiting,\n\nperhaps in a chair in front of the TV,\n\nor walking around, doing small tasks;\n\nleft me to wonder that I too might lift\n\nmy voice, sure of someone out there,\n\nsend it over the lines stitching here\n\nto there, certain the sounds I make\n\nare enough to call someone home.";
+const atDusk20252026FormBPassageText = "At first I think she is calling a child,\nmy neighbor, leaning through her doorway\nat dusk, street lamps just starting to hum\nthe backdrop of evening. Then I hear\nthe high-pitched wheedling we send out\nto animals who know only sound, not\nthe meanings of our words—here here—\nnor how they sometimes fall short.\nIn another yard, beyond my neighbor’s\nsight, the cat lifts her ears, turns first\ntoward the voice, then back\nto the constellation of fireflies flickering\nnear her head. It’s as if she can’t decide\nwhether to leap over the low hedge,\nthe neat row of flowers, and bound\nonto the porch, into the steady circle\nof light, or stay where she is: luminous\npossibility—all that would keep her\naway from home—flitting before her.\nI listen as my neighbor’s voice trails off.\nShe’s given up calling for now, left me\nto imagine her inside the house waiting,\nperhaps in a chair in front of the TV,\nor walking around, doing small tasks;\nleft me to wonder that I too might lift\nmy voice, sure of someone out there,\nsend it over the lines stitching here\nto there, certain the sounds I make\nare enough to call someone home.";
 
 const atDusk20252026FormBQuestions: ExamQuestion[] = [
   {
@@ -225,6 +225,8 @@ const atDusk20252026FormBQuestions: ExamQuestion[] = [
 
 export const atDusk20252026FormBPassageSet: ExamPassageSet = {
   id: "ela-at-dusk-2025-2026-form-b",
+  versionLabels: ["2025-2026 Form B"],
+  section: "reading",
   questionCount: atDusk20252026FormBQuestions.length,
   directions: {
   "subject": "English Language Arts",
@@ -232,13 +234,16 @@ export const atDusk20252026FormBPassageSet: ExamPassageSet = {
   "breadcrumbLabel": "ELA RDG COMP DIRECTIONS",
   "body": "Read each text and answer the related questions. Base your answers only on the content within the text."
 },
-  passage: createPlainTextPassage({
-    passageCategory: "official_handbook",
+  passage: createSourcePassage({
     id: "at-dusk-2025-2026-form-b",
+    preserveSourceLayout: true,
+    format: "poem",
+    images: [],
     title: "At Dusk",
     author: "Natasha Trethewey",
     passageType: "poem",
-    richText: "<p>At first I think she is calling a child,</p><p>my neighbor, leaning through her doorway</p><p>at dusk, street lamps just starting to hum</p><p>the backdrop of evening. Then I hear</p><p>the high-pitched&nbsp;wheedling&nbsp;we send out</p><p>to animals who know only sound, not</p><p>the meanings of our words—<em>here here</em>—</p><p>nor how they sometimes fall short.</p><p>In another yard, beyond my neighbor’s</p><p>sight, the cat lifts her ears, turns first</p><p>toward the voice, then back</p><p>to the constellation of fireflies flickering</p><p>near her head. It’s as if she can’t decide</p><p>whether to leap over the low hedge,</p><p>the neat row of flowers, and bound</p><p>onto the porch, into the steady circle</p><p>of light, or stay where she is: luminous</p><p>possibility—all that would keep her</p><p>away from home—flitting before her.</p><p>I listen as my neighbor’s voice trails off.</p><p>She’s given up calling for now, left me</p><p>to imagine her inside the house waiting,</p><p>perhaps in a chair in front of the TV,</p><p>or walking around, doing small tasks;</p><p>left me to wonder that I too might lift</p><p>my voice, sure of someone out there,</p><p>send it over the lines stitching here</p><p>to there, certain the sounds I make</p><p>are enough to call someone home.</p><p>\n\n</p>",
+    passageCategory: "official_handbook",
+    richText: "<div data-poetry-line=\"true\">At first I think she is calling a child,</div><div data-poetry-line=\"true\">my neighbor, leaning through her doorway</div><div data-poetry-line=\"true\">at dusk, street lamps just starting to hum</div><div data-poetry-line=\"true\">the backdrop of evening. Then I hear</div><div data-poetry-line=\"true\">the high-pitched <span data-glossary-definition=\"speaking in a flattering manner\" role=\"link\" tabindex=\"0\">wheedling</span> we send out</div><div data-poetry-line=\"true\">to animals who know only sound, not</div><div data-poetry-line=\"true\">the meanings of our words—<em>here here</em>—</div><div data-poetry-line=\"true\">nor how they sometimes fall short.</div><div data-poetry-line=\"true\">In another yard, beyond my neighbor’s</div><div data-poetry-line=\"true\">sight, the cat lifts her ears, turns first</div><div data-poetry-line=\"true\">toward the voice, then back</div><div data-poetry-line=\"true\">to the constellation of fireflies flickering</div><div data-poetry-line=\"true\">near her head. It’s as if she can’t decide</div><div data-poetry-line=\"true\">whether to leap over the low hedge,</div><div data-poetry-line=\"true\">the neat row of flowers, and bound</div><div data-poetry-line=\"true\">onto the porch, into the steady circle</div><div data-poetry-line=\"true\">of light, or stay where she is: luminous</div><div data-poetry-line=\"true\">possibility—all that would keep her</div><div data-poetry-line=\"true\">away from home—flitting before her.</div><div data-poetry-line=\"true\">I listen as my neighbor’s voice trails off.</div><div data-poetry-line=\"true\">She’s given up calling for now, left me</div><div data-poetry-line=\"true\">to imagine her inside the house waiting,</div><div data-poetry-line=\"true\">perhaps in a chair in front of the TV,</div><div data-poetry-line=\"true\">or walking around, doing small tasks;</div><div data-poetry-line=\"true\">left me to wonder that I too might lift</div><div data-poetry-line=\"true\">my voice, sure of someone out there,</div><div data-poetry-line=\"true\">send it over the lines stitching here</div><div data-poetry-line=\"true\">to there, certain the sounds I make</div><div data-poetry-line=\"true\">are enough to call someone home.</div>",
     sourceNote: "“At Dusk” from NATIVE GUARD by Natasha Trethewey, published by Houghton Mifflin Company. Copyright © 2006 by Natasha Trethewey. All rights reserved.",
     text: atDusk20252026FormBPassageText,
     versionLabel: "2025-2026 Form B",

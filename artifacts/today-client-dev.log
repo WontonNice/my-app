@@ -99,3 +99,37 @@
 12:52:07 PM [vite] (client) hmr update /src/pages/ExamSessionPage.tsx, /src/pages/TeacherDashboardPage.tsx, /src/components/TeacherExamTools.tsx
 12:52:07 PM [vite] (client) hmr update /src/pages/ExamSessionPage.tsx, /src/pages/TeacherDashboardPage.tsx, /src/components/TeacherExamTools.tsx
 12:54:42 PM [vite] (client) hmr update /src/pages/StudentMaterialsPage.tsx, /src/pages/ExamSessionPage.tsx, /src/pages/TeacherDashboardPage.tsx, /src/components/TeacherExamTools.tsx
+2:44:45 PM [vite] (client) hmr update /src/components/StudentLearningPlan.tsx, /src/components/TeacherLearningPlan.tsx, /src/components/StudentAnalyticsWorkstation.tsx, /src/components/StudentPassageProgress.tsx
+2:44:45 PM [vite] (client) hmr update /src/features/math-command/MathCommandWorkspace.tsx, /src/features/math-command/MathBankPlayer.tsx, /src/features/math-command/PracticeFeedback.tsx
+2:45:33 PM [vite] (client) hmr update /src/components/TeacherLearningPlan.tsx
+2:45:51 PM [vite] (client) hmr update /src/components/TeacherLearningPlan.tsx
+2:45:51 PM [vite] (client) hmr update /src/pages/TeacherDashboardPage.tsx
+2:46:21 PM [vite] (client) hmr update /src/features/math-command/GeneratorPlanner.tsx
+2:46:21 PM [vite] (client) hmr update /src/features/math-command/AddToGeneratorPlanner.tsx
+2:47:07 PM [vite] (client) hmr update /src/features/math-command/MathStudentInsights.tsx
+2:47:07 PM [vite] (client) hmr update /src/features/math-command/MathAssignmentBuilder.tsx
+2:47:59 PM [vite] (client) hmr update /src/features/math-command/GeneratorPlanner.tsx
+2:47:59 PM [vite] (client) hmr update /src/features/math-command/GeneratorPlanner.tsx
+2:47:59 PM [vite] (client) hmr update /src/features/math-command/MathAssignmentBuilder.tsx
+2:47:59 PM [vite] (client) hmr update /src/features/math-command/MathCommandWorkspace.tsx
+2:48:45 PM [vite] (client) hmr update /src/pages/PracticeStudioPage.tsx
+2:48:45 PM [vite] (client) hmr update /src/components/StudentAnalyticsWorkstation.tsx
+2:48:45 PM [vite] (client) hmr update /src/pages/TeacherDashboardPage.tsx
+2:48:45 PM [vite] (client) hmr update /src/components/TeacherLearningPlan.tsx
+2:48:45 PM [vite] (client) hmr update /src/components/TeacherLearningPlan.tsx, /src/components/StudentAnalyticsWorkstation.tsx, /src/components/StudentPassageProgress.tsx
+2:49:45 PM [vite] (client) hmr update /src/features/math-command/PracticeModuleList.tsx
+2:49:45 PM [vite] (client) hmr update /src/components/TeacherLearningPlan.tsx
+2:49:45 PM [vite] (client) hmr update /src/styles/learning-plan.css
+2:49:46 PM [vite] (client) hmr update /src/features/math-command/math-command-remaster.css
+2:49:47 PM [vite] (client) hmr update /src/features/math-command/practice-modules.css
+2:52:12 PM [vite] (client) hmr update /src/features/math-command/GeneratorPlanner.tsx
+2:52:12 PM [vite] (client) hmr update /src/components/TeacherLearningPlan.tsx
+2:52:12 PM [vite] (client) hmr update /src/features/math-command/PracticeAssignmentContext.tsx
+2:52:12 PM [vite] (client) hmr update /src/components/InfiniteContentPreview.tsx
+2:52:12 PM [vite] (client) hmr update /src/features/math-command/GeneratorPlanner.tsx
+2:52:12 PM [vite] (client) hmr update /src/features/math-command/MathStudentInsights.tsx
+2:56:23 PM [vite] (client) hmr update /src/features/math-command/MathCommandWorkspace.tsx
+3:01:38 PM [vite] (client) hmr update /src/components/TeacherLearningPlan.tsx
+3:01:38 PM [vite] (client) hmr update /src/components/TeacherLearningPlan.tsx, /src/components/StudentAnalyticsWorkstation.tsx, /src/components/StudentPassageProgress.tsx
+3:01:38 PM [vite] (client) hmr update /src/features/math-command/PracticeAssignmentContext.tsx
+3:05:08 PM [vite] (client) hmr update /src/features/math-command/MathStudentInsights.tsx

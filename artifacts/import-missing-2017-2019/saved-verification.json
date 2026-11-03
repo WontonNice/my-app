@@ -1,0 +1,36 @@
+{
+  "exams": [
+    {
+      "id": "2017-2018-form-a",
+      "english": 57,
+      "math": 57,
+      "passages": 8,
+      "sourceAnswersMatched": 114,
+      "explanations": 114,
+      "imagesChecked": 69,
+      "englishOrder": "reading, revising_editing_a, standalone"
+    },
+    {
+      "id": "2017-2018-form-b",
+      "english": 57,
+      "math": 57,
+      "passages": 8,
+      "sourceAnswersMatched": 114,
+      "explanations": 114,
+      "imagesChecked": 69,
+      "englishOrder": "reading, revising_editing_a, standalone"
+    },
+    {
+      "id": "2019-2020-form-b",
+      "english": 57,
+      "math": 57,
+      "passages": 7,
+      "sourceAnswersMatched": 114,
+      "explanations": 114,
+      "imagesChecked": 66,
+      "englishOrder": "reading, revising_editing_a, standalone"
+    }
+  ],
+  "otherExamsUnchanged": true,
+  "manualVerificationUnchanged": true
+}

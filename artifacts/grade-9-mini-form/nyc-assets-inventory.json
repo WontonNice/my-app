@@ -1,0 +1,1387 @@
+{
+  "assets": [
+    {
+      "id": "4211520a952f909e",
+      "kind": "image",
+      "name": "350.gif",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/images/global/350.gif"
+    },
+    {
+      "id": "0b71d5e5924d9929",
+      "kind": "other",
+      "name": "mconfig.json",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "fetch"
+        },
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/mconfig.json"
+    },
+    {
+      "id": "f28b7dd4bf7c172b",
+      "kind": "script",
+      "name": "api.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 406,
+          "property": "src"
+        }
+      ],
+      "url": "https://app.testnav.com/api.js"
+    },
+    {
+      "id": "4165ae5ebfbcfbd7",
+      "kind": "script",
+      "name": "app.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 407,
+          "property": "src"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/app.bundle.js"
+    },
+    {
+      "id": "cb9d667c424a9688",
+      "kind": "script",
+      "name": "7186.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/7186.bundle.js"
+    },
+    {
+      "id": "882b10c6334be331",
+      "kind": "script",
+      "name": "674.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/674.bundle.js"
+    },
+    {
+      "id": "3644959027adc50d",
+      "kind": "script",
+      "name": "globals.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/globals.bundle.js"
+    },
+    {
+      "id": "2e8a0ddb57796cb3",
+      "kind": "script",
+      "name": "TestEngine.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/TestEngine.bundle.js"
+    },
+    {
+      "id": "4a02c41b3a965d0c",
+      "kind": "script",
+      "name": "1710.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/1710.bundle.js"
+    },
+    {
+      "id": "e6486b263a504ff6",
+      "kind": "script",
+      "name": "es6_main.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/es6_main.bundle.js"
+    },
+    {
+      "id": "409f931f69e56515",
+      "kind": "other",
+      "name": "checksum.json",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/checksum.json"
+    },
+    {
+      "id": "12cda7e63da4b30f",
+      "kind": "other",
+      "name": "translationOutput.json",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/translationOutput.json"
+    },
+    {
+      "id": "cc15de42cc55ebf8",
+      "kind": "other",
+      "name": "Logs",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        },
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://logs.testnav.com/Logs"
+    },
+    {
+      "id": "d65da1ee6d3de66f",
+      "kind": "image",
+      "name": "tn8-logo.svg",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/images/login/tn8-logo.svg"
+    },
+    {
+      "id": "b26960512bff0f16",
+      "kind": "font",
+      "name": "fontello.woff",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/images/font/fontello.woff?67894235"
+    },
+    {
+      "id": "d84c3ff553e15270",
+      "kind": "stylesheet",
+      "name": "tn.css",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "link"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 69,
+          "property": "href"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/stylesheets/tn.css"
+    },
+    {
+      "id": "257ddeb776bea2a0",
+      "kind": "script",
+      "name": "6369.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/6369.bundle.js"
+    },
+    {
+      "id": "6b94c73591846917",
+      "kind": "script",
+      "name": "848.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/848.bundle.js"
+    },
+    {
+      "id": "1b9f1203de9a8d88",
+      "kind": "script",
+      "name": "7618.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/7618.bundle.js"
+    },
+    {
+      "id": "d5dec448eb8001c2",
+      "kind": "script",
+      "name": "2866.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/2866.bundle.js"
+    },
+    {
+      "id": "43fbf403d26c1c91",
+      "kind": "script",
+      "name": "4856.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/4856.bundle.js"
+    },
+    {
+      "id": "4681703b360e109c",
+      "kind": "script",
+      "name": "1818.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/1818.bundle.js"
+    },
+    {
+      "id": "bad70a1e45a8a128",
+      "kind": "script",
+      "name": "77.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/77.bundle.js"
+    },
+    {
+      "id": "1eb9ffc61431cf70",
+      "kind": "script",
+      "name": "7837.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/7837.bundle.js"
+    },
+    {
+      "id": "b8541a51754bd5a2",
+      "kind": "script",
+      "name": "4962.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/4962.bundle.js"
+    },
+    {
+      "id": "5d26009be1f14a29",
+      "kind": "script",
+      "name": "secondPriorityLibs.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/secondPriorityLibs.bundle.js"
+    },
+    {
+      "id": "c4a59c3338136fdf",
+      "kind": "image",
+      "name": "body-bg.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        },
+        {
+          "kind": "computedStyle",
+          "nodeId": 4,
+          "property": "background-image"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/images/global/body-bg.png"
+    },
+    {
+      "id": "f81d4c26afadd15d",
+      "kind": "script",
+      "name": "analytics.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 65,
+          "property": "src"
+        }
+      ],
+      "url": "https://www.google-analytics.com/analytics.js"
+    },
+    {
+      "id": "6ce3764850e6f833",
+      "kind": "other",
+      "name": "version.txt",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/version.txt?refresh=1793688165032&_=1793688163798"
+    },
+    {
+      "id": "a7270ab9fafc12ab",
+      "kind": "other",
+      "name": "collect",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://www.google-analytics.com/j/collect?v=1&_v=j102&a=2037143941&t=pageview&_s=1&dl=https%3A%2F%2Fnyc.testnav.com%2Fclient%2Findex.html&ul=en-us&dt=Sign%20In%20-%20TestNav&sr=1920x1080&vp=1920x863&_u=AAGAAAABAAAAAC~&jid=451970873&gjid=1555916277&cid=556759918.1781657399&tid=UA-33668667-3&_gid=1597428687.1793589116&_r=1&_slc=1&z=1056654776"
+    },
+    {
+      "id": "6a49e5a8bdca2409",
+      "kind": "other",
+      "name": "authenticate",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/authenticate"
+    },
+    {
+      "id": "d4d7e2423c62b3de",
+      "kind": "script",
+      "name": "js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 64,
+          "property": "src"
+        }
+      ],
+      "url": "https://www.googletagmanager.com/gtag/js?id=G-9QZF5NN4FP&cx=c&_slc=1"
+    },
+    {
+      "id": "741a647131672b5f",
+      "kind": "other",
+      "name": "collect",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "fetch"
+        }
+      ],
+      "url": "https://www.google-analytics.com/g/collect?v=2&tid=G-9QZF5NN4FP&gtm=45je6au1v9131049583za20gxf1&_p=1793688165095&gcd=13l3l3l3l2l1&npa=0&dma=0&_eu=ABAIAAQ&cid=556759918.1781657399&frm=0&ngs=1&pscdl=noapi&rcb=12&sr=1920x1080&uaa=x86&uab=64&uafvl=Not-A.Brand%3B99.0.0.0%7CGoogle%2520Chrome%3B157.0.8103.27%7CChromium%3B157.0.8103.27&uam=&uamb=0&uap=Windows&uapv=10.0.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938469~118897920~118897930~120213116~120385423~120469145~120469153~121246026~121246034~123691370~123814944&dl=https%3A%2F%2Fnyc.testnav.com%2Fclient%2Findex.html&dt=Sign%20In%20-%20TestNav&sid=1793688165&sct=84&seg=0&en=page_view&_ss=1&_ee=1&tfd=1934"
+    },
+    {
+      "id": "9199afbca9b51bde",
+      "kind": "other",
+      "name": "S3CheckFile.txt",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/S3CheckFile.txt?unq=1793688165184"
+    },
+    {
+      "id": "d6c96b284f1ddd3c",
+      "kind": "other",
+      "name": "2214283",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/authSelectTest/2214283"
+    },
+    {
+      "id": "d3fc3e7edc187502",
+      "kind": "other",
+      "name": "testdef",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/test/5942/1/testdef"
+    },
+    {
+      "id": "d10b0fe741cdf0f1",
+      "kind": "script",
+      "name": "ItemTimerController.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/ItemTimerController.bundle.js"
+    },
+    {
+      "id": "f3e65b8eb2375dba",
+      "kind": "script",
+      "name": "7187.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/7187.bundle.js"
+    },
+    {
+      "id": "08dd76bc66cb105d",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737766/1/flavor/1"
+    },
+    {
+      "id": "e3725eb0153d7a93",
+      "kind": "font",
+      "name": "fontawesome-webfont.woff",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/images/font/fontawesome-webfont.woff"
+    },
+    {
+      "id": "b9851b02e52df75d",
+      "kind": "image",
+      "name": "flash.svg",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        },
+        {
+          "kind": "computedStyle",
+          "nodeId": 16781,
+          "property": "background-image"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/images/battery/flash.svg"
+    },
+    {
+      "id": "5f274d129420ab1c",
+      "kind": "script",
+      "name": "5770.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/5770.bundle.js"
+    },
+    {
+      "id": "38d743fb8af97657",
+      "kind": "script",
+      "name": "answereliminator-lib.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/tools/answereliminator-lib.js"
+    },
+    {
+      "id": "17fb4398ee7b0a3b",
+      "kind": "script",
+      "name": "rangy-core.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/rangy/rangy-core.js"
+    },
+    {
+      "id": "67653059a050b012",
+      "kind": "script",
+      "name": "highlightertool-lib.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/tools/highlightertool-lib.js"
+    },
+    {
+      "id": "8fc910f417cd9840",
+      "kind": "script",
+      "name": "notepad-lib.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/tools/notepad-lib.js"
+    },
+    {
+      "id": "ac31d1036dbfe67e",
+      "kind": "script",
+      "name": "toolcontroller-lib.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/tools/toolcontroller-lib.js"
+    },
+    {
+      "id": "eab5ee5f8bd7450b",
+      "kind": "font",
+      "name": "pearsoniconstn8-webfont.woff",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/stylesheets/images/font/pearsoniconstn8-webfont.woff"
+    },
+    {
+      "id": "91387a351468fd2b",
+      "kind": "script",
+      "name": "contextMenu.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/tools/contextMenu.js"
+    },
+    {
+      "id": "7a1b386fc741b4b5",
+      "kind": "script",
+      "name": "DeepZoomToolMenu.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/DeepZoomToolMenu.js"
+    },
+    {
+      "id": "3326b097da32e60a",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737767/1/flavor/1"
+    },
+    {
+      "id": "1a6ac8cb2b928b91",
+      "kind": "script",
+      "name": "jquery.nicescroll.min.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/jquery.nicescroll.min.js"
+    },
+    {
+      "id": "ee526286feb0f712",
+      "kind": "image",
+      "name": "shb239008_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737767/1/shb239008_exp_exh.png"
+    },
+    {
+      "id": "46caa4d26ef9e208",
+      "kind": "script",
+      "name": "bootstrap-tabdrop.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/bootstrap-tabdrop.js"
+    },
+    {
+      "id": "4bc0b059383f7620",
+      "kind": "script",
+      "name": "jquery.widget.exhibitswidget.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/jquery.widget.exhibitswidget.js"
+    },
+    {
+      "id": "47fdc7d3035f4635",
+      "kind": "script",
+      "name": "6566.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/6566.bundle.js"
+    },
+    {
+      "id": "bce69a08098b2530",
+      "kind": "script",
+      "name": "MathJax.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/MathJax.js?config=TeX-MML-AM_CHTML"
+    },
+    {
+      "id": "09be613279417b41",
+      "kind": "script",
+      "name": "TeX-MML-AM_CHTML.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/config/TeX-MML-AM_CHTML.js"
+    },
+    {
+      "id": "b32edfaf9aae0e96",
+      "kind": "script",
+      "name": "jax.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/jax/output/CommonHTML/jax.js"
+    },
+    {
+      "id": "186e4122a508c0be",
+      "kind": "script",
+      "name": "fontdata.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/jax/output/CommonHTML/fonts/TeX/fontdata.js"
+    },
+    {
+      "id": "30051a6d8a428cff",
+      "kind": "font",
+      "name": "MathJax_Main-Regular.woff",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff"
+    },
+    {
+      "id": "4c8bd142b62a59c9",
+      "kind": "script",
+      "name": "accomSidebar.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/accomSidebar.js"
+    },
+    {
+      "id": "4bf6d4dfde27ceeb",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737768/1/flavor/1"
+    },
+    {
+      "id": "7378682f6a7b436d",
+      "kind": "image",
+      "name": "SHB239005_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737768/1/SHB239005_exp_exh.png"
+    },
+    {
+      "id": "ea03a078c1189d57",
+      "kind": "image",
+      "name": "SHB239005_1.svgz",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737768/1/SHB239005_1.svgz"
+    },
+    {
+      "id": "61281bf2a8971726",
+      "kind": "font",
+      "name": "MathJax_Math-Italic.woff",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff"
+    },
+    {
+      "id": "149e74809bc752c2",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737769/1/flavor/1"
+    },
+    {
+      "id": "7f22d5d3cf4fc9cd",
+      "kind": "image",
+      "name": "SHB239007_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737769/1/SHB239007_exp_exh.png"
+    },
+    {
+      "id": "5da59e98c8887fee",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737770/1/flavor/1"
+    },
+    {
+      "id": "a118a02bed659b90",
+      "kind": "script",
+      "name": "jquery.prettyCheckable.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/jquery.prettyCheckable.js"
+    },
+    {
+      "id": "b4e5cd608ff9ff13",
+      "kind": "image",
+      "name": "M269264_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737770/1/M269264_exp_exh.png"
+    },
+    {
+      "id": "7f6043964f649891",
+      "kind": "script",
+      "name": "jquery.widget.matchgridinteraction.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/jquery.widget.matchgridinteraction.js"
+    },
+    {
+      "id": "5fa0a311c16db5b2",
+      "kind": "script",
+      "name": "676.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/676.bundle.js"
+    },
+    {
+      "id": "c2feb8d1f30a7ae4",
+      "kind": "image",
+      "name": "prettyCheckable-black.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/stylesheets/checkable/prettyCheckable-black.png"
+    },
+    {
+      "id": "0c470377c2db5d7c",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737771/1/flavor/1"
+    },
+    {
+      "id": "9d2f48a349093e17",
+      "kind": "image",
+      "name": "SHB239004_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737771/1/SHB239004_exp_exh.png"
+    },
+    {
+      "id": "8e7b6476b90d3f16",
+      "kind": "image",
+      "name": "SHB239004_1.svgz",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737771/1/SHB239004_1.svgz"
+    },
+    {
+      "id": "97f2ecc51ebfa4ea",
+      "kind": "script",
+      "name": "BasicLatin.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/jax/element/mml/optable/BasicLatin.js"
+    },
+    {
+      "id": "665e0ada558de2d7",
+      "kind": "script",
+      "name": "AMS-Regular.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/jax/output/CommonHTML/fonts/TeX/AMS-Regular.js"
+    },
+    {
+      "id": "f12414c03a3336c7",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737772/1/flavor/1"
+    },
+    {
+      "id": "66c79eefa0100c29",
+      "kind": "script",
+      "name": "jquery.widget.graphicgapmatchinteraction.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/jquery.widget.graphicgapmatchinteraction.js"
+    },
+    {
+      "id": "ca278acb10bee52e",
+      "kind": "image",
+      "name": "M269262_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737772/1/M269262_exp_exh.png"
+    },
+    {
+      "id": "161498c73f71dc53",
+      "kind": "image",
+      "name": "M260262_1.svgz",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737772/1/M260262_1.svgz"
+    },
+    {
+      "id": "00ae890003315b2b",
+      "kind": "image",
+      "name": "M260262_1_d_notafunction.svgz",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737772/1/M260262_1_d_notafunction.svgz"
+    },
+    {
+      "id": "293eae4af4c15905",
+      "kind": "image",
+      "name": "M260262_1_d_function.svgz",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737772/1/M260262_1_d_function.svgz"
+    },
+    {
+      "id": "6de74ad766ec045b",
+      "kind": "script",
+      "name": "4528.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/4528.bundle.js"
+    },
+    {
+      "id": "ceeeafefd95762e7",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737773/1/flavor/1"
+    },
+    {
+      "id": "1488ef54dff6db1a",
+      "kind": "image",
+      "name": "SHB239015_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737773/1/SHB239015_exp_exh.png"
+    },
+    {
+      "id": "1448de30c0116675",
+      "kind": "image",
+      "name": "SHB239015_1.svgz",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737773/1/SHB239015_1.svgz"
+    },
+    {
+      "id": "7062e597312bf65d",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737774/1/flavor/1"
+    },
+    {
+      "id": "6a4be7f9a615683a",
+      "kind": "image",
+      "name": "SHB239011_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737774/1/SHB239011_exp_exh.png"
+    },
+    {
+      "id": "bb2334c95bebf63d",
+      "kind": "script",
+      "name": "n.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/jax/input/MathML/entities/n.js"
+    },
+    {
+      "id": "48ca7197c6dd6555",
+      "kind": "script",
+      "name": "Latin1Supplement.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/jax/element/mml/optable/Latin1Supplement.js"
+    },
+    {
+      "id": "af7eb28b3856afdb",
+      "kind": "font",
+      "name": "MathJax_Size2-Regular.woff",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/mathjax/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff"
+    },
+    {
+      "id": "6c54c3b3c0cb5eed",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737775/1/flavor/1"
+    },
+    {
+      "id": "980ad43905c85892",
+      "kind": "image",
+      "name": "SHB239012_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737775/1/SHB239012_exp_exh.png"
+    },
+    {
+      "id": "2443bd7f6a839109",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737776/1/flavor/1"
+    },
+    {
+      "id": "0931f183f20cc749",
+      "kind": "script",
+      "name": "jquery.textentryfilter.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/jquery.textentryfilter.js"
+    },
+    {
+      "id": "50a0d0588e409ebc",
+      "kind": "image",
+      "name": "SHB239003_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737776/1/SHB239003_exp_exh.png"
+    },
+    {
+      "id": "f0a388fe29ec714b",
+      "kind": "script",
+      "name": "2060.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/2060.bundle.js"
+    },
+    {
+      "id": "e076ba03d460fb3d",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737777/1/flavor/1"
+    },
+    {
+      "id": "9ac7e4b02c6f2211",
+      "kind": "image",
+      "name": "SHB239009_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737777/1/SHB239009_exp_exh.png"
+    },
+    {
+      "id": "730d2635fc1838da",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737778/1/flavor/1"
+    },
+    {
+      "id": "c44becb322bc2b92",
+      "kind": "script",
+      "name": "raphael-2.1.2.min.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/raphael-2.1.2.min.js"
+    },
+    {
+      "id": "dde35eb94554d094",
+      "kind": "image",
+      "name": "M269265_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737778/1/M269265_exp_exh.png"
+    },
+    {
+      "id": "f9197795f55b3d5d",
+      "kind": "script",
+      "name": "pointgraph-lib-1.0.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/javascripts/pointgraph-lib-1.0.js"
+    },
+    {
+      "id": "fd0400ab238d7af8",
+      "kind": "script",
+      "name": "9819.bundle.js",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "script"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/build/9819.bundle.js"
+    },
+    {
+      "id": "065dca43c317e9e2",
+      "kind": "image",
+      "name": "gradient32.gif",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "css"
+        }
+      ],
+      "url": "https://nyc.testnav.com/client/public/images/global/gradient32.gif"
+    },
+    {
+      "id": "64cd0c4e7d5bacb9",
+      "kind": "other",
+      "name": "1",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "xmlhttprequest"
+        }
+      ],
+      "url": "https://nyc.testnav.com/api/8.0/item/737779/1/flavor/1"
+    },
+    {
+      "id": "b6c5ce9faa92106e",
+      "kind": "image",
+      "name": "SHB239001_exp_exh.png",
+      "sources": [
+        {
+          "kind": "resource",
+          "property": "img"
+        },
+        {
+          "kind": "attribute",
+          "nodeId": 16895,
+          "property": "src"
+        }
+      ],
+      "url": "https://adam.pearsontestcontent.com/nycqc/b8f9b9d8f0de11057c226d90873af94ddf3eeba2/5942/1/737779/1/SHB239001_exp_exh.png"
+    }
+  ],
+  "id": "856e2385-3208-4add-ab8d-2fd1f26e833e",
+  "inlineSvgs": [],
+  "pageUrl": "https://nyc.testnav.com/client/index.html#",
+  "summary": {
+    "byKind": {
+      "font": 6,
+      "image": 25,
+      "other": 25,
+      "script": 53,
+      "stylesheet": 1,
+      "video": 0
+    },
+    "inlineSvgCount": 0,
+    "totalCount": 110
+  }
+}

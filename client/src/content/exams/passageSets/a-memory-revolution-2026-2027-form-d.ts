@@ -19,7 +19,7 @@ const aMemoryRevolution20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The details in paragraph 3 about cognitive offloading convey a central idea of the passage by",
     "promptHtml": "<p>The details in paragraph 3 about cognitive offloading convey a central idea of the passage by</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const aMemoryRevolution20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How do the details about the experiment described in paragraph 5 convey a central idea of the passage?",
     "promptHtml": "<p>How do the details about the experiment described in <span>paragraph 5</span> convey a central idea of the passage?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const aMemoryRevolution20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 7.\n\nAs the Internet’s resources continue to expand our “external” memory, some question whether the process may cause people to depend too heavily on technology.\n\nHow does the sentence contribute to the structure and development of ideas in the passage?",
     "promptHtml": "<p>Read this sentence from paragraph 7.</p><blockquote><strong><strong>As the Internet’s resources continue to expand our “external” memory, some question whether the process may cause people to depend too heavily on technology.</strong></strong></blockquote><p>How does the sentence contribute to the structure and development of ideas in the passage?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const aMemoryRevolution20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The study described in paragraph 6 influenced researchers’ ideas about memory in the digital age by",
     "promptHtml": "<p>The study described in <span>paragraph 6</span> influenced researchers’ ideas about memory in the digital age by</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const aMemoryRevolution20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the diagram provide additional support for the topic presented in the passage?",
     "promptHtml": "<p>How does the diagram provide additional support for the topic presented in the passage?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const aMemoryRevolution20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which evidence from the passage is most relevant to the claim in paragraph 7 that “ ‘far from making us stupid, these technologies are the only things that will keep us smart’ ”?",
     "promptHtml": "<p>Which evidence from the passage is <strong>most</strong> relevant to the claim in <span>paragraph 7</span> that <span>“ ‘far</span> from making us stupid, these technologies are the only things that will keep us <span>smart’ ”?</span></p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const aMemoryRevolution20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The effect of the Internet on a person’s memory is illustrated in the passage through the presentation of studies that",
     "promptHtml": "<p>The effect of the Internet on a person’s memory is illustrated in the passage through the presentation of studies that</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",

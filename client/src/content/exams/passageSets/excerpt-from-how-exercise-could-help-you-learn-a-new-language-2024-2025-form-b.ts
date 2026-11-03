@@ -24,7 +24,7 @@ const excerptFromHowExerciseCouldHelpYouLearnANewLanguage20242025FormBQuestions:
     "points": 1,
     "prompt": "How does the author’s use of comparison in paragraphs 4 and 5 contribute to the development of ideas in the excerpt?",
     "promptHtml": "<p>How does the author’s use of comparison in paragraphs 4 and 5 contribute to the development of ideas in the excerpt?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -70,7 +70,7 @@ const excerptFromHowExerciseCouldHelpYouLearnANewLanguage20242025FormBQuestions:
     "points": 1,
     "prompt": "Read this sentence from paragraph 6. To see what effects exercise might have on this process, the researchers first recruited 40 college-age Chinese men and women who were trying to learn English. Which statement describes the function of the sentence in the overall structure of the excerpt?",
     "promptHtml": "<p>Read this sentence from paragraph 6. <strong>To see what effects exercise might have on this process, the researchers first</strong> <strong>recruited 40 college-age Chinese men and women who were trying to</strong> <strong>learn English.</strong> Which statement describes the function of the sentence in the overall structure of the excerpt?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -116,7 +116,7 @@ const excerptFromHowExerciseCouldHelpYouLearnANewLanguage20242025FormBQuestions:
     "points": 1,
     "prompt": "Which sentence is the best summary of the research procedure used in the study in the excerpt?",
     "promptHtml": "<p>Which sentence is the <strong>best </strong>summary of the research procedure used in the study in the excerpt?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -162,7 +162,7 @@ const excerptFromHowExerciseCouldHelpYouLearnANewLanguage20242025FormBQuestions:
     "points": 1,
     "prompt": "In the study described in the excerpt, researchers asked English learners to assess the sense of words in context because that task is",
     "promptHtml": "<p>In the study described in the excerpt, researchers asked English learners to assess the sense of words in context because that task is</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",
@@ -208,7 +208,7 @@ const excerptFromHowExerciseCouldHelpYouLearnANewLanguage20242025FormBQuestions:
     "points": 1,
     "prompt": "Read these sentences from paragraph 17. These improvements extend beyond simply aiding in memorization, she added. The exercise also deepened language learners’ grasp of how to use their newly acquired words. Which sentence from the excerpt best explains why Sulpizio feels confident in the conclusion stated in these sentences?",
     "promptHtml": "<p>Read these sentences from paragraph 17. <strong>These improvements extend beyond simply aiding in memorization, she added.</strong> <strong>The exercise also deepened language learners’ grasp of how to use their newly</strong> <strong>acquired words.</strong> Which sentence from the excerpt <strong>best </strong>explains why Sulpizio feels confident in the conclusion stated in these sentences?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -254,7 +254,7 @@ const excerptFromHowExerciseCouldHelpYouLearnANewLanguage20242025FormBQuestions:
     "points": 1,
     "prompt": "Paragraph 18 shows that the author’s perspective toward the study described in the excerpt is that",
     "promptHtml": "<p>Paragraph 18 shows that the author’s perspective toward the study described in the excerpt is that</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -300,7 +300,7 @@ const excerptFromHowExerciseCouldHelpYouLearnANewLanguage20242025FormBQuestions:
     "points": 1,
     "prompt": "Which evidence from the excerpt is most relevant to the author’s claim that there are many unanswered questions about the relationship between movement and learning?",
     "promptHtml": "<p>Which evidence from the excerpt is <strong>most </strong>relevant to the author’s claim that there are many unanswered questions about the relationship between movement and learning?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",

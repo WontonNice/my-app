@@ -19,7 +19,7 @@ const championOfTheChannel20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "What do the newspaper editor’s comments in paragraph 1 reveal about the challenges Ederle faced in attempting her feat?",
     "promptHtml": "<p>What do the newspaper editor’s comments in <span>paragraph 1</span> reveal about the challenges Ederle faced in attempting her feat?</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const championOfTheChannel20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 4.\nDuring her first channel-crossing attempt she had worn a standard one-piece swimsuit that, after the lengthy hours of swimming across the channel, had stretched out, filling with water and creating drag, making an already challenging task almost insurmountable.\nThe word “insurmountable” is used to highlight",
     "promptHtml": "<p>Read this sentence from <span>paragraph 4.</span></p> <p data-align=\"indent\"><strong>During her first channel-crossing attempt she had worn a standard one-piece swimsuit that, after the lengthy hours of swimming across the channel, had stretched out, filling with water and creating drag, making an already challenging task almost insurmountable.</strong></p> <p>The word “insurmountable” is used to highlight</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const championOfTheChannel20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which statement describes how the author’s use of a problem-and-solution structure in paragraph 5 contributes to the development of ideas in the passage?",
     "promptHtml": "<p>Which statement describes how the author’s use of a problem-and-solution structure in <span>paragraph 5</span> contributes to the development of ideas in the passage?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const championOfTheChannel20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence best supports the idea that Ederle succeeded in swimming across the channel because of her innovative approach to the challenge?",
     "promptHtml": "<p>Which sentence <strong>best</strong> supports the idea that Ederle succeeded in swimming across the channel because of her innovative approach to the challenge?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const championOfTheChannel20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Paragraph 7 contributes to the development of a central idea of the passage by",
     "promptHtml": "<p>Paragraph 7 contributes to the development of a central idea of the passage by</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const championOfTheChannel20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from the passage best conveys the author’s perspective regarding the impact of Ederle’s accomplishment?",
     "promptHtml": "<p>Which sentence from the passage <strong>best</strong> conveys the author’s perspective regarding the impact of Ederle’s accomplishment?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const championOfTheChannel20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence is the best summary of the steps that Ederle took to prepare for her second attempt to swim across the English Channel?",
     "promptHtml": "<p>Which sentence is the <strong>best</strong> summary of the steps that Ederle took to prepare for her second attempt to swim across the English Channel?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -306,7 +306,7 @@ const championOfTheChannel20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The idea that many people were interested in Ederle’s attempt to swim the channel is illustrated in the passage mainly through the",
     "promptHtml": "<p>The idea that many people were interested in Ederle’s attempt to swim the channel is illustrated in the passage <strong>mainly</strong> through the</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -347,7 +347,7 @@ const championOfTheChannel20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The table builds on the information in the passage mainly by",
     "promptHtml": "<p>The table builds on the information in the passage <strong>mainly</strong> by</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",

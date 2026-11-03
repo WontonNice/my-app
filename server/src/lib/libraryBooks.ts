@@ -15,6 +15,16 @@ function libraryBooks() {
 export function getMergedLibraryBook(id: string): PassageBook | undefined {
   return libraryBooks().find(book => book.id === id);
 }
+let versionCache: { mtimeMs: number; size: number; books: PassageBook[] } | undefined;
+export function getLibraryAttemptBook(id: string): PassageBook | undefined {
+  const combined = getMergedLibraryBook(id);
+  if (combined) return combined;
+  const versionFile = path.resolve(__dirname, "../../data/library-versions.json");
+  if (!fs.existsSync(versionFile)) return undefined;
+  const stat = fs.statSync(versionFile);
+  if (!versionCache || versionCache.mtimeMs !== stat.mtimeMs || versionCache.size !== stat.size) versionCache = { mtimeMs: stat.mtimeMs, size: stat.size, books: JSON.parse(fs.readFileSync(versionFile, "utf8")) as PassageBook[] };
+  return versionCache.books.find(book => book.id === id);
+}
 /** Access aliases do not change the question sets used by historical attempts. */
 export function canonicalLibraryBookId(id: string) {
   return libraryBooks().find(book => book.id === id || book.versions.some(version => version.id === id))?.id ?? id;

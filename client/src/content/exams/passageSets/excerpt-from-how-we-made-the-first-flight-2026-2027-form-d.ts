@@ -19,7 +19,7 @@ const excerptFromHowWeMadeTheFirstFlight20262027FormDQuestions: ExamQuestion[] =
     "points": 1,
     "prompt": "How does paragraph 1 introduce the idea that the Wright brothers knew that their flight attempt was risky?",
     "promptHtml": "<p>How does paragraph 1 introduce the idea that the Wright brothers knew that their flight attempt was risky?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const excerptFromHowWeMadeTheFirstFlight20262027FormDQuestions: ExamQuestion[] =
     "points": 1,
     "prompt": "Read this sentence from paragraph 4.\n\nWilbur having used his turn in the unsuccessful attempt on the 14th, the right to the first trial now belonged to me.\n\nThe sentence contributes to the development of ideas in the excerpt by",
     "promptHtml": "<p>Read this sentence from paragraph 4.</p><blockquote><strong><strong>Wilbur having used his turn in the unsuccessful attempt on the 14th, the right to the first trial now belonged to me.</strong></strong></blockquote><p>The sentence contributes to the development of ideas in the excerpt by</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const excerptFromHowWeMadeTheFirstFlight20262027FormDQuestions: ExamQuestion[] =
     "points": 1,
     "prompt": "The photograph mentioned in paragraph 4 is significant because it",
     "promptHtml": "<p>The photograph mentioned in <span>paragraph 4</span> is significant because it</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const excerptFromHowWeMadeTheFirstFlight20262027FormDQuestions: ExamQuestion[] =
     "points": 1,
     "prompt": "How do the details in paragraph 5 about the uneven nature of the flight convey a central idea of the excerpt?",
     "promptHtml": "<p>How do the details in paragraph 5 about the uneven nature of the flight convey a central idea of the excerpt?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const excerptFromHowWeMadeTheFirstFlight20262027FormDQuestions: ExamQuestion[] =
     "points": 1,
     "prompt": "Read this sentence from paragraph 5.\nAs the velocity of the wind was over 35 feet per second and the speed of the machine over the ground against this wind ten feet per second, the speed of the machine relative to the air was over 45 feet per second, and the length of the flight was equivalent to a flight of 540 feet made in calm air.\nHow does the sentence help convey Orville Wright’s perspective about this first flight?",
     "promptHtml": "<p>Read this sentence from paragraph 5.</p> <p data-align=\"indent\"><strong>As the velocity of the wind was over <span>35 feet</span> per second and the speed of the machine over the ground against this wind ten feet per second, the speed of the machine relative to the air was over <span>45 feet</span> per second, and the length of the flight was equivalent to a flight of <span>540 feet</span> made in calm air.</strong></p> <p>How does the sentence help convey Orville Wright’s perspective about this first flight?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const excerptFromHowWeMadeTheFirstFlight20262027FormDQuestions: ExamQuestion[] =
     "points": 1,
     "prompt": "Which sentence from the excerpt best supports the idea that the Wright brothers had to adapt their plans for the flight in order to accommodate the weather conditions?",
     "promptHtml": "<p>Which sentence from the excerpt <strong>best</strong> supports the idea that the Wright brothers had to adapt their plans for the flight in order to accommodate the weather conditions?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ const excerptFromHowWeMadeTheFirstFlight20262027FormDQuestions: ExamQuestion[] =
     "points": 1,
     "prompt": "The use of chronological structure contributes to the development of ideas in the excerpt by",
     "promptHtml": "<p>The use of chronological structure contributes to the development of ideas in the excerpt by</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",

@@ -2,17 +2,20 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useAccountProfile } from '../account/account';
 import { X } from 'lucide-react';
 import { createPortal } from 'react-dom';
-import { generatePracticeQuestion, moduleGeneratorIds, practiceGenerators, practiceModules, type PracticeModule } from '../../../../server/src/shared/infinitePractice';
+import { moduleGeneratorIds, practiceGenerators, practiceModules, type PracticeModule } from '../../../../server/src/shared/infinitePractice';
 import { isExamQuestionCorrect } from '../../../../server/src/shared/examGrading';
 import { ExamSessionPage, type ExamGameSession } from '../../pages/ExamSessionPage';
 import { appendStudentPreview, getStudentPreviewContext } from '../../lib/studentPreview';
 import { checkPracticeAnswer, currentPracticeGeneratorId, hidePracticeGenerator, createPracticeState, formatPracticeTime, nextPracticeQuestion, practiceSummary } from './inequalitySession';
 import { useInfinitePracticeSession } from './useInfinitePracticeSession';
+import { browsePreviewGeneration, practiceQuestion, previewCorrectAnswer, simulatePreviewAnswers } from './practicePreview';
+import { ExamAnswer } from '../../components/ExamReviewQuestion';
 import './math-player.css';
 import '../../styles/study-hall-navigation.css';
-import { generateCatalogQuestion, managedGeneratorIds, type PracticeCatalog, type ManagedPracticeModule, type PracticeSelection } from '../../../../server/src/shared/practiceCatalog';
+import { managedGeneratorIds, type PracticeCatalog, type ManagedPracticeModule, type PracticeSelection } from '../../../../server/src/shared/practiceCatalog';
 import { PracticeModuleList } from './PracticeModuleList';
 import { PracticeFeedback, PracticeStats } from './PracticeFeedback';
+import { PracticeStars } from './PracticeStars';
 
 type PracticeProps = { onClose?: () => void; renderOverview?: (overview: ReactNode) => ReactNode; initialModuleId?: string; catalog?:PracticeCatalog; initialSelection?:PracticeSelection; previewOnly?:boolean; presentation?:'fullscreen'|'mini' };
 export function InequalityPractice(props:PracticeProps) {
@@ -23,7 +26,8 @@ export function InequalityPractice(props:PracticeProps) {
 }
 function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, initialSelection, previewOnly=false, presentation='fullscreen',owner }: PracticeProps & {owner:string}) {
   const mini=previewOnly&&presentation==='mini',previewRef=useRef<HTMLElement>(null);
-  const { session: state, update, save, saveError, resume } = useInfinitePracticeSession(initialModuleId,catalog,initialSelection,!previewOnly,owner);
+  const { session: state, update, save, saveError, resume, personalBest } = useInfinitePracticeSession(initialModuleId,catalog,initialSelection,!previewOnly,owner);
+  const [previewMode, setPreviewMode] = useState<'browse'|'streak'>('browse');
   const [choosing, setChoosing] = useState(false);
   const playing = Boolean(state && !state.finished && !choosing);
   useEffect(() => { if (!onClose||mini) return; const before = document.body.style.overflow; document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = before; }; }, [onClose,mini]);
@@ -31,7 +35,7 @@ function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, in
   const leave = () => onClose ? onClose() : window.location.assign(appendStudentPreview('/study-hall/shsat/materials?subject=math'));
   const saveAndExit = () => { if(save())leave(); };
   const end = () => update(previous => previous ? { ...previous, finished: true } : previous);
-  const start = (id: string,selection:PracticeSelection={}) => { update(() => (!previewOnly?resume(id):null)??createPracticeState(id, crypto.randomUUID().slice(0, 8),catalog,{})); setChoosing(false); };
+  const start = (id: string,selection:PracticeSelection={}) => { update(() => (!previewOnly?resume(id):null)??createPracticeState(id, crypto.randomUUID().slice(0, 8),catalog,selection)); setChoosing(false); };
   const modules=catalog?catalog.modules.filter(module=>module.published):practiceModules;
   const module = state?.moduleTitle?{title:state.moduleTitle==='All Question Types'?'General Practice':state.moduleTitle}:modules.find(item => item.id === state?.moduleId);
   const card = (item: PracticeModule|ManagedPracticeModule) => {
@@ -43,16 +47,15 @@ function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, in
     body = catalog?<main className="mc-practice-hub"><header><button className="mc-practice-back" onClick={leave}>← Back</button><p>Math · No calculator</p><h1>Infinite practice</h1><p>Choose a module. Get 10 correct in a row for a question type to unlock hiding it for this session.</p></header><PracticeModuleList catalog={catalog} previewContext={getStudentPreviewContext()} onStart={start}/></main>:<main className="mc-practice-hub"><header><button className="mc-practice-back" onClick={leave}>← Back</button><p>Math · No calculator</p><h1>Infinite practice</h1><p>Choose a module and practice at your own pace.</p></header><div className="mc-practice-module-grid">{modules.filter(item => 'selection' in item?!Array.isArray(item.selection):item.includeAll||item.id==='foundation').map(card)}</div><section><h2>Targeted practice</h2><p>Focus on a specific question type.</p><div className="mc-practice-module-grid">{modules.filter(item => 'selection' in item?Array.isArray(item.selection):!item.includeAll&&item.id!=='foundation').map(card)}</div><p className="mc-practice-note">More targeted modules will appear here as they are added.</p></section></main>;
   } else if (state.finished) {
     const summary = practiceSummary(state);
-    body = <main className="mc-practice-hub mc-practice-summary"><header><p>Practice complete</p><h1>{module?.title}</h1><p>{state.checked} question{state.checked === 1 ? '' : 's'} checked · {state.correct} correct</p></header><dl className="mc-practice-metrics"><div><dt>Accuracy</dt><dd>{summary.accuracy}</dd></div><div><dt>Best streak</dt><dd>{summary.longestStreak}</dd></div><div><dt>Average time per question</dt><dd>{summary.averageMs === null ? '—' : formatPracticeTime(summary.averageMs)}</dd></div><div><dt>Total time spent</dt><dd>{formatPracticeTime(summary.totalMs)}</dd></div></dl><p className="mc-practice-note">Accuracy and average time include checked answers only. Total time includes feedback and unfinished questions, and pauses while this tab is hidden.</p>{!state.submitted && (state.answer || state.questionMs > 0) && <p className="mc-practice-note">Your unfinished question was not scored.</p>}<div className="mc-practice-summary-actions"><button disabled={!modules.some(item=>item.id===state.moduleId)} onClick={() => start(state.moduleId,state.moduleSelection)}>Practice this module again</button><button onClick={() => initialModuleId && onClose ? onClose() : setChoosing(true)}>Choose another module</button><button className="mc-practice-back" onClick={leave}>Back to Study Hall</button></div></main>;
+    body = <main className="mc-practice-hub mc-practice-summary"><header><p>Practice complete</p><h1>{module?.title}</h1><p>{state.checked} question{state.checked === 1 ? '' : 's'} checked · {state.correct} correct</p></header><PracticeStars longestStreak={personalBest}/><dl className="mc-practice-metrics"><div><dt>Accuracy</dt><dd>{summary.accuracy}</dd></div><div><dt>Best streak</dt><dd>{summary.longestStreak}</dd></div><div><dt>Average time per question</dt><dd>{summary.averageMs === null ? '—' : formatPracticeTime(summary.averageMs)}</dd></div><div><dt>Total time spent</dt><dd>{formatPracticeTime(summary.totalMs)}</dd></div></dl><p className="mc-practice-note">Accuracy and average time include checked answers only. Total time includes feedback and unfinished questions, and pauses while this tab is hidden.</p>{!state.submitted && (state.answer || state.questionMs > 0) && <p className="mc-practice-note">Your unfinished question was not scored.</p>}<div className="mc-practice-summary-actions"><button disabled={!modules.some(item=>item.id===state.moduleId)} onClick={() => start(state.moduleId,state.moduleSelection)}>Practice this module again</button><button onClick={() => initialModuleId && onClose ? onClose() : setChoosing(true)}>Choose another module</button><button className="mc-practice-back" onClick={leave}>Back to Study Hall</button></div></main>;
   } else {
-    const definition=state.generatorDefinitions?.find(generator=>generator.id===currentPracticeGeneratorId(state));
-    const question = definition?generateCatalogQuestion(definition,Math.floor((state.sequenceIndex??state.index)/state.generatorIds.length),state.seed,state.generationVersion??1):generatePracticeQuestion(state.generatorIds, state.sequenceIndex??state.index, state.seed);
+    const question = practiceQuestion(state);
     const correct = state.submitted ? isExamQuestionCorrect(question, state.answer) : undefined;
     const title = `${previewOnly ? 'Preview: ' : ''}${module?.title || 'Infinite practice'}`;
     const exam: ExamGameSession = {
       assessment: { id: 'infinite-practice', title, classId: 'shsat', createdAt: '', updatedAt: '', description: '', durationMinutes: 0, allowCompletedAccess: false, passages: [], questions: [], sectionAccess: { english: false, math: true }, split: false, status: 'open' },
       content: { assessmentId: 'infinite-practice', title, passageSets: [], mathSection: { id: state.moduleId, label: 'Math', questionCount: 1, questions: [question], directions: { subject: 'Mathematics', title: '', body: '', notes: [] } } },
-      screen: 'mathQuestion', studentName: '', timerText: '', subjectPosition: { current: state.index + 1, total: 0 },
+      screen: 'mathQuestion', studentName: '', timerText: '', subjectPosition: { current: (previewOnly&&previewMode==='browse'?(state.sequenceIndex??state.index):state.index) + 1, total: 0 },
       answers: state.answer ? { [question.id]: state.answer } : {}, lockedQuestionIds: state.submitted ? [question.id] : [],
       onAnswersChange: answers => { const answer = answers[question.id] ?? ''; update(previous => previous && !previous.submitted ? { ...previous, answer } : previous); },
       onSubmit: async () => { update(previous => previous ? previous.submitted ? nextPracticeQuestion(previous) : checkPracticeAnswer(previous, isExamQuestionCorrect(question, previous.answer)) : previous); return true; },
@@ -60,18 +63,22 @@ function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, in
         onExit: previewOnly ? leave : saveAndExit,
         exitLabel: previewOnly ? 'Close preview' : 'Save and exit',
         result: correct === undefined ? undefined : correct ? 'correct' : 'incorrect',
-        stats: <><PracticeStats state={state} correct={correct}/>{!previewOnly&&<button className="mc-practice-save" type="button" onClick={saveAndExit}>Save and exit</button>}</>,
+        stats: <><PracticeStats state={state} correct={correct} personalBest={personalBest}/>{!previewOnly&&<button className="mc-practice-save" type="button" onClick={saveAndExit}>Save and exit</button>}</>,
         feedback: correct===undefined?null:<PracticeFeedback question={question} correct={correct}/>,
-        controls: !previewOnly&&<section className="mc-session-options" aria-label="Session progress">
+        controls: (!previewOnly||previewMode==='streak')&&<section className="mc-session-options" aria-label="Session progress">
           <p>This question type: {state.generatorStreaks?.[currentPracticeGeneratorId(state)]??0} correct in a row · {state.unlockedGeneratorIds?.includes(currentPracticeGeneratorId(state))?'Hiding unlocked for this session.':'Reach 10 to unlock hiding.'}</p>
-          <p title="Your streaks and hidden question types are saved on this device.">Saved on this device</p>
+          {previewOnly?<p>Preview session · progress is not saved</p>:<p title="Your streaks and hidden question types are saved on this device.">Saved on this device</p>}
           <button className="mc-session-finish" type="button" onClick={end}>Finish session</button>
           {!!state.unlockedGeneratorIds?.length&&<details><summary>Session settings · hide unlocked question types</summary><p>Hidden types return in a new session. Hiding the last type finishes this session.</p>{state.unlockedGeneratorIds.map(id=><div key={id}><span>{state.generatorDefinitions?.find(g=>g.id===id)?.title??practiceGenerators.find(g=>g.id===id)?.title??id}</span> <button type="button" disabled={state.hiddenGeneratorIds?.includes(id)||(id===currentPracticeGeneratorId(state)&&!state.submitted)} onClick={()=>update(previous=>previous?hidePracticeGenerator(previous,id):previous)}>{state.hiddenGeneratorIds?.includes(id)?'Hidden for this session':'Hide for this session'}</button>{id===currentPracticeGeneratorId(state)&&!state.submitted&&<small>Answer this question first.</small>}</div>)}</details>}
           {saveError&&<p role="alert">{saveError}</p>}
         </section>,
       },
     };
-    body = <ExamSessionPage key={state.seed} gameSession={exam} />;
+    body = <>{previewOnly&&<section className="mc-preview-tools" aria-label="Preview tools">
+      <div className="mc-preview-toolbar"><div role="group" aria-label="Preview mode">{(['browse','streak'] as const).map(mode=><button type="button" key={mode} aria-pressed={previewMode===mode} onClick={()=>{if(mode!==previewMode){setPreviewMode(mode);update(previous=>previous?browsePreviewGeneration(previous,previous.sequenceIndex??previous.index):previous);}}}>{mode==='browse'?'Browse generations':'Test streaks'}</button>)}</div><span>Generation {(state.sequenceIndex??state.index)+1} · {(state.generatorDefinitions?.find(generator=>generator.id===currentPracticeGeneratorId(state))?.title??practiceGenerators.find(generator=>generator.id===currentPracticeGeneratorId(state))?.title)}</span></div>
+      {previewMode==='browse'?<div className="mc-preview-toolbar"><button type="button" disabled={(state.sequenceIndex??state.index)===0} onClick={()=>update(previous=>previous?browsePreviewGeneration(previous,(previous.sequenceIndex??previous.index)-1):previous)}>← Previous generation</button><button type="button" onClick={()=>update(previous=>previous?browsePreviewGeneration(previous,(previous.sequenceIndex??previous.index)+1):previous)}>Next generation →</button><small>Switching modes starts a fresh preview session.</small></div>:<div className="mc-preview-toolbar"><button type="button" onClick={()=>update(previous=>previous?simulatePreviewAnswers(previous,1,true):previous)}>Simulate correct</button><button type="button" onClick={()=>update(previous=>previous?simulatePreviewAnswers(previous,1,false):previous)}>Simulate incorrect</button><button type="button" onClick={()=>update(previous=>previous?simulatePreviewAnswers(previous,10,true):previous)}>Simulate 10 correct</button><button type="button" onClick={()=>update(previous=>previous?browsePreviewGeneration(previous,0):previous)}>Reset streak test</button><small>Or answer below. Ten correct in a row per question type unlocks hiding.</small></div>}
+      <div className="mc-preview-answer"><strong>Correct answer</strong><ExamAnswer question={question} answer={previewCorrectAnswer(question)}/></div>
+    </section>}<ExamSessionPage key={state.seed} gameSession={exam} /></>;
   }
   const content = <section ref={previewRef} tabIndex={mini?-1:undefined} className={mini?'mc-exam-mini mc-infinite-page':onClose ? 'mc-exam-viewer mc-infinite-page' : 'mc-infinite-page'} role={mini?'region':onClose ? 'dialog' : undefined} aria-modal={onClose&&!mini ? true : undefined} aria-label={previewOnly ? 'Generated question preview' : 'Infinite math practice'} onKeyDown={event => { if (event.key === 'Escape' && (previewOnly || !playing)) {event.stopPropagation();onClose?.();} }}>{mini?<><header className="mc-mini-heading"><strong>Question preview</strong><button aria-label="Close question preview" onClick={onClose} type="button"><X size={18}/></button></header><div className="mc-mini-viewport">{body}</div></>:body}</section>;
   return onClose ? createPortal(content, document.body) : !playing && renderOverview ? renderOverview(content) : content;

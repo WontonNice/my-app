@@ -5,6 +5,7 @@ export type ExamQuestionType =
   | "multi_select"
   | "category_sort"
   | "graph_point_select"
+  | "coordinate_response"
   | "matrix_choice"
   | "table_match"
   | "inline_dropdown"
@@ -117,6 +118,33 @@ export type ExamMathDragSlot = {
   correctItemId: string;
   id: string;
   width?: number;
+  left?: number;
+  top?: number;
+  height?: number;
+};
+
+export type CoordinatePoint = { x: number; y: number; label?: string };
+export type CoordinateTool = {
+  id: string;
+  label: string;
+  kind: "line" | "point";
+  color: string;
+  /** Two distinct points define a keyed infinite line; one point keys a point tool. */
+  correctPoints?: CoordinatePoint[];
+};
+export type CoordinateShape = { id: string; vertices: CoordinatePoint[]; bankX: number; bankY: number };
+export type ExamCoordinateResponse = {
+  xMin: number; xMax: number; yMin: number; yMax: number;
+  xStep: number; yStep: number; xSnap: number; ySnap: number;
+  width: number; height: number;
+  plot: { left: number; top: number; width: number; height: number };
+  /** Optional original grid artwork; the response remains fully interactive. */
+  background?: ExamQuestionImage;
+  title?: string; xLabel?: string; yLabel?: string;
+  tools: CoordinateTool[];
+  shapes?: CoordinateShape[];
+  correctShapeId?: string;
+  correctAnchor?: CoordinatePoint;
 };
 
 export type ExamChoice = {
@@ -184,6 +212,9 @@ export type ExamQuestion = {
   /** Compact black tiles or blue outlined tiles; independent of answer reuse. */
   dragDropStyle?: "compact" | "outlined";
   dragDropSlots?: ExamMathDragSlot[];
+  dragDropImage?: ExamQuestionImage & { width: number; height: number };
+  coordinateResponse?: ExamCoordinateResponse;
+  hideChoiceLabels?: boolean;
   dropdownContent?: string[];
   dropdownContentHtml?: string;
   dropdowns?: ExamInlineDropdown[];
@@ -202,7 +233,7 @@ export type ExamQuestion = {
   instructionsHtml?: string;
   items?: ExamCategoryItem[];
   /** Passage/table evidence matrix with square selectors and bold statement rows. */
-  matrixStyle?: "evidence";
+  matrixStyle?: "evidence" | "compact";
   numberLineResponse?: ExamNumberLineResponse;
   points?: number;
   prompt: string;

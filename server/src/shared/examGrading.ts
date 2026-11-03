@@ -1,3 +1,4 @@
+import { coordinateAnswerCorrect } from './coordinateResponse';
 import type { ExamContent, ExamQuestion } from "./examTypes";
 import { isMathAnswerComplete, normalizeMathAnswer } from "./mathAnswer";
 import { orderByQuestionIds, orderedEnglishQuestions } from "./examQuestionOrder";
@@ -87,6 +88,7 @@ function hasExactIds(actualIds: string[], expectedIds: string[]) {
 }
 
 export function isExamQuestionCorrect(question: ExamQuestion, answer: SelectedAnswer | undefined) {
+  if (question.type === "coordinate_response") return coordinateAnswerCorrect(question, answer);
   if (question.type === 'transition_drop' && question.dragDropSlots?.length) {
     if (question.dragDropSlots.length === 1 && typeof answer === 'string') return Boolean(question.dragDropSlots[0].correctItemId) && answer === question.dragDropSlots[0].correctItemId;
     const placements = getCategoryPlacements(answer), slots = question.dragDropSlots;

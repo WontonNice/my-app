@@ -1,7 +1,6 @@
 import { aMiracleMilePassageSet } from "./passageSets/a-miracle-mile";
 import { getBankSet } from "../questionBank";
 import { dothemnoharmPassageSet } from "./passageSets/dothemnoharm";
-import { formARavenPlansPassageSet } from "./passageSets/formARavenPlans";
 import { indoorPlantsPassageSet } from "./passageSets/indoorPlants";
 import { massachusettsPassageSet } from "./passageSets/massachusetts";
 import { scribeLikeAnEgyptianPassageSet } from "./passageSets/scribe-like-an-egyptian";
@@ -158,11 +157,35 @@ import { excerptFromNiagaraFalls20182019FormBPassageSet } from "./passageSets/ex
 import { uncoveringThePast20182019FormBPassageSet } from "./passageSets/uncovering-the-past-2018-2019-form-b";
 import { snowyMountains20182019FormBPassageSet } from "./passageSets/snowy-mountains-2018-2019-form-b";
 import { inventionOfTheTelegraph20182019FormBPassageSet } from "./passageSets/invention-of-the-telegraph-2018-2019-form-b";
+import { readingPassage120172018FormAPassageSet } from "./passageSets/reading-passage-1-2017-2018-form-a";
+import { readingPassage220172018FormAPassageSet } from "./passageSets/reading-passage-2-2017-2018-form-a";
+import { readingPassage320172018FormAPassageSet } from "./passageSets/reading-passage-3-2017-2018-form-a";
+import { readingPassage420172018FormAPassageSet } from "./passageSets/reading-passage-4-2017-2018-form-a";
+import { readingPassage520172018FormAPassageSet } from "./passageSets/reading-passage-5-2017-2018-form-a";
+import { readingPassage620172018FormAPassageSet } from "./passageSets/reading-passage-6-2017-2018-form-a";
+import { unlockRideReturn20172018FormAPassageSet } from "./passageSets/unlock-ride-return-2017-2018-form-a";
+import { pursuingAHobby20172018FormAPassageSet } from "./passageSets/pursuing-a-hobby-2017-2018-form-a";
+import { readingPassage120172018FormBPassageSet } from "./passageSets/reading-passage-1-2017-2018-form-b";
+import { readingPassage220172018FormBPassageSet } from "./passageSets/reading-passage-2-2017-2018-form-b";
+import { readingPassage320172018FormBPassageSet } from "./passageSets/reading-passage-3-2017-2018-form-b";
+import { readingPassage420172018FormBPassageSet } from "./passageSets/reading-passage-4-2017-2018-form-b";
+import { readingPassage520172018FormBPassageSet } from "./passageSets/reading-passage-5-2017-2018-form-b";
+import { readingPassage620172018FormBPassageSet } from "./passageSets/reading-passage-6-2017-2018-form-b";
+import { theLocalLibrary20172018FormBPassageSet } from "./passageSets/the-local-library-2017-2018-form-b";
+import { movingThroughMountains20172018FormBPassageSet } from "./passageSets/moving-through-mountains-2017-2018-form-b";
+import { theBestLaidPlansOfRavens20192020FormBPassageSet } from "./passageSets/the-best-laid-plans-of-ravens-2019-2020-form-b";
+import { lookingForTheSmallestSparkOfEverything20192020FormBPassageSet } from "./passageSets/looking-for-the-smallest-spark-of-everything-2019-2020-form-b";
+import { excerptFromTheSpiritOfTheHerd20192020FormBPassageSet } from "./passageSets/excerpt-from-the-spirit-of-the-herd-2019-2020-form-b";
+import { aMemoryRevolution20192020FormBPassageSet } from "./passageSets/a-memory-revolution-2019-2020-form-b";
+import { serpentMound20192020FormBPassageSet } from "./passageSets/serpent-mound-2019-2020-form-b";
+import { massachusettsLowellNationalHistoricalPark20192020FormBPassageSet } from "./passageSets/massachusetts-lowell-national-historical-park-2019-2020-form-b";
+import { martialArtsForTheMindAndBody20192020FormBPassageSet } from "./passageSets/martial-arts-for-the-mind-and-body-2019-2020-form-b";
+import { findTimeToVolunteer20202021FormAPassageSet } from "./passageSets/find-time-to-volunteer-2020-2021-form-a";
+import { theFreeCollegeDebate20202021FormBPassageSet } from "./passageSets/the-free-college-debate-2020-2021-form-b";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
   dothemnoharmPassageSet,
-  formARavenPlansPassageSet,
   indoorPlantsPassageSet,
   massachusettsPassageSet,
   scribeLikeAnEgyptianPassageSet,
@@ -317,6 +340,31 @@ export const examPassageLibrary: ExamPassageSet[] = [
   uncoveringThePast20182019FormBPassageSet,
   snowyMountains20182019FormBPassageSet,
   inventionOfTheTelegraph20182019FormBPassageSet,
+  readingPassage120172018FormAPassageSet,
+  readingPassage220172018FormAPassageSet,
+  readingPassage320172018FormAPassageSet,
+  readingPassage420172018FormAPassageSet,
+  readingPassage520172018FormAPassageSet,
+  readingPassage620172018FormAPassageSet,
+  unlockRideReturn20172018FormAPassageSet,
+  pursuingAHobby20172018FormAPassageSet,
+  readingPassage120172018FormBPassageSet,
+  readingPassage220172018FormBPassageSet,
+  readingPassage320172018FormBPassageSet,
+  readingPassage420172018FormBPassageSet,
+  readingPassage520172018FormBPassageSet,
+  readingPassage620172018FormBPassageSet,
+  theLocalLibrary20172018FormBPassageSet,
+  movingThroughMountains20172018FormBPassageSet,
+  theBestLaidPlansOfRavens20192020FormBPassageSet,
+  lookingForTheSmallestSparkOfEverything20192020FormBPassageSet,
+  excerptFromTheSpiritOfTheHerd20192020FormBPassageSet,
+  aMemoryRevolution20192020FormBPassageSet,
+  serpentMound20192020FormBPassageSet,
+  massachusettsLowellNationalHistoricalPark20192020FormBPassageSet,
+  martialArtsForTheMindAndBody20192020FormBPassageSet,
+  findTimeToVolunteer20202021FormAPassageSet,
+  theFreeCollegeDebate20202021FormBPassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);

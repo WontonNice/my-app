@@ -27,8 +27,8 @@ stub('../src/config/assessments.ts', {
   toStudentAssessmentDetail: item => item,
 });
 stub('../src/lib/examContent.ts', { getExamContent: () => ({ passageSets: [{ questions: [{ topic: 'Inference' }] }] }) });
-const progress = new Map();
-stub('../src/routes/progress.ts', { getDatabaseProgress: async user => progress.get(user.id) ?? { examResults: [], practice: {} } });
+const progress = new Map(); let progressFailure = false; let libraryHistoryFailure = false;
+stub('../src/routes/progress.ts', { getDatabaseProgress: async user => { if (progressFailure) throw new Error("Exam history unavailable"); return progress.get(user.id) ?? { examResults: [], practice: {} }; } });
 const bankQuestion = { id: 'lab-q-plan-fixture', subject: 'English', source: 'SHSAT Lab', status: 'published', topic: 'Evidence & Support', difficulty: 'easy', choices: ['A', 'B', 'C', 'D'].map(id => ({ id, text: id })), correctChoiceId: 'A' };
 const bankSet = { id: 'lab-set-plan-fixture', title: 'Synthetic learning-plan ELA set', subject: 'English', source: 'SHSAT Lab', questionIds: [bankQuestion.id] };
 stub('../src/lib/questionBank.ts', { readQuestionBank: () => ({ revision: 1, questions: [bankQuestion], sets: [bankSet] }), libraryContentKind: id => id === bankSet.id ? 'practice' : 'passage' });
@@ -39,10 +39,10 @@ const db = {
   auth: { admin: { getUserById: async id => ({ data: { user: Object.values(users).find(user => user.id === id) ?? null }, error: null }) } },
   from(table) {
     const filters = [], sorts = [];
-    let columns = '*', start = 0, end = Infinity, single = false, changes, additions, ignoreDuplicates = false;
+    let columns = '*', start = 0, end = Infinity, single = false, changes, additions, insertOnly = false, ignoreDuplicates = false;
     const query = {
       select(value = '*') { columns = value; return this; },
-      eq(key, value) { filters.push(row => row[key] === value); return this; },
+      eq(key, value) { filters.push(row => key === "progress->>revision" ? String(row.progress?.revision) === value : row[key] === value); return this; },
       neq(key, value) { filters.push(row => row[key] !== value); return this; },
       in(key, values) { filters.push(row => values.includes(row[key])); return this; },
       not(key, op, value) { filters.push(row => op === 'is' ? row[key] !== value : !value.slice(1, -1).split(',').includes(row[key])); return this; },
@@ -57,12 +57,13 @@ const db = {
       limit(n) { end = n; return this; },
       maybeSingle() { single = true; return this; }, single() { single = true; return this; },
       update(values) { changes = values; return this; },
-      insert(values) { additions = Array.isArray(values) ? values : [values]; return this; },
+      insert(values) { insertOnly = true; additions = Array.isArray(values) ? values : [values]; return this; },
       upsert(values, options = {}) { additions = Array.isArray(values) ? values : [values]; ignoreDuplicates = options.ignoreDuplicates; return this; },
       then(resolve, reject) {
         if (storageFailure && table.startsWith('student_assign')) return Promise.resolve({ data: null, error: { message: 'Missing relation' } }).then(resolve, reject);
+        if (libraryHistoryFailure && table === "student_library_attempts") return Promise.resolve({ data: null, error: { code: "503", message: "History unavailable" } }).then(resolve, reject);
         const rows = tables[table] ?? [];
-        if (additions) for (const item of additions) { const existing = rows.find(row => item.id ? row.id === item.id : row.student_id === item.student_id); if (!existing) rows.push(structuredClone(item)); else if (!ignoreDuplicates) Object.assign(existing, item); }
+        if (additions) for (const item of additions) { const existing = rows.find(row => item.id ? row.id === item.id : table === "student_practice_progress" ? row.user_id === item.user_id && row.topic_slug === item.topic_slug : row.student_id === item.student_id); if (existing && insertOnly) return Promise.resolve({ data: null, error: { code: "23505" } }).then(resolve, reject); if (!existing) rows.push(structuredClone(item)); else if (!ignoreDuplicates) Object.assign(existing, item); }
         let matching = rows.filter(row => filters.every(filter => filter(row)));
         if (changes) matching.forEach(row => Object.assign(row, structuredClone(changes)));
         if (additions && single) matching = additions;
@@ -169,13 +170,14 @@ test('assigned passage access and saved native attempts complete only that stude
   const item = (await create([task({ kind: 'passage', contentId: fresh.id })])).data.assignments[0];
   assert.equal((await call(`/library/books/${fresh.id}/access`, 'student')).data.unlocked, true);
   assert.equal((await call(`/library/books/${fresh.id}/access`, 'other')).data.unlocked, false);
-  const book = require('../src/lib/libraryBooks.ts').getMergedLibraryBook(fresh.id);
+  const book = require('../src/lib/libraryBooks.ts').getLibraryAttemptBook(fresh.id);
   const questions = book ? book.passageSet.questions.map(question => {
     const answer = require('../src/shared/libraryBooks.ts').libraryCorrectAnswer(question);
     return { questionId: question.id, selectedAnswerId: typeof answer === 'string' ? answer : JSON.stringify(answer), timeSpentSeconds: 20 };
   }) : [{ questionId: 'q1', selectedAnswerId: 'A', correctAnswerId: 'A', timeSpentSeconds: 20 }];
   const attempt = await call(`/library/books/${fresh.id}/attempts`, 'student', 'POST', { startedAt: new Date().toISOString(), questions });
-  assert.equal(attempt.status, 201);
+  assert.equal(attempt.status, 201, JSON.stringify(attempt.data));
+  const frozen = tables.student_library_attempts.find(row => row.id === attempt.data.attempt.id); assert.ok(frozen.question_stats.every(row => row.questionSnapshot && row.passageSnapshot));
   assert.equal((await store.assignmentDetail(studentId, item.id)).status, 'completed');
   const row = (await call(prefix)).data.inventory.find(row => row.content.id === fresh.id);
   assert.equal(row.lastCompletedAt, attempt.data.attempt.completedAt);
@@ -204,14 +206,14 @@ test('real earlier results inform passage inventory without invented assigned da
   const history = (await call(`/plan/teacher/${otherId}/content/passage/${encodeURIComponent(fresh.id)}`)).data;
   assert.equal(history.total, 0); assert.equal(history.prior[0].at, '2026-09-12T14:00:00Z'); assert.equal('assignedAt' in history.prior[0], false);
 });
-test('a completed combined book records prior work for every original version alias', async () => {
+test('legacy combined-book activity proves related exposure, never sibling completion or aggregate scores', async () => {
   const id='book-a-miracle-mile', reference='combined-book-completion';
   const versions=catalog.filter(item=>item.kind==='passage'&&item.aliases.includes(id));
-  assert.equal(versions.length,2);
+  assert.ok(versions.length >= 2);
   tables.student_library_attempts.push({id:reference,user_id:otherId,book_id:id,total_questions:9,score:7,completed_at:'2026-10-07T12:00:00Z'});
   const data=(await call(`/plan/teacher/${otherId}`)).data;
   for(const version of versions){
-    const row=data.inventory.find(item=>item.content.id===version.id);assert.equal(row.hasCompleted,true);assert.equal(row.lastCompletedAt,'2026-10-07T12:00:00Z');
+    const row=data.inventory.find(item=>item.content.id===version.id);assert.equal(row.hasCompleted,false);assert.equal(row.lastCompletedAt,null);assert.equal(row.latestScore,null);assert.equal(row.status,'Completion unverified');
     const history=(await call(`/plan/teacher/${otherId}/content/passage/${encodeURIComponent(version.id)}`)).data;
     assert.ok(history.prior.some(item=>item.reference===reference));
   }
@@ -255,4 +257,52 @@ test('SHSAT Lab sets are practice, complete from exact attempts, and remain stud
 test('missing migration is an explicit error and cannot break existing access', async () => {
   storageFailure = true;
   try { assert.equal((await call(prefix)).status, 503); assert.equal((await store.assignedContentIds(studentId, 'exam')).size, 0); } finally { storageFailure = false; }
+});
+
+
+test('archived exam passages remain discoverable and failed history never becomes unseen inventory', async () => {
+  const source = catalog.filter(item => item.kind === 'passage' && item.questionCount >= 2).at(-1);
+  progress.set(otherId, { practice: {}, examResults: [], examHistory: [{ assessmentId: 'archived-exam', attemptId: 'older-attempt', completedAt: '2026-08-01T12:00:00Z', completionStatus: 'english_complete', passages: [{ id: source.id, correct: 2, total: source.questionCount }] }] });
+  const archived = (await call('/plan/teacher/' + otherId)).data;
+  const row = archived.inventory.find(item => item.content.id === source.id);
+  assert.equal(row.hasCompleted, true); assert.equal(row.latestScore.correct, 2); assert.equal(row.evidence[0].reference, 'older-attempt');
+  progressFailure = true; libraryHistoryFailure = true;
+  try {
+    const failed = (await call('/plan/teacher/' + otherId)).data;
+    assert.ok(failed.historyIssues.includes('Exam history unavailable'));
+    assert.ok(failed.historyIssues.includes('Library history unavailable'));
+    assert.ok(failed.inventory.every(item => item.historyComplete === false));
+    assert.equal(failed.inventory.some(item => item.status === 'Never assigned'), false);
+  } finally { progressFailure = false; libraryHistoryFailure = false; }
+  const recovered = (await call('/plan/teacher/' + otherId)).data;
+  assert.deepEqual(recovered.historyIssues, []); assert.equal(recovered.inventory.find(item => item.content.id === source.id).hasCompleted, true);
+});
+
+test('explicit passage relationships are teacher-owned, revision-checked, and never create completions', async () => {
+  const sources = catalog.filter(item => item.kind === 'passage'); const a = sources[0], b = sources.find(item => item.passageTextKey !== a.passageTextKey);
+  const url = prefix + '/passage-relations', body = { a: a.id, b: b.id, relation: 'revised', revision: 0 };
+  assert.equal((await call(url, 'student', 'PUT', body)).status, 403);
+  assert.equal((await call(url, 'teacher', 'PUT', { ...body, b: a.id })).status, 400);
+  const before = (await call(prefix)).data.inventory.map(row => [row.content.id, row.hasCompleted]);
+  const saved = await call(url, 'teacher', 'PUT', body); assert.equal(saved.status, 200); assert.equal(saved.data.relationship.revision, 1);
+  assert.ok(saved.data.relationship.aTextKey && saved.data.relationship.bTextKey);
+  assert.equal((await call(url, 'teacher', 'PUT', body)).status, 409);
+  assert.equal((await call(url, 'teacher', 'PUT', { ...body, revision: 1, relation: 'different' })).status, 200);
+  assert.equal((await call(url, 'teacher', 'PUT', { ...body, revision: 1 })).status, 409);
+  const after = (await call(prefix)).data; assert.deepEqual(after.inventory.map(row => [row.content.id, row.hasCompleted]), before);
+  assert.equal(after.passageRelations.at(-1).relation, 'different'); assert.equal(after.passageRelations.at(-1).stale, false);
+  users.teacher2 = { id: '55555555-5555-5555-5555-555555555555', app_metadata: { role: 'teacher' } };
+  assert.deepEqual((await call(prefix, 'teacher2')).data.passageRelations, []);
+  const preview = await call(prefix + '/passage-preview/' + encodeURIComponent(a.id)); assert.equal(preview.status, 200); assert.ok(preview.data.text.length > 0);
+});
+
+test('changed passage text preserves historical scores without completing the revised version', async () => {
+  const source = catalog.find(item => item.kind === 'passage' && item.passageTextKey && item.questionSetKey);
+  const book = require('../src/lib/libraryBooks.ts').getLibraryAttemptBook(source.id);
+  const stats = book.passageSet.questions.map((question, index) => ({ questionId: question.id, isCorrect: true, questionSnapshot: structuredClone(question), passageSnapshot: structuredClone(book.passageSet.passage), ...(index === 0 ? { versionCoverage: [{ contentId: source.id, questionIds: book.passageSet.questions.map(q => q.id), questionKeys: book.passageSet.questions.map(require('../src/shared/libraryBooks.ts').libraryQuestionKey) }] } : {}) }));
+  for (const stat of stats) stat.passageSnapshot.lines = [{ text: 'An earlier revision with different text.' }];
+  tables.student_library_attempts.push({ id: 'old-text-snapshot', user_id: otherId, book_id: source.id, total_questions: stats.length, score: stats.length, completed_at: '2026-07-01T12:00:00Z', question_stats: stats });
+  const history = (await call('/plan/teacher/' + otherId + '/content/passage/' + encodeURIComponent(source.id))).data;
+  const prior = history.prior.find(item => item.reference === 'old-text-snapshot');
+  assert.equal(prior.coverage, 'related'); assert.equal(prior.correct, stats.length); assert.equal(prior.total, stats.length);
 });

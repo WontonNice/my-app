@@ -70,7 +70,7 @@ const aMiracleMile20212022FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence best supports the idea that Bannister needed an alternative to “logical planning” (paragraph 3) in order to accomplish his goal?",
     "promptHtml": "<p>Which sentence best supports the idea that Bannister needed an alternative to “logical planning” (paragraph 3) in order to accomplish his goal?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -162,7 +162,7 @@ const aMiracleMile20212022FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The phrase “a new mindset had taken root” in paragraph 8 conveys the idea that",
     "promptHtml": "<p>The phrase “a new mindset had taken root” in paragraph 8 conveys the idea that</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -300,7 +300,7 @@ const aMiracleMile20212022FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How did interval training affect Bannister’s performance?",
     "promptHtml": "<p>How did interval training affect Bannister’s performance?</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",

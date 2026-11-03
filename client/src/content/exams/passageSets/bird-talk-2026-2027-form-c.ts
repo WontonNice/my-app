@@ -19,7 +19,7 @@ const birdTalk20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read lines 6–7 from the poem.\n\nThe birds took their hops and zigzags a little more\n  anxious; a home is a home; worms are worms.\n\nWhat idea from the second stanza do the lines help develop?",
     "promptHtml": "<p>Read lines 6–7 from the poem.</p><blockquote><strong><strong>The birds took their hops and zigzags a little more</strong><br><strong>  anxious; a home is a home; worms are worms.</strong></strong></blockquote><p>What idea from the second stanza do the lines help develop?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const birdTalk20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read lines 12–14 from the poem.\n\nAnd it was the leaves with a strong soft wind over them\n  that talked most of all and said more than any others\n  though speaking the fewest words.\n\nWhat does the phrase “talked most of all” in line 13 convey?",
     "promptHtml": "<p>Read lines 12–14 from the poem.</p><blockquote><strong><strong>And it was the leaves with a strong soft wind over them</strong><br><strong>  that talked most of all and said more than any others</strong><br><strong>  though speaking the fewest words.</strong></strong></blockquote><p>What does the phrase “talked most of all” in line 13 convey?</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const birdTalk20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the repetition of “ ‘This is the beginning of summer’ ” in lines 2–3 and lines 18–19 contribute to the meaning of the poem?",
     "promptHtml": "<p>How does the repetition of “ ‘This is the beginning of <span>summer’ ”</span> in <span>lines 2–3</span> and <span>lines 18–19</span> contribute to the meaning of the poem?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const birdTalk20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which lines from the poem best contrast with the idea of winter’s scarcity and bleakness?",
     "promptHtml": "<p>Which lines from the poem <strong>best </strong>contrast with the idea of winter’s scarcity and bleakness?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const birdTalk20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Throughout the poem, the poet conveys the speaker’s point of view by",
     "promptHtml": "<p>Throughout the poem, the poet conveys the speaker’s point of view by</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const birdTalk20262027FormCQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Over the course of the poem, a central idea is developed mainly through the speaker’s",
     "promptHtml": "<p>Over the course of the poem, a central idea is developed <strong>mainly</strong> through the speaker’s</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",

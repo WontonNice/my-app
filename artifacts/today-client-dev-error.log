@@ -91,3 +91,233 @@
       at async EnvironmentPluginContainer.transform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:28877:14)
       at async loadAndTransform (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:22746:26)
       at async viteTransformMiddleware (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/node_modules/vite/dist/node/chunks/config.js:24622:20)
+2:44:46 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:46 PM [vite] http proxy error: /api/infinite-practice/catalog?manage=1
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:46 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:46 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:46 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:46 PM [vite] http proxy error: /api/infinite-practice/catalog?manage=1
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:46 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:46 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/infinite-practice/catalog?manage=1
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/overview
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/infinite-practice/catalog?manage=1
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/generator-planner
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/generator-planner
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/overview
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/teacher-labels
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/students/6d2d0dc4-5914-41e6-90e5-12702b205880/insights
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22category%22%3A%5B%22Algebra%22%5D%2C%22subcategory%22%3A%5B%22Inequalities%22%5D%2C%22diagnosticSkill%22%3A%5B%5D%2C%22search%22%3A%22%22%2C%22excludeQuestionIds%22%3A%5B%222020-2021-form-b-math-2%22%2C%222020-2021-form-b-math-3%22%2C%222020-2021-form-b-q100%22%2C%222020-2021-form-b-q101%22%2C%222020-2021-form-b-q102%22%2C%222020-2021-form-b-q103%22%2C%222020-2021-form-b-q104%22%2C%222020-2021-form-b-q105%22%2C%222020-2021-form-b-q106%22%2C%222020-2021-form-b-q107%22%2C%222020-2021-form-b-q108%22%2C%222020-2021-form-b-q109%22%2C%222020-2021-form-b-q110%22%2C%222020-2021-form-b-q111%22%2C%222020-2021-form-b-q112%22%2C%222020-2021-form-b-q113%22%2C%222020-2021-form-b-q114%22%2C%222020-2021-form-b-q58%22%2C%222020-2021-form-b-q61%22%2C%222020-2021-form-b-q62%22%2C%222020-2021-form-b-q63%22%2C%222020-2021-form-b-q64%22%2C%222020-2021-form-b-q65%22%2C%222020-2021-form-b-q66%22%2C%222020-2021-form-b-q67%22%2C%222020-2021-form-b-q68%22%2C%222020-2021-form-b-q69%22%2C%222020-2021-form-b-q70%22%2C%222020-2021-form-b-q71%22%2C%222020-2021-form-b-q72%22%2C%222020-2021-form-b-q73%22%2C%222020-2021-form-b-q74%22%2C%222020-2021-form-b-q75%22%2C%222020-2021-form-b-q76%22%2C%222020-2021-form-b-q77%22%2C%222020-2021-form-b-q78%22%2C%222020-2021-form-b-q79%22%2C%222020-2021-form-b-q80%22%2C%222020-2021-form-b-q81%22%2C%222020-2021-form-b-q82%22%2C%222020-2021-form-b-q83%22%2C%222020-2021-form-b-q84%22%2C%222020-2021-form-b-q85%22%2C%222020-2021-form-b-q86%22%2C%222020-2021-form-b-q87%22%2C%222020-2021-form-b-q88%22%2C%222020-2021-form-b-q89%22%2C%222020-2021-form-b-q90%22%2C%222020-2021-form-b-q91%22%2C%222020-2021-form-b-q92%22%2C%222020-2021-form-b-q93%22%2C%222020-2021-form-b-q94%22%2C%222020-2021-form-b-q95%22%2C%222020-2021-form-b-q96%22%2C%222020-2021-form-b-q97%22%2C%222020-2021-form-b-q98%22%2C%222020-2021-form-b-q99%22%2C%222021-2022-form-a-q100%22%2C%222021-2022-form-a-q101%22%2C%222021-2022-form-a-q102%22%2C%222021-2022-form-a-q103%22%2C%222021-2022-form-a-q104%22%2C%222021-2022-form-a-q105%22%2C%222021-2022-form-a-q106%22%2C%222021-2022-form-a-q107%22%2C%222021-2022-form-a-q108%22%2C%222021-2022-form-a-q109%22%2C%222021-2022-form-a-q110%22%2C%222021-2022-form-a-q111%22%2C%222021-2022-form-a-q112%22%2C%222021-2022-form-a-q113%22%2C%222021-2022-form-a-q114%22%2C%222021-2022-form-a-q58%22%2C%222021-2022-form-a-q59%22%2C%222021-2022-form-a-q60%22%2C%222021-2022-form-a-q61%22%2C%222021-2022-form-a-q62%22%2C%222021-2022-form-a-q63%22%2C%222021-2022-form-a-q64%22%2C%222021-2022-form-a-q65%22%2C%222021-2022-form-a-q66%22%2C%222021-2022-form-a-q67%22%2C%222021-2022-form-a-q68%22%2C%222021-2022-form-a-q69%22%2C%222021-2022-form-a-q70%22%2C%222021-2022-form-a-q71%22%2C%222021-2022-form-a-q72%22%2C%222021-2022-form-a-q73%22%2C%222021-2022-form-a-q74%22%2C%222021-2022-form-a-q75%22%2C%222021-2022-form-a-q76%22%2C%222021-2022-form-a-q77%22%2C%222021-2022-form-a-q78%22%2C%222021-2022-form-a-q79%22%2C%222021-2022-form-a-q80%22%2C%222021-2022-form-a-q81%22%2C%222021-2022-form-a-q82%22%2C%222021-2022-form-a-q83%22%2C%222021-2022-form-a-q84%22%2C%222021-2022-form-a-q85%22%2C%222021-2022-form-a-q86%22%2C%222021-2022-form-a-q87%22%2C%222021-2022-form-a-q88%22%2C%222021-2022-form-a-q89%22%2C%222021-2022-form-a-q90%22%2C%222021-2022-form-a-q91%22%2C%222021-2022-form-a-q92%22%2C%222021-2022-form-a-q93%22%2C%222021-2022-form-a-q94%22%2C%222021-2022-form-a-q95%22%2C%222021-2022-form-a-q96%22%2C%222021-2022-form-a-q97%22%2C%222021-2022-form-a-q98%22%2C%222021-2022-form-a-q99%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-1%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-10%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-11%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-12%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-13%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-14%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-15%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-16%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-17%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-18%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-19%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-2%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-20%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-21%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-22%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-23%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-24%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-25%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-26%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-27%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-28%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-29%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-3%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-30%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-31%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-32%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-33%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-34%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-35%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-36%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-37%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-38%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-39%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-4%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-40%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-41%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-42%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-43%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-44%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-45%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-46%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-47%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-48%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-49%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-5%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-50%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-6%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-7%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-8%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-9%22%5D%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/overview
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/infinite-practice/catalog?manage=1
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/teacher-labels
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/overview
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/infinite-practice/catalog?manage=1
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/teacher-labels
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:47 PM [vite] http proxy error: /api/math-command/teacher-labels
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/infinite-practice/catalog?manage=1
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/generator-planner
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/overview
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/teacher-labels
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/infinite-practice/catalog?manage=1
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/students/6d2d0dc4-5914-41e6-90e5-12702b205880/insights
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22category%22%3A%5B%22Algebra%22%5D%2C%22subcategory%22%3A%5B%22Inequalities%22%5D%2C%22diagnosticSkill%22%3A%5B%5D%2C%22search%22%3A%22%22%2C%22excludeQuestionIds%22%3A%5B%222020-2021-form-b-math-2%22%2C%222020-2021-form-b-math-3%22%2C%222020-2021-form-b-q100%22%2C%222020-2021-form-b-q101%22%2C%222020-2021-form-b-q102%22%2C%222020-2021-form-b-q103%22%2C%222020-2021-form-b-q104%22%2C%222020-2021-form-b-q105%22%2C%222020-2021-form-b-q106%22%2C%222020-2021-form-b-q107%22%2C%222020-2021-form-b-q108%22%2C%222020-2021-form-b-q109%22%2C%222020-2021-form-b-q110%22%2C%222020-2021-form-b-q111%22%2C%222020-2021-form-b-q112%22%2C%222020-2021-form-b-q113%22%2C%222020-2021-form-b-q114%22%2C%222020-2021-form-b-q58%22%2C%222020-2021-form-b-q61%22%2C%222020-2021-form-b-q62%22%2C%222020-2021-form-b-q63%22%2C%222020-2021-form-b-q64%22%2C%222020-2021-form-b-q65%22%2C%222020-2021-form-b-q66%22%2C%222020-2021-form-b-q67%22%2C%222020-2021-form-b-q68%22%2C%222020-2021-form-b-q69%22%2C%222020-2021-form-b-q70%22%2C%222020-2021-form-b-q71%22%2C%222020-2021-form-b-q72%22%2C%222020-2021-form-b-q73%22%2C%222020-2021-form-b-q74%22%2C%222020-2021-form-b-q75%22%2C%222020-2021-form-b-q76%22%2C%222020-2021-form-b-q77%22%2C%222020-2021-form-b-q78%22%2C%222020-2021-form-b-q79%22%2C%222020-2021-form-b-q80%22%2C%222020-2021-form-b-q81%22%2C%222020-2021-form-b-q82%22%2C%222020-2021-form-b-q83%22%2C%222020-2021-form-b-q84%22%2C%222020-2021-form-b-q85%22%2C%222020-2021-form-b-q86%22%2C%222020-2021-form-b-q87%22%2C%222020-2021-form-b-q88%22%2C%222020-2021-form-b-q89%22%2C%222020-2021-form-b-q90%22%2C%222020-2021-form-b-q91%22%2C%222020-2021-form-b-q92%22%2C%222020-2021-form-b-q93%22%2C%222020-2021-form-b-q94%22%2C%222020-2021-form-b-q95%22%2C%222020-2021-form-b-q96%22%2C%222020-2021-form-b-q97%22%2C%222020-2021-form-b-q98%22%2C%222020-2021-form-b-q99%22%2C%222021-2022-form-a-q100%22%2C%222021-2022-form-a-q101%22%2C%222021-2022-form-a-q102%22%2C%222021-2022-form-a-q103%22%2C%222021-2022-form-a-q104%22%2C%222021-2022-form-a-q105%22%2C%222021-2022-form-a-q106%22%2C%222021-2022-form-a-q107%22%2C%222021-2022-form-a-q108%22%2C%222021-2022-form-a-q109%22%2C%222021-2022-form-a-q110%22%2C%222021-2022-form-a-q111%22%2C%222021-2022-form-a-q112%22%2C%222021-2022-form-a-q113%22%2C%222021-2022-form-a-q114%22%2C%222021-2022-form-a-q58%22%2C%222021-2022-form-a-q59%22%2C%222021-2022-form-a-q60%22%2C%222021-2022-form-a-q61%22%2C%222021-2022-form-a-q62%22%2C%222021-2022-form-a-q63%22%2C%222021-2022-form-a-q64%22%2C%222021-2022-form-a-q65%22%2C%222021-2022-form-a-q66%22%2C%222021-2022-form-a-q67%22%2C%222021-2022-form-a-q68%22%2C%222021-2022-form-a-q69%22%2C%222021-2022-form-a-q70%22%2C%222021-2022-form-a-q71%22%2C%222021-2022-form-a-q72%22%2C%222021-2022-form-a-q73%22%2C%222021-2022-form-a-q74%22%2C%222021-2022-form-a-q75%22%2C%222021-2022-form-a-q76%22%2C%222021-2022-form-a-q77%22%2C%222021-2022-form-a-q78%22%2C%222021-2022-form-a-q79%22%2C%222021-2022-form-a-q80%22%2C%222021-2022-form-a-q81%22%2C%222021-2022-form-a-q82%22%2C%222021-2022-form-a-q83%22%2C%222021-2022-form-a-q84%22%2C%222021-2022-form-a-q85%22%2C%222021-2022-form-a-q86%22%2C%222021-2022-form-a-q87%22%2C%222021-2022-form-a-q88%22%2C%222021-2022-form-a-q89%22%2C%222021-2022-form-a-q90%22%2C%222021-2022-form-a-q91%22%2C%222021-2022-form-a-q92%22%2C%222021-2022-form-a-q93%22%2C%222021-2022-form-a-q94%22%2C%222021-2022-form-a-q95%22%2C%222021-2022-form-a-q96%22%2C%222021-2022-form-a-q97%22%2C%222021-2022-form-a-q98%22%2C%222021-2022-form-a-q99%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-1%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-10%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-11%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-12%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-13%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-14%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-15%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-16%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-17%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-18%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-19%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-2%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-20%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-21%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-22%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-23%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-24%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-25%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-26%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-27%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-28%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-29%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-3%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-30%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-31%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-32%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-33%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-34%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-35%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-36%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-37%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-38%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-39%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-4%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-40%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-41%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-42%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-43%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-44%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-45%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-46%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-47%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-48%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-49%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-5%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-50%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-6%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-7%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-8%22%2C%22digital-shsat-practice-test-3-satcc-76907eddd46e7cb86cc2-math-9%22%5D%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/generator-planner
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/overview
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/teacher-labels
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/infinite-practice/catalog?manage=1
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/overview
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/catalog?filters=%7B%22sort%22%3A%22source%22%2C%22direction%22%3A%22asc%22%2C%22page%22%3A1%2C%22pageSize%22%3A40%2C%22search%22%3A%22%22%7D
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/teacher-labels
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/overview
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/students
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:44:48 PM [vite] http proxy error: /api/math-command/teacher-labels
+Error: connect ECONNREFUSED 127.0.0.1:8080
+    at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1705:16)
+2:45:51 PM [vite] Internal server error: C:\Users\Nathan Im\Desktop\my-app-main\client\src\components\TeacherLearningPlan.tsx: Unexpected token, expected "jsxTagEnd" (191:357)
+
+  189 |     <dialog ref={previewDialog} className="lp-dialog" aria-label="Infinite module preview" onClose={() => setContentPreview(undefined)}>{contentPreview && <><header><h3>{contentPreview.title}</h3><button autoFocus type="button" onClick={() => previewDialog.current?.close()}>Close module preview</button></header><div className="lp-dialog-body"><InfiniteContentPreview content={contentPreview}/><footer><button type="button" onClick={() => openEditor([contentPreview])}>Assign this module</button><button type="button" onClick={() => openEditor([contentPreview], true)}>Plan for later</button></footer></div></>}</dialog>
+  190 |     <dialog ref={detailDialog} className="lp-dialog" aria-labelledby="lp-detail-title" onClose={() => setDetail(null)}>{detail && <><header><h3 id="lp-detail-title">{detail.title}</h3><button autoFocus onClick={() => detailDialog.current?.close()} type="button">Close task details</button></header><div className="lp-dialog-body">{statusChip(detail)}<p style={{ whiteSpace: "pre-wrap" }}>{detail.instructions || "No additional instructions."}</p>{detail.url && <a href={detail.url} target="_blank" rel="noopener noreferrer">Open external resource ↗</a>}<p>Assigned {date(detail.assignedAt)} · Due {date(detail.dueDate)} · Planned {date(detail.plannedDate)} · Completed {date(detail.completedAt)}</p>{detail.completion && <p>Completion: {detail.completion.source} · {date(detail.completion.at)}{detail.completion.total ? ` · ${detail.completion.correct}/${detail.completion.total}` : ""}</p>}<button onClick={() => { const item = detail; detailDialog.current?.close(); openEditor([], false, item); }} type="button">Edit task / change dates</button><h4>Permanent task history</h4>{detail.events?.map((event, index) => <details key={index}><summary>{event.at.replace("T", " ").slice(0, 16)} · {event.action}</summary><pre>{JSON.stringify(event.changes, null, 2)}</pre></details>)}</div></>}</dialog>
+> 191 |     <dialog ref={historyDialog} className="lp-dialog" aria-labelledby="lp-content-history-title" onClose={() => setHistory(null)}>{history && <><header><h3 id="lp-content-history-title">{history.content.title} · {studentName}'s history</h3><button autoFocus onClick={() => historyDialog.current?.close()} type="button">Close content history</button></header
+      |                                                                                                                                                                                                                                                                                                                                                                      ^
+  Plugin: vite:react-babel
+  File: C:/Users/Nathan Im/Desktop/my-app-main/client/src/components/TeacherLearningPlan.tsx:191:357
+  189 |      <dialog ref={previewDialog} className="lp-dialog" aria-label="Infinite module preview" onClose={() => setContentP...
+  190 |      <dialog ref={detailDialog} className="lp-dialog" aria-labelledby="lp-detail-title" onClose={() => setDetail(null)...
+  191 |  ...lose()} type="button">Close content history</button></header
+      |                                                                 ^
+      at constructor (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:365:19)
+      at TypeScriptParserMixin.raise (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:6616:19)
+      at TypeScriptParserMixin.unexpected (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:6636:16)
+      at TypeScriptParserMixin.expect (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:6916:12)
+      at TypeScriptParserMixin.jsxParseClosingElementAt (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:4692:10)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:4707:37)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:4710:32)
+      at TypeScriptParserMixin.jsxParseElement (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:4761:17)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:4771:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOpBaseRightExpr (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:11003:34)
+      at TypeScriptParserMixin.parseExprOpRightExpr (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10998:21)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10964:27)
+      at TypeScriptParserMixin.parseExprOp (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:9323:18)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10925:17)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10848:21)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:9803:20)
+      at TypeScriptParserMixin.parseExpressionBase (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10801:23)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10797:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:12443:12)
+      at TypeScriptParserMixin.parseExpression (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10797:17)
+      at TypeScriptParserMixin.jsxParseExpressionContainer (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:4644:31)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:4723:36)
+      at TypeScriptParserMixin.jsxParseElementAt (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:4710:32)
+      at TypeScriptParserMixin.jsxParseElement (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:4761:17)
+      at TypeScriptParserMixin.parseExprAtom (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:4771:19)
+      at TypeScriptParserMixin.parseExprSubscripts (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:11098:23)
+      at TypeScriptParserMixin.parseUpdate (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:11083:21)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:11063:23)
+      at TypeScriptParserMixin.parseMaybeUnary (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:9854:18)
+      at TypeScriptParserMixin.parseMaybeUnaryOrPrivate (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10916:61)
+      at TypeScriptParserMixin.parseExprOps (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10921:23)
+      at TypeScriptParserMixin.parseMaybeConditional (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10898:23)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10848:21)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:9792:39
+      at TypeScriptParserMixin.tryParse (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:6924:20)
+      at TypeScriptParserMixin.parseMaybeAssign (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:9792:18)
+      at TypeScriptParserMixin.parseExpressionBase (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10801:23)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10797:39
+      at TypeScriptParserMixin.allowInAnd (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:12438:16)
+      at TypeScriptParserMixin.parseExpression (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:10797:17)
+      at TypeScriptParserMixin.parseReturnStatement (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:13159:28)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:12815:21)
+      at TypeScriptParserMixin.parseStatementContent (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:9525:18)
+      at TypeScriptParserMixin.parseStatementLike (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\@babel\parser\lib\index.js:12784:17)

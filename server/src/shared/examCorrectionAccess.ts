@@ -1,9 +1,11 @@
+import { coordinateAnswerComplete } from './coordinateResponse';
 import type { ExamContent, ExamQuestion } from './examTypes';
 import { getAllExamQuestions, type ExamResult, type SelectedAnswer } from './examGrading';
 import { isFullExamResult } from './examCompletion';
 import { isMathAnswerComplete } from './mathAnswer';
 
 function answered(question: ExamQuestion, answer: SelectedAnswer | undefined): boolean {
+  if (question.type === "coordinate_response") return coordinateAnswerComplete(question, answer);
   const ids = Array.isArray(answer) ? answer : typeof answer === 'string' && answer.trim() ? [answer] : [];
   const placements = answer && typeof answer === 'object' && !Array.isArray(answer) ? answer : {};
   const choices = question.choices ?? [];

@@ -15,6 +15,8 @@ export function teacherPlanClient(accessToken: string, studentId: string): PlanC
     settings: async settings => { await call("/settings", "PATCH", settings); },
     detail: async id => (await call<{ assignment: PlanAssignment }>(`/assignments/${encodeURIComponent(id)}`)).assignment,
     history: (kind, contentId, page) => call<ContentHistory>(`/content/${encodeURIComponent(kind)}/${encodeURIComponent(contentId)}?page=${page}`),
+    relatePassages: async relation => { await call("/passage-relations", "PUT", relation); },
+    passagePreview: id => call(`/passage-preview/${encodeURIComponent(id)}`),
   };
 }
 export async function getLearningPlanRoster(accessToken: string) {

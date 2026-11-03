@@ -1,4 +1,3 @@
-import { content20252026FormBMathSection } from "../mathSets/2025-2026-form-bMath";
 import { excerptFromItSTimeToStopThinkingThatAllNonNativeSpeciesAreEvilPassageSet } from "../passageSets/excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil";
 import { aMiracleMileVersion2PassageSet } from "../passageSets/a-miracle-mile-version-2";
 import { excerptFromInSearchOfTheUnknownPassageSet } from "../passageSets/excerpt-from-in-search-of-the-unknown";
@@ -6,10 +5,12 @@ import { atDusk20252026FormBPassageSet } from "../passageSets/at-dusk-2025-2026-
 import { usingFireToKeepAPrairieHealthyPassageSet } from "../passageSets/using-fire-to-keep-a-prairie-healthy";
 import { letterFromBrooklyn20252026FormBPassageSet } from "../passageSets/letter-from-brooklyn-2025-2026-form-b";
 import { theEndOfAnEraPassageSet } from "../passageSets/the-end-of-an-era";
+import { content20252026FormBMathSection } from "../mathSets/2025-2026-form-bMath";
 import { getStandaloneItemsById } from "../standaloneItems";
 import type { ExamContent } from "../types";
 
 const selectedStandaloneItems = getStandaloneItemsById([
+  "part-b-import-69ac133f53cf-d313d3e2",
   "part-b-question-5",
   "part-b-question-6",
   "part-b-question-7"

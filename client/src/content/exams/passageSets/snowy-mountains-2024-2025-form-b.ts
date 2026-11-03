@@ -24,7 +24,7 @@ const snowyMountains20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The description in the first stanza (lines 1–7) helps establish a central idea of the poem by",
     "promptHtml": "<p>The description in the first stanza (lines 1–7) helps establish a central idea of the poem by</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -70,7 +70,7 @@ const snowyMountains20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read line 5 from the poem. Pillars of the sky at rest The line helps develop the theme of the poem by suggesting that the mountains",
     "promptHtml": "<p>Read line 5 from the poem. <strong>Pillars of the sky at rest</strong> The line helps develop the theme of the poem by suggesting that the mountains</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -116,7 +116,7 @@ const snowyMountains20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does isolating the word “Uprise” in line 7 affect the meaning of the poem?",
     "promptHtml": "<p>How does isolating the word “Uprise” in line 7 affect the meaning of the poem?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -162,7 +162,7 @@ const snowyMountains20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which line from the poem best supports the idea that people have sacrificed priceless natural beauty in order to make a profit?",
     "promptHtml": "<p>Which line from the poem <strong>best </strong>supports the idea that people have sacrificed priceless natural beauty in order to make a profit?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -208,7 +208,7 @@ const snowyMountains20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does the poet develop the speaker’s point of view in the second stanza (lines 8–14)?",
     "promptHtml": "<p>How does the poet develop the speaker’s point of view in the second stanza (lines 8–14)?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -254,7 +254,7 @@ const snowyMountains20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which detail from the poem reflects the speaker’s view that people often fail to appreciate what is familiar?",
     "promptHtml": "<p>Which detail from the poem reflects the speaker’s view that people often fail to appreciate what is familiar?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -300,7 +300,7 @@ const snowyMountains20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read lines 21–22 from the poem. Barrier broken down by those who do not need The joy of time-resisting storm-worn stone, How do the lines help convey the speaker’s point of view?",
     "promptHtml": "<p>Read lines 21–22 from the poem. <strong>Barrier broken down by those who do not need</strong> <strong>The joy of time-resisting storm-worn stone,</strong> How do the lines help convey the speaker’s point of view?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -346,7 +346,7 @@ const snowyMountains20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How do the details in the third stanza (lines 15–26) most contribute to the development of a theme of the poem?",
     "promptHtml": "<p>How do the details in the third stanza (lines 15–26) <strong>most </strong>contribute to the development of a theme of the poem?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -392,7 +392,7 @@ const snowyMountains20242025FormBQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read lines 23–26 from the poem.\n\nThe mountains swing along The south horizon of the sky; Welcoming with wide floors of blue-green ice The mists that dance and drive before the sun.\n\nThe personification in these concluding lines of the poem suggests that the mountains are",
     "promptHtml": "<p>Read lines 23–26 from the poem.</p><blockquote><strong><strong>The mountains swing along</strong> <strong>The south horizon of the sky;</strong> <strong>Welcoming with wide floors of blue-green ice</strong> <strong>The mists that dance and drive before the sun.</strong></strong></blockquote><p>The personification in these concluding lines of the poem suggests that the mountains are</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",

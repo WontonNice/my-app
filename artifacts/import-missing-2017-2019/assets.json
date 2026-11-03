@@ -1,0 +1,2466 @@
+[
+  {
+    "sourceFile": "20192020_form_b.pdf",
+    "sourcePage": 22,
+    "sourceBox": [
+      126,
+      288,
+      525,
+      485
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\2019-2020-b-memory-figure.png",
+    "passageId": "2019-2020-b-memory-figure",
+    "url": "/exam-images/2019-2020-b-memory-figure-passage.png",
+    "sha256": "a1b0f958d166dcf8067fc64dc1dad87a827e419c2b054d3c5405319f3e53916c"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      40,
+      105.87,
+      279.59,
+      238.3062
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q058-explanation-1.png",
+    "passageId": "20172018_form_a-q058-explanation-1",
+    "url": "/exam-images/20172018-form-a-q058-explanation-1-passage.png",
+    "sha256": "c120bfb4691a8af0cd5e50158471038be29ae45bbacbd37811e2c9ab0a451d3e"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      40,
+      255.24599999999998,
+      279.7100000000001,
+      355.901
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q059-explanation-1.png",
+    "passageId": "20172018_form_a-q059-explanation-1",
+    "url": "/exam-images/20172018-form-a-q059-explanation-1-passage.png",
+    "sha256": "326a856ef697b0e94f8f3107c78a78cec4697e42a18c8707e701b3629074c050"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      40,
+      371.622,
+      143.4625,
+      416.572
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q060-explanation-1.png",
+    "passageId": "20172018_form_a-q060-explanation-1",
+    "url": "/exam-images/20172018-form-a-q060-explanation-1-passage.png",
+    "sha256": "efd4048aba9be0ac41871245b0adc3932e9d3b19a25b66e9479a8dce3814a5b5"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      39.98880000000001,
+      434.992,
+      296.37979999999993,
+      671.578
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q061-explanation-1.png",
+    "passageId": "20172018_form_a-q061-explanation-1",
+    "url": "/exam-images/20172018-form-a-q061-explanation-1-passage.png",
+    "sha256": "f49a2bc048d271c3c0d987c1a803d7145cf3150ed4eff05e3d16a668c15fca32"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      315.9892,
+      105.87,
+      570.6610999999999,
+      287.45
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q062-explanation-1.png",
+    "passageId": "20172018_form_a-q062-explanation-1",
+    "url": "/exam-images/20172018-form-a-q062-explanation-1-passage.png",
+    "sha256": "a4cb526e602fa8d3d7309fca8df98531ceeaf66adb89757a9dbcddf29877a8ad"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      315.9892,
+      305.246,
+      565.2419000000001,
+      459.0738
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q063-explanation-1.png",
+    "passageId": "20172018_form_a-q063-explanation-1",
+    "url": "/exam-images/20172018-form-a-q063-explanation-1-passage.png",
+    "sha256": "09e936da0c2514c1befb85638b6f4cf09efab5c638003248986c6e1eb70dd5a2"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      315.9892,
+      476.622,
+      544.0791999999999,
+      534.202
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q064-explanation-1.png",
+    "passageId": "20172018_form_a-q064-explanation-1",
+    "url": "/exam-images/20172018-form-a-q064-explanation-1-passage.png",
+    "sha256": "ce1c6e6558885b060fb007b3fac0458f72db0fd3d5a1bdadfd9d02cac12582fa"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      315.9892,
+      556.998,
+      561.7182000000001,
+      639.278
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q065-explanation-1.png",
+    "passageId": "20172018_form_a-q065-explanation-1",
+    "url": "/exam-images/20172018-form-a-q065-explanation-1-passage.png",
+    "sha256": "492e8bfaaf3b2c95653a2867dd43f78405157db467e583e2689209db1537331f"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      39.9976,
+      105.87,
+      293.34659999999997,
+      422.6875
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q066-explanation-1.png",
+    "passageId": "20172018_form_a-q066-explanation-1",
+    "url": "/exam-images/20172018-form-a-q066-explanation-1-passage.png",
+    "sha256": "9a0b2384f2a0bb957ac5b913fde8a341df8ea1f1bd5bee9fd9f5a7a60d154a18"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      40.00379999999999,
+      442.2475,
+      281.2728,
+      516.6471999999999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q067-explanation-1.png",
+    "passageId": "20172018_form_a-q067-explanation-1",
+    "url": "/exam-images/20172018-form-a-q067-explanation-1-passage.png",
+    "sha256": "3dd1fbc08ce0592c52999fbe1984a01dcd1b6eaed2ed49a31a13cb2a5cf9e44e"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      40.0051,
+      535.6171999999999,
+      291.99510000000004,
+      642.9019000000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q068-explanation-1.png",
+    "passageId": "20172018_form_a-q068-explanation-1",
+    "url": "/exam-images/20172018-form-a-q068-explanation-1-passage.png",
+    "sha256": "313811fcdfcc51bad8f5aa7c876bdacc14ed2b6bbb3cd828127d012a95daf8da"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      315.988,
+      110.5,
+      569.3588000000001,
+      227.08000000000004
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q069-explanation-1.png",
+    "passageId": "20172018_form_a-q069-explanation-1",
+    "url": "/exam-images/20172018-form-a-q069-explanation-1-passage.png",
+    "sha256": "5df2a6e3b775eba114f63274806244665065f450645b5e856124b6a635f5b954"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      315.988,
+      244.87599999999998,
+      552.4971,
+      489.1228
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q070-explanation-1.png",
+    "passageId": "20172018_form_a-q070-explanation-1",
+    "url": "/exam-images/20172018-form-a-q070-explanation-1-passage.png",
+    "sha256": "22a07f7a715b24b9eaa789dfa8aef5133608b1545864819a441eb310c7448a88"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      315.988,
+      508.2501,
+      545.987,
+      597.2501
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q071-explanation-1.png",
+    "passageId": "20172018_form_a-q071-explanation-1",
+    "url": "/exam-images/20172018-form-a-q071-explanation-1-passage.png",
+    "sha256": "eaa7e695f23090d59ba5eeb27bf8cbea354db6947bd90293e92383c2a6699187"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      38.8,
+      105.87,
+      272.55,
+      310.45
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q072-explanation-1.png",
+    "passageId": "20172018_form_a-q072-explanation-1",
+    "url": "/exam-images/20172018-form-a-q072-explanation-1-passage.png",
+    "sha256": "5d14b274a04f0f53dc4f13ab588d689cf14f63e6efe6ac9249832f9a0509dd5a"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      38.80279999999999,
+      328.25,
+      293.1228000000001,
+      450.82599999999996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q073-explanation-1.png",
+    "passageId": "20172018_form_a-q073-explanation-1",
+    "url": "/exam-images/20172018-form-a-q073-explanation-1-passage.png",
+    "sha256": "cab059b5f1254e603ea2213c6ddb8ee5a9003bb1121c2cbbb05f61a3e6060ea1"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      314.776,
+      105.87,
+      570.125,
+      438.1349
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q074-explanation-1.png",
+    "passageId": "20172018_form_a-q074-explanation-1",
+    "url": "/exam-images/20172018-form-a-q074-explanation-1-passage.png",
+    "sha256": "9d19ab5c7faf2a7af57b674ad9937eeb8f3007ead9b53b72dc9ca6f1303aa8cf"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      314.78729999999996,
+      455.8849,
+      555.3353,
+      513.3874000000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q075-explanation-1.png",
+    "passageId": "20172018_form_a-q075-explanation-1",
+    "url": "/exam-images/20172018-form-a-q075-explanation-1-passage.png",
+    "sha256": "506d56b34e54087a46a1cf10e6f3a757883e1754b1113494f57f70850d44c9a7"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      314.7760000000001,
+      528.87,
+      565.0260000000002,
+      701.35
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q076-explanation-1.png",
+    "passageId": "20172018_form_a-q076-explanation-1",
+    "url": "/exam-images/20172018-form-a-q076-explanation-1-passage.png",
+    "sha256": "efa261dcfef3d13236ee5501f4ce4920754a4d885335c313528d9d128abfef42"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      39.9976,
+      105.87,
+      292.27560000000005,
+      222.87
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q077-explanation-1.png",
+    "passageId": "20172018_form_a-q077-explanation-1",
+    "url": "/exam-images/20172018-form-a-q077-explanation-1-passage.png",
+    "sha256": "666aa03d0f8d4512b8150c7358784524899c94112fe304987b52af73ea0a7c16"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      39.997600000000006,
+      247.25,
+      296.0001,
+      436.7635
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q078-explanation-1.png",
+    "passageId": "20172018_form_a-q078-explanation-1",
+    "url": "/exam-images/20172018-form-a-q078-explanation-1-passage.png",
+    "sha256": "0f6c18dbf80724724b4aefaea8cc25ec5287e5dd8128092e3079bfdc36c631ad"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      39.997600000000006,
+      457.62600000000003,
+      276.65009999999995,
+      570.6220000000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q079-explanation-1.png",
+    "passageId": "20172018_form_a-q079-explanation-1",
+    "url": "/exam-images/20172018-form-a-q079-explanation-1-passage.png",
+    "sha256": "676440c12bb77b84358fa6362594ae0a91ceb615e04c62a0c4f46f2ac90aaa82"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      39.997600000000006,
+      589.002,
+      295.97760000000005,
+      698.908
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q080-explanation-1.png",
+    "passageId": "20172018_form_a-q080-explanation-1",
+    "url": "/exam-images/20172018-form-a-q080-explanation-1-passage.png",
+    "sha256": "6b68cd0a14ea58c8d541945099e2ff80ac59c545742d832208a57d6d7309163b"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      315.9736,
+      105.87,
+      568.4236000000001,
+      237.1499
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q081-explanation-1.png",
+    "passageId": "20172018_form_a-q081-explanation-1",
+    "url": "/exam-images/20172018-form-a-q081-explanation-1-passage.png",
+    "sha256": "56f06777f2e9d01255279afb3b77232ca03262cc599649af992fddf1a2d0a804"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      315.9736,
+      255.87,
+      567.0026,
+      329.87
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q082-explanation-1.png",
+    "passageId": "20172018_form_a-q082-explanation-1",
+    "url": "/exam-images/20172018-form-a-q082-explanation-1-passage.png",
+    "sha256": "28dac1553baf3214a25c19943c537c5ec6fe568865ed60278cd9ba209d781755"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      315.9736,
+      347.87,
+      545.6736,
+      422.3974
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q083-explanation-1.png",
+    "passageId": "20172018_form_a-q083-explanation-1",
+    "url": "/exam-images/20172018-form-a-q083-explanation-1-passage.png",
+    "sha256": "a5bb1138234dffbb95962396582bab55ec1ec6c118e04f7a6e0edc4784e13332"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      315.97740000000005,
+      440.86740000000003,
+      568.0719999999999,
+      573.3449
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q084-explanation-1.png",
+    "passageId": "20172018_form_a-q084-explanation-1",
+    "url": "/exam-images/20172018-form-a-q084-explanation-1-passage.png",
+    "sha256": "54f680637a010815fcb00d0935c2cfff03b009174a5d304f715c54a7704cbe0a"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      315.9674,
+      591.87,
+      532.8699,
+      720.1637000000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q085-explanation-1.png",
+    "passageId": "20172018_form_a-q085-explanation-1",
+    "url": "/exam-images/20172018-form-a-q085-explanation-1-passage.png",
+    "sha256": "ab030f301dc894ecd80cddaccba1613f64e99e2732ccdc992b59c4424f2dcc76"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      39.9976,
+      105.87,
+      284.49760000000003,
+      246.6825
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q086-explanation-1.png",
+    "passageId": "20172018_form_a-q086-explanation-1",
+    "url": "/exam-images/20172018-form-a-q086-explanation-1-passage.png",
+    "sha256": "5f58a3b9a4cb8ba9f46cb9a5030526667675f040aaf68a45118aa35da251c9a7"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      39.997600000000006,
+      258.25,
+      296.0326,
+      610.9010000000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q087-explanation-1.png",
+    "passageId": "20172018_form_a-q087-explanation-1",
+    "url": "/exam-images/20172018-form-a-q087-explanation-1-passage.png",
+    "sha256": "c90970477a7abe4d1f3a3d31e2908385b4d619971abda9f9d44b4aeaec4c83ec"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      39.9976,
+      627.6220000000001,
+      291.1676000000001,
+      701.6220000000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q088-explanation-1.png",
+    "passageId": "20172018_form_a-q088-explanation-1",
+    "url": "/exam-images/20172018-form-a-q088-explanation-1-passage.png",
+    "sha256": "88886fc6525671674c28322922e2fa6e051277e112b43da81443821edca3c3e6"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      315.988,
+      108.5,
+      564.488,
+      208.01250000000005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q089-explanation-1.png",
+    "passageId": "20172018_form_a-q089-explanation-1",
+    "url": "/exam-images/20172018-form-a-q089-explanation-1-passage.png",
+    "sha256": "17b08137840d009ff3b8e7bd2120eb9797cc627e976558de77d33a2511152392"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      315.988,
+      224.87599999999998,
+      564.6868000000001,
+      284.15590000000003
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q090-explanation-1.png",
+    "passageId": "20172018_form_a-q090-explanation-1",
+    "url": "/exam-images/20172018-form-a-q090-explanation-1-passage.png",
+    "sha256": "b33cf7b46b70de720f3a0bdf5da4a2e65f3169057823b18201726c5b1a413918"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      315.99670000000003,
+      303.25590000000005,
+      549.1547,
+      425.25590000000005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q091-explanation-1.png",
+    "passageId": "20172018_form_a-q091-explanation-1",
+    "url": "/exam-images/20172018-form-a-q091-explanation-1-passage.png",
+    "sha256": "b8123951122556cda5033771004b18e198dcf7ce0182240fe8e2f969a7822cc8"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      315.99670000000003,
+      443.63590000000005,
+      563.3957,
+      720.38
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q092-explanation-1.png",
+    "passageId": "20172018_form_a-q092-explanation-1",
+    "url": "/exam-images/20172018-form-a-q092-explanation-1-passage.png",
+    "sha256": "57ebdf0d19611990ccb0bbd0a1968a261ba40590c0e8a8e7a47704a44a0d28fd"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      39.9976,
+      114.5,
+      295.5305,
+      218.5
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q093-explanation-1.png",
+    "passageId": "20172018_form_a-q093-explanation-1",
+    "url": "/exam-images/20172018-form-a-q093-explanation-1-passage.png",
+    "sha256": "fde357b39179711d1932f17f8dab88bca60ccdf0d41e85376c961711497c0f28"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      40.00049999999999,
+      236.88,
+      284.80949999999996,
+      298.88
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q094-explanation-1.png",
+    "passageId": "20172018_form_a-q094-explanation-1",
+    "url": "/exam-images/20172018-form-a-q094-explanation-1-passage.png",
+    "sha256": "2f962ddd457f5f66c7f24d29afd112b920db7d84aebc7cf5a5b99c2e1b67bcaf"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      40.00049999999999,
+      317.252,
+      294.749,
+      446.7695
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q095-explanation-1.png",
+    "passageId": "20172018_form_a-q095-explanation-1",
+    "url": "/exam-images/20172018-form-a-q095-explanation-1-passage.png",
+    "sha256": "544167be5e4c1265a3b8b313281648b99a86ce5b2d39bc5afcaa9d2906c269f9"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      39.996399999999994,
+      469.628,
+      281.1177,
+      533.1478999999999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q096-explanation-1.png",
+    "passageId": "20172018_form_a-q096-explanation-1",
+    "url": "/exam-images/20172018-form-a-q096-explanation-1-passage.png",
+    "sha256": "a38fa543140094850c7715bed0c6edd87084672898979d64ae3b63af565b0520"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      315.988,
+      105.87,
+      569.5780000000001,
+      293.87
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q097-explanation-1.png",
+    "passageId": "20172018_form_a-q097-explanation-1",
+    "url": "/exam-images/20172018-form-a-q097-explanation-1-passage.png",
+    "sha256": "4a3b59481b8da4cf65ab01d047825f1ea46311fa16236b5dbee868a3b2ebc31f"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      315.988,
+      312.25,
+      565.686,
+      499.23600000000005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q098-explanation-1.png",
+    "passageId": "20172018_form_a-q098-explanation-1",
+    "url": "/exam-images/20172018-form-a-q098-explanation-1-passage.png",
+    "sha256": "0a42859a8fa6c3b967b6406e003779025b86d8ffbaaf284242269ad4eb5f511c"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      315.978,
+      517.616,
+      561.818,
+      701.1344
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q099-explanation-1.png",
+    "passageId": "20172018_form_a-q099-explanation-1",
+    "url": "/exam-images/20172018-form-a-q099-explanation-1-passage.png",
+    "sha256": "d317b8d24b2b746f3678cb833c635e8bcb78daf543f86f154c4973275fbdb2de"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      39.9976,
+      105.87,
+      194.4976,
+      207.38239999999996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q100-explanation-1.png",
+    "passageId": "20172018_form_a-q100-explanation-1",
+    "url": "/exam-images/20172018-form-a-q100-explanation-1-passage.png",
+    "sha256": "6f478a01b38b5b950c135b3237ca0114edd6f027e00cd4157e0b9d207b0851b6"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      40.0001,
+      224.2498999999999,
+      293.94409999999993,
+      438.0585
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q101-explanation-1.png",
+    "passageId": "20172018_form_a-q101-explanation-1",
+    "url": "/exam-images/20172018-form-a-q101-explanation-1-passage.png",
+    "sha256": "5bd6abb27d4b033fed14674eebe4ad6634c09a9a5a70f8b4cb0f642db75e3450"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      39.9931,
+      449.622,
+      278.35130000000004,
+      500.202
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q102-explanation-1.png",
+    "passageId": "20172018_form_a-q102-explanation-1",
+    "url": "/exam-images/20172018-form-a-q102-explanation-1-passage.png",
+    "sha256": "12a3e01a5a854d6145e84723adf816e522b9c6f63135c8f97796d399be1df07e"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      39.997600000000006,
+      518.002,
+      278.21659999999997,
+      652.578
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q103-explanation-1.png",
+    "passageId": "20172018_form_a-q103-explanation-1",
+    "url": "/exam-images/20172018-form-a-q103-explanation-1-passage.png",
+    "sha256": "f3892866b7f2f294cc037d4ba3c0475edcb384bf372fa1fa5c57b8fe6ea554b2"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      39.9976,
+      670.374,
+      282.65340000000003,
+      720.374
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q104-explanation-1.png",
+    "passageId": "20172018_form_a-q104-explanation-1",
+    "url": "/exam-images/20172018-form-a-q104-explanation-1-passage.png",
+    "sha256": "578436f3828f5475fe9e3659f482977a471e6af2d9660eead3541aee38add076"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      315.988,
+      123.87,
+      567.866,
+      236.87
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q105-explanation-1.png",
+    "passageId": "20172018_form_a-q105-explanation-1",
+    "url": "/exam-images/20172018-form-a-q105-explanation-1-passage.png",
+    "sha256": "be71c80b0b5f4c9d973e1715b542718e68d8e00b2f84114649fad34125bc6592"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      315.988,
+      255.25,
+      570.2618,
+      385.7635
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q106-explanation-1.png",
+    "passageId": "20172018_form_a-q106-explanation-1",
+    "url": "/exam-images/20172018-form-a-q106-explanation-1-passage.png",
+    "sha256": "c63c8fa0029550cef282826abd24438553727b3f13379c1c0906d63dfbb8db6d"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      315.9918,
+      400.3408,
+      535.4067999999999,
+      431.702
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q107-explanation-1.png",
+    "passageId": "20172018_form_a-q107-explanation-1",
+    "url": "/exam-images/20172018-form-a-q107-explanation-1-passage.png",
+    "sha256": "00d63e3d29895b6a6f020029a643e1d4f019032e2c673c21ba210116558626b8"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      315.983,
+      450.002,
+      559.0380000000001,
+      540.8105
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q108-explanation-1.png",
+    "passageId": "20172018_form_a-q108-explanation-1",
+    "url": "/exam-images/20172018-form-a-q108-explanation-1-passage.png",
+    "sha256": "1a856bc3267bc0fc459977d55c444eb9c17dcc1ceda2bfa92d72a38cd7f76730"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      315.988,
+      552.3779999999999,
+      567.277,
+      686.954
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q109-explanation-1.png",
+    "passageId": "20172018_form_a-q109-explanation-1",
+    "url": "/exam-images/20172018-form-a-q109-explanation-1-passage.png",
+    "sha256": "b6d612ccfbf6b928f0b81e863f0b10c8743561e59db954e571735937d6eb623f"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 16,
+    "sourceBox": [
+      40,
+      105.26999999999998,
+      228.74250000000006,
+      205.55000000000007
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q110-explanation-1.png",
+    "passageId": "20172018_form_a-q110-explanation-1",
+    "url": "/exam-images/20172018-form-a-q110-explanation-1-passage.png",
+    "sha256": "319e4d66605ea2c0132edc533db0127bf01dff1111f73078ae0c6dfd6afb6d28"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 16,
+    "sourceBox": [
+      40,
+      222.64599999999996,
+      292.1424,
+      505.4398
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q111-explanation-1.png",
+    "passageId": "20172018_form_a-q111-explanation-1",
+    "url": "/exam-images/20172018-form-a-q111-explanation-1-passage.png",
+    "sha256": "d3398be298ee95fae3cc01ebfef5ffe6d1399b597d46d6b33d7fce0f1370943f"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 16,
+    "sourceBox": [
+      40,
+      523.0219999999999,
+      147.545,
+      616.5631
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q112-explanation-1.png",
+    "passageId": "20172018_form_a-q112-explanation-1",
+    "url": "/exam-images/20172018-form-a-q112-explanation-1-passage.png",
+    "sha256": "4e4ca469f37206c613ebbec69b04213aaf86466dcd4f1f0999ba1f1d206799d7"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 16,
+    "sourceBox": [
+      315.25,
+      105.26999999999998,
+      571.5763000000001,
+      418.6555
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q113-explanation-1.png",
+    "passageId": "20172018_form_a-q113-explanation-1",
+    "url": "/exam-images/20172018-form-a-q113-explanation-1-passage.png",
+    "sha256": "cff1233685d45c1c782c340e9ade64b535a6012a0ca7093851f69338111b8c47"
+  },
+  {
+    "sourceFile": "20172018_form_a_-_answers.pdf",
+    "sourcePage": 16,
+    "sourceBox": [
+      315.24629999999996,
+      445.5139,
+      570.8474,
+      570.0939000000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_a-q114-explanation-1.png",
+    "passageId": "20172018_form_a-q114-explanation-1",
+    "url": "/exam-images/20172018-form-a-q114-explanation-1-passage.png",
+    "sha256": "b06b285e98cdc5809a397428e6e4bdc892529f8debb14c128954da49ecf007e2"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      39.9976,
+      105.87,
+      292.6346000000001,
+      168.45000000000005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q058-explanation-1.png",
+    "passageId": "20172018_form_b-q058-explanation-1",
+    "url": "/exam-images/20172018-form-b-q058-explanation-1-passage.png",
+    "sha256": "8bd0dd5e598478fb7b8721c845db8e5164ce0fe57e50ddd7aacb4edfb9a17714"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      39.9976,
+      186.24599999999998,
+      149.7851,
+      244.05240000000003
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q059-explanation-1.png",
+    "passageId": "20172018_form_b-q059-explanation-1",
+    "url": "/exam-images/20172018-form-b-q059-explanation-1-passage.png",
+    "sha256": "0d72f09c4a38c49b7c897ea71c6b69d8b4537904c50654cfd8ad9b64f1044151"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      39.9976,
+      259.9208,
+      293.31579999999997,
+      290.48079999999993
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q060-explanation-1.png",
+    "passageId": "20172018_form_b-q060-explanation-1",
+    "url": "/exam-images/20172018-form-b-q060-explanation-1-passage.png",
+    "sha256": "34484a67d67f6fbfffa4edd0b7349be51573980ffe2ff11556570d10e1d84f1e"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      39.998300000000015,
+      307.9932,
+      275.3283,
+      424.858
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q061-explanation-1.png",
+    "passageId": "20172018_form_b-q061-explanation-1",
+    "url": "/exam-images/20172018-form-b-q061-explanation-1-passage.png",
+    "sha256": "2f5777a65c071d7d6849f979d68077323a4baa64a64858e3689873da3215b751"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      39.99010000000001,
+      442.378,
+      290.3919000000001,
+      582.8139
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q062-explanation-1.png",
+    "passageId": "20172018_form_b-q062-explanation-1",
+    "url": "/exam-images/20172018-form-b-q062-explanation-1-passage.png",
+    "sha256": "2c7de11586480259c8030b8a1e09e833412295b170e91f489ff013c16bca3e1e"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      40.00010000000001,
+      601.1315,
+      257.6701,
+      631.8816
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q063-explanation-1.png",
+    "passageId": "20172018_form_b-q063-explanation-1",
+    "url": "/exam-images/20172018-form-b-q063-explanation-1-passage.png",
+    "sha256": "1564a18b87ab6eb933ddc5410404b31968071df0b3ea39c77adcf4011bcdc1de"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      315.2488,
+      105.87,
+      570.0968,
+      173.87
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q064-explanation-1.png",
+    "passageId": "20172018_form_b-q064-explanation-1",
+    "url": "/exam-images/20172018-form-b-q064-explanation-1-passage.png",
+    "sha256": "82581f18b45d58ad1520684dee2d60295cc519ecc4ea5c3d80bfbf09dfcd401a"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 9,
+    "sourceBox": [
+      315.2488,
+      192.24599999999998,
+      567.6662,
+      706.246
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q065-explanation-1.png",
+    "passageId": "20172018_form_b-q065-explanation-1",
+    "url": "/exam-images/20172018-form-b-q065-explanation-1-passage.png",
+    "sha256": "c7007835b80c7677879e047ab8d220ed6d7407d1f70c9cc649ed8dea3bb3a0ca"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      39.9976,
+      105.87,
+      175.22760000000002,
+      187.51620000000003
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q066-explanation-1.png",
+    "passageId": "20172018_form_b-q066-explanation-1",
+    "url": "/exam-images/20172018-form-b-q066-explanation-1-passage.png",
+    "sha256": "4f716124e229c9cd87ba1509acb391f4dd29580192aa337cd50f260f24edce77"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      40.0001,
+      206.23619999999994,
+      296.7388,
+      325.2497000000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q067-explanation-1.png",
+    "passageId": "20172018_form_b-q067-explanation-1",
+    "url": "/exam-images/20172018-form-b-q067-explanation-1-passage.png",
+    "sha256": "88dcf7ba00d8646ec6289081e602ed230b5a9f7bc8c027a325b821ebe1041bb6"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      39.9988,
+      343.62970000000007,
+      289.36780000000005,
+      424.202
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q068-explanation-1.png",
+    "passageId": "20172018_form_b-q068-explanation-1",
+    "url": "/exam-images/20172018-form-b-q068-explanation-1-passage.png",
+    "sha256": "91a455db4f9dbd2a12954d97ce03ddc6524cf33c47809c874c3443af071e737f"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      39.997600000000006,
+      450.998,
+      294.5276,
+      698.998
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q069-explanation-1.png",
+    "passageId": "20172018_form_b-q069-explanation-1",
+    "url": "/exam-images/20172018-form-b-q069-explanation-1-passage.png",
+    "sha256": "9e742a0d2d578cc8b52c4eda259fe5f77cfcfa7d4c18df06e67c534795e17423"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      315.2488,
+      105.87,
+      563.2168,
+      181.38739999999996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q070-explanation-1.png",
+    "passageId": "20172018_form_b-q070-explanation-1",
+    "url": "/exam-images/20172018-form-b-q070-explanation-1-passage.png",
+    "sha256": "bcb3b87f36647e22ca788d0d642d7764c2c220b7522ff0d7625481a744bda020"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      315.2463,
+      198.2498999999999,
+      565.5163,
+      290.2498999999999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q071-explanation-1.png",
+    "passageId": "20172018_form_b-q071-explanation-1",
+    "url": "/exam-images/20172018-form-b-q071-explanation-1-passage.png",
+    "sha256": "26e9f959e2780ad3dedaf04438099c02401eb3c867bde90bfd148eb59512c31c"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      315.2463,
+      308.6298999999999,
+      571.9003000000001,
+      427.61819999999994
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q072-explanation-1.png",
+    "passageId": "20172018_form_b-q072-explanation-1",
+    "url": "/exam-images/20172018-form-b-q072-explanation-1-passage.png",
+    "sha256": "023e8bb193f6aa280965fa2635610c3d2be84ca1e73bd9fe0686b028d917957b"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 10,
+    "sourceBox": [
+      315.26130000000006,
+      445.99819999999994,
+      553.5358,
+      544.8105
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q073-explanation-1.png",
+    "passageId": "20172018_form_b-q073-explanation-1",
+    "url": "/exam-images/20172018-form-b-q073-explanation-1-passage.png",
+    "sha256": "842a8648a7cf375f4284a07169bbb4a499faecdf3e722369237cf4d1751a3aae"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      40,
+      108.03660000000002,
+      293.999,
+      324.50669999999997
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q074-explanation-1.png",
+    "passageId": "20172018_form_b-q074-explanation-1",
+    "url": "/exam-images/20172018-form-b-q074-explanation-1-passage.png",
+    "sha256": "df156f3f3f5f6e807ae7b06346efc90a7b7a060d03e6a6c9b286de3936060876"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      40,
+      346.4126,
+      292.2337,
+      589.2402
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q075-explanation-1.png",
+    "passageId": "20172018_form_b-q075-explanation-1",
+    "url": "/exam-images/20172018-form-b-q075-explanation-1-passage.png",
+    "sha256": "a806961ab8d4c4a801f263ab39d9c48b8ca5b52bdbf6725b7c5258bd69b1fd86"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      39.993799999999986,
+      608.7901999999999,
+      294.04280000000006,
+      670.7901999999999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q076-explanation-1.png",
+    "passageId": "20172018_form_b-q076-explanation-1",
+    "url": "/exam-images/20172018-form-b-q076-explanation-1-passage.png",
+    "sha256": "fb6db32d1720a9ed3c76de52535d6ad6822fa224b69f7d4c2894ea52a9129b35"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      315.238,
+      108.03660000000002,
+      510.668,
+      220.3478
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q077-explanation-1.png",
+    "passageId": "20172018_form_b-q077-explanation-1",
+    "url": "/exam-images/20172018-form-b-q077-explanation-1-passage.png",
+    "sha256": "9569bf086ed6a82f5a2c5d50d900255e405546ddc0dc5346e77fe529a820ee3e"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      315.238,
+      237.4126,
+      546.5443,
+      297.50499999999994
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q078-explanation-1.png",
+    "passageId": "20172018_form_b-q078-explanation-1",
+    "url": "/exam-images/20172018-form-b-q078-explanation-1-passage.png",
+    "sha256": "96d673acb0c04fe0ea76ba81b703be8185ce6a68bc3b12dea2621a0754ca2b37"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      315.24299999999994,
+      316.78499999999997,
+      567.2958000000001,
+      448.0686
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q079-explanation-1.png",
+    "passageId": "20172018_form_b-q079-explanation-1",
+    "url": "/exam-images/20172018-form-b-q079-explanation-1-passage.png",
+    "sha256": "709e727b9524f34a5e42548dafd2049329560b527908e343fd983512f7911f9d"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 11,
+    "sourceBox": [
+      315.238,
+      466.1646,
+      570.3171,
+      618.0521
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q080-explanation-1.png",
+    "passageId": "20172018_form_b-q080-explanation-1",
+    "url": "/exam-images/20172018-form-b-q080-explanation-1-passage.png",
+    "sha256": "ec75f428d6c69191934e0eec15b936b7b559a4a0a41ee3222839623ecbfde732"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      39.9976,
+      105.87,
+      295.6476,
+      265.38739999999996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q081-explanation-1.png",
+    "passageId": "20172018_form_b-q081-explanation-1",
+    "url": "/exam-images/20172018-form-b-q081-explanation-1-passage.png",
+    "sha256": "bc15a1d510f6be276c8e1458435a29fa14f60f68b6934d71af4fe4e8e04c611b"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      40.0001,
+      282.24989999999997,
+      291.41910000000007,
+      375.761
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q082-explanation-1.png",
+    "passageId": "20172018_form_b-q082-explanation-1",
+    "url": "/exam-images/20172018-form-b-q082-explanation-1-passage.png",
+    "sha256": "2d4f75fd6804a3d572fa6bccfd3fbfa6a18497be8433f73a8a14a066395c9549"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      39.997600000000006,
+      398.62600000000003,
+      294.9265,
+      540.1345
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q083-explanation-1.png",
+    "passageId": "20172018_form_b-q083-explanation-1",
+    "url": "/exam-images/20172018-form-b-q083-explanation-1-passage.png",
+    "sha256": "b1dac676e017d2b75501c8aac25166f332967e481bffad20a90d2cab240e8d5f"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      40.0001,
+      557.002,
+      296.0376,
+      711.578
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q084-explanation-1.png",
+    "passageId": "20172018_form_b-q084-explanation-1",
+    "url": "/exam-images/20172018-form-b-q084-explanation-1-passage.png",
+    "sha256": "d4111bbc1c5247ada54b6a2d55360ba62dfc1f2a2f6f74edffd122b9a975831e"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      315.2488,
+      105.87,
+      564.8768,
+      247.45000000000005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q085-explanation-1.png",
+    "passageId": "20172018_form_b-q085-explanation-1",
+    "url": "/exam-images/20172018-form-b-q085-explanation-1-passage.png",
+    "sha256": "2548173351eb7dfd755bccd0390dd2acc3ef79a0383c845374aa894c822d8742"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      315.2488,
+      264.246,
+      564.8582,
+      350.82599999999996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q086-explanation-1.png",
+    "passageId": "20172018_form_b-q086-explanation-1",
+    "url": "/exam-images/20172018-form-b-q086-explanation-1-passage.png",
+    "sha256": "b79c904ee63980b14fd7b27361ddad0b9df52b3a1b12951d5ec82b3497d64dda"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      315.2485,
+      368.626,
+      569.1465,
+      430.626
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q087-explanation-1.png",
+    "passageId": "20172018_form_b-q087-explanation-1",
+    "url": "/exam-images/20172018-form-b-q087-explanation-1-passage.png",
+    "sha256": "12a69465aa9e42aae5d87ca3e9b840ceecdaa2e265874a6450cbfa99c623c448"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      315.2485,
+      449.006,
+      539.6701,
+      478.01599999999996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q088-explanation-1.png",
+    "passageId": "20172018_form_b-q088-explanation-1",
+    "url": "/exam-images/20172018-form-b-q088-explanation-1-passage.png",
+    "sha256": "fa9520ace35752d5452ee650a946185c959a1758947fa05aef5848ebc9a86fc7"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 12,
+    "sourceBox": [
+      315.2488,
+      493.374,
+      565.3088000000001,
+      658.8864
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q089-explanation-1.png",
+    "passageId": "20172018_form_b-q089-explanation-1",
+    "url": "/exam-images/20172018-form-b-q089-explanation-1-passage.png",
+    "sha256": "9af25d5b60a7d4d3b54a3617f7f7b6db2ef7d2d8104e11b8dd1fd3d20941dbb4"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      39.9976,
+      106.87,
+      270.0541,
+      523.5550000000001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q090-explanation-1.png",
+    "passageId": "20172018_form_b-q090-explanation-1",
+    "url": "/exam-images/20172018-form-b-q090-explanation-1-passage.png",
+    "sha256": "c46320b8afe6b43e894e9e7bb9bdab78c524a081aab2dbb510068eb83e1fd849"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      39.99389999999999,
+      542.1835,
+      248.0438,
+      622.3398
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q091-explanation-1.png",
+    "passageId": "20172018_form_b-q091-explanation-1",
+    "url": "/exam-images/20172018-form-b-q091-explanation-1-passage.png",
+    "sha256": "51d06bb2ed04ba84e14ae3d3f07bfca1a7cca44877a09f4a01ee48552930769f"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      315.2488,
+      106.87,
+      568.7701000000001,
+      235.6875
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q092-explanation-1.png",
+    "passageId": "20172018_form_b-q092-explanation-1",
+    "url": "/exam-images/20172018-form-b-q092-explanation-1-passage.png",
+    "sha256": "f431f4613ddfbdb6fda67db7fbe5d8e43f1c6dbb3dd87402fcd7666cd68f3dd6"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      315.2366,
+      251.87,
+      568.7066000000001,
+      334.2262
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q093-explanation-1.png",
+    "passageId": "20172018_form_b-q093-explanation-1",
+    "url": "/exam-images/20172018-form-b-q093-explanation-1-passage.png",
+    "sha256": "2966bc3cdec2d0406abe21e53c7610057b88bae9e115cc741ed6d67580b18c1f"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      315.2487,
+      351.246,
+      562.5486999999999,
+      563.826
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q094-explanation-1.png",
+    "passageId": "20172018_form_b-q094-explanation-1",
+    "url": "/exam-images/20172018-form-b-q094-explanation-1-passage.png",
+    "sha256": "0ded0b40ab101f54dc80d2aaf00c68190aa7e842e50f99c39caed5bef1a22376"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 13,
+    "sourceBox": [
+      315.2487,
+      581.6220000000001,
+      571.9887000000001,
+      675.1344
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q095-explanation-1.png",
+    "passageId": "20172018_form_b-q095-explanation-1",
+    "url": "/exam-images/20172018-form-b-q095-explanation-1-passage.png",
+    "sha256": "bf54c90029441cde048af0e72f4c28fe2078c06e3f767b6ad7e33fe6ac9fe7da"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      40,
+      105.87,
+      294.239,
+      188.1499
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q096-explanation-1.png",
+    "passageId": "20172018_form_b-q096-explanation-1",
+    "url": "/exam-images/20172018-form-b-q096-explanation-1-passage.png",
+    "sha256": "847cff19906798380c72b7ab97241320db8668953dfafa8265f6b301d23830ae"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      40,
+      205.24599999999998,
+      279.86870000000005,
+      328.526
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q097-explanation-1.png",
+    "passageId": "20172018_form_b-q097-explanation-1",
+    "url": "/exam-images/20172018-form-b-q097-explanation-1-passage.png",
+    "sha256": "a859a39163fddf42fff99499d1b261e87363c1f5e697579b9440338510caaaa3"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      40,
+      347.622,
+      288.62669999999997,
+      557.4611
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q098-explanation-1.png",
+    "passageId": "20172018_form_b-q098-explanation-1",
+    "url": "/exam-images/20172018-form-b-q098-explanation-1-passage.png",
+    "sha256": "72253aad7501ada45fee0b38d4ac9670c8f141674ad2c11ab8d2904103d3dc83"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      40,
+      576.308,
+      295.7957,
+      689.3081
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q099-explanation-1.png",
+    "passageId": "20172018_form_b-q099-explanation-1",
+    "url": "/exam-images/20172018-form-b-q099-explanation-1-passage.png",
+    "sha256": "bada25192b7e357502734ebf3851fd4b019f20c9857e67b77d6e55134025fb36"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      315.238,
+      108.5,
+      566.4975,
+      173.37369999999999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q100-explanation-1.png",
+    "passageId": "20172018_form_b-q100-explanation-1",
+    "url": "/exam-images/20172018-form-b-q100-explanation-1-passage.png",
+    "sha256": "4290e1102ac0e457479e80c96372ef10c5ac40f2a13a02b0132f9c1f602581ac"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      315.238,
+      191.87369999999999,
+      569.6170000000001,
+      387.6935
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q101-explanation-1.png",
+    "passageId": "20172018_form_b-q101-explanation-1",
+    "url": "/exam-images/20172018-form-b-q101-explanation-1-passage.png",
+    "sha256": "444e9076abd63b4e8d90c2bbdc1fdb708f4d9227055734d7db8c3b4fd362117e"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 14,
+    "sourceBox": [
+      315.2334,
+      399.256,
+      571.4134,
+      536.252
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q102-explanation-1.png",
+    "passageId": "20172018_form_b-q102-explanation-1",
+    "url": "/exam-images/20172018-form-b-q102-explanation-1-passage.png",
+    "sha256": "09a7f4ae97da70313578f4ae85d716bb6f1763b2c64df9b6c188834bb899f9fd"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      38.8,
+      105.66999999999996,
+      295.7199,
+      323.9885
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q103-explanation-1.png",
+    "passageId": "20172018_form_b-q103-explanation-1",
+    "url": "/exam-images/20172018-form-b-q103-explanation-1-passage.png",
+    "sha256": "b9a1c22277f644f0dbe3a68a7f218bc70fb0fba2c30647a50b28e6a66ecbd4c4"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      38.7916,
+      353.552,
+      290.69620000000003,
+      417.0645
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q104-explanation-1.png",
+    "passageId": "20172018_form_b-q104-explanation-1",
+    "url": "/exam-images/20172018-form-b-q104-explanation-1-passage.png",
+    "sha256": "4970b149b8f87120168d6d2de355f40f5af522b3a306c4a83fd651269d6fea23"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      38.79740000000001,
+      433.932,
+      276.949,
+      491.4455
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q105-explanation-1.png",
+    "passageId": "20172018_form_b-q105-explanation-1",
+    "url": "/exam-images/20172018-form-b-q105-explanation-1-passage.png",
+    "sha256": "cce1e6530d710c62815736bcfc54668727dc603e54e06cfeecff6a776762d91e"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      38.7999,
+      514.304,
+      289.67879999999997,
+      618.304
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q106-explanation-1.png",
+    "passageId": "20172018_form_b-q106-explanation-1",
+    "url": "/exam-images/20172018-form-b-q106-explanation-1-passage.png",
+    "sha256": "411d57c2a5eea7685c1259ccf050d66c8f24c57d2e3d5fa428a12ac64098d1b3"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      314.65,
+      105.66999999999996,
+      559.3872,
+      374.4875
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q107-explanation-1.png",
+    "passageId": "20172018_form_b-q107-explanation-1",
+    "url": "/exam-images/20172018-form-b-q107-explanation-1-passage.png",
+    "sha256": "008e98b870c558eb4bf44ff8afaaaec614d1e3c1fa3eed5442e439fc457e3615"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      314.65290000000005,
+      392.05,
+      422.6512,
+      480.7761
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q108-explanation-1.png",
+    "passageId": "20172018_form_b-q108-explanation-1",
+    "url": "/exam-images/20172018-form-b-q108-explanation-1-passage.png",
+    "sha256": "c28af9c6d54677b370f301f738078f4a5ba25563dad5169521536c8fa502b55b"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 15,
+    "sourceBox": [
+      314.64869999999996,
+      500.4336,
+      537.458,
+      572.2345
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q109-explanation-1.png",
+    "passageId": "20172018_form_b-q109-explanation-1",
+    "url": "/exam-images/20172018-form-b-q109-explanation-1-passage.png",
+    "sha256": "c3afdb50b3c6f3c9c4e090276f54a769193b6b76fba7364d734f34bed2c4b0eb"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 16,
+    "sourceBox": [
+      39.9976,
+      108.5,
+      291.72579999999994,
+      219.08000000000004
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q110-explanation-1.png",
+    "passageId": "20172018_form_b-q110-explanation-1",
+    "url": "/exam-images/20172018-form-b-q110-explanation-1-passage.png",
+    "sha256": "8ba273e45ce62ffbbb5a8ea79f41eb010f45b8f7a6b3150a13d512af0bcd5a38"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 16,
+    "sourceBox": [
+      39.9976,
+      236.87599999999998,
+      287.2156,
+      334.156
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q111-explanation-1.png",
+    "passageId": "20172018_form_b-q111-explanation-1",
+    "url": "/exam-images/20172018-form-b-q111-explanation-1-passage.png",
+    "sha256": "9a230e147866090b159dcf6c75f314c6b555be8ce5eb6590a4d810d9c6b00b9e"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 16,
+    "sourceBox": [
+      39.9976,
+      353.252,
+      293.1370999999999,
+      470.907
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q112-explanation-1.png",
+    "passageId": "20172018_form_b-q112-explanation-1",
+    "url": "/exam-images/20172018-form-b-q112-explanation-1-passage.png",
+    "sha256": "824b653e72283b28fe5042418cff618d020cc776048b5907b6f608b3f70f7a1b"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 16,
+    "sourceBox": [
+      315.25,
+      105.87,
+      565.989,
+      169.45000000000005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q113-explanation-1.png",
+    "passageId": "20172018_form_b-q113-explanation-1",
+    "url": "/exam-images/20172018-form-b-q113-explanation-1-passage.png",
+    "sha256": "9bb91cbd997d6e07a28de22394e76f90d4063b9c8a1c9e31b36402b04c614e98"
+  },
+  {
+    "sourceFile": "20172018_form_b_-_answers.pdf",
+    "sourcePage": 16,
+    "sourceBox": [
+      315.25,
+      187.24599999999998,
+      556.99,
+      250.82600000000002
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20172018_form_b-q114-explanation-1.png",
+    "passageId": "20172018_form_b-q114-explanation-1",
+    "url": "/exam-images/20172018-form-b-q114-explanation-1-passage.png",
+    "sha256": "eac9438956ec3d710b422f0fb9db92a7b025ec355093fc3efb26025703acd7ec"
+  },
+  {
+    "sourceFile": "20192020_form_b.pdf",
+    "sourcePage": 38,
+    "sourceBox": [
+      358,
+      93,
+      553,
+      163
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\2019-2020-b-q083-number-line.png",
+    "passageId": "2019-2020-b-q083-number-line",
+    "url": "/exam-images/2019-2020-b-q083-number-line-passage.png",
+    "sha256": "71c1093377f70279be5ae929f5570a911c6d55c416355ac968c5538db23fa597"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 26,
+    "sourceBox": [
+      39.9976,
+      120.73139160199992,
+      287.57759674000005,
+      237.75259277400005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q058-explanation-1.png",
+    "passageId": "20192020_form_b-q058-explanation-1",
+    "url": "/exam-images/20192020-form-b-q058-explanation-1-passage.png",
+    "sha256": "854493a59491fa4f737e0ce662e0abb71f046d31b507476f056e26ba2ba008c1"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 26,
+    "sourceBox": [
+      39.9976,
+      256.111518555,
+      287.71759674000003,
+      357.756500245
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q059-explanation-1.png",
+    "passageId": "20192020_form_b-q059-explanation-1",
+    "url": "/exam-images/20192020-form-b-q059-explanation-1-passage.png",
+    "sha256": "e18345554c5469eb2a8dbdd8038fd4d97e98a636848719d0bea7412d9e313323"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 26,
+    "sourceBox": [
+      39.9976,
+      374.541512452,
+      292.60760000000005,
+      521.3613854990001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q060-explanation-1.png",
+    "passageId": "20192020_form_b-q060-explanation-1",
+    "url": "/exam-images/20192020-form-b-q060-explanation-1-passage.png",
+    "sha256": "bbe9d86c9c67353aaae1bad9c386b111c90fcf5fc1dab44df1226dcf5cbe298d"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 26,
+    "sourceBox": [
+      39.9976,
+      540.511497193,
+      293.738808593,
+      647.347698365
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q061-explanation-1.png",
+    "passageId": "20192020_form_b-q061-explanation-1",
+    "url": "/exam-images/20192020-form-b-q061-explanation-1-passage.png",
+    "sha256": "735e31f64a446033d964cbcca3b7ea496a251601bdb908fe4baa593267c7d0a2"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 26,
+    "sourceBox": [
+      312.95645932674387,
+      78.84991455099998,
+      360.49209851151767,
+      103.84991455099998
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q061-explanation-2.png",
+    "passageId": "20192020_form_b-q061-explanation-2",
+    "url": "/exam-images/20192020-form-b-q061-explanation-2-passage.png",
+    "sha256": "d912cc013ef4ff8feb7d6a6807cb36f8257e377d94df5c9c1f9315a91c08ede8"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 26,
+    "sourceBox": [
+      315.988006591,
+      128.08752441500008,
+      463.90419555600005,
+      233.59127441499993
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q062-explanation-1.png",
+    "passageId": "20192020_form_b-q062-explanation-1",
+    "url": "/exam-images/20192020-form-b-q062-explanation-1-passage.png",
+    "sha256": "1e083fd66e5874256927494bc446b8e3c21057ea9c2da168a4ff922ee4468f88"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 26,
+    "sourceBox": [
+      315.988006591,
+      253.3235253910001,
+      540.900593261,
+      291.31341552799995
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q063-explanation-1.png",
+    "passageId": "20192020_form_b-q063-explanation-1",
+    "url": "/exam-images/20192020-form-b-q063-explanation-1-passage.png",
+    "sha256": "3aa0f7ef45b2891d19002940f129afaa3fd1d1ed7ec993d5416935dc3550b111"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 26,
+    "sourceBox": [
+      315.988006591,
+      304.29349487400003,
+      568.386990966,
+      462.86343564545706
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q064-explanation-1.png",
+    "passageId": "20192020_form_b-q064-explanation-1",
+    "url": "/exam-images/20192020-form-b-q064-explanation-1-passage.png",
+    "sha256": "f5746914ab2f322871556efd1217dad5622863b6ca9a24b8cc6bb7e6bd8a874c"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 26,
+    "sourceBox": [
+      315.988006591,
+      480.32358642599996,
+      565.6180065909999,
+      592.6994934090001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q065-explanation-1.png",
+    "passageId": "20192020_form_b-q065-explanation-1",
+    "url": "/exam-images/20192020-form-b-q065-explanation-1-passage.png",
+    "sha256": "d1b290357f1db23644b0ac81d4799a125f405d56ebb8a1eb68f19cf9d1321164"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 26,
+    "sourceBox": [
+      315.988006591,
+      610.323601685,
+      561.4132971189999,
+      661.863494874
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q066-explanation-1.png",
+    "passageId": "20192020_form_b-q066-explanation-1",
+    "url": "/exam-images/20192020-form-b-q066-explanation-1-passage.png",
+    "sha256": "3480a1c5e828253200da44d983d4fc846973c3895e58d8c0b839ae408edb7238"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 27,
+    "sourceBox": [
+      39.9976,
+      79.15801269600001,
+      153.94509674,
+      171.74212646499996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q067-explanation-1.png",
+    "passageId": "20192020_form_b-q067-explanation-1",
+    "url": "/exam-images/20192020-form-b-q067-explanation-1-passage.png",
+    "sha256": "70634c0562402c35ce9471be78864cd5bd766620d3bdf50f48097f1e8ef11fdc"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 27,
+    "sourceBox": [
+      39.9976,
+      191.30997558600006,
+      298.24129216399996,
+      212.363769532
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q068-explanation-1.png",
+    "passageId": "20192020_form_b-q068-explanation-1",
+    "url": "/exam-images/20192020-form-b-q068-explanation-1-passage.png",
+    "sha256": "1bcdcc9a80efd4b0a31b6ab520c2f564a0a82c9819ae3751390c59f696d6fcf7"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 27,
+    "sourceBox": [
+      39.9976,
+      240.77997558599998,
+      291.146596374,
+      341.5680126960001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q069-explanation-1.png",
+    "passageId": "20192020_form_b-q069-explanation-1",
+    "url": "/exam-images/20192020-form-b-q069-explanation-1-passage.png",
+    "sha256": "130eb99cbbdb2f9bbbe72d447743388034067c5dbe9c41e10ba06593ddee4cf7"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 27,
+    "sourceBox": [
+      39.9976,
+      356.81000610399997,
+      295.33759674000004,
+      440.28008667
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q070-explanation-1.png",
+    "passageId": "20192020_form_b-q070-explanation-1",
+    "url": "/exam-images/20192020-form-b-q070-explanation-1-passage.png",
+    "sha256": "69b8f0e708484900665e412b00deba2c1b1ebe11459c1f343fa3f7e805195e08"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 27,
+    "sourceBox": [
+      39.9976,
+      457.780006104,
+      294.95019958399996,
+      572.80920044
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q071-explanation-1.png",
+    "passageId": "20192020_form_b-q071-explanation-1",
+    "url": "/exam-images/20192020-form-b-q071-explanation-1-passage.png",
+    "sha256": "73ddce41f4eb860458e4f5ead3f42229c3fe12b8d101be59ad3b8afa7007c7ca"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 27,
+    "sourceBox": [
+      39.9976,
+      585.780006104,
+      293.4175967400001,
+      682.3163
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q072-explanation-1.png",
+    "passageId": "20192020_form_b-q072-explanation-1",
+    "url": "/exam-images/20192020-form-b-q072-explanation-1-passage.png",
+    "sha256": "edbf33cc32064c9ecb0bfdddaef764c182780dcbfbf91f5214d5c578388004b3"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 27,
+    "sourceBox": [
+      315.25,
+      70.36142822300008,
+      559.442999267,
+      121.90142822300004
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q073-explanation-1.png",
+    "passageId": "20192020_form_b-q073-explanation-1",
+    "url": "/exam-images/20192020-form-b-q073-explanation-1-passage.png",
+    "sha256": "1e5976d25151cfdfccfb248253a42778bac4a4fbbb1d6d3837ef9bcec779d75e"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 27,
+    "sourceBox": [
+      315.25,
+      135.331428223,
+      550.452686767,
+      389.7090979729
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q074-explanation-1.png",
+    "passageId": "20192020_form_b-q074-explanation-1",
+    "url": "/exam-images/20192020-form-b-q074-explanation-1-passage.png",
+    "sha256": "f8095c81434be69cbde104244b64ee72a3718444ae7f6e99938b6d0ed22b71cd"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 27,
+    "sourceBox": [
+      315.25,
+      406.41001220799996,
+      561.3000000000001,
+      577.890697632
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q075-explanation-1.png",
+    "passageId": "20192020_form_b-q075-explanation-1",
+    "url": "/exam-images/20192020-form-b-q075-explanation-1-passage.png",
+    "sha256": "1c1fb21fd03b38c668b6fa96ca849ec0f92cd2b8111c171fbaa0d1712ae1f9a3"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      39.9976,
+      69.131416016,
+      293.27759674000004,
+      204.41451660199994
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q076-explanation-1.png",
+    "passageId": "20192020_form_b-q076-explanation-1",
+    "url": "/exam-images/20192020-form-b-q076-explanation-1-passage.png",
+    "sha256": "ce3f96f040ce467f94be3722c6761f988e7f2eacecfb711b429a23f5e919a5b5"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      39.9976,
+      223.1614160160001,
+      293.6901415880001,
+      347.547307163
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q077-explanation-1.png",
+    "passageId": "20192020_form_b-q077-explanation-1",
+    "url": "/exam-images/20192020-form-b-q077-explanation-1-passage.png",
+    "sha256": "d3a8bafed8ca7f31ef78fd3a2ad3557adbc92c45e35c1f85fab9ac1f5e0e53b9"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      39.9976,
+      366.13138549900003,
+      293.12040161100003,
+      506.161385499
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q078-explanation-1.png",
+    "passageId": "20192020_form_b-q078-explanation-1",
+    "url": "/exam-images/20192020-form-b-q078-explanation-1-passage.png",
+    "sha256": "4d8b6c5a3fa3b5e8157389f9f0b09a1275090430231543e7560f2a864adb52e1"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      39.9976,
+      530.1614007569999,
+      182.24510437,
+      552.748901368
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q079-explanation-1.png",
+    "passageId": "20192020_form_b-q079-explanation-1",
+    "url": "/exam-images/20192020-form-b-q079-explanation-1-passage.png",
+    "sha256": "ff3886bce128e456c2f24adaac751cd8442632197019b5ac50bdfc23613d5934"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      39.9976,
+      568.161400757,
+      274.12300240999997,
+      644.886703492
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q080-explanation-1.png",
+    "passageId": "20192020_form_b-q080-explanation-1",
+    "url": "/exam-images/20192020-form-b-q080-explanation-1-passage.png",
+    "sha256": "9e43ee7cd4221cbaaa5eaf2d0b44e494cc606eab4262f2cb202e21170a72da0c"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      315.25,
+      69.16141601600009,
+      549.7029992670001,
+      119.04201904299998
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q081-explanation-1.png",
+    "passageId": "20192020_form_b-q081-explanation-1",
+    "url": "/exam-images/20192020-form-b-q081-explanation-1-passage.png",
+    "sha256": "b4be87464ac7e7cb3f810ce11586fd43e29d4fd3ce83a6d7895c3ac5101a13cd"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      315.25,
+      138.5612866219999,
+      548.690091552,
+      279.0412866219999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q082-explanation-1.png",
+    "passageId": "20192020_form_b-q082-explanation-1",
+    "url": "/exam-images/20192020-form-b-q082-explanation-1-passage.png",
+    "sha256": "4579a881772fce84f70fc3264dd2d6de24546a2cf05ec95aeb99e03ad1077de2"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      315.250091552,
+      296.381286622,
+      557.63989624,
+      423.009514161
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q083-explanation-1.png",
+    "passageId": "20192020_form_b-q083-explanation-1",
+    "url": "/exam-images/20192020-form-b-q083-explanation-1-passage.png",
+    "sha256": "e4cd16e780a40a614cfd63c0dd6f657f1e64cd0b18c78363a4319ecf531820f6"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      315.250091552,
+      445.931313477,
+      572.0145915520001,
+      567.9312982179999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q084-explanation-1.png",
+    "passageId": "20192020_form_b-q084-explanation-1",
+    "url": "/exam-images/20192020-form-b-q084-explanation-1-passage.png",
+    "sha256": "4d8c4b892a76c82d1dd4a5437542b67ecb5702fc00c2d32bbf65ab1b181c7c86"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 29,
+    "sourceBox": [
+      39.9976,
+      78.15981689499995,
+      291.949505615,
+      300.80818603600005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q085-explanation-1.png",
+    "passageId": "20192020_form_b-q085-explanation-1",
+    "url": "/exam-images/20192020-form-b-q085-explanation-1-passage.png",
+    "sha256": "cf984d7d9653ce8946ec398a622304d950ec13bf660f1ec8ccc157a5b5db448f"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 29,
+    "sourceBox": [
+      315.25,
+      70.36142822300008,
+      561.9425,
+      518.3613977059999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q086-explanation-1.png",
+    "passageId": "20192020_form_b-q086-explanation-1",
+    "url": "/exam-images/20192020-form-b-q086-explanation-1-passage.png",
+    "sha256": "2c955e0a6c281970048d2c12cd4a724c3a66cde0afd2dd181d8ec39241c1bf02"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 29,
+    "sourceBox": [
+      315.25,
+      538.361397706,
+      570.8562890620001,
+      604.361397706
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q087-explanation-1.png",
+    "passageId": "20192020_form_b-q087-explanation-1",
+    "url": "/exam-images/20192020-form-b-q087-explanation-1-passage.png",
+    "sha256": "9b96e6f5f08d93037dd955d62cc6f07339bb5020d891ef078a869309dcf4dd5d"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 30,
+    "sourceBox": [
+      39.9976,
+      72.67999999999995,
+      288.07199462799997,
+      162.30249023500005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q088-explanation-1.png",
+    "passageId": "20192020_form_b-q088-explanation-1",
+    "url": "/exam-images/20192020-form-b-q088-explanation-1-passage.png",
+    "sha256": "c17b25348e30339878d5f2d8190c3fddec778880ec10726a3b3d52abca5e9716"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 30,
+    "sourceBox": [
+      39.997699737,
+      178.71000000000004,
+      293.245211181,
+      322.910705567
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q089-explanation-1.png",
+    "passageId": "20192020_form_b-q089-explanation-1",
+    "url": "/exam-images/20192020-form-b-q089-explanation-1-passage.png",
+    "sha256": "f90737870f433756a69d3cb53b9ca91453539277df24b1eea73f88816f6e9ea1"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 30,
+    "sourceBox": [
+      39.997699737,
+      346.440010987,
+      296.757703552,
+      500.68999878000005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q090-explanation-1.png",
+    "passageId": "20192020_form_b-q090-explanation-1",
+    "url": "/exam-images/20192020-form-b-q090-explanation-1-passage.png",
+    "sha256": "e0dc16a926d8787300f795036e1e4accc5a6e25700812640f7ceca1f515ab431"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 30,
+    "sourceBox": [
+      39.997699737,
+      523.23999878,
+      296.184197387,
+      571.12069336
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q091-explanation-1.png",
+    "passageId": "20192020_form_b-q091-explanation-1",
+    "url": "/exam-images/20192020-form-b-q091-explanation-1-passage.png",
+    "sha256": "0df4f75327a8237f4c1d5e74a8f60c18e16fcb8ec5b825652fd090b27366c832"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 30,
+    "sourceBox": [
+      315.25,
+      70.36142822300008,
+      570.874904785,
+      381.56140999999997
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q092-explanation-1.png",
+    "passageId": "20192020_form_b-q092-explanation-1",
+    "url": "/exam-images/20192020-form-b-q092-explanation-1-passage.png",
+    "sha256": "2637f63a42dabb19954021f0b6eab9580d079f0a7bc415b2ea5658cb06d948a3"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 30,
+    "sourceBox": [
+      315.25,
+      399.53141,
+      569.1690148920001,
+      588.711406861
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q093-explanation-1.png",
+    "passageId": "20192020_form_b-q093-explanation-1",
+    "url": "/exam-images/20192020-form-b-q093-explanation-1-passage.png",
+    "sha256": "e3335f007ef7febd7966f9b4a6d704568b1446f8355735ca9bdc8c6b09412d25"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 30,
+    "sourceBox": [
+      315.25,
+      613.231406861,
+      556.3246875,
+      640.711406861
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q094-explanation-1.png",
+    "passageId": "20192020_form_b-q094-explanation-1",
+    "url": "/exam-images/20192020-form-b-q094-explanation-1-passage.png",
+    "sha256": "2e4e2be1bcb67aee19dddfa0f6e7240f7577aaef9311db4e6b7ba13445fe2d5f"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 31,
+    "sourceBox": [
+      39.9976,
+      81.01017089900006,
+      218.8439,
+      102.24987793000003
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q095-explanation-1.png",
+    "passageId": "20192020_form_b-q095-explanation-1",
+    "url": "/exam-images/20192020-form-b-q095-explanation-1-passage.png",
+    "sha256": "3191427e2840369606e0791a949632e29a32c6035784db0d331b8bd676b9288e"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 31,
+    "sourceBox": [
+      39.9976,
+      121.01017089900006,
+      287.8575967400001,
+      218.450195313
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q096-explanation-1.png",
+    "passageId": "20192020_form_b-q096-explanation-1",
+    "url": "/exam-images/20192020-form-b-q096-explanation-1-passage.png",
+    "sha256": "37b2647b2d6e0539056272f96966f43094bf91a1c4f5b03c91a38a9e9d77209e"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 31,
+    "sourceBox": [
+      39.9976,
+      245.98017089899997,
+      296.75189636199997,
+      484.906402588
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q097-explanation-1.png",
+    "passageId": "20192020_form_b-q097-explanation-1",
+    "url": "/exam-images/20192020-form-b-q097-explanation-1-passage.png",
+    "sha256": "8bd2dd6ecb1483e41b7f3649fe61103c001fe562a79e0a9cd5f85efa9f48bc85"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 31,
+    "sourceBox": [
+      39.9976,
+      501.980201417,
+      294.45759674,
+      574.450195313
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q098-explanation-1.png",
+    "passageId": "20192020_form_b-q098-explanation-1",
+    "url": "/exam-images/20192020-form-b-q098-explanation-1-passage.png",
+    "sha256": "0704df8d16a283824ef60be018efa9e4a32b5281d41e27316f92933da489ed5c"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 31,
+    "sourceBox": [
+      315.25,
+      70.36142822300008,
+      565.44201416,
+      201.311428223
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q099-explanation-1.png",
+    "passageId": "20192020_form_b-q099-explanation-1",
+    "url": "/exam-images/20192020-form-b-q099-explanation-1-passage.png",
+    "sha256": "738376b807bde8d065efc16d660d6344d722c84795657660d4adc6478f301b5e"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 31,
+    "sourceBox": [
+      315.25,
+      225.36142822300008,
+      565.8390080559999,
+      312.361397706
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q100-explanation-1.png",
+    "passageId": "20192020_form_b-q100-explanation-1",
+    "url": "/exam-images/20192020-form-b-q100-explanation-1-passage.png",
+    "sha256": "eb3685f0f151364d510d59100c3c681631c51387fec8198aae5d0e0060b59b98"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 31,
+    "sourceBox": [
+      315.25,
+      338.331397706,
+      565.0600000000001,
+      500.69141479499996
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q101-explanation-1.png",
+    "passageId": "20192020_form_b-q101-explanation-1",
+    "url": "/exam-images/20192020-form-b-q101-explanation-1-passage.png",
+    "sha256": "44ac435d041c6d828b8efa351e31b1f326964fde466c52e78cdb63d940ab10bd"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 32,
+    "sourceBox": [
+      39.9976,
+      70.36142822300008,
+      289.98759674,
+      325.161385499
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q102-explanation-1.png",
+    "passageId": "20192020_form_b-q102-explanation-1",
+    "url": "/exam-images/20192020-form-b-q102-explanation-1-passage.png",
+    "sha256": "c0c91e3335ced2cc4fba5225db6e2d3989b2e4f65e27911e9f0151ec2fb99ba5"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 32,
+    "sourceBox": [
+      39.9976,
+      349.646514893,
+      191.45510437,
+      412.901514893
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q103-explanation-1.png",
+    "passageId": "20192020_form_b-q103-explanation-1",
+    "url": "/exam-images/20192020-form-b-q103-explanation-1-passage.png",
+    "sha256": "adaf3be17a4df4462388d2afd6c0f83c56416250e65b5c0d293d32b97a049b40"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 32,
+    "sourceBox": [
+      39.9976,
+      430.161385499,
+      292.20759674000004,
+      528.441311036
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q104-explanation-1.png",
+    "passageId": "20192020_form_b-q104-explanation-1",
+    "url": "/exam-images/20192020-form-b-q104-explanation-1-passage.png",
+    "sha256": "9589f227093dc8ff42166c8615a13a1560abc1facd7f5e8ba73e068a9793d4a4"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 32,
+    "sourceBox": [
+      315.25,
+      70.36142822300008,
+      569.66,
+      264.45318603600003
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q105-explanation-1.png",
+    "passageId": "20192020_form_b-q105-explanation-1",
+    "url": "/exam-images/20192020-form-b-q105-explanation-1-passage.png",
+    "sha256": "0b170355d22aecc43f502e94931b8c00d369ea1667e5ee25a96565c75dec32d5"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 32,
+    "sourceBox": [
+      315.25,
+      288.83310791099996,
+      564.14,
+      385.613094483
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q106-explanation-1.png",
+    "passageId": "20192020_form_b-q106-explanation-1",
+    "url": "/exam-images/20192020-form-b-q106-explanation-1-passage.png",
+    "sha256": "e43ef5afa09980fd9d3b9b9708ffc532584327caa1122b06e4e6fe95b4f86af3"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 32,
+    "sourceBox": [
+      315.25,
+      412.33310791099996,
+      568.2199999999999,
+      657.373092652
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q107-explanation-1.png",
+    "passageId": "20192020_form_b-q107-explanation-1",
+    "url": "/exam-images/20192020-form-b-q107-explanation-1-passage.png",
+    "sha256": "7681f7293ef1384d82483b1fb9ee74b8a62460a9480eb26c2602df0a0586e7fc"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 32,
+    "sourceBox": [
+      315.25,
+      670.833100281,
+      547.6317968750001,
+      728.803703309
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q108-explanation-1.png",
+    "passageId": "20192020_form_b-q108-explanation-1",
+    "url": "/exam-images/20192020-form-b-q108-explanation-1-passage.png",
+    "sha256": "a003a0cf48a2a293676ab20c571c96db20c48d2a7cee695417e0537169f9b0b8"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 33,
+    "sourceBox": [
+      40,
+      69.16141601600009,
+      293.82000000000005,
+      155.1614160160001
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q109-explanation-1.png",
+    "passageId": "20192020_form_b-q109-explanation-1",
+    "url": "/exam-images/20192020-form-b-q109-explanation-1-passage.png",
+    "sha256": "881999126d02993bbd36da28bb41d50b754c247a982ecd49ff44fe2a1a3f2940"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 33,
+    "sourceBox": [
+      40,
+      180.1614160160001,
+      291.85198608300004,
+      283.632019043
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q110-explanation-1.png",
+    "passageId": "20192020_form_b-q110-explanation-1",
+    "url": "/exam-images/20192020-form-b-q110-explanation-1-passage.png",
+    "sha256": "6a487c6aaffc878e5ce6466f99928675706b94d7c4d79338c8443d5be170c185"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 33,
+    "sourceBox": [
+      37.968802565999994,
+      306.161385499,
+      289.48368807399993,
+      361.4012146
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q111-explanation-1.png",
+    "passageId": "20192020_form_b-q111-explanation-1",
+    "url": "/exam-images/20192020-form-b-q111-explanation-1-passage.png",
+    "sha256": "39a0620805d8c4a28234b079e5dd24e4d1e7d5b00e0739e55f5fcb06f05d90f0"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 33,
+    "sourceBox": [
+      40,
+      390.161385499,
+      294.12,
+      581.1995037849999
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q112-explanation-1.png",
+    "passageId": "20192020_form_b-q112-explanation-1",
+    "url": "/exam-images/20192020-form-b-q112-explanation-1-passage.png",
+    "sha256": "15f70fbffb7ebeaddac91fa49a65881f9c8a8ae9c910ad8e5bafa55da4159313"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 33,
+    "sourceBox": [
+      310.10368896400007,
+      69.16141601600009,
+      566.112410888,
+      331.34200683600005
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q113-explanation-1.png",
+    "passageId": "20192020_form_b-q113-explanation-1",
+    "url": "/exam-images/20192020-form-b-q113-explanation-1-passage.png",
+    "sha256": "485593aebad8893e78aef7ce7824f30b3438d23aa9e3551963db2eab388d9061"
+  },
+  {
+    "sourceFile": "20192020_form_b_-_answers.pdf",
+    "sourcePage": 33,
+    "sourceBox": [
+      315.252410888,
+      358.73130000000003,
+      567.250494384,
+      564.217523944
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\20192020_form_b-q114-explanation-1.png",
+    "passageId": "20192020_form_b-q114-explanation-1",
+    "url": "/exam-images/20192020-form-b-q114-explanation-1-passage.png",
+    "sha256": "1451e34d3359602b12f34b70d1aef8a11b29c4dea31b2d7feeb3db5e170d4046"
+  },
+  {
+    "sourceFile": "20172018_form_b.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      105,
+      56,
+      257,
+      183
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\2017-2018-b-q076-coordinate-graph.png",
+    "passageId": "2017-2018-b-q076-coordinate-graph",
+    "url": "/exam-images/2017-2018-b-q076-coordinate-graph-passage.png",
+    "sha256": "edc1631aed6d3d7d9f64b2109fc2aceca6cbb534f72be5263ef251c32c194a8e"
+  },
+  {
+    "sourceFile": "20172018_form_b.pdf",
+    "sourcePage": 28,
+    "sourceBox": [
+      125,
+      90,
+      250,
+      214
+    ],
+    "file": "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\artifacts\\import-missing-2017-2019\\assets\\2017-2018-b-q076-coordinate-graph.png",
+    "passageId": "2017-2018-b-q076-coordinate-graph",
+    "url": "/exam-images/2017-2018-b-q076-coordinate-graph-passage.png",
+    "sha256": "1791500ed5368b4bb0a42d66b5daa4a1f4638d72a0bcedd8b184c8e56b261b4b"
+  }
+]

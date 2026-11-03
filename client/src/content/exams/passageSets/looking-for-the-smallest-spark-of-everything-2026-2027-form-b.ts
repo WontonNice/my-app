@@ -19,7 +19,7 @@ const lookingForTheSmallestSparkOfEverything20262027FormBQuestions: ExamQuestion
     "points": 1,
     "prompt": "Read lines 5–8 from the poem.\n\nSo beneath the level of molecules are atoms,\nand beneath the level of atoms, we find\nprotons, electrons, neutrons; and beneath that—\nwhat, exactly?\n\nThe lines help develop a central idea of the poem by revealing the speaker’s",
     "promptHtml": "<p>Read lines 5–8 from the poem.</p><blockquote><strong><strong>So beneath the level of molecules are atoms,</strong><br><strong>and beneath the level of atoms, we find</strong><br><strong>protons, electrons, neutrons; and beneath that—</strong><br><strong>what, exactly?</strong></strong></blockquote><p>The lines help develop a central idea of the poem by revealing the speaker’s</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const lookingForTheSmallestSparkOfEverything20262027FormBQuestions: ExamQuestion
     "points": 1,
     "prompt": "The main purpose of the comparison in lines 23–24 of the poem is to show",
     "promptHtml": "<p>The main purpose of the comparison in <span>lines 23–24</span> of the poem is to show</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const lookingForTheSmallestSparkOfEverything20262027FormBQuestions: ExamQuestion
     "points": 1,
     "prompt": "Read lines 27–28 from the poem.\n\nAnd there, in the explosion, in the darkness,\nbriefly incandescent, they appear:\n\nThe imagery in the lines reveals that the speaker",
     "promptHtml": "<p>Read lines 27–28 from the poem.</p><blockquote><strong><strong>And there, in the explosion, in the darkness,</strong><br><strong>briefly incandescent, they appear:</strong></strong></blockquote><p>The imagery in the lines reveals that the speaker</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const lookingForTheSmallestSparkOfEverything20262027FormBQuestions: ExamQuestion
     "points": 1,
     "prompt": "Read lines 30–32 from the poem.\n\nTheir names\nsound like dinosaurs or maybe bands\nplaying terrible music in someone’s garage.\n\nThe speaker refers to familiar objects and events in the lines most likely to",
     "promptHtml": "<p>Read lines 30–32 from the poem.</p><blockquote><strong><strong>Their names</strong><br><strong>sound like dinosaurs or maybe bands</strong><br><strong>playing terrible music in someone’s garage.</strong></strong></blockquote><p>The speaker refers to familiar objects and events in the lines <strong>most likely</strong> to</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const lookingForTheSmallestSparkOfEverything20262027FormBQuestions: ExamQuestion
     "points": 1,
     "prompt": "Read lines 36–39 from the poem.\n\nboth together and apart, what keeps\ntogether the pencil in your hand right now\nas well as separate from, say,\nJupiter.\n\nThe poet includes these lines most likely to emphasize that",
     "promptHtml": "<p>Read lines 36–39 from the poem.</p><blockquote><strong><strong>both together and apart, what keeps<br>together the pencil in your hand right now<br>as well as separate from, say,<br>Jupiter.</strong></strong></blockquote><p>The poet includes these lines <strong>most likely</strong> to emphasize that</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const lookingForTheSmallestSparkOfEverything20262027FormBQuestions: ExamQuestion
     "points": 1,
     "prompt": "Read lines 39–44 from the poem.\n\nThey spin, and it is only down there\nin the darkness—in the vast garage\nwhere physicists jot down\nwhat they can, whatever seems most real—\nthat they let us perceive their wild dancing,\ncombusting to the music they make.\n\nThe lines reveal the speaker’s",
     "promptHtml": "<p>Read lines 39–44 from the poem.</p><blockquote><strong><strong>They spin, and it is only down there</strong><br><strong>in the darkness—in the vast garage</strong><br><strong>where physicists jot down</strong><br><strong>what they can, whatever seems most real—</strong><br><strong>that they let us perceive their wild dancing,</strong><br><strong>combusting to the music they make.</strong></strong></blockquote><p>The lines reveal the speaker’s</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",

@@ -82,6 +82,7 @@
       "math_drag_drop",
       "graph_point_select",
       "number_line_response",
+      "coordinate_response",
       "matrix_choice",
       "category_sort",
       "matrix_choice",
@@ -164,6 +165,7 @@
       ]
     },
     "math_drag_drop": {
+      "dragDropImage": "Optional uploaded {src,alt,width,height} background; give every slot left,top,width,height in source pixels. The same shared drag behavior remains active.",
       "dragDropStyle": "compact for black tiles on a gray bank; outlined for blue tiles on an unshaded bank with larger boxes. Preserve source style independently of allowReuse.",
       "items": [
         {
@@ -185,6 +187,40 @@
         }
       ],
       "allowReuse": "boolean from source; default false"
+    },
+    "coordinate_response": {
+      "coordinateResponse": {
+        "xMin": "number",
+        "xMax": "number",
+        "yMin": "number",
+        "yMax": "number",
+        "xStep": "positive grid interval",
+        "yStep": "positive grid interval",
+        "xSnap": "positive snap interval",
+        "ySnap": "positive snap interval",
+        "width": "canvas pixels",
+        "height": "canvas pixels",
+        "plot": {
+          "left": "pixels",
+          "top": "pixels",
+          "width": "pixels",
+          "height": "pixels"
+        },
+        "background": "optional uploaded {src,alt} original grid artwork",
+        "title": "optional title",
+        "tools": [
+          {
+            "id": "line-1",
+            "label": "Line 1",
+            "kind": "line or point",
+            "color": "#0000ff",
+            "correctPoints": "two supplied keyed points for a line, one for a point; omit if unknown"
+          }
+        ],
+        "shapes": "optional polygon orientations [{id,vertices:[{x,y,label}],bankX,bankY}]; use instead of tools",
+        "correctShapeId": "supplied keyed orientation ID",
+        "correctAnchor": "supplied keyed {x,y} anchor"
+      }
     },
     "graph_point_select": {
       "graph": {

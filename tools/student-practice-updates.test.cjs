@@ -1,7 +1,7 @@
 const {test}=require('node:test'),assert=require('node:assert/strict');
 require('./register-practice-generator.cjs');
 const {createPracticeState,checkPracticeAnswer,nextPracticeQuestion,currentPracticeGeneratorId,hidePracticeGenerator,parsePracticeState}=require('../client/src/features/math-command/inequalitySession.ts');
-const {readSavedPractice,savePractice}=require('../client/src/features/math-command/practiceSessionStorage.ts');
+const {readSavedPractice,savePractice,readPracticeProgress}=require('../client/src/features/math-command/practiceSessionStorage.ts');
 const {defaultPracticeCatalog,generateCatalogQuestion}=require('../server/src/shared/practiceCatalog.ts');
 const {inventory}=require('../server/src/shared/learningPlan.ts');
 const {filterContentInventory}=require('../client/src/lib/passageOrganization.ts');
@@ -32,7 +32,28 @@ test('saved sessions survive reopening with answers, streaks and snapshots; acco
  assert.equal(readSavedPractice(storage,'bob',state.moduleId),null);assert.equal(readSavedPractice(storage,'alice','other-module'),null);
  const old=createPracticeState('inequalities','legacy');assert.deepEqual(parsePracticeState(JSON.stringify(old)),old);
  savePractice(storage,'alice',{...state,finished:true});assert.equal(readSavedPractice(storage,'alice'),null);
- assert.throws(()=>savePractice({setItem(){throw Error('quota');}},'alice',state),/quota/);
+ assert.throws(()=>savePractice({getItem:()=>null,setItem(){throw Error('quota');}},'alice',state),/quota/);
+});
+test('module records retain all five milestones after mistakes, finishing and starting again, without crossing accounts',()=>{
+ const map=new Map(),storage={getItem:k=>map.get(k)??null,setItem:(k,v)=>map.set(k,v)};
+ let state=createPracticeState('inequalities','stars');
+ for(let i=1;i<=50;i++){
+   state=answer(state,true);savePractice(storage,'alice',state);
+   assert.equal(readPracticeProgress(storage,'alice','inequalities').longestStreak,i);
+   state=nextPracticeQuestion(state);
+ }
+ state=answer(state,false);savePractice(storage,'alice',state);
+ assert.deepEqual(readPracticeProgress(storage,'alice','inequalities'),{longestStreak:50,streak:0,checked:51,correct:50,resumable:true});
+ savePractice(storage,'alice',{...state,finished:true});
+ assert.equal(readPracticeProgress(storage,'alice','inequalities').resumable,false);
+ savePractice(storage,'alice',createPracticeState('inequalities','new-session'));
+ assert.deepEqual(readPracticeProgress(storage,'alice','inequalities'),{longestStreak:50,streak:0,checked:0,correct:0,resumable:true});
+ assert.equal(readPracticeProgress(storage,'bob','inequalities').longestStreak,0);
+ assert.equal(readPracticeProgress(storage,'alice','all').longestStreak,0);
+ const legacy=new Map([['infinite-practice:session:v3:legacy:inequalities',JSON.stringify(state)]]);
+ const legacyStorage={getItem:k=>legacy.get(k)??null,setItem:(k,v)=>legacy.set(k,v)};
+ savePractice(legacyStorage,'legacy',createPracticeState('inequalities','new'));
+ assert.equal(readPracticeProgress(legacyStorage,'legacy','inequalities').longestStreak,50,'a legacy record survives replacement');
 });
 test('passage scores retain zero, ignore invalid/missing scores, and choose latest scored evidence',()=>{
  const content={id:'p',kind:'passage',title:'Passage',subject:'English',skills:[],aliases:['p'],passageCategory:'official_handbook'};

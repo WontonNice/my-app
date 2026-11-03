@@ -1,0 +1,3099 @@
+{
+  "math": [
+    {
+      "form": "20172018_form_a",
+      "n": 58,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 59,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 60,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 61,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 62,
+      "errors": 0,
+      "formulas": 3,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 63,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 64,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 65,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 66,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 67,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 68,
+      "errors": 0,
+      "formulas": 17,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 69,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 70,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 71,
+      "errors": 0,
+      "formulas": 1,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 72,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 73,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 74,
+      "errors": 0,
+      "formulas": 15,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 75,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 76,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 77,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 78,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 79,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 80,
+      "errors": 0,
+      "formulas": 11,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 81,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 82,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 83,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 84,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 85,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 86,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 87,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 88,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 89,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 90,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 91,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 92,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 93,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 94,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 95,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 96,
+      "errors": 0,
+      "formulas": 16,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 97,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 98,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 99,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 100,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 101,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 102,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 103,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 104,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 105,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 106,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 107,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 108,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 109,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 110,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 111,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 112,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 113,
+      "errors": 0,
+      "formulas": 23,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_a",
+      "n": 114,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 58,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 59,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 60,
+      "errors": 0,
+      "formulas": 1,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 61,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 62,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 63,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 64,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 65,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 66,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 67,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 68,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 69,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 70,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 71,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 72,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 73,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 74,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 75,
+      "errors": 0,
+      "formulas": 12,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 76,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 77,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 78,
+      "errors": 0,
+      "formulas": 12,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 79,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 80,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 81,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 82,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 83,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 84,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 85,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 86,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 87,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 88,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 89,
+      "errors": 0,
+      "formulas": 13,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 90,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 91,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 92,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 93,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 94,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 95,
+      "errors": 0,
+      "formulas": 15,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 96,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 97,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 98,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 99,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 100,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 101,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 102,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 103,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 104,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 105,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 106,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 107,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 108,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 109,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 110,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 111,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 112,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 113,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20172018_form_b",
+      "n": 114,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 58,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 59,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 60,
+      "errors": 0,
+      "formulas": 3,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 61,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 62,
+      "errors": 0,
+      "formulas": 2,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 63,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 64,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 65,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 66,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 67,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 68,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 69,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 70,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 71,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 72,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 73,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 74,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 75,
+      "errors": 0,
+      "formulas": 4,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 76,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 77,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 78,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 79,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 80,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 81,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 82,
+      "errors": 0,
+      "formulas": 11,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 83,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 84,
+      "errors": 0,
+      "formulas": 10,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 85,
+      "errors": 0,
+      "formulas": 15,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 86,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 87,
+      "errors": 0,
+      "formulas": 13,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 88,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 89,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 90,
+      "errors": 0,
+      "formulas": 14,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 91,
+      "errors": 0,
+      "formulas": 17,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 92,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 93,
+      "errors": 0,
+      "formulas": 11,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 94,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 95,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 96,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 97,
+      "errors": 0,
+      "formulas": 9,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 98,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 99,
+      "errors": 0,
+      "formulas": 11,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 100,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 101,
+      "errors": 0,
+      "formulas": 12,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 102,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 103,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 104,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 105,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 106,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 107,
+      "errors": 0,
+      "formulas": 6,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 108,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 109,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 110,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 111,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 112,
+      "errors": 0,
+      "formulas": 5,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 113,
+      "errors": 0,
+      "formulas": 7,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    },
+    {
+      "form": "20192020_form_b",
+      "n": 114,
+      "errors": 0,
+      "formulas": 8,
+      "raw": false,
+      "overflow": false,
+      "missing": []
+    }
+  ],
+  "passages": [
+    {
+      "form": "20172018_form_a",
+      "title": "Reading Passage 1",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 1\n\nThe eruption of the Philippine volcano Mount Pinatubo in June 1991 sent a huge cloud of gas and dust encircling the globe. The dust and ash from Mount Pinatubo was blamed 5 for a two-year decrease in global temperature, changes in weather patterns, and damage to the ozone layer. The situation brings to mind a meteorological event that occurred 175 years earlier. At that time, 10 harsh weather conditions plagued much of eastern North America and, to a lesser extent, northern Europe.\n\nApril 1816 brought typical spring weather to upstate New York and New England; trees 15 budded, and farmers prepared to plow and plant. In May, however, the expected warm temperatures failed to arrive. Most people remained optimistic, waiting for the summer that was “just around the corner.” They 20 waited in vain. June ushered in what modern meteorologists call “The Year Without a Summer.” During the first week of June, ten inches of snow fell on New England. Throughout the month, temperatures rarely 25 rose above the 30s. Many farmers replanted crops several times, only to see them stunted or destroyed by sleet, hail, and icy winds. July and August brought little improvement. During most days the temperature stayed in 30 the 40s. Farmers’ diaries document the farmers’ daily struggles with near-freezing temperatures, failing crops, and dying farm animals. The few crops that managed to survive were killed by frost in mid- 35 September. Winter came early in New England and was unusually severe. Even the South was affected; on July 4, the high temperature for Savannah, Georgia, was only 46 degrees!\n\n40 Some religious leaders warned their congregations that the unusual weather meant that the end of the world was drawing near. Other leaders attributed the cool weather to unusual sunspot activity. The 45 proliferation of the newly invented lightning rod was also blamed. Some people believed that lightning rods had interrupted the natural temperature balance of Earth, causing the cooler temperatures.\n\n50 It was not until October that the first plausible explanation for “The Year Without a Summer” was suggested. A German astronomer, Friedrich Bessel, reported seeing thick clouds of dust in the upper atmosphere. 55 He theorized that these dust particles screened portions of Earth from the warming rays of the sun. It was discovered that in April 1815, Mount Tambora, an Indonesian volcano, had erupted with such force that it 60 had sent an estimated 100 cubic miles of fine dust into the atmosphere. Witnesses to the eruption reported that the sky remained dark for two days. The dust then rose high into the stratosphere, where it encircled the world for 65 several years to come.\n\nSkeptics in 1816 doubted that a faraway volcano could steal their summer. However, most present-day researchers believe Bessel’s explanation to be generally correct, 70 demonstrating the global nature of weather. The dust in the atmosphere eventually settled, and the spring of 1817 was back to normal."
+    },
+    {
+      "form": "20172018_form_a",
+      "title": "Reading Passage 2",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 2\n\nThe British novelist Charles Dickens is well known for the colorful and eccentric characters he created in his many novels. But one of his books, David Copperfield, seems to 5 have a great deal to do with fact as well as fiction. After attempting to write his autobiography, Dickens abandoned the project and began to work on a novel, the plot of which was loosely based on his own 10 boyhood experiences. Apparently, it was easier for him to weave the events of his own life into the fiction of David Copperfield than to write about them in nonfiction.\n\nSome of Dickens’s most troubling memories 15 involved a job he held in 1824 as a 12-year- old child. Because his family was deeply in debt, he was forced to quit school and go to work in a London factory, pasting labels on pots of shoe polish. Dickens lived in a 20 boardinghouse, using his meager wages to support himself and to help pay his family’s debts. He worked in the dreary, run-down factory six days a week from 8:00 a.m. to 8:00 p.m. Such long hours were not unusual 25 at the time, for children or adults, but Dickens was miserable during the entire four months he spent working at the factory.\n\nEven when the family finances improved, Dickens continued to work at the factory 30 until his father quarreled with Dickens’s boss, who promptly dismissed the son. Dickens was upset at being fired but relieved to be out of the factory. Thus he felt betrayed when his mother, anxious for the boy’s weekly 35 wage, succeeded in making peace and getting Dickens’s job back for him. The father, however, now sided with his son, and the boy was sent back to school. “I know how these things have worked together to make me 40 what I am,” Dickens later wrote, but he never forgot that his mother was eager for him to return to work.\n\nAs an adult, Dickens always remembered the shame and humiliation he felt during those 45 months at the factory. For years afterward, whenever in London, he could not go near the sites of the factory and boardinghouse, going out of his way to avoid those painful reminders of his past. In fact, Dickens never 50 told his wife and children about his childhood work experience. It was only after his death that they heard of it from a family friend whom Dickens had confided in.\n\nInstead, Dickens expressed his feelings by 55 giving his fictional “other self,” David Copperfield, a job similar to the one he had so hated. In the novel, ten-year-old David is forced by his harsh stepfather to work as a bottle washer in a factory. Young David, who 60 “suffered exquisitely” as a child manual laborer, was apparently Dickens’s way of dealing with his own past. David Copperfield was to become Dickens’s most popular novel, and Dickens himself called it his “favorite 65 child.”"
+    },
+    {
+      "form": "20172018_form_a",
+      "title": "Reading Passage 3",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 3\n\nWhen you eat an orange, your experience of its flavor comes from the combination of its aroma and its taste. Taste buds, the sensory receptors on the tongue, convey information 5 to the brain about chemicals in food while the food dissolves in saliva. The sense of smell comes into play when the olfactory nerve in the nasal passages senses even very low concentrations of food chemicals in gaseous 10 form. The sense of smell has a larger role in tasting flavors than most people realize— that is, until they have a stuffy nose and nothing tastes good.\n\nIf taste and smell depend on our detection of 15 food chemicals, one might expect that chemists would be able to duplicate the flavors of foods. In fact, a surprising number of popular food flavors can now be reproduced in the laboratory, and even more are on the 20 way. Orange, perhaps the most popular flavor worldwide, has been reproduced successfully. So have some national favorites, including cashew (Latin America), paprika (Hungary), and fruit-flavored Jamaica (Mexico). 25 Synthetic flavors are not limited to flavoring food; they are also added to mouthwashes, toothpastes, beverages, and other consumer products.\n\nOnly a small proportion of the chemical 30 components occurring naturally in foods actually contributes to their flavor. To identify these critical components, scientists use a gas chromatograph to separate a food into its basic chemical constituents. Flavor 35 experts, called flavorists, then attempt to isolate those chemicals that are essential to the distinctive flavor of a food. Mechanical techniques have been developed to capture the aromas of food as it is being prepared— 40 such as the smell of baking bread—and distill the essential chemicals from these essences. Flavorists use their highly developed senses of taste and smell to attempt to produce acceptable flavorings that are chemically 45 identical to, but purer than, flavors that are naturally present in unprocessed food.\n\nAlthough American consumers claim to want “natural” flavors in their food, taste tests demonstrate that they often prefer their 50 synthetically produced counterparts. Artificial flavors tend to be stronger and less subtle than natural flavors. For example, many Americans prefer a soft drink created with artificial flavors, such as orange soda, 55 over an “all-natural” soda flavored with real oranges, which may taste weak in comparison. In fact, some flavorists worry that consumers will develop such a strong taste for artificial flavors that natural 60 flavorings, usually more expensive than their artificial counterparts, will become scarce.\n\nResearchers have not always been successful in their efforts to duplicate natural flavors. Some popular flavors, such as coffee, 65 strawberry, and chocolate, have proven virtually impossible to reproduce. The difficulty in creating a flavor like chocolate, experts say, is its complexity—a mysterious combination of sweet and bitter that excites 70 the taste buds in an unusual and satisfying way."
+    },
+    {
+      "form": "20172018_form_a",
+      "title": "Reading Passage 4",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 4\n\nThe African country of Zimbabwe took its name from the Shona word meaning “stone enclosures” or “venerated houses.” In fact, today dozens of stone ruins are scattered 5 throughout Zimbabwe and other areas in southeastern Africa. One of these ruins, known as Great Zimbabwe, was once a fabled city that inspired tales that circulated throughout Europe. Where was this 10 remarkable city, and who had built it? For centuries the mystery occupied the minds of explorers and treasure seekers.\n\nThe first reports to Europeans of Great Zimbabwe were spread a thousand years ago 15 by Arab traders sailing between the Middle East and the east coast of Africa. They told of the fabulous wealth of a mysterious stone city in the African interior. In their tales, that city became associated with their 20 understanding of Middle Eastern history— the Queen of Sheba, King Solomon, and his legendary gold mines, long since lost to the world. By the sixteenth century, Portuguese explorers regularly visited East Africa, 25 searching for “King Solomon’s gold,” but they never found Great Zimbabwe. In 1552, a Portuguese historian, João de Barros, recorded a story told by the Arabs about a city with a “square fortress of masonry 30 within and without, built of stones of marvelous size, and there appears to be no mortar joining them.”\n\nIn fact, Great Zimbabwe was a marvel. In one area, a massive wall, over thirty feet high 35 and twenty feet thick, created a great enclosure. Another area contained a fortress- like series of walls, corridors, and steps built into the bluff above. Throughout the city, each stone was precisely fitted to the others 40 without the use of mortar.\n\nIn the 1870s, a German geologist, Karl Mauch, was the first European to see Great Zimbabwe, by then in ruins. Mauch realized that he had “rediscovered” the fabled city 45 from de Barros’s story. He jumped to the conclusion that Great Zimbabwe had been built by the Queen of Sheba. British authorities sent a British journalist, Richard Hall, to Great Zimbabwe to investigate 50 Mauch’s report. Archaeology was still in its infancy, and Hall, convinced that the structures had been built by ancient people from the Middle East, dug up and discarded archaeological deposits that would have 55 revealed much about the true history of Great Zimbabwe. Later European excavations destroyed even more valuable evidence.\n\nIn the twentieth century, after excavating 60 areas that had not been disturbed, David Randall-MacIver, a Scottish Egyptologist, and Gertrude Caton-Thompson, an English archaeologist, concluded that the ruins were unmistakably African in origin. Great 65 Zimbabwe was most likely built during the fourteenth or fifteenth century by the ancestors of the present-day Shona people. Recent carbon-14 dating supports their conclusion. Great Zimbabwe was once home 70 to an estimated 20,000 people, the center of a great Shona kingdom. Wealthy Shona kings traded their ivory and gold in coastal towns for other goods, thus accounting for the discovery of beads and other foreign wares in 75 the ruins.\n\nOne mystery of Great Zimbabwe had been solved. Another mystery remains: why was the settlement at Great Zimbabwe abandoned, leaving the magnificent stone 80 architecture to fall into ruins?"
+    },
+    {
+      "form": "20172018_form_a",
+      "title": "Reading Passage 5",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 5\n\nIn many cultures, the ugly physical appearance of the bat has given it an unearned reputation as an evil and vicious bearer of diseases. Many people, for example, 5 believe that little brown bats carry rabies. In fact, they are no more likely to transmit the disease than other animals, such as dogs. Brown bats actually help prevent disease, not spread it. The basis of their diet is the 10 mosquito, an insect that transmits more diseases than all the bats in the world combined.\n\nA group of bat species known as flying foxes or fruit bats serves another important 15 purpose as a critical link in the reproduction of many tropical trees and shrubs. In the tropical rain forests of Africa, Asia, and Australia, plants such as avocados, date trees, cashews, and mangoes rely in part on 20 flying foxes for pollination. One of Africa’s most valuable hardwood trees, the iroko, is entirely dependent on this type of bat for pollination. Flying foxes feed on flowers, fruit, and nectar, flying from one plant to another 25 and pollinating the plants as they go, much as bees do in other parts of the world. Because they are sloppy eaters, flying foxes drop fruit as they go, dispersing the seeds. They can travel great distances and convey 30 pollen and seeds far from their origins, thereby maintaining the genetic biodiversity within a plant species.\n\nBecause of the importance of bats’ role in pollination and seed distribution, scientists 35 consider them a keystone in the ecosystems of tropical rain forests. Without bats, many bat-pollinated plants—and the animals that depend on them for food and shelter—would be threatened to the point of extinction. 40 Areas outside the rain forests would be affected as well, since the rain forests’ lush vegetation replenishes the oxygen in the global atmosphere.\n\nUnfortunately, many people are determined 45 to get rid of bats. Flying foxes are at particular risk. In the wild, they feed on wild fruit, but when their rain forest habitat is reduced by conversion into farmland or residential areas, they occasionally raid 50 cultivated fruit trees, spoiling the crops. Several flying fox species have been hunted to extinction, while others are seriously endangered.\n\nConservation groups and government 55 agencies in many countries are attempting to change people’s attitudes toward bats. When people learn that bats pollinate the trees and crops that provide their livelihood, they are more likely to appreciate and protect the bats 60 in their area. There are also effective, nonharmful ways to deal with troublesome bats. Orchard owners can cover their trees with netting to discourage the bats, and there are humane methods for moving bats from 65 places where they are not wanted. For the sake of the rain forests and for life-forms everywhere that depend on them, it is urgent that people apply a new twist to an old adage and realize that ugliness is only skin deep."
+    },
+    {
+      "form": "20172018_form_a",
+      "title": "Reading Passage 6",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 6\n\nImagine living in a society where ordinary people could be punished for what they choose to read and write. For much of the twentieth century, such a closed society 5 existed in Russia and the rest of the Soviet Union. The Soviet government tried to dominate its citizens’ activities and ideas by controlling the information that they received. Government censors examined 10 books, films, and newscasts and banned anything they considered objectionable. They censored criticism of the Soviet government, news from the outside world, and anything that complimented Soviet enemies.\n\n15 The Soviet government’s strict censorship made life tremendously difficult for writers. Most worried that they were being watched by the government’s secret police. Despite the harsh laws, small groups of writers dodged 20 state censorship through an underground, or secret, publishing network that produced works called samizdat. The name samizdat came from the Russian words for “self” and “publish.” For many writers, samizdat offered 25 the only outlet for their intellectual and creative expression. To produce samizdat, an author passed a typed or handwritten text to a second person, who made a handwritten or typed copy. The original was returned to the 30 author, while the copy was passed to other members of the network. The works were unsigned or signed with false names.\n\nAt first, samizdat focused mainly on literature, such as poetry and novels. By the 35 late 1950s, samizdat circles were distributing political material, such as letters to the government, political essays, and trial transcripts. By the mid-1960s, the samizdat network produced sophisticated political 40 news, debate, and analysis.\n\nThe great Russian novelist Boris Pasternak had his work published as samizdat. Like other writers, he feared that an appearance of disloyalty to the Soviet state would bring a 45 knock at his door in the middle of the night. His classic novel Doctor Zhivago was smuggled out of the Soviet Union for publication in Western countries in 1956; in Russia, it appeared only as samizdat. 50 Pasternak won the Nobel Prize in Literature in 1958, but the government forced him to refuse the prize. Soviet authorities also blocked publication of the work of Anna Akhmatova, one of Russia’s greatest poets. 55 Her work was banned until 1952 because censors thought she did not sufficiently praise the Soviet government. Akhmatova was kept out of public life and the official Writers’ Union. She composed her poetry in 60 private, and her works were available only as samizdat.\n\nThrough the 1960s and ’70s, Russian writers used samizdat networks to circulate banned or politically risky material. By the late 65 1980s, computers became available in scientific research facilities, and underground writers began using the computers to store and circulate texts. Censorship was officially abolished in 1989, shortly before the breakup 70 of the Soviet Union, leading to a publishing boom. Works by previously banned authors were published, and the samizdat networks quickly faded into history."
+    },
+    {
+      "form": "20172018_form_a",
+      "title": "Unlock, Ride, Return",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Unlock, Ride, Return\n\n(1) (1) In metropolitan areas around the world, millions of cars, trucks, and taxis pack the streets every day, causing headaches for commuters and polluting the environment. (2) (2) Public transportation eases some of this congestion, but crowding and potential delays are still an issue for many travelers. (3) (3) In recent years, another transportation option has been gaining momentum in some cities. (4) (4) This option is all about sharing bicycles, which is a creative and new idea for some.\n\n(5) (5) The bike share concept is fairly simple. (6) (6) Bike stations are set up at multiple locations in a city. (7) (7) Frequent users can purchase a membership pass, while less-frequent users or tourists can buy a daily permit. (8) (8) Many city bikers prefer bike sharing over ownership. (9) (9) They are not responsible for the bike’s storage or its maintenance. (10) (10) Tourists also benefit from having an affordable way to experience the sites of a city.\n\n(11) (11) The largest bike sharing program in the United States today is in New York City. (12) (12) Known as Citi Bike, the program was launched in 2013 and now boasts 10,000 bikes spread across 600 stations in Manhattan, Brooklyn, and Queens. (13) (13) Similarly, in Hangzhou, China, a city of 7 million residents, there are approximately 75,000 bikes offered across 2,700 stations. (14) (14) In 2016, people used Citi Bike for a lot of trips, which turned out to be a huge increase in the number of people taking rides from the previous year. (15) (15) These numbers are likely to increase further, since the program is set to expand into additional neighborhoods soon. (16) (16) According to Citi Bike, the bike sharing concept has gained rapid popularity because it is “faster than walking, cheaper than a taxi, and more fun than the subway.(17) ”\n\n(18) (17) New York City officials estimated that in 2016 the bike share program had kept nearly 5,000 tons of carbon dioxide out of the city’s air. (19) (18) Officials in Montreal, Canada, and Lyon, France, have noted similar impacts on air quality.\n\n(20) (19) As populations grow, fuel costs increase, and environmental concerns escalate, people will continue to search for more economical and environmentally friendly ways to travel. (21) (20) Bike sharing is a new mode of transportation."
+    },
+    {
+      "form": "20172018_form_a",
+      "title": "Pursuing a Hobby",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Pursuing a Hobby\n\n(1) (1) A hobby is an activity or interest that a person pursues for pleasure or relaxation. (2) (2) For some it is a sport or a game, while for others it is an art, a craft, or a volunteer opportunity. (3) (3) Becoming involved in a hobby can seem difficult and time consuming, but that should not stop people from pursuing one.\n\n(4) (4) Hobbies can be an outlet for the stress of everyday life. (5) (5) School, work, family responsibilities, and relationships can all compete for a person’s time and attention. (6) (6) Many people exhibit psychological symptoms of stress, such as boredom, tension, and anxiety. (7) (7) Others report physical symptoms, including low energy, headaches, and insomnia. (8) (8) Reading books, creating works of art, or playing games can give the human mind a reprieve from stress. (9) (9) But stress relief is not the only benefit of pursuing a hobby.\n\n(10) (10) People who regularly pursue a hobby spend time in what is called active leisure. (11) (11) Active leisure involves doing an activity that is relaxing but that also expends some mental or physical energy, such as following a pattern to knit a scarf, analyzing statistics about a favorite sports team, or doing light noncompetitive exercise. (12) (12) During active leisure, people may experience what experts call flow, or a state of effortless concentration. (13) (13) Pursuing a stimulating hobby can help a person find flow, which psychologists believe is more relaxing and restorative than passive leisure activities, such as watching television. (14) (14) Many successful businesspeople and celebrities have said that they pursue hobbies in their free time.\n\n(15) (15) Another benefit of hobbies is that they can encourage positive social interaction among people with similar interests. (16) (16) A hobbyist might decide to do something to get better at a hobby or go to places with other people interested in the hobby. (17) (17) Making connections and having discussions with fellow hobbyists can enhance a person’s knowledge about a hobby while fostering new friendships.\n\n(18) (18) Free time is a precious commodity, and spending it engaged in a hobby has many advantages. (19) (19) Finding an enjoyable hobby may take effort, but the physical, mental, and social effects of engaging in a hobby are overwhelmingly positive."
+    },
+    {
+      "form": "20172018_form_b",
+      "title": "Reading Passage 1",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 1\n\nOn Monday evening, September 26, 1960, seventy million Americans turned on their TV sets to view the first televised political debate in a campaign for the presidency of 5 the United States. As of that date, it was by far the largest number ever to witness a political discussion. The novelty of the event drew even those with little or no interest in politics.\n\n10 The candidates, Republican Vice President Richard M. Nixon and Democratic Senator John F. Kennedy, had agreed to face each other and the nation in four one-hour sessions that the press dubbed the “Great 15 Debates.” Many expected Vice President Nixon to win the debates easily. He was ahead in the newspaper polls, he was an experienced public speaker, and he had served as vice president for nearly 20 eight years. Senator Kennedy was less well- known and, at forty-three, was the youngest man ever to run for president. Throughout the presidential race, his opponents criticized him for his relative youth and inexperience.\n\n25 By mutual agreement, the first session was limited to domestic issues within the United States. Each candidate was given eight minutes to make his opening remarks. During the remainder of the hour, the 30 candidates took turns responding to questions posed by selected reporters. Both Kennedy and Nixon dealt with the issues calmly and carefully. Viewers who expected to see a free-for-all were disappointed. The way 35 the two men appeared on the television screen, however, may have been as important as what they said. Kennedy looked at the camera while answering questions, appearing to speak directly to his viewers and give 40 them straight answers. Nixon was recovering from a severe bout of influenza, and he appeared tense and tired. He looked at the reporters who asked the questions instead of at the camera, giving some viewers the 45 impression that he avoided eye contact with his audience and thus suggesting that he was not trustworthy. Most commentators agreed that Kennedy gained from the encounter: many viewers who had previously thought he 50 lacked the maturity necessary to be president were won over by his charm, poise, and confident manner.\n\nWhile far fewer people watched the three later sessions, much discussion ensued 55 regarding the influence of the Great Debates on the outcome of the 1960 presidential election. Some feared that the better TV performer was bound to come across as being the better candidate. “Is this a good way to 60 judge a person’s ability to serve as president of the United States?” they asked.\n\nKennedy ultimately won the election, but it was by the narrowest popular vote margin in more than eighty years. Some observers 65 concluded that, had the Great Debates been broadcast on radio and not on television, Nixon would have won."
+    },
+    {
+      "form": "20172018_form_b",
+      "title": "Reading Passage 2",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 2\n\nIf you have ever watched someone fall on the ice, you’ve seen slipperiness at work. But have you wondered what makes ice slippery, or why skates or skis glide across ice so 5 easily? The answer might seem obvious: ice is smooth. Yet smoothness in itself does not explain slipperiness. Imagine, for example, skating on a smooth surface of glass or sheet metal.\n\n10 Surprisingly, scientists do not fully understand why ice is slippery. Past explanations of slipperiness have focused on friction and pressure. According to the friction theory, a skate blade rubs across the 15 ice, causing friction. The friction produces heat, melting the ice and creating a slippery, microscopically thin layer of water for the skate to glide on. The friction theory, however, cannot explain why ice is slippery even when 20 someone stands completely motionless, creating no friction.\n\nThe pressure theory claims that pressure from a skate blade melts the ice surface, creating a slippery layer of water. The water 25 refreezes when the pressure is lifted. Science textbooks typically cite this explanation, but many scientists disagree, claiming that the pressure effect is not great enough to melt the ice. Nor can the pressure theory explain 30 why someone wearing flat-bottomed shoes— which have a greater surface area than skate blades and thus exert less pressure per square inch—can glide across the ice or even go sprawling.\n\n35 During the 1990s, another theory found acceptance: the thin top layer of ice is liquid, or liquid-like, regardless of friction or pressure. This notion was first proposed more than 150 years ago by physicist Michael 40 Faraday. Faraday’s simple experiment illustrates this property: two ice cubes held against each other will fuse together. This happens, Faraday explained, because liquid on the cubes’ surfaces freezes solid when the 45 surfaces make contact.\n\nFaraday’s hypothesis was overlooked, in part because scientists did not have the means to detect molecular structures. However, technological advances during recent decades 50 have allowed scientists to measure the thin layer on the surface of ice. For example, in 1996, a chemist at Lawrence Berkeley Laboratory shot electrons at an ice surface and recorded how they rebounded. The data 55 suggested that the ice surface remained liquid-like, even at temperatures far below freezing. Scientists speculate that water molecules on the ice surface are always in motion because there is nothing above them 60 to hold them in place. The vibration creates a slippery layer of molecules. According to this interpretation of the Lawrence Berkeley Laboratory experiments, the molecules move only up and down; if they also moved side to 65 side, they would constitute a true liquid. Thus it could be said that people are skating on wildly vibrating molecules!\n\nThe phenomenon of a slippery, liquid-like surface is not limited to ice, although ice is 70 the most common example. Lead crystals and even diamond crystals, which are made of carbon, also show this property under certain temperature and pressure conditions."
+    },
+    {
+      "form": "20172018_form_b",
+      "title": "Reading Passage 3",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 3\n\nOne of the books that has done the most to alert the world to the dangers of environmental degradation was George Perkins Marsh’s Man and Nature. Its 5 message—that Western society was in the process of causing irreparable harm to the environment—greatly influenced ecologists during the beginning of the modern environmentalist movement in the 1960s. 10 Marsh was not, however, part of this movement. Surprisingly, Man and Nature was first published in 1864.\n\nMarsh first observed the environmentally destructive effects of human activities while 15 growing up in Vermont in the early nineteenth century. The heavy demand for firewood had depleted the forests, and extensive sheep grazing had stripped the land. The result was flooding and soil erosion. 20 Furthermore, streams were fouled by wastes dumped from numerous mills and dye houses.\n\nMuch later in his life, after careers in law, business, farming, and politics, Marsh served 25 as ambassador to Italy. There he noticed land abuse similar to what he had seen in Vermont. Overgrazing and forest mismanagement had rendered desolate areas that had been productive farmland since the 30 days of the Roman Empire. Marsh attributed this to what he called “man’s ignorant disregard for the laws of nature.”\n\nIn Italy, Marsh began to organize his observations and theories. He wrote in a way 35 intended to educate readers about the impact of industrial and agricultural practices on the environment. In Man and Nature, he evaluated the important relationships between animals and plants, discussed 40 forestry practices in great detail, and analyzed the ways natural water supplies are affected by human use.\n\nMan and Nature challenged the popular belief that nature could heal any damage 45 that people inflict upon it. Marsh argued that people may use and enjoy, but not destroy, the riches of the earth.\n\nFurthermore, he asserted that everything in nature is significant and that even the tiniest 50 organism affects the fragile environmental balance. His belief that drastic alteration of this balance would be dangerous is now accepted as a fundamental principle of modern environmental science.\n\n55 Although he pointed out environmental damage caused by irresponsible human activities, Marsh did not oppose every human alteration to the environment. To him, the goal was proper management, not a return to 60 wilderness conditions. People should consider the consequences of their actions, he wrote, and become “co-worker[s] with nature.” Marsh praised the Suez Canal, the human- made waterway between the Mediterranean 65 Sea and the Gulf of Aden, as “the greatest and most truly cosmopolite physical improvement ever undertaken by man.” He believed that the advantages of the canal— improved transportation and commerce— 70 would outweigh any environmental damage. Yet he also warned of possible unintended consequences, such as destructive plants and animals spreading from one body of water to the other.\n\n75 Marsh was considered a radical thinker during his lifetime. By the late nineteenth century, however, his writings, along with those of John Muir, Henry David Thoreau, and others, had inspired what became known 80 as the conservation movement. The conservationists of that time sought to educate the public that wilderness areas were worth preserving, and they were responsible for creating the National Park 85 Service and the National Forest Service."
+    },
+    {
+      "form": "20172018_form_b",
+      "title": "Reading Passage 4",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 4\n\nAnyone who has watched TV news coverage of a hurricane has seen how destructive wind energy can be. But the power of the wind can also be put to constructive use. From 5 sailboats to old-fashioned windmills to high- tech wind turbines, people have devised ways to harness wind energy for thousands of years.\n\nThe first known attempt to use wind power 10 was the sailboat. Ancient shipbuilders understood how to use forces like lift and momentum, even if they could not explain those forces scientifically. The principles behind sailing led to the development of the 15 windmill. The first known windmills originated in Persia, an area that is now Iran, as early as . . 500. They were created to help with the demanding chores of grinding grain and pumping water. By the tenth 20 century, windmills were used throughout central Asia; they were used in China as early as the thirteenth century.\n\nIn Europe, windmills came into widespread use during the twelfth century. As in other 25 parts of the world, they were used for milling grain and pumping water. Windmills replaced the water wheel, which was turned by the movement of running water over paddles mounted around a wheel. The windmill was 30 more adaptable and efficient than the water wheel and quickly became popular. For example, Holland, famous for its windmills, used the machines to pump seawater away from low-lying coastal bogs. This allowed the 35 Dutch to reclaim large areas of land from the sea. Windmills eventually became sophisticated enough for use in a broad range of work, from sawmills and drainage pumping to processing goods, such as dyes, 40 tobacco, cocoa, and spices.\n\nIn the 1700s, as steam engines gained in popularity, the use of wind machines for many types of work declined. However, windmills still played an essential role in 45 pumping water on farms throughout the American West and Midwest. Between 1850 and 1970, over six million small windmills were installed on American farms for watering livestock and meeting other water 50 needs. In many remote areas even today, livestock production would be impossible without the use of windmills to provide water.\n\nBeginning in the late nineteenth century, 55 windmills were adapted to generate electricity. During the 1930s and ’40s, thin- bladed windmills provided electricity for hundreds of thousands of farms across the United States. By the 1950s, however, power 60 lines connected almost every household in America to a central power source, such as a utility company. After that, there was little need for wind turbines until the energy crisis of the 1970s. At that time, interest in wind 65 turbines was renewed due to rising energy costs and concern about the future availability of fossil fuels, such as oil, coal, and natural gas. The last several decades have seen the development of “wind farms,” 70 clusters of wind turbines that generate electricity. Efficient, clean, and fairly inexpensive to operate, wind farms may prove to be as important in the future as earlier windmills were in the past."
+    },
+    {
+      "form": "20172018_form_b",
+      "title": "Reading Passage 5",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 5\n\nArchaeologists first succeeded in using tree-ring dating while excavating ancient Pueblo Native American villages in the southwestern United States during the 5 1920s. At that time, no one knew when the villages had been occupied, or for how long, but the logs used in the buildings provided a clue. Scientists had long known that trees add a new growth ring to their 10 circumferences during each growing season. Drought or early frost results in little growth and narrow rings. Good growing years result in wide rings. Archaeologists knew that by matching identical patterns of wide and 15 narrow rings in sections of two different logs, they could determine which log was older. For example, a log with a certain pattern of rings near its outside edge would indicate a specific series of good and bad growing seasons. This 20 log would have been cut down before a log of comparable size that shows the identical pattern near its center.\n\nBut how could these ring patterns help determine the actual dates for the abandoned 25 Pueblo villages? Archaeologists had already used the ring patterns of trees with overlapping lifetimes to establish a tree-ring chronology for the southwestern United States that went back to . . 1260. That work 30 had been done in a Hopi village called Oraibi. Oraibi had been continuously inhabited since before the arrival of the first Spanish explorers in 1540.\n\nThat same team of archaeologists also 35 developed a relative, or floating, chronology for the abandoned Pueblo villages by matching up the ring patterns of the various logs used in the buildings. With this floating chronology, the archaeologists could tell 40 which logs were older and which were more recent. None could be precisely dated, since no log had a pattern of tree rings that matched any part of the established chronology. It was clear from this evidence, 45 however, that the buildings must have been constructed before 1260.\n\nFinally, continued excavations turned up a “key” beam. The outer ring pattern of the key beam overlapped the earliest rings in the 50 established chronology. Furthermore, its inner ring pattern matched the pattern formed by the most recent rings of the floating chronology. Thus, the chronology for the abandoned Pueblo villages could be 55 known with certainty. Counting backward from the present, the archaeologists estimated that the villages had been occupied between 900 and 1300.\n\nThe tree rings also suggested why the 60 villages had been abandoned. The rings for the years 1276 to 1299 were very thin, indicating a severe drought that lasted for twenty-three years. Most likely the villagers had left their homes to search for a more 65 hospitable climate."
+    },
+    {
+      "form": "20172018_form_b",
+      "title": "Reading Passage 6",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Reading Passage 6\n\nThe decade that began with the stock market crash in 1929 and ended with the declaration of war in Europe in 1939 was a turning point for art in the United States. Rejecting 5 European trends, such as abstract art, American painters searched for a style that was distinctly American. It was a time of great social change—a society based on rural and small-town life was rapidly being 10 replaced by a society focused on city life and values. Although members of various groups are all referred to as “American Scene” painters, different groups painted their images of the United States in very different 15 ways.\n\nOne group, sometimes called the Regionalists, included Thomas Hart Benton, Grant Wood, and John Steuart Curry, all from the Midwest. Their art was intensely 20 patriotic and frequently glorified an older, simpler United States. Their subject matter included church steeples, New England fishing villages, and Midwestern cornfields. Grant Wood’s most famous canvas is probably 25 American Gothic, which shows a stiff and proper farm couple, the husband holding a pitchfork. The Regionalists were often muralists as well, painting local scenes on walls of state capitols and other public 30 buildings. Enormously popular during the 1930s, Regionalist art is still treasured by many as a fond memory of times gone by.\n\nWhile the Regionalists remembered the past, other American Scene artists painted the 35 drab realities of the contemporary urban environment, testifying to its loneliness and anonymity. The Urban Realists, including Reginald Marsh, Isabel Bishop, and the Soyer brothers, were associated with the Art 40 Students League in New York. These painters showed the high price paid by individual men and women struggling to survive the Depression. The names of some of their works illustrate the style: Office Girls, 45 Waiting, The Bowery. For various reasons, their work has been largely forgotten today.\n\nEdward Hopper was an artist who was associated with the American Scene but otherwise escaped further classification. Like 50 the Urban Realists, he painted the tired dinginess of the urban streets during the Depression. Yet Hopper often found beauty in the midst of the city’s monotony. For example, one of Hopper’s best-known paintings, 55 Nighthawks, shows several people sitting like robots in a brightly lit coffee shop at night, each apparently unaware of the others. Hopper was not interested in a return to the past. He presented what he saw without 60 apology or sentimentality.\n\nThe American Scene art movement of the 1930s was characterized by realistic paintings that expressed the traditions and interests of people in the United States at 65 that time. Because the paintings presented common images and mirrored the lives of many people, the general public readily identified with the subjects of the paintings. With the onset of World War II, a new spirit 70 of internationalism swept through the art of the United States, and the American Scene painters became out of date. Although the movement did not last, it had reflected its own time with profound understanding."
+    },
+    {
+      "form": "20172018_form_b",
+      "title": "The Local Library",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "The Local Library\n\n(1) (1) According to a 2015 survey, more than two-thirds of Americans own a smartphone, which means that obtaining information or communicating with people is easier than ever before. (2) (2) With the swipe of a finger or the tap of an icon, people have instant access to articles, blogs, news, and social networking websites. (3) (3) Even with all these immediate sources, one of the best resources also happens to be one of the oldest. (4) (4) The public library is a great place for people to get information.\n\n(5) (5) The public library serves a truly critical role in promoting community. (6) (6) There has been an explosion of digital media in recent years. (7) (7) This now allows people in different places to communicate almost instantaneously. (8) (8) And yet many people complain of feeling more isolated and alone than ever before. (9) (9) The library stands in a unique position to help community members meet this universal need for human connection and companionship.\n\n(10) (10) Furthermore, libraries offer free assistance, training programs, and Internet access to all people. (11) (11) A student who does not have a computer at home can research and type a paper for school. (12) (12) An unemployed adult without access to the Internet can make use of library resources to find job opportunities. (13) (13) A library’s selection of materials, known as its collection, can include classic novels, reference books, magazines, periodicals, CDs, and DVDs. (14) (14) The stuff that is found at the library can help people get a lot done.\n\n(15) (15) Public libraries also offer a variety of resources to community members. (16) (16) One important resource is the local librarian, who does far more than check out books and collect fines. (17) (17) Other library resources include free or low-cost tutoring and training programs. (18) (18) Additionally, lectures, book groups, and town meetings promote critical thinking and community engagement. (19) (19) A typical librarian holds a master’s degree and can help library patrons navigate through the flood of information available in print or on the Internet.\n\n(20) (20) The hallmark of a public library is that its materials and services are accessible to all. (21) (21) The library connects people to a network of information and resources and is an important part of a community."
+    },
+    {
+      "form": "20172018_form_b",
+      "title": "Moving Through Mountains",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Moving Through Mountains\n\n(1) (1) An age-old proverb says that necessity is the mother of invention. (2) (2) Centuries of human ingenuity in the face of obstacles prove this to be true. (3) (3) For many years the Swiss Alps, a mountain range spanning southern Switzerland and northern Italy, were such an obstacle. (4) (4) Roads and railways had to navigate around the mountains or through winding tunnels inside the mountains. (5) (5) Transportation of people and goods was difficult and time consuming. (6) (6) In 2016 these burdens were eased with the completion of the Gotthard Base Tunnel.\n\n(7) (7) Construction of the high-speed railway tunnel began in 1996. (8) (8) The tunnel was created through the use of tunnel-boring machines, which are giant drills with a rotating head. (9) (9) Each of the tunnel-boring machines used during the construction of the tunnel was about the length of four football fields arranged end-to-end. (10) (10) During the seventeen-year construction period, 28 million tons of rock were removed, enough to rebuild the Great Pyramid at Giza five times. (11) (11) This massive construction project is reported to have cost $12 billion. (12) (12) After that, 4 million cubic meters of concrete, or enough concrete to build eighty-four Empire State Buildings, were used to construct and support the tunnel.\n\n(13) (13) By 2020 the high-speed railway will carry more than 250 freight trains and fifty-five passenger trains a day, with most traveling at speeds of around 100 to 125 miles an hour. (14) (14) It will be faster for people to travel between northern and southern Europe. (15) (15) The travel time between the European cities of Zurich, Switzerland, and Milan, Italy, will be reduced by an hour. (16) (16) Many European leaders compare the Gotthard Base Tunnel to the Channel Tunnel, a 33-mile underwater tunnel that connects the United Kingdom and France. (17) (17) While there is no roadway in the Channel Tunnel, people can drive their cars onto special trains that will carry vehicles through to the other side.\n\n(18) (18) The Gotthard Base Tunnel project was successful, so now there is renewed interest in solving other problems associated with traveling to and from certain places. (19) (19) Just as traffic congestion in major cities led to the construction of underground local transportation, natural formations, such as mountain ranges, have also sent people underground for faster, easier, and cheaper methods of transportation across larger areas."
+    },
+    {
+      "form": "20192020_form_b",
+      "title": "The Best Laid Plans of Ravens",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "The Best Laid Plans of Ravens\n\n1 In Edgar Allan Poe’s poem “The Raven,” a raven visits a lonely man’s home and responds to the man’s pleading questions with only the word “nevermore.” The poem’s narrator interprets the word as a prediction of doom for his future. A talking, prophetic raven may seem to be the wild imaginings of the poet, but a new study published in the journal Science hints that one particular idea behind the poem might not be as far-fetched as it seems. For most of human history, people assumed that animals do not understand the passage of time in the same way people do. Some people believed that animals might remember events from the past and that instinct might drive them to make preparations in order to guarantee survival, but most people did not think that animals had the ability to plan. At Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan for the future.\n\n2 It can be difficult to test an animal’s ability to plan because human observers must be certain they are not mistaking instinctual behavior for intentional planning. For example, many animals hoard food so that they will not run out later, but scientists who study animals would not call hoarding a decision to plan for the future. This action is merely instinctual. Cognitive scientists argue that in order for an animal’s behavior to qualify as preparing for the future, the animal must use specific decision-making skills to solve a problem.\n\n3 To avoid mistaking instinctual behavior for evidence of decision-making, the Lund University researchers designed two experiments to test ravens’ ability to plan. Ravens belong to the corvid family, a group of birds known for their intelligence. A study in 2007 showed that corvids have the tendency to save only certain types of food, which suggests that they are planning for the future rather than acting on instinct. In order to investigate that theory, the researchers had to design experiments that would achieve results that could not be explained by an instinctual behavior of food hoarding. Therefore, the ravens were taught two behaviors that they do not normally perform in the wild.\n\n4 For the first experiment, the researchers showed the birds how to use a small stone to open a box and get treats. Once the ravens learned the behavior, the researchers presented the birds with four stones. Only one stone was the right size to open the box. The birds learned to select that stone and set it aside until the researchers presented the box. The second experiment involved bartering. A researcher would trade the ravens a large treat for a bottle cap. Later, the researchers presented the ravens with a group of items, including small treats and the bottle cap. The ravens chose the bottle cap over the treats and waited for the original researcher to trade with them again so that they could get more treats. In both experiments, the ravens waited patiently for up to seventeen hours for the researcher to return.\n\n5 The results of these experiments are exciting, but more evidence needs to be gathered before scientists can fully conclude that ravens can plan for the future. Some scientists argue that the ravens might be choosing the stone and bottle cap because the ravens have been trained to do so, not necessarily because the ravens are thinking ahead. Regardless, like other recent advances in animal science, these experiments show that ravens could be much smarter than first believed, and scientists now believe that ravens do actually think about their own future."
+    },
+    {
+      "form": "20192020_form_b",
+      "title": "Looking for the Smallest Spark of Everything",
+      "poemLines": 51,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Located underground near Geneva, Switzerland, the Large Hadron Collider (LHC) helps scientists study and understand how the smallest particles of matter interact with one another. The LHC propels atomic particle beams along a 17-mile-long ring.\n\nLooking for the Smallest Spark of Everything\n\nThere are the things the world is made of,\n\nthings we can see and feel, and then\n\nthere are the things even smaller, things that seem\n\nto exist only when we are looking right at them.\n\n5\nSo beneath the level of molecules are atoms,\n\nand beneath the level of atoms, we find\n\nprotons, electrons, neutrons; and beneath that—\n\nwhat, exactly? Because we are talking about\n\neverything here: your fingernail,\n\n10\nthe candy at the back of your mouth,\n\nthe coffee your teacher drank this morning,\n\nyour little sister, and the stuffed dog\n\nshe used to carry around with her everywhere.\n\nAnd everywhere.\n\n15\nEverything and everywhere\n\nare made up of the same stuff, whatever\n\nit is. How do we find it? We can listen for it\n\nin the wavelengths from deep space,\n\ntalking back to us from unimaginable\n\n20\ndistances. Or we can build long,\n\ndeep circular tunnels beneath the surface\n\nof this Earth and race particles\n\n(like racing cars, only very tiny cars\n\nflashing along at close to the speed of light)\n\n25\nuntil everything we think we know\n\nbangs against everything else we know.\n\nAnd there, in the explosion, in the darkness,\n\nbriefly incandescent, they appear:\n\nthe quarks, the leptons, and the bosons;\n\n30\nthe baryons and the mesons. Their names\n\nsound like dinosaurs or maybe bands\n\nplaying terrible music in someone’s garage.\n\nThe one thing we know for sure\n\nis that they spin. This is how gravity\n\n35\nenters our world, how our world is held\n\nboth together and apart, what keeps\n\ntogether the pencil in your hand right now\n\nas well as separate from, say,\n\nJupiter. They spin, and it is only down there\n\n40\nin the darkness—in the vast garage\n\nwhere physicists jot down\n\nwhat they can, whatever seems most real—\n\nthat they let us perceive their wild dancing,\n\ncombusting to the music they make."
+    },
+    {
+      "form": "20192020_form_b",
+      "title": "Excerpt from “The Spirit of the Herd”",
+      "poemLines": 0,
+      "glossary": 2,
+      "overflow": false,
+      "text": "In this excerpt, published in 1914, author and professor Dallas Lore Sharp describes a summer cattle roundup in Oregon. The heat and dust had been relentless for three days. The cowboys were exhausted, and the cattle were restless. The ranch boss, Wade, had led the drive to a watering place, only to find it empty.\n\nExcerpt from “The Spirit of the Herd”\n\nby Dallas Lore Sharp\n\n1 Along with the wagon had come the fresh horses—one of them being Peroxide Jim, a supple, powerful, clean-limbed buckskin, a horse, I think, that had as fine and intelligent an animal-face as any creature I ever saw. Wade had been saving this horse for emergency work. And why should he not have been saved fresh for just such a need as this? Are there not superior horses as well as superior men—a Peroxide Jim to complement a Wade?\n\n2 The horse knew the cattle business and knew his rider perfectly; and though there was nothing like sentiment about the boss of the P Ranch riders, his faith in Peroxide Jim was complete. . . .\n\n3 The desert, where the herd was camped, was one of the highest of a series of tablelands,1 or benches; it lay as level as a floor, rimmed by sheer rock, from which there was a drop to the bench of sage below. The herd when overtaken by the dusk had been headed for a pass descending to the next lower bench, but was now halted within a mile of the rim rock on the east, where there was a perpendicular fall of about three hundred feet. . . .\n\n4 In the taut silence of the stirless desert night, with the tension of the herd at the snapping-point, any quick, unwonted sight or sound would stampede them. The sneezing of a horse, the flare of a match, would be enough to send the whole four thousand headlong—blind, frenzied, trampling—till spent and scattered over the plain.\n\n5 And so, as he rode, Wade began to sing. The rider ahead of him took up the air and passed it on until, above the stepping stir of the hoofs rose the faint voices of the men, and all the herd was bound about by the slow plaintive measures of some old song. It was not to soothe their savage breasts that the riders sang to the cattle, but rather to preempt the dreaded silence, to relieve the tension, and so to prevent the shock of any sudden startling noise.\n\n6 So they sang and rode and the night wore on to one o’clock, when Wade, coming up on the rim-rock side, felt a cool breeze fan his face, and caught a breath of fresh, moist wind with the taste of water in it.\n\n7 He checked his horse instantly, listening as the wind swept past him over the cattle. But they must already have smelled it, for they had ceased their milling, the whole herd standing motionless, the indistinct forms close to him in the dark showing their bald faces lifted to drink the sweet wet breath that came over the rim. Then they started on again, but faster, and with a rumbling now from their hoarse throats that tightened Wade’s grip on the reins.\n\n8 The sound seemed to come out of the earth, a low, rumbling mumble, as dark as the night and as wide as the plain, a thick, inarticulate bellow that stood every rider stiff in his stirrups. . . .\n\n9 Then the breeze caught the dust and carried it back from the gray-coated, ghostly shapes, and Wade saw that the animals were still moving in a circle. He must keep them going. He touched his horse to ride on with them, when across the black sky flashed a vivid streak of lightning.\n\n10 There was a snort from the steers, a quick clap of horns and hoofs from far within the herd, a tremor of the plain, a roar, a surging mass—and Wade was riding the flank of a wild stampede. Before him, behind him, beside him, pressing hard upon his horse, galloped the frenzied steers, and beyond them a multitude borne on, and bearing him on, by the heave of the galloping herd.\n\n11 Wade was riding for his life. He knew it. His horse knew it. He was riding to turn the herd, too, back from the rim, as the horse also knew. The cattle were after water—water-mad—ready to go over the precipice to get it, carrying horse and rider with them. Wade was the only rider between the herd and the rim. It was black as death. He could see nothing in the sage, could scarcely discern the pounding, panting shadows at his side. He knew that he was being borne toward the rim, how fast he could not tell, but he knew by the swish of the brush against his tapaderos2 and the plunging of the horse that the ground was growing stonier, that they were nearing the rocks.\n\n12 To outrun the herd was his only chance for life. If he could come up with the leaders he might not only escape, but even stand a chance of heading them off upon the plain and saving the herd. There were cattle still ahead of him; how many, what part of them all, he could not make out in the dark. But the horse knew. The reins hung on his straight neck, where his rider had dropped them, as, yelling and firing over the wild herd, he had given this horse the race to win, to lose.\n\n13 They were riding the rim. Close on their left bore down the flank of the herd, and on their right, under their very feet, was a precipice, so close that they felt its blackness—its three hundred feet of fall! . . .\n\n14 . . . Then Wade found himself racing neck and neck with a big white steer, which the horse, with marvelous instinct, seemed to pick out from a bunch, and to cling to, forcing him gradually ahead, till, cutting him free from the bunch entirely, he bore him off into the swishing sage.\n\n15 The steers coming on close behind followed their leader, and in, after them, swung others. The tide was turning from the rim. More and more were veering, and within a short time the whole herd, bearing off from the cliffs, was pounding over the open plains.\n\n16 Whose race was it? It was Peroxide Jim’s, according to Wade, for not by word or by touch of hand or knee had the horse been directed in the run. From the flash of the lightning the horse had taken the bit, had covered an indescribably perilous path at top speed, had outrun the herd and turned it from the edge of the rim rock, without a false step or a tremor of fear.\n\nFrom “The Spirit of the Herd” by Dallas Lore Sharp—Public Domain"
+    },
+    {
+      "form": "20192020_form_b",
+      "title": "A Memory Revolution",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "A Memory Revolution\n\n1 A high school senior logs on to a computer at the library to double-check the application due date listed on a college admissions website. Nearby, a librarian helps a group of biology students use a database to search for recent studies about mammals. In the past few decades, the Internet has become an integral component of daily life for many people. The seemingly limitless power of search engines made the Internet search extremely common, and today people increasingly rely on the Internet’s vast accumulation of sources to access all types of information. Scientists are beginning to examine how this reliance is modifying the strategies people use to store and prioritize information in their mind.\n\nA Dependable and Valuable Asset\n\n2 Psychologist Benjamin Storm from the University of California, Santa Cruz, and researchers Sean Stone and Aaron Benjamin devised an experiment to study students’ tendency to depend on the Internet for facts. To begin, the scientists divided sixty participants into multiple groups, including an “Internet” group and a “memory” group, and placed them in front of computers. The Internet group was required to use the search engine Google to answer eight challenging trivia questions. In contrast, participants in the memory group were permitted to use only their personal knowledge to answer the questions. In the second round, the researchers administered notably easier questions. This time, they allowed each group the option of using Google as they answered. Their results showed that 83 percent of the Internet group continued to consult Google in the second round, while only 63 percent of the memory group chose to do so.\n\n3 People’s growing inclination to rely on the Internet in order to retrieve information, particularly facts and figures, is called cognitive offloading. Canadian researcher Evan F. Risko and British researcher Sam Gilbert, who have written extensively about the topic, say a similar process has been taking place for centuries. In the past, people used resources like encyclopedias to assist their memories; however, today the Internet, serving as a vast extended memory, allows people to digitally access and retrieve much larger volumes of information. Consequently, people’s minds are free for other cognitive feats, such as connecting data, learning new information, or solving problems.\n\nFiling Information Away\n\n4 The use of the Internet also appears to be modifying the strategies people use to store information in their mind. Researchers Betsy Sparrow from Columbia University, Jenny Liu from the University of Wisconsin-Madison, and Daniel Wegner from Harvard University conducted several studies to discover how people efficiently manage their information intake.\n\n5 To begin, the researchers examined how people evaluate which information deserves their effort to remember. For this experiment, participants read forty trivia facts, such as “An ostrich’s eye is bigger than its brain,” and typed the statements into a computer file. Half the participants had been previously told the file would be saved, while half believed it would be erased. Next, the participants wrote down every fact they could recall. Those who believed the information would be erased and no longer available could recall 40 percent more facts than those who thought the information would be saved.\n\n6 In another experiment, the same researchers tested the ability of study participants to remember where to access information. For this trial, participants read and typed trivia statements, which they saved in folders with generic names such as “Facts” and “Items.” After spending ten minutes writing down all the facts they could recall from memory, participants were asked which folder contained a particular fact based on a keyword. For example, “Which folder has the fact about ostriches?” Overall, participants recalled the information’s location more often than the content itself, correctly identifying 49 percent of the folders for specific facts while remembering only 23 percent of the actual trivia. The researchers concluded that our memory is adapting to the Internet age by prioritizing where to locate information even when the specific details are forgotten. According to Sparrow, the Internet has become an important form of transactive memory, an external source of the recollections and associative networks that constitute memory.\n\n7 As the Internet’s resources continue to expand our “external” memory, some question whether the process may cause people to depend too heavily on technology. However, Steven Pinker, a professor of psychology at Harvard University, says, “Knowledge is increasing exponentially; human brainpower and waking hours are not. Fortunately, the Internet and information technologies are helping us manage, search and retrieve our collective intellectual output at different scales, from Twitter and previews to e-books and online encyclopedias. Far from making us stupid, these technologies are the only things that will keep us smart.”"
+    },
+    {
+      "form": "20192020_form_b",
+      "title": "Serpent Mound",
+      "poemLines": 45,
+      "glossary": 0,
+      "overflow": false,
+      "text": "The Great Serpent Mound, located in Adams County, Ohio, is a human-made mound of earth that researchers believe was created between 300 B.C. and A.D. 1100 by an indigenous culture.\n\nSerpent Mound\n\nOhio, 1846\n\nBrush Creek stood low when the museum men came\n\nwith their measuring tapes and sketchbooks.\n\n    It was winter. Fringed with ice,\n\n    the creek doubled back on itself\n\n5\nas if it had forgotten something.\n\n    Pa was in Cincinnati, or else on his way home,\n\n        so Ma told me to lead the men\n\n        into the marshy low grounds. It being winter,\n\n            there was little underbrush to speak of—\n\n10\n            in the summer there would have been\n\n        briars, poison ivy, biting flies. I listened\n\nfor the swish of a beaver’s heavy tail,\n\n      the chitter of a chickadee, or the cry of a hawk,\n\n      but the winter silence of the creek pressed\n\n15\n      down on all of us like a weight.\n\nThe humps in the ground were all but\n\ninvisible until you were right up on them. The figure\n\nwas even less obvious: the sinuous body,\n\n      the tail coiled three times around,\n\n20\n      and at the other end, the mouth wide open.\n\n        In the summer the creek bottom was crowded\n\n        with so much life that you could trip over\n\n            the ridges of earth before you saw\n\n            anything at all. In winter you could climb\n\n25\n            a tree and get some idea of the whole thing:\n\n        the serpent’s body undulating, slithering\n\nsilently across the ancient\n\n      earth. At the mouth end, there was an oval mound\n\n      as if the snake were about to swallow an egg—\n\n30\nas snakes sometimes did in our rickety\n\nhenhouse—my Pa always said, or\n\nas if swallowing the sun, one of the museum\n\n    men suggested, taking notes with his quill pen,\n\n    an old-style inkhorn slung at his side.\n\n35\n    I liked that: swallowing the sun,\n\n        just the sort of thing a snake might do,\n\n        might want to do. When, later, I told my sister Ruth,\n\n            she disagreed. It is singing to the sun,\n\n            she insisted. That is why its mouth\n\n40\n        is wide open. She said, “Sometimes I think\n\nI hear it on summer nights. Not swallowing, singing.”"
+    },
+    {
+      "form": "20192020_form_b",
+      "title": "Massachusetts: Lowell National Historical Park",
+      "poemLines": 0,
+      "glossary": 3,
+      "overflow": false,
+      "text": "Massachusetts: Lowell National Historical Park\n\n1 During the first half of the 19th century, Lowell, Massachusetts, quickly transformed itself from a farm town to a bustling industrial city. In time, Lowell became a model of industry, gaining global recognition for its state-of-the-art technology, innovative canal and dam system, mill architecture, boardinghouses, churches, and ethnic neighborhoods. Young Yankee1 women, immigrant families, and European tourists all flocked to Lowell to find work at one of the many textile mills, or visit the industrious city that was becoming a popular tourist destination. As one Scottish traveler observed during his visit to America, “Niagara2 and Lowell are the two objects I will longest remember in my American journey, the one the glory of American scenery, the other of American industry.” Today, Lowell National Historical Park welcomes visitors to enjoy the sights of Lowell and learn about the history of one of America’s most significant industrial cities.\n\n2 The Boston merchants who founded Lowell in 1821 and named it after Francis Cabot Lowell chose to locate the town along Massachusetts’s Merrimack River to take advantage of the kinetic energy offered by the Pawtucket waterfalls. Over six miles of canals powered the waterwheels of Lowell’s mills, whose massive five-and six-story brick buildings dominated the city’s landscape. . . . The most recognized of these buildings are the Lowell Manufacturing Company chartered in 1821, the Suffolk or Wannalancit Mill completed around the 1880s, the Boott Mill Company established in 1835, and the Boott Mill Boardinghouse that opened in 1838. By the 1850s, 40 textile mills employing over 10,000 workers stretched for about a mile along the river. . . .\n\n3 The city’s female workforce was significant in the history of Lowell. From the early to mid-1800s, women left the constricted lifestyle of small rural towns and rural areas for independent industrial city life. Most were young single Yankee girls, who were tired of the limited opportunities offered by their domestic work.3 Women found that Lowell’s mills offered monthly wages for their services and provided them room and board. Although these women gained economic independence in Lowell, the mill boardinghouse keepers constantly supervised their social activities, for which they hardly had any time, considering their daily 12-to 14-hour work schedules. At the end of the day, the factory bell signaled the “mill girls” to return to their boardinghouses. They were expected to adhere to the strict code of conduct respecting curfew and attending church.\n\n4 Yankee “mill girls” continued to dominate the Lowell workforce until the 1840s, when the city began to find it difficult to compete with the growing industrial development in other New England communities. As profits fell, the mill industry cut wages. These wage cuts, deteriorating working conditions, and long workdays led the “mill girls” to protest and organize strikes. When their demands went unheard, the women left Lowell, and immigrant groups replaced them in the workforce. Despite the low wages and unhealthy work conditions, immigrants were eager to find work.\n\n5 The immigrants replacing the Yankee “mill girls” during the 1840s were predominantly Irish Catholics, who traveled to America during the Great Potato Famine. Although Lowell received an influx of Irish families during this time, the Irish were a part of the city’s history from its birth, and before the “mill girls” arrived, they built Lowell’s historic canals, mills, and boardinghouses. Initially, Lowell’s Protestant community was slow to welcome Irish immigrants, but the hostility between Yankee Protestants and Irish Catholics eventually disappeared. Irish immigrants dominated the industrial scene until the Civil War, when other immigrant groups began to work in the city mills.\n\n6 Like the Irish, the French-Canadians, Greeks, Poles, Portuguese, Russian Jews, and Armenians who came to work in Lowell’s mills faced long work hours, low wages, and poor living conditions in the city’s crowded tenements. By the time Lowell’s industry declined, the city had become an ethnic melting pot, where each group claimed its own distinct neighborhood, like the Irish immigrants’ “New Dublin” or “Acre,” and the French-Canadians’ “Little Canada.” The city officially began to close down its mills in the 1920s and ’30s after Lowell’s outdated mills could no longer compete against the state-of-the-art cotton mills in other communities and working conditions continued to decline as Lowell’s companies stopped reinvesting in their mills. . . . Despite a brief resurgence during World War II, the city shut down its last surviving mill by the mid-1950s.\n\nFrom “Massachusetts: Lowell National Historical Park”—Public Domain/National Park Service"
+    },
+    {
+      "form": "20192020_form_b",
+      "title": "Martial Arts for the Mind and Body",
+      "poemLines": 0,
+      "glossary": 0,
+      "overflow": false,
+      "text": "Martial Arts for the Mind and Body\n\n(1) (1) The martial arts blend a series of physical movements with strategic mental discipline so that practitioners can defend themselves, physically defeat an opponent, or both. (2) (2) Historians are unsure of exactly when and where martial arts were first used. (3) (3) Martial arts have been practiced by several different societies for many centuries. (4) (4) Martial arts such as karate, kung fu, tae kwon do, and judo are still taught and practiced as methods of self-defense, but they offer students more than that. (5) (5) The study of martial arts can provide students with a way to enhance their mental discipline as well as their physical fitness.\n\n(6) (6) Discipline, focus, and respect are important qualities for everyone to have. (7) (7) However, for most people these qualities are not innate; they must be learned and practiced. (8) (8) The study of martial arts can provide an opportunity to develop these skills. (9) (9) Students are rewarded for their dedication by passing tests and advancing to higher levels. (10) (10) For example, in a typical tae kwon do class, students learn discipline by diligently practicing moves, improve focus by listening carefully, and demonstrate respect by bowing to the instructor and following directions.\n\n(11) (11) For teenagers, martial arts classes provide a safe and structured environment for gaining physical skills, building confidence, and enjoying a sense of community. (12) (12) A lot of teens go through hard situations as they try to do well in school and in life. (13) (13) A karate class can provide teens with a physical outlet for stress while also challenging them mentally. (14) (14) Participating in a martial arts program also helps children and teens focus on self-improvement rather than on competition. (15) (15) Progressing through levels of achievement involves mastering more physically demanding techniques. (16) (16) It requires students to take responsibility and be accountable for achieving set goals. (17) (17) Students gain confidence and experience companionship with other students who are progressing through the ranks.\n\n(18) (18) Adults who practice martial arts can experience many of the same benefits that younger people do, but perhaps the greatest of these is health and fitness. (19) (19) Adult martial arts students often see changes in their body within weeks of beginning a program.\n\n(20) (20) For people interested in studying a martial art, there are many ways to learn and practice. (21) (21) In addition to private studios, community recreation centers often offer low-cost or free martial arts classes. (22) (22) There are even online videos that introduce students to the basic concepts. (23) (23) People should study martial arts."
+    }
+  ],
+  "english": [
+    {
+      "form": "20172018_form_a",
+      "n": "21",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "22",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "23",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "24",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "25",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "26",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "27",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "28",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "29",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "30",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "31",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "32",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "33",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "34",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "35",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "36",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "37",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "38",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "39",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "40",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "41",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "42",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "43",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "44",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "45",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "46",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "47",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "48",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "49",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "50",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "51",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "52",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "53",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "54",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "55",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "56",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "57",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "7",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "8",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "9",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "10",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "11",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "12",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "13",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "14",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "15",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "16",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "17",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "18",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "19",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "20",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "1",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "2",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "3",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "4",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "5",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_a",
+      "n": "6",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "21",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "22",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "23",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "24",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "25",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "26",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "27",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "28",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "29",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "30",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "31",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "32",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "33",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "34",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "35",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "36",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "37",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "38",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "39",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "40",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "41",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "42",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "43",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "44",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "45",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "46",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "47",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "48",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "49",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "50",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "51",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "52",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "53",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "54",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "55",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "56",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "57",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "6",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "7",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "8",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "9",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "10",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "11",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "12",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "13",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "14",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "15",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "16",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "17",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "18",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "19",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "20",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "1",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "2",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "3",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "4",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20172018_form_b",
+      "n": "5",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "10",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "11",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "12",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "13",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "14",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "15",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "16",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "17",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "18",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "19",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "20",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "21",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "22",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "23",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "24",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "25",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "26",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "27",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "28",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "29",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "30",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "31",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "32",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "33",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "34",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "35",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "36",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "37",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "38",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "39",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "40",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "41",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "42",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "43",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "44",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "45",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "46",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "47",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "48",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "49",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "50",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "51",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "52",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "53",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "54",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "55",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 1,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "56",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "57",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "4",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "5",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "6",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "7",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "8",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "9",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "1",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "2",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    },
+    {
+      "form": "20192020_form_b",
+      "n": "3",
+      "underlines": [],
+      "choices": 4,
+      "quotes": 0,
+      "overflow": false
+    }
+  ]
+}

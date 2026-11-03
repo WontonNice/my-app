@@ -1,0 +1,17 @@
+import fs from 'node:fs/promises';
+import {load} from 'cheerio';
+import {isDeepStrictEqual} from 'node:util';
+const base='http://127.0.0.1:4319',dir='artifacts/import-2025-2026-missing/';
+const s=await fetch(base+'/api/state').then(r=>r.json());
+const p=s.passages.find(p=>p.id==='letter-from-brooklyn-2025-2026-form-b'),before=structuredClone(p);
+const source=JSON.parse(await fs.readFile(dir+'brooklyn-source.json','utf8'));
+if(source.lines.length!==26)throw Error('Unexpected verse count');
+p.text=source.lines.map(x=>x.text).join('\n');
+p.richText=source.lines.map(line=>{const $=load(line.html,null,false);$('span.glossary-term').each((_,el)=>{const word=$(el).text(),definition=source.glossary[word];if(!definition)throw Error('Missing definition');$(el).replaceWith(`<span data-glossary-definition="${definition}" role="link" tabindex="0">${word}</span>`);});return '<div data-poetry-line="true">'+$.html()+'</div>';}).join('');
+p.preserveSourceLayout=true;
+await fs.writeFile(dir+'brooklyn-before.json',JSON.stringify(before,null,2));
+const r=await fetch(base+'/api/passages',{method:'POST',headers:{'Content-Type':'application/json','X-Editor-Token':s.editToken},body:JSON.stringify(p)});if(!r.ok)throw Error(await r.text());
+const now=(await fetch(base+'/api/state').then(r=>r.json())).passages.find(x=>x.id===p.id);
+if(!isDeepStrictEqual(before.questions,now.questions))throw Error('Questions changed');
+await fs.writeFile(dir+'brooklyn-receipt.json',JSON.stringify({lineCount:26,questionsUnchanged:true,changedFields:Object.keys(now).filter(k=>!isDeepStrictEqual(before[k],now[k]))},null,2));
+console.log('Saved continuous 26-line stanza and four vocabulary definitions.');

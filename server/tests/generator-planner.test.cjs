@@ -23,6 +23,9 @@ test('personal batches retain source snapshots, deduplicate additions and protec
   const batchId=own.activeBatchId,ids=fixture.data.questions.slice(0,3).map(q=>q.id);
   own=mutate('planner-one',own,{action:'add',batchId,questionIds:ids});
   assert.equal(own.batches[0].entries.length,3);
+  assert.ok(own.batches[0].entries.every(entry=>entry.status==='available'));
+  own=mutate('planner-one',own,{action:'export',batchId,entryIds:own.batches[0].entries.map(entry=>entry.id)});
+  assert.ok(own.batches[0].entries.every(entry=>entry.status==='available'),'export keeps the requested student availability');
   own=mutate('planner-one',own,{action:'add',batchId,questionIds:ids});
   assert.equal(own.batches[0].entries.length,3);
   assert.deepEqual(own.batches[0].entries[0].source.question,store.readMathCommandCatalog(root).find(q=>q.id===ids[0]).question);
@@ -64,6 +67,11 @@ test('batch export carries all sources, exact module IDs, instructions and refus
   assert.match(result.prompt,/--enable/);
   assert.match(result.prompt,/Keep new generators unreviewed/);
   assert.match(result.prompt,/preserve existing review statuses/);
+  assert.ok(result.manifest.requests.every(request=>request.publishAfterValidation===false));
+  const available=generatorBatchExport(batch,batch.entries.map(entry=>({...entry,status:'available'})),catalog,taxonomy.categories);
+  assert.ok(available.manifest.requests.every(request=>request.publishAfterValidation===true));
+  assert.match(available.prompt,/publish its destination module and any parent needed for student discovery/);
+  assert.doesNotMatch(available.prompt,/keep any newly created modules hidden until review/);
   assert.throws(()=>generatorBatchExport(batch,batch.entries,{...catalog,modules:catalog.modules.filter(m=>m.id!==target.id)},taxonomy.categories),/destination module changed/);
   assert.throws(()=>generatorBatchExport(batch,[],catalog,taxonomy.categories),/Select at least/);
   const incomplete=structuredClone(batch.entries[1]);incomplete.destination.moduleTitle='';

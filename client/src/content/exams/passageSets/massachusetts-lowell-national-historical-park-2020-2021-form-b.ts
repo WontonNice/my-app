@@ -234,6 +234,7 @@ export const massachusettsLowellNationalHistoricalPark20202021FormBPassageSet: E
   "body": "Read each text and answer the related questions. Base your answers only on the content within the text."
 },
   passage: createProsePassage({
+    passageCategory: "official_handbook",
     id: "massachusetts-lowell-national-historical-park-2020-2021-form-b",
     title: "Massachusetts: Lowell National Historical Park",
     passageType: "informational",

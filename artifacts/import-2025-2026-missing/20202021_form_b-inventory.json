@@ -1,0 +1,515 @@
+{
+  "1": {
+    "number": 1,
+    "page": 1,
+    "box": [
+      47.0788,
+      300.39690909999996,
+      568,
+      716
+    ],
+    "numberBox": [
+      47.0788,
+      306.39690909999996,
+      59.7984784,
+      318.3966091
+    ],
+    "prompt": "Which revision corrects the error in sentence structure in the paragraph?\n\nThe land on Earth has not always been separated into the seven continents, at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface. Additionally, the supercontinent was surrounded by ocean waters called Panthalassa, much of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s crust. In fact, experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.",
+    "promptHtml": "<p>Which revision corrects the error in sentence structure in the paragraph?</p><blockquote data-boxed=\"true\">The land on Earth has not always been separated into the seven continents, at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface. Additionally, the supercontinent was surrounded by ocean waters called Panthalassa, much of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s crust. In fact, experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.</blockquote>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "continents. At",
+        "html": "<p>continents. At</p>"
+      },
+      {
+        "id": "B",
+        "text": "surface; additionally,",
+        "html": "<p>surface; additionally,</p>"
+      },
+      {
+        "id": "C",
+        "text": "Panthalassa. Much",
+        "html": "<p>Panthalassa. Much</p>"
+      },
+      {
+        "id": "D",
+        "text": "crust, in fact,",
+        "html": "<p>crust, in fact,</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "standalone",
+        "standalone-pangaea-sentence-structure-1"
+      ],
+      [
+        1.0,
+        "standalone",
+        "part-b-import-be14ccff9e7a-6d3f6f8f"
+      ],
+      [
+        0.2967213114754098,
+        "standalone",
+        "part-b-question-10"
+      ]
+    ]
+  },
+  "2": {
+    "number": 2,
+    "page": 2,
+    "box": [
+      49.8834,
+      52.142600000000016,
+      568,
+      310.46249999999986
+    ],
+    "numberBox": [
+      49.8834,
+      58.142600000000016,
+      62.6034,
+      70.14260000000002
+    ],
+    "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.",
+    "promptHtml": "<p>Which sentence contains an error in its construction and should be revised?</p><blockquote data-boxed=\"true\">(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.</blockquote>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "sentence 1",
+        "html": "<p>sentence 1</p>"
+      },
+      {
+        "id": "F",
+        "text": "sentence 2",
+        "html": "<p>sentence 2</p>"
+      },
+      {
+        "id": "G",
+        "text": "sentence 3",
+        "html": "<p>sentence 3</p>"
+      },
+      {
+        "id": "H",
+        "text": "sentence 4",
+        "html": "<p>sentence 4</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "standalone",
+        "official-shsat-2026-d-47"
+      ],
+      [
+        0.8903122497998399,
+        "standalone",
+        "part-b-import-17a36c202bfd-480b2997"
+      ],
+      [
+        0.40170212765957447,
+        "standalone",
+        "part-b-import-08648a835822-af09c10f"
+      ]
+    ]
+  },
+  "3": {
+    "number": 3,
+    "page": 2,
+    "box": [
+      49.883399999999995,
+      315.46249999999986,
+      568,
+      716
+    ],
+    "numberBox": [
+      49.883399999999995,
+      321.46249999999986,
+      62.60339999999999,
+      333.46249999999986
+    ],
+    "prompt": "Which edit should be made to correct the sentence?\n\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and once could hold up to 50,000 spectators.",
+    "promptHtml": "<p>Which edit should be made to correct the sentence?</p><blockquote data-boxed=\"true\">The Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and once could hold up to 50,000 spectators.</blockquote>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Delete the comma after Rome.",
+        "html": "<p>Delete the comma after <em><strong>Rome</strong></em>.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Insert a comma after Italy.",
+        "html": "<p>Insert a comma after <em><strong>Italy</strong></em>.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Delete the comma after World.",
+        "html": "<p>Delete the comma after <em><strong>World</strong></em>.</p>"
+      },
+      {
+        "id": "D",
+        "text": "Insert a comma after built.",
+        "html": "<p>Insert a comma after <em><strong>built</strong></em>.</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.9413854351687388,
+        "standalone",
+        "part-b-import-5491bf3aee6b-dca7c6a1"
+      ],
+      [
+        0.8398576512455516,
+        "standalone",
+        "part-b-import-5ce9007a70b7-82667959"
+      ],
+      [
+        0.4831081081081081,
+        "standalone",
+        "part-b-import-82a8231a8843-a770392e"
+      ]
+    ]
+  },
+  "4": {
+    "number": 4,
+    "page": 3,
+    "box": [
+      48.2916,
+      52.142600000000016,
+      568,
+      716
+    ],
+    "numberBox": [
+      48.2916,
+      58.142600000000016,
+      61.0116,
+      70.14260000000002
+    ],
+    "prompt": "How should this sentence be revised?\n\nTo promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.",
+    "promptHtml": "<p>How should this sentence be revised?</p><blockquote data-boxed=\"true\">To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</blockquote>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.",
+        "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>"
+      },
+      {
+        "id": "F",
+        "text": "On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.",
+        "html": "<p>On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.</p>"
+      },
+      {
+        "id": "G",
+        "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday.",
+        "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>"
+      },
+      {
+        "id": "H",
+        "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.",
+        "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>"
+      }
+    ],
+    "matches": [
+      [
+        1.0,
+        "standalone",
+        "part-b-import-89aa1af30631-fdac2918"
+      ],
+      [
+        0.9805352798053528,
+        "standalone",
+        "part-b-import-98dc205aa3e8-2094d5e0"
+      ],
+      [
+        0.9403166869671132,
+        "standalone",
+        "part-b-import-8f756ef5b720-d07b4e8f"
+      ]
+    ]
+  },
+  "5": {
+    "number": 5,
+    "page": 6,
+    "box": [
+      46.8227,
+      50.94259999999997,
+      568,
+      219.22259999999994
+    ],
+    "numberBox": [
+      46.8227,
+      56.94259999999997,
+      59.542699999999996,
+      68.94259999999997
+    ],
+    "prompt": "Which sentence should replace sentence 3 to best state the topic of the passage?",
+    "promptHtml": "<p>Which sentence should replace sentence 3 to best state the topic of the passage?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "Several states have implemented scholarship programs that allow students to attend public universities and community colleges at a very low tuition rate or for free.",
+        "html": "<p>Several states have implemented scholarship programs that allow students to attend public universities and community colleges at a very low tuition rate or for free.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Determining the most effective way to make college affordable is a complex issue, and there are differing opinions about how to approach the problem.",
+        "html": "<p>Determining the most effective way to make college affordable is a complex issue, and there are differing opinions about how to approach the problem.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Higher-education institutions should reduce the cost of a college education by finding ways to help students avoid paying for unnecessary classes and materials.",
+        "html": "<p>Higher-education institutions should reduce the cost of a college education by finding ways to help students avoid paying for unnecessary classes and materials.</p>"
+      },
+      {
+        "id": "D",
+        "text": "The main concern related to the issue of college affordability is that helping students cover tuition could affect the quality of the education they receive.",
+        "html": "<p>The main concern related to the issue of college affordability is that helping students cover tuition could affect the quality of the education they receive.</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.3070739549839228,
+        "standalone",
+        "part-b-question-5"
+      ],
+      [
+        0.26177174780526735,
+        "standalone",
+        "part-b-import-4669ed81b4aa-903f4032"
+      ],
+      [
+        0.21748400852878466,
+        "standalone",
+        "part-b-import-113c673c387b-c66e9563"
+      ]
+    ]
+  },
+  "6": {
+    "number": 6,
+    "page": 6,
+    "box": [
+      46.8227,
+      224.22259999999994,
+      568,
+      432.39789999999994
+    ],
+    "numberBox": [
+      46.8227,
+      230.22259999999994,
+      59.542699999999996,
+      242.22259999999994
+    ],
+    "prompt": "Read this sentence.\n\nSome note that several states have made their community or state colleges low-cost or free for students with limited resources.\n\nWhere should the sentence be added to best support the ideas in the second paragraph (sentences 4–7)?",
+    "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\">Some note that several states have made their community or state colleges low-cost or free for students with limited resources.</blockquote><p>Where should the sentence be added to best support the ideas in the second paragraph (sentences 4–7)?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "at the beginning of the paragraph (before sentence 4)",
+        "html": "<p>at the beginning of the paragraph (before sentence 4)</p>"
+      },
+      {
+        "id": "F",
+        "text": "between sentences 4 and 5",
+        "html": "<p>between sentences 4 and 5</p>"
+      },
+      {
+        "id": "G",
+        "text": "between sentences 5 and 6",
+        "html": "<p>between sentences 5 and 6</p>"
+      },
+      {
+        "id": "H",
+        "text": "between sentences 6 and 7",
+        "html": "<p>between sentences 6 and 7</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.3433734939759036,
+        "standalone",
+        "part-b-import-0ea66e24a5c0-72af5644"
+      ],
+      [
+        0.3148425787106447,
+        "standalone",
+        "part-b-import-3cbd8c08e674-296b74d3"
+      ],
+      [
+        0.30354131534569984,
+        "standalone",
+        "part-b-import-58cd1c48131d-1dd438a6"
+      ]
+    ]
+  },
+  "7": {
+    "number": 7,
+    "page": 6,
+    "box": [
+      46.8228,
+      437.39789999999994,
+      568,
+      716
+    ],
+    "numberBox": [
+      46.8228,
+      443.39789999999994,
+      59.5428,
+      455.39789999999994
+    ],
+    "prompt": "Which sentence presents information that shifts away from the topic of the third paragraph (sentences 8–13) and should be deleted?",
+    "promptHtml": "<p>Which sentence presents information that shifts away from the topic of the third paragraph (sentences 8–13) and should be deleted?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "sentence 10",
+        "html": "<p>sentence 10</p>"
+      },
+      {
+        "id": "B",
+        "text": "sentence 11",
+        "html": "<p>sentence 11</p>"
+      },
+      {
+        "id": "C",
+        "text": "sentence 12",
+        "html": "<p>sentence 12</p>"
+      },
+      {
+        "id": "D",
+        "text": "sentence 13",
+        "html": "<p>sentence 13</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.29285714285714287,
+        "2026-2027-form-bMath.ts",
+        "official-shsat-2026-b-95"
+      ],
+      [
+        0.29285714285714287,
+        "2021-2022-form-bMath.ts",
+        "2021-2022-form-b-pdf-shsat-2021-2022-b-q109"
+      ],
+      [
+        0.29285714285714287,
+        "2018-2019-form-bMath.ts",
+        "2018-2019-form-b-pdf-shsat-2018-2019-b-q109"
+      ]
+    ]
+  },
+  "8": {
+    "number": 8,
+    "page": 7,
+    "box": [
+      47.156800000000004,
+      52.14289999999994,
+      568,
+      181.64289999999994
+    ],
+    "numberBox": [
+      47.156800000000004,
+      58.14289999999994,
+      59.8768,
+      70.14289999999994
+    ],
+    "prompt": "Which phrase should be added before sentence 14 to best transition to the ideas in the fourth paragraph (sentences 14–17)?",
+    "promptHtml": "<p>Which phrase should be added before sentence 14 to best transition to the ideas in the fourth paragraph (sentences 14–17)?</p>",
+    "choices": [
+      {
+        "id": "E",
+        "text": "Because college affordability is a complicated issue,",
+        "html": "<p>Because college affordability is a complicated issue,</p>"
+      },
+      {
+        "id": "F",
+        "text": "With so many opinions about how to make college affordable,",
+        "html": "<p>With so many opinions about how to make college affordable,</p>"
+      },
+      {
+        "id": "G",
+        "text": "Until college becomes more affordable,",
+        "html": "<p>Until college becomes more affordable,</p>"
+      },
+      {
+        "id": "H",
+        "text": "Although some college affordability programs have been successful,",
+        "html": "<p>Although some college affordability programs have been successful,</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.284375,
+        "standalone",
+        "part-b-import-0ea66e24a5c0-72af5644"
+      ],
+      [
+        0.2643856920684292,
+        "standalone",
+        "part-b-import-3cbd8c08e674-296b74d3"
+      ],
+      [
+        0.2513426423200859,
+        "standalone",
+        "part-b-question-5"
+      ]
+    ]
+  },
+  "9": {
+    "number": 9,
+    "page": 7,
+    "box": [
+      47.1568,
+      186.64289999999994,
+      568,
+      716
+    ],
+    "numberBox": [
+      47.1568,
+      192.64289999999994,
+      59.876799999999996,
+      204.64289999999994
+    ],
+    "prompt": "Which concluding sentence should be added after sentence 19 to support the topic of the passage?",
+    "promptHtml": "<p>Which concluding sentence should be added after sentence 19 to support the topic of the passage?</p>",
+    "choices": [
+      {
+        "id": "A",
+        "text": "The increasing use of technology in college classrooms and the financial support from tuition scholarship programs will make colleges more affordable for many students.",
+        "html": "<p>The increasing use of technology in college classrooms and the financial support from tuition scholarship programs will make colleges more affordable for many students.</p>"
+      },
+      {
+        "id": "B",
+        "text": "Statewide tuition scholarship programs will make college more affordable for many students, but these programs may lead to new problems.",
+        "html": "<p>Statewide tuition scholarship programs will make college more affordable for many students, but these programs may lead to new problems.</p>"
+      },
+      {
+        "id": "C",
+        "text": "Until the problems associated with the rising cost of college are solved, many students will pursue other options after graduating high school.",
+        "html": "<p>Until the problems associated with the rising cost of college are solved, many students will pursue other options after graduating high school.</p>"
+      },
+      {
+        "id": "D",
+        "text": "When the issue of college affordability is resolved, students will be able to make decisions about pursuing higher education without cost being the deciding factor.",
+        "html": "<p>When the issue of college affordability is resolved, students will be able to make decisions about pursuing higher education without cost being the deciding factor.</p>"
+      }
+    ],
+    "matches": [
+      [
+        0.2146341463414634,
+        "standalone",
+        "standalone-vague-pronoun-1"
+      ],
+      [
+        0.2146341463414634,
+        "standalone",
+        "official-shsat-2026-a-48"
+      ],
+      [
+        0.2140077821011673,
+        "standalone",
+        "part-b-import-1bc95d788614-c76e5943"
+      ]
+    ]
+  }
+}

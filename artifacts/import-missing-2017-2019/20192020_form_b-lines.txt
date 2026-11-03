@@ -1,0 +1,1586 @@
+=== PAGE 1 ===
+190.9,63.5,87.6: S T , F B
+206.0,68.0,86.0: AMPLE EST ORM
+117.8,92.3,116.3: P 1 — E L A
+132.8,96.8,114.8: ART NGLISH ANGUAGE RTS
+264.1,123.7,137.7: 57 QUESTIONS
+235.4,157.8,177.8: R /E
+249.9,161.6,176.6: EVISING DITING
+260.2,184.7,198.7: QUESTIONS 1–9
+261.5,207.3,217.8: IMPORTANT NOTE
+49.9,226.0,236.5: The Revising/Editing section (Questions 1-9) is in two parts: Part A and Part B.
+243.5,255.3,265.8: REVISING/EDITING Part A
+49.9,273.8,284.5: DIRECTIONS: Read and answer the following questions. You will be asked to recognize and correct errors
+49.9,286.5,297.0: so that the sentences or short paragraphs follow the conventions of standard written English. You may
+49.9,299.0,309.5: write in your test booklet as needed to take notes. You should re-read relevant parts of the sentences or
+49.9,311.5,322.0: paragraphs, while being mindful of time, before marking the best answer for each question.
+49.9,349.5,360.0: 1. Read this paragraph.
+79.9,383.1,393.6: (1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is
+79.9,396.1,406.6: mostly composed of pink gelatinous flesh. (2) Becauseit has very few muscles and its density is
+79.9,409.1,419.6: close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It
+79.9,422.1,432.6: must wait patiently for whatever edible matter might float by its mouth. (4) Theblobfish’s
+79.9,435.1,445.6: downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest
+79.9,448.1,458.6: Animal in 2013.
+73.9,483.3,493.8: Which sentence contains an error in its construction and should be revised?
+73.9,505.8,516.3: A. sentence 1
+73.9,522.3,532.9: B. sentence 2
+73.9,538.8,549.4: C. sentence 3
+73.9,555.4,565.9: D. sentence 4
+49.6,756.7,767.7: FORM B 140 CONTINUE ON TO THE NEXT PAGE
+49.9,780.7,792.2: FORM B 2 CONTINUE ON TO THE NEXT PAGE c
+=== PAGE 2 ===
+49.9,67.1,77.5: 2. Read this paragraph.
+79.9,100.6,111.1: (1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer
+79.9,113.6,124.1: day, but many people wonder: what is the difference between the two? (2) Tostart with, the
+79.9,126.6,137.0: butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a
+79.9,139.5,150.0: wiser decision for people looking to make healthier choices. (3) Additionally,the mixing process,
+79.9,152.5,163.0: which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally,gelato is
+79.9,165.5,176.0: served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the
+79.9,178.5,188.9: gelato, and allow it to melt more quickly.
+73.9,213.7,224.2: Which revisions correct the errors in the paragraph?
+73.9,236.1,246.6: E. Sentence 1: Delete the colon after wonder AND change isto are.
+73.9,252.6,263.1: F. Sentence 2: Delete the comma after withAND change it isto they are.
+73.9,269.1,279.6: G. Sentence 3: Delete the comma after processAND change makesto make.
+73.9,285.6,296.0: H. Sentence 4: Delete the comma after gelatoAND change allowto allows.
+49.9,329.7,340.2: 3. Read this paragraph.
+79.9,363.3,373.8: In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials
+79.9,376.3,386.7: instead of her full name, atthat time, only men were permitted to officially register and receive a
+79.9,389.2,399.7: number for the legendary race. Once officials realized a woman was attempting to run in
+79.9,402.2,412.7: the race, theymade efforts to remove her from the competition. Switzer prevailed and finished in
+79.9,415.2,425.7: just over four hours, pavingthe way for the official rule change that allowed for the inclusion of
+79.9,428.2,438.6: women. In 2017, to mark the fiftieth anniversary of this pioneering event, a seventy-year-old
+79.9,441.1,451.6: Switzer repeated her run, wearing the number 261, thesame number she had worn in that first
+79.9,454.1,464.6: run in 1967.
+73.9,489.3,499.8: Which revision corrects the error in sentence structure in the paragraph?
+73.9,511.8,522.3: A. name. At
+73.9,528.3,538.8: B. race. They
+73.9,544.7,555.2: C. hours. Paving
+73.9,561.2,571.7: D. 261. The
+49.9,731.1,742.6: FORM B 3 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 141 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 3 ===
+237.1,69.4,79.6: REVISING/EDITING Part B
+49.8,87.4,97.8: DIRECTIONS: Read the text below and answer the questions following it. You will be asked to improve
+49.8,99.7,109.9: the writing quality of the text and to correct errors so that the text follows the conventions of standard
+49.8,111.8,122.0: written English. You should re-read relevant parts of the text, while being mindful of time, before marking
+49.8,123.9,134.1: the best answer for each question.
+172.2,170.9,186.4: Martial Arts for the Mind and Body
+55.6,199.1,209.3: (1) The martial arts blend a series of physical movements with strategic mental discipline so that
+55.6,211.7,221.9: practitioners can defend themselves, physically defeat an opponent, or both. (2) Historiansare unsure of
+55.6,224.3,234.5: exactly when and where martial arts were first used. (3) Martialarts have been practiced by several
+55.6,236.9,247.1: different societies for many centuries. (4) Martialarts such as karate, kung fu, tae kwon do, and judo are
+55.6,249.5,259.6: still taught and practiced as methods of self-defense, but they offer students more than that. (5) The
+55.6,262.1,272.2: study of martial arts can provide students with a way to enhance their mental discipline as well as their
+55.6,274.7,284.8: physical fitness.
+55.6,298.9,309.1: (6) Discipline, focus, and respect are important qualities for everyone to have. (7) However,for most
+55.6,311.5,321.7: people these qualities are not innate; they must be learned and practiced. (8) Thestudy of martial arts
+55.6,324.1,334.3: can provide an opportunity to develop these skills. (9) Studentsare rewarded for their dedication by
+55.6,336.7,346.8: passing tests and advancing to higher levels. (10) Forexample, in a typical tae kwon do class, students
+55.6,349.3,359.4: learn discipline by diligently practicing moves, improve focus by listening carefully, and demonstrate
+55.6,361.9,372.0: respect by bowing to the instructor and following directions.
+55.6,386.1,396.3: (11) For teenagers, martial arts classes provide a safe and structured environment for gaining physical
+55.6,398.7,408.9: skills, building confidence, and enjoying a sense of community. (12) Alot of teens go through hard
+55.6,411.3,421.5: situations as they try to do well in school and in life. (13) Akarate class can provide teens with a
+55.6,423.9,434.1: physical outlet for stress while also challenging them mentally. (14) Participatingin a martial arts
+55.6,436.5,446.6: program also helps children and teens focus on self-improvement rather than on competition.
+55.6,449.1,459.2: (15) Progressingthrough levels of achievement involves mastering more physically demanding
+55.6,461.7,471.8: techniques. (16) Itrequires students to take responsibility and be accountable for achieving set goals.
+55.6,474.3,484.4: (17) Studentsgain confidence and experience companionship with other students who are progressing
+55.6,486.9,497.0: through the ranks.
+55.6,511.1,521.3: (18) Adults who practice martial arts can experience many of the same benefits that younger people do,
+55.6,523.7,533.8: but perhaps the greatest of these is health and fitness. (19) Adultmartial arts students often see
+55.6,536.3,546.4: changes in their body within weeks of beginning a program.
+55.6,560.5,570.7: (20) For people interested in studying a martial art, there are many ways to learn and practice. (21) In
+55.6,573.1,583.3: addition to private studios, community recreation centers often offer low-cost or free martial arts classes.
+55.6,585.7,595.9: (22) Thereare even online videos that introduce students to the basic concepts. (23) Peopleshould study
+55.6,598.3,608.5: martial arts.
+49.8,712.3,723.4: FORMB 4 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 142 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 4 ===
+54.9,69.5,80.0: 4. What is the best way to combine sentences 2and 3?
+78.9,92.0,102.5: E. Historians, who are unsure of exactly when and where martial arts were first used, know that
+96.9,105.0,115.5: martial arts have been practiced by several different societies for many centuries.
+78.9,121.5,132.0: F. While historians are unsure of exactly when and where martial arts were first used, they do
+96.9,134.5,145.0: know that martial arts have been practiced by several different societies for many centuries.
+78.9,151.0,161.5: G. Because historians know that martial arts have been practiced by several different societies for
+96.9,164.0,174.5: many centuries, they are unsure of exactly when and where martial arts were first used.
+78.9,180.5,191.0: H. Martial arts have been practiced by several different societies for many centuries, and historians
+96.9,193.4,203.9: are unsure of exactly when and where martial arts were first used.
+54.9,237.8,248.3: 5. Where should sentence 10 be moved to improve the organization of the second paragraph
+78.9,250.8,261.3: (sentences 6–10)?
+78.9,273.2,283.8: A. to the beginning of the paragraph (before sentence 6)
+78.9,289.7,300.3: B. between sentences 6 and 7
+78.9,306.2,316.8: C. between sentences 7 and 8
+78.9,322.7,333.2: D. between sentences 8 and 9
+54.9,367.0,377.5: 6. Which revision of sentence 12 best maintains the formal style established in the passage?
+78.9,389.5,400.0: E. A lot of teens have to put up with difficult things while trying to do well in school and in life.
+78.9,406.0,416.5: F. Many teenagers deal with tough situations as they try to stay on top of their studies and do well
+96.9,419.0,429.5: in life.
+78.9,435.5,446.0: G. Many teenagers encounter challenges as they work to succeed both academically and personally.
+78.9,452.0,462.5: H. A lot of teens face problems as they work to keep up with their schoolwork and find
+96.9,465.0,475.5: personal success.
+54.9,509.3,519.8: 7. Which transitional phrase should be added to the beginning of sentence 17?
+78.9,531.8,542.3: A. Over time
+78.9,548.3,558.8: B. In fact
+78.9,564.8,575.3: C. Even so
+78.9,581.3,591.8: D. For instance
+54.9,734.7,746.2: FORM B 5 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 143 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 5 ===
+49.9,65.9,76.4: 8. Which sentence would best follow and support sentence 18?
+73.9,88.4,98.9: E. Adult students gain discipline, focus, self-control, and respect, which are qualities that help them
+91.9,101.4,111.9: advance in their careers.
+73.9,117.9,128.4: F. Many adults initially train in a martial art simply to get exercise without realizing that the
+91.9,130.9,141.4: training also helps develop other skills.
+73.9,147.4,157.9: G. The exercise involved in training helps people strengthen their heart, boost endurance, improve
+91.9,160.4,170.9: balance, and develop muscle tone.
+73.9,176.9,187.4: H. People who commit to training in the martial arts are usually concerned about improving their
+91.9,189.9,200.4: overall physical health.
+49.9,234.2,244.7: 9. Which concluding sentence should replace sentence 23to best support the topic presented in
+73.9,247.2,257.7: the passage?
+73.9,269.7,280.2: A. With so many ways to begin studying martial arts, people can easily discover how the skills
+91.9,282.7,293.2: needed to progress in rank may help them in life.
+73.9,299.2,309.7: B. By taking advantage of opportunities to practice martial arts, people can experience the
+91.9,312.2,322.7: satisfaction of achieving goals while also improving themselves.
+73.9,328.7,339.2: C. Because people are eager to reap the mental and physical benefits of studying martial arts,
+91.9,341.7,352.2: enrollment in martial arts courses has increased.
+73.9,358.2,368.7: D. While taking martial arts classes can improve health for both young people and adults, the
+91.9,371.2,381.7: effects are clearly more immediate for adults.
+49.9,731.1,742.6: FORM B 6 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 144 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 6 ===
+199.9,68.2,88.2: R C
+214.3,72.1,87.1: EADING OMPREHENSION
+252.4,94.6,108.6: QUESTIONS 10–57
+49.9,117.9,128.7: DIRECTIONS: Read each of the following six texts, and answer the related questions. You may write in
+49.9,130.7,141.2: your test booklet as needed to take notes. You should re-read relevant parts of each text, while being
+49.9,143.2,153.7: mindful of time, before marking the best answer for each question. Base your answers only on the content
+49.9,155.6,166.1: within the text.
+206.0,377.7,388.5: CONTINUE ON TO THE NEXT PAGE c
+49.9,732.2,743.6: FORM B 7 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 145 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 7 ===
+200.5,71.6,87.6: The Best Laid Plans of Ravens
+67.9,100.7,111.2: In Edgar Allan Poe’s poem “The Raven,” a raven visits a lonely man’s home and responds to the man’s
+54.3,103.8,109.8: 1
+67.9,113.7,124.2: pleading questions with only the word “nevermore.” The poem’s narrator interprets the word as a
+67.9,126.7,137.2: prediction of doom for his future. A talking, prophetic raven may seem to be the wild imaginings of the
+67.9,139.7,150.2: poet, but a new study published in the journal Sciencehints that one particular idea behind the poem
+67.9,152.7,163.2: might not be as far-fetched as it seems. For most of human history, people assumed that animals do
+67.9,165.7,176.2: not understand the passage of time in the same way people do. Some people believed that animals
+67.9,178.7,189.2: might remember events from the past and that instinct might drive them to make preparations in
+67.9,191.7,202.2: order to guarantee survival, but most people did not think that animals had the ability to plan. At
+67.9,204.7,215.2: Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan
+67.9,217.7,228.2: for the future.
+67.9,242.7,253.2: It can be difficult to test an animal’s ability to plan because human observers must be certain they are
+54.3,245.8,251.8: 2
+67.9,255.7,266.2: not mistaking instinctual behavior for intentional planning. For example, many animals hoard food so
+67.9,268.7,279.2: that they will not run out later, but scientists who study animals would not call hoarding a decision to
+67.9,281.7,292.2: plan for the future. This action is merely instinctual. Cognitive scientists argue that in order for an
+67.9,294.7,305.2: animal’s behavior to qualify as preparing for the future, the animal must use specific decision-making
+67.9,307.7,318.2: skills to solve a problem.
+67.9,332.7,343.2: To avoid mistaking instinctual behavior for evidence of decision-making, the Lund University
+54.3,335.8,341.8: 3
+67.9,345.7,356.2: researchers designed two experiments to test ravens’ ability to plan. Ravens belong to the corvid
+67.9,358.7,369.2: family, a group of birds known for their intelligence. A study in 2007 showed that corvids have the
+67.9,371.7,382.2: tendency to save only certain types of food, which suggests that they are planning for the future
+67.9,384.7,395.2: rather than acting on instinct. In order to investigate that theory, the researchers had to design
+67.9,397.7,408.2: experiments that would achieve results that could not be explained by an instinctual behavior of food
+67.9,410.7,421.2: hoarding. Therefore, the ravens were taught two behaviors that they do not normally perform in
+67.9,423.7,434.2: the wild.
+67.9,448.7,459.2: For the first experiment, the researchers showed the birds how to use a small stone to open a box and
+54.3,451.8,457.8: 4
+67.9,461.7,472.2: get treats. Once the ravens learned the behavior, the researchers presented the birds with four stones.
+67.9,474.7,485.2: Only one stone was the right size to open the box. The birds learned to select that stone and set it
+67.9,487.7,498.2: aside until the researchers presented the box. The second experiment involved bartering. A researcher
+67.9,500.7,511.2: would trade the ravens a large treat for a bottle cap. Later, the researchers presented the ravens with
+67.9,513.7,524.2: a group of items, including small treats and the bottle cap. The ravens chose the bottle cap over the
+67.9,526.7,537.2: treats and waited for the original researcher to trade with them again so that they could get more
+67.9,539.7,550.2: treats. In both experiments, the ravens waited patiently for up to seventeen hours for the researcher
+67.9,552.7,563.2: to return.
+67.9,577.7,588.2: The results of these experiments are exciting, but more evidence needs to be gathered before scientists
+54.3,580.8,586.8: 5
+67.9,590.7,601.2: can fully conclude that ravens can plan for the future. Some scientists argue that the ravens might be
+67.9,603.7,614.2: choosing the stone and bottle cap because the ravens have been trained to do so, not necessarily
+67.9,616.7,627.2: because the ravens are thinking ahead. Regardless, like other recent advances in animal science, these
+67.9,629.7,640.2: experiments show that ravens could be much smarter than first believed, and scientists now believe
+67.9,642.7,653.2: that ravens do actually think about their own future.
+49.9,732.3,743.8: FORM B 8 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 146 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 8 ===
+49.9,67.1,77.6: 10. How does paragraph 1 introduce the ideas that ravens may perceive time and plan for the future?
+73.9,89.6,100.1: E. It mentions a poem that considers whether a raven can see the future and then discusses why
+91.9,102.6,113.1: people have traditionally doubted that ravens have the ability to plan.
+73.9,119.1,129.6: F. It references a poem about a raven that seems to have insight into the future and then mentions
+91.9,132.1,142.6: new information that suggests ravens have the ability to plan.
+73.9,148.6,159.1: G. It mentions a poem that led people to believe that ravens are aware of the future and then
+91.9,161.6,172.1: explains why scientists want to study ravens’ ability to plan.
+73.9,178.1,188.6: H. It references a poem about a raven that predicts the future and then describes the importance of
+91.9,191.1,201.6: differentiating ravens’ instincts from their ability to plan.
+49.9,235.4,245.9: 11. Read these sentences from paragraph 2.
+100.9,260.4,270.9: For example, many animals hoard food so that they will not run out later, but
+100.9,273.4,283.9: scientists who study animals would not call hoarding a decision to plan for the
+100.9,286.4,296.9: future. This action is merely instinctual.
+73.9,311.4,321.9: Which statement describes the effect of the phrase “merely instinctual” in the passage?
+73.9,333.8,344.4: A. It implies that animals are skilled at finding and saving food for later consumption.
+73.9,350.3,360.9: B. It conveys that many animals will usually prioritize gathering food over other activities.
+73.9,366.8,377.4: C. It suggests that animals often store more food than they will be able to consume.
+73.9,383.3,393.9: D. It emphasizes that many animals collect food automatically rather than with true intention.
+49.9,427.6,438.1: 12. Read this sentence from paragraph 1.
+100.9,452.6,463.1: At Lund University in Sweden, researchers argue that ravens may be able to think
+100.9,465.6,476.1: ahead and even plan for the future.
+73.9,490.6,501.1: Which sentence from paragraph 4 provides support for this argument?
+73.9,513.1,523.6: E. “Once the ravens learned the behavior, the researchers presented the birds with four stones.”
+73.9,529.6,540.1: F. “A researcher would trade the ravens a large treat for a bottle cap.”
+73.9,546.1,556.6: G. “Later, the researchers presented the ravens with a group of items, including small treats and the
+91.9,559.1,569.6: bottle cap.”
+73.9,575.6,586.1: H. “The ravens chose the bottle cap over the treats and waited for the original researcher to trade
+91.9,588.6,599.1: with them again so that they could get more treats.”
+49.9,732.3,743.8: FORM B 9 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 147 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 9 ===
+49.9,67.1,77.6: 13. In the first experiment described in paragraph 4, which of the ravens’ behaviors provides the
+73.9,80.1,90.6: strongest evidence for the claim that the birds are capable of planning?
+73.9,102.6,113.1: A. They accepted treats from the unlocked box.
+73.9,119.1,129.6: B. They set aside the stones that would unlock the box.
+73.9,135.6,146.1: C. They learned which stone could open the box.
+73.9,152.1,162.6: D. They waited for researchers to bring the box.
+49.9,196.4,206.9: 14. Read this sentence from paragraph 4.
+100.9,221.4,231.9: In both experiments, the ravens waited patiently for up to seventeen hours for the
+100.9,234.4,244.9: researcher to return.
+73.9,259.4,269.9: How does this sentence fit into the overall structure of the passage and contribute to the
+73.9,272.4,282.9: development of ideas?
+73.9,294.8,305.4: E. It concludes the description of the experiments, supporting the idea that ravens can make
+91.9,307.8,318.3: decisions for the future.
+73.9,324.3,334.9: F. It establishes the timeline required in experiments designed to determine learned behaviors
+91.9,337.3,347.8: in ravens.
+73.9,353.8,364.4: G. It reveals how the ravens solved the problems posed in the experiments, proving that ravens have
+91.9,366.8,377.3: the ability to plan ahead.
+73.9,383.3,393.8: H. It indicates that hoarding food is both an instinctual and a learned behavior among ravens.
+49.9,427.6,438.1: 15. With which statement would the author of the passage most likely agree?
+73.9,450.1,460.6: A. Scientists are unlikely to be able to conduct an experiment that can genuinely distinguish
+91.9,463.1,473.6: between instinctual and learned behaviors in animals.
+73.9,479.6,490.1: B. Scientists should continue researching to find more evidence to support the idea that some
+91.9,492.6,503.1: animals show signs of advanced intelligence.
+73.9,509.1,519.6: C. Scientists should be careful about making conclusions about animal intelligence based on
+91.9,522.1,532.6: experiments that rely on training animals.
+73.9,538.6,549.1: D. Scientists can confirm data on whether animals have the ability to plan by performing
+91.9,551.6,562.1: experiments on additional species known for their intelligence.
+49.9,732.3,743.8: FORM B 10 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 148 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 10 ===
+49.9,67.1,77.6: 16. How does paragraph 5 fit into the overall structure of the passage and contribute to the development
+73.9,80.1,90.6: of ideas?
+73.9,102.6,113.1: E. It introduces a problem with the results of the study at Lund University, suggesting that some
+91.9,115.6,126.1: scientists believe that further research will not lead to a clear answer.
+73.9,132.0,142.6: F. It summarizes the final steps of the study at Lund University, emphasizing the difficulties
+91.9,145.0,155.5: researchers had in differentiating between true planning and practiced actions.
+73.9,161.5,172.1: G. It provides a conclusion to the information about the Lund University study, indicating that some
+91.9,174.5,185.0: scientists think further research is needed in order to prove the idea.
+73.9,191.0,201.6: H. It lists the effects of the study at Lund University, implying that researchers should have
+91.9,204.0,214.5: designed experiments that better differentiated between planning and instinct.
+49.9,248.4,258.9: 17. The author conveys a point of view on the study of animal intelligence mainly by
+73.9,270.8,281.3: A. sharing details about experiments that tested the ability of an animal to plan for the future.
+73.9,287.3,297.8: B. comparing the results of different experiments that were designed to test animal intelligence.
+73.9,303.8,314.3: C. critiquing experiments that aimed to demonstrate that certain animals are capable of planning
+91.9,316.8,327.3: for the future.
+73.9,333.3,343.8: D. explaining how modern experiments show that previously held beliefs about animal intelligence
+91.9,346.3,356.8: are inaccurate.
+49.9,732.3,743.8: FORM B 11 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 149 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 11 ===
+67.9,67.5,78.0: Located underground near Geneva, Switzerland, the Large Hadron Collider (LHC) helps scientists
+67.9,80.5,91.0: study and understand how the smallest particles of matter interact with one another. The LHC propels
+67.9,93.5,104.0: atomic particle beams along a 17-mile-long ring.
+145.5,121.4,137.4: Looking for the Smallest Spark of Everything
+67.9,150.5,161.0: There are the things the world is made of,
+67.9,163.5,174.0: things we can see and feel, and then
+67.9,176.5,187.0: there are the things even smaller, things that seem
+67.9,189.5,200.0: to exist only when we are looking right at them.
+67.9,215.5,226.0: So beneath the level of molecules are atoms,
+54.3,218.6,224.6: 5
+67.9,228.5,239.0: and beneath the level of atoms, we find
+67.9,241.5,252.0: protons, electrons, neutrons; and beneath that—
+67.9,254.5,265.0: what, exactly? Because we are talking about
+67.9,267.5,278.0: everything here: your fingernail,
+67.9,280.5,291.0: the candy at the back of your mouth,
+52.6,283.6,289.6: 10
+67.9,293.5,304.0: the coffee your teacher drank this morning,
+67.9,306.5,317.0: your little sister, and the stuffed dog
+67.9,319.5,330.0: she used to carry around with her everywhere.
+67.9,332.5,343.0: And everywhere.
+67.9,358.5,369.0: Everything and everywhere
+52.6,361.6,367.6: 15
+67.9,371.5,382.0: are made up of the same stuff, whatever
+67.9,384.5,395.0: it is. How do we find it? We can listen for it
+67.9,397.5,408.0: in the wavelengths from deep space,
+67.9,410.5,421.0: talking back to us from unimaginable
+67.9,423.5,434.0: distances. Or we can build long,
+52.6,426.5,432.5: 20
+67.9,436.5,447.0: deep circular tunnels beneath the surface
+67.9,449.5,460.0: of this Earth and race particles
+67.9,462.5,473.0: (like racing cars, only very tiny cars
+67.9,475.5,486.0: flashing along at close to the speed of light)
+67.9,488.5,499.0: until everything we think we know
+52.6,491.5,497.5: 25
+67.9,501.5,512.0: bangs against everything else we know.
+67.9,527.5,538.0: And there, in the explosion, in the darkness,
+67.9,540.5,551.0: briefly incandescent, they appear:
+67.9,553.5,564.0: the quarks, the leptons, and the bosons;
+67.9,566.5,577.0: the baryons and the mesons. Their names
+52.6,569.5,575.5: 30
+67.9,579.5,590.0: sound like dinosaurs or maybe bands
+67.9,592.5,603.0: playing terrible music in someone’s garage.
+67.9,618.5,629.0: The one thing we know for sure
+67.9,631.5,642.0: is that they spin. This is how gravity
+67.9,644.5,655.0: enters our world, how our world is held
+52.6,647.5,653.5: 35
+67.9,657.5,668.0: both together and apart, what keeps
+67.9,670.5,681.0: together the pencil in your hand right now
+67.9,683.5,694.0: as well as separate from, say,
+67.9,696.5,707.0: Jupiter. They spin, and it is only down there
+49.9,731.1,742.6: FORM B 12 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 150 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 12 ===
+72.3,60.6,71.1: in the darkness—in the vast garage
+57.0,63.6,69.6: 40
+72.3,73.6,84.1: where physicists jot down
+72.3,86.6,97.1: what they can, whatever seems most real—
+72.3,99.6,110.1: that they let us perceive their wild dancing,
+72.3,112.6,123.1: combusting to the music they make.
+54.3,156.8,167.3: 18. Read lines 5–8 from the poem.
+105.3,181.8,192.3: So beneath the level of molecules are atoms,
+105.3,194.8,205.3: and beneath the level of atoms, we find
+105.3,207.8,218.3: protons, electrons, neutrons; and beneath that—
+105.3,220.8,231.3: what, exactly?
+78.3,245.8,256.3: The lines help develop a central idea of the poem by revealing the speaker’s
+78.3,268.3,278.8: E. interest in determining how the parts of matter work together.
+78.3,284.8,295.3: F. curiosity about what makes up matter.
+78.3,301.3,311.8: G. desire to prove that particles make up matter.
+78.3,317.8,328.3: H. questions about what tools are needed to study matter.
+54.3,362.1,372.6: 19. The break between the second stanza (lines 5–14)and the third stanza (lines 15–26)serves as a
+78.3,375.1,385.6: transition from
+78.3,397.6,408.1: A. identifying common physical objects to explaining how the particles that make up all physical
+96.3,410.6,421.1: things are observed.
+78.3,427.1,437.6: B. suggesting that the visible world is made up of simple materials to revealing why invisible
+96.3,440.1,450.6: materials make the world complicated.
+78.3,456.6,467.1: C. discussing the methods used to study particles in space to describing how matter is researched
+96.3,469.6,480.1: on Earth.
+78.3,486.1,496.6: D. describing an environment that feels comfortable to characterizing an environment that
+96.3,499.1,509.6: seems unstable.
+54.3,543.4,553.9: 20. The main purpose of the comparison in lines 23–24of the poem is to show
+78.3,565.9,576.4: E. that the particles’ size makes them difficult to see.
+78.3,582.4,592.9: F. how the particles move within the tunnel.
+78.3,598.9,609.4: G. that the particles have a familiar shape.
+78.3,615.3,625.9: H. how the particles can be seen only in darkness.
+54.3,735.6,747.0: FORM B 13 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 151 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 13 ===
+49.9,68.3,78.8: 21. Read lines 25–26 from the poem.
+100.9,93.3,103.8: until everything we think we know
+100.9,106.3,116.8: bangs against everything else we know.
+73.9,131.3,141.8: The lines help develop a central idea in the poem by suggesting that
+73.9,153.8,164.3: A. creative methods for researching particles are frequently being invented.
+73.9,170.3,180.8: B. ongoing research continues to add to our knowledge of particles.
+73.9,186.8,197.3: C. our understanding of particles is limited by the equipment available to study them.
+73.9,203.3,213.8: D. competing theories about particles provoke scientific debate.
+49.9,247.6,258.1: 22. Read lines 27–28 from the poem.
+100.9,272.6,283.1: And there, in the explosion, in the darkness,
+100.9,285.6,296.1: briefly incandescent, they appear:
+73.9,310.6,321.1: The imagery in the lines reveals that the speaker
+73.9,333.0,343.6: E. envies the physicists who research colliding particles.
+73.9,349.5,360.1: F. has personally observed colliding particles.
+73.9,366.0,376.6: G. admires the powerful reactions that occur when particles collide.
+73.9,382.5,393.1: H. has a simplistic understanding of how particles collide.
+49.9,426.8,437.3: 23. Read lines 30–32 from the poem.
+100.9,451.8,462.3: Their names
+100.9,464.8,475.3: sound like dinosaurs or maybe bands
+100.9,477.8,488.3: playing terrible music in someone’s garage.
+73.9,502.8,513.3: The speaker refers to familiar objects and events in the lines most likely to
+73.9,525.3,535.8: A. explain confusing information in simple terms to help the reader understand more about
+91.9,538.3,548.8: the topic.
+73.9,554.8,565.3: B. demonstrate how scientific ideas can be explained by describing situations that many people are
+91.9,567.8,578.3: familiar with.
+73.9,584.3,594.8: C. emphasize that the process being used to research particles is still in the early stages of
+91.9,597.3,607.8: development.
+73.9,613.8,624.3: D. suggest that the scientific language used to describe particles seems silly by making a humorous
+91.9,626.8,637.3: comparison.
+49.9,733.5,745.0: FORM B 14 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 152 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 14 ===
+49.9,68.3,78.8: 24. Read lines 36–39 from the poem.
+100.9,93.3,103.8: both together and apart, what keeps
+100.9,106.3,116.8: together the pencil in your hand right now
+100.9,119.3,129.8: as well as separate from, say,
+100.9,132.3,142.8: Jupiter.
+73.9,157.3,167.8: The poet includes these lines most likely to emphasize that
+73.9,179.8,190.3: E. it is important for physicists to continue their research about particles.
+73.9,196.3,206.8: F. these particles have a powerful effect on everything.
+73.9,212.8,223.3: G. the discoveries about particles provide little information.
+73.9,229.3,239.8: H. the study of particles and the study of objects in space are similar.
+49.9,275.4,285.9: 25. The last stanza (lines 33–44) concludes the poem by emphasizing which central idea?
+73.9,298.0,308.5: A. The exciting work that physicists conduct provides information about fundamental aspects of
+91.9,310.9,321.4: the universe.
+73.9,327.4,338.0: B. The unusual work of physicists is carried out in unconventional locations and in special
+91.9,340.5,351.0: conditions.
+73.9,356.9,367.5: C. Physicists are learning about the unpredictable behavior of particles that break up matter in
+91.9,370.0,380.5: the universe.
+73.9,386.4,397.0: D. Physicists enthusiastically share the discoveries their research yields because most people can
+91.9,399.5,410.0: relate to their findings.
+49.9,443.7,454.2: 26. Read lines 39–44 from the poem.
+100.9,468.7,479.2: They spin, and it is only down there
+100.9,481.7,492.2: in the darkness—in the vast garage
+100.9,494.7,505.2: where physicists jot down
+100.9,507.7,518.2: what they can, whatever seems most real—
+100.9,520.7,531.2: that they let us perceive their wild dancing,
+100.9,533.7,544.2: combusting to the music they make.
+73.9,558.7,569.2: The lines reveal the speaker’s
+73.9,581.2,591.7: E. frustration with the research facilities physicists use.
+73.9,597.7,608.2: F. belief that physicists are frantically working toward a new discovery.
+73.9,614.2,624.7: G. interest in physicists and their study of particles.
+73.9,630.7,641.3: H. certainty that physicists are working in secrecy.
+49.9,733.5,745.0: FORM B 15 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 153 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 15 ===
+67.9,67.5,78.0: In this excerpt, published in 1914, author and professor Dallas Lore Sharp describes a summer cattle
+67.9,80.5,91.0: roundup in Oregon. The heat and dust had been relentless for three days. The cowboys were exhausted,
+67.9,93.5,104.0: and the cattle were restless. The ranch boss, Wade, had led the drive to a watering place, only to find
+67.9,106.5,117.0: it empty.
+175.4,134.4,150.4: Excerpt from “The Spirit of the Herd”
+262.3,166.5,177.0: by Dallas Lore Sharp
+67.9,191.5,202.0: Along with the wagon had come the fresh horses—one of them being Peroxide Jim, a supple, powerful,
+54.3,194.6,200.6: 1
+67.9,204.5,215.0: clean-limbed buckskin, a horse, I think, that had as fine and intelligent an animal-face as any creature
+67.9,217.5,228.0: I ever saw. Wade had been saving this horse for emergency work. And why should he not have been
+67.9,230.5,241.0: saved fresh for just such a need as this? Are there not superior horses as well as superior men—a
+67.9,243.5,254.0: Peroxide Jim to complement a Wade?
+67.9,268.5,279.0: The horse knew the cattle business and knew his rider perfectly; and though there was nothing like
+54.3,271.6,277.6: 2
+67.9,281.5,292.0: sentiment about the boss of the P Ranchriders, his faith in Peroxide Jim was complete. . . .
+67.9,304.4,317.0: The desert, where the herd was camped, was one of the highest of a series of tablelands,1or benches; it
+54.3,309.5,315.5: 3
+67.9,319.5,330.0: lay as level as a floor, rimmed by sheer rock, from which there was a drop to the bench of sage below.
+67.9,332.5,343.0: The herd when overtaken by the dusk had been headed for a pass descending to the next lower bench,
+67.9,345.5,356.0: but was now halted within a mile of the rim rock on the east, where there was a perpendicular fall of
+67.9,358.5,369.0: about three hundredfeet. . . .
+67.9,383.5,394.0: In the taut silence of the stirless desert night, with the tension of the herd at the snapping-point, any
+54.3,386.5,392.5: 4
+67.9,396.5,407.0: quick, unwonted sight or sound would stampede them. The sneezing of a horse, the flare of a match,
+67.9,409.5,420.0: would be enough to send the whole four thousandheadlong—blind, frenzied, trampling—till spent and
+67.9,422.5,433.0: scattered over the plain.
+67.9,447.5,458.0: And so, as he rode, Wade began to sing. The rider ahead of him took up the air and passed it on until,
+54.3,450.5,456.5: 5
+67.9,460.5,471.0: above the stepping stir of the hoofs rose the faint voices of the men, and all the herd was bound about
+67.9,473.5,484.0: by the slow plaintive measures of some old song. It was not to soothe their savage breasts that the
+67.9,486.5,497.0: riders sang to the cattle, but rather to preempt the dreaded silence, to relieve the tension, and so to
+67.9,499.5,510.0: prevent the shock of any sudden startling noise.
+67.9,524.5,535.0: So they sang and rode and the night wore on to one o’clock,when Wade, coming up on the rim-rock
+54.3,527.5,533.5: 6
+67.9,537.5,548.0: side, felt a cool breeze fan his face, and caught a breath of fresh, moist wind with the taste of water
+67.9,550.5,561.0: in it.
+67.9,575.5,586.0: He checked his horse instantly, listening as the wind swept past him over the cattle. But they must
+54.3,578.5,584.5: 7
+67.9,588.5,599.0: already have smelled it, for they had ceased their milling, the whole herd standing motionless, the
+67.9,601.5,612.0: indistinct forms close to him in the dark showing their bald faces lifted to drink the sweet wet breath
+67.9,614.5,625.0: that came over the rim. Then they started on again, but faster, and with a rumbling now from their
+67.9,627.5,638.0: hoarse throats that tightened Wade’s grip on the reins.
+67.9,652.5,663.0: The sound seemed to come out of the earth, a low, rumbling mumble, as dark as the night and as wide
+54.3,655.5,661.5: 8
+67.9,665.5,676.0: as the plain, a thick, inarticulate bellow that stood every rider stiff in his stirrups. . . .
+61.9,689.6,702.1: 1tablelands:plateaus, flat areas of land sharply elevated from the surrounding area
+49.9,731.1,742.6: FORM B 16 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 154 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 16 ===
+67.9,58.2,68.7: Then the breeze caught the dust and carried it back from the gray-coated, ghostly shapes, and Wade
+54.3,61.2,67.2: 9
+67.9,71.2,81.7: saw that the animals were still moving in a circle. He must keep them going. He touched his horse to
+67.9,84.2,94.7: ride on with them, when across the black sky flashed a vivid streak of lightning.
+67.9,109.2,119.7: There was a snort from the steers, a quick clap of horns and hoofs from far within the herd, a tremor
+52.6,112.4,118.4: 10
+67.9,122.2,132.7: of the plain, a roar, a surging mass—and Wade was riding the flank of a wild stampede. Before him,
+67.9,135.2,145.7: behind him, beside him, pressing hard upon his horse, galloped the frenzied steers, and beyond them a
+67.9,148.2,158.7: multitude borne on, and bearing him on, by the heave of the galloping herd.
+67.9,173.2,183.7: Wade was riding for his life. He knew it. His horse knew it. He was riding to turn the herd, too, back
+52.6,176.4,182.4: 11
+67.9,186.2,196.7: from the rim, as the horse also knew. The cattle were after water—water-mad—ready to go over the
+67.9,199.2,209.7: precipice to get it, carrying horse and rider with them. Wade was the only rider between the herd and
+67.9,212.2,222.7: the rim. It was black as death. He could see nothing in the sage, could scarcely discern the pounding,
+67.9,225.2,235.7: panting shadows at his side. He knew that he was being borne toward the rim, how fast he could not
+67.9,236.0,248.7: tell, but he knew by the swish of the brush against his tapaderos2and the plunging of the horse that
+67.9,251.2,261.7: the ground was growing stonier, that they were nearing the rocks.
+67.9,276.2,286.7: To outrun the herd was his only chance for life. If he could come up with the leaders he might not only
+52.6,279.4,285.4: 12
+67.9,289.2,299.7: escape, but even stand a chance of heading them off upon the plain and saving the herd. There were
+67.9,302.2,312.7: cattle still ahead of him; how many, what part of them all, he could not make out in the dark. But the
+67.9,315.2,325.7: horse knew. The reins hung on his straight neck, where his rider had dropped them, as, yelling and
+67.9,328.2,338.7: firing over the wild herd, he had given this horse the race to win, to lose.
+67.9,353.2,363.7: They were riding the rim. Close on their left bore down the flank of the herd, and on their right, under
+52.6,356.4,362.4: 13
+67.9,366.2,376.7: their very feet, was a precipice, so close that they felt its blackness—its three hundredfeet of fall! . . .
+67.9,391.2,401.7: . . . Then Wade found himself racing neck and neck with a big white steer, which the horse, with
+52.6,394.4,400.4: 14
+67.9,404.2,414.7: marvelous instinct, seemed to pick out from a bunch, and to cling to, forcing him gradually ahead, till,
+67.9,417.2,427.7: cutting him free from the bunch entirely, he bore him off into the swishing sage.
+67.9,442.2,452.7: The steers coming on close behind followed their leader, and in, after them, swung others. The tide was
+52.6,445.4,451.4: 15
+67.9,455.2,465.7: turning from the rim. More and more were veering, and within a short time the whole herd, bearing
+67.9,468.2,478.7: off from the cliffs, was pounding over the open plains.
+67.9,493.2,503.7: Whose race was it? It was Peroxide Jim’s, according to Wade, for not by word or by touch of hand or
+52.6,496.4,502.4: 16
+67.9,506.2,516.7: knee had the horse been directed in the run. From the flash of the lightning the horse had taken the
+67.9,519.2,529.7: bit, had covered an indescribably perilous path at top speed, had outrun the herd and turned it from
+67.9,532.2,542.7: the edge of the rim rock, without a false step or a tremor of fear.
+61.9,568.8,577.8: From “The Spirit of the Herd” by Dallas Lore Sharp—Public Domain
+61.9,592.9,605.4: 2tapaderos:leather covers for stirrups
+49.9,733.2,744.6: FORM B 17 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 155 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 17 ===
+49.9,67.1,77.6: 27. Which sentence from the excerpt best explains why Wade reserved Peroxide Jim for “emergency
+73.9,80.1,90.6: work” (paragraph 1)?
+73.9,102.6,113.1: A. “Along with the wagon had come the fresh horses—one of them being Peroxide Jim, a supple,
+91.9,115.6,126.1: powerful, clean-limbed buckskin, a horse, I think, that had as fine and intelligent an animal-face
+91.9,128.6,139.1: as any creature I ever saw. ” (paragraph 1)
+73.9,145.1,155.6: B. “Before him, behind him, beside him, pressing hard upon his horse, galloped the frenzied steers,
+91.9,158.1,168.6: and beyond them a multitude borne on, and bearing him on, by the heave of the galloping herd.”
+91.9,171.1,181.6: (paragraph 10)
+73.9,187.6,198.1: C. “He knew that he was being borne toward the rim, how fast he could not tell, but he knew by the
+91.9,200.6,211.1: swish of the brush against his tapaderos and the plunging of the horse that the ground was
+91.9,213.6,224.1: growing stonier, that they were nearing the rocks.” (paragraph 11)
+73.9,230.1,240.6: D. “From the flash of the lightning the horse had taken the bit, had covered an indescribably
+91.9,243.1,253.6: perilous path at top speed, had outrun the herd and turned it from the edge of the rim rock,
+91.9,256.1,266.6: without a false step or a tremor of fear.” (paragraph 16)
+49.9,300.4,310.9: 28. Paragraphs 1–2 contribute to the development of the central idea of the excerpt by
+73.9,322.9,333.4: E. revealing the respect Wade had for his horse.
+73.9,339.4,349.9: F. emphasizing Wade’s high expectations of his horse and himself.
+73.9,355.8,366.4: G. indicating that Wade and his horse understood the cattle business.
+73.9,372.3,382.9: H. demonstrating Wade’s ability to gauge a horse’s competence.
+49.9,416.6,427.1: 29. How does paragraph 3convey the effect of the setting on the cattle drive?
+73.9,439.1,449.6: A. It shows how the growing darkness created challenges for the riders in getting the herd to move.
+73.9,455.6,466.1: B. It describes how the changing elevation contributed to the dangerousness of the environment.
+73.9,472.1,482.6: C. It describes how the desert created a feeling of isolation that caused the riders and the cattle to
+91.9,485.1,495.6: feel uncomfortable.
+73.9,501.6,512.1: D. It shows how the steep terrain made it difficult for the cattle to keep moving forward.
+49.9,732.3,743.8: FORM B 18 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 156 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 18 ===
+51.9,69.5,80.0: 30. Which sentence from the excerpt best reveals the mood on the drive before the lightning struck?
+75.9,92.0,102.5: E. “The herd when overtaken by the dusk had been headed for a pass descending to the next lower
+93.9,105.0,115.5: bench, but was now halted within a mile of the rim rock on the east, where there was a
+93.9,118.0,128.5: perpendicular fall of about three hundred feet.” (paragraph 3)
+75.9,134.5,145.0: F. “It was not to soothe their savage breasts that the riders sang to the cattle, but rather to preempt
+93.9,147.5,158.0: the dreaded silence, to relieve the tension, and so to prevent the shock of any sudden startling
+93.9,160.5,171.0: noise.” (paragraph 5)
+75.9,177.0,187.5: G. “So they sang and rode and the night wore on to one o’clock, when Wade, coming up on the rim-
+93.9,190.0,200.5: rock side, felt a cool breeze fan his face, and caught a breath of fresh, moist wind with the taste of
+93.9,203.0,213.5: water in it.” (paragraph 6)
+75.9,219.5,230.0: H. “Then the breeze caught the dust and carried it back from the gray-coated, ghostly shapes, and
+93.9,232.5,243.0: Wade saw that the animals were still moving in a circle.” (paragraph 9)
+51.9,276.8,287.3: 31. How does paragraph 9fit into the overall structure of the excerpt?
+75.9,299.3,309.8: A. It hints at the change in the setting that caused Wade to suddenly become alert.
+75.9,315.8,326.3: B. It creates a false sense of calm that shows how unprepared the men were for what was about
+93.9,328.8,339.3: to happen.
+75.9,345.3,355.8: C. It indicates that Wade was a skillful leader in unpredictable circumstances.
+75.9,361.8,372.3: D. It presents the incident that caused the main conflict Wade and Peroxide Jim addressed.
+51.9,406.0,416.5: 32. Read these sentences from the excerpt.
+102.9,431.0,441.5: He was riding to turn the herd, too, back from the rim, as the horse also knew.
+102.9,444.0,454.5: (paragraph 11)
+102.9,469.0,479.5: It was Peroxide Jim’s, according to Wade, for not by word or by touch of hand or
+102.9,482.0,492.5: knee had the horse been directed in the run. (paragraph 16)
+75.9,507.0,517.5: How do these sentences develop a central idea in the excerpt?
+75.9,529.5,540.1: E. They suggest that Wade would have been unable to save the herd without Peroxide Jim.
+75.9,546.0,556.6: F. They imply that Wade spent many hours training Peroxide Jim to herd cattle.
+75.9,562.6,573.1: G. They show that Peroxide Jim was able to understand a situation and take action.
+75.9,579.1,589.6: H. They indicate that Peroxide Jim was unafraid of the dangers presented by the stampede and
+93.9,592.1,602.6: the cliff.
+51.9,734.7,746.2: FORM B 19 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 157 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 19 ===
+49.9,68.3,78.8: 33. Read this sentence from paragraph 13.
+100.9,93.3,103.8: Close on their left bore down the flank of the herd, and on their right, under their
+100.9,106.3,116.8: very feet, was a precipice, so close that they felt its blackness—its three hundred feet
+100.9,119.3,129.8: of fall!
+73.9,144.3,154.8: The phrase “bore down the flank of the herd” conveys that Wade
+73.9,166.8,177.3: A. struggled to see the front of the herd.
+73.9,183.3,193.8: B. had to ride quickly to keep up with the herd.
+73.9,199.8,210.3: C. was forced to ride between the edge of the cliff and the herd.
+73.9,216.3,226.8: D. knew that the drop of the cliff would frighten the herd.
+49.9,260.6,271.1: 34. How do the details in paragraphs 14–16help convey a central idea of the excerpt?
+73.9,283.1,293.6: E. They highlight Peroxide Jim’s natural ability to control the herd.
+73.9,299.6,310.1: F. They emphasize the danger of the situation from which Peroxide Jim rescued the herd.
+73.9,316.1,326.6: G. They show that Peroxide Jim’s physical strength allowed him to force the herd to turn.
+73.9,332.6,343.1: H. They indicate that Peroxide Jim anticipated the herd’s stampede before the men did.
+49.9,733.5,745.0: FORM B 20 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 158 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 20 ===
+208.0,363.9,374.7: CONTINUE ON TO THE NEXT PAGE c
+51.9,718.4,728.9: FORM B 21
+49.6,756.7,767.7: FORM B 159 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 21 ===
+233.2,70.4,86.4: A Memory Revolution
+67.9,99.5,110.0: A high school senior logs on to a computer at the library to double-check the application due date
+54.3,102.6,108.6: 1
+67.9,112.5,123.0: listed on a college admissions website. Nearby, a librarian helps a group of biology students use a
+67.9,125.5,136.0: database to search for recent studies about mammals. In the past few decades, the Internet has
+67.9,138.5,149.0: become an integral component of daily life for many people. The seemingly limitless power of search
+67.9,151.5,162.0: engines made the Internet search extremely common, and today people increasingly rely on the
+67.9,164.5,175.0: Internet’s vast accumulation of sources to access all types of information. Scientists are beginning to
+67.9,177.5,188.0: examine how this reliance is modifying the strategies people use to store and prioritize information in
+67.9,190.5,201.0: their mind.
+61.9,215.5,226.0: A Dependable and Valuable Asset
+67.9,240.5,251.0: Psychologist Benjamin Storm from the University of California, Santa Cruz, and researchers Sean
+54.3,243.6,249.6: 2
+67.9,253.5,264.0: Stone and Aaron Benjamin devised an experiment to study students’ tendency to depend on the
+67.9,266.5,277.0: Internet for facts. To begin, the scientists divided sixty participants into multiple groups, including an
+67.9,279.5,290.0: “Internet” group and a “memory” group, and placed them in front of computers. The Internet group
+67.9,292.5,303.0: was required to use the search engine Google to answer eight challenging trivia questions. In contrast,
+67.9,305.5,316.0: participants in the memory group were permitted to use only their personal knowledge to answer the
+67.9,318.5,329.0: questions. In the second round, the researchers administered notably easier questions. This time, they
+67.9,331.5,342.0: allowed each group the option of using Google as they answered. Their results showed that 83 percent
+67.9,344.5,355.0: of the Internet group continued to consult Google in the second round, while only 63 percentof the
+67.9,357.5,368.0: memory group chose to do so.
+67.9,382.5,393.0: People’s growing inclination to rely on the Internet in order to retrieve information, particularly facts
+54.3,385.6,391.6: 3
+67.9,395.5,406.0: and figures, is called cognitive offloading. Canadian researcher Evan F. Risko and British researcher
+67.9,408.5,419.0: Sam Gilbert, who have written extensively about the topic, say a similar process has been taking place
+67.9,421.5,432.0: for centuries. In the past, people used resources like encyclopedias to assist their memories; however,
+67.9,434.5,445.0: today the Internet, serving as a vast extended memory, allows people to digitally access and retrieve
+67.9,447.5,458.0: much larger volumes of information. Consequently, people’s minds are free for other cognitive feats,
+67.9,460.5,471.0: such as connecting data, learning new information, or solving problems.
+61.9,485.5,496.0: Filing Information Away
+67.9,510.5,521.0: The use of the Internet also appears to be modifying the strategies people use to store information in
+54.3,513.6,519.6: 4
+67.9,523.5,534.0: their mind. Researchers Betsy Sparrow from Columbia University, Jenny Liu from the University of
+67.9,536.5,547.0: Wisconsin-Madison, and Daniel Wegner from Harvard University conducted several studies to
+67.9,549.5,560.0: discover how people efficiently manage their information intake.
+67.9,574.5,585.0: To begin, the researchers examined how people evaluate which information deserves their effort to
+54.3,577.6,583.6: 5
+67.9,587.5,598.0: remember. For this experiment, participants read forty trivia facts, such as “An ostrich’s eye is bigger
+67.9,600.5,611.0: than its brain,” and typed the statements into a computer file. Half the participants had been
+67.9,613.5,624.0: previously told the file would be saved, while half believed it would be erased. Next, the participants
+67.9,626.5,637.0: wrote down every fact they could recall. Those who believed the information would be erased and no
+67.9,639.5,650.0: longer available could recall 40 percentmore facts than those who thought the information would
+67.9,652.5,663.0: be saved.
+67.9,677.5,688.0: In another experiment, the same researchers tested the ability of study participants to remember
+54.3,680.6,686.6: 6
+67.9,690.5,701.0: where to access information. For this trial, participants read and typed trivia statements, which they
+49.9,731.1,742.6: FORM B 22 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 160 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 22 ===
+67.9,57.0,67.5: saved in folders with generic names such as “Facts” and “Items.” After spending ten minutes writing
+67.9,70.0,80.5: down all the facts they could recall from memory, participants were asked which folder contained a
+67.9,83.0,93.5: particular fact based on a keyword. For example, “Which folder has the fact about ostriches?” Overall,
+67.9,96.0,106.5: participants recalled the information’s location more often than the content itself, correctly identifying
+67.9,109.0,119.5: 49 percentof the folders for specific facts while remembering only 23 percentof the actual trivia. The
+67.9,122.0,132.5: researchers concluded that our memory is adapting to the Internet age by prioritizing where to locate
+67.9,135.0,145.5: information even when the specific details are forgotten. According to Sparrow, the Internet has
+67.9,148.0,158.5: become an important form of transactive memory, an external source of the recollections and
+67.9,161.0,171.5: associative networks that constitute memory.
+67.9,186.0,196.5: As the Internet’s resources continue to expand our “external” memory, some question whether the
+54.3,189.0,195.0: 7
+67.9,199.0,209.5: process may cause people to depend too heavily on technology. However, Steven Pinker, a professor of
+67.9,212.0,222.5: psychology at Harvard University, says, “Knowledge is increasing exponentially; human brainpower
+67.9,225.0,235.5: and waking hours are not. Fortunately, the Internet and information technologies are helping us
+67.9,238.0,248.5: manage, search and retrieve our collective intellectual output at different scales, from Twitter and
+67.9,251.0,261.5: previews to e-books and online encyclopedias. Far from making us stupid, these technologies are the
+67.9,264.0,274.5: only things that will keep us smart.”
+260.3,293.3,303.3: HOW MEMORY WORKS
+323.2,312.4,322.4: Information is
+310.5,324.4,334.4: maintained through
+331.6,336.4,346.4: repetition.
+330.6,359.4,369.4: Rehearsal
+95.4,382.9,394.9: New Information Sensory Attention Short-Term Storage Long-Term
+193.0,396.9,406.9: Memory Memory Memory
+404.9,435.9,445.9: Retrieval
+322.2,445.8,455.8: Unrehearsed Some information
+321.2,457.8,467.8: information is may be forgotten
+330.7,469.8,479.8: forgotten. over time.
+49.9,520.0,530.5: 35. Which sentence from the passage suggests that using Internet search engines may lead people to
+73.9,533.0,543.5: rely less on their own ability to recall information?
+73.9,555.5,566.0: A. “In the past few decades, the Internet has become an integral component of daily life for many
+91.9,568.5,579.0: people.” (paragraph 1)
+73.9,585.0,595.5: B. “The Internet group was required to use the search engine Google to answer eight challenging
+91.9,598.0,608.5: trivia questions.” (paragraph 2)
+73.9,614.5,625.0: C. “Their results showed that 83 percentof the Internet group continued to consult Google in the
+91.9,627.5,638.0: second round, while only 63 percentof the memory group chose to do so.” (paragraph 2)
+73.9,644.0,654.5: D. “In the past, people used resources like encyclopedias to assist their memories; however, today
+91.9,657.0,667.5: the Internet, serving as a vast extended memory, allows people to digitally access and retrieve
+91.9,670.0,680.5: much larger volumes of information.” (paragraph 3)
+49.9,732.0,743.4: FORM B 23 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 161 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 23 ===
+49.9,67.1,77.6: 36. The details in paragraph 3 about cognitive offloading convey a central idea of the passage by
+73.9,89.6,100.1: E. suggesting that reliance on the Internet for information is inevitable.
+73.9,106.1,116.6: F. demonstrating how the methods used to store and find information have changed over time.
+73.9,122.6,133.1: G. explaining how encyclopedias and the Internet are similar sources of information.
+73.9,139.1,149.6: H. implying that more information can be understood now than ever before.
+49.9,183.4,193.9: 37. How do the details about the experiment described in paragraph 5convey a central idea of
+73.9,196.4,206.9: the passage?
+73.9,218.8,229.4: A. They suggest that the act of repeating information by typing it on a keyboard may improve a
+91.9,231.8,242.3: person’s memory.
+73.9,248.3,258.8: B. They explain that a person will forget information faster if the information is considered
+91.9,261.3,271.8: unimportant.
+73.9,277.8,288.3: C. They indicate that a person may start to forget details when the amount of information becomes
+91.9,290.8,301.3: overwhelming.
+73.9,307.3,317.8: D. They suggest that memory is affected by whether a person expects to have access to the
+91.9,320.3,330.8: information in the future.
+49.9,364.6,375.1: 38. The study described in paragraph 6influenced researchers’ ideas about memory in the digital age by
+73.9,387.1,397.6: E. highlighting instances when organizing detailed information made it easier to remember.
+73.9,403.6,414.1: F. confirming that keywords can be remembered more easily than large amounts of information.
+73.9,420.1,430.6: G. identifying a shift in focus from remembering specific information to knowing where to find it.
+73.9,436.6,447.1: H. emphasizing that remembering a basic idea is more important than storing detailed information.
+49.9,480.9,491.4: 39. Which evidence from the passage is most relevant to the claim in paragraph 7that “ ‘farfrom
+73.9,493.9,504.4: making us stupid, these technologies are the only things that will keep us smart’ ”?
+73.9,516.4,526.9: A. the revelation that most people opted to use the Internet to answer relatively easy trivia
+91.9,529.4,539.9: questions rather than relying on their own brainpower (paragraph 2)
+73.9,545.9,556.4: B. the assertion that the storage of information on the Internet frees people to focus on higher-order
+91.9,558.9,569.4: tasks such as problem solving (paragraph 3)
+73.9,575.4,585.9: C. the connection between how people organize information in their mind and their ability to recall
+91.9,588.4,598.9: that information (paragraph 5)
+73.9,604.9,615.4: D. the description of transactive memory as an expansive external source that people can use to
+91.9,617.9,628.4: store information (paragraph 6)
+49.9,732.3,743.8: FORM B 24 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 162 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 24 ===
+49.9,67.1,77.6: 40. Read this sentence from paragraph 7.
+100.9,92.1,102.6: As the Internet’s resources continue to expand our “external” memory, some question
+100.9,105.1,115.6: whether the process may cause people to depend too heavily on technology.
+73.9,130.1,140.6: How does the sentence contribute to the structure and development of ideas in the passage?
+73.9,152.6,163.1: E. It presents a claim about the risks of relying on the Internet that prompted the research
+91.9,165.6,176.1: described in paragraphs 2and 6.
+73.9,182.1,192.6: F. It contrasts a disadvantage of relying on the Internet with the benefits of Internet use that are
+91.9,195.1,205.6: described in paragraphs 2and 6.
+73.9,211.6,222.1: G. It signals a shift from a neutral viewpoint in paragraphs 2and 6 to a presentation of an
+91.9,224.6,235.1: argument and a counterargument.
+73.9,241.1,251.6: H. It introduces a counterargument and marks a transition from an optimistic tone in paragraphs 2
+91.9,254.1,264.6: and 6 to a cautious tone as the counterargument is developed.
+49.9,298.4,308.9: 41. The effect of the Internet on a person’s memory is illustrated in the passage through the presentation
+73.9,311.4,321.9: of studies that
+73.9,333.9,344.4: A. examine how the use of search engines changes the way people evaluate and store information
+91.9,346.9,357.4: for future access.
+73.9,363.4,373.9: B. highlight the difference between the capacity of the Internet and the ability of the human brain
+91.9,376.4,386.9: to locate information.
+73.9,392.9,403.4: C. compare the type of information that can be obtained from the Internet with the type of
+91.9,405.9,416.4: information that is stored in the human brain.
+73.9,422.4,432.9: D. emphasize the ease of obtaining information through search engines rather than recalling it
+91.9,435.4,445.9: from memory.
+49.9,480.9,491.4: 42. How does the diagram provide additional support for the topic presented in the passage?
+73.9,503.4,513.9: E. It reveals why human brains must adapt to obtaining information from the Internet as opposed
+91.9,516.4,526.9: to other sources.
+73.9,532.9,543.4: F. It indicates how people can use the Internet to help improve their long-term recollection of
+91.9,545.9,556.4: information.
+73.9,562.4,572.9: G. It shows how study participants’ brains distinguished between important and
+91.9,575.4,585.9: unimportant details.
+73.9,591.9,602.4: H. It depicts the idea that repetition and rehearsal are necessary to recall information when tools
+91.9,604.9,615.4: such as search engines are unavailable.
+49.9,732.3,743.8: FORM B 25 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 163 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 25 ===
+67.9,68.7,79.2: The Great Serpent Mound, located in Adams County, Ohio, is a human-made mound of earth that
+67.9,81.7,92.2: researchers believe was created between 300 B.C.and A.D.1100 by an indigenous culture.
+256.6,109.6,125.6: Serpent Mound
+67.9,138.7,149.2: Ohio, 1846
+67.9,163.7,174.2: Brush Creek stood low when the museum men came
+67.9,176.7,187.2: with their measuring tapes and sketchbooks.
+82.5,189.7,200.2: It was winter. Fringed with ice,
+82.5,202.7,213.2: the creek doubled back on itself
+67.9,215.7,226.2: as if it had forgotten something.
+54.3,218.8,224.8: 5
+82.5,228.7,239.2: Pa was in Cincinnati, or else on his way home,
+97.1,241.7,252.2: so Ma told me to lead the men
+97.1,254.7,265.2: into the marshy low grounds. It being winter,
+111.7,267.7,278.2: there was little underbrush to speak of—
+111.7,280.7,291.2: in the summer there would have been
+52.6,283.8,289.8: 10
+97.1,293.7,304.2: briars, poison ivy, biting flies. I listened
+67.9,306.7,317.2: for the swishof a beaver’s heavy tail,
+88.4,319.7,330.2: the chitter of a chickadee, or the cry of a hawk,
+88.4,332.7,343.2: but the winter silence of the creek pressed
+88.4,345.7,356.2: down on all of us like a weight.
+52.6,348.7,354.7: 15
+67.9,358.7,369.2: The humps in the ground were all but
+67.9,371.7,382.2: invisible until you were right up on them. The figure
+67.9,384.7,395.2: was even less obvious: the sinuous body,
+88.4,397.7,408.2: the tail coiled three times around,
+88.4,410.7,421.2: and at the other end, the mouth wide open.
+52.6,413.7,419.7: 20
+97.1,423.7,434.2: In the summer the creek bottom was crowded
+97.1,436.7,447.2: with so much life that you could trip over
+111.7,449.7,460.2: the ridges of earth before you saw
+111.7,462.7,473.2: anything at all. In winter you could climb
+111.7,475.7,486.2: a tree and get some idea of the whole thing:
+52.6,478.7,484.7: 25
+97.1,488.7,499.2: the serpent’s body undulating, slithering
+67.9,501.7,512.2: silently across the ancient
+88.4,514.7,525.2: earth. At the mouth end, there was an oval mound
+88.4,527.7,538.2: as if the snake were about to swallow an egg—
+67.9,540.7,551.2: as snakes sometimes did in our rickety
+52.6,543.7,549.7: 30
+67.9,553.7,564.2: henhouse—my Pa always said, or
+67.9,566.7,577.2: as if swallowing the sun, one of the museum
+82.5,579.7,590.2: men suggested, taking notes with his quill pen,
+82.5,592.7,603.2: an old-style inkhorn slung at his side.
+82.5,605.7,616.2: I liked that: swallowing the sun,
+52.6,608.7,614.7: 35
+97.1,618.7,629.2: just the sort of thing a snake might do,
+97.1,631.7,642.2: might want to do. When, later, I told my sister Ruth,
+111.7,644.7,655.2: she disagreed. It is singing to the sun,
+111.7,657.7,668.2: she insisted. That is why its mouth
+97.1,670.7,681.2: is wide open. She said, “Sometimes I think
+52.6,673.7,679.7: 40
+67.9,683.7,694.2: I hear it on summer nights. Not swallowing, singing.”
+49.9,732.3,743.8: FORM B 26 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 164 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 26 ===
+50.7,71.9,82.4: 43. Lines 1–2 contribute to the development of ideas in the poem by
+74.7,94.4,104.9: A. suggesting that the men are too busy with their work to talk to the speaker.
+74.7,110.9,121.4: B. helping establish the reason for the men’s visit and purposeful behavior.
+74.7,127.4,137.9: C. hinting that the men have hidden motives for studying the mound.
+74.7,143.9,154.4: D. indicating why the speaker is fascinated by the men and wants to help them.
+50.7,188.2,198.7: 44. What impact do the words “swish,” “chitter,” and “cry” in lines 12–13have in the poem?
+74.7,210.6,221.2: E. They illustrate how lively the mound’s surroundings are during the summer.
+74.7,227.1,237.7: F. They show how the mound disrupts natural life in the marsh.
+74.7,243.6,254.2: G. They indicate the variety of wildlife found in the area around the mound.
+74.7,260.1,270.7: H. They suggest that the speaker prefers the mound’s appearance in winter.
+50.7,304.4,314.9: 45. Which lines reveal how the setting affects the speaker and the men from the museum?
+74.7,326.9,337.4: A. “so Ma told me to lead the men /into the marshy low grounds.”(lines 7–8)
+74.7,343.4,353.9: B. “It being winter, / there was little underbrush to speak of—”(lines 8–9)
+74.7,359.9,370.4: C. “but the winter silence of the creek pressed /down on all of us like a weight.” (lines 14–15)
+74.7,376.4,386.9: D. “The humps in the ground were all but /invisible until you were right up on them.”(lines 16–17)
+50.7,420.7,431.2: 46. What impact do the phrases “all but / invisible” and “even less obvious” in lines 16–18have on the
+74.7,433.7,444.2: meaning of the poem?
+74.7,456.2,466.7: E. They indicate that viewing the full size and shape of the mound is difficult.
+74.7,472.7,483.2: F. They suggest that the location of the mound is unknown to most people.
+74.7,489.2,499.7: G. They imply that the speaker wants the location of the mound to remain a secret.
+74.7,505.7,516.2: H. They reveal that the speaker is unfamiliar with the significance of the mound.
+50.7,550.0,560.5: 47. Read line 28 from the poem.
+101.7,575.0,585.5: At the mouth end, there was an oval mound
+74.7,600.0,610.5: How does the line contribute to the development of ideas in the poem?
+74.7,622.5,633.0: A. It describes a feature of the mound that the men from the museum need to document.
+74.7,639.0,649.5: B. It introduces a comparison of the body of the mound with the head of the mound.
+74.7,655.5,666.0: C. It introduces a feature of the mound that has a different meaning to different people.
+74.7,672.0,682.5: D . It describes a part of the mound that is difficult to see from far away.
+50.7,737.1,748.6: FORM B 27 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 165 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 27 ===
+49.9,65.9,76.4: 48. The poet contrasts the speaker’s and Ruth’s points of view regarding the mound by using dialogue to
+73.9,88.4,98.9: E. imply that Ruth knows her interpretation of the mound is abstract.
+73.9,104.9,115.4: F. indicate that Ruth hopes the men from the museum will agree with her interpretation of
+91.9,117.9,128.4: the mound.
+73.9,134.4,144.9: G. suggest that Ruth wants the speaker to agree with her interpretation of the mound.
+73.9,150.9,161.4: H. show that Ruth has already decided on her interpretation of the mound.
+49.9,195.2,205.7: 49. How does the poem’s form contribute to the poem’s meaning?
+73.9,217.6,228.2: A. The use of one continuous stanza and the pattern of the lines mimic the long and winding shape
+91.9,230.6,241.1: of the mound.
+73.9,247.1,257.7: B. The uneven line lengths emphasize the variety of ways people interpret the meaning of
+91.9,260.1,270.6: the mound.
+73.9,276.6,287.2: C. The dashes throughout the poem highlight the speaker’s changing thoughts about the
+91.9,289.6,300.1: significance of the mound.
+73.9,306.1,316.6: D. The lack of a regular rhyme scheme and meter convey that the speaker struggles to comprehend
+91.9,319.1,329.6: the vastness of the mound.
+49.9,363.4,373.9: 50. How does the speaker’s interaction with Ruth in lines 37–41convey a central idea of the poem?
+73.9,385.9,396.5: E. It suggests that the most accurate interpretations of the mound come from knowing the purpose
+91.9,399.0,409.5: of the mound.
+73.9,415.4,426.0: F. It emphasizes that there are multiple interpretations of the mound based on feelings and
+91.9,428.5,439.0: experiences.
+73.9,445.0,455.5: G. It reveals the benefit of considering different interpretations of the mound’s significance.
+73.9,461.5,472.0: H. It implies that scientific study of the mound’s purpose will affect what the mound symbolizes
+91.9,474.5,485.0: to people.
+49.9,731.1,742.6: FORM B 28 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 166 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 28 ===
+206.0,357.0,367.7: CONTINUE ON TO THE NEXT PAGE c
+49.9,711.4,721.9: FORM B 29
+49.6,756.7,767.7: FORM B 167 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 29 ===
+136.9,71.6,87.6: Massachusetts: Lowell National Historical Park
+67.9,100.7,111.2: During the first half of the 19th century, Lowell, Massachusetts, quickly transformed itself from a
+54.3,103.8,109.8: 1
+67.9,113.7,124.2: farm town to a bustling industrial city. In time, Lowell became a model of industry, gaining global
+67.9,126.7,137.2: recognition for its state-of-the-arttechnology, innovative canal and dam system, mill architecture,
+67.9,137.6,150.2: boardinghouses, churches, and ethnic neighborhoods. Young Yankee1women, immigrant families, and
+67.9,152.7,163.2: European tourists all flocked to Lowell to find work at one of the many textile mills, or visit the
+67.9,165.7,176.2: industrious city that was becoming a popular tourist destination. As one Scottish traveler observed
+67.9,176.6,189.2: during his visit to America, “Niagara2and Lowell are the two objects I will longest remember in my
+67.9,191.7,202.2: American journey, the one the glory of American scenery, the other of American industry.” Today,
+67.9,204.7,215.2: Lowell National Historical Park welcomes visitors to enjoy the sights of Lowell and learn about the
+67.9,217.7,228.2: history of one of America’s most significant industrial cities.
+67.9,242.7,253.2: The Boston merchants who founded Lowell in 1821 and named it after Francis Cabot Lowell chose to
+54.3,245.8,251.8: 2
+67.9,255.7,266.2: locate the town along Massachusetts’s Merrimack River to take advantage of the kinetic energy
+67.9,268.7,279.2: offered by the Pawtucket waterfalls. Over six miles of canals powered the waterwheels of Lowell’s
+67.9,281.7,292.2: mills, whose massive five- and six-storybrick buildings dominated the city’s landscape. . . .The most
+67.9,294.7,305.2: recognized of these buildings are the Lowell Manufacturing Company chartered in 1821, the Suffolk or
+67.9,307.7,318.2: Wannalancit Mill completed around the 1880s, the Boott Mill Company established in 1835, and the
+67.9,320.7,331.2: Boott Mill Boardinghouse that opened in 1838. By the 1850s, 40 textilemills employing over 10,000
+67.9,333.7,344.2: workers stretched for about a mile along the river. . . .
+67.9,358.7,369.2: The city’s female workforce was significant in the history of Lowell. From the early to mid-1800s,
+54.3,361.8,367.8: 3
+67.9,371.7,382.2: women left the constricted lifestyle of small rural towns and rural areas for independent industrial
+67.9,384.7,395.2: city life. Most were young single Yankee girls, who were tired of the limited opportunities offered by
+67.9,395.6,408.2: their domestic work.3Women found that Lowell’s mills offered monthly wages for their services and
+67.9,410.7,421.2: provided them room and board. Although these women gained economic independence in Lowell, the
+67.9,423.7,434.2: mill boardinghouse keepers constantly supervised their social activities, for which they hardly had
+67.9,436.7,447.2: any time, considering their daily 12- to 14-hourwork schedules. At the end of the day, the factory bell
+67.9,449.7,460.2: signaled the “mill girls” to return to their boardinghouses. They were expected to adhere to the strict
+67.9,462.7,473.2: code of conduct respecting curfew and attending church.
+67.9,487.7,498.2: Yankee “mill girls” continued to dominate the Lowell workforce until the 1840s, when the city began to
+54.3,490.8,496.8: 4
+67.9,500.7,511.2: find it difficult to compete with the growing industrial development in other New England
+67.9,513.7,524.2: communities. As profits fell, the mill industry cut wages. These wage cuts, deteriorating working
+67.9,526.7,537.2: conditions, and long workdays led the “mill girls” to protest and organize strikes. When their demands
+67.9,539.7,550.2: went unheard, the women left Lowell, and immigrant groups replaced them in the workforce. Despite
+67.9,552.7,563.2: the low wages and unhealthy work conditions, immigrants were eager to find work.
+67.9,577.7,588.2: The immigrants replacing the Yankee “mill girls” during the 1840s were predominantly Irish
+54.3,580.8,586.8: 5
+67.9,590.7,601.2: Catholics, who traveled to America during the Great Potato Famine. Although Lowell received an
+67.9,603.7,614.2: influx of Irish families during this time, the Irish were a part of the city’s history from its birth, and
+67.9,616.7,627.2: before the “mill girls” arrived, they built Lowell’s historic canals, mills, and boardinghouses. Initially,
+61.9,645.8,658.3: 1Yankee:native to New England
+61.9,664.8,677.3: 2Niagra:a town in northwestern New York State well known as the location of Niagara Falls, a series of
+61.9,679.3,689.3: waterfalls on the Canadian border
+61.9,695.8,708.3: 3domestic work:household duties like cooking and cleaning
+49.9,732.3,743.8: FORM B 30 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 168 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 30 ===
+66.9,59.4,69.9: Lowell’s Protestant community was slow to welcome Irish immigrants, but the hostility between
+66.9,72.4,82.9: Yankee Protestants and Irish Catholics eventually disappeared. Irish immigrants dominated the
+66.9,85.4,95.9: industrial scene until the Civil War, when other immigrant groups began to work in the city mills.
+66.9,110.4,120.9: Like the Irish, the French-Canadians, Greeks, Poles, Portuguese, Russian Jews, and Armenians who
+53.3,113.5,119.5: 6
+66.9,123.4,133.9: came to work in Lowell’s mills faced long work hours, low wages, and poor living conditions in the
+66.9,136.4,146.9: city’s crowded tenements. By the time Lowell’s industry declined, the city had become an ethnic
+66.9,149.4,159.9: melting pot, where each group claimed its own distinct neighborhood, like the Irish immigrants’ “New
+66.9,162.4,172.9: Dublin” or “Acre,” and the French-Canadians’ “Little Canada.” The city officially began to close down
+66.9,175.4,185.9: its mills in the 1920s and ’30s after Lowell’s outdated mills could no longer compete against the
+66.9,188.4,198.9: state-of-the-artcotton mills in other communities and working conditions continued to decline as
+66.9,201.4,211.9: Lowell’s companies stopped reinvesting in their mills. . . .Despite a brief resurgence during World
+66.9,214.4,224.9: War II,the city shut down its last surviving mill by the mid-1950s.
+60.9,251.0,260.0: From “Massachusetts: Lowell National Historical Park”—Public Domain/National Park Service
+48.9,292.9,303.4: 51. Read this sentence from paragraph 1.
+99.9,317.9,328.4: As one Scottish traveler observed during his visit to America, “Niagara and Lowell
+99.9,330.9,341.4: are the two objects I will longest remember in my American journey, the one the
+99.9,343.9,354.4: glory of American scenery, the other of American industry.”
+72.9,368.9,379.4: The author most likely includes the quotation from the Scottish traveler in order to
+72.9,391.4,401.9: A. suggest that people around the world saw the direct contribution of nature and industry to the
+90.9,404.4,414.9: United States.
+72.9,420.9,431.4: B. compare the natural and industrial attractions in the United States at that time.
+72.9,437.4,447.9: C. convey the idea that the United States offered both natural and industrial attractions.
+72.9,453.9,464.4: D. imply that the natural resources in the United States contributed to the development of industry.
+48.9,498.1,508.6: 52. Which sentence from paragraph 2 best supports the idea that Lowell became “a bustling industrial
+72.9,511.1,521.6: city” (paragraph 1)?
+72.9,533.6,544.2: E. “The Boston merchants who founded Lowell in 1821 and named it after Francis Cabot Lowell
+90.9,546.7,557.2: chose to locate the town along Massachusetts’s Merrimack River to take advantage of the kinetic
+90.9,559.7,570.2: energy offered by the Pawtucket waterfalls.”
+72.9,576.1,586.7: F. “Over six miles of canals powered the waterwheels of Lowell’s mills, whose massive five- and
+90.9,589.2,599.7: six-storybrick buildings dominated the city’s landscape.”
+72.9,605.7,616.2: G. “The most recognized of these buildings are the Lowell Manufacturing Company chartered in
+90.9,618.7,629.2: 1821, the Suffolk or Wannalancit Mill completed around the 1880s, the Boott Mill Company
+90.9,631.7,642.2: established in 1835, and the Boott Mill Boardinghouse that opened in 1838.”
+72.9,648.2,658.7: H. “By the 1850s, 40 textile mills employing over 10,000 workers stretched for about a mile along
+90.9,661.2,671.7: the river.”
+48.9,734.4,745.8: FORM B 31 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 169 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 31 ===
+49.9,65.9,76.4: 53. Read this sentence from paragraph 3.
+100.9,90.9,101.4: From the early to mid-1800s, women left the constricted lifestyle of small rural towns
+100.9,103.9,114.4: and rural areas for independent industrial city life.
+73.9,128.9,139.4: Which statement best describes how the sentence fits into the overall structure of the passage?
+73.9,151.4,161.9: A. It provides a transition from a description of the mills to a description of the workforce in
+91.9,164.4,174.9: those mills.
+73.9,180.9,191.4: B. It indicates a shift in tone from positive and hopeful to negative and dissatisfied with working
+91.9,193.9,204.4: conditions at the mill.
+73.9,210.4,220.9: C. It presents the circumstances that led many women to leave their hometown and move to the city
+91.9,223.4,233.9: for work.
+73.9,239.9,250.4: D. It begins a comparison of the mill workforce between the mid-1800sand the late 1800s.
+49.9,284.2,294.7: 54. Which sentence best summarizes the mill girls’ time as the dominant workforce in Lowell?
+73.9,306.7,317.2: E. The mill girls were eager to leave their domestic duties and small towns behind, so they went to
+91.9,319.7,330.2: work in the mills of Lowell.
+73.9,336.2,346.7: F. Originally, the mill girls were satisfied to work in Lowell, but as they left their jobs at the Lowell
+91.9,349.2,359.7: mills, immigrants arrived to fill the empty positions.
+73.9,365.7,376.2: G. Young women left home to work in the Lowell mills, but the mill girls soon became dissatisfied
+91.9,378.7,389.2: with the working conditions and rigid boardinghouse rules.
+73.9,395.2,405.7: H. The mill girls embraced city life when they came to work in Lowell’s mills, but when the working
+91.9,408.2,418.7: conditions became unfavorable and the mill girls’ protests went unanswered, they left.
+49.9,452.4,462.9: 55. Read this sentence from paragraph 5.
+100.9,477.4,487.9: Although Lowell received an influx of Irish families during this time, the Irish were
+100.9,490.4,500.9: a part of the city’s history from its birth, and before the “mill girls” arrived, they
+100.9,503.4,513.9: built Lowell’s historic canals, mills, and boardinghouses.
+73.9,528.4,538.9: How does this sentence contribute to the development of ideas in the passage?
+73.9,550.9,561.5: A. It implies that Lowell was founded by early Irish immigrants.
+73.9,567.4,578.0: B. It emphasizes the important role Irish immigrants played in Lowell’s history.
+73.9,584.0,594.5: C. It suggests that the new Irish immigrants were readily accepted into the community.
+73.9,600.5,611.0: D. It highlights the working relationship between the mill girls and the new Irish immigrants.
+49.9,731.1,742.6: FORM B 32 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 170 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 32 ===
+49.5,64.7,75.2: 56. A central idea that Lowell was “one of America’s most significant industrial cities” (paragraph 1)is
+73.5,77.7,88.2: conveyed in the passage primarily through a description of the
+73.5,100.2,110.7: E. canals, mills, and boardinghouses that were built by immigrants.
+73.5,116.7,127.2: F. mill girls and immigrants who comprised Lowell’s workforce.
+73.5,133.2,143.7: G. development of the mills and the workforce established to support them.
+73.5,149.7,160.2: H. cultural diversity of the people who lived in the area.
+49.5,194.0,204.5: 57. The reason Lowell lost its status as an industrial leader is best illustrated through the
+73.5,216.5,227.0: A. description of poor living and working conditions.
+73.5,233.0,243.5: B. explanation for why some immigrant groups struggled to live together.
+73.5,249.5,260.0: C. comparison with other mills that used modern methods.
+73.5,266.0,276.5: D. information about the mills opening temporarily during World War II.
+49.5,729.9,740.4: FORM B 33
+49.6,756.7,767.7: FORM B 171 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 33 ===
+178.4,63.5,87.5: P 2 — M
+193.4,68.0,86.0: ART ATHEMATICS
+264.1,94.9,108.9: 57 QUESTIONS
+258.0,129.3,139.8: IMPORTANT NOTES
+49.9,148.0,158.5: (1) Formulas and definitions of mathematical terms and symbols are notprovided.
+49.9,166.5,177.0: (2) Diagrams other than graphs are notnecessarily drawn to scale. Do not assume any relationship in a
+67.9,179.0,189.5: diagram unless it is specifically stated or can be determined from the information given.
+49.9,197.5,208.0: (3) Assume that a diagram is in one plane unless the question specifically states that it is not.
+49.9,216.0,226.5: (4) Graphs are drawn to scale. Unless stated otherwise, you can assume relationships according to
+67.9,228.5,239.0: appearance. For example, lines on a graph that appear to be parallel can be assumed to be parallel.
+67.9,241.0,251.5: This is also true for concurrent lines, straight lines, collinear points, right angles, etc.
+49.9,259.5,270.0: (5) Reduce (simplify) all fractions to lowest terms.
+206.0,397.5,408.2: CONTINUE ON TO THE NEXT PAGE c
+49.9,751.9,763.4: FORM B 34 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 172 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 34 ===
+227.0,66.7,86.7: G -I Q
+242.6,70.5,85.5: RID N UESTIONS
+252.4,94.1,108.1: QUESTIONS 58–62
+49.9,115.4,126.1: DIRECTIONS: Solve each question. On the answer sheet, write your answer in the boxes at the top of the
+49.9,128.1,138.6: grid. Start on the left side of each grid. Print only one number or symbol in each box. Under each box, fill
+49.9,140.6,151.1: in the circle that matches the number or symbol you wrote above. DO NOT FILL IN A CIRCLE
+49.9,153.1,163.6: UNDER AN UNUSED BOX.DO NOT LEAVE A BOX BLANK IN THE MIDDLE OF AN ANSWER.
+49.9,186.9,196.9: 58. 60. A kindergarten teacher has 72 crayons,
+153.9,198.9,211.8: LAST YEAR’S 60 pencils, and 84 sheets of paper to distribute
+349.9,210.9,220.9: to the children in her class. If each child
+152.4,215.8,225.8: TOTAL SALES
+349.9,222.9,232.9: receives an equal number of each item and
+349.9,234.9,244.9: there are no items remaining, what is the
+139.8,238.5,248.5: Vehicles Number
+349.9,246.9,256.9: greatest possible number of children in
+127.6,255.0,265.0: Four-door cars 5,850
+349.9,258.9,268.9: the class?
+127.6,271.5,281.5: Two-door cars 2,250
+127.6,288.0,298.0: Trucks 900
+127.6,304.5,314.5: Total 9,000
+79.9,332.5,342.5: The table above shows the number of each
+79.9,344.5,354.5: type of vehicle sold at a dealership last year. If
+319.9,351.0,361.0: 61. Mr. Smith opened a retirement account with a
+79.9,356.5,366.5: 1,000 vehicles will be sold next month, what is
+349.9,363.0,373.0: deposit of $900. This account earns 5% simple
+79.9,368.5,378.5: the best estimate (based on last year’s sales) of
+349.9,375.0,385.0: interest annually. How many years will it take
+79.9,380.5,390.5: the number of two-door cars that will be sold?
+349.9,387.0,397.0: for his $900 deposit to earn $360 interest?
+49.9,472.5,482.5: 59. In a scale drawing of a rectangular garden,
+319.9,478.8,488.8: 62. Solve the equation for x:
+79.9,484.5,494.5: the length is 15 inches and the width is
+79.9,496.5,506.5: 9 inches. In the drawing, 2 inches represents
+79.9,505.8,521.5: 3 yards. What is the width of the actual (21)(14)x = 0.875
+79.9,518.2,530.5: garden, in yards? (49)(48)
+49.9,732.1,743.6: FORM B 35 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 173 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 35 ===
+186.6,69.4,89.4: M C Q
+203.3,73.3,88.3: ULTIPLE HOICE UESTIONS
+248.5,94.3,108.3: QUESTIONS 63–114
+49.9,118.1,128.9: DIRECTIONS: Solve each question. Select the best answer from the choices given. Mark the letter of your
+49.9,130.9,141.4: answer on the answer sheet. When you are solving questions, you can write in the test booklet or on the
+49.9,143.4,153.9: scrap paper given to you.
+49.9,180.1,190.2: 63. Two glasses can hold the same amount of 65. Solve for xin terms of yif 2x+ 4 = y.
+164.0,195.3,205.3: 1
+79.9,200.1,210.1: liquid. Glass A is filled, and Glass B is
+164.4,207.0,217.0: 2
+81.5,215.3,225.8: 1 y−4
+93.3,220.1,231.0: filled. If the liquid in Glass B is poured into A. x =
+81.8,227.0,237.8: 3 2
+79.9,240.1,250.1: Glass A, what fraction of Glass A will then
+349.9,249.8,259.8: B. x = 2(y+ 4)
+79.9,260.1,270.1: be filled?
+393.3,273.4,283.4: y+ 4
+349.9,278.6,288.6: C. x =
+402.3,285.4,295.4: 2
+101.6,297.1,307.1: 5
+79.9,301.0,311.0: A.
+101.5,307.5,318.8: 6 D. x = 2(4− y)
+101.7,326.8,336.8: 4
+79.9,330.6,340.6: B.
+101.8,338.4,348.4: 5
+319.9,351.2,361.2: 66. Bryan completed a 100-meter race in
+101.8,356.4,366.4: 3
+79.9,360.3,373.2: C. 11.74 seconds. Luis completed the same race
+101.7,368.1,378.1: 4
+349.9,375.2,385.2: in 11.69 seconds. What was the difference
+79.9,386.1,399.9: D. 1 between their times, expressed as a fraction of
+101.5,397.7,409.2: 5 a second?
+49.9,434.5,446.2: 64. On Fran’s map, 2 centimeters represents 1
+349.9,440.1,450.1: E.
+79.9,446.5,457.9: 3 kilometers. The points on this map that 20
+79.9,458.5,468.5: represent Fran’s home and Bryant State Park
+373.7,465.9,475.9: 1
+79.9,469.7,480.5: are 4.5 centimeters apart. How many F.
+370.9,477.5,487.5: 10
+79.9,482.5,492.5: kilometers apart are Fran’s home and Bryant
+79.9,494.5,505.5: State Park, to the nearest kilometer? 3
+349.9,499.4,509.4: G.
+371.7,507.2,517.2: 20
+79.9,517.5,527.5: E. 3
+371.2,525.2,535.2: 1
+79.9,529.0,540.5: F. 5 H.
+371.5,536.8,546.8: 5
+79.9,543.5,553.5: G. 7
+79.9,556.5,566.5: H. 9
+417.2,568.8,578.8: 1
+319.9,573.6,583.6: 67. A recipe uses teaspoon of salt and
+417.4,580.4,590.4: 4
+359.7,588.8,598.8: 1
+351.7,593.6,603.6: 2 teaspoons of sugar. What is the ratio of
+360.1,600.4,610.4: 2
+349.9,613.6,623.6: salt to sugar in this recipe?
+349.9,636.6,646.6: A. 1:20
+349.9,649.6,659.6: B. 1:10
+349.9,662.6,672.6: C. 1:5
+349.9,675.6,685.6: D. 1:4
+49.9,733.4,744.8: FORM B 36 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 174 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 36 ===
+206.8,72.8,85.7: 207 71. Each number in a sequence is 3 more than
+49.9,80.5,90.5: 68. n = 0.13+
+206.3,84.8,97.3: 100 twice the number that comes just before it. If
+349.9,96.8,106.8: 93 is a number in the sequence, what number
+349.9,108.8,118.8: comes just before it?
+79.9,113.5,123.5: What is the value of nexpressed as a fraction?
+349.9,131.8,141.8: A. 92
+349.9,144.8,154.9: B. 90
+101.2,150.5,160.5: 1
+79.9,154.3,164.3: E.
+349.9,157.8,167.9: C. 48
+101.5,162.1,172.1: 3
+349.9,170.8,180.9: D. 45
+100.9,180.1,190.1: 11
+79.9,184.0,194.0: F.
+103.9,191.7,201.7: 5
+101.7,209.8,219.8: 9
+79.9,213.6,224.6: G. 72. On a map, the distance between Deshawn’s
+101.7,221.4,231.4: 4
+349.9,226.6,236.6: house and Xin’s house is 5.4 inches. If 2 inches
+101.7,238.6,249.4: 23 on the map represents 3 miles, what is the
+79.9,243.3,253.3: H.
+101.2,250.6,261.1: 10 distance between these two houses, in miles?
+349.9,276.6,286.6: E. 2.6
+49.9,287.9,299.6: 69. The perimeter of a 12-sided polygon is F. 3.6
+79.9,299.9,312.6: 100 centimeters. The length of one side is G. 7.5
+79.9,311.9,321.9: 25 centimeters. The length of another side is
+349.9,315.6,325.6: H. 8.1
+79.9,323.9,333.9: 35 centimeters. The remaining sides are equal
+79.9,335.9,345.9: in length to one another. What is the length of
+79.9,347.9,357.9: each of the remaining sides, in centimeters?
+319.9,359.4,369.4: 73.
+79.9,370.9,380.9: A. 4
+79.9,383.9,393.9: B. 5
+79.9,396.9,406.9: C. 20
+79.9,409.9,419.9: D. 40
+49.9,453.6,463.6: 70. Shiow-Chen has a box that contains 4 green
+79.9,465.6,475.6: cards, 7 yellow cards, and 6 red cards. She
+79.9,477.6,487.6: randomly draws one card at a time from the
+79.9,489.6,501.1: box and does not return the cards to the box This wheel has 15 spokes, equally spaced.
+79.9,501.6,513.1: after they have been drawn. The first card she What is the measure of the angle between
+79.9,513.6,525.1: draws is yellow. The second card she draws is adjacent spokes?
+79.9,525.6,535.6: green. What is the probability that the third
+79.9,537.6,548.1: card she draws will also be green? A. 30°
+349.9,551.1,561.1: B. 24°
+349.9,564.1,574.1: C. 15°
+79.9,574.6,588.5: E. 1 D. 12°
+101.5,586.3,596.3: 5
+103.8,604.4,614.4: 4
+79.9,608.4,618.4: F.
+100.9,616.1,626.1: 17
+101.5,634.3,644.3: 1
+79.9,638.2,648.2: G.
+101.7,645.9,655.9: 4
+101.2,664.1,674.1: 1
+79.9,668.0,678.0: H.
+101.5,675.7,685.7: 3
+49.9,734.8,746.3: FORM B 37 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 175 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 37 ===
+49.9,70.4,83.1: 74. m · t = 72 77. Five consecutive numbers have a sum of 110.
+349.9,82.4,92.4: What is the leastof these consecutive
+349.9,94.4,104.4: numbers?
+79.9,100.1,110.1: For the equation above, what is the sum of the
+79.9,113.1,123.1: values of mwhen t =1, when t = 2, and
+349.9,117.4,127.4: A. 11
+79.9,126.1,136.1: when t = 3?
+349.9,130.4,140.4: B. 18
+349.9,143.4,153.4: C. 20
+79.9,149.1,159.1: E. 12
+349.9,156.4,166.4: D. 22
+79.9,162.0,172.1: F. 72
+79.9,175.1,185.1: G. 132
+79.9,188.1,198.1: H. 135
+319.9,198.5,210.2: 78. −mn
+434.6,211.5,223.5: (−m)(−n)
+451.0,227.2,237.2: mn
+49.9,231.8,241.8: 75.
+446.6,239.5,251.2: −mn
+435.4,253.5,265.5: (−m)(−n)
+349.9,280.2,290.2: If mand nare positive integers, how many
+101.6,290.9,302.2: 8 ft 4 ft of the five expressions above are equivalent
+349.9,304.2,314.2: to mn?
+349.9,327.2,337.2: E. 1
+178.6,333.0,342.0: 16 ft
+349.9,340.2,350.2: F. 2
+349.9,353.2,363.2: G. 3
+79.9,364.8,376.2: The diagram above shows a rectangle with an H. 4
+79.9,376.8,386.8: inscribed triangle. The triangle’s vertex and
+79.9,388.8,398.8: base touch the sides of the rectangle as shown.
+79.9,400.8,410.8: What is the total area of the shaded portion?
+443.9,412.7,420.2: 4 6
+438.0,415.8,425.8: 5 ×5
+79.9,420.7,433.8: A. 32 sq ft 79. 2 =
+449.1,429.2,439.2: 5
+79.9,436.8,446.8: B. 64 sq ft
+79.9,449.8,464.6: C. 96 sq ft A. 58
+79.9,462.8,477.6: D. 128 sq ft B. 510
+349.9,478.1,490.6: C. 512
+349.9,491.1,503.6: D. 522
+49.9,506.5,516.5: 76. Orange juice costs $2 per gallon, and
+79.9,518.5,528.5: grapefruit juice costs $3 per gallon. A recent
+79.9,530.5,540.5: shipment of equal amounts of the two types of
+79.9,542.5,552.5: juice costs a total of $250. How many gallons
+79.9,554.5,564.5: of orange juice are in the shipment?
+79.9,577.5,587.5: E. 50
+79.9,590.5,600.5: F. 62.5
+79.9,603.5,613.6: G. 100
+79.9,616.5,626.6: H. 125
+49.9,732.4,743.9: FORM B 38 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 176 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 38 ===
+49.9,70.4,80.4: 80. 83.
+151.6,85.4,95.4: FRUIT SOLD AT
+159.9,99.4,109.4: STORE XYZ 4
+440.1,116.1,125.6: x y x + y
+139.8,121.5,131.5: Fruit Number Sold
+130.8,138.0,148.0: Apples 8
+382.1,145.8,154.8: 0 24
+130.8,154.5,164.5: Bananas 6
+130.8,171.0,181.0: Cherries 12
+349.9,174.3,184.3: According to the number line above, what is
+130.8,186.3,197.5: Oranges 6 the value of y?
+130.8,204.0,214.0: Peaches ?
+349.9,209.3,219.4: A. 4
+130.8,220.5,232.4: Total 50 B. 12
+349.9,235.4,245.4: C. 14
+79.9,248.4,259.1: Peaches made up what percentage of the total D. 20
+79.9,261.1,271.1: number of pieces of fruit sold at Store XYZ,
+79.9,273.1,283.1: according to the table above?
+79.9,294.5,306.1: E. 18% 84. N = {6, 7,..., 21, 22}
+79.9,309.1,319.1: F. 28%
+79.9,322.1,332.8: G. 36% Set L (not shown) is a list of 25 consecutive
+79.9,334.8,345.1: H. 64% integers. The median of the integers in set N
+349.9,346.8,356.8: above is equal to the least integer in set L.
+349.9,358.8,368.8: What is the median of the integers in set L?
+49.9,378.9,388.9: 81. Carpenters laid a layer of insulation 6 inches
+349.9,384.7,394.8: E. 25
+79.9,390.9,400.9: thick to cover a rectangular attic floor that
+349.9,397.8,407.8: F. 26
+79.9,402.9,412.9: was 32 feet long and 20 feet wide. What was
+349.9,410.8,420.8: G. 27
+79.9,414.9,424.9: the volume, in cubic feet, of the insulation
+349.9,423.8,433.8: H. 28
+79.9,426.9,436.9: used to cover the floor?
+79.9,449.9,459.9: A. 160
+79.9,462.9,472.9: B. 320
+319.9,467.5,477.5: 85. The sum of the numbers x, y, and zis 40. The
+79.9,475.9,485.9: C. 640
+349.9,479.5,489.5: ratio of xto yis 1:2, and the ratio of yto zis
+79.9,488.9,501.5: D. 3,840 2:5. What is the value of y?
+349.9,514.5,524.5: A. 2
+349.9,527.5,537.5: B. 4
+49.9,532.5,542.5: 82. The town of Waterville covers an area of
+349.9,540.5,550.6: C. 8
+79.9,544.5,554.5: 50 square miles. In 2005, its population was
+79.9,553.5,566.5: 84,000. In 2006, its population had decreased D. 10
+79.9,568.5,578.5: so that the average population per square mile
+79.9,580.5,590.5: was equal to 1,500. What was the total
+79.9,592.5,602.5: decrease in population from 2005 to 2006?
+79.9,618.5,628.6: E. 7,500
+79.9,631.5,641.6: F. 8,400
+79.9,644.6,654.6: G. 9,000
+79.9,657.6,667.6: H. 9,200
+49.9,732.4,743.9: FORM B 39 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 177 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 39 ===
+49.9,71.6,81.6: 86. Which number could be the sum of 89.
+79.9,83.6,93.6: 4 consecutive integers?
+399.7,104.1,113.1: P Q R
+79.9,111.9,123.6: E. −12
+397.7,120.2,131.9: 1—1 3 5—1
+402.8,127.2,133.2: 3 6
+79.9,133.9,145.6: F. −10
+79.9,153.7,167.7: G. −8 On the number line above, how many units
+349.9,166.7,176.7: longer is QR than PQ?
+79.9,177.9,189.7: H. −4
+371.3,203.7,213.7: 1
+349.9,207.5,217.5: A.
+371.5,215.3,225.3: 6
+49.9,223.4,233.4: 87.
+371.3,233.3,243.3: 1
+120.2,237.1,248.4: PRICE OF A VIDEO GAME AT B.
+371.7,244.9,254.9: 2
+144.2,252.4,262.4: VARIOUS STORES
+371.7,263.0,273.0: 2
+349.9,266.8,276.8: C.
+91.9,274.6,284.8: Price of Video Game Number of Stores 3
+124.9,291.2,301.2: $10.99 5
+349.9,295.6,305.6: D. 3
+126.0,307.7,317.7: $11.99 2
+124.8,324.2,334.2: $12.99 1
+124.8,339.4,350.7: $13.99 4 90.
+79.9,369.1,379.1: The table above shows the price of a certain
+396.9,375.3,385.3: W X Y
+79.9,381.1,391.1: video game at 12 different stores. What is the
+79.9,393.1,403.1: median price of this video game?
+349.9,404.8,414.8: The distance from W to X is 70% of the
+79.9,416.1,426.8: A. $10.99 distance from W to Y. If the distance from X to
+79.9,428.8,439.1: B. $11.49 Y is 15 miles, what is the distance, in miles,
+79.9,440.8,452.1: C. $11.99 from W to X?
+79.9,455.1,465.1: D. $12.32
+349.9,463.8,473.8: E. 10.5
+349.9,476.8,486.8: F. 35
+349.9,489.8,499.8: G. 45
+49.9,498.8,508.9: 88. If xy = 30, what is the value of 10÷ x in
+349.9,502.8,512.8: H. 50
+79.9,511.8,521.8: terms of y?
+103.7,546.6,558.8: 1 91. There are 3 different highways from City W to
+79.9,552.7,563.6: E. y
+100.9,558.6,570.4: 10 City X, 4 different highways from City X to
+349.9,570.6,580.6: City Y, and 3 different highways from City Y
+101.2,578.5,588.5: 1
+79.9,582.3,593.3: F. y to City Z. How many different routes are there
+101.5,590.1,600.1: 3
+349.9,594.6,604.6: for a trip from City W to City X to City Y to
+349.9,606.6,616.6: City Z?
+79.9,611.1,621.1: G. 3y
+349.9,629.6,639.6: A. 10
+79.9,639.1,649.1: H. 10y
+349.9,642.6,652.6: B. 12
+349.9,655.6,665.6: C. 24
+349.9,668.6,678.6: D. 36
+49.9,733.6,745.1: FORM B 40 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 178 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 40 ===
+49.9,71.6,81.6: 92. In Center City, the ratio of people to dogs is 96. In a certain competition, 1 person finished in
+79.9,83.6,93.6: 4:1, and the ratio of dogs to cats is 3:2. What is first place, 5 people tied for second place,
+79.9,95.6,105.6: the ratio of people to cats? 10 people tied for third place, and the other
+349.9,107.6,117.6: 4,984 people did not place. What percentage of
+79.9,118.6,129.6: E. 2:1 the people in the competition placed first,
+79.9,131.6,141.7: F. 7:3 second, or third altogether?
+79.9,144.7,154.7: G. 6:1
+79.9,154.6,167.7: H. 12:1 E. 0.0032%
+349.9,167.7,177.7: F. 0.032%
+349.9,180.6,190.7: G. 0.32%
+349.9,193.6,203.7: H. 3.2%
+49.9,201.4,211.4: 93. The side length of square S is shorter than the
+79.9,213.4,223.4: side length of square T by 1 centimeter. The
+79.9,225.4,235.4: area of square S is 9 square centimeters. What
+79.9,237.4,247.4: is the difference, in square centimeters, 97. Angle A and angle B are complementary. If the
+79.9,249.4,259.4: between the area of square T and the area of measure of angle B is three times as great as
+79.9,261.4,271.4: square S? the measure of angle A, what is the measure
+349.9,273.4,283.4: of angle B?
+79.9,284.4,294.4: A. 3
+79.9,296.4,307.4: B. 7 A. 45°
+79.9,309.4,320.4: C. 8 B. 67.5°
+79.9,322.4,333.4: D. 10 C. 75°
+349.9,335.4,345.5: D. 135°
+49.9,367.2,377.2: 94. If xis an odd number, what is the sum of xand
+79.9,379.2,389.2: the next 2 odd numbers greater than x? 98. The height of a tree in 2013 is 300% of the
+349.9,391.2,401.2: height it was in 2003. By what percentage did
+349.9,403.2,413.2: its height increase over this ten-year period?
+79.9,409.2,419.2: E. x+ 4
+79.9,431.2,441.2: F. 2x+6
+382.8,443.2,453.2: 1
+349.9,447.1,458.0: E. 33 %
+79.9,453.2,464.8: G. 3x+3 3
+79.9,475.2,486.0: H. 3x+6 F. 100 %
+349.9,504.0,514.0: G. 200 %
+117.9,516.2,526.2: 1 1
+49.9,521.0,531.0: 95. How is − written as a single fraction?
+118.7,527.8,537.8: x 2x
+349.9,532.0,542.0: H. 300 %
+79.9,541.0,551.0: (Assume x ≠ 0.)
+104.1,575.8,586.0: 1 99. 1 gallon = 16 cups
+79.9,579.8,589.8: A.
+101.7,587.6,597.8: 2x 1 cup = 8 fluid ounces
+103.9,605.6,615.6: 1
+79.9,609.5,619.5: B. x
+101.5,614.8,627.2: 3x If 1 gallon = 2 fluid ounces, what is the value
+349.9,627.8,637.8: of x?
+108.6,635.3,645.3: 1
+79.9,638.4,649.1: C. −
+109.4,646.9,656.9: x
+349.9,652.3,662.3: A. 4
+79.9,664.9,678.8: D. − 1 B. 7
+108.8,676.6,688.3: 2x C. 8
+349.9,691.3,701.3: D. 64
+49.9,733.6,745.1: FORM B 41 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 179 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 41 ===
+49.9,72.8,88.7: 100. A certain square puzzle has an area of 103. 0 3 + 4 0 + 2 −1 +(−1)2
+79.9,84.8,94.8: 64 square inches, and a cubic block has a
+79.9,96.8,106.8: volume of 64 cubic inches. What is the ratio of
+79.9,108.5,118.8: the length of a side of the puzzle to the length What is the value of the expression above, in
+79.9,120.5,130.8: of a side of the block? decimal form?
+79.9,143.8,156.5: E. 1:3 A. 0
+79.9,156.8,169.5: F. 1:2 B. 0.5
+79.9,169.8,182.5: G. 2:3 C. 1.5
+79.9,182.8,195.5: H. 2:1 D. 2.5
+49.9,226.6,239.2: 101. In a certain class, Rosa will take a total of 104. A company wants to study 6 brands of soap by
+79.9,238.6,251.2: 4 tests. She has already taken 2 of the tests comparing each brand with every other brand.
+79.9,250.6,263.2: and earned scores of 81 and 83. What is the If each comparison costs $2,000, how much
+79.9,262.6,275.2: leastpossible score Rosa can earn on the will the company spend altogether?
+79.9,274.6,284.6: third test and still be able to finish the class
+79.9,286.6,298.3: with an average score of 85 on all 4 tests? E. $13,000
+79.9,298.6,311.3: (Assume that test scores can range from F. $20,000
+79.9,310.6,320.6: 0 to 100.)
+349.9,314.3,324.3: G. $30,000
+349.9,327.3,337.3: H. $60,000
+79.9,333.8,343.9: A. 76
+79.9,346.8,356.9: B. 82
+79.9,359.8,369.9: C. 88
+514.0,366.2,376.2: 1
+79.9,371.0,382.8: D. 90 105. What number is halfway between and
+511.6,377.8,387.8: 20
+353.9,386.2,396.2: 1
+368.1,391.0,401.0: on a number line?
+351.1,397.8,407.8: 10
+49.9,416.6,426.6: 102. The Barnes family and the Ramirez family
+79.9,428.0,438.6: each have a pizza of equal size. The first pizza 1
+349.9,431.9,441.9: A.
+79.9,439.6,450.6: is cut into 18 equal slices, and the second 5
+79.9,452.6,462.6: pizza is cut into 15 equal slices. If the Barnes
+374.0,457.7,467.7: 2
+79.9,464.6,474.6: family eats 11 slices from the first pizza, what
+349.9,461.5,471.5: B.
+370.9,469.3,479.3: 15
+79.9,476.6,486.6: is the greatest number of whole slices from the
+79.9,487.3,501.2: second pizza that the Ramirez family can eat C. 1
+79.9,499.0,510.6: without eating a greater percentage of a pizza 30
+79.9,512.6,522.6: than the Barnes family ate?
+374.4,517.0,527.0: 3
+349.9,520.8,530.8: D.
+371.7,528.6,538.6: 40
+79.9,535.6,545.6: E. 6
+79.9,548.6,558.6: F. 7
+79.9,561.6,571.6: G. 8
+319.9,565.4,575.4: 106. A rectangular swimming pool of uniform
+79.9,574.6,587.4: H. 9 depth is 20 yards long and 14 yards wide. If
+349.9,589.4,599.4: the water is 6 feetdeep, what is the volume of
+349.9,601.4,611.4: water in the pool, in cubic yards?
+349.9,624.4,634.4: E. 40
+349.9,637.4,647.4: F. 286
+349.9,650.4,660.4: G. 560
+349.9,663.4,673.4: H. 1,680
+49.9,734.8,746.3: FORM B 42 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 180 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 42 ===
+49.9,72.8,85.7: 107. {3, 4, 5, 6, 7} 109.
+79.9,103.5,113.5: A student made a list of all possible products
+79.9,115.5,125.5: of 2 differentnumbers in the set above. What
+79.9,127.5,137.5: fraction of the products are odd?
+104.4,164.5,174.5: 3
+79.9,168.3,178.3: A.
+101.7,176.1,186.1: 20
+104.0,194.1,204.1: 3
+79.9,197.9,207.9: B.
+349.9,201.7,211.7: The garden design shown above is created
+100.9,205.7,215.7: 10
+349.9,213.7,223.7: in the shape of three semicircles whose
+79.9,223.8,237.6: C. 1 diameters lie on the sides of an equilateral
+101.7,235.4,247.7: 2 triangle. If each diameter is 2 meters long,
+349.9,249.7,259.7: what is the perimeter of the garden,
+101.5,253.4,263.4: 3
+79.9,257.2,267.2: D.
+349.9,261.7,271.7: in meters?
+101.5,265.1,275.1: 5
+349.9,291.7,301.7: A. 6
+49.9,301.9,311.9: 108. A number, n, is divided by 25. If the quotient
+79.9,313.7,323.9: is 10 with a remainder of 5, what is the B. 12
+79.9,325.9,335.9: quotient expressed as a decimal?
+349.9,335.3,345.7: C. 3(cid:31)
+79.9,348.8,358.9: E. 10.20
+349.9,357.3,367.7: D. 6(cid:31)
+79.9,361.9,371.9: F. 10.25
+79.9,374.9,384.9: G. 10.50
+79.9,387.8,397.9: H. 10.75
+319.9,401.5,411.5: 110. Micha is playing a game with five cards
+349.9,413.5,423.5: numbered 1 through 5. He will place the cards
+349.9,425.5,435.5: in a bag and draw one card at random three
+349.9,437.5,447.5: times, replacing the card each time. To win a
+349.9,449.5,459.5: prize, he must draw the number 5 all three
+349.9,461.5,471.5: times. What is the probability he will draw the
+349.9,473.5,483.5: number 5 all three times?
+376.3,510.5,520.5: 1
+349.9,514.3,524.3: E.
+370.9,522.1,532.1: 125
+376.6,540.1,550.1: 3
+349.9,543.9,553.9: F.
+370.9,551.7,561.7: 125
+373.6,569.8,579.8: 1
+349.9,573.6,583.6: G.
+370.9,581.4,591.4: 15
+371.5,599.4,609.4: 3
+349.9,603.2,613.2: H.
+371.5,611.1,621.1: 5
+49.9,734.8,746.3: FORM B 43 CONTINUE ON TO THE NEXT PAGE c
+49.6,756.7,767.7: FORM B 181 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 43 ===
+49.9,70.4,80.4: 111. The speed 10 meters per second is equivalent 113.
+79.9,82.4,92.4: to how many feet per hour? (Use the
+79.9,94.4,104.4: approximation 1 foot = 0.3 meter.)
+411.2,104.6,120.3: y s t
+79.9,120.4,130.4: A. 10,800
+79.9,133.4,143.4: B. 12,000
+403.8,136.7,148.4: 5 P (3, 5)
+79.9,146.4,156.4: C. 36,000
+403.8,154.7,163.7: 4
+79.9,159.4,169.5: D. 120,000
+403.8,172.7,181.7: 3
+403.8,190.7,199.7: 2
+49.9,207.8,217.9: 112. 6.34−4.12 1
+527.7,225.6,235.6: x
+79.9,232.9,244.9: What is the value of the expression above, O 1 2 3
+79.9,246.9,256.9: written as an improper fraction?
+101.7,283.8,293.8: 24
+79.9,287.7,299.1: E. Lines sand tintersect at point P (3, 5). What
+101.5,295.5,305.5: 11
+349.9,301.1,311.1: is the area, in square units, of the shaded
+101.7,313.1,323.5: 224 region in the graph above?
+79.9,317.3,327.3: F.
+101.5,325.1,335.1: 101
+349.9,336.1,346.1: A. 2
+100.9,343.2,353.2: 111
+79.9,347.0,359.1: G. B. 3
+103.8,354.8,364.8: 50
+349.9,362.1,372.1: C. 4
+79.9,372.8,386.6: H. 20 D. 7
+104.3,384.4,394.4: 9
+319.9,418.8,428.8: 114. A box contains 14 red marbles, 10 black
+349.9,438.8,448.8: marbles, and 16 white marbles. How many
+349.9,458.8,468.8: more white marbles need to be added to the
+349.9,478.8,488.8: box so that the probability of randomly
+477.3,494.0,504.0: 3
+349.9,498.8,508.8: drawing a white marble is ?
+477.3,505.7,515.7: 5
+349.9,521.8,531.8: E. 8
+349.9,534.8,544.9: F. 10
+349.9,547.9,557.9: G. 14
+349.9,560.9,570.9: H. 20
+357.1,658.9,668.9: THIS IS THE END OF THE TEST.
+357.1,671.4,681.4: IF TIME REMAINS, YOU SHOULD CHECK
+357.1,683.9,693.9: YOUR ANSWERS. BE SURE THAT THERE
+357.1,696.4,706.4: ARE NO STRAY MARKS, PARTIALLY
+357.1,708.9,718.9: FILLED ANSWER CIRCLES, OR
+357.1,721.4,731.4: INCOMPLETE ERASURES ON YOUR
+49.9,732.4,743.9: FORM B 44 ANSWER SHEET. j
+49.6,756.7,767.7: FORM B 182 CONTINUE ON TO THE NEXT PAGE

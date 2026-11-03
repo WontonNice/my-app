@@ -1,3 +1,6 @@
+import { coordinateAnswerComplete, correctCoordinateAnswer } from '../../../server/src/shared/coordinateResponse';
+import { ExamAnswer } from "../components/ExamReviewQuestion";
+import { correctExamAnswer } from "../lib/examReviewAnswer";
 import { ExamGeneralDirections } from "../components/ExamGeneralDirections";
 import { InlineTextSelection } from "../components/InlineTextSelection";
 import { placeCategoryItem } from '../lib/categoryPlacement';
@@ -83,6 +86,7 @@ import { getExamSessionProgress, getLearningProgress, getStudentAssessment, getT
 import { getUserRole } from "../lib/auth";
 import { getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
 import {
+  createExamTimerState,
   getExamTimerDisplay,
   isExamTimeExpired,
   loadExamTimer,
@@ -274,6 +278,7 @@ function getCategoryPlacements(answer: SelectedAnswer | undefined): CategoryPlac
 }
 
 function isQuestionAnswered(question: ExamQuestion, selectedAnswers: SelectedAnswers) {
+  if (question.type === "coordinate_response") return coordinateAnswerComplete(question, selectedAnswers[question.id]);
   if (question.type === "multiple_choice") {
     return typeof selectedAnswers[question.id] === "string" && Boolean(selectedAnswers[question.id]);
   }
@@ -327,6 +332,7 @@ function getRandomItem<T>(items: T[]) {
 }
 
 function createRandomQuestionAnswer(question: ExamQuestion): SelectedAnswer {
+  if (question.type === "coordinate_response") return correctCoordinateAnswer(question);
   if (question.type === "transition_drop" && question.dragDropSlots?.length) {
     const available = [...(question.choices || [])];
     return Object.fromEntries(question.dragDropSlots.map(slot => { const item = getRandomItem(available); if (!question.allowReuse && item) available.splice(available.indexOf(item), 1); return [slot.id, item?.id || ""]; }));
@@ -456,17 +462,19 @@ function ExamModuleHeader({
   onToggleUserMenu,
   studentName,
   onTimeExpiredSubmit,
+  onExit,
 }: {
   isUserMenuOpen?: boolean;
   onPauseTimer?: () => void;
   onToggleUserMenu?: () => void;
   studentName: string;
   onTimeExpiredSubmit?: () => Promise<void>;
+  onExit?: () => void;
 }) {
   return (
     <>
       <header className="exam-module-header">
-        <a className="exam-module-brand" href={getAssessmentDashboardHref()}>
+        <a className="exam-module-brand" href={getAssessmentDashboardHref()} onClick={onExit ? event => { event.preventDefault(); onExit(); } : undefined}>
           Nathan Tutors
         </a>
         <ExamUserMenu
@@ -1111,7 +1119,15 @@ export type ExamGameSession = {
   practice?: { stats: ReactNode; feedback: ReactNode; controls?: ReactNode; onExit: () => void; exitLabel?: string; result?: 'correct' | 'incorrect' };
 };
 
-export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession } = {}) {
+export type ExamPreviewSession = {
+  assessment: TeacherAssessment;
+  content: ExamContent;
+  startingSubject: ExamSection;
+  onExit: () => void;
+};
+
+export function ExamSessionPage({ gameSession, previewSession }: { gameSession?: ExamGameSession; previewSession?: ExamPreviewSession } = {}) {
+  const isStudioPreview = Boolean(previewSession);
   const isGameSession = Boolean(gameSession);
   const AnswerLock = gameSession ? "fieldset" : Fragment;
   const [pencilDrawings, setLocalPencilDrawings] = useState<PencilDrawings>({});
@@ -1120,8 +1136,8 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const setPencilDrawings = toolSetter(sharedTools, "drawings", setLocalPencilDrawings);
   const pencilStorage: PencilStorage = { shared: Boolean(sharedTools), drawings: sharedTools?.own.drawings ?? pencilDrawings, peerDrawings: sharedTools ? mergeToolLists({}, sharedTools.peers.map(peer => peer.state.drawings)) : undefined, redoStacks: pencilRedoStacks, setDrawings: setPencilDrawings, setRedoStacks: setPencilRedoStacks };
   const [accessToken, setAccessToken] = useState("");
-  const [assessment, setAssessment] = useState<TeacherAssessment | null>(gameSession?.assessment ?? null);
-  const [attemptContent, setAttemptContent] = useState<ExamContent | null>(gameSession?.content ?? null);
+  const [assessment, setAssessment] = useState<TeacherAssessment | null>(previewSession?.assessment ?? gameSession?.assessment ?? null);
+  const [attemptContent, setAttemptContent] = useState<ExamContent | null>(previewSession?.content ?? gameSession?.content ?? null);
   const [activeTool, setActiveTool] = useState<ExamTool>("pointer");
   const [activeMathQuestionIndex, setActiveMathQuestionIndex] = useState(0);
   const [activePassageSetIndex, setActivePassageSetIndex] = useState(0);
@@ -1139,15 +1155,16 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const setEliminatedChoices = toolSetter(sharedTools, "eliminated", setLocalEliminatedChoices);
   const [errorMessage, setErrorMessage] = useState("");
   const [highlightToolbar, setHighlightToolbar] = useState<HighlightToolbarState | null>(null);
-  const [isFastForwardEnabled, setIsFastForwardEnabled] = useState(false);
-  const [isCheckingSession, setIsCheckingSession] = useState(!isGameSession && isSupabaseConfigured);
+  const [isFastForwardEnabled, setIsFastForwardEnabled] = useState(isStudioPreview);
+  const [isCheckingSession, setIsCheckingSession] = useState(!isStudioPreview && !isGameSession && isSupabaseConfigured);
   const [isNotepadOpen, setIsNotepadOpen] = useState(false);
   const [isReviewOpen, setIsReviewOpen] = useState(false);
   const [isSubmittingSection, setIsSubmittingSection] = useState(false);
   const [hasSubmittedAttempt, setHasSubmittedAttempt] = useState(false);
   const [isTimerVisible, setIsTimerVisible] = useState(false);
   const [isUnansweredModalOpen, setIsUnansweredModalOpen] = useState(false);
-  const [isTeacherPreviewSession, setIsTeacherPreviewSession] = useState(false);
+  const [isTeacherPreviewSession, setIsTeacherPreviewSession] = useState(isStudioPreview);
+  const [revealPreviewAnswer, setRevealPreviewAnswer] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [localPassageNotes, setLocalPassageNotes] = useState<PassageNotes>({});
   const passageNotes = sharedTools?.own.notes ?? localPassageNotes;
@@ -1177,7 +1194,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const previousPeerNotes = useRef(peerNotesSignature);
   useEffect(() => { if (previousPeerNotes.current !== peerNotesSignature) { previousPeerNotes.current = peerNotesSignature; setIsNotepadOpen(true); } }, [peerNotesSignature]);
   const [timerNow, setTimerNow] = useState(() => Date.now());
-  const [timerState, setTimerState] = useState<ExamTimerState | null>(null);
+  const [timerState, setTimerState] = useState<ExamTimerState | null>(() => previewSession ? createExamTimerState() : null);
   const autosaveInFlightRef = useRef(false);
   const autosavePromiseRef = useRef<Promise<void> | null>(null);
   const finalSubmissionRef = useRef(false);
@@ -1193,7 +1210,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   ), []);
 
   useEffect(() => {
-    if (isGameSession || !isSupabaseConfigured) {
+    if (isStudioPreview || isGameSession || !isSupabaseConfigured) {
       return;
     }
 
@@ -1355,11 +1372,11 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     }
 
     loadExamSession();
-  }, [isGameSession, setSelectedAnswers]);
+  }, [isStudioPreview, isGameSession, setSelectedAnswers]);
 
   useEffect(() => {
     latestAnswersRef.current = selectedAnswers;
-    if (isGameSession || !assessment || !studentId || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
+    if (isStudioPreview || isGameSession || !assessment || !studentId || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
     const content = attemptContent ?? resolveExamContent(assessment);
     const subject = sessionScreen.startsWith("math") ? "math" : "english";
     const passage = content.passageSets[activePassageSetIndex];
@@ -1371,10 +1388,10 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     } });
     if (position?.[subject]) navigationRef.current = { ...navigationRef.current, ...position };
     saveLocalExamSession(studentId, assessment.id, selectedAnswers, completedSections, "in_progress", getQuestionTimesSnapshot(), navigationRef.current);
-  }, [isGameSession, assessment, attemptContent, activePassageSetIndex, activeQuestionIndex, activeStandaloneQuestionIndex, activeMathQuestionIndex, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, selectedAnswers, sessionScreen, studentId]);
+  }, [isStudioPreview, isGameSession, assessment, attemptContent, activePassageSetIndex, activeQuestionIndex, activeStandaloneQuestionIndex, activeMathQuestionIndex, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, selectedAnswers, sessionScreen, studentId]);
 
   useEffect(() => {
-    if (isGameSession || !assessment || !accessToken || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
+    if (isStudioPreview || isGameSession || !assessment || !accessToken || isCheckingSession || isTeacherPreviewSession || sessionScreen === "testOver") return;
 
     const assessmentId = assessment.id;
     async function syncAnswers() {
@@ -1414,7 +1431,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
       window.clearInterval(saveInterval);
       document.removeEventListener("visibilitychange", saveWhenHidden);
     };
-  }, [isGameSession, accessToken, assessment, activePassageSetIndex, activeQuestionIndex, activeStandaloneQuestionIndex, activeMathQuestionIndex, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, sessionScreen, studentId]);
+  }, [isStudioPreview, isGameSession, accessToken, assessment, activePassageSetIndex, activeQuestionIndex, activeStandaloneQuestionIndex, activeMathQuestionIndex, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, sessionScreen, studentId]);
 
   useEffect(() => {
     if (!timerState || timerState.pausedAt !== null) {
@@ -1426,7 +1443,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }, [timerState]);
 
   useEffect(() => {
-    if (isGameSession || !assessment || isCheckingSession || sessionScreen === "testOver") {
+    if (isStudioPreview || isGameSession || !assessment || isCheckingSession || sessionScreen === "testOver") {
       return;
     }
 
@@ -1437,7 +1454,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
     window.addEventListener("beforeunload", confirmBeforeLeaving);
     return () => window.removeEventListener("beforeunload", confirmBeforeLeaving);
-  }, [isGameSession, assessment, isCheckingSession, sessionScreen]);
+  }, [isStudioPreview, isGameSession, assessment, isCheckingSession, sessionScreen]);
 
   const gameQuestions = sessionScreen === "mathQuestion" ? gameSession?.content.mathSection?.questions
     : sessionScreen === "standaloneQuestion" ? gameSession?.content.standaloneSection?.questions
@@ -1452,7 +1469,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     return <main className="loading-shell">Loading exam session...</main>;
   }
 
-  if (!isGameSession && !isSupabaseConfigured) {
+  if (!isStudioPreview && !isGameSession && !isSupabaseConfigured) {
     return (
       <main className="loading-shell">
         Supabase auth is not configured. Add your Vite Supabase env vars, then log in.
@@ -1473,6 +1490,8 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   const currentAssessmentId = assessment.id;
+  const startingSubject = previewSession?.startingSubject ?? getStoredStartingSubject(currentAssessmentId);
+  const exitExam = () => previewSession ? previewSession.onExit() : window.location.assign(getAssessmentDashboardHref());
   const examContent = gameSession?.practice ? gameSession.content : attemptContent ?? resolveExamContent(assessment);
   const sectionAccess = getExamSectionAccess(examContent, isTeacherPreviewSession ? { english: true, math: true } : assessment.sectionAccess);
   const canAccessEnglish = sectionAccess.english && (isTeacherPreviewSession || !completedSections.includes("english"));
@@ -1568,7 +1587,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   const hasNextPassageSet = activePassageSetIndex < examContent.passageSets.length - 1;
   const shouldShowPassageDirections = Boolean(activePassageSet && (activePassageSetIndex === 0 || activePassageSet.showDirectionsBefore));
   const reviewItems: ReviewItem[] = [];
-  const isTeacherTestView = isTeacherPreviewSession && getStudentPreviewContext().mode === "teacher";
+  const isTeacherTestView = isStudioPreview || (isTeacherPreviewSession && getStudentPreviewContext().mode === "teacher");
   const canReviewStandaloneItems = isTeacherTestView || isFastForwardEnabled;
   const accessibleQuestions: ExamQuestion[] = [];
   const addReviewQuestion = (
@@ -1723,6 +1742,11 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   async function saveCompletedExam(answers: SelectedAnswers) {
+    if (isStudioPreview) {
+      setCompletedSections(["english", "math"]);
+      setHasSubmittedAttempt(true);
+      return;
+    }
     if (!studentId) {
       throw new Error("Your student session is unavailable. Refresh and try again.");
     }
@@ -1760,6 +1784,14 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   async function saveSectionCompletion(section: ExamSection) {
+    if (isStudioPreview) {
+      const submission = prepareSectionSubmission(examContent, selectedAnswers, completedSections, section);
+      setSelectedAnswers(submission.answers);
+      setCompletedSections(submission.completedSections);
+      setHasSubmittedAttempt(true);
+      setTimerState(current => pauseExamTimer(current ?? createExamTimerState()));
+      return submission.completedSections;
+    }
     if (!studentId) throw new Error("Your student session is unavailable. Refresh and try again.");
     const submission = prepareSectionSubmission(examContent, selectedAnswers, completedSections, section);
     finalSubmissionRef.current = true;
@@ -1822,7 +1854,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     }
 
     const nextTimerState = pauseExamTimer(timerState);
-    saveExamTimerState(currentAssessmentId, nextTimerState);
+    if (!isStudioPreview) saveExamTimerState(currentAssessmentId, nextTimerState);
     setTimerState(nextTimerState);
     setTimerNow(nextTimerState.pausedAt ?? timerNow);
     setIsUserMenuOpen(false);
@@ -1838,7 +1870,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     }
 
     const nextTimerState = resumeExamTimer(timerState);
-    saveExamTimerState(currentAssessmentId, nextTimerState);
+    if (!isStudioPreview) saveExamTimerState(currentAssessmentId, nextTimerState);
     setTimerState(nextTimerState);
     setTimerNow(Date.now());
   }
@@ -2692,33 +2724,47 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   } : {};
 
   const moduleHeaderProps = {
+    onExit: previewSession?.onExit,
     onTimeExpiredSubmit,
     isUserMenuOpen,
     onPauseTimer: handlePauseTimer,
     onToggleUserMenu: () => setIsUserMenuOpen((currentValue) => !currentValue),
   };
 
+  const previewQuestion = sessionScreen === 'mathQuestion' ? activeMathQuestion : sessionScreen === 'standaloneQuestion' ? activeStandaloneQuestion : sessionScreen === 'passage' ? activeQuestion : undefined;
+  const previewControls = isStudioPreview ? <aside aria-label="Teacher preview controls" style={{position:'fixed',bottom:12,right:12,zIndex:1000,background:'#fff',color:'#172b3a',border:'1px solid #aebbc7',borderRadius:8,padding:12,boxShadow:'0 3px 16px #0003',maxWidth:'min(560px, calc(100vw - 24px))'}}>
+    <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}>
+      <strong>Teacher controls</strong>
+      <label>Jump to question <select aria-label="Jump to question" value={currentReviewItemId ?? ''} onChange={event => { const item = reviewItems.find(item => item.id === event.target.value); if (item) handleReviewItemSelect(item.id); }} style={{maxWidth:280}}>
+        <option value="">Choose a question</option>
+        {reviewItems.filter(item => item.kind === 'question').map(item => <option key={item.id} value={item.id}>{item.label}</option>)}
+      </select></label>
+      <label><input type="checkbox" checked={revealPreviewAnswer} onChange={event => setRevealPreviewAnswer(event.target.checked)} /> Reveal correct answer</label>
+    </div>
+    {revealPreviewAnswer && <div aria-live="polite" style={{borderTop:'1px solid #dce2e7',marginTop:10,paddingTop:10,maxHeight:'30vh',overflow:'auto'}}>{previewQuestion ? <><strong>Correct answer: </strong><ExamAnswer question={previewQuestion} answer={correctExamAnswer(previewQuestion)} /></> : 'Choose a question to see its answer.'}</div>}
+  </aside> : null;
+
   if (sessionScreen === "sectionComplete") {
     const next = submittedSection === "math" ? "english" : "math";
     const mayContinue = next === "math" ? canAccessMath : canAccessEnglish;
-    return <main className="exam-session-shell" data-player-profile={playerProfile}><section className="exam-end-section-card"><h1>{submittedSection === "math" ? "Math" : "English"} submitted</h1><p>Your teacher can now review this section. {assessment.canEditSubmittedSections ? "You can continue to the next section or return to any open section later." : <>{next === "math" ? "Math" : "English"} remains unfinished and has not been graded.</>}</p><p>The shared three-hour exam timer is paused. Time remaining: {timerDisplay.text}.</p><div className="exam-test-over-actions"><button className="exam-end-section-submit" onClick={() => window.location.assign(getAssessmentDashboardHref())} type="button">Save & exit</button>{mayContinue && <button className="exam-end-section-submit" onClick={() => continueExamSection(next)} type="button">Continue {next === "math" ? "Math" : "English"}</button>}</div></section></main>;
+    return <main className="exam-session-shell" data-player-profile={playerProfile}>{previewControls}<section className="exam-end-section-card"><h1>{submittedSection === "math" ? "Math" : "English"} submitted</h1><p>Your teacher can now review this section. {assessment.canEditSubmittedSections ? "You can continue to the next section or return to any open section later." : <>{next === "math" ? "Math" : "English"} remains unfinished and has not been graded.</>}</p><p>The shared three-hour exam timer is paused. Time remaining: {timerDisplay.text}.</p><div className="exam-test-over-actions"><button className="exam-end-section-submit" onClick={exitExam} type="button">Save & exit</button>{mayContinue && <button className="exam-end-section-submit" onClick={() => continueExamSection(next)} type="button">Continue {next === "math" ? "Math" : "English"}</button>}</div></section></main>;
   }
 
   if (isExamPaused && sessionScreen !== "testOver") {
     return (
-      <main className="exam-paused-screen" aria-label="Exam paused">
+      <main className="exam-paused-screen" aria-label="Exam paused">{previewControls}
         <button onClick={handleResumeTimer} type="button">
           <Play aria-hidden="true" fill="currentColor" size={16} strokeWidth={2} />
           Resume exam
         </button>
-        <button onClick={() => window.location.assign(getAssessmentDashboardHref())} type="button">Save & exit</button>
+        <button onClick={exitExam} type="button">Save & exit</button>
       </main>
     );
   }
 
   if (sessionScreen === "mathIntro") {
     return (
-      <main className="exam-module-shell">
+      <main className="exam-module-shell">{previewControls}
         {isTeacherTestView ? <ExamToolbar assessmentLabel={assessmentLabel} breadcrumbMiddle="TEACHER TEST VIEW" breadcrumbCurrent="" {...reviewToolbarProps} isNextActive={false} showTimer={false} showWorkTools={false} studentName={studentName} /> : <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />}
 
         <section className="exam-passage-intro-card" aria-labelledby="math-intro-title">
@@ -2740,7 +2786,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "mathDirections") {
     return (
-      <main className="exam-session-shell" data-player-profile={playerProfile}>
+      <main className="exam-session-shell" data-player-profile={playerProfile}>{previewControls}
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={mathDirections.breadcrumbLabel ?? "Math Directions"}
@@ -2783,7 +2829,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     const mathNoteKey = mathSection.id;
 
     return (
-      <main className="exam-session-shell is-math-session" data-player-profile={playerProfile}>
+      <main className="exam-session-shell is-math-session" data-player-profile={playerProfile}>{previewControls}
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={gameSession?.practice ? `QUESTION ${gameSession.subjectPosition.current}` : gameSession ? `${gameSession.subjectPosition.current} OF ${gameSession.subjectPosition.total}` : `${activeMathQuestionIndex + 1} OF ${mathQuestions.length}`}
@@ -2923,7 +2969,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "standaloneIntro" && standaloneSection) {
     return (
-      <main className="exam-module-shell">
+      <main className="exam-module-shell">{previewControls}
         {isTeacherTestView ? <ExamToolbar assessmentLabel={assessmentLabel} breadcrumbMiddle="TEACHER TEST VIEW" breadcrumbCurrent="" {...reviewToolbarProps} isNextActive={false} showTimer={false} showWorkTools={false} studentName={studentName} /> : <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />}
 
         <section className="exam-passage-intro-card" aria-labelledby="standalone-intro-title">
@@ -2954,7 +3000,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "standaloneDirections" && standaloneSection) {
     return (
-      <main className="exam-session-shell" data-player-profile={playerProfile}>
+      <main className="exam-session-shell" data-player-profile={playerProfile}>{previewControls}
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent="ELA Rev/Edit B Directions"
@@ -2999,7 +3045,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     const standaloneNoteKey = standaloneSection.id;
 
     return (
-      <main className="exam-session-shell" data-player-profile={playerProfile}>
+      <main className="exam-session-shell" data-player-profile={playerProfile}>{previewControls}
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={`${activeStandaloneQuestionIndex + 1} OF ${standaloneSection.questions.length}`}
@@ -3018,6 +3064,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
         <section
           aria-labelledby={`standalone-title-${activeStandaloneQuestion.id}`}
+          data-question-id={activeStandaloneQuestion.id}
           className={activeStandaloneQuestion.selectionHtml ? "exam-question-document is-text-selection-layout" : `exam-standalone-document${activeStandaloneQuestion.type === 'category_sort' && activeStandaloneQuestion.categories?.length === 1 ? ' is-category-sort' : ''}`}
           onMouseUp={handleExamTextSelection}
         >
@@ -3332,7 +3379,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
     const endSectionLabel = usesSourceOrder ? "English Language Arts" : standaloneSection?.label ?? "ELA - Revising/Editing Part B";
 
     return (
-      <main className="exam-session-shell" data-player-profile={playerProfile}>
+      <main className="exam-session-shell" data-player-profile={playerProfile}>{previewControls}
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent=""
@@ -3367,7 +3414,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "testOver") {
     return (
-      <main className="exam-session-shell" data-player-profile={playerProfile}>
+      <main className="exam-session-shell" data-player-profile={playerProfile}>{previewControls}
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent=""
@@ -3394,7 +3441,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
             )}
             <button
               className="exam-end-section-submit"
-              onClick={() => window.location.assign(getAssessmentDashboardHref())}
+              onClick={exitExam}
               type="button"
             >
               Return to Assessments
@@ -3407,7 +3454,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "passageIntro" && activePassageSet) {
     return (
-      <main className="exam-module-shell">
+      <main className="exam-module-shell">{previewControls}
         {isTeacherTestView ? <ExamToolbar assessmentLabel={assessmentLabel} breadcrumbMiddle="TEACHER TEST VIEW" breadcrumbCurrent="" {...reviewToolbarProps} isNextActive={false} showTimer={false} showWorkTools={false} studentName={studentName} /> : <ExamModuleHeader {...moduleHeaderProps} studentName={studentName} />}
 
         <section className="exam-passage-intro-card" aria-labelledby="passage-intro-title">
@@ -3438,7 +3485,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "readingDirections" && activePassageSet) {
     return (
-      <main className="exam-session-shell" data-player-profile={playerProfile}>
+      <main className="exam-session-shell" data-player-profile={playerProfile}>{previewControls}
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={directionsBreadcrumbLabel}
@@ -3481,7 +3528,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "passageEnd" && activePassageSet) {
     return (
-      <main className="exam-session-shell" data-player-profile={playerProfile}>
+      <main className="exam-session-shell" data-player-profile={playerProfile}>{previewControls}
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent="PASSAGE END DIRECTIONS"
@@ -3537,7 +3584,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
 
   if (sessionScreen === "passage" && activePassageSet && activeQuestion) {
     return (
-      <main className="exam-session-shell" data-player-profile={playerProfile}>
+      <main className="exam-session-shell" data-player-profile={playerProfile}>{previewControls}
         <ExamToolbar
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={`${activeQuestionIndex + 1} OF ${activePassageSet.questions.length}`}
@@ -3704,7 +3751,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
                 )}
               </p>
             ) : null}
-            {["math_drag_drop","inline_dropdown","graph_point_select","number_line_response","numeric_entry","expression_entry","grid_in"].includes(activeQuestion.type) ? (
+            {["math_drag_drop","inline_dropdown","coordinate_response","graph_point_select","number_line_response","numeric_entry","expression_entry","grid_in"].includes(activeQuestion.type) ? (
               <ExamMathQuestion responseOnly question={activeQuestion} answer={activePassageAnswer} onChange={answer=>setSelectedAnswers(current=>({...current,[activeQuestion.id]:answer}))} />
             ) : activeQuestion.type === "matrix_choice" && activeQuestion.items && activeQuestion.categories ? (
               <MatrixChoiceResponse
@@ -4130,7 +4177,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
   }
 
   return (
-    <main className="exam-session-shell" data-player-profile={playerProfile}>
+    <main className="exam-session-shell" data-player-profile={playerProfile}>{previewControls}
       <ExamToolbar
         assessmentLabel={assessmentLabel}
         breadcrumbCurrent="GENERAL DIRECTIONS"
@@ -4138,7 +4185,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         {...reviewToolbarProps}
         onNext={() => {
           setHighlightToolbar(null);
-          if (getStoredStartingSubject(currentAssessmentId) === 'math' && mathQuestionCount > 0) {
+          if (startingSubject === 'math' && mathQuestionCount > 0) {
             setSessionScreen('mathIntro');
             return;
           }
@@ -4154,7 +4201,7 @@ export function ExamSessionPage({ gameSession }: { gameSession?: ExamGameSession
         studentName={studentName}
       />
 
-      <ExamGeneralDirections english={englishQuestionCount} math={mathQuestionCount} total={totalExamQuestionCount} durationMinutes={assessment.durationMinutes} firstSubject={getStoredStartingSubject(currentAssessmentId)} />
+      <ExamGeneralDirections english={englishQuestionCount} math={mathQuestionCount} total={totalExamQuestionCount} durationMinutes={assessment.durationMinutes} firstSubject={startingSubject} />
 
     </main>
   );

@@ -1,0 +1,1520 @@
+=== PAGE 1 ===
+107.0,76.4,97.4: Sample Test – English Language Arts Explanations of
+48.0,86.4,107.4: Form B
+107.0,98.4,119.4: Correct Answers
+42.0,138.3,149.3: REVISING/EDITING PART A
+53.4,162.8,173.0: 1 . The question asks for the identification of the sentence that contains an error in its construction and should
+67.0,175.8,185.8: be revised .
+66.5,196.3,206.5: D: Correct . Sentence 4 contains an error because the sentence uses the plural pronoun “them” to refer to
+66.5,209.3,219.3: “The blobfish’s,” which is singular in number . The word “them” should be changed to “it .” The paragraph
+66.5,222.3,232.3: refers to the blobfish as a singular species in each of its four sentences, and sentence 4 should be revised to
+66.5,235.3,245.3: match .
+66.5,255.8,266.0: A: Incorrect . There are no errors in sentence 1 . The singular pronoun “its” matches the number of the word
+66.5,268.8,278.8: it refers to, the singular noun ”blobfish .” Additionally, the clause “a creature that certainly resembles its
+66.5,281.8,291.8: name,” is correctly set off by commas to provide an additional, but not essential, detail about the blobfish .
+66.5,302.3,312.5: B: Incorrect . There are no errors in sentence 2 . The singular pronoun “its” matches the number of the word
+66.5,315.3,325.3: it refers to, the singular noun ”blobfish .” Additionally, the structure of the sentence correctly shows that the
+66.5,328.3,338.3: clause “Because it has very few muscles and its density is close to that of water” modifies the words “the
+66.5,341.3,351.3: blobfish .”
+66.5,361.8,372.0: C: Incorrect . There are no errors in sentence 3 . The “it” in the sentences refers to “the blobfish” mentioned in
+66.5,374.8,384.8: the previous sentence . The use of singular pronouns in sentence 3 is consistent with the rest of the
+66.5,387.8,397.8: paragraph .
+53.4,430.3,440.5: 2 . The question asks for the revisions that are needed to correct errors in the paragraph .
+66.5,450.8,461.0: H: Correct . Deleting the comma after “gelato” would include the clause “and allow it to melt more quickly”
+66.5,463.8,473.8: with the first part of the clause “which enhances the texture and flavor of the gelato .” In this clause, the
+66.5,476.8,486.8: word “and” indicates that the two verb phrases (“enhances the texture and flavor of gelato” and “allow it to
+66.5,489.8,499.8: melt more quickly”) share a subject, “which” (referring to the act of serving gelato 10 to 15 degrees warmer
+66.5,502.8,512.8: than ice cream) . The two ideas should not be separated by a comma within the clause . The entire clause
+66.5,515.8,525.8: “which enhances the texture and flavor of the gelato and allow it to melt more quickly” should be separated
+66.5,528.8,538.8: from the main clause only by the comma after “cream” because the entire clause is a nonrestrictive clause .
+66.5,541.8,551.8: This clause provides additional, but not essential, information about the purpose of serving gelato at a
+66.5,554.8,564.8: warmer temperature than when serving ice cream . Changing the verb “allow” to “allows” is also necessary to
+66.5,567.8,577.8: match the use of the singular noun “gelato,” which is the subject of the sentence .
+66.5,588.3,598.5: E: Incorrect . The revisions in Option E introduce new errors . The colon after “wonder” is needed to set off
+66.5,601.3,611.3: the question “what is the difference between the two?” from the rest of the sentence . In addition, changing
+66.5,614.3,624.3: the verb “is” to “are” would be incorrect with the use of the singular noun “difference,” which is the subject
+66.5,627.3,637.3: of the question, “what is the difference between the two?”
+66.5,647.8,658.0: F: Incorrect . The revisions in Option F introduce new errors . The comma following the introductory phrase
+66.5,660.8,670.8: “To start with” helps with clarity and is needed to separate the phrase from the rest of the sentence .
+66.5,673.8,683.8: Changing “it is” to “they are” would be incorrect with the use of the singular noun “butterfat content,” which
+66.5,686.8,696.8: is what the words “it is” refer to in the sentence .
+66.5,707.3,717.5: G: Incorrect . The revisions in Option G introduce new errors . The comma following “process” is necessary to
+66.5,720.3,730.3: set off the nonrestrictive clause “which adds less air to the frozen treat” from the rest of the sentence . This
+297.2,756.7,767.2: 183
+=== PAGE 2 ===
+66.5,72.4,82.4: clause is considered a nonrestrictive clause because it provides additional, but not essential, information
+66.5,85.4,95.4: about the mixing process . Changing the verb “makes” to “make” would be incorrect with the use of the
+66.5,98.4,108.4: singular noun “mixing process,” which is the subject of the sentence .
+53.4,140.9,151.1: 3 . The question asks for the revision that corrects the error in sentence structure in the paragraph .
+66.5,161.4,171.6: A: Correct . As written, the first sentence (“In 1967 Katherine Switzer  .  .  . legendary race .”) is a run-on
+66.5,174.4,184.4: sentence because a comma is used to combine two independent clauses . Independent clauses are
+66.5,187.4,197.4: complete sentences with a subject and a verb . The clauses—“In 1967 Katherine Switzer signed up for the
+66.5,200.4,210.4: Boston Marathon using her first and middle initials instead of her full name” and “at that time, only men
+66.5,213.4,223.4: were permitted to officially register and receive a number for the legendary race”—should be separated
+66.5,226.4,236.4: with a period instead . The revision in Option A correctly places a period after the word “name” and
+66.5,239.4,249.4: capitalizes the word “At” to separate the two independent clauses into two sentences .
+66.5,259.9,270.1: B: Incorrect . The revision in Option B introduces an error into the paragraph and does not revise the run-on
+66.5,272.9,282.9: in the first sentence . The clause “Once officials realized a woman was attempting to run in the race” is a
+66.5,285.9,295.9: modifying phrase that provides information about “they” (which refers to the “officials”) . The phrase cannot
+66.5,298.9,308.9: stand alone without the rest of the sentence . Changing the comma after the word “race” to a period would
+66.5,311.9,321.9: incorrectly separate the phrase from the rest of the sentence .
+66.5,332.4,342.6: C: Incorrect . The revision in Option C introduces an error into the paragraph and does not revise the run-on
+66.5,345.4,355.4: in the first sentence . The sentence “Switzer prevailed and finished in just over four hours, paving the way for
+66.5,358.4,368.4: the official rule change that allowed for the inclusion of women” is a complex sentence, which combines an
+66.5,371.4,381.4: independent clause (“Switzer prevailed and finished in just over four hours”) and a dependent clause
+66.5,384.4,394.4: (“paving the way for the official rule change that allowed for the inclusion of women”) . The clause “paving
+66.5,397.4,407.4: the way for the official rule change that allowed for the inclusion of women” is not a complete sentence and
+66.5,410.4,420.4: must stay connected to the first part of the sentence . Changing the comma after “hours” to a period would
+66.5,423.4,433.4: incorrectly separate the dependent clause from the rest of the sentence .
+66.5,443.9,454.1: D: Incorrect . The revision in Option D introduces an error into the paragraph and does not revise the run-on
+66.5,456.9,466.9: in the first sentence . Changing the comma after “261” to a period would incorrectly separate the modifying
+66.5,469.9,479.9: clause “the same number she had worn in that first run in 1967” from the words it describes (“number 261”) .
+66.5,482.9,492.9: Additionally, the clause “the same number she had worn in that first run in 1967” is not a complete
+66.5,495.9,505.9: sentence .
+42.0,535.9,546.9: REVISING/EDITING PART B
+42.0,557.8,568.8: Martial Arts for the Mind and Body
+53.4,579.4,589.6: 4 . The question asks for the best way to combine sentences 2 and 3 .
+66.5,599.9,610.1: F: Correct . Option F is correct because the word “while” at the beginning of the sentence best indicates the
+66.5,612.9,622.9: contrast between the ideas in sentences 2 and 3 . Sentence 2 states that historians do not know the exact
+66.5,625.9,635.9: origins of martial arts (“unsure of exactly when and where”) . Sentence 3 describes what historians do know
+66.5,638.9,648.9: about these origins (“practiced by several different societies for many centuries”) . This combination indicates
+66.5,651.9,661.9: that historians have a general understanding about the origins of martial arts even though they cannot
+66.5,664.9,674.9: confirm the exact details .
+66.5,685.4,695.6: E: Incorrect . This way of combining sentences 2 and 3 places unnecessary emphasis on characterizing
+66.5,698.4,708.4: historians, and it does not clearly show the contrasting relationship between the idea from sentence 2 that
+66.5,711.4,721.4: historians do not know the exact origins of martial arts and the idea in sentence 3 that historians know that
+66.5,724.4,734.4: martial arts have a long history .
+297.2,756.7,767.2: 184
+=== PAGE 3 ===
+66.5,72.4,82.6: G: Incorrect . Starting this sentence with the word “because” indicates a cause-and-effect relationship that
+66.5,85.4,95.4: does not exist between the ideas in the original sentences . The idea from sentence 3, that historians know
+66.5,98.4,108.4: that martial arts have been practiced for many years, did not cause the idea in sentence 2, that historians do
+66.5,111.4,121.4: not know exact details about the origins of martial arts .
+66.5,131.9,142.1: H: Incorrect . The conjunction (connecting word) “and” does not clearly show how the ideas in sentences 2
+66.5,144.9,154.9: and 3 are related . While “and” can be used to combine related sentences, it does not demonstrate the
+66.5,157.9,167.9: contrast between the idea in sentence 2, that historians do not know the exact origins of martial arts, and
+66.5,170.9,180.9: the idea in sentence 3, that historians know that martial arts have a long history .
+53.4,213.4,223.6: 5 . The question asks where sentence 10 should be moved to improve the organization of the second
+67.0,226.4,236.4: paragraph .
+66.5,246.9,257.1: D: Correct . Option D is correct because sentence 10 logically follows and supports the idea in sentence 8
+66.5,259.9,269.9: that “the study of martial arts can provide an opportunity to develop” the qualities of discipline, focus, and
+66.5,272.9,282.9: respect . Sentence 10 explains this idea with examples, describing three specific ways that students in a
+66.5,285.9,295.9: typical tae kwon do class develop discipline, focus, and respect—by “diligently practicing,” “listening
+66.5,298.9,308.9: carefully,” and “bowing to the instructor and following directions .”
+66.5,319.4,329.6: A: Incorrect . Starting this paragraph with sentence 10 would weaken the paragraph’s organization because
+66.5,332.4,342.4: it would place a supporting detail sentence (sentence 10) before the topic sentence (sentence 6) . Sentence 6
+66.5,345.4,355.4: belongs at the beginning of the paragraph because it introduces the topic—the qualities of discipline, focus,
+66.5,358.4,368.4: and respect . Sentence 10 supports the key idea of the paragraph, that these qualities can be developed
+66.5,371.4,381.4: through the study of martial arts . If sentence 10 preceded sentence 6, the transitional phrase “for example”
+66.5,384.4,394.4: would refer to an unspecified topic and idea .
+66.5,404.9,415.1: B: Incorrect . Sentence 6 presents the idea that “discipline, focus, and respect are important qualities for
+66.5,417.9,427.9: everyone to have,” but the example in sentence 10 does not directly relate to this idea . Sentence 10 explains
+66.5,430.9,440.9: how martial arts develop these qualities, not why they are important qualities to have . Because sentence 10
+66.5,443.9,453.9: is not directly related to the idea in sentence 6 (the qualities are important), it should not follow sentence 6 .
+66.5,464.4,474.6: C: Incorrect . Sentences 7 and 8 should not be separated, because the idea presented in sentence 8—that
+66.5,477.4,487.4: “the study of martial arts can provide an opportunity to develop these skills”—is directly related to the idea
+66.5,490.4,500.4: from sentence 7—that the skills of discipline, focus, and respect “are not innate; they must be learned and
+66.5,503.4,513.4: practiced .” Sentence 10 supports the idea from sentence 8 that martial arts “can provide an opportunity to
+66.5,516.4,526.4: develop these skills” by describing an example from a typical martial arts class, so sentence 10 should not
+66.5,529.4,539.4: precede sentence 8 .
+53.4,571.9,582.1: 6 . The question asks for the revision of sentence 12 that best maintains the formal style established in the
+67.0,584.9,594.9: passage .
+66.5,605.4,615.6: G: Correct . Option G is correct because it uses serious and academic wording throughout the whole
+66.5,618.4,628.4: sentence . The phrases “many teenagers,” “encounter challenges,” and “succeed both academically and
+66.5,631.4,641.4: personally” make the sentence’s style more consistently formal than the other options .
+66.5,651.9,662.1: E: Incorrect . The phrases “A lot,” “put up with,” “difficult things,” and “do well in school” are worded
+66.5,664.9,674.9: informally; therefore, this sentence does not consistently maintain the formal style established in the
+66.5,677.9,687.9: passage .
+66.5,698.4,708.6: F: Incorrect . The phrases “deal with,” “tough situations,” “stay on top of,” and “do well in life” are worded
+66.5,711.4,721.4: informally; therefore, this sentence does not consistently maintain the formal style established in the
+66.5,724.4,734.4: passage .
+297.2,756.7,767.2: 185
+=== PAGE 4 ===
+66.5,72.4,82.6: H: Incorrect . The phrases “A lot,” “face problems,” and “keep up with” are worded informally; therefore, this
+66.5,85.4,95.4: sentence does not consistently maintain the formal style established in the passage .
+53.4,127.9,138.1: 7 . The question asks for the transitional phrase that should be added to the beginning of sentence 17 .
+66.5,148.4,158.6: A: Correct . Option A is correct because it best shows the chronological progression between the ideas in
+66.5,161.4,171.4: sentence 16—progressing through levels of achievement “requires students to take responsibility and be
+66.5,174.4,184.4: accountable for achieving set goals”—and the ideas in sentence 17—“students gain confidence and
+66.5,187.4,197.4: experience companionship with other students who are progressing through the ranks .” The transitional
+66.5,200.4,210.4: phrase “over time” shows the gradual nature of the relationship between the cause in sentence 16 and the
+66.5,213.4,223.4: effect in sentence 17 .
+66.5,233.9,244.1: B: Incorrect . Though the ideas in sentences 16 and 17 are related, “in fact” does not show the correct
+66.5,246.9,256.9: relationship between the ideas . The transitional phrase “in fact” emphasizes an idea by giving a detail or
+66.5,259.9,269.9: example of greater intensity, but the ideas in sentence 16—progressing through levels “requires students to
+66.5,272.9,282.9: take responsibility and be accountable for achieving set goals”—and the ideas in sentence 17—“students
+66.5,285.9,295.9: gain confidence and experience companionship with other students who are progressing through the
+66.5,298.9,308.9: ranks”—are related by cause-and-effect rather than by (degree of) intensity .
+66.5,319.4,329.6: C: Incorrect . The transitional phrase “even so” is used to connect opposing ideas, but the ideas in
+66.5,332.4,342.4: sentence 16—progressing through levels “requires students to take responsibility and be accountable for
+66.5,345.4,355.4: achieving set goals”—does not contrast with the ideas in sentence 17—“students gain confidence and
+66.5,358.4,368.4: experience companionship with other students who are progressing through the ranks .”
+66.5,378.9,389.1: D: Incorrect . Although the transitional phrase “for instance” connects an idea with a related example, it does
+66.5,391.9,401.9: not show the cause-and-effect relationship between the ideas in sentence 16—progressing through levels
+66.5,404.9,414.9: “requires students to take responsibility and be accountable for achieving set goals”—and the ideas in
+66.5,417.9,427.9: sentence 17—“students gain confidence and experience companionship with other students who are
+66.5,430.9,440.9: progressing through the ranks .”
+53.4,473.4,483.6: 8 . The question asks for the sentence that would best follow and support sentence 18 .
+66.5,493.9,504.1: G: Correct . Option G is correct because sentence 18 conveys that the greatest benefit of practicing martial
+66.5,506.9,516.9: arts is “health and fitness,” and Option G illustrates some specific ways that martial arts training helps
+66.5,519.9,529.9: improve physical fitness—“strengthen their heart, boost endurance, improve balance, and develop muscle
+66.5,532.9,542.9: tone .”
+66.5,553.4,563.6: E: Incorrect . Though the idea of advancing one’s career is certainly appealing for adults, this benefit is not
+66.5,566.4,576.4: directly tied to “health and fitness” and, therefore, does not support sentence 18 .
+66.5,586.9,597.1: F: Incorrect . While the passage does discuss potential benefits related to discipline, focus, and confidence
+66.5,599.9,609.9: (sentences 6 and 11), sentence 18 is solely related to health and fitness benefits and should not be followed
+66.5,612.9,622.9: by a description of “other skills .”
+66.5,633.4,643.6: H: Incorrect . Some readers may choose this option because sentence 5, sentence 15, and sentence 18
+66.5,646.4,656.4: discuss the physical aspects of practicing martial arts, but the idea that people who practice martial arts are
+66.5,659.4,669.4: concerned about their overall health does not provide further details about the connection between
+66.5,672.4,682.4: training and health .
+297.2,756.7,767.2: 186
+=== PAGE 5 ===
+53.4,83.8,94.1: 9 . The question asks for the concluding sentence that best replaces sentence 23 and supports the topic
+67.0,96.8,106.8: presented in the passage .
+66.5,117.3,127.6: B: Correct . Option B is correct because it best supports the topic of the passage—the benefits of studying
+66.5,130.3,140.3: martial arts—by stating two reasons why people should study martial arts: to “experience the satisfaction of
+66.5,143.3,153.3: achieving goals while also improving themselves .”
+66.5,163.8,174.1: A: Incorrect . The phrase “the skills needed to progress in rank” is vague, and progressing in rank is not
+66.5,176.8,186.8: related to the overall topic of the passage, which is the benefits of studying martial arts . The topic of the
+66.5,189.8,199.8: passage is not the “many ways to begin studying martial arts” or how “people can easily discover” the
+66.5,202.8,212.8: benefits of martial arts .
+66.5,223.3,233.6: C: Incorrect . Some readers may choose this option because it refers to the benefits of martial arts, but the
+66.5,236.3,246.3: word “because” and the detail that “enrollment in martial arts courses has increased” make this sentence
+66.5,249.3,259.3: unrelated to the overall topic of the passage, which is about the benefits of studying martial arts, not the
+66.5,262.3,272.3: number of people who participate .
+66.5,282.8,293.1: D: Incorrect . Although the benefits of studying martial arts are described for both teens (in the third
+66.5,295.8,305.8: paragraph) and adults (in the fourth paragraph), the topic of the passage is the overall benefits of studying
+66.5,308.8,318.8: martial arts, which include mental discipline (discussed in the first, second, and third paragraphs) in addition
+66.5,321.8,331.8: to health benefits . Furthermore, the passage does not compare the health effects of studying martial arts
+66.5,334.8,344.8: across age groups .
+42.0,357.8,368.8: READING COMPREHENSION
+42.0,379.7,390.7: The Best Laid Plans of Ravens
+47.7,401.3,411.6: 10 . The question asks how paragraph 1 introduces the ideas that ravens may perceive time and plan for the
+67.0,414.3,424.3: future .
+66.5,434.8,445.1: F: Correct . Edgar Allan Poe’s poem features a raven that speaks in a prophetic way . Since prophecies are a
+66.5,447.8,457.8: prediction of the future, the statement suggests that the raven has a sense of time . This reference is then
+66.5,460.8,470.8: tied to a modern study where “researchers argue that ravens may be able to think ahead and even plan for
+66.5,473.8,483.8: the future” (paragraph 1) .
+66.5,494.3,504.6: E: Incorrect . While paragraph 1 states that people have historically believed that animals do not understand
+66.5,507.3,517.3: the passage of time, this paragraph is not the introduction to the idea that ravens may plan for the future .
+66.5,527.8,538.1: G: Incorrect . Although the idea of a raven being aware of the future in the poem is tied to a study that “hints
+66.5,540.8,550.8: that one particular idea behind the poem might not be as far-fetched as it seems” (paragraph 1), this
+66.5,553.8,563.8: connection does not prove that the poem is what prompted scientists to conduct such a study .
+66.5,574.3,584.6: H: Incorrect . Paragraph 1 introduces the idea “that ravens may be able to think ahead and even plan for the
+66.5,587.3,597.3: future” but does not explain in detail the importance of differentiating between whether ravens act on
+66.5,600.3,610.3: instinct or on their ability to plan .
+47.7,642.8,653.1: 11 . The question asks which statement describes the effect in the passage of the phrase “merely instinctual”
+67.0,655.8,665.8: from paragraph 2 .
+66.5,676.3,686.6: D: Correct . The passage suggests that in order for an animal’s actions to qualify as planning for the future,
+66.5,689.3,699.3: “the animal must use specific decision-making skills to solve a problem” (paragraph 2) . The behavior of
+66.5,702.3,712.3: hoarding food is based on instinct and done automatically without real thought .
+297.2,756.7,767.2: 187
+=== PAGE 6 ===
+66.5,71.2,81.4: A: Incorrect . The passage does not question animals’ ability to find and save food but rather whether this or
+66.5,84.2,94.2: other behavior involves thought and planning for the future .
+66.5,104.7,114.9: B: Incorrect . While the sentence states that “many animals hoard food,” the passage does not suggest that
+66.5,117.7,127.7: they give priority of thought to this activity; they hoard food out of instinct .
+66.5,138.2,148.4: C: Incorrect . Although the passage discusses animals’ tendency to store a great deal of food, it does not
+66.5,151.2,161.2: suggest that their hoarding goes beyond their needs .
+47.7,193.7,203.9: 12 . The question asks which sentence from paragraph 4 supports the argument presented in the sentence
+67.0,206.7,216.7: from paragraph 1 .
+66.5,227.2,237.4: H: Correct . This sentence from paragraph 4 shows that the ravens seem to make a decision, which involves
+66.5,240.2,250.2: a thought process . The ravens chose to wait for the researcher rather than take the treats, suggesting that
+66.5,253.2,263.2: the ravens understood that the researcher would trade a larger treat for the bottle cap .
+66.5,273.7,283.9: E: Incorrect . This sentence from paragraph 4 refers to the ravens’ ability to adapt and learn but not to plan
+66.5,286.7,296.7: and think ahead .
+66.5,307.2,317.4: F: Incorrect . This sentence from paragraph 4 relates the actions of the researcher rather than the actions of
+66.5,320.2,330.2: the ravens and does not provide evidence in support of the argument that ravens have the ability to think
+66.5,333.2,343.2: and plan ahead .
+66.5,353.7,363.9: G: Incorrect . This sentence from paragraph 4 does not describe a behavior of the ravens that would support
+66.5,366.7,376.7: the argument in the sentence from paragraph 1; instead it relates the actions of the researchers without
+66.5,379.7,389.7: giving any information about the ravens’ responses .
+47.7,422.2,432.4: 13 . The question asks which of the ravens’ behaviors in the first experiment described in paragraph 4 most
+67.0,435.2,445.2: strongly supports the claim that the birds are capable of planning .
+66.5,455.7,465.9: B: Correct . Once the ravens learned which stone would open the box, they consistently selected only that
+66.5,468.7,478.7: stone .
+66.5,489.2,499.4: A: Incorrect . While “the researchers showed the birds how to use a small stone to open a box and get treats”
+66.5,502.2,512.2: (paragraph 4), the acceptance of the treats does not demonstrate planning .
+66.5,522.7,532.9: C: Incorrect . Although the birds learned which stone opened the box, this behavior demonstrates not their
+66.5,535.7,545.7: ability to plan but rather their intelligence .
+66.5,556.2,566.4: D: Incorrect . The birds’ patience shows their anticipation for and understanding of the future gain of a treat
+66.5,569.2,579.2: but does not provide the strongest evidence of their ability to plan .
+47.7,611.7,621.9: 14 . The question asks how the sentence from paragraph 4 fits into the overall structure of the passage and
+67.0,624.7,634.7: contributes to the development of ideas .
+66.5,645.2,655.4: E: Correct . The patience the ravens demonstrated in the sentence from paragraph 4 while waiting for the
+66.5,658.2,668.2: return of the researcher in both experiments shows their understanding that the researcher’s return holds
+66.5,671.2,681.2: a benefit for them .
+66.5,691.7,701.9: F: Incorrect . The passage does not state that there was a set timeline for the researcher’s return; the
+66.5,704.7,714.7: seventeen hours, mentioned in the sentence from paragraph 4, was just the longest time measured .
+297.2,756.7,767.2: 188
+=== PAGE 7 ===
+66.5,71.2,81.4: G: Incorrect . The experiment did involve the ravens solving a problem . The ravens’ patience demonstrated
+66.5,84.2,94.2: an understanding that there would be future gain for them by waiting for the researcher, but the sentence
+66.5,97.2,107.2: from paragraph 4 does not demonstrate the ravens’ ability to plan .
+66.5,117.7,127.9: H: Incorrect . The way the ravens obtained the food from the researcher required far more than instinct; in
+66.5,130.7,140.7: order to get the maximum amount of food, a number of learned skills, such as selecting a stone that would
+66.5,143.7,153.7: open the box and choosing the bottle cap over the immediate treat, were necessary . The ravens’ ability to
+66.5,156.7,166.7: wait, as demonstrated in the sentence from paragraph 4, does not influence or affect a learned behavior or
+66.5,169.7,179.7: a possible instinct to hoard food .
+47.7,212.2,222.4: 15 . The question asks the reader to choose the statement with which the author of the passage would most
+67.0,225.2,235.2: likely agree .
+66.5,245.7,255.9: B: Correct . As paragraph 5 notes, “more evidence needs to be gathered before scientists can fully conclude
+66.5,258.7,268.7: that ravens can plan for the future .” The evidence is not yet considered definitive because “some scientists
+66.5,271.7,281.7: argue that the ravens might be choosing the stone and bottle cap because the ravens have been trained to
+66.5,284.7,294.7: do so, not necessarily because the ravens are thinking ahead” (paragraph 5) . Therefore, more research is
+66.5,297.7,307.7: needed in order to draw a complete conclusion .
+66.5,318.2,328.4: A: Incorrect . It is very likely that additional experiments or changes to the experiments presented can help
+66.5,331.2,341.2: scientists tell the difference between the types of behavior that the animals are showing . The current
+66.5,344.2,354.2: research supports “other recent advances in animal science” and also shows that ravens are “much smarter”
+66.5,357.2,367.2: (paragraph 5) than previously believed, making them excellent candidates for further research .
+66.5,377.7,387.9: C: Incorrect . The passage shows that the scientists did not draw conclusions based on one experiment
+66.5,390.7,400.7: alone . The passage also states in paragraph 5 that additional research and experiments are necessary in
+66.5,403.7,413.7: order to obtain conclusive evidence of ravens’ abilities to think and plan ahead .
+66.5,424.2,434.4: D: Incorrect . The passage claims that more evidence must be gathered in order to make a claim that
+66.5,437.2,447.2: animals can definitely plan for the future . The evidence presented helps scientists “believe that ravens do
+66.5,450.2,460.2: actually think about their own future” (paragraph 5), but more confirmation is needed . The passage does
+66.5,463.2,473.2: not discuss performing experiments on additional species .
+47.7,505.7,515.9: 16 . The question asks how paragraph 5 fits into the overall structure of the passage and contributes to the
+67.0,518.7,528.7: development of ideas .
+66.5,539.2,549.4: G: Correct . Paragraph 5 notes that some doubt remains (“Some scientists argue that the ravens might be
+66.5,552.2,562.2: choosing the stone and bottle cap because the ravens have been trained to do so, not necessarily because
+66.5,565.2,575.2: the ravens are thinking ahead”) and that more experimentation is needed; the author concludes that there
+66.5,578.2,588.2: is reason to believe the originally stated theory that ravens are quite smart and can give thought to how
+66.5,591.2,601.2: future events may affect them .
+66.5,611.7,621.9: E: Incorrect . While paragraph 5 states that “more evidence needs to be gathered before scientists can fully
+66.5,624.7,634.7: conclude that ravens can plan for the future,” this statement suggests that more research is needed, not
+66.5,637.7,647.7: that the results of the Lund University studies are problematic .
+66.5,658.2,668.4: F: Incorrect . Paragraph 5 does not discuss steps of the study or emphasize difficulties in determining
+66.5,671.2,681.2: whether the behaviors shown in the study were planned or practiced; instead it simply suggests that more
+66.5,684.2,694.2: study is required to make such a determination .
+297.2,756.7,767.2: 189
+=== PAGE 8 ===
+66.5,72.4,82.6: H: Incorrect . Paragraph 5 does not list the effects of the study or criticize the experiment for not
+66.5,85.4,95.4: differentiating between planning and instinct . The paragraph explains why the results of the experiments
+66.5,98.4,108.4: are not conclusive and emphasizes that more research is needed .
+47.7,140.9,151.1: 17 . The question asks how the author conveys a point of view on the study of animal intelligence .
+66.5,161.4,171.6: A: Correct . Paragraphs 3 and 4 focus on the process and details of the experiments that scientists
+66.5,174.4,184.4: conducted . This detailed information from the author provides a sense of how the ravens demonstrated
+66.5,187.4,197.4: planning abilities beyond natural instinct . The author supports the claims from the experiments, calling the
+66.5,200.4,210.4: findings “exciting” and stating in the conclusion that “these experiments show that ravens could be much
+66.5,213.4,223.4: smarter than first believed” (paragraph 5) .
+66.5,233.9,244.1: B: Incorrect . Although two experiments are described in the passage, the description presents the
+66.5,246.9,256.9: experiments as building on each other and does not compare their results . The passage states that “these
+66.5,259.9,269.9: experiments show that ravens could be much smarter than first believed, and scientists now believe that
+66.5,272.9,282.9: ravens do actually think about their own future” (paragraph 5) .
+66.5,293.4,303.6: C: Incorrect . The author presents information from the experiments and the results that were gathered
+66.5,306.4,316.4: from them; while there is an admission that “more evidence needs to be gathered before scientists can fully
+66.5,319.4,329.4: conclude that ravens can plan for the future” (paragraph 5), the author does not criticize the experiments
+66.5,332.4,342.4: that are presented .
+66.5,352.9,363.1: D: Incorrect . While the author does discuss some previously held beliefs about animal intelligence in
+66.5,365.9,375.9: paragraph 1, the focus of the passage is that experiments indicate that there is reason to question these
+66.5,378.9,388.9: beliefs, since “these experiments show that ravens could be much smarter than first believed” (paragraph 5).
+66.5,391.9,401.9: The previously held beliefs are not considered inaccurate by the discussion in the passage because only one
+66.5,404.9,414.9: example—the raven—is provided . The passage does not state that beliefs about animal intelligence as a
+66.5,417.9,427.9: whole are inaccurate .
+42.0,440.8,451.8: Looking for the Smallest Spark of Everything
+47.7,462.4,472.6: 18 . The question asks what lines 5–8 reveal about the speaker to help develop a central idea of the poem .
+66.5,482.9,493.1: F: Correct . Lines 5–8 show the connection between the particles by using the words “beneath the level”
+66.5,495.9,505.9: repeatedly . The progression of particles of matter, from atoms to subatomic particles, “protons, electrons,
+66.5,508.9,518.9: neutrons” (line 7), ends with a question . By asking, “what, exactly?” (line 8), the speaker questions the
+66.5,521.9,531.9: mysteries that are still unsolved about the nature of matter, which is a central idea of the poem .
+66.5,542.4,552.6: E: Incorrect . In lines 5–8, the speaker is demonstrating knowledge about the structure of matter, not
+66.5,555.4,565.4: demonstrating interest in how matter’s parts work together; for example, “beneath the level of molecules
+66.5,568.4,578.4: are atoms, / and beneath the level of atoms, we find / protons, electrons, neutrons” (lines 5–7) .
+66.5,588.9,599.1: G: Incorrect . The speaker expresses curiosity in line 8 (“what, exactly?”) but does not use language in lines
+66.5,601.9,611.9: 5–8 that expresses a desire to prove a point . The poem does not show any conflict, either from within or
+66.5,614.9,624.9: from other scientists, about the concept that particles make up matter .
+66.5,635.4,645.6: H: Incorrect . While the poem is about the Large Hadron Collider, which, according to the introductory text
+66.5,648.4,658.4: before the poem, is a tool that “helps scientists study and understand how the smallest particles of matter
+66.5,661.4,671.4: interact with one another,” lines 5–8 do not suggest the use of tools but rather question what comes after
+66.5,674.4,684.4: the “protons, electrons, neutrons” (line 7) .
+297.2,756.7,767.2: 190
+=== PAGE 9 ===
+47.7,83.8,94.1: 19 . The question asks how the break between the second stanza (lines 5–14) and the third stanza (lines 15–26)
+67.0,96.8,106.8: serves as a transition between ideas .
+66.5,117.3,127.6: A: Correct . The second stanza describes physical objects, including “your fingernail, / the candy at the back
+66.5,130.3,140.3: of your mouth, / the coffee your teacher drank this morning” (lines 9–11) and even “the stuffed dog” that
+66.5,143.3,153.3: “your little sister” (line 12) carries around . In the third stanza, the speaker introduces the topic of
+66.5,156.3,166.3: observation by asking, “How do we find it?” in line 17 . Lines 17–18 offer one possible method for finding “it”
+66.5,169.3,179.3: (“We can listen for it / in the wavelengths from deep space”), while lines 20–22 describe a second method
+66.5,182.3,192.3: (“Or we can build long, / deep circular tunnels beneath the surface / of this Earth and race particles”) . With
+66.5,195.3,205.3: these details, the focus of the poem shifts toward explaining how the particles that make up everything are
+66.5,208.3,218.3: observed .
+66.5,228.8,239.1: B: Incorrect . While the speaker does list common items such as “candy” and “coffee” (lines 10–11) that many
+66.5,241.8,251.8: people are familiar with and that seem to be simple in composition or structure, the speaker does not imply
+66.5,254.8,264.8: in the third stanza that invisible objects complicate the world . In fact, the speaker claims that everything is
+66.5,267.8,277.8: “made up of the same stuff” (line 16), which simplifies the invisible world .
+66.5,288.3,298.6: C: Incorrect . The second stanza focuses on the structure of matter (“beneath the level of molecules are
+66.5,301.3,311.3: atoms, / and beneath the level of atoms, we find / protons, electrons, neutrons” [lines 5–7]) and does not
+66.5,314.3,324.3: discuss the methods used to explore this structure in space . The third stanza mentions space (“We can listen
+66.5,327.3,337.3: for it / in the wavelengths from deep space” [lines 17–18]) and how we can “race particles” (line 22) on Earth
+66.5,340.3,350.3: but does not compare the methods of study used in these different locations .
+66.5,360.8,371.1: D: Incorrect . While the second stanza describes items that are familiar to readers, including “your fingernail,
+66.5,373.8,383.8: / the candy at the back of your mouth, / the coffee your teacher drank this morning” (lines 9–11), the
+66.5,386.8,396.8: familiarity of these items does not necessarily mean they are part of a comfortable environment . The third
+66.5,399.8,409.8: stanza discusses studying the parts of matter “until everything we think we know / bangs against everything
+66.5,412.8,422.8: else we know” (lines 25–26) . The “banging” the speaker refers to is not related to an unstable environment
+66.5,425.8,435.8: but rather to the mysteries of atomic structure .
+47.7,468.3,478.6: 20 . The question asks what the comparison in lines 23–24 of the poem is mainly meant to show .
+66.5,488.8,499.1: F: Correct . Lines 23–24 describe “tiny cars / flashing along at close to the speed of light,” which describes
+66.5,501.8,511.8: how the particles move .
+66.5,522.3,532.6: E: Incorrect . While the particles are moving “close to the speed of light” (line 24), which would make them
+66.5,535.3,545.3: difficult to see, the comparison in lines 23–24 focuses on the movement of the particles, not how visible they
+66.5,548.3,558.3: are .
+66.5,568.8,579.1: G: Incorrect . Lines 23–24 do not describe the shape of the particles but rather their movement, which is
+66.5,581.8,591.8: “flashing along at close to the speed of light” (line 24) .
+66.5,602.3,612.6: H: Incorrect . The word “flashing” in line 24 does not refer to light in darkness but rather to speed, and the
+66.5,615.3,625.3: word “light” is used to reference a measurement of speed, not brightness in darkness .
+47.7,657.8,668.1: 21 . The question asks how lines 25–26 help develop a central idea in the poem .
+66.5,678.3,688.6: B: Correct . The lines “until everything we think we know / bangs against everything else we know”
+66.5,691.3,701.3: (lines 25–26) are about how the old knowledge about particles interacts with newfound knowledge.
+66.5,711.8,722.1: A: Incorrect . Lines 25–26 illustrate the collision of old and new information about particles, but they do not
+66.5,724.8,734.8: describe “creative methods” that are currently being invented to research subatomic particles .
+297.2,756.7,767.2: 191
+=== PAGE 10 ===
+66.5,72.4,82.6: C: Incorrect . While lines 20–22 describe the Large Hadron Collider as “long, / deep circular tunnels beneath
+66.5,85.4,95.4: the surface / of this Earth” where scientists “race particles,” lines 25–26 refer to the collision of old and new
+66.5,98.4,108.4: ideas about particles, not the limitations of the Large Hadron Collider .
+66.5,118.9,129.1: D: Incorrect . Lines 25–26 focus on what “we think we know” about subatomic particles and how new
+66.5,131.9,141.9: discoveries challenge “everything else we know .” However, the challenge is not a result of scientists debating
+66.5,144.9,154.9: one another but rather what the Large Hadron Collider reveals about particles .
+47.7,187.4,197.6: 22 . The question asks what the imagery in lines 27–28 reveals about the speaker .
+66.5,207.9,218.1: G: Correct . The word “explosion” and the phrase “briefly incandescent” create a picture of rapid changes
+66.5,220.9,230.9: and short bursts of bright light, revealing how powerful the new particles are . The language the speaker
+66.5,233.9,243.9: uses is positive, revealing that the speaker admires the power of the reaction and stands in awe of the new
+66.5,246.9,256.9: particles .
+66.5,267.4,277.6: E: Incorrect . The physicists mentioned in the fifth stanza (lines 33–44) are described as mere observers: they
+66.5,280.4,290.4: “jot down / what they can” (lines 41–42) . In lines 27–28, the speaker is focused on the reaction between the
+66.5,293.4,303.4: colliding particles, not on the physicists who study them .
+66.5,313.9,324.1: F: Incorrect . The speaker describes the particle collision in detail, but the text does not imply that the
+66.5,326.9,336.9: speaker has personally witnessed a collision . The speaker implies that his or her understanding of the
+66.5,339.9,349.9: collision is based on the experiences of the physicists observing the phenomenon (“They spin, and it is only
+66.5,352.9,362.9: down there / in the darkness—in the vast garage / where physicists jot down / what they can, whatever
+66.5,365.9,375.9: seems most real— / that they let us perceive their wild dancing” [lines 39–43]) .
+66.5,386.4,396.6: H: Incorrect . The poem reveals the speaker’s deep knowledge about subatomic particles . For example, the
+66.5,399.4,409.4: speaker is able to name the new particles discovered—“the quarks, the leptons, and the bosons; / the
+66.5,412.4,422.4: baryons and the mesons” (lines 29–30)—and is able to use imagery to create a powerful picture that reveals
+66.5,425.4,435.4: the complexity of a scientific process that humans have never been able to see .
+47.7,467.9,478.1: 23 . The question asks why the speaker refers to familiar objects and events in lines 30–32 .
+66.5,488.4,498.6: D: Correct . The phrase “their names” (line 30) refers to the scientific names of the particles: “the quarks, the
+66.5,501.4,511.4: leptons, and the bosons; / the baryons and the mesons” (lines 29–30) . In lines 30–32, the speaker expresses
+66.5,514.4,524.4: the opinion that these scientific terms sound nonsensical, much like the strange scientific names of
+66.5,527.4,537.4: dinosaurs or silly band names .
+66.5,547.9,558.1: A: Incorrect . In lines 30–32, the speaker only gives an opinion about what the names sound like and does
+66.5,560.9,570.9: not simplify confusing information about how these newly discovered particles function or exist .
+66.5,581.4,591.6: B: Incorrect . In lines 30–32, the speaker is only describing what the names of the particles sound like:
+66.5,594.4,604.4: “dinosaurs or maybe bands” (line 31) . These descriptions illustrate the speaker’s opinion but do not explain
+66.5,607.4,617.4: specific scientific ideas .
+66.5,627.9,638.1: C: Incorrect . In lines 30–32, the mention of the names of the particles sounding like “dinosaurs or maybe
+66.5,640.9,650.9: bands” (line 31) reveals the speaker’s opinion about the names but does not explain the process of
+66.5,653.9,663.9: researching the particles .
+47.7,696.4,706.6: 24 . The question asks for the most likely reason the poet includes lines 36–39 in the poem .
+66.5,716.9,727.1: F: Correct . The particles that are “Everything and everywhere” (line 15) make up the objects mentioned in
+66.5,729.9,739.9: lines 36–39: a “pencil in your hand” and the planet “Jupiter .” Even though these objects are different from
+297.2,756.7,767.2: 192
+=== PAGE 11 ===
+66.5,72.4,82.4: each other and extremely far apart in the universe, they are made up of and affected by these particles . The
+66.5,85.4,95.4: “powerful effect” is that the particles keep the objects “both together and apart” (line 36) .
+66.5,105.9,116.1: E: Incorrect . While the poem implies that the research is important, lines 36–39 do not point to a need for
+66.5,118.9,128.9: more research . Instead, the lines explain the power of the particles in the universe .
+66.5,139.4,149.6: G: Incorrect . While the physicists can only “jot down / what they can, whatever seems most real” (lines
+66.5,152.4,162.4: 41–42), the discoveries about particles are ongoing and informative . The speaker shares that the particles
+66.5,165.4,175.4: are “everything and everywhere” (line 15) and that they “spin” (line 34) because “this is how gravity / enters
+66.5,178.4,188.4: our world” (lines 34–35) .
+66.5,198.9,209.1: H: Incorrect . The speaker states that particles keep together objects in space, such as Jupiter, as well as
+66.5,211.9,221.9: objects on Earth, such as “the pencil in your hand right now” (line 37) . However, in lines 36–39, the speaker is
+66.5,224.9,234.9: not comparing the study of subatomic particles with the study of objects in space (astronomy); the speaker
+66.5,237.9,247.9: is implying that because particles are “everything and everywhere” (line 15), the study of particles affects our
+66.5,250.9,260.9: understanding of everything in the universe, regardless of location .
+47.7,293.4,303.6: 25 . The question asks which central idea is emphasized in the last stanza (lines 33–44) .
+66.5,313.9,324.1: A: Correct . Throughout the poem, the speaker describes how everything in our universe and in our
+66.5,326.9,336.9: everyday lives is made up of these tiny particles . The last stanza allows us to picture the scientists working
+66.5,339.9,349.9: “in the darkness” (line 40), jotting down notes . Phrases like “wild dancing” (line 43) and “combusting to the
+66.5,352.9,362.9: music” (line 44) describe the activity of the particles and communicate the idea that the findings are exciting .
+66.5,373.4,383.6: B: Incorrect . While the Large Hadron Collider is in an unconventional location that is important in the poem,
+66.5,386.4,396.4: it is the only location described in the poem: “it is only down there / in the darkness—in the vast garage”
+66.5,399.4,409.4: (lines 39–40) . While the darkness is a special condition, the poem does not describe other conditions where
+66.5,412.4,422.4: the same type of research is being carried out . The poem does mention that “we can listen for it / in the
+66.5,425.4,435.4: wavelengths from deep space, / talking back to us from unimaginable / distances” (lines 17–20), but this
+66.5,438.4,448.4: description implies the use of a tool (a satellite), not a location .
+66.5,458.9,469.1: C: Incorrect . The last stanza states that “The one thing we know for sure / is that they spin” (lines 33–34) .
+66.5,471.9,481.9: This detail is one aspect of the particles’ behavior that is known; therefore, the particles are not completely
+66.5,484.9,494.9: unpredictable . In addition, the poem never describes the particles breaking up matter in the universe; the
+66.5,497.9,507.9: poem describes only their movements and collisions .
+66.5,518.4,528.6: D: Incorrect . While the “physicists jot down / what they can, whatever seems most real” (lines 41–42), the
+66.5,531.4,541.4: research they share with the world is complicated and difficult to understand, making it unlikely that their
+66.5,544.4,554.4: findings are relatable to most people .
+47.7,586.9,597.1: 26 . The question asks what lines 39–44 reveal about the speaker .
+66.5,607.4,617.6: G: Correct . The speaker uses the phrases “only down there” (line 39), “physicists jot down  .  .  . whatever
+66.5,620.4,630.4: seems most real” (lines 41–42), and “they let us perceive” (line 43) to convey that the physicists have a rare
+66.5,633.4,643.4: role in studying the mysteries of the universe and that the speaker appreciates and is interested in their
+66.5,646.4,656.4: work .
+66.5,666.9,677.1: E: Incorrect . While the discoveries are made “in the darkness” (line 40), the imagery conveys the speaker’s
+66.5,679.9,689.9: positive tone through descriptions like “perceive their wild dancing” (line 43) and “combusting to the music
+66.5,692.9,702.9: they make” (line 44), not frustration .
+66.5,713.4,723.6: F: Incorrect . In lines 39–44, the imagery of energetic movement (“They spin,” “their wild dancing,” and
+66.5,726.4,736.4: “combusting to the music they make”) is used to describe the particles, not the physicists .
+297.2,756.7,767.2: 193
+=== PAGE 12 ===
+66.5,71.2,81.4: H: Incorrect . While the description of the experiments occurring “in the darkness” (line 40) may create a
+66.5,84.2,94.2: sense of secrecy, the secrets that the darkness refers to are the mysteries of subatomic particles, not the
+66.5,97.2,107.2: work processes that the physicists use .
+42.0,120.1,131.1: Excerpt from “The Spirit of the Herd”
+47.7,141.7,151.9: 27 . The question asks which sentence from the excerpt best explains why Wade reserved Peroxide Jim for
+67.0,154.7,164.7: “emergency work .”
+66.5,175.2,185.4: D: Correct . The sentence from paragraph 16 describes Peroxide Jim’s high level of skill and ability to
+66.5,188.2,198.2: perform in a life-and-death situation . Not only did Peroxide Jim recognize the emergency immediately
+66.5,201.2,211.2: (“From the flash of the lightning the horse had taken the bit”), but the horse also proved to have the physical
+66.5,214.2,224.2: capability (“had covered an indescribably perilous path at top speed, had outrun the herd and turned it from
+66.5,227.2,237.2: the edge of the rim rock”) and the mental fortitude (“without a false step or a tremor of fear”) required to
+66.5,240.2,250.2: respond appropriately to the dangerous situation .
+66.5,260.7,270.9: A: Incorrect . While the sentence from paragraph 1 refers to Peroxide Jim’s intelligence and appearance, it
+66.5,273.7,283.7: does not tell why he would be useful in an emergency . Peroxide Jim is described as “supple, powerful,” and
+66.5,286.7,296.7: “intelligent,” which are all desirable traits for a horse used for herding cattle . However, this option is not the
+66.5,299.7,309.7: best answer because the sentence merely lists useful attributes, while option D shows those attributes
+66.5,312.7,322.7: being used in an actual emergency situation .
+66.5,333.2,343.4: B: Incorrect . The sentence from paragraph 10 does not describe the actions of Peroxide Jim . The sentence
+66.5,346.2,356.2: describes what Wade and the horse were experiencing, but it does not include any reference to how
+66.5,359.2,369.2: Peroxide Jim was responding to the situation .
+66.5,379.7,389.9: C: Incorrect . The sentence from paragraph 11 describes Wade’s experiences and does not focus on the
+66.5,392.7,402.7: actions of Peroxide Jim . It reveals Wade’s awareness of the danger he was in, but the only reference to
+66.5,405.7,415.7: Peroxide Jim in this sentence is the description of the horse having to work harder to run on the stonier
+66.5,418.7,428.7: ground as they neared the edge: from “the plunging of the horse,” Wade knew “that the ground was growing
+66.5,431.7,441.7: stonier, that they were nearing the rocks .” This quotation does not show that Peroxide Jim was the right
+66.5,444.7,454.7: horse to use for emergency work because it does not indicate, at this point in the text, that he was
+66.5,457.7,467.7: responding in a way that saved the herd or Wade .
+47.7,500.2,510.4: 28 . The question asks how paragraphs 1–2 contribute to the development of the central idea of the excerpt .
+66.5,520.7,530.9: E: Correct . The description of Peroxide Jim in paragraph 1 indicates that the horse was a fine animal (“Along
+66.5,533.7,543.7: with the wagon had come the fresh horses—one of them being Peroxide Jim, a supple, powerful, clean-
+66.5,546.7,556.7: limbed buckskin, a horse, I think, that had as fine and intelligent an animal-face as any creature I ever saw”
+66.5,559.7,569.7: [paragraph 1]) . The statement in paragraph 2 that Wade’s “faith in Peroxide Jim was complete” supports the
+66.5,572.7,582.7: central idea of the excerpt that Wade believed in Peroxide Jim’s abilities even before the horse turned the
+66.5,585.7,595.7: herd and saved the cattle .
+66.5,606.2,616.4: F: Incorrect . Paragraphs 1–2 do not emphasize Wade’s high expectations for himself, nor are these
+66.5,619.2,629.2: expectations a central idea of the excerpt . The narrator expresses a high opinion of Wade’s abilities in his
+66.5,632.2,642.2: comparison of Peroxide Jim and Wade, referring to the horse as a “complement” (paragraph 1) for Wade;
+66.5,645.2,655.2: however, Wade showed complete trust in the horse’s ability to save the herd without his help, as evidenced
+66.5,658.2,668.2: by Wade dropping the reins to allow the horse to control the situation (paragraph 12) .
+66.5,678.7,688.9: G: Incorrect . The paragraphs refer to Peroxide Jim’s ability to handle cattle; in fact, paragraph 2 says that
+66.5,691.7,701.7: “the horse knew the cattle business .” It can be inferred that Wade had this knowledge as well, but this idea
+66.5,704.7,714.7: is not the focus of paragraphs 1–2 and is not the central idea of the excerpt .
+297.2,756.7,767.2: 194
+=== PAGE 13 ===
+66.5,71.2,81.4: H: Incorrect . Wade’s ability to judge a horse’s competence is not a central idea of the excerpt . The event
+66.5,84.2,94.2: described in the text is proof that Wade knew how to judge a horse’s ability: Wade trusted Peroxide Jim, and
+66.5,97.2,107.2: Peroxide Jim did not let him down . The option puts the focus on Wade and one of his strengths, when the
+66.5,110.2,120.2: central idea and focus of the excerpt is Peroxide Jim’s abilities and strengths, not Wade’s .
+47.7,152.7,162.9: 29 . The question asks how paragraph 3 conveys the effect of the setting on the cattle drive .
+66.5,173.2,183.4: B: Correct . Paragraph 3 describes the land where the herd was as being “as level as a floor” but “rimmed by
+66.5,186.2,196.2: sheer rock, from which there was a drop to the bench of sage below .” The drop was “a perpendicular fall of
+66.5,199.2,209.2: about three hundred feet”—any animal or person could fall over that edge . It was the change in height, from
+66.5,212.2,222.2: flat tableland to sheer drop-off, that made the terrain so dangerous .
+66.5,232.7,242.9: A: Incorrect . The riders were not trying to move the herd through the darkness . Instead, the reference to the
+66.5,245.7,255.7: growing darkness (“overtaken by the dusk”) indicates that the riders had halted the animals for the night
+66.5,258.7,268.7: because moving the herd across the desert in the darkness would have been much too dangerous because
+66.5,271.7,281.7: of the sheer drop-off at the edge of the tableland . The riders needed the daylight to navigate the herd safely
+66.5,284.7,294.7: through the “pass descending to the next lower bench .”
+66.5,305.2,315.4: C: Incorrect . The use of the word “desert” in the first sentence of the paragraph does not highlight the
+66.5,318.2,328.2: isolation of the setting nor indicate that the riders and the herd were uncomfortable being alone . Instead,
+66.5,331.2,341.2: the word merely establishes the setting where the action occurred: “it lay as level as a floor, rimmed by
+66.5,344.2,354.2: sheer rock, from which there was a drop to the bench of sage below .”
+66.5,364.7,374.9: D: Incorrect . The excerpt does not indicate that the steep terrain made it difficult for the herd to move
+66.5,377.7,387.7: forward . The herd was not expected to navigate the steep terrain . Instead, the steep terrain presented a
+66.5,390.7,400.7: danger to the herd that must be avoided . The riders intended to move the herd safely through passes that
+66.5,403.7,413.7: descended gradually to lower elevations .
+47.7,446.2,456.4: 30 . The question asks which sentence from the excerpt best reveals the mood on the drive before the lightning
+67.0,459.2,469.2: struck .
+66.5,479.7,489.9: F: Correct . The sentence from paragraph 5 describes the riders singing “to preempt the dreaded silence, to
+66.5,492.7,502.7: relieve the tension” and to prevent “shock” from any sudden noise . These words provide a strong sense of
+66.5,505.7,515.7: the tense, heavy mood in which a terrible event such as a stampede could quickly happen .
+66.5,526.2,536.4: E: Incorrect . The sentence from paragraph 3 describes the setting but does not contain words that create a
+66.5,539.2,549.2: strong mood . In fact, this sentence shows that while there were dangerous surroundings, the riders and the
+66.5,552.2,562.2: herd were “now halted .”
+66.5,572.7,582.9: G: Incorrect . The sentence from paragraph 6 contains words that communicate refreshment and relief:
+66.5,585.7,595.7: “fresh, moist wind with the taste of water .” Relief was not the primary mood before the lightning struck;
+66.5,598.7,608.7: instead, the refreshing scent of rain and its promise of water was partially responsible for the herd’s
+66.5,611.7,621.7: stampede toward the edge once the lightning struck (“their bald faces lifted to drink the sweet wet breath
+66.5,624.7,634.7: that came over the rim” [paragraph 7]) .
+66.5,645.2,655.4: H: Incorrect . While the words “ghostly” and “still moving in a circle” in the sentence from paragraph 9 create
+66.5,658.2,668.2: a strange and mysterious image, the mood before the lightning struck was not one of mystery or suspense .
+66.5,671.2,681.2: Instead, these descriptive words are used to indicate Wade’s faint ability to see the herd moving in the dark .
+297.2,756.7,767.2: 195
+=== PAGE 14 ===
+47.7,83.8,94.1: 31 . The question asks how paragraph 9 fits into the overall structure of the excerpt .
+66.5,104.3,114.6: D: Correct . Paragraph 9 describes the lightning strike that made the cattle panic and stampede . The
+66.5,117.3,127.3: stampede is the main conflict Wade and Peroxide Jim addressed in the excerpt; and therefore, paragraph 9
+66.5,130.3,140.3: is essential to the overall structure of the text .
+66.5,150.8,161.1: A: Incorrect . Wade was alert long before the events of paragraph 9 . In paragraph 4, he began singing to the
+66.5,163.8,173.8: cattle because he knew that they were on the verge of stampeding . He was even more alert when he
+66.5,176.8,186.8: “caught a breath of fresh, moist wind with the taste of water in it” (paragraph 6) and heard thunder in
+66.5,189.8,199.8: paragraph 8: “The sound seemed to come out of the earth, a low, rumbling mumble .”
+66.5,210.3,220.6: B: Incorrect . Wade and the other riders were not calm; rather, they were alert and attempting to keep the
+66.5,223.3,233.3: cattle calm by singing to them . They were as prepared as they could be for what was about to happen, as
+66.5,236.3,246.3: shown in paragraph 1, through the selection of fresh horses and, specifically, Wade’s choice to ride Peroxide
+66.5,249.3,259.3: Jim in the face of possible danger: “Wade had been saving this horse for emergency work .”
+66.5,269.8,280.1: C: Incorrect . Although Wade’s leadership is implied in paragraph 9 (“He must keep them going . He touched
+66.5,282.8,292.8: his horse to ride on with them”), his leadership is revealed in earlier portions of the excerpt as well (“Wade
+66.5,295.8,305.8: had been saving this horse” [paragraph 1]; “Wade began to sing” [paragraph 5]), so this is not new
+66.5,308.8,318.8: information and is not relevant to the overall structure of the excerpt .
+47.7,351.3,361.6: 32 . The question asks how the sentences from paragraph 11 and paragraph 16 develop a central idea in the
+67.0,364.3,374.3: excerpt .
+66.5,384.8,395.1: G: Correct . Wade recognized that Peroxide Jim knew to turn the herd without any instruction from him .
+66.5,397.8,407.8: Throughout the excerpt, Wade exhibited confidence in his horse, Peroxide Jim . For example, the narrator
+66.5,410.8,420.8: describes Peroxide Jim as a “superior horse” in paragraph 1 and says that Wade’s “faith in Peroxide Jim was
+66.5,423.8,433.8: complete” in paragraph 2 . After Wade let go of the reins (paragraph 12), the horse took over, doing exactly
+66.5,436.8,446.8: what needed to be done to save Wade, the herd, and himself: “a big white steer, which the horse, with
+66.5,449.8,459.8: marvelous instinct, seemed to pick out from a bunch, and to cling to, forcing him gradually ahead, till,
+66.5,462.8,472.8: cutting him free from the bunch entirely, he bore him off into the swishing sage” (paragraph 14) .
+66.5,483.3,493.6: E: Incorrect . While Peroxide Jim’s presence was critical to saving the herd, the details in paragraph 11 and
+66.5,496.3,506.3: paragraph 16 do not focus on this idea . The primary idea is that the horse was so intelligent and aware that
+66.5,509.3,519.3: he acted on his own .
+66.5,529.8,540.1: F: Incorrect . The excerpt does not tell who trained Peroxide Jim . It can be inferred that Peroxide Jim had
+66.5,542.8,552.8: been well trained and was knowledgeable of working cattle; however, there is no indication that Wade was
+66.5,555.8,565.8: the person who trained Peroxide Jim, only that Wade knew of Peroxide Jim’s abilities, respected the skilled
+66.5,568.8,578.8: horse, and was “saving this horse for emergency work” (paragraph 1) . Because the reader cannot infer from
+66.5,581.8,591.8: the excerpt that Wade was the trainer, this idea cannot be considered central to the excerpt .
+66.5,602.3,612.6: H: Incorrect . The sentence from paragraph 11 and the sentence from paragraph 16 show that Peroxide Jim
+66.5,615.3,625.3: acted skillfully and with the knowledge that the ride was dangerous (“Wade was riding for his life . He knew
+66.5,628.3,638.3: it . His horse knew it” [paragraph 11]) . There is no indication that Peroxide Jim was not afraid; in fact, it is
+66.5,641.3,651.3: likely the awareness of the danger and the fear associated with that knowledge contributed to the horse’s
+66.5,654.3,664.3: motivation to turn the herd .
+297.2,756.7,767.2: 196
+=== PAGE 15 ===
+47.7,83.8,94.1: 33 . The question asks what the phrase “bore down the flank of the herd” conveys about Wade .
+66.5,104.3,114.6: C: Correct . The phrase “bore down the flank of the herd” conveys the overwhelming strength of the herd .
+66.5,117.3,127.3: The herd was forcing Wade toward the cliff . The wording in the quotation emphasizes the immediate
+66.5,130.3,140.3: danger of the situation and conveys the idea that Wade and Peroxide Jim were almost forced over the edge
+66.5,143.3,153.3: of the precipice by the stampeding herd .
+66.5,163.8,174.1: A: Incorrect . While Wade struggled to see the front of the herd, the words “bore down the flank of the herd”
+66.5,176.8,186.8: are meant to convey the intensity of the situation Wade was in, not the way the herd is blocking his vision .
+66.5,197.3,207.6: B: Incorrect . The sentence from paragraph 13 states that the herd was “close on their left” and includes the
+66.5,210.3,220.3: phrase “bore down .” Both of these phrases indicate that Wade was trapped between the stampeding herd
+66.5,223.3,233.3: and the steep cliff . Wade and Peroxide Jim were struggling to reach the very front of the herd to turn it away
+66.5,236.3,246.3: from the edge .
+66.5,256.8,267.1: D: Incorrect . The phrase “bore down the flank of the herd” does not indicate anything about the fear felt by
+66.5,269.8,279.8: the herd . The phrase is about Wade’s position between the edge of the stampeding herd and the drop-off .
+66.5,282.8,292.8: Wade was aware of the danger the herd was in if he and Peroxide Jim could not turn the cattle from the
+66.5,295.8,305.8: edge .
+47.7,338.3,348.6: 34 . The question asks how the details in paragraphs 14–16 help convey a central idea of the excerpt .
+66.5,358.8,369.1: E: Correct . Paragraphs 14–16 describe how Peroxide Jim’s “marvelous instinct” headed off the herd and
+66.5,371.8,381.8: drove it away from the cliff . Wade acknowledged that without his instruction, Peroxide Jim knew to find the
+66.5,384.8,394.8: leader of the herd, cut him off from the rest of the herd, and then lead him to safety, confident that the
+66.5,397.8,407.8: remainder of the herd would follow . Paragraph 16 confirms this: “Whose race was it? It was Peroxide Jim’s,
+66.5,410.8,420.8: according to Wade, for not by word or by touch of hand or knee had the horse been directed in the run .”
+66.5,423.8,433.8: This reinforces a central idea of the excerpt regarding the horse’s amazing intellect and ability .
+66.5,444.3,454.6: F: Incorrect . Although paragraphs 14–16 mention the “rim,” the “cliffs,” and the “indescribably perilous path,”
+66.5,457.3,467.3: these details are not the focus of the paragraphs . They are descriptions of the setting where Peroxide Jim’s
+66.5,470.3,480.3: able and effective actions saved the stampeding herd, and it is these actions that are the central idea being
+66.5,483.3,493.3: conveyed .
+66.5,503.8,514.1: G: Incorrect . Although Peroxide Jim is called “powerful” in paragraph 1, his physical strength is not a central
+66.5,516.8,526.8: idea of the excerpt nor the focus of paragraphs 14–16 . His success at turning the herd was attributed to his
+66.5,529.8,539.8: intellect and instinct, not his physical strength .
+66.5,550.3,560.6: H: Incorrect . The excerpt does not suggest that Peroxide Jim anticipated the herd’s stampede before the
+66.5,563.3,573.3: men did . In fact, the excerpt indicates that Wade led the men in singing to cover sudden noises that might
+66.5,576.3,586.3: cause the herd to stampede, indicating that Wade was alert to that possibility . Paragraph 7 also indicates
+66.5,589.3,599.3: that Wade anticipated the stampede, as he “checked his horse instantly” and tightened his “grip on the
+66.5,602.3,612.3: reins” as soon as he smelled the rain and heard the low rumble of thunder that preceded the lightning
+66.5,615.3,625.3: strike . The narrator notes Wade’s actions well before the horse’s actions . Paragraphs 14–16 describe how
+66.5,628.3,638.3: Peroxide Jim acted after the stampede began .
+297.2,756.7,767.2: 197
+=== PAGE 16 ===
+42.0,71.3,82.3: A Memory Revolution
+47.9,92.9,103.1: 35 . The question asks which sentence from the passage suggests that using Internet search engines may lead
+67.0,105.9,115.9: people to rely less on their own ability to recall information .
+66.5,126.4,136.6: C: Correct . The sentence in paragraph 2 reveals the results of a study that allowed half the participants to
+66.5,139.4,149.4: use Google to obtain answers to trivia questions and initially required the other half to use only their
+66.5,152.4,162.4: memory to answer questions . The sentence states that “83 percent of the Internet group continued to
+66.5,165.4,175.4: consult Google in the second round” and that “only 63 percent of the memory group chose to do so .” These
+66.5,178.4,188.4: statistics demonstrate that using Google in the first round resulted in participants in the “Internet” group
+66.5,191.4,201.4: relying more heavily on the Internet search engine to recall information in the second round, whereas
+66.5,204.4,214.4: participants who did not use Google in the first round were more likely to rely on their own ability to recall
+66.5,217.4,227.4: information .
+66.5,237.9,248.1: A: Incorrect . While the sentence in paragraph 1 refers to the increase in use that has made the Internet “an
+66.5,250.9,260.9: integral component” of everyday life for many people, it does not address memory or explain the effect of
+66.5,263.9,273.9: Internet use on a person’s ability to recall information .
+66.5,284.4,294.6: B: Incorrect . Although the sentence in paragraph 2 refers to research that was conducted to determine how
+66.5,297.4,307.4: the use of the Internet affects a person’s memory, the sentence simply explains one guideline of the study .
+66.5,310.4,320.4: The fact that the study required one group of participants to use Google does not indicate whether using a
+66.5,323.4,333.4: search engine affects the degree to which people rely on their own ability to recall information .
+66.5,343.9,354.1: D: Incorrect . The sentence in paragraph 3 compares the Internet to older resources, such as encyclopedias,
+66.5,356.9,366.9: that allowed people to access and retrieve large amounts of information . Although the sentence states that
+66.5,369.9,379.9: people have always used resources “to assist their memories,” it does not describe whether people mainly
+66.5,382.9,392.9: rely on their own ability or on the Internet to recall information .
+47.7,425.4,435.6: 36 . The question asks how the details in paragraph 3 about cognitive offloading convey a central idea of the
+67.0,438.4,448.4: passage .
+66.5,458.9,469.1: F: Correct . A central idea of the passage is that the Internet is changing how people retain information .
+66.5,471.9,481.9: Paragraph 3 supports this idea by stating that “a similar process has been taking place for centuries” and
+66.5,484.9,494.9: that “in the past,” resources such as encyclopedias were used to store and find information . The details
+66.5,497.9,507.9: provided in paragraph 3 about encyclopedias and the Internet show that people have always used
+66.5,510.9,520.9: resources to remember information and that these resources change over time as people develop new
+66.5,523.9,533.9: ways to “assist their memories .”
+66.5,544.4,554.6: E: Incorrect . Although paragraph 3 describes the Internet as “a vast extended memory,” it does not discuss
+66.5,557.4,567.4: reliance on the Internet for information . The paragraph states that the Internet “allows people to digitally
+66.5,570.4,580.4: access and retrieve much larger volumes of information” and indicates that this benefit leaves people free
+66.5,583.4,593.4: to focus on “connecting data, learning new information, or solving problems .” However, these details about
+66.5,596.4,606.4: the benefits of the Internet do not express an opinion about the inevitability of Internet reliance .
+66.5,616.9,627.1: G: Incorrect . While paragraph 3 does compare the use of encyclopedias to obtain information in the past
+66.5,629.9,639.9: with the use of today’s Internet, this comparison fails to convey the central idea of the passage that the
+66.5,642.9,652.9: Internet is changing how people remember information .
+66.5,663.4,673.6: H: Incorrect . Although paragraph 3 states that “much larger volumes of information” are available on the
+66.5,676.4,686.4: Internet than what has been available in previous methods of information storage, such as encyclopedias,
+66.5,689.4,699.4: this fact does not relate to an increase in the ability to understand that information and is not a central idea
+66.5,702.4,712.4: of the passage .
+297.2,756.7,767.2: 198
+=== PAGE 17 ===
+47.7,82.6,92.9: 37 . The question asks how the details of the experiment described in paragraph 5 convey a central idea of the
+67.0,95.6,105.6: passage .
+66.5,116.1,126.4: D: Correct . A central idea of the passage is that the way the human memory stores information is changing
+66.5,129.1,139.1: because of the Internet . The details of the experiment support this idea by indicating that study participants
+66.5,142.1,152.1: remembered different amounts of information based on whether they “thought the information would be
+66.5,155.1,165.1: saved” (paragraph 5) . Those who “believed the information would be erased and no longer available”
+66.5,168.1,178.1: (paragraph 5) remembered 40 percent more—almost twice as much—as those who expected to be able to
+66.5,181.1,191.1: access the information again in a saved computer file . Therefore, paragraph 5 conveys the central idea that
+66.5,194.1,204.1: the expectation of future access to information is a key element in “how people evaluate which information
+66.5,207.1,217.1: deserves their effort to remember” (paragraph 5) .
+66.5,227.6,237.9: A: Incorrect . Although paragraph 5 states that participants read the trivia facts and then “typed the
+66.5,240.6,250.6: statements into a computer file,” it does not explain the impact of repetition on memory, nor does it convey
+66.5,253.6,263.6: a central idea of the passage .
+66.5,274.1,284.4: B: Incorrect . Paragraph 5 acknowledges that people evaluate which information is important enough to
+66.5,287.1,297.1: remember, but it does not describe the rate at which people forget unimportant information . According to
+66.5,300.1,310.1: the paragraph, information is considered less important to remember if a person believes that he or she will
+66.5,313.1,323.1: be able to retrieve that information easily in the future . This does not mean the information is unimportant
+66.5,326.1,336.1: but rather that it is readily available for future access .
+66.5,346.6,356.9: C: Incorrect . Paragraph 5 specifies the number of trivia facts that study participants were given to read
+66.5,359.6,369.6: (forty), but it does not describe the amount of information as a factor in the participants’ memory
+66.5,372.6,382.6: performance . According to the paragraph, it was not the amount of information but rather the expectation
+66.5,385.6,395.6: of future availability that affected how much information participants were able to recall .
+47.7,428.1,438.4: 38 . The question asks how the study described in paragraph 6 influenced researchers’ ideas about memory in
+67.0,441.1,451.1: the digital age .
+66.5,461.6,471.9: G: Correct . The study in paragraph 6 demonstrated that participants were better able to recall where to find
+66.5,474.6,484.6: certain information than to recall the information itself . This influenced researchers’ ideas about memory in
+66.5,487.6,497.6: the digital age: “Overall, participants recalled the information’s location more often than the content itself,
+66.5,500.6,510.6: correctly identifying 49 percent of the folders for specific facts while remembering only 23 percent of the
+66.5,513.6,523.6: actual trivia” (paragraph 6) .
+66.5,534.1,544.4: E: Incorrect . The study required participants to organize information into folders, but the results suggest
+66.5,547.1,557.1: that organizing the information did not make the information easier to remember; instead, participants
+66.5,560.1,570.1: remembered the folder in which to find the information but forgot the information itself .
+66.5,580.6,590.9: F: Incorrect . Although the participants in the study were given a keyword, such as “ostrich,” when asked to
+66.5,593.6,603.6: remember “which folder contained a particular fact,” the study was significant for researchers because it
+66.5,606.6,616.6: demonstrated that “our memory is adapting to the Internet age by prioritizing where to locate information
+66.5,619.6,629.6: even when the specific details are forgotten” (paragraph 6) .
+66.5,640.1,650.4: H: Incorrect . The study did not examine the relative importance of remembering basic information or
+66.5,653.1,663.1: storing detailed information . It examined the effect of the Internet on the information that people
+66.5,666.1,676.1: remember and concluded that human memory “is adapting to the Internet age by prioritizing where to
+66.5,679.1,689.1: locate information” (paragraph 6) .
+297.2,756.7,767.2: 199
+=== PAGE 18 ===
+47.7,83.8,94.1: 39 . The question asks for the evidence from the passage that is most relevant to the claim in paragraph 7 that
+67.0,96.8,106.8: “ ‘far from making us stupid, these technologies are the only things that will keep us smart .’ ”
+66.5,117.3,127.6: B: Correct . The assertion made in paragraph 3 that states that cognitive offloading allows for “people’s
+66.5,130.3,140.3: minds” to be “free for other cognitive feats, such as connecting data, learning new information, or solving
+66.5,143.3,153.3: problems” is relevant to the claim in paragraph 7 because it indicates that the ability to store large amounts
+66.5,156.3,166.3: of information within the brain does not necessarily make someone smart . It also suggests that if people did
+66.5,169.3,179.3: not have to use so much effort simply organizing and storing information, their brain would be free to
+66.5,182.3,192.3: conduct higher-order tasks: “the Internet, serving as a vast extended memory, allows people to digitally
+66.5,195.3,205.3: access and retrieve much larger volumes of information . Consequently, people’s minds are free for other
+66.5,208.3,218.3: cognitive feats, such as connecting data, learning new information, or solving problems” (paragraph 3) .
+66.5,228.8,239.1: A: Incorrect . Whether the participants decided to use the Internet to answer easy trivia questions varied
+66.5,241.8,251.8: based on the options that the participants were given during the first part of the experiment and, therefore,
+66.5,254.8,264.8: cannot be relevant to the claim in paragraph 7 . Even when given the option of using the Internet, some
+66.5,267.8,277.8: participants chose to recall information from memory instead .
+66.5,288.3,298.6: C: Incorrect . The discussion in the passage connecting how people organize information in their mind and
+66.5,301.3,311.3: their ability to recall that information focuses on the process of organizing information within human
+66.5,314.3,324.3: memory rather than on how technology helps keep people’s minds available for complex thoughts .
+66.5,334.8,345.1: D: Incorrect . Although the passage provides an accurate description of transactive memory, it provides no
+66.5,347.8,357.8: indication of how using such memory would advance a person’s ability to maintain or improve intelligent
+66.5,360.8,370.8: thought .
+47.7,403.3,413.6: 40 . The question asks how the sentence in paragraph 7 contributes to the structure and development of ideas
+67.0,416.3,426.3: in the passage .
+66.5,436.8,447.1: G: Correct . Paragraphs 2 and 6 describe the results of experiments related to the Internet’s effect on
+66.5,449.8,459.8: memory without commenting on the advantages or disadvantages of relying on that technology, and the
+66.5,462.8,472.8: sentence in paragraph 7 presents a doubtful viewpoint that moves away from the neutral perspective of the
+66.5,475.8,485.8: broader passage . The opinion in the sentence is directly argued against in the three sentences that follow it,
+66.5,488.8,498.8: which present an extended quote from Steven Pinker, a psychology professor at Harvard University . Pinker
+66.5,501.8,511.8: refutes the idea expressed by the sentence, stating that “ ‘knowledge is increasing exponentially; human
+66.5,514.8,524.8: brainpower and waking hours are not’ ” (paragraph 7) . He adds that technologies such as the Internet “ ‘are
+66.5,527.8,537.8: the only things that will keep us smart’ ” (paragraph 7) .
+66.5,548.3,558.6: E: Incorrect . Although the studies showed, in part, that reliance on the Internet is increasing (“participants
+66.5,561.3,571.3: recalled the information’s location more often than the content itself” [paragraph 6]), the studies were not
+66.5,574.3,584.3: conducted in order to determine the risks of Internet use . The research described in paragraphs 2 and 6 did
+66.5,587.3,597.3: not prompt scientists to investigate the risks of relying on the Internet .
+66.5,607.8,618.1: F: Incorrect . While the sentence in paragraph 7 poses a question about the disadvantages of relying on the
+66.5,620.8,630.8: Internet, paragraphs 2 and 6 present the study data on Internet use and memory in a neutral tone
+66.5,633.8,643.8: (“correctly identifying 49 percent of the folders for specific facts while remembering only 23 percent of the
+66.5,646.8,656.8: actual trivia” [paragraph 6]) . Neither study describes the availability of information on the Internet as an
+66.5,659.8,669.8: advantage or a disadvantage .
+66.5,680.3,690.6: H: Incorrect . Although the sentence in paragraph 7 expresses caution about the possible effects of the
+66.5,693.3,703.3: Internet on memory, the passage does not shift from an optimistic tone to a cautious tone . Actually,
+66.5,706.3,716.3: paragraph 6 provides the data on Internet use and memory in a neutral tone . And the last sentence of
+66.5,719.3,729.3: paragraph 7 includes a quotation that states, “ ‘Far from making us stupid, these technologies are the only
+297.2,756.7,767.2: 200
+=== PAGE 19 ===
+66.5,72.4,82.4: things that will keep us smart,’ ” which introduces a doubtful viewpoint to the passage . Additionally, the
+66.5,85.4,95.4: argument expressed by the sentence is not elaborated on in the sentences that follow; instead, the
+66.5,98.4,108.4: sentence is immediately argued against by the quotation from Steven Pinker, a professor of psychology .
+47.7,140.9,151.1: 41 . The question asks how the studies presented in the passage are used to illustrate the effect of the Internet
+67.0,153.9,163.9: on a person’s memory .
+66.5,174.4,184.6: A: Correct . The study described in paragraph 5 examined the effect of computer use on the way people
+66.5,187.4,197.4: evaluate information, specifically “which information deserves their effort to remember,” and determined
+66.5,200.4,210.4: that “those who believed the information would be erased and no longer available could recall 40 percent
+66.5,213.4,223.4: more facts than those who thought the information would be saved .” The study described in paragraph 2
+66.5,226.4,236.4: established that the use of Internet search engines increases the “inclination to rely on the Internet in order
+66.5,239.4,249.4: to retrieve information” (paragraph 3), and the study in paragraph 6 examined how this reliance on
+66.5,252.4,262.4: technology affects the way people store information: “Overall, participants recalled the information’s
+66.5,265.4,275.4: location more often than the content itself .”
+66.5,285.9,296.1: B: Incorrect . Although a difference in the ability of the human brain and the capacity of the Internet to locate
+66.5,298.9,308.9: information might seem evident, the studies cited in the passage did not examine the ability or the capacity
+66.5,311.9,321.9: of either . The studies did not measure what the human brain is capable of but rather how memory is
+66.5,324.9,334.9: affected by the use of the Internet .
+66.5,345.4,355.6: C: Incorrect . While the studies explored the Internet’s effect on the way information is stored in human
+66.5,358.4,368.4: memory, the type of information was not described or compared . Instead, the studies indicated that
+66.5,371.4,381.4: location is the main difference between the information stored in the Internet and the information stored in
+66.5,384.4,394.4: human memory, noting that the Internet has become “an external source of the recollections and
+66.5,397.4,407.4: associative networks that constitute memory” (paragraph 6) .
+66.5,417.9,428.1: D: Incorrect . Although it is increasingly common to use the Internet to obtain information (paragraph 2)
+66.5,430.9,440.9: rather than try to memorize information (paragraph 5), the studies did not examine the difficulty or ease of
+66.5,443.9,453.9: obtaining/recalling information using either method .
+47.7,486.4,496.6: 42 . The question asks how the diagram provides additional support for the topic presented in the passage .
+66.5,506.9,517.1: H: Correct . The diagram depicts the connections that the human brain maintains between the different
+66.5,519.9,529.9: forms of memory . It also illustrates the idea that repetition and rehearsal are important steps in creating
+66.5,532.9,542.9: memories, as unrehearsed information will be forgotten . This supports the passage by highlighting the idea
+66.5,545.9,555.9: that access to search engines and other tools lead people to skip rehearsal and repetition steps that create
+66.5,558.9,568.9: memories because people know that the information is readily accessible .
+66.5,579.4,589.6: E: Incorrect . While the diagram indicates that the human brain has the ability to maintain different types of
+66.5,592.4,602.4: memory, the diagram does not show the need for the brain to adapt in order to obtain information from
+66.5,605.4,615.4: other sources rather than from the Internet .
+66.5,625.9,636.1: F: Incorrect . The diagram enhances the reader’s understanding of how long-term memories are formed, but
+66.5,638.9,648.9: it does not provide details about how the Internet can be used to improve long-term recollection of
+66.5,651.9,661.9: information .
+66.5,672.4,682.6: G: Incorrect . The diagram provides an understanding of how details that are important to people can
+66.5,685.4,695.4: become stored because of an effort made to recall them . However, the diagram does not show how people
+66.5,698.4,708.4: decide which information is important and which is not .
+297.2,756.7,767.2: 201
+=== PAGE 20 ===
+42.0,72.5,83.5: Serpent Mound
+47.7,94.1,104.3: 43 . The question asks how lines 1–2 contribute to the development of ideas in the poem .
+66.5,114.6,124.8: B: Correct . The lines, with their mention of measuring tapes and sketchbooks, indicate that the reason the
+66.5,127.6,137.6: museum men came was to measure the mound and to draw sketches of it .
+66.5,148.1,158.3: A: Incorrect . The idea that the men are too busy with their work to talk to the speaker is not conveyed in the
+66.5,161.1,171.1: poem, and, in fact, one of the museum men discusses the oval mound with the speaker (“as if swallowing
+66.5,174.1,184.1: the sun, one of the museum / men suggested” [lines 31–32]) .
+66.5,194.6,204.8: C: Incorrect . There is little indication in the poem that the museum men have a hidden motive for studying
+66.5,207.6,217.6: the mound . Lines 1–2 present a straightforward description of the men and their equipment, which
+66.5,220.6,230.6: emphasizes the men’s academic interest in studying the mound .
+66.5,241.1,251.3: D: Incorrect . While the speaker displays some curiosity about the work the museum men are doing (“one of
+66.5,254.1,264.1: the museum / men suggested, taking notes with his quill pen, / an old-style inkhorn slung at his side . / I liked
+66.5,267.1,277.1: that” [lines 32–35]), lines 1–2 focus on introducing the idea that the mound is a formation that is worth
+66.5,280.1,290.1: formal study and examination by experts .
+47.7,322.6,332.8: 44 . The question asks what impact the words “swish,” “chitter,” and “cry” in lines 12–13 have in the poem .
+66.5,343.1,353.3: E: Correct . The words highlight the sounds of the animals that visit the mound in the summer: the “swish of
+66.5,356.1,366.1: a beaver’s heavy tail” (line 12), the “chitter of a chickadee” (line 13), and the “cry of a hawk” (line 13) . These
+66.5,369.1,379.1: words help contrast the quiet stillness of the setting around the mound in the winter .
+66.5,389.6,399.8: F: Incorrect . While the words in lines 12–13 convey the sounds certain animals make in the summer, the
+66.5,402.6,412.6: sounds of the animals that live near the mound are a natural part of life in the area, not a disruption .
+66.5,423.1,433.3: G: Incorrect . The speaker is contrasting the sounds of the animals around the mound during the rest of the
+66.5,436.1,446.1: year with the silence of the winter months, not merely indicating the variety of wildlife .
+66.5,456.6,466.8: H: Incorrect . The speaker expresses the idea that the mound is more visible in the winter because of the
+66.5,469.6,479.6: lack of brush (“It being winter, / there was little underbrush to speak of” [lines 8–9]) . Then lines 12–13
+66.5,482.6,492.6: describe sounds, not the appearance of the mound in winter .
+47.7,525.1,535.3: 45 . The question asks which lines reveal how the setting affects the speaker and the men from the museum .
+66.5,545.6,555.8: C: Correct . The imagery in lines 14 and 15 describes how the winter silence makes the speaker and the men
+66.5,558.6,568.6: feel emotional heaviness: it “pressed / down on all of us like a weight” (lines 14–15) .
+66.5,579.1,589.3: A: Incorrect . Although lines 7 and 8 do describe the setting, the lines do not describe how the setting affects
+66.5,592.1,602.1: the speaker and the men .
+66.5,612.6,622.8: B: Incorrect . The words “being winter” (line 8) work to establish the setting, but lines 8 and 9 do not describe
+66.5,625.6,635.6: the effect the winter setting has on the speaker and the men .
+66.5,646.1,656.3: D: Incorrect . Although the words “the humps in the ground were all but / invisible” (lines 16–17) describe
+66.5,659.1,669.1: how the setting appears to the speaker and the men, lines 16 and 17 do not describe how the setting affects
+66.5,672.1,682.1: them .
+297.2,756.7,767.2: 202
+=== PAGE 21 ===
+47.7,83.8,94.1: 46 . The question asks what impact the phrases “all but / invisible” and “even less obvious” in lines 16–18 have
+67.0,96.8,106.8: on the meaning of the poem .
+66.5,117.3,127.6: E: Correct . The words “all but / invisible” indicate that a person must be close to see the humps in the
+66.5,130.3,140.3: ground, while the phrase “even less obvious” indicates that a person must be far away to see the overall
+66.5,143.3,153.3: snake shape of the mound .
+66.5,163.8,174.1: F: Incorrect . While the speaker has to lead the museum men to the mound because they did not know the
+66.5,176.8,186.8: exact location, the words in lines 16–18 are related to the difficulty in viewing the mound from the
+66.5,189.8,199.8: immediate surrounding area .
+66.5,210.3,220.6: G: Incorrect . The speaker is willing to take the museum men out to study the mound, so there is no
+66.5,223.3,233.3: indication in the poem that the speaker wants the location of the mound to remain a secret . The words in
+66.5,236.3,246.3: lines 16–18 convey the idea that the mound is difficult to see .
+66.5,256.8,267.1: H: Incorrect . While the speaker contemplates the significance of certain elements of the mound, the phrases
+66.5,269.8,279.8: in lines 16–18 relate to a viewer’s ability to see the physical shape of the mound, not its deeper meaning .
+47.7,312.3,322.6: 47 . The question asks how line 28 contributes to the development of ideas in the poem .
+66.5,332.8,343.1: C: Correct . Line 28 introduces the presence of the oval mound at the mouth of the snake . The meaning of
+66.5,345.8,355.8: this oval is of great interest to the museum men and the speaker . Line 28 leads to the idea that there is
+66.5,358.8,368.8: speculation about the oval mound (“as if the snake were about to swallow an egg” [line 29], “as if swallowing
+66.5,371.8,381.8: the sun” [line 32], and “It is singing to the sun” [line 38]) .
+66.5,392.3,402.6: A: Incorrect . Although the museum men are documenting the shape of the mound in line 33, lines 29–32
+66.5,405.3,415.3: and 35–41 focus on what the oval mound represents as interpreted by the museum men, the speaker, and
+66.5,418.3,428.3: the speaker’s sister .
+66.5,438.8,449.1: B: Incorrect . While the lines preceding line 28 describe the body of the snake in detail (“you could climb / a
+66.5,451.8,461.8: tree and get some idea of the whole thing: / the serpent’s body undulating, slithering / silently across the
+66.5,464.8,474.8: ancient / earth” [lines 24–28]), the purpose of line 28 is to begin the development of the ideas about the oval
+66.5,477.8,487.8: shape at the end of the mound: the serpent’s mouth .
+66.5,498.3,508.6: D: Incorrect . The speaker does not say that the oval shape near the end of the mound is difficult to see .
+66.5,511.3,521.3: Earlier, the speaker says that the ridges of earth are difficult to see unless you are near them, but the
+66.5,524.3,534.3: speaker does not say this about the oval shape .
+47.7,566.8,577.1: 48 . The question asks how the poet uses dialogue to contrast the points of view of the speaker and Ruth
+67.0,579.8,589.8: regarding the mound .
+66.5,600.3,610.6: H: Correct . Beginning in line 37, after the speaker suggests the mound is swallowing the sun, Ruth
+66.5,613.3,623.3: disagrees . The poet uses the word “insisted” in line 39 to show that Ruth firmly believes in her own
+66.5,626.3,636.3: interpretation of the mound .
+66.5,646.8,657.1: E: Incorrect . The interpretation Ruth offers of the mound as a snake singing is abstract, but Ruth does not
+66.5,659.8,669.8: seem to acknowledge that it is a metaphorical or figurative interpretation . The dialogue serves to highlight
+66.5,672.8,682.8: that Ruth is firm in her belief .
+66.5,693.3,703.6: F: Incorrect . There is no indication that the museum men are considering Ruth’s interpretation of the
+66.5,706.3,716.3: mound . Ruth’s interpretation is meant to convey an abstract idea, while the museum men would be looking
+297.2,756.7,767.2: 203
+=== PAGE 22 ===
+66.5,71.2,81.2: for a firm academic explanation of the mound . Ruth is persistent in her belief, and the museum men’s
+66.5,84.2,94.2: interpretation or findings are unlikely to change her perspective .
+66.5,104.7,114.9: G: Incorrect . Ruth merely states her interpretation and says that she thinks she hears the Serpent Mound
+66.5,117.7,127.7: singing sometimes . She does not seek to make the speaker agree with her .
+47.7,160.2,170.4: 49 . The question asks how the poem’s form contributes to the poem’s meaning .
+66.5,180.7,190.9: A: Correct . The poem is structured as one long stanza . The line lengths throughout the poem and the line
+66.5,193.7,203.7: indents (such as those in lines 7–10) create a visual effect so that the poem itself mimics the shape of the
+66.5,206.7,216.7: Serpent Mound .
+66.5,227.2,237.4: B: Incorrect . The uneven line lengths in the poem do not indicate the different interpretations of the mound;
+66.5,240.2,250.2: separate stanzas or other stopping points would more effectively point to contrasting ideas .
+66.5,260.7,270.9: C: Incorrect . The dashes in the poem lead to further explanation of a thought, not a change of thought .
+66.5,281.2,291.4: D: Incorrect . The lack of regular rhyme and meter is intended to create a conversational tone rather than
+66.5,294.2,304.2: show the speaker’s struggle to grasp how large the mound is .
+47.7,336.7,346.9: 50 . The question asks how the interaction between the speaker and Ruth in lines 37–41 conveys a central idea
+67.0,349.7,359.7: of the poem .
+66.5,370.2,380.4: F: Correct . The interaction references Ruth’s interpretation of the open-mouth shape as a serpent singing
+66.5,383.2,393.2: to the sun . This interpretation creates a joyful mood . The speaker contrasts this perspective with the idea
+66.5,396.2,406.2: that the mound is swallowing the sun, which creates a more aggressive feeling . These various
+66.5,409.2,419.2: interpretations of a physical shape arise out of what the individuals feel when they look at the mound .
+66.5,429.7,439.9: E: Incorrect . While there are many different interpretations of the mound’s meaning, there is no way to
+66.5,442.7,452.7: determine which of the interpretations is most accurate, and there is no way to know the mound’s true
+66.5,455.7,465.7: purpose .
+66.5,476.2,486.4: G: Incorrect . The speaker does not describe any benefit to considering what different people imagine when
+66.5,489.2,499.2: they see the mound . Instead, the speaker is simply describing different interpretations .
+66.5,509.7,519.9: H: Incorrect . Ruth’s interpretation of the mound’s shape is fanciful and symbolic . It is unlikely scientific study
+66.5,522.7,532.7: would change the minds of people such as Ruth about the meaning of the mound .
+42.0,545.6,556.6: Massachusetts: Lowell National Historical Park
+47.7,567.2,577.4: 51 . The question asks why the author includes the quotation from the Scottish traveler in the passage .
+66.5,587.7,597.9: C: Correct . The quotation emphasizes the idea that the United States offers different attractions . The
+66.5,600.7,610.7: Scottish traveler highlights the two places in the United States that he will most remember . First, the
+66.5,613.7,623.7: beautiful natural formation of Niagara Falls (“ ‘the glory of American scenery’ ”) and, second, the industrial
+66.5,626.7,636.7: city of Lowell (“ ‘the glory  .  .  . of American industry’ ”) .
+66.5,647.2,657.4: A: Incorrect . While it is likely that people outside the United States recognized that both the natural
+66.5,660.2,670.2: landscape and the bustling industry were significant, the quotation from the Scottish traveler is meant to
+66.5,673.2,683.2: convey the variety of the types of attractions in the US, not to make a general statement about their
+66.5,686.2,696.2: contribution .
+297.2,756.7,767.2: 204
+=== PAGE 23 ===
+66.5,71.2,81.4: B: Incorrect . The Scottish traveler mentions both “American scenery” and “American industry” in the
+66.5,84.2,94.2: quotation, but the intent is to highlight that they are each points of interest . The quotation does not provide
+66.5,97.2,107.2: a comparison of the two attractions .
+66.5,117.7,127.9: D: Incorrect . The Scottish traveler mentions both “American scenery” and “American industry” in the
+66.5,130.7,140.7: quotation but does not imply that the natural resources contributed to the development of industry .
+47.7,173.2,183.4: 52 . The question asks for the sentence in paragraph 2 that best supports the idea that Lowell became “a
+67.0,186.2,196.2: bustling industrial city” (paragraph 1) .
+66.5,206.7,216.9: H: Correct . This sentence supports the idea that, within a few decades, the city’s mills employed “over
+66.5,219.7,229.7: 10,000 workers” in a mile-long stretch along the river . This sentence shows that the city was “bustling” and
+66.5,232.7,242.7: populated .
+66.5,253.2,263.4: E: Incorrect . This sentence provides details on when the town of Lowell was founded and on the natural
+66.5,266.2,276.2: features of the area, but it does not support the idea that the city became “a bustling industrial city”
+66.5,279.2,289.2: (paragraph 1) .
+66.5,299.7,309.9: F: Incorrect . This sentence provides specific details about the how the mills worked and indicates that the
+66.5,312.7,322.7: mill buildings were a noticeable feature of the city . It does not refer to Lowell becoming “a bustling industrial
+66.5,325.7,335.7: city” (paragraph 1) .
+66.5,346.2,356.4: G: Incorrect . This sentence lists some recognizable mill buildings along the river and notes when their
+66.5,359.2,369.2: associated businesses were established . It does not refer to Lowell becoming “a bustling industrial city”
+66.5,372.2,382.2: (paragraph 1) .
+47.7,414.7,424.9: 53 . The question asks which statement best describes how the sentence in paragraph 3 fits into the overall
+67.0,427.7,437.7: structure of the passage .
+66.5,448.2,458.4: A: Correct . The sentence in paragraph 3 provides a transition from the overall description of the city and
+66.5,461.2,471.2: the mills to a description of the women who made up the workforce in the mills . The idea that women left
+66.5,474.2,484.2: domestic life in favor of working in the mills is important in the passage, and the sentence serves to connect
+66.5,487.2,497.2: that idea to the previous discussion about the mills .
+66.5,507.7,517.9: B: Incorrect . While the mill girls’ dissatisfaction with their working conditions is addressed later in the
+66.5,520.7,530.7: passage (“These wage cuts, deteriorating working conditions, and long workdays led the ‘mill girls’ to protest
+66.5,533.7,543.7: and organize strikes” [paragraph 4]), the sentence in paragraph 3 does not indicate a shift in tone from
+66.5,546.7,556.7: positive to negative . The sentence provides a transition to the discussion of the women who worked in the
+66.5,559.7,569.7: mills .
+66.5,580.2,590.4: C: Incorrect . Although the sentence in paragraph 3 mentions that women became interested in working in
+66.5,593.2,603.2: the mills because of the “constricted lifestyle of small rural towns,” structurally this sentence serves to
+66.5,606.2,616.2: provide a connection between the previous discussion of the mills and the women who made up the mill
+66.5,619.2,629.2: workforce . The sentence “Most were young single Yankee girls, who were tired of the limited opportunities
+66.5,632.2,642.2: offered by their domestic work” (paragraph 3) provides more detail about the circumstances that prompted
+66.5,645.2,655.2: women to leave their hometown .
+66.5,665.7,675.9: D: Incorrect . The sentence in paragraph 3 focuses on the choices women made to leave rural towns to work
+66.5,678.7,688.7: in the city in the early to mid-1800s, not the mid-1800s to the late 1800s . The sentence does not create a
+66.5,691.7,701.7: comparison between the workforce in the mid-1800s and that in the late 1800s .
+297.2,756.7,767.2: 205
+=== PAGE 24 ===
+47.7,83.8,94.1: 54 . The question asks for the sentence that best summarizes the mill girls’ time as the dominant workforce in
+67.0,96.8,106.8: Lowell .
+66.5,117.3,127.6: H: Correct . The details about the mill girls’ time as the primary workforce in Lowell is outlined in paragraphs
+66.5,130.3,140.3: 3 and 4 . These paragraphs explain how women initially were excited by the opportunity to live
+66.5,143.3,153.3: independently (“Women found that Lowell’s mills offered monthly wages for their services and provided
+66.5,156.3,166.3: them room and board” [paragraph 3]) . Over time, however, the working conditions changed and became
+66.5,169.3,179.3: unfavorable, leading the women to leave the industry when their calls for change were not addressed by
+66.5,182.3,192.3: mill owners (“When their demands went unheard, the women left Lowell, and immigrant groups replaced
+66.5,195.3,205.3: them in the workforce” [paragraph 4]) .
+66.5,215.8,226.1: E: Incorrect . While the passage explains that mill girls were initially eager to leave the domestic duties of life
+66.5,228.8,238.8: in rural areas, the summary sentence does not address the details about the mill girls’ time working in the
+66.5,241.8,251.8: mills or the changes that led the mill girls to leave the industry .
+66.5,262.3,272.6: F: Incorrect . Mill girls initially found satisfaction in the mill work and lifestyle, and when they did leave,
+66.5,275.3,285.3: immigrants filled the empty jobs . This summary sentence, however, does not address the details about the
+66.5,288.3,298.3: mill girls’ time as the primary workforce in Lowell or the circumstances that led them to leave their jobs in
+66.5,301.3,311.3: the mid-1800s .
+66.5,321.8,332.1: G: Incorrect . Mill girls did leave home to work in the Lowell mills, and they did grow dissatisfied over time,
+66.5,334.8,344.8: but this summary sentence does not include details about the mill girls’ actions to improve the working
+66.5,347.8,357.8: conditions, and it incorrectly emphasizes the rigid boardinghouse rules as a key reason the mill girls were
+66.5,360.8,370.8: unhappy with their working conditions .
+47.7,403.3,413.6: 55 . The question asks how in the sentence in paragraph 5 contributes to the development of ideas in the
+67.0,416.3,426.3: passage .
+66.5,436.8,447.1: B: Correct . The sentence from paragraph 5 shows that early Irish immigrants were critical to the success of
+66.5,449.8,459.8: Lowell as an industrial city . This information supports the development of the idea that the work of Irish
+66.5,462.8,472.8: immigrants and immigrants from other places is an important element in the historical significance of
+66.5,475.8,485.8: industry in Lowell .
+66.5,496.3,506.6: A: Incorrect . The sentence from paragraph 5 does not imply that Lowell was founded by early Irish
+66.5,509.3,519.3: immigrants . The sentence explains how Irish immigrants had been settling in Lowell since the city was
+66.5,522.3,532.3: established and that they contributed to the construction of the city, which allowed it to become an
+66.5,535.3,545.3: industrial center several decades later .
+66.5,555.8,566.1: C: Incorrect . The sentence from paragraph 5 does not suggest that new Irish immigrants were readily
+66.5,568.8,578.8: accepted into the community . Paragraph 5 states that “initially, Lowell’s Protestant community was slow to
+66.5,581.8,591.8: welcome Irish immigrants, but the hostility between Yankee Protestants and Irish Catholics eventually
+66.5,594.8,604.8: disappeared .”
+66.5,615.3,625.6: D: Incorrect . The sentence from paragraph 5 does not highlight the relationship between the mill girls and
+66.5,628.3,638.3: the new Irish immigrants . Paragraph 4 explains how the mill girls left Lowell, and paragraph 5 states that the
+66.5,641.3,651.3: mill girls were replaced by “predominantly Irish Catholics, who traveled to America during the Great Potato
+66.5,654.3,664.3: Famine” but does not discuss a relationship between them .
+297.2,756.7,767.2: 206
+=== PAGE 25 ===
+47.7,83.8,94.1: 56 . The question asks which description conveys the central idea that Lowell was “one of America’s most
+67.0,96.8,106.8: significant industrial cities” (paragraph 1) .
+66.5,117.3,127.6: G: Correct . The details throughout the passage about the development of the mills and the people who
+66.5,130.3,140.3: worked in them conveys the significance of Lowell in early American industry . Paragraph 2 shares details
+66.5,143.3,153.3: about the businesses that started in the early 1800s and contributed to the development of industry in the
+66.5,156.3,166.3: region (“The most recognized of these buildings are the Lowell Manufacturing Company chartered in 1821,
+66.5,169.3,179.3: the Suffolk or Wannalancit Mill completed around the 1880s, the Boott Mill Company established in 1835,
+66.5,182.3,192.3: and the Boott Mill Boardinghouse that opened in 1838”) . Then paragraphs 3–6 provide specific details about
+66.5,195.3,205.3: the people who worked in the mills at different points in time .
+66.5,215.8,226.1: E: Incorrect . While the passage does state that the city’s canals, mills, and boardinghouses were built by
+66.5,228.8,238.8: early immigrants from Ireland, these details do not contribute to the development of the overall idea that
+66.5,241.8,251.8: Lowell was a significant industrial city .
+66.5,262.3,272.6: F: Incorrect . The details about the women and immigrants who worked in the mills is important to the
+66.5,275.3,285.3: passage, but these details alone do not show that Lowell was a significant industrial city .
+66.5,295.8,306.1: H: Incorrect . Although the passage references Lowell’s culturally diverse community (“Young Yankee women,
+66.5,308.8,318.8: immigrant families, and European tourists all flocked to Lowell to find work at one of the many textile mills”
+66.5,321.8,331.8: [paragraph 1]), these groups are not what marked Lowell as a significant industrial city .
+47.7,364.3,374.6: 57 . The question asks for the reason that best illustrates why Lowell lost its status as an industrial leader .
+66.5,384.8,395.1: C: Correct . When Lowell was initially established, the mills in the city thrived because of their use of state-
+66.5,397.8,407.8: of-the-art manufacturing methods . However, manufacturing technology changed and improved over time .
+66.5,410.8,420.8: New manufacturing methods were more efficient, and many mill owners chose to close the mills rather
+66.5,423.8,433.8: than modernize them, and Lowell lost its status as a model of industry (“The city officially began to close
+66.5,436.8,446.8: down its mills in the 1920s and ’30s after Lowell’s outdated mills could no longer compete against the state-
+66.5,449.8,459.8: of-the-art cotton mills in other communities and working conditions continued to decline as Lowell’s
+66.5,462.8,472.8: companies stopped reinvesting in their mills” [paragraph 6]) .
+66.5,483.3,493.6: A: Incorrect . While the passage discusses the poor living and working conditions, these details highlight that
+66.5,496.3,506.3: mill workers had a difficult life and that mill work was no longer seen as a better job than farmwork or
+66.5,509.3,519.3: domestic duties . This is not the reason Lowell is no longer a “model of industry .”
+66.5,529.8,540.1: B: Incorrect . Paragraph 5 in the passage acknowledges that there was some tension between the different
+66.5,542.8,552.8: ethnic and religious groups in Lowell, but this idea is not what led to Lowell’s decline as a “model of
+66.5,555.8,565.8: industry .”
+66.5,576.3,586.6: D: Incorrect . The details about the temporary revival of the mills during World War II do not show why
+66.5,589.3,599.3: Lowell is no longer considered a “model of industry .” The mills were used briefly during wartime because of
+66.5,602.3,612.3: an increased need for supplies, but this use of the mills was short-lived .
+297.2,756.7,767.2: 207
+=== PAGE 26 ===
+107.5,58.8,79.8: Sample Test – Mathematics
+48.5,68.8,89.8: Form B
+107.5,80.8,101.8: Explanations of Correct Answers
+42.0,122.7,135.3: 58 . (250) Let x represent the number of two-door (21)(14)x
+318.0,130.1,140.7: 62 . (7) = 0.875
+93.0,135.8,146.8: cars that will be sold next month . Use the (49)(48)
+93.0,148.8,169.9: information in the table to set up a (21)(14)
+417.5,154.0,164.6: x = 0.875
+93.0,160.7,171.8: proportion: 49 48
+370.0,173.2,193.8: (3)( 7 )
+411.9,177.9,188.6: x = 0.875
+105.3,183.0,194.7: x 2,250 7 24
+124.8,188.7,198.7: =
+95.0,194.8,217.8: 1,000 9,000 (1)
+388.8,201.8,212.5: x = 0.875
+376.1,208.6,218.6: 8
+115.8,213.8,224.1: (2,250)(1,000) 2,250
+94.4,219.0,231.6: x = = = 250 x =(0.875)(8)= 7
+135.9,225.8,235.8: 9,000 9
+42.0,255.3,268.4: 59 . (13 .5) Let w represent the width of the actual 63 . (A) Add the fractions to find the answer:
+372.4,267.8,277.8: 1 1 3 2 5
+93.0,271.1,283.2: garden . Set up a proportion based on the + = + =
+372.8,279.3,289.3: 2 3 6 6 6
+93.0,284.1,294.1: information given:
+95.6,305.8,316.5: w 3 64 . (G) Let x represent the distance, in kilometers,
+108.5,311.2,321.2: =
+96.5,317.3,329.3: 9 2 between Fran’s house and Bryant State
+117.9,332.3,344.3: 3(9) 27 Park . Set up a proportion to solve for x:
+93.6,339.0,349.7: w = = =13.5
+124.7,345.8,355.8: 2 2
+369.2,355.3,365.5: x 3 Cross multiply
+383.8,360.3,370.3: =
+364.8,367.0,377.0: 4.5 2
+42.0,376.5,386.8: 60 . (12) The greatest possible number of children
+93.0,389.5,402.5: in the class is the greatest common factor 2x = 3(4.5) Apply the multiplicative
+93.0,402.5,414.3: of 72, 60, and 84 . Write the prime inverse property; divide both
+93.0,415.5,426.3: factorization of each number: sides of the equation by 2
+124.9,433.6,441.1: 3 2
+93.6,436.7,449.2: 72 = 2 ×3 13.5 3
+365.4,444.1,454.7: x = = 6 ≈ 7
+125.2,451.0,460.9: 2 2 4
+93.6,454.2,464.9: 60 = 2 ×3×5
+125.5,468.6,476.1: 2
+93.6,471.8,482.4: 84 = 2 ×3×7
+318.0,482.3,493.1: 65 . (A) 2x+ 4 = y Apply the additive inverse
+93.0,495.3,505.5: Then, find the factors that all three have in property; subtract 4 from
+93.0,505.6,519.4: common, which is 2 2 ×3 =12 . both sides of the equation
+364.8,529.3,540.1: 2x = y−4 Apply the multiplicative
+42.0,541.3,552.8: 61 . (8) Calculate simple interest (y) by multiplying inverse property; divide both
+93.0,553.3,565.5: the initial deposit (p) by the interest rate (r) sides of the equation by 2
+93.0,568.5,579.4: by the number of years (t) . y−4
+365.4,573.9,584.5: x =
+397.1,580.7,590.7: 2
+95.0,591.4,602.1: prt = y
+93.6,605.9,616.6: 900(0.05)t = 360
+318.0,612.3,622.5: 66 . (E) First, subtract Luis’s time from Bryan’s
+93.8,620.3,631.0: 45t = 360
+369.0,625.1,635.8: time: 11.74−11.69 = 0.05, Then, convert
+93.8,634.7,645.3: t = 8
+473.1,638.4,648.4: 5 1
+369.0,643.1,653.8: to a fraction: 0.05 = =  .
+467.3,649.9,659.9: 100 20
+297.2,756.7,767.2: 220088
+=== PAGE 27 ===
+317.2,72.4,82.6: 73 . (B) The total number of degrees in a circle is
+96.6,76.3,86.3: 1 1
+42.0,81.2,91.5: 67 . (B) : 2
+96.8,85.4,98.0: 4 2 360 . The measure of the angle between
+459.3,98.4,108.4: 360
+96.6,103.2,113.8: 1 5 adjacent spokes is = 24° .
+107.8,108.2,119.9: : 15
+96.8,115.1,125.1: 4 2
+100.7,129.2,150.2: (1) (5)
+94.8,134.1,144.1: 4 : 4
+317.2,137.3,147.6: 74 . (G) First, find the value of m for each value
+107.1,141.0,151.0: 4 2
+368.2,150.3,160.4: of t .
+94.0,159.7,169.7: 1 :10
+368.2,172.3,182.8: For t = 1:
+149.8,188.9,198.9: 207 13 207 220 11
+42.0,192.0,204.3: 68 . (F) n = 0.13+ = + = = 1m = 72
+149.3,200.4,210.4: 100 100 100 100 5
+370.2,211.1,221.8: m = 72
+42.0,239.4,253.0: 69 . (A) Let x represent the length of one of the 10 For t = 2:
+93.0,255.8,265.8: remaining sides .
+370.0,259.0,269.4: 2m = 72
+94.8,271.4,282.1: 25+35+10x =100
+370.2,277.7,288.1: m = 36
+94.6,290.6,301.2: 60+10x =100
+368.2,304.2,314.7: For t = 3:
+94.0,309.7,320.4: 10x = 40
+369.8,323.8,334.2: 3m = 72
+95.4,328.9,339.6: x = 4
+370.2,342.5,352.9: m = 24
+42.0,358.8,369.0: 70 . (E) After Shiow-Chen draws a yellow card and
+368.2,363.4,373.4: Then, add those three values together:
+93.0,371.8,381.8: a green card, the remaining cards are 3
+369.9,376.4,387.7: 72+36+ 24 = 132
+93.0,384.8,394.8: green, 6 yellow, and 6 red . The probability
+93.0,397.8,407.8: of drawing a green card from that group is:
+317.2,408.4,418.6: 75 . (C) First, find the area of the rectangle, in
+115.0,416.1,426.1: 3 3 1
+144.3,421.4,431.5: = = square feet:
+96.6,427.6,438.3: 3+6+6 15 5
+369.2,441.6,452.3: 16×8 =128
+42.0,459.8,470.0: 71 . (D) Let n represent a number in the sequence,
+368.2,464.4,474.4: Then, find the area of the triangle:
+93.0,472.8,482.8: and let x represent the number that comes
+93.0,484.9,495.8: just before n . 1
+381.1,489.6,500.3: ×4×16 = 32
+372.1,496.4,506.4: 2
+95.0,502.7,513.3: n = 3+2x
+94.6,519.0,532.5: 93 = 3+2x To find the area of the shaded region,
+368.2,532.0,542.0: subtract the area of the triangle from the
+94.6,541.0,551.7: 90 = 2x
+368.2,545.0,555.0: area of the rectangle:
+94.8,560.1,570.8: 45 = x
+369.2,565.2,575.9: 128−32 = 96sqft
+42.0,587.8,598.0: 72 . (H) Let d represent the distance between the
+93.0,599.8,609.8: two houses, in miles . Write a proportion to
+93.0,611.8,621.8: solve for d:
+100.6,630.3,640.3: d
+116.0,635.8,645.8: =
+129.5,630.3,640.3: 3
+96.6,641.8,651.8: 5.4 2
+118.1,658.8,668.8: 3(5.4) 16.2
+95.0,663.6,674.2: d = = = 8.1
+129.0,670.3,680.3: 2 2
+297.2,756.7,767.2: 209
+=== PAGE 28 ===
+42.0,71.1,81.4: 76 . (E) Let x represent the number of gallons of 81 . (B) First convert 6 inches to 0 .5 feet . Then,
+93.0,84.2,94.2: orange juice . Since the shipment contains calculate the volume, in cubic feet:
+93.0,97.1,107.2: equal amounts of the two types of juice, x
+369.8,106.4,117.0: 0.5×32×20 = 32×10 = 320
+93.0,110.2,120.2: also represents the number of gallons of
+93.0,123.2,133.2: grapefruit juice . Write an equation to solve
+93.0,136.1,146.2: for x:
+317.2,140.6,150.8: 82 . (G) Let p represent the population of
+94.8,153.4,164.1: 2x+3x = 250 Waterville in 2006 . The population per
+368.2,166.6,176.6: square mile is:
+94.6,172.6,183.3: 5x = 250
+95.4,191.8,205.1: x = 50 5
+375.4,183.3,193.3: p
+377.3,195.1,205.1: 0
+388.3,188.4,199.0: =1,500
+368.3,210.6,220.6: Solve for p:
+42.0,225.2,235.4: 77 . (C) Let n represent the least of the five
+371.3,230.8,241.5: p =1,500(50)= 75,000
+93.0,238.2,248.2: numbers . Then the next four consecutive
+93.0,251.0,263.6: numbers are (n+1), (n+ 2), (n+3), The population decrease from 2005 to
+94.6,264.0,277.0: (n+ 4). Write an equation to solve for n: 2006 is 84,000−75,000 = 9,000 .
+94.8,296.4,309.0: n+(n+1)+(n+2)+(n+3)+(n+4)=110 83 . (C) According to the number line, y−x = 4
+94.5,309.5,322.0: 5n+10 =110 and x+ y = 24 . Add the two equations
+94.5,322.7,334.6: 5n =100 together and solve for y:
+94.8,335.8,345.5: n = 20
+371.1,346.0,356.7: y− x = 4
+42.0,365.2,378.4: 78 . (H) Since m and n are positive, the value of mn +x+ y = 24
+93.0,381.2,391.2: is also positive . Of the five options given:
+370.1,391.2,401.8: 2y = 28
+94.2,401.0,411.6: -mn is negative .
+371.1,410.3,421.0: y =14
+94.0,416.0,426.6: (−m)(−n) is positive .
+96.9,431.0,441.2: mn is positive .
+96.1,446.0,458.2: -mn is positive . 84 . (F) First, find the median of set N . There are 17
+95.9,460.9,471.6: (−m)(−n) is positive . integers in set N, so the 9th integer is the
+368.3,473.9,483.9: median . The 9th integer is 14 .
+93.0,481.2,491.2: There are 4 expressions that are positive,
+368.3,490.9,500.9: The least integer in set L is equal to the
+93.0,494.1,504.2: and each one is equal to mn .
+368.3,503.9,513.9: median of set N, so the least integer in set
+368.3,516.9,526.9: L is 14 .
+42.0,523.7,543.0: 79 . (A) 5 4 ×5 6 = 5 10 = 5 8 There are 25 integers in set L, so the
+111.6,537.6,545.1: 2 2
+105.7,540.7,552.9: 5 5 median is the 13th integer . That integer is
+368.3,555.9,565.9: 26 .
+42.0,570.2,580.4: 80 . (G) First, find the number of peaches sold:
+94.6,587.0,597.6: 50−(8+6+12+6)= 50−32 =18 .
+93.0,604.2,614.2: Then, find the percentage:
+96.3,621.4,631.4: 18
+113.1,626.1,636.8: = 0.36 = 36%
+96.6,632.9,642.9: 50
+297.2,756.7,767.2: 210
+=== PAGE 29 ===
+223.0,72.4,84.7: x 1 86 . (F) The sum of 4 consecutive integers can be
+42.0,80.2,90.5: 85 . (D) The ratio of x to y is 1:2, so
+223.3,86.3,96.3: y
+233.6,80.2,90.2: =
+247.1,86.3,96.3: 2
+257.9,80.3,90.3: or
+368.2,85.4,95.4: expressed as:
+95.4,97.7,113.2: x = 1 y . Similarly, the ratio of y to z is 2:5, n+(n+1)+(n+ 2)+(n+3)
+117.7,109.2,119.2: 2
+369.6,114.2,124.7: = 4n+6
+111.2,119.4,129.7: y 2
+93.0,124.2,135.2: so =  . Solve for z in terms of y:
+111.2,131.2,141.4: z 5 Set that expression equal to each of the
+94.6,142.7,154.4: 5y = 2z options and solve for n:
+96.7,161.4,171.8: 5 Option E:
+106.1,166.6,177.2: y = z
+96.8,173.3,183.3: 2
+370.1,180.0,190.7: 4n+6 = −12
+93.0,191.2,201.3: Use the given sum of x, y, and z to find the
+370.1,199.2,209.8: 4n = −18
+93.0,203.2,213.3: value of y:
+95.4,221.7,233.8: x+ y+ z = 40 n = −
+399.9,218.3,228.3: 18
+417.3,222.5,232.5: is not an integer
+402.9,229.9,239.9: 4
+96.4,240.8,250.8: 1 5
+106.1,245.4,256.2: y+ y+ y = 40 Option F:
+96.8,252.3,262.3: 2 2
+370.1,265.0,275.7: 4n+6 = −10
+94.8,269.0,279.6: 4y = 40
+370.1,284.2,294.8: 4n = −16
+95.8,288.1,298.8: y =10
+370.2,303.2,314.0: n = −4 is an integer
+368.2,320.4,330.4: Option G:
+370.1,339.0,349.7: 4n+6 = −8
+370.1,358.2,368.8: 4n = −14
+399.9,377.3,387.3: 14
+370.2,382.1,392.8: n = − is not an integer
+403.0,388.9,398.9: 4
+368.2,408.4,418.4: Option H:
+370.1,427.0,437.7: 4n+6 = −4
+370.1,446.2,456.8: 4n = −10
+399.9,465.3,475.3: 10
+370.2,469.5,480.8: n = − is not an integer
+402.9,476.9,486.9: 4
+368.2,493.3,503.4: The only option for which n is an integer
+368.2,506.4,516.4: answer is –10 .
+317.2,540.4,550.6: 87 . (C) There are 5 stores where the video game is
+368.2,553.4,563.4: priced at $10 .99 and a total of 5 stores
+368.2,566.4,576.4: where it is priced at either $12 .99 or
+368.2,579.4,589.4: $13 .99, so the median price must be
+368.2,592.4,602.4: $11 .99 .
+297.2,756.7,767.2: 211
+=== PAGE 30 ===
+42.0,72.4,85.2: 88 . (F) Solve xy = 30, the given equation, for x: 92 . (G) Take each ratio and solve for dogs:
+95.4,91.2,105.0: xy = 30 p 4
+384.2,100.4,110.4: =
+372.3,106.5,116.5: d 1
+117.4,110.4,120.4: 30
+95.4,115.1,125.8: x =
+121.1,121.9,134.2: y 4d = p
+190.6,138.3,148.7: 30 y 1
+93.0,142.7,154.1: Then 10÷ x =10÷ =10× = y 1
+194.3,147.5,160.3: y 30 3 d = p
+393.5,154.2,164.2: 4
+368.2,174.6,184.6: And
+42.0,180.7,190.9: 89 . (B) First, find the lengths of the given
+93.0,193.7,203.7: segments:
+372.2,197.1,207.1: d 3
+383.9,202.5,212.5: =
+373.2,208.6,218.6: c 2
+132.5,216.1,226.1: 1 1
+94.6,220.8,231.5: QR = 5 −3 = 2
+132.7,225.5,240.9: 6 6 d = 3 c
+393.5,237.0,247.0: 2
+149.0,244.4,254.4: 1 2
+94.8,249.1,259.8: PQ = 3−1 =1
+149.3,255.9,267.6: 3 3 Set the two expressions for d equal to each
+467.0,264.7,274.7: p
+368.2,269.6,279.6: other and solve for  .
+93.0,276.5,286.9: Then, find the difference: c
+371.8,292.8,302.8: 1 3
+102.7,297.6,309.4: 1 2 13 5 13 10 3 1 p = c
+94.8,304.2,314.8: 2 −1 = − = − = = 4 2
+102.9,310.9,320.9: 6 3 6 3 6 6 6 2
+371.3,321.0,331.6: p = 6c
+373.3,340.1,350.4: p 6
+42.0,345.9,358.7: 90 . (F) Since the distance from W to X is 70% of =
+373.3,351.9,361.9: c 1
+93.0,361.4,371.4: the distance from W to Y, the distance from
+368.2,369.6,379.6: So, the ratio of people to cats is 6:1 .
+93.0,374.4,384.4: X to Y is 30% of the distance from W to Y .
+93.0,387.4,397.4: Let d represent the distance from W to Y .
+93.0,400.4,411.8: Then 15 miles is 30% of d . 93 . (B) Let x represent the side length of square T,
+368.2,413.6,423.6: in centimeters . Then the side length of
+94.6,422.5,433.2: 0.30d =15
+368.2,426.4,437.0: square S is (x−1) .
+121.9,439.6,451.7: 15 The area of square S is:
+95.0,446.4,457.1: d = = 50
+118.1,453.2,463.2: 0.30
+369.2,462.0,472.7: (x−1)(x−1)= 9
+93.0,475.2,489.7: So, the distance from W to X, in miles, is (x−1) 2 = 9
+94.6,488.0,498.7: 50−15 = 35
+370.7,493.4,504.1: x−1 = 3
+370.7,507.8,518.5: x = 4
+42.0,525.2,535.5: 91 . (D) Multiply the numbers of highways between
+368.2,530.3,540.3: So the side length of square T is 4 cm, and
+93.0,538.2,548.2: each pair of cities:
+368.2,542.3,552.3: the area of square T is 16 sq cm .
+94.6,558.5,569.1: 3×4×3 = 36
+368.2,563.3,573.3: The difference between the areas, in
+368.2,576.1,586.7: square centimeters, is 16−9 = 7 .
+317.2,615.2,625.5: 94 . (H) If x is an odd number, then the next two
+368.2,628.0,638.7: odd numbers are (x+2) and (x+4) .
+297.2,756.7,767.2: 212
+=== PAGE 31 ===
+317.2,72.4,82.6: 99 . (B) If 1 gallon is equal to 16 cups, and 1 cup is
+96.6,78.7,88.7: 1 1 2 1 1
+42.0,83.0,94.4: 95 . (A) − = − = equal to 8 fluid ounces, then
+97.4,90.2,100.2: x 2x 2x 2x 2x
+369.2,105.2,115.8: 1gallon = (16)(8fluidounces) =
+369.2,117.2,127.2: 128fluidounces
+42.0,123.0,133.2: 96 . (G) The total number of people who
+93.0,135.0,145.0: participated in the competition was
+369.2,141.2,151.8: 128 = 2
+406.1,138.0,145.5: 7
+94.0,147.3,158.0: 1+5+10+ 4,984 = 5,000. The total
+93.0,159.0,172.8: number who placed first, second, or third 1gallon = 2 7 fluidounces
+93.0,172.3,183.0: was 1+5+10 =16.
+368.2,188.4,199.3: So, x = 7 .
+103.0,195.0,205.0: 16 32
+126.5,199.7,210.4: = = 0.0032 = 0.32%
+96.6,206.5,216.5: 5,000 10,000
+317.2,227.4,237.6: 100 . (H) The length of one side of the puzzle is
+376.8,240.1,250.8: 64 = 8 inches . The length of one side of
+42.0,248.0,258.2: 97 . (B) Let A represent the measure of angle A,
+368.2,251.5,264.2: the block is 364 = 4 inches .
+93.0,266.0,276.0: and let B represent the measure of angle B,
+368.2,275.4,285.4: The ratio of the side of the puzzle to the
+93.0,284.0,294.0: in degrees . Since the angles are
+368.2,287.4,297.4: side of the block is 8:4, which reduces to
+93.0,300.4,312.5: complementary, A+ B = 90. The 2:1 .
+272.0,315.0,325.0: B
+93.0,319.8,330.5: question states that B = 3A, or A = .
+272.5,326.6,336.6: 3
+93.0,338.0,350.6: Substitute that expression for A in the first 101 . (A) Let x represent Rosa’s score on the third
+93.0,353.3,366.0: equation and solve for B . test, and let y represent her score on the
+368.2,366.4,376.4: fourth test .
+95.0,377.3,387.9: A+ B = 90
+371.8,390.1,400.8: 81+83+ x+ y
+96.4,395.2,406.4: B = 85
+107.9,401.2,411.9: + B = 90 4
+96.8,407.9,417.9: 3
+369.2,418.6,429.2: 164+ x+ y = 340
+95.8,424.7,434.7: 4B
+114.4,429.5,440.2: = 90
+99.6,436.2,448.4: 3 x+ y =176
+93.8,453.1,463.7: 4B = 270
+368.2,462.7,472.7: If Rosa scores 100 on the fourth test, then
+94.4,472.2,485.7: B = 67.5 the least score she can earn on the third
+368.2,488.7,498.7: test is 76 .
+42.0,504.0,514.2: 98 . (G) Let h represent the height of the tree in
+93.0,516.0,526.0: 2003 . Then the height of the tree in 2013 is
+93.0,529.0,539.0: 3h . Calculate the percent increase:
+96.6,551.0,561.6: 3h−h 2h
+132.0,555.7,566.4: = = 2 = 200%
+108.8,562.5,572.5: h h
+297.2,756.7,767.2: 213
+=== PAGE 32 ===
+42.0,72.4,82.6: 102 . (H) The fraction of the pizza that the Barnes 105 . (D) First, subtract the two fractions:
+158.0,85.4,95.4: 11
+93.0,90.3,102.5: family eats is  . Let x represent the 1 1 2 1 2−1 1
+157.9,96.9,107.2: 18 − = − = =
+371.2,103.3,113.3: 10 20 20 20 20 20
+93.0,108.4,118.4: number of slices of pizza that the Ramirez
+368.2,122.9,132.9: Then, divide the difference by 2 to find half
+93.0,126.4,136.4: family eats . Then the fraction of the pizza
+368.2,135.9,145.9: the distance between the two fractions:
+241.2,139.4,149.4: x
+93.0,144.4,154.4: that the Ramirez family eats is  . Write
+237.6,150.9,160.9: 15
+374.4,155.3,165.3: 1 1 1 1
+93.0,160.1,172.4: an inequality and solve for x: ÷2 = × =
+372.1,166.8,176.8: 20 20 2 40
+99.5,184.4,194.4: x 11
+112.1,189.8,199.8: ≤
+96.0,193.8,205.9: 15 18 Finally, add the distance to the first point
+369.2,207.3,228.0: ( 1 )
+116.2,211.8,223.4: 11×15 to find the halfway point:
+95.4,217.5,228.8: x ≤ 20
+126.7,224.2,234.2: 18
+116.2,241.0,251.6: 165 1 1 2 1 2+1 3
+95.4,245.8,256.5: x ≤ + = + = =
+118.8,252.5,262.5: 18 20 40 40 40 40 40
+122.9,269.4,279.4: 1
+95.4,274.1,284.8: x ≤ 9
+123.1,280.9,290.9: 6
+317.2,290.8,301.1: 106 . (G) First, change 6 feet to yards:
+93.0,300.2,310.2: So, the greatest number of whole slices of
+407.0,309.6,319.6: 1yard
+93.0,313.2,325.7: pizza the Ramirez family can eat is 9 . 6feet× = 2yards
+409.3,321.8,331.8: 3feet
+368.2,340.3,350.3: Then, multiply the dimensions of the pool
+42.0,348.5,363.3: 103 . (D) 0 3 +4 0 +2−1 +(−1) 2 to find the volume, in cubic yards:
+142.6,366.0,376.0: 1
+93.4,370.8,383.6: = 0+1+ +1 20×14×2 = 560
+143.0,377.5,387.5: 2
+112.9,389.4,399.4: 1
+93.4,394.2,404.8: = 2 = 2.5
+113.3,400.9,410.9: 2
+317.2,414.3,424.6: 107 . (B) First, list the products:
+42.0,431.4,442.4: 104 . (G) First, find the number of comparisons . Let 3×4 =12
+93.0,444.2,454.2: A, B, C, D, E, and F represent the 6 brands
+369.8,450.5,461.2: 3×5 =15
+93.0,456.2,466.2: of soap . Then the comparisons are AB, AC,
+93.0,468.2,480.4: AD, AE, AF, BC, BD, BE, BF, CD, CE, CF, DE, 3×6 =18
+93.0,480.2,490.2: DF, and EF . So, there are 15 comparisons .
+369.8,488.9,499.5: 3×7 = 21
+93.0,493.2,503.2: Multiply to find the total cost:
+370.1,508.0,518.7: 4×5 = 20
+94.0,515.8,526.4: 15×$2,000 = $30,000
+370.1,527.2,537.8: 4×6 = 24
+370.1,546.3,557.0: 4×7 = 28
+369.8,565.5,576.2: 5×6 = 30
+369.8,584.7,595.3: 5×7 = 35
+369.8,603.8,614.5: 6×7 = 42
+368.2,620.8,630.8: Of the 10 products, 3 are odd . The fraction
+383.2,633.9,643.9: 3
+368.2,638.8,648.8: is  .
+380.1,645.4,655.4: 10
+317.2,672.8,683.1: 108 . (E) A quotient of 10 with a remainder of 5
+368.2,685.8,695.8: means the quotient is
+397.9,705.3,715.3: 5 1
+369.2,710.1,720.7: 10+ =10 =10.20
+395.3,716.8,726.8: 25 5
+297.2,756.7,767.2: 214
+=== PAGE 33 ===
+42.0,71.2,81.4: 109 . (C) The perimeter (or circumference) of one of 113 . (C) First, find the area of the rectangle in the
+205.6,84.2,94.2: 1 graph:
+93.0,89.2,99.2: the three semicircles is (diameter)
+206.0,95.7,105.7: 2
+118.1,102.2,112.2: 1
+94.8,106.4,117.6: (cid:31) = (2(cid:31))= (cid:31) . Since there are 3 3×5 =15
+118.5,113.7,123.7: 2
+93.0,125.2,136.5: semicircles that make up the perimeter, Then, find the areas of the two right
+368.3,139.5,149.5: triangles that are not shaded:
+93.0,143.2,153.2: the perimeter is 3π.
+368.3,152.5,162.5: Upper triangle:
+371.7,173.9,183.9: 1
+42.0,178.7,192.4: 110 . (E) Each time Micha draws a card, the ×4×3 = 6
+372.1,185.4,195.4: 2
+277.5,195.2,205.2: 1
+93.0,200.2,210.2: probability of drawing the number 5 is  .
+277.8,205.0,216.7: 5 Lower triangle:
+93.0,218.2,228.2: To find the probability of drawing the
+371.7,226.4,236.4: 1
+381.1,231.2,241.8: ×2×5 = 5
+93.0,236.2,247.9: number 5 three times, multiply: 2
+96.3,257.5,270.1: 1 1 1 1 The area of the shaded region, in square
+105.7,265.5,275.5: × × =
+96.6,270.5,281.6: 5 5 5 125 units, is calculated by subtracting the total
+368.3,283.5,293.5: area of the two right triangles from the
+368.3,296.5,306.5: area of the rectangle:
+96.0,302.2,312.2: 10meters 3,600seconds 1foot 36,000feet
+42.0,307.7,318.4: 111 . (D) × × = =120,000feet/hour
+99.1,314.4,324.4: 1second 1hour 0.3meter 0.3hour
+369.2,318.7,329.3: 15−(6+5)=15−11 = 4
+-101.0,337.2,347.2: 10meters 3,600seconds 1foot 36,000feet
+-53.0,342.7,353.3: × × = =120,000feet/hour
+-97.9,349.4,359.4: 1second 1hour 0. 3meter 0.3hour
+317.3,360.7,371.0: 114 . (H) Let w represent the number of additional
+368.3,378.8,388.8: white marbles .
+42.0,392.2,402.9: 112 . (H) 6.34−4.12 = 2.22 = 2.2
+368.3,396.8,406.8: Set the probability of drawing a white
+447.4,409.8,419.8: 3
+368.3,414.8,424.8: marble equal to and solve the equation
+88.0,417.9,428.2: x = 2.2222 ... Set x equal to the
+447.4,421.3,431.3: 5
+176.0,430.2,442.8: repeating decimal for w:
+176.0,442.2,452.2: Multiply both sides by 10
+394.6,456.5,467.0: 16+w 3
+88.0,461.9,474.0: 10x = 22.2222 ... =
+371.2,468.0,478.5: 14+10+16+w 5
+371.6,485.2,495.7: 16+w 3
+88.0,488.9,500.5: –x = –2.2222 ... Subtract 10x and x =
+372.0,496.7,507.2: 40+w 5
+369.8,509.4,519.9: 5(16+w)= 3(40+w)
+87.0,513.9,524.2: 9x = 20 Apply the multiplicative
+170.0,523.5,536.2: inverse properly, divide 80+5w =120+3w
+170.0,537.6,548.2: both sides by 9 2w = 40
+369.8,551.7,562.2: w = 20
+117.4,557.6,567.6: 20
+95.4,562.4,573.0: x =
+120.0,569.2,579.2: 9
+297.2,756.7,767.2: 215
+=== PAGE 34 ===
+221.4,282.3,293.3: Answer Key for Sample Form B
+74.4,311.4,320.9: 1 . D 14 . E 27 . D 40 . G 53 . A 66 . E 79 . A 92 . G 105 . D
+74.4,326.4,335.9: 2 . H 15 . B 28 . E 41 . A 54 . H 67 . B 80 . G 93 . B 106 . G
+74.4,341.4,350.9: 3 . A 16 . G 29 . B 42 . H 55 . B 68 . F 81 . B 94 . H 107 . B
+74.4,356.4,365.9: 4 . F 17 . A 30 . F 43 . B 56 . G 69 . A 82 . G 95 . A 108 . E
+74.4,371.4,380.9: 5 . D 18 . F 31 . D 44 . E 57 . C 70 . E 83 . C 96 . G 109 . C
+74.4,386.4,395.9: 6 . G 19 . A 32 . G 45 . C 58 . 250 71 . D 84 . F 97 . B 110 . E
+74.4,401.4,410.9: 7 . A 20 . F 33 . C 46 . E 59 . 13 .5 72 . H 85 . D 98 . G 111 . D
+74.4,416.4,425.9: 8 . G 21 . B 34 . E 47 . C 60 . 12 73 . B 86 . F 99 . B 112 . H
+74.4,431.4,440.9: 9 . B 22 . G 35 . C 48 . H 61 . 8 74 . G 87 . C 100 . H 113 . C
+74.4,446.4,455.9: 10 . F 23 . D 36 . F 49 . A 62 . 7 75 . C 88 . F 101 . A 114 . H
+74.4,461.4,470.9: 11 . D 24 . F 37 . D 50 . F 63 . A 76 . E 89 . B 102 . H
+74.4,476.4,485.9: 12 . H 25 . A 38 . G 51 . C 64 . G 77 . C 90 . F 103 . D
+74.4,491.4,500.9: 13 . B 26 . G 39 . B 52 . H 65 . A 78 . H 91 . D 104 . G
+297.2,756.7,767.2: 221166

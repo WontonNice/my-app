@@ -19,7 +19,7 @@ const odeToFireworks20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The comparison in lines 8–9 of the poem is used to convey",
     "promptHtml": "<p>The comparison in <span>lines 8–9</span> of the poem is used to convey</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const odeToFireworks20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read lines 22–23 from the poem.\n\nthe sky at night written upon\nwith those jewels.\n\nWhat does the word choice in these lines convey about the speaker?",
     "promptHtml": "<p>Read lines 22–23 from the poem.</p><blockquote><strong><strong>the sky at night written upon<br></strong><strong>with those jewels.</strong></strong></blockquote><p>What does the word choice in these lines convey about the speaker?</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const odeToFireworks20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The use of italics on the word “night” in line 24 is most likely intended to emphasize the",
     "promptHtml": "<p>The use of italics on the word <em>“night”</em> in <span>line 24</span> is most likely intended to emphasize the</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const odeToFireworks20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "What is the purpose of the repeated words “rising and falling” in lines 26 and 37?",
     "promptHtml": "<p>What is the purpose of the repeated words “rising and falling” in <span>lines 26</span> and 37?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const odeToFireworks20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read lines 41–42 from the poem.\nI kept waiting for those\nchildhood bursts, watching as they escorted us home.\nHow does this memory affect the speaker?",
     "promptHtml": "<p>Read <span>lines 41–42</span> from the poem.</p> <p data-align=\"indent\"><strong>I kept waiting for those<br>childhood bursts, watching as they escorted us home.</strong></p> <p>How does this memory affect the speaker?</p>",
-    "topic": "",
+    "topic": "Inference",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const odeToFireworks20262027FormDQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The fireworks in the poem represent the speaker’s",
     "promptHtml": "<p>The fireworks in the poem represent the speaker’s</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",

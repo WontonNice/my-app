@@ -17,6 +17,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   questions: [
   {
     "id": "2026-2027-form-a-math-item-1",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "In a scale diagram, 0.125 inch represents 125 feet. How many inches represent 1 foot?",
@@ -45,6 +46,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-2",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "A car is traveling 55 miles per hour, and 1 mile = 5,280 feet. Which of the following calculations would give the car’s speed in feet per second?",
@@ -78,6 +80,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-3",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "For what value of \\(w\\) is \\(4w=2w-8\\)?",
@@ -90,6 +93,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-4",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "A survey asked students what pets they have. Based on the results, the following statements are all true:\n\n• 20 students have cats.\n• 23 students have dogs.\n• 3 students have both dogs and cats.\n• 5 students have no dogs or cats.\n\nHow many students were surveyed?",
@@ -102,6 +106,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-5",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "The sum of the numbers \\(x\\), \\(y\\), and \\(z\\) is 50. The ratio of \\(x\\) to \\(y\\) is 1:4, and the ratio of \\(y\\) to \\(z\\) is 4:5. What is the value of \\(y\\)?",
@@ -130,6 +135,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-6",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "\\[7+(3n+6)-(4n+8)=\\]",
@@ -162,6 +168,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-7",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "In a certain school, course grades range from 0 to 100. Adrianna took 4 courses and her mean course grade was 90. Roberto took 5 courses. If both students have the same sum of course grades, what was Roberto’s mean?",
@@ -190,6 +197,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-8",
+    "skilled": "TBD",
     "explanation": "",
     "instructions": "Select the correct answer from each drop-down to complete the sentences.",
     "points": 1,
@@ -261,6 +269,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-9",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "In the figure above, PQRS is a parallelogram. What is the value of \\(x\\)?",
@@ -274,6 +283,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-10",
+    "skilled": "TBD",
     "explanation": "",
     "instructions": "Select the two correct answers.",
     "instructionsHtml": "Select the <strong>two</strong> correct answers.",
@@ -322,6 +332,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-11",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "In the pyramid above, each triangular face has the same area, and the base MNPQ is a square that measures 8 centimeters on each side. If the length of \\(\\overline{RS}=6\\) centimeters, what is the surface area of the pyramid excluding the base?",
@@ -351,6 +362,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-12",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "The perimeter of a rectangle is 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions of this rectangle?",
@@ -379,6 +391,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-13",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "Which number line below shows the solution to the inequality \\(-4<\\frac{x}{2}<2\\)?",
@@ -424,6 +437,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-14",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "The sum of two consecutive integers is −15. If 1 is added to the smaller integer and 2 is subtracted from the larger integer, what is the product of the two resulting integers?",
@@ -437,6 +451,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-15",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "A box of colored pencils contains exactly 6 red pencils. The probability of choosing a red pencil from the box is \\(\\frac{2}{7}\\). How many of the pencils in the box are not red?",
@@ -466,6 +481,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-16",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "What is the area of the shaded region in the graph above?",
@@ -495,15 +511,18 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-17",
+    "skilled": "TBD",
     "explanation": "",
     "instructions": "Move the correct answer to each box. Not all answers will be used.",
     "points": 1,
-    "prompt": "Consider this expression:\n\n\\[|(-8)-(-3)+6|-|6-11|\\]\n\nCreate an equivalent expression.",
+    "prompt": "Consider this expression:\n\n\\(\\left|(-8)-(-3)+6\\right|-\\left|6-11\\right|\\)\n\nCreate an equivalent expression.",
+    "promptHtml": "<p>Consider this expression:</p><p>\\(\\left|(-8)-(-3)+6\\right|-\\left|6-11\\right|\\)</p><p>Create an equivalent expression.</p>",
     "topic": "Arithmetic & Number Sense",
     "subtopic": "Integers & Absolute Value",
     "allowReuse": false,
+    "dragDropStyle": "compact",
     "dragDropContent": [
-      "|{{slot-1}}| − |{{slot-2}}|"
+      "\\(|\\){{slot-1}}\\(| - |\\){{slot-2}}\\(|\\)"
     ],
     "dragDropSlots": [
       {
@@ -541,6 +560,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-18",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "Mrs. Cranston bought five bottles of water for $0.90 each and 8 pounds of meat. She paid a total of $26.90 for these items, not including tax. What was the price per pound of the meat?",
@@ -570,6 +590,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-19",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "In a sample of 10 cards, 4 are red and 6 are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?",
@@ -603,6 +624,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-20",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "1 sind = 4 lorgs\n2 plunks = 5 dalts\n5 sinds = 2 harps\n1 plunk = 3 harps\n\nA nation has five types of coins: sinds, dalts, lorgs, harps, and plunks. The relationship between the coins is shown above. Which coin is most valuable?",
@@ -631,6 +653,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-21",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "The faculty of a certain four-year college consists of 179 teachers. There are 663 first-year students. The student-to-faculty ratio for the entire college is 15 to 1. What is the total number of second-, third-, and fourth-year students?",
@@ -659,6 +682,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-22",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "How many more people in Center City walk to work than ride their bicycle to work?",
@@ -688,6 +712,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-23",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
@@ -716,6 +741,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-24",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "The least of 5 consecutive integers is \\(l\\), and the greatest is \\(g\\). What is the value of \\(\\frac{l+g}{2}\\) in terms of \\(l\\)?",
@@ -749,6 +775,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-25",
+    "skilled": "TBD",
     "explanation": "",
     "instructions": "Enter your answer in the space.",
     "instructionsHtml": "Enter your answer in the space.&nbsp;&nbsp;",
@@ -763,6 +790,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-26",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "Today, Tien’s age is \\(\\frac{1}{4}\\) of Jordan’s age. In 2 years, Tien’s age will be \\(\\frac{1}{3}\\) of Jordan’s age. How old is Jordan today?",
@@ -791,6 +819,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-27",
+    "skilled": "TBD",
     "explanation": "",
     "instructions": "Move the correct answer to each box. Each answer may be used more than once. Not all answers will be used.",
     "points": 1,
@@ -857,6 +886,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-28",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "\\[2\\frac{1}{5}+3\\frac{3}{10}+4\\frac{2}{5}+5\\frac{1}{2}\\]\n\nWhat is the value of the expression shown above?",
@@ -889,6 +919,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-29",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
@@ -917,6 +948,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-30",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "For a presentation, Deion can create 5 slides in 20 minutes, working at a constant rate. Kyra can create 3 slides in 10 minutes, working at her own constant rate. What is the total number of slides the two of them can create in one hour?",
@@ -945,6 +977,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-31",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "On the number line above, \\(\\overline{LN}=\\frac{1}{8}\\). Point M (not shown) is located between point L and point N. Which value below is a possible value for M?",
@@ -974,6 +1007,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-32",
+    "skilled": "TBD",
     "explanation": "",
     "instructions": "Enter your answer in the space provided. Enter only your answer.",
     "instructionsHtml": "Enter your answer in the space provided. Enter only your answer.&nbsp;&nbsp;",
@@ -993,6 +1027,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-33",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "Ryan must read 150 pages for school this weekend. It took him 30 minutes to read the first 20 pages. At this rate, how much additional time will it take him to finish the reading?",
@@ -1026,6 +1061,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-34",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal 0. What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?",
@@ -1059,6 +1095,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-35",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "In the set of consecutive integers from 12 to 30, inclusive, there are four integers that are multiples of both 2 and 3. How many integers in this set are multiples of neither 2 nor 3?",
@@ -1088,6 +1125,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-36",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "If \\(3n\\) is a positive even number, how many odd numbers are in the range from \\(3n\\) up to and including \\(3n+5\\)?",
@@ -1117,6 +1155,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-37",
+    "skilled": "TBD",
     "explanation": "",
     "instructions": "Select all the correct answers.",
     "instructionsHtml": "Select <strong>all</strong> the correct answers.",
@@ -1182,6 +1221,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-38",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "\\[\\frac{w}{x}=\\frac{y}{z}\\]\n\nIn the equation above, \\(w\\), \\(x\\), \\(y\\), and \\(z\\) are positive numbers. Which of these is equal to \\(z\\)?",
@@ -1214,6 +1254,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-39",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "On the number line above, points W, X, Y, and Z are integers, and \\(\\overline{WX}:\\overline{XY}:\\overline{YZ}=4:2:3\\). What is the value of \\(\\overline{WY}\\)?",
@@ -1243,6 +1284,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-40",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "Mr. Blake’s biology class is divided into three sections. The same test was given to each section. The table above shows both the lowest score and the range of scores on this test for each section. What is the overall range of all scores in all three sections?",
@@ -1272,6 +1314,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-41",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "The graph above shows the number of schools per city for five small cities. Cities M and N each have 500 students per school. City P has 400 students per school. Cities Q and R each have 700 students per school. Which of the five cities has the greatest number of students?",
@@ -1301,6 +1344,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-42",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "\\[\\frac{10}{13}=0.\\overline{769230}\\]\n\nIn the infinitely repeating decimal above, 7 is the first digit in the repeating pattern. What is the 391st digit?",
@@ -1329,6 +1373,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-43",
+    "skilled": "TBD",
     "explanation": "",
     "instructions": "Select a ray. Then, move the endpoint of the ray to the correct position on the number line.",
     "points": 1,
@@ -1348,31 +1393,43 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-44",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "A",
+      "section": "Math",
+      "sourceQuestion": "94"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-a-44df63399c034bc36919.png\" alt=\"Official explanation for question 94\">",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "A sports store has a container of handballs: 4 blue, 5 red, 8 yellow, 9 white, and 11 green. If one ball is picked from the container at random, what is the probability that it will be yellow?",
+    "promptHtml": "<p><span>A sports store has a container of handballs: <span>4 blue,</span> <span>5 red,</span> <span>8 yellow,</span> <span>9 white,</span> and <span>11 green.</span> If one ball is picked from the container at <span>random</span>, what is the <span>probability</span> that it will be yellow?</span></p>",
     "topic": "Statistics and Probability",
     "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
-        "math": "\\frac{1}{37}",
-        "text": "\\frac{1}{37}"
+        "html": "<p><span>\\(\\frac{1}{37}\\)</span></p>",
+        "text": "\\(\\frac{1}{37}\\)"
       },
       {
         "id": "B",
-        "math": "\\frac{1}{8}",
-        "text": "\\frac{1}{8}"
+        "html": "<p><span>\\(\\frac{1}{8}\\)</span></p>",
+        "text": "\\(\\frac{1}{8}\\)"
       },
       {
         "id": "C",
-        "math": "\\frac{8}{37}",
-        "text": "\\frac{8}{37}"
+        "html": "<p><span>\\(\\frac{8}{37}\\)</span></p>",
+        "text": "\\(\\frac{8}{37}\\)"
       },
       {
         "id": "D",
-        "math": "\\frac{8}{29}",
-        "text": "\\frac{8}{29}"
+        "html": "<p><span>\\(\\frac{8}{29}\\)</span></p>",
+        "text": "\\(\\frac{8}{29}\\)"
       }
     ],
     "correctChoiceId": "C",
@@ -1380,26 +1437,42 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-45",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "A",
+      "section": "Math",
+      "sourceQuestion": "95"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-a-ab1a8915c7112fa60284.png\" alt=\"Official explanation for question 95\">",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "Each week, Leon has fixed expenses of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s profit if he makes and sells 25 chairs in 1 week?",
+    "promptHtml": "<p><span><span>Each</span> week, Leon has fixed <span>expenses</span> of $1,250 at his furniture shop. It costs him $150 to make a chair in his shop, and he sells each chair for $275. What is Leon’s <span><strong>profit</strong></span> if he makes and sells 25 chairs in <span>1 week?</span></span></p>",
     "topic": "Arithmetic & Number Sense",
     "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
+        "html": "<p><span>$1,875</span></p>",
         "text": "$1,875"
       },
       {
         "id": "B",
+        "html": "<p><span>$2,500</span></p>",
         "text": "$2,500"
       },
       {
         "id": "C",
+        "html": "<p><span>$3,125</span></p>",
         "text": "$3,125"
       },
       {
         "id": "D",
+        "html": "<p><span>$4,375</span></p>",
         "text": "$4,375"
       }
     ],
@@ -1408,26 +1481,42 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-46",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "A",
+      "section": "Math",
+      "sourceQuestion": "96"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-a-cd99a24d9c34042f3074.png\" alt=\"Official explanation for question 96\">",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
     "prompt": "Using the approximation 2.54 centimeters = 1 inch, how many centimeters are in 4 feet 7 inches?",
+    "promptHtml": "<p><span>Using the <span>approximation</span> </span><span><span>2.54</span> <span><span>centimeters</span> </span><span>=</span></span> <span><span>1 <span>inch</span>,</span></span><span> how many centimeters are in </span><span><span>4 <span>feet</span></span></span> <span><span>7 inches?</span></span></p>",
     "topic": "Arithmetic & Number Sense",
     "subtopic": "Units & Conversions",
     "choices": [
       {
         "id": "A",
+        "html": "<p><span>21.65</span></p>",
         "text": "21.65"
       },
       {
         "id": "B",
+        "html": "<p><span>119.38</span></p>",
         "text": "119.38"
       },
       {
         "id": "C",
+        "html": "<p><span>121.92</span></p>",
         "text": "121.92"
       },
       {
         "id": "D",
+        "html": "<p><span>139.70</span></p>",
         "text": "139.70"
       }
     ],
@@ -1436,31 +1525,43 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-47",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "A",
+      "section": "Math",
+      "sourceQuestion": "97"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-a-000ab3b34aca9992bc35.png\" alt=\"Official explanation for question 97\">",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
-    "prompt": "On the number line above, \\(\\overline{JK}=3\\frac{1}{2}\\), \\(\\overline{JM}=9\\frac{3}{4}\\), and \\(\\overline{LM}=1\\frac{1}{8}\\). What is the position of point L?",
+    "prompt": "On the number line above, \\(\\text{JK}=3\\frac{1}{2}\\text{,}\\) \\(\\text{JM}=9\\frac{3}{4}\\text{,}\\) and \\(\\text{LM}=1\\frac{1}{8}\\text{.}\\) What is the position of point \\(\\text{L?}\\)",
+    "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-a-33daa22a6e5eded801a9.svg\" alt=\"A number line with points J, K, L, and M; Point K is 3 eighths.\" width=\"264\"></p><p><span>On the <span>number line</span> above, </span><span>\\(\\text{JK}=3\\frac{1}{2}\\text{,}\\)</span> <span>\\(\\text{JM}=9\\frac{3}{4}\\text{,}\\)</span><span> and </span><span>\\(\\text{LM}=1\\frac{1}{8}\\text{.}\\)</span><span> What is the position of </span><span><span><span>point</span> </span><span>\\(\\text{L?}\\)</span></span></p>",
     "topic": "Geometry",
     "subtopic": "Coordinates & Segment Relationships",
     "choices": [
       {
         "id": "A",
-        "math": "5\\frac{1}{8}",
-        "text": "5\\frac{1}{8}"
+        "html": "<p><span>\\(5\\frac{1}{8}\\)</span></p>",
+        "text": "\\(5\\frac{1}{8}\\)"
       },
       {
         "id": "B",
-        "math": "5\\frac{1}{4}",
-        "text": "5\\frac{1}{4}"
+        "html": "<p><span>\\(5\\frac{1}{4}\\)</span></p>",
+        "text": "\\(5\\frac{1}{4}\\)"
       },
       {
         "id": "C",
-        "math": "5\\frac{1}{2}",
-        "text": "5\\frac{1}{2}"
+        "html": "<p><span>\\(5\\frac{1}{2}\\)</span></p>",
+        "text": "\\(5\\frac{1}{2}\\)"
       },
       {
         "id": "D",
-        "math": "6\\frac{1}{4}",
-        "text": "6\\frac{1}{4}"
+        "html": "<p><span>\\(6\\frac{1}{4}\\)</span></p>",
+        "text": "\\(6\\frac{1}{4}\\)"
       }
     ],
     "correctChoiceId": "C",
@@ -1468,31 +1569,43 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-48",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "A",
+      "section": "Math",
+      "sourceQuestion": "98"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-a-c6e1ef588053901b14d0.png\" alt=\"Official explanation for question 98\">",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
-    "prompt": "If \\(4x-3y=12\\), what is \\(x\\) in terms of \\(y\\)?",
+    "prompt": "If \\(4x-3y=12,\\) what is \\(x\\) in terms of \\(y?\\)",
+    "promptHtml": "<p><span>If </span><span>\\(4x-3y=12,\\)</span><span>&nbsp;what is </span><span>\\(x\\)</span><span> in <span>terms</span> of </span><span>\\(y?\\)</span></p>",
     "topic": "Algebra",
     "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
-        "math": "x=\\frac{3}{4}y+12",
-        "text": "x=\\frac{3}{4}y+12"
+        "html": "<p><span>\\(x=\\frac{3}{4}y+12\\)</span></p>",
+        "text": "\\(x=\\frac{3}{4}y+12\\)"
       },
       {
         "id": "B",
-        "math": "x=-\\frac{3}{4}y+12",
-        "text": "x=-\\frac{3}{4}y+12"
+        "html": "<p><span>\\(x=-\\frac{3}{4}y+12\\)</span></p>",
+        "text": "\\(x=-\\frac{3}{4}y+12\\)"
       },
       {
         "id": "C",
-        "math": "x=\\frac{3}{4}y+3",
-        "text": "x=\\frac{3}{4}y+3"
+        "html": "<p><span>\\(x=\\frac{3}{4}y+3\\)</span></p>",
+        "text": "\\(x=\\frac{3}{4}y+3\\)"
       },
       {
         "id": "D",
-        "math": "x=-\\frac{3}{4}y+3",
-        "text": "x=-\\frac{3}{4}y+3"
+        "html": "<p><span>\\(x=-\\frac{3}{4}y+3\\)</span></p>",
+        "text": "\\(x=-\\frac{3}{4}y+3\\)"
       }
     ],
     "correctChoiceId": "C",
@@ -1500,29 +1613,43 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-49",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "year": "2026",
+      "form": "A",
+      "section": "Math",
+      "sourceQuestion": "99"
+    },
+    "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-a-1fd6e46a48267cf13850.png\" alt=\"Official explanation for question 99\">",
+    "skilled": "TBD",
     "explanation": "",
     "points": 1,
-    "prompt": "SERVINGS OF FRUITS AND VEGETABLES\nNumber of Servings of Fruits and Vegetables | Number of Students\n0 | 5\n1 | 7\n2 | 3\n3 | 4\n4 | 0\n5 | 1\n\nThere are 20 students in a class. The frequency table above shows the number of students in this class who ate 0, 1, 2, 3, 4, or 5 servings of fruits and vegetables yesterday. What is the mean number of servings of fruits and vegetables eaten yesterday per student in this class?",
+    "prompt": "SERVINGS OF FRUITS AND VEGETABLESNumber of Servings of\nFruits and Vegetables Number of Students\n0 5\n1 7\n2 3\n3 4\n4 0\n5 1\n\nThere are 20 students in a class. The frequency table above shows the number of students in this class who ate 0, 1, 2, 3, 4, or 5 servings of fruits and vegetables yesterday. What is the mean number of servings of fruits and vegetables eaten yesterday per student in this class?",
+    "promptHtml": "<table><caption><span>SERVINGS OF FRUITS AND VEGETABLES</span></caption><tbody><tr><th data-align=\"center\" scope=\"col\"><span>Number of Servings of<br>Fruits and Vegetables</span></th><th data-align=\"center\" scope=\"col\"><span>Number of Students</span></th></tr><tr><td data-align=\"center\"><span>0</span></td><td data-align=\"center\"><span>5</span></td></tr><tr><td data-align=\"center\"><span>1</span></td><td data-align=\"center\"><span>7</span></td></tr><tr><td data-align=\"center\"><span>2</span></td><td data-align=\"center\"><span>3</span></td></tr><tr><td data-align=\"center\"><span>3</span></td><td data-align=\"center\"><span>4</span></td></tr><tr><td data-align=\"center\"><span>4</span></td><td data-align=\"center\"><span>0</span></td></tr><tr><td data-align=\"center\"><span>5</span></td><td data-align=\"center\"><span>1</span></td></tr></tbody></table> <p>&nbsp;</p><p><span>There are 20 students in a class. The <span>frequency table</span> above shows the <span>number</span> of students in this class who ate 0, 1, 2, 3, 4, or 5 servings of fruits and vegetables yesterday. What is the <span>mean</span> number of servings of fruits and vegetables eaten yesterday <span>per</span> student in this class?</span></p>",
     "topic": "Statistics and Probability",
     "subtopic": "Averages & Spread",
     "choices": [
       {
         "id": "A",
-        "math": "1\\frac{1}{2}",
-        "text": "1\\frac{1}{2}"
+        "html": "<p><span>\\(1\\frac{1}{2}\\)</span></p>",
+        "text": "\\(1\\frac{1}{2}\\)"
       },
       {
         "id": "B",
-        "text": "3"
+        "html": "<p><span>\\(3\\)</span></p>",
+        "text": "\\(3\\)"
       },
       {
         "id": "C",
-        "math": "3\\frac{1}{3}",
-        "text": "3\\frac{1}{3}"
+        "html": "<p><span>\\(3\\frac{1}{3}\\)</span></p>",
+        "text": "\\(3\\frac{1}{3}\\)"
       },
       {
         "id": "D",
-        "text": "4"
+        "html": "<p><span>\\(4\\)</span></p>",
+        "text": "\\(4\\)"
       }
     ],
     "correctChoiceId": "A",
@@ -1530,6 +1657,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-a-math-item-50",
+    "skilled": "TBD",
     "explanation": "",
     "instructions": "Enter only your fraction.",
     "points": 1,
@@ -1540,7 +1668,8 @@ export const content20262027FormAMathSection: ExamMathSection = {
       "7/5",
       "\\frac{7}{5}"
     ],
-    "type": "short_response"
+    "entryLayout": "plain",
+    "type": "numeric_entry"
   }
 ],
 };

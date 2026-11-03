@@ -19,7 +19,7 @@ const theBestLaidPlansOfRavens20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 1.\nAt Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan for the future.\nWhich sentence from paragraph 4 provides support for this argument?",
     "promptHtml": "<p>Read this sentence from <span>paragraph 1.</span></p> <p data-align=\"indent\"><strong>At Lund University in Sweden, researchers argue that ravens may be able to think ahead and even plan for the future.</strong></p> <p>Which sentence from <span>paragraph 4</span> provides support for this argument?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const theBestLaidPlansOfRavens20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read these sentences from paragraph 2.\nFor example, many animals hoard food so that they will not run out later, but scientists who study animals would not call hoarding a decision to plan for the future. This action is merely instinctual.\nWhich statement describes the effect of the phrase “merely instinctual” in the passage?",
     "promptHtml": "<p>Read these sentences from <span>paragraph 2.</span></p> <p data-align=\"indent\"><strong>For example, many animals hoard food so that they will not run out later, but scientists who study animals would not call hoarding a decision to plan for the future. This action is merely instinctual.</strong></p> <p>Which statement describes the effect of the phrase “merely instinctual” in the passage?</p>",
-    "topic": "",
+    "topic": "Word & Phrase Meaning",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const theBestLaidPlansOfRavens20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "In the first experiment described in paragraph 4, which of the ravens’ behaviors provides the strongest evidence for the claim that the birds are capable of planning?",
     "promptHtml": "<p>In the first experiment described in <span>paragraph 4,</span> which of the ravens’ behaviors provides the strongest evidence for the claim that the birds are capable of planning?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const theBestLaidPlansOfRavens20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does paragraph 5 fit into the overall structure of the passage and contribute to the development of ideas?",
     "promptHtml": "<p>How does paragraph 5 fit into the overall structure of the passage and contribute to the development of ideas?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const theBestLaidPlansOfRavens20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "The author conveys a point of view on the study of animal intelligence mainly by",
     "promptHtml": "<p>The author conveys a point of view on the study of animal intelligence <strong>mainly</strong> by</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const theBestLaidPlansOfRavens20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "With which statement would the author of the passage most likely agree?",
     "promptHtml": "<p>With which statement would the author of the passage <strong>most likely</strong> agree?</p>",
-    "topic": "",
+    "topic": "Author's Point of View",
     "choices": [
       {
         "id": "A",

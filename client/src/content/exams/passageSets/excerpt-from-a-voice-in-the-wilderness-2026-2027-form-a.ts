@@ -19,7 +19,7 @@ const excerptFromAVoiceInTheWilderness20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "In paragraph 2, how does the phrase “when all three had taken the trouble to tell her” affect the tone in the first part of the excerpt?",
     "promptHtml": "<p>In paragraph 2, how does the phrase “when all three had taken the trouble to tell her” affect the tone in the first part of the excerpt?</p>",
-    "topic": "",
+    "topic": "Tone & Mood",
     "choices": [
       {
         "id": "A",
@@ -60,7 +60,7 @@ const excerptFromAVoiceInTheWilderness20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Which sentence from the excerpt best supports the idea that Margaret is unaccustomed to traveling to new places by train?",
     "promptHtml": "<p>Which sentence from the excerpt best supports the idea that Margaret is unaccustomed to traveling to new places by train?</p>",
-    "topic": "",
+    "topic": "Evidence & Support",
     "choices": [
       {
         "id": "A",
@@ -101,7 +101,7 @@ const excerptFromAVoiceInTheWilderness20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "Read this sentence from paragraph 4.\nShe strained her eyes into the darkness, and tried to make out things from the two or three specks of light that danced about like fireflies in the distance.\nThe simile used in the sentence affects the tone of the paragraph by emphasizing a",
     "promptHtml": "<p>Read this sentence from <span>paragraph 4.</span></p> <p data-align=\"indent\"><strong>She strained her eyes into the darkness, and tried to make out things from the two or three specks of light that danced about like fireflies in the distance.</strong></p> <p>The simile used in the sentence affects the tone of the paragraph by emphasizing a</p>",
-    "topic": "",
+    "topic": "Figurative Language & Imagery",
     "choices": [
       {
         "id": "A",
@@ -142,7 +142,7 @@ const excerptFromAVoiceInTheWilderness20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How do Margaret’s earlier interactions with the conductor, brakeman, and porter affect the plot?",
     "promptHtml": "<p>How do Margaret’s earlier interactions with the conductor, brakeman, and porter affect the plot?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",
@@ -183,7 +183,7 @@ const excerptFromAVoiceInTheWilderness20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does Margaret’s experience in paragraph 9 emphasize a theme of the excerpt?",
     "promptHtml": "<p>How does Margaret’s experience in <span>paragraph 9</span> emphasize a theme of the excerpt?</p>",
-    "topic": "",
+    "topic": "Central Idea & Theme",
     "choices": [
       {
         "id": "A",
@@ -224,7 +224,7 @@ const excerptFromAVoiceInTheWilderness20262027FormAQuestions: ExamQuestion[] = [
     "points": 1,
     "prompt": "How does paragraph 11 contribute to the plot of the excerpt?",
     "promptHtml": "<p>How does paragraph 11 contribute to the plot of the excerpt?</p>",
-    "topic": "",
+    "topic": "Text Structure & Purpose",
     "choices": [
       {
         "id": "A",

@@ -1,0 +1,346 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "prompt": "Read this paragraph.\n\nWhich sentence contains an error in its construction and should be revised?",
+      "promptHtml": "<p>Read this paragraph.</p><p>Which sentence contains an error in its construction and should be revised?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "sentence 1",
+          "html": "<p>sentence 1</p>"
+        },
+        {
+          "id": "B",
+          "text": "sentence 2",
+          "html": "<p>sentence 2</p>"
+        },
+        {
+          "id": "C",
+          "text": "sentence 3",
+          "html": "<p>sentence 3</p>"
+        },
+        {
+          "id": "D",
+          "text": "sentence 4",
+          "html": "<p>sentence 4</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Sentence Structure",
+      "points": 1,
+      "explanation": "1 . The question asks for the identification of the sentence that contains an error in its construction and should be revised .\n\nD: Correct . Sentence 4 contains an error because the sentence uses the plural pronoun “them” to refer to “The blobfish’s,” which is singular in number . The word “them” should be changed to “it .” The paragraph refers to the blobfish as a singular species in each of its four sentences, and sentence 4 should be revised to match .\n\nA: Incorrect . There are no errors in sentence 1 . The singular pronoun “its” matches the number of the word it refers to, the singular noun ”blobfish .” Additionally, the clause “a creature that certainly resembles its name,” is correctly set off by commas to provide an additional, but not essential, detail about the blobfish .\n\nB: Incorrect . There are no errors in sentence 2 . The singular pronoun “its” matches the number of the word it refers to, the singular noun ”blobfish .” Additionally, the structure of the sentence correctly shows that the clause “Because it has very few muscles and its density is close to that of water” modifies the words “the blobfish .”\n\nC: Incorrect . There are no errors in sentence 3 . The “it” in the sentences refers to “the blobfish” mentioned in the previous sentence . The use of singular pronouns in sentence 3 is consistent with the rest of the paragraph .",
+      "visuals": [],
+      "id": "pdf-shsat-2019-2020-b-q001",
+      "review": {
+        "sourceFile": "20192020_form_b.pdf",
+        "sourcePages": [
+          1
+        ],
+        "sourceQuestion": "1",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20192020_form_b_-_answers.pdf",
+          "sourcePages": [
+            34
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20192020_form_b_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                51.4376,
+                160.8298730470001,
+                571.8311990349999,
+                399.829903565
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "D",
+      "stimulusHtml": "<p>(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.</p>",
+      "stimulus": "(1) The blobfish, a creature that certainly resembles its name, is an unusual fish whose body is mostly composed of pink gelatinous flesh. (2) Because it has very few muscles and its density is close to that of water, the blobfish spends its life floating slightly above the ocean floor. (3) It must wait patiently for whatever edible matter might float by its mouth. (4) The blobfish’s downturned mouth, slimy skin, and pale coloring caused them to be voted the World’s Ugliest Animal in 2013.",
+      "explanationHtml": "<p><strong>1 .</strong> The question asks for the identification of the sentence that contains an error in its construction and should be revised .</p><p><strong>D: Correct .</strong> Sentence 4 contains an error because the sentence uses the plural pronoun “them” to refer to “The blobfish’s,” which is singular in number . The word “them” should be changed to “it .” The paragraph refers to the blobfish as a singular species in each of its four sentences, and sentence 4 should be revised to match .</p><p><strong>A:</strong> Incorrect . There are no errors in sentence 1 . The singular pronoun “its” matches the number of the word it refers to, the singular noun ”blobfish .” Additionally, the clause “a creature that certainly resembles its name,” is correctly set off by commas to provide an additional, but not essential, detail about the blobfish .</p><p><strong>B:</strong> Incorrect . There are no errors in sentence 2 . The singular pronoun “its” matches the number of the word it refers to, the singular noun ”blobfish .” Additionally, the structure of the sentence correctly shows that the clause “Because it has very few muscles and its density is close to that of water” modifies the words “the blobfish .”</p><p><strong>C:</strong> Incorrect . There are no errors in sentence 3 . The “it” in the sentences refers to “the blobfish” mentioned in the previous sentence . The use of singular pronouns in sentence 3 is consistent with the rest of the paragraph .</p>",
+      "sourceQuestion": "1",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2019-2020 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2019-2020-form-b",
+        "label": "2019-2020 Form B",
+        "year": "2019-2020",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20192020_form_b.pdf",
+        "sourceQuestion": "1",
+        "pages": [
+          1
+        ]
+      },
+      "notes": [
+        "Supplied 20192020_form_b.pdf; PDF page 1; original question 1."
+      ]
+    },
+    {
+      "prompt": "Read this paragraph.\n\nWhich revisions correct the errors in the paragraph?",
+      "promptHtml": "<p>Read this paragraph.</p><p>Which revisions correct the errors in the paragraph?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Sentence 1: Delete the colon after wonder AND change is to are.",
+          "html": "<p>Sentence 1: Delete the colon after wonder AND change is to are.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Sentence 2: Delete the comma after with AND change it is to they are.",
+          "html": "<p>Sentence 2: Delete the comma after with AND change it is to they are.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Sentence 3: Delete the comma after process AND change makes to make.",
+          "html": "<p>Sentence 3: Delete the comma after process AND change makes to make.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Sentence 4: Delete the comma after gelato AND change allow to allows.",
+          "html": "<p>Sentence 4: Delete the comma after gelato AND change allow to allows.</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Topic & Transitions",
+      "points": 1,
+      "explanation": "2 . The question asks for the revisions that are needed to correct errors in the paragraph .\n\nH: Correct . Deleting the comma after “gelato” would include the clause “and allow it to melt more quickly” with the first part of the clause “which enhances the texture and flavor of the gelato .” In this clause, the word “and” indicates that the two verb phrases (“enhances the texture and flavor of gelato” and “allow it to melt more quickly”) share a subject, “which” (referring to the act of serving gelato 10 to 15 degrees warmer than ice cream) . The two ideas should not be separated by a comma within the clause . The entire clause “which enhances the texture and flavor of the gelato and allow it to melt more quickly” should be separated from the main clause only by the comma after “cream” because the entire clause is a nonrestrictive clause . This clause provides additional, but not essential, information about the purpose of serving gelato at a warmer temperature than when serving ice cream . Changing the verb “allow” to “allows” is also necessary to match the use of the singular noun “gelato,” which is the subject of the sentence .\n\nE: Incorrect . The revisions in Option E introduce new errors . The colon after “wonder” is needed to set off the question “what is the difference between the two?” from the rest of the sentence . In addition, changing the verb “is” to “are” would be incorrect with the use of the singular noun “difference,” which is the subject of the question, “what is the difference between the two?”\n\nF: Incorrect . The revisions in Option F introduce new errors . The comma following the introductory phrase “To start with” helps with clarity and is needed to separate the phrase from the rest of the sentence . Changing “it is” to “they are” would be incorrect with the use of the singular noun “butterfat content,” which is what the words “it is” refer to in the sentence .\n\nG: Incorrect . The revisions in Option G introduce new errors . The comma following “process” is necessary to set off the nonrestrictive clause “which adds less air to the frozen treat” from the rest of the sentence . This\n\nclause is considered a nonrestrictive clause because it provides additional, but not essential, information about the mixing process . Changing the verb “makes” to “make” would be incorrect with the use of the singular noun “mixing process,” which is the subject of the sentence .",
+      "visuals": [],
+      "id": "pdf-shsat-2019-2020-b-q002",
+      "review": {
+        "sourceFile": "20192020_form_b.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "2",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20192020_form_b_-_answers.pdf",
+          "sourcePages": [
+            34
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "The source explanation uses E–H; the editor displays the same ordered choices as A–D.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20192020_form_b_-_answers.pdf",
+          "sourcePages": [
+            1,
+            2
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                51.437999725,
+                428.329903565,
+                570.4375967399998,
+                732.329903565
+              ]
+            },
+            {
+              "page": 2,
+              "box": [
+                64.49759674,
+                70.36142822300008,
+                554.4175967399998,
+                110.36142822300008
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "D",
+      "stimulusHtml": "<p>(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.</p>",
+      "stimulus": "(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.",
+      "explanationHtml": "<p><strong>2 .</strong> The question asks for the revisions that are needed to correct errors in the paragraph .</p><p><strong>H: Correct .</strong> Deleting the comma after “gelato” would include the clause “and allow it to melt more quickly” with the first part of the clause “which enhances the texture and flavor of the gelato .” In this clause, the word “and” indicates that the two verb phrases (“enhances the texture and flavor of gelato” and “allow it to melt more quickly”) share a subject, “which” (referring to the act of serving gelato 10 to 15 degrees warmer than ice cream) . The two ideas should not be separated by a comma within the clause . The entire clause “which enhances the texture and flavor of the gelato and allow it to melt more quickly” should be separated from the main clause only by the comma after “cream” because the entire clause is a nonrestrictive clause . This clause provides additional, but not essential, information about the purpose of serving gelato at a warmer temperature than when serving ice cream . Changing the verb “allow” to “allows” is also necessary to match the use of the singular noun “gelato,” which is the subject of the sentence .</p><p><strong>E:</strong> Incorrect . The revisions in Option E introduce new errors . The colon after “wonder” is needed to set off the question “what is the difference between the two?” from the rest of the sentence . In addition, changing the verb “is” to “are” would be incorrect with the use of the singular noun “difference,” which is the subject of the question, “what is the difference between the two?”</p><p><strong>F:</strong> Incorrect . The revisions in Option F introduce new errors . The comma following the introductory phrase “To start with” helps with clarity and is needed to separate the phrase from the rest of the sentence . Changing “it is” to “they are” would be incorrect with the use of the singular noun “butterfat content,” which is what the words “it is” refer to in the sentence .</p><p><strong>G:</strong> Incorrect . The revisions in Option G introduce new errors . The comma following “process” is necessary to set off the nonrestrictive clause “which adds less air to the frozen treat” from the rest of the sentence . This</p><p>clause is considered a nonrestrictive clause because it provides additional, but not essential, information about the mixing process . Changing the verb “makes” to “make” would be incorrect with the use of the singular noun “mixing process,” which is the subject of the sentence .</p>",
+      "sourceQuestion": "2",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2019-2020 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2019-2020-form-b",
+        "label": "2019-2020 Form B",
+        "year": "2019-2020",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20192020_form_b.pdf",
+        "sourceQuestion": "2",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20192020_form_b.pdf; PDF page 2; original question 2.",
+        "The source explanation uses E–H; the editor displays the same ordered choices as A–D."
+      ]
+    },
+    {
+      "prompt": "Read this paragraph.\n\nWhich revision corrects the error in sentence structure in the paragraph?",
+      "promptHtml": "<p>Read this paragraph.</p><p>Which revision corrects the error in sentence structure in the paragraph?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "name. At",
+          "html": "<p>name. At</p>"
+        },
+        {
+          "id": "B",
+          "text": "race. They",
+          "html": "<p>race. They</p>"
+        },
+        {
+          "id": "C",
+          "text": "hours. Paving",
+          "html": "<p>hours. Paving</p>"
+        },
+        {
+          "id": "D",
+          "text": "261. The",
+          "html": "<p>261. The</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Sentence Structure",
+      "points": 1,
+      "explanation": "3 . The question asks for the revision that corrects the error in sentence structure in the paragraph .\n\nA: Correct . As written, the first sentence (“In 1967 Katherine Switzer  .  .  . legendary race .”) is a run-on sentence because a comma is used to combine two independent clauses . Independent clauses are complete sentences with a subject and a verb . The clauses—“In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name” and “at that time, only men were permitted to officially register and receive a number for the legendary race”—should be separated with a period instead . The revision in Option A correctly places a period after the word “name” and capitalizes the word “At” to separate the two independent clauses into two sentences .\n\nB: Incorrect . The revision in Option B introduces an error into the paragraph and does not revise the run-on in the first sentence . The clause “Once officials realized a woman was attempting to run in the race” is a modifying phrase that provides information about “they” (which refers to the “officials”) . The phrase cannot stand alone without the rest of the sentence . Changing the comma after the word “race” to a period would incorrectly separate the phrase from the rest of the sentence .\n\nC: Incorrect . The revision in Option C introduces an error into the paragraph and does not revise the run-on in the first sentence . The sentence “Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women” is a complex sentence, which combines an independent clause (“Switzer prevailed and finished in just over four hours”) and a dependent clause (“paving the way for the official rule change that allowed for the inclusion of women”) . The clause “paving the way for the official rule change that allowed for the inclusion of women” is not a complete sentence and must stay connected to the first part of the sentence . Changing the comma after “hours” to a period would incorrectly separate the dependent clause from the rest of the sentence .\n\nD: Incorrect . The revision in Option D introduces an error into the paragraph and does not revise the run-on in the first sentence . Changing the comma after “261” to a period would incorrectly separate the modifying clause “the same number she had worn in that first run in 1967” from the words it describes (“number 261”) . Additionally, the clause “the same number she had worn in that first run in 1967” is not a complete sentence .\n\nMartial Arts for the Mind and Body",
+      "visuals": [],
+      "id": "pdf-shsat-2019-2020-b-q003",
+      "review": {
+        "sourceFile": "20192020_form_b.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "3",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20192020_form_b_-_answers.pdf",
+          "sourcePages": [
+            34
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20192020_form_b_-_answers.pdf",
+          "sourcePages": [
+            2
+          ],
+          "regions": [
+            {
+              "page": 2,
+              "box": [
+                39.9976,
+                138.86142822300008,
+                571.69759674,
+                570.753397706
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "A",
+      "stimulusHtml": "<p>In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name, at that time, only men were permitted to officially register and receive a number for the legendary race. Once officials realized a woman was attempting to run in the race, they made efforts to remove her from the competition. Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women. In 2017, to mark the fiftieth anniversary of this pioneering event, a seventy-year-old Switzer repeated her run, wearing the number 261, the same number she had worn in that first run in 1967.</p>",
+      "stimulus": "In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name, at that time, only men were permitted to officially register and receive a number for the legendary race. Once officials realized a woman was attempting to run in the race, they made efforts to remove her from the competition. Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women. In 2017, to mark the fiftieth anniversary of this pioneering event, a seventy-year-old Switzer repeated her run, wearing the number 261, the same number she had worn in that first run in 1967.",
+      "explanationHtml": "<p><strong>3 .</strong> The question asks for the revision that corrects the error in sentence structure in the paragraph .</p><p><strong>A: Correct .</strong> As written, the first sentence (“In 1967 Katherine Switzer  .  .  . legendary race .”) is a run-on sentence because a comma is used to combine two independent clauses . Independent clauses are complete sentences with a subject and a verb . The clauses—“In 1967 Katherine Switzer signed up for the Boston Marathon using her first and middle initials instead of her full name” and “at that time, only men were permitted to officially register and receive a number for the legendary race”—should be separated with a period instead . The revision in Option A correctly places a period after the word “name” and capitalizes the word “At” to separate the two independent clauses into two sentences .</p><p><strong>B:</strong> Incorrect . The revision in Option B introduces an error into the paragraph and does not revise the run-on in the first sentence . The clause “Once officials realized a woman was attempting to run in the race” is a modifying phrase that provides information about “they” (which refers to the “officials”) . The phrase cannot stand alone without the rest of the sentence . Changing the comma after the word “race” to a period would incorrectly separate the phrase from the rest of the sentence .</p><p><strong>C:</strong> Incorrect . The revision in Option C introduces an error into the paragraph and does not revise the run-on in the first sentence . The sentence “Switzer prevailed and finished in just over four hours, paving the way for the official rule change that allowed for the inclusion of women” is a complex sentence, which combines an independent clause (“Switzer prevailed and finished in just over four hours”) and a dependent clause (“paving the way for the official rule change that allowed for the inclusion of women”) . The clause “paving the way for the official rule change that allowed for the inclusion of women” is not a complete sentence and must stay connected to the first part of the sentence . Changing the comma after “hours” to a period would incorrectly separate the dependent clause from the rest of the sentence .</p><p><strong>D:</strong> Incorrect . The revision in Option D introduces an error into the paragraph and does not revise the run-on in the first sentence . Changing the comma after “261” to a period would incorrectly separate the modifying clause “the same number she had worn in that first run in 1967” from the words it describes (“number 261”) . Additionally, the clause “the same number she had worn in that first run in 1967” is not a complete sentence .</p><h3>Martial Arts for the Mind and Body</h3>",
+      "sourceQuestion": "3",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2019-2020 Form B"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2019-2020-form-b",
+        "label": "2019-2020 Form B",
+        "year": "2019-2020",
+        "form": "B",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20192020_form_b.pdf",
+        "sourceQuestion": "3",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20192020_form_b.pdf; PDF page 2; original question 3."
+      ]
+    }
+  ]
+}

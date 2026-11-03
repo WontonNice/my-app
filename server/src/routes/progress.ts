@@ -158,7 +158,23 @@ function getMetadataProgress(user: User): LearningProgress {
     };
 }
 
-export async function getDatabaseProgress(user: User): Promise<LearningProgress> {
+export async function getDatabaseProgress(user: User, requireComplete = false): Promise<LearningProgress> {
+    if (requireComplete) {
+        const load = async (table: string, columns: string, key: string): Promise<ProgressRows> => {
+            const rows: Record<string, unknown>[] = [];
+            for (let offset = 0; ; offset += 500) {
+                const page = await supabase.from(table).select(columns).eq("user_id", user.id).order(key).range(offset, offset + 499);
+                if (page.error) throw new Error("Exam history is unavailable. Retry before treating material as unseen.");
+                rows.push(...(page.data ?? []) as unknown as Record<string, unknown>[]);
+                if ((page.data?.length ?? 0) < 500) return { data: rows, error: null };
+            }
+        };
+        const [exams, practice] = await Promise.all([
+            load("student_exam_results", "assessment_id,result", "assessment_id"),
+            load("student_practice_progress", "topic_slug,progress", "topic_slug"),
+        ]);
+        return mergeDatabaseProgress(user, exams, practice);
+    }
     const [examQuery, practiceQuery] = await Promise.all([
         supabase.from("student_exam_results").select("assessment_id,result").eq("user_id", user.id),
         supabase.from("student_practice_progress").select("topic_slug,progress").eq("user_id", user.id),

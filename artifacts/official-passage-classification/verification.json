@@ -1,0 +1,62 @@
+{
+  "updatedQuestions": 235,
+  "updatedPassages": 35,
+  "totalOfficialQuestions": 834,
+  "unlabeledOfficialQuestionsRemaining": 0,
+  "existingLabelsPreserved": true,
+  "questionContentAndAnswersPreserved": true,
+  "counts": {
+    "Central Idea & Theme": 38,
+    "Text Structure & Purpose": 50,
+    "Inference": 16,
+    "Evidence & Support": 43,
+    "Word & Phrase Meaning": 17,
+    "Tone & Mood": 6,
+    "Author's Point of View": 24,
+    "Figurative Language & Imagery": 16,
+    "Word Choice & Precision": 3,
+    "Topic & Transitions": 10,
+    "Relevance & Conclusion": 11,
+    "Sentence Structure": 1
+  },
+  "exportChanges": [
+    {
+      "file": "server/data/assessments.json",
+      "topicChanges": 256,
+      "skillListsChanged": 0
+    },
+    {
+      "file": "server/data/exam-content.json",
+      "topicChanges": 256,
+      "skillListsChanged": 0
+    },
+    {
+      "file": "server/data/learning-catalog.json",
+      "topicChanges": 0,
+      "skillListsChanged": 35
+    },
+    {
+      "file": "server/data/board-content.json",
+      "topicChanges": 235,
+      "skillListsChanged": 0
+    },
+    {
+      "file": "server/data/library-books.json",
+      "topicChanges": 235,
+      "skillListsChanged": 0
+    },
+    {
+      "file": "server/data/math-import-review.json",
+      "topicChanges": 0,
+      "skillListsChanged": 0
+    }
+  ],
+  "checks": {
+    "typecheck": "passed",
+    "targetedTests": {
+      "passed": 19,
+      "failed": 0
+    },
+    "contentEditorValidation": "Fails an existing static editor feature fixture before loading passage content."
+  }
+}

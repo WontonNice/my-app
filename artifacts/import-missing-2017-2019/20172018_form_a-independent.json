@@ -1,0 +1,683 @@
+{
+  "format": "nathan-tutors-part-b-v1",
+  "questions": [
+    {
+      "prompt": "Read this sentence.\n\nWhich of these is the most precise revision for the words talked to some people who did the best in the contest?",
+      "promptHtml": "<p>Read this sentence.</p><p>Which of these is the most precise revision for the words talked to some people who did the best in the contest?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "conversed with some of the people who won the contest",
+          "html": "<p>conversed with some of the people who won the contest</p>"
+        },
+        {
+          "id": "B",
+          "text": "spoke to the three contestants who did well",
+          "html": "<p>spoke to the three contestants who did well</p>"
+        },
+        {
+          "id": "C",
+          "text": "discussed the contest with some of the winners",
+          "html": "<p>discussed the contest with some of the winners</p>"
+        },
+        {
+          "id": "D",
+          "text": "interviewed the top three contestants",
+          "html": "<p>interviewed the top three contestants</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Word Choice & Precision",
+      "points": 1,
+      "explanation": "1. (D) The question asks for the most precise revision for the words talked to some people who did the best in the contest. Option A and Option C do not precisely state how many people the reporter interviewed. Option B specifies the number of people interviewed but uses the imprecise phrase “who did well.” Option D is the only option that precisely states the reporter’s action (“interviewed”) as well as who exactly the reporter interviewed (“the top three contestants”).",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-a-q001",
+      "review": {
+        "sourceFile": "20172018_form_a.pdf",
+        "sourcePages": [
+          1
+        ],
+        "sourceQuestion": "1",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            17
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                39.9976,
+                134.125,
+                290.04759999999993,
+                239.66100000000006
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "D",
+      "stimulusHtml": "<p>During a nightly-news segment about a cooking contest, a reporter talked to some people who did the best in the contest.</p>",
+      "stimulus": "During a nightly-news segment about a cooking contest, a reporter talked to some people who did the best in the contest.",
+      "explanationHtml": "<p>1. (D) The question asks for the most precise revision for the words talked to some people who did the best in the contest. Option A and Option C do not precisely state how many people the reporter interviewed. Option B specifies the number of people interviewed but uses the imprecise phrase “who did well.” Option D is the only option that precisely states the reporter’s action (“interviewed”) as well as who exactly the reporter interviewed (“the top three contestants”).</p>",
+      "sourceQuestion": "1",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2017-2018 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-a",
+        "label": "2017-2018 Form A",
+        "year": "2017-2018",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+        "sourceQuestion": "1",
+        "pages": [
+          1
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_a.pdf; PDF page 1; original question 1."
+      ]
+    },
+    {
+      "prompt": "Read this paragraph.\n\nWhich sentence should be revised to correct an inappropriate shift in verb tense?",
+      "promptHtml": "<p>Read this paragraph.</p><p>Which sentence should be revised to correct an inappropriate shift in verb tense?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "sentence 1",
+          "html": "<p>sentence 1</p>"
+        },
+        {
+          "id": "B",
+          "text": "sentence 2",
+          "html": "<p>sentence 2</p>"
+        },
+        {
+          "id": "C",
+          "text": "sentence 3",
+          "html": "<p>sentence 3</p>"
+        },
+        {
+          "id": "D",
+          "text": "sentence 4",
+          "html": "<p>sentence 4</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Verbs",
+      "points": 1,
+      "explanation": "2. (G) The question asks for the identification of a sentence with an inappropriate shift in verb tense. Option E, Option F, and Option H identify sentences that use past tense. Sentence 3 (Option C) demonstrates an incorrect shift into the present tense with the clause “as natural gas becomes more common,” which should be “as natural gas became more common.”",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-a-q002",
+      "review": {
+        "sourceFile": "20172018_form_a.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "2",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            17
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "The source explanation uses E–H; the editor displays the same ordered choices as A–D.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                39.9976,
+                254.66100000000006,
+                294.06515,
+                337.1880000000001
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "C",
+      "stimulusHtml": "<p>(1) When coal was used to heat homes, it frequently left a soot stain on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company, created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day, Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.</p>",
+      "stimulus": "(1) When coal was used to heat homes, it frequently left a soot stain on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company, created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day, Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
+      "explanationHtml": "<p>2. (G) The question asks for the identification of a sentence with an inappropriate shift in verb tense. Option E, Option F, and Option H identify sentences that use past tense. Sentence 3 (Option C) demonstrates an incorrect shift into the present tense with the clause “as natural gas becomes more common,” which should be “as natural gas became more common.”</p>",
+      "sourceQuestion": "2",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2017-2018 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-a",
+        "label": "2017-2018 Form A",
+        "year": "2017-2018",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+        "sourceQuestion": "2",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_a.pdf; PDF page 2; original question 2.",
+        "The source explanation uses E–H; the editor displays the same ordered choices as A–D."
+      ]
+    },
+    {
+      "prompt": "Read this sentence.\n\nWhich edit should be made in this sentence?",
+      "promptHtml": "<p>Read this sentence.</p><p>Which edit should be made in this sentence?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "delete the comma after shelter",
+          "html": "<p>delete the comma after shelter</p>"
+        },
+        {
+          "id": "B",
+          "text": "insert a comma after volunteers",
+          "html": "<p>insert a comma after volunteers</p>"
+        },
+        {
+          "id": "C",
+          "text": "insert a comma after dogs",
+          "html": "<p>insert a comma after dogs</p>"
+        },
+        {
+          "id": "D",
+          "text": "delete the comma after kennels",
+          "html": "<p>delete the comma after kennels</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Punctuation",
+      "points": 1,
+      "explanation": "3. (C) The sentence in the box needs a comma to separate items in a series. Option A would remove the necessary comma before the nonrestrictive clause “which is located on Midway Street.” Option B is incorrect because while the phrase that ends with the word “volunteer” can stand on its own as an independent clause, a comma is not needed before the explanation of what the volunteers would help do. Option D would delete a necessary comma between two items in a series. Option C is the only option that would place a necessary comma to separate items “walking dogs” and “cleaning kennels” in the series.",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-a-q003",
+      "review": {
+        "sourceFile": "20172018_form_a.pdf",
+        "sourcePages": [
+          2
+        ],
+        "sourceQuestion": "3",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            17
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                39.9976,
+                352.1880000000001,
+                295.9091,
+                480.7330000000002
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "C",
+      "stimulusHtml": "<p>The animal shelter, which is located on Midway Street, is looking for volunteers to help with a variety of tasks, such as walking dogs cleaning kennels, hand-feeding newborn kittens, and supporting the pet adoption process.</p>",
+      "stimulus": "The animal shelter, which is located on Midway Street, is looking for volunteers to help with a variety of tasks, such as walking dogs cleaning kennels, hand-feeding newborn kittens, and supporting the pet adoption process.",
+      "explanationHtml": "<p>3. (C) The sentence in the box needs a comma to separate items in a series. Option A would remove the necessary comma before the nonrestrictive clause “which is located on Midway Street.” Option B is incorrect because while the phrase that ends with the word “volunteer” can stand on its own as an independent clause, a comma is not needed before the explanation of what the volunteers would help do. Option D would delete a necessary comma between two items in a series. Option C is the only option that would place a necessary comma to separate items “walking dogs” and “cleaning kennels” in the series.</p>",
+      "sourceQuestion": "3",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2017-2018 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-a",
+        "label": "2017-2018 Form A",
+        "year": "2017-2018",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+        "sourceQuestion": "3",
+        "pages": [
+          2
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_a.pdf; PDF page 2; original question 3."
+      ]
+    },
+    {
+      "prompt": "Read these sentences.(2) Flyby missions allow scientists to collect data about Jupiter and its moons.What is the best way to combine these sentences to clarify the relationship between the ideas?",
+      "promptHtml": "<p>Read these sentences.</p><blockquote data-boxed=\"true\">(2) Flyby missions allow scientists to collect data about Jupiter and its moons.</blockquote><p>What is the best way to combine these sentences to clarify the relationship between the ideas?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973.",
+          "html": "<p>Flyby missions near Jupiter, which allow scientists to collect data about the planet and its moons, have been happening since 1973.</p>"
+        },
+        {
+          "id": "B",
+          "text": "Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons.",
+          "html": "<p>Although there have been flyby missions near Jupiter since 1973, they have allowed scientists to collect data about the planet and its moons.</p>"
+        },
+        {
+          "id": "C",
+          "text": "Flyby missions near Jupiter allow scientists to collect data about the planet and its moons, which have been happening since 1973.",
+          "html": "<p>Flyby missions near Jupiter allow scientists to collect data about the planet and its moons, which have been happening since 1973.</p>"
+        },
+        {
+          "id": "D",
+          "text": "Since 1973 flyby missions have been happening near Jupiter, but they allow scientists to collect data about the planet and its moons.",
+          "html": "<p>Since 1973 flyby missions have been happening near Jupiter, but they allow scientists to collect data about the planet and its moons.</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Sentence Structure",
+      "points": 1,
+      "explanation": "4. (E) The question asks for the best way to combine the sentences to clarify the relationship between the ideas. Option F is incorrect because the conjunction “although” suggests that scientists were allowed to collect data even though there were flyby missions, which is inaccurate. In Option G, the phrase “which have been happening since 1973” is incorrectly modifying “the planet and its moons.” In Option H, the conjunction “but” suggests an adverse relationship between ideas, which is also incorrect. Option E is the only option that accurately reflects the relationship between the ideas by using the nonrestrictive phrase “which allow scientists to collect data about the planet and its moons” to describe the purpose of the flyby missions.",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-a-q004",
+      "review": {
+        "sourceFile": "20172018_form_a.pdf",
+        "sourcePages": [
+          3
+        ],
+        "sourceQuestion": "4",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            17
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "The source explanation uses E–H; the editor displays the same ordered choices as A–D.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                39.9976,
+                495.7330000000002,
+                293.49609999999996,
+                658.7915000000003
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "A",
+      "stimulusHtml": "<p>(1) Flyby missions near Jupiter have been happening since 1973.</p>",
+      "stimulus": "(1) Flyby missions near Jupiter have been happening since 1973.",
+      "explanationHtml": "<p>4. (E) The question asks for the best way to combine the sentences to clarify the relationship between the ideas. Option F is incorrect because the conjunction “although” suggests that scientists were allowed to collect data even though there were flyby missions, which is inaccurate. In Option G, the phrase “which have been happening since 1973” is incorrectly modifying “the planet and its moons.” In Option H, the conjunction “but” suggests an adverse relationship between ideas, which is also incorrect. Option E is the only option that accurately reflects the relationship between the ideas by using the nonrestrictive phrase “which allow scientists to collect data about the planet and its moons” to describe the purpose of the flyby missions.</p>",
+      "sourceQuestion": "4",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2017-2018 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-a",
+        "label": "2017-2018 Form A",
+        "year": "2017-2018",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+        "sourceQuestion": "4",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_a.pdf; PDF page 3; original question 4.",
+        "The source explanation uses E–H; the editor displays the same ordered choices as A–D."
+      ]
+    },
+    {
+      "prompt": "Read this paragraph.\n\nWhich sentence should be revised to correct a vague pronoun?",
+      "promptHtml": "<p>Read this paragraph.</p><p>Which sentence should be revised to correct a vague pronoun?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "sentence 1",
+          "html": "<p>sentence 1</p>"
+        },
+        {
+          "id": "B",
+          "text": "sentence 2",
+          "html": "<p>sentence 2</p>"
+        },
+        {
+          "id": "C",
+          "text": "sentence 3",
+          "html": "<p>sentence 3</p>"
+        },
+        {
+          "id": "D",
+          "text": "sentence 4",
+          "html": "<p>sentence 4</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Pronouns",
+      "points": 1,
+      "explanation": "5. (C) The question asks the student to identify a vague pronoun in a sentence in the box. Sentence 1 (Option A) correctly uses the plural pronouns “their”/”they” to refer to both Eliza and Brianna. Sentence 2 (Option B)\n\nuses the pronoun “they” to correctly refer to both girls again. Sentence 4 (Option D) uses the pronoun “they” to correctly refer to “both girls.” Sentence 3 (Option C) is the only sentence where the pronoun is vague. The sentence uses the pronoun “she” near the beginning, but whether “she” refers to Eliza or Brianna is unclear.",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-a-q005",
+      "review": {
+        "sourceFile": "20172018_form_a.pdf",
+        "sourcePages": [
+          3
+        ],
+        "sourceQuestion": "5",
+        "sourceChoiceIds": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            17
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [],
+        "explanationSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                39.9976,
+                673.7915000000003,
+                287.52059999999994,
+                721.8050000000003
+              ]
+            },
+            {
+              "page": 1,
+              "box": [
+                315.988,
+                105.34910000000002,
+                572.0324999999999,
+                176.37160000000006
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "C",
+      "stimulusHtml": "<p>(1) Eliza and Brianna have been singing in their school chorus since they were in fourth grade. (2) The girls always sing a duet at the school talent show, and they take turns singing the national anthem before school sporting events. (3) Outside of school, she also sings in a choir made up of young and old members of her community. (4) Both girls hope that they will be able to continue singing for many more years.</p>",
+      "stimulus": "(1) Eliza and Brianna have been singing in their school chorus since they were in fourth grade. (2) The girls always sing a duet at the school talent show, and they take turns singing the national anthem before school sporting events. (3) Outside of school, she also sings in a choir made up of young and old members of her community. (4) Both girls hope that they will be able to continue singing for many more years.",
+      "explanationHtml": "<p>5. (C) The question asks the student to identify a vague pronoun in a sentence in the box. Sentence 1 (Option A) correctly uses the plural pronouns “their”/”they” to refer to both Eliza and Brianna. Sentence 2 (Option B)</p><p>uses the pronoun “they” to correctly refer to both girls again. Sentence 4 (Option D) uses the pronoun “they” to correctly refer to “both girls.” Sentence 3 (Option C) is the only sentence where the pronoun is vague. The sentence uses the pronoun “she” near the beginning, but whether “she” refers to Eliza or Brianna is unclear.</p>",
+      "sourceQuestion": "5",
+      "sourceChoiceIds": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "versionLabels": [
+        "2017-2018 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-a",
+        "label": "2017-2018 Form A",
+        "year": "2017-2018",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+        "sourceQuestion": "5",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_a.pdf; PDF page 3; original question 5."
+      ]
+    },
+    {
+      "prompt": "Read this sentence.\n\nWhich edit should be made to correct this sentence?",
+      "promptHtml": "<p>Read this sentence.</p><p>Which edit should be made to correct this sentence?</p>",
+      "choices": [
+        {
+          "id": "A",
+          "text": "insert a comma after agile",
+          "html": "<p>insert a comma after agile</p>"
+        },
+        {
+          "id": "B",
+          "text": "insert a comma after Chamberlain",
+          "html": "<p>insert a comma after Chamberlain</p>"
+        },
+        {
+          "id": "C",
+          "text": "insert a comma after only",
+          "html": "<p>insert a comma after only</p>"
+        },
+        {
+          "id": "D",
+          "text": "insert a comma after States",
+          "html": "<p>insert a comma after States</p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "topic": "Punctuation",
+      "points": 1,
+      "explanation": "6. (E) The sentence in the box needs a comma to separate coordinate adjectives. Option F incorrectly adds a comma between the subject and the verb. Option G incorrectly adds a comma between two adjectives, but they are not coordinate adjectives. Option H is incorrect because a comma is not needed to set off the phrase “to score 100 points in a single game.” Option E is the only option that places a comma where it is needed, between the coordinate adjectives “agile” and “athletic.”",
+      "visuals": [],
+      "id": "pdf-shsat-2017-2018-a-q006",
+      "review": {
+        "sourceFile": "20172018_form_a.pdf",
+        "sourcePages": [
+          3
+        ],
+        "sourceQuestion": "6",
+        "sourceChoiceIds": [
+          "E",
+          "F",
+          "G",
+          "H"
+        ],
+        "expectedChoiceCount": 4,
+        "answerSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            17
+          ]
+        },
+        "topicSource": "inferred",
+        "topicConfidence": 0.8,
+        "sourceReviewed": false,
+        "completenessReviewed": false,
+        "classificationReviewed": false,
+        "difficulty": "",
+        "difficultySource": "unknown",
+        "warnings": [
+          {
+            "code": "POSSIBLE_FORMATTING_LOSS",
+            "message": "The source explanation uses E–H; the editor displays the same ordered choices as A–D.",
+            "state": "unresolved"
+          }
+        ],
+        "explanationSource": {
+          "sourceFile": "20172018_form_a_-_answers.pdf",
+          "sourcePages": [
+            1
+          ],
+          "regions": [
+            {
+              "page": 1,
+              "box": [
+                315.988,
+                191.37160000000006,
+                571.4150000000001,
+                296.9076000000001
+              ]
+            }
+          ]
+        }
+      },
+      "correctChoiceId": "A",
+      "stimulusHtml": "<p>In 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.</p>",
+      "stimulus": "In 1962 the agile athletic Wilt Chamberlain became the first and only professional basketball player in the United States to score 100 points in a single game.",
+      "explanationHtml": "<p>6. (E) The sentence in the box needs a comma to separate coordinate adjectives. Option F incorrectly adds a comma between the subject and the verb. Option G incorrectly adds a comma between two adjectives, but they are not coordinate adjectives. Option H is incorrect because a comma is not needed to set off the phrase “to score 100 points in a single game.” Option E is the only option that places a comma where it is needed, between the coordinate adjectives “agile” and “athletic.”</p>",
+      "sourceQuestion": "6",
+      "sourceChoiceIds": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "versionLabels": [
+        "2017-2018 Form A"
+      ],
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat-2017-2018-form-a",
+        "label": "2017-2018 Form A",
+        "year": "2017-2018",
+        "form": "A",
+        "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20172018_form_a.pdf",
+        "sourceQuestion": "6",
+        "pages": [
+          3
+        ]
+      },
+      "notes": [
+        "Supplied 20172018_form_a.pdf; PDF page 3; original question 6.",
+        "The source explanation uses E–H; the editor displays the same ordered choices as A–D."
+      ]
+    }
+  ]
+}

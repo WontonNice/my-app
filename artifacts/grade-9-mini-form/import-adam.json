@@ -1,0 +1,1025 @@
+{
+  "format": "nathan-tutors-official-passage-v1",
+  "source": {
+    "sourceFamily": "official_shsat",
+    "sourceFormat": "testnav",
+    "playerProfile": "testnav",
+    "sourceId": "grade-9-mini-adam",
+    "label": "Grade 9 Mini Form — ADAM"
+  },
+  "mathQuestions": [
+    {
+      "id": "grade-9-mini-adam-1",
+      "sourceQuestion": "1",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "Which of the following expressions is negative in value?",
+      "promptHtml": "<p><span>Which of the following <span>expressions</span> is <span><strong>negative</strong></span> in <span>value</span>?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shm89-238-exp-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 1\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "1",
+        "moduleQuestion": "adam-1",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "1",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401708/3/SHM89-238_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401708/3/SHM89-238_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "\\(4-\\pi \\)",
+          "html": "<p><span>\\(4-\\pi \\)</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "\\(3\\pi -9\\)",
+          "html": "<p><span>\\(3\\pi -9\\)</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "\\(12-4\\pi \\)",
+          "html": "<p><span>\\(12-4\\pi \\)</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "\\(36-9\\pi \\)",
+          "html": "<p><span>\\(36-9\\pi \\)</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "C"
+    },
+    {
+      "type": "coordinate_response",
+      "promptHtml": "<p><span><span>Triangle</span> ABC is <span>graphed</span> on the <span>coordinate plane</span>. <span data-no-break=\"true\">Triangle ABC</span> is reflected across the <span>line</span> </span><span>\\(y=-1\\)</span><span>&nbsp;to create <span>image</span> </span><span>\\(\\text{A}'\\text{B}'\\text{C}'\\text{.}\\)</span><span>&nbsp;Graph </span><span data-no-break=\"true\"><span>triangle </span><span>\\(\\text{A}'\\text{B}'\\text{C}'\\text{.}\\)</span></span><span>&nbsp;on the coordinate plane.</span></p><p><span>Select the correct orientation of the <span>triangle</span> and position it correctly in the <span>coordinate plane</span>.</span></p>",
+      "prompt": "Triangle ABC is graphed on the coordinate plane. Triangle ABC is reflected across the line \\(y=-1\\) to create image \\(\\text{A}'\\text{B}'\\text{C}'\\text{.}\\) Graph triangle \\(\\text{A}'\\text{B}'\\text{C}'\\text{.}\\) on the coordinate plane.\nSelect the correct orientation of the triangle and position it correctly in the coordinate plane.",
+      "coordinateResponse": {
+        "width": 774.8,
+        "height": 503,
+        "plot": {
+          "left": 285.8,
+          "top": 20,
+          "width": 446,
+          "height": 446
+        },
+        "xMin": -10,
+        "xMax": 10,
+        "yMin": -10,
+        "yMax": 10,
+        "xStep": 1,
+        "yStep": 1,
+        "xSnap": 1,
+        "ySnap": 1,
+        "tools": [],
+        "shapes": [
+          {
+            "id": "orientation-1",
+            "bankX": 30,
+            "bankY": 30,
+            "vertices": [
+              {
+                "x": 0,
+                "y": -5,
+                "label": "A'"
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "label": "B'"
+              },
+              {
+                "x": 3,
+                "y": 0,
+                "label": "C'"
+              }
+            ]
+          },
+          {
+            "id": "orientation-2",
+            "bankX": 223.8,
+            "bankY": 141.5,
+            "vertices": [
+              {
+                "x": 0,
+                "y": 5,
+                "label": "A'"
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "label": "B'"
+              },
+              {
+                "x": -3,
+                "y": 0,
+                "label": "C'"
+              }
+            ]
+          },
+          {
+            "id": "orientation-3",
+            "bankX": 96.9,
+            "bankY": 201.5,
+            "vertices": [
+              {
+                "x": 0,
+                "y": -5,
+                "label": "A'"
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "label": "B'"
+              },
+              {
+                "x": -3,
+                "y": 0,
+                "label": "C'"
+              }
+            ]
+          },
+          {
+            "id": "orientation-4",
+            "bankX": 156.9,
+            "bankY": 313,
+            "vertices": [
+              {
+                "x": 0,
+                "y": 5,
+                "label": "A'"
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "label": "B'"
+              },
+              {
+                "x": 3,
+                "y": 0,
+                "label": "C'"
+              }
+            ]
+          }
+        ],
+        "correctShapeId": "orientation-1",
+        "correctAnchor": {
+          "x": -7,
+          "y": -4
+        },
+        "background": {
+          "src": "/exam-images/grade9-mini-adam-2-grid-passage.svgz",
+          "alt": "Coordinate plane with triangle A at (−7, 7), B at (−7, 2), and C at (−4, 2)."
+        }
+      },
+      "id": "grade-9-mini-adam-2",
+      "points": 1,
+      "topic": "Uncategorized",
+      "sourceQuestion": "2",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "2",
+        "moduleQuestion": "adam-2",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb25-021-g9-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 2\">",
+      "review": {
+        "sourceQuestion": "2",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401709/3/SHB25-021-G9_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401709/3/SHB25-021-G9_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      }
+    },
+    {
+      "id": "grade-9-mini-adam-3",
+      "sourceQuestion": "3",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "The symbol \\(<x, y, z>\\) means \\(\\frac{xz + xy}{2}+zy.\\) What is the value of \\(<3, 4, 8>?\\)",
+      "promptHtml": "<p><span>The symbol </span><span>\\(&lt;x, y, z&gt;\\)</span> <span><span>means</span> </span><span>\\(\\frac{xz + xy}{2}+zy.\\)</span><span>&nbsp; What is the <span>value</span> of &nbsp;</span><span>\\(&lt;3, 4, 8&gt;?\\)</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shm91-501-exp-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 3\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "3",
+        "moduleQuestion": "adam-3",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "3",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401710/3/SHM91-501_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401710/3/SHM91-501_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "15",
+          "html": "<p><span>15</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "34",
+          "html": "<p><span>34</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "50",
+          "html": "<p><span>50</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "56",
+          "html": "<p><span>56</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "C"
+    },
+    {
+      "id": "grade-9-mini-adam-4",
+      "sourceQuestion": "4",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "Simplify:\n\\(\\frac{{p}^{12}\\cdot {p}^{0}}{{p}^{-4}}\\)",
+      "promptHtml": "<p><span><span>Simplify</span>:</span></p> <p data-align=\"center\"><span>\\(\\frac{{p}^{12}\\cdot {p}^{0}}{{p}^{-4}}\\)</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shm12-016-exp-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 4\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "4",
+        "moduleQuestion": "adam-4",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "4",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401711/3/SHM12-016_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401711/3/SHM12-016_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "\\(0\\)",
+          "html": "<p><span>\\(0\\)</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "\\({p}^{-3}\\)",
+          "html": "<p><span>\\({p}^{-3}\\)</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "\\({p}^{8}\\)",
+          "html": "<p><span>\\({p}^{8}\\)</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "\\({p}^{16}\\)",
+          "html": "<p><span>\\({p}^{16}\\)</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "D"
+    },
+    {
+      "id": "grade-9-mini-adam-5",
+      "sourceQuestion": "5",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "",
+      "promptHtml": "",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb25-015-g9-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 5\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "5",
+        "moduleQuestion": "adam-5",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "5",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401712/3/SHB25-015-G9_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401712/3/SHB25-015-G9_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "type": "inline_dropdown",
+      "dropdowns": [
+        {
+          "id": "dropdown-1",
+          "options": [
+            {
+              "id": "A",
+              "text": "0.50x"
+            },
+            {
+              "id": "B",
+              "text": "0.60x"
+            },
+            {
+              "id": "C",
+              "text": "0.80x"
+            }
+          ],
+          "correctChoiceId": "B"
+        },
+        {
+          "id": "dropdown-2",
+          "options": [
+            {
+              "id": "A",
+              "text": "0.60x"
+            },
+            {
+              "id": "B",
+              "text": "0.70x"
+            },
+            {
+              "id": "C",
+              "text": "0.80x"
+            }
+          ],
+          "correctChoiceId": "C"
+        },
+        {
+          "id": "dropdown-3",
+          "options": [
+            {
+              "id": "A",
+              "text": "15"
+            },
+            {
+              "id": "B",
+              "text": "25"
+            },
+            {
+              "id": "C",
+              "text": "35"
+            },
+            {
+              "id": "D",
+              "text": "50"
+            }
+          ],
+          "correctChoiceId": "A"
+        }
+      ],
+      "dropdownContentHtml": "<p><span>A container initially contains </span><span data-no-break=\"true\"><span><em>n</em> <span>gallons</span></span></span><span> of water. A student adds <span data-no-break=\"true\">15 gallons</span> of water, making the container 60% full. After the student adds 10 more gallons of water, the container is 80% full.</span></p><p><span>Select the correct answers from <span>each</span> drop-down to complete the sentences.</span></p><div><p><span>Let <em>x</em> represent the total number of gallons the container can hold.&nbsp;</span></p> <p><span>The equation that represents the situation immediately after the student adds <span data-no-break=\"true\">15 gallons</span> of water is </span><span>\\(n+15=\\)</span> <span data-no-break=\"true\">&nbsp;<span>\n<span data-dropdown-width=\"150\">{{dropdown-1}}</span>\n</span><span>.</span></span></p> <p><span>The equation that represents the situation after the student adds <span data-no-break=\"true\">10 gallons</span> of water is </span><span data-no-break=\"true\"><span>\\(n+25=\\)</span> &nbsp;<span>\n<span data-dropdown-width=\"150\">{{dropdown-2}}</span>\n</span><span>.</span></span></p> <p><span>The number of gallons, <em>n</em> , in the container initially is </span><span>\n<span data-dropdown-width=\"150\">{{dropdown-3}}</span>\n</span><span> gallons.</span></p></div>",
+      "dropdownContent": [
+        "A container initially contains n gallons of water. A student adds 15 gallons of water, making the container 60% full. After the student adds 10 more gallons of water, the container is 80% full.\nSelect the correct answers from each drop-down to complete the sentences.\nLet x represent the total number of gallons the container can hold.\nThe equation that represents the situation immediately after the student adds 15 gallons of water is \\(n+15=\\)\n{{dropdown-1}}\n.\nThe equation that represents the situation after the student adds 10 gallons of water is \\(n+25=\\)\n{{dropdown-2}}\n.\nThe number of gallons, n , in the container initially is\n{{dropdown-3}}\ngallons."
+      ]
+    },
+    {
+      "id": "grade-9-mini-adam-6",
+      "sourceQuestion": "6",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "Straight line \\(l\\) passes through the origin, as shown in the figure above. What is the slope of line \\(l\\) in terms of \\(a\\) and \\(b?\\)",
+      "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/grade9-mini-shm06-065-1-svgz-passage.svgz\" alt=\"A line passes through the origin of a coordinate plane. The line has two points marked in the upper right quadrant. One point is labeled A, B . The second point is labeled 2A, 2B.\" width=\"200\" height=\"237\"></p><p><span><span>Straight</span> <span>line</span> </span><span>\\(l\\)</span><span> passes through the <span>origin</span>, as shown in the <span>figure</span> above. What is the <span>slope</span> of </span><span data-no-break=\"true\"><span>line </span><span>\\(l\\)</span></span><span> in <span>terms</span> of </span><span>\\(a\\)</span><span> and </span><span>\\(b?\\)</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shm06-065-exp-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 6\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "6",
+        "moduleQuestion": "adam-6",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "6",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401713/3/SHM06-065_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401713/3/SHM06-065_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "\\(\\frac{a}{b}\\)",
+          "html": "<p><span>\\(\\frac{a}{b}\\)</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "\\(\\frac{2b}{a}\\)",
+          "html": "<p><span>\\(\\frac{2b}{a}\\)</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "\\(\\frac{2a}{b}\\)",
+          "html": "<p><span>\\(\\frac{2a}{b}\\)</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "\\(\\frac{b}{a}\\)",
+          "html": "<p><span>\\(\\frac{b}{a}\\)</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "D"
+    },
+    {
+      "id": "grade-9-mini-adam-7",
+      "sourceQuestion": "7",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "A scatter plot displays the number of cars sold each month at a car dealership over the past year. A student has drawn a line of best fit to model the data and wants to determine whether the line accurately represents the data. What are two characteristics of an accurate line of best fit for a scatter plot?\nSelect the two correct answers.",
+      "promptHtml": "<p><span>A scatter <span>plot</span> displays the <span>number</span> of cars sold <span>each</span> month at a car dealership over the past year. A student has drawn a <span>line</span> of best fit to <span>model</span> the <span>data</span> and wants to determine whether the line accurately represents the data. What are two characteristics of an accurate<strong> </strong>line of best fit for a scatter plot?</span></p><p><span>Select the<strong> two</strong> correct answers.</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb25-022-g9-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 7\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "7",
+        "moduleQuestion": "adam-7",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "7",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401714/3/SHB25-022-G9_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401714/3/SHB25-022-G9_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "The line of best fit is accurate if it passes through at least one of the data points.",
+          "html": "<p><span>The <span>line</span> of best fit is accurate if it passes through <span>at least</span> one of the <span>data</span> <span>points</span>.</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "The line of best fit is accurate if about half of the data points are above the line and half are below the line.",
+          "html": "<p><span>The <span>line</span> of best fit is accurate if about <span>half</span> of the <span>data</span> <span>points</span> are above the line and half are <span>below</span> the line.</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "The line of best fit is accurate if it touches every single data point on the scatter plot.",
+          "html": "<p><span>The <span>line</span> of best fit is accurate if it touches every single <span>data</span> <span>point</span> on the scatter <span>plot</span>.</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "The line of best fit should always pass through the origin (0, 0).",
+          "html": "<p><span>The <span>line</span> of best fit should always pass through the <span>origin</span> (0, 0).</span></p>"
+        },
+        {
+          "id": "E",
+          "text": "The line of best fit should capture the overall trend of the data.",
+          "html": "<p><span>The <span>line</span> of best fit should capture the overall trend of the <span>data</span>.</span></p>"
+        }
+      ],
+      "type": "multi_select",
+      "correctChoiceIds": [
+        "B",
+        "E"
+      ],
+      "requiredSelections": 2,
+      "hideChoiceLabels": true
+    },
+    {
+      "id": "grade-9-mini-adam-8",
+      "sourceQuestion": "8",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "To determine the price of servicing a car, a mechanic charges a fixed fee plus an hourly rate for each hour he works. If his price for 4 hours of work is $270, and his price for 7 hours of work is $420, what is the fixed fee that the mechanic charges?",
+      "promptHtml": "<p><span>To determine the <span>price</span> of servicing a car, a mechanic charges a fixed fee plus an hourly <span>rate</span> for <span>each</span> <span>hour</span> he works. If his price for <span data-no-break=\"true\">4 hours</span> of work is $270, and his price for&nbsp;<span data-no-break=\"true\">7 hours</span> of work is $420, what is the fixed fee that the mechanic charges?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shm13-346-exp-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 8\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "8",
+        "moduleQuestion": "adam-8",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "8",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401715/3/SHM13-346_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401715/3/SHM13-346_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "$50",
+          "html": "<p><span>$50</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "$60",
+          "html": "<p><span>$60</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "$70",
+          "html": "<p><span>$70</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "$120",
+          "html": "<p><span>$120</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "C"
+    },
+    {
+      "id": "grade-9-mini-adam-9",
+      "sourceQuestion": "9",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "Rectangle \\(\\text{PQRS}\\) above is rotated \\(180^{\\circ}\\) about the origin to form rectangle \\(\\text{P}'\\text{Q}'\\text{R}'\\text{S}'.\\) What are the coordinates of \\(\\text{R}'?\\)",
+      "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/grade9-mini-shm09-010-1-svgz-passage.svgz\" alt=\"A rectangle PQRS is drawn on a coordinate plane. The x coordinate and the y coordinate range from 1 to 4. The coordinates are as follows: P, 1, 1. Q, 1,3. R, 4,3. S 4,1. \" width=\"134\" height=\"139\"></p><p><span><span>Rectangle</span> </span><span>\\(\\text{PQRS}\\)</span><span> above is rotated </span><span>\\(180^{\\circ}\\)</span><span> about the <span>origin</span> to form rectangle </span><span>\\(\\text{P}'\\text{Q}'\\text{R}'\\text{S}'.\\)</span><span> What are the <span>coordinates</span> of </span><span>\\(\\text{R}'?\\)</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shm09-010-exp-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 9\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "9",
+        "moduleQuestion": "adam-9",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "9",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401716/3/SHM09-010_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401716/3/SHM09-010_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "\\(\\left(4, -3\\right)\\)",
+          "html": "<p><span>\\(\\left(4, -3\\right)\\)</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "\\(\\left(-4, 3\\right)\\)",
+          "html": "<p><span>\\(\\left(-4, 3\\right)\\)</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "\\(\\left(-4, 1\\right)\\)",
+          "html": "<p><span>\\(\\left(-4, 1\\right)\\)</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "\\(\\left(-4, -3\\right)\\)",
+          "html": "<p><span>\\(\\left(-4, -3\\right)\\)</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "D"
+    },
+    {
+      "id": "grade-9-mini-adam-10",
+      "sourceQuestion": "10",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "\\(\\frac{15.3 \\times {10}^{-8}}{1.5 \\times {10}^{4}}\\)\nWhat is the quotient of the expression above, expressed in scientific notation?",
+      "promptHtml": "<p data-align=\"center\"><span>\\(\\frac{15.3 \\times  {10}^{-8}}{1.5 \\times  {10}^{4}}\\)</span></p> <p><span>What is the <span>quotient</span> of the <span>expression</span> above, expressed in <span>scientific notation</span>?</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shm14-045-exp-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 10\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "10",
+        "moduleQuestion": "adam-10",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "10",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401717/3/SHM14-045_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401717/3/SHM14-045_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "\\(1.02\\times {10}^{-13}\\)",
+          "html": "<p><span>\\(1.02\\times {10}^{-13}\\)</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "\\(1.02\\times {10}^{-11}\\)",
+          "html": "<p><span>\\(1.02\\times {10}^{-11}\\)</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "\\(1.02\\times {10}^{-4}\\)",
+          "html": "<p><span>\\(1.02\\times {10}^{-4}\\)</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "\\(1.02\\times {10}^{12}\\)",
+          "html": "<p><span>\\(1.02\\times {10}^{12}\\)</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "B"
+    },
+    {
+      "type": "coordinate_response",
+      "promptHtml": "<p><span>A system of <span>linear equations</span> is shown.</span></p> <p><span>\\(\\left\\{\\begin{matrix}2x+y=5\\\\x-y=1\\end{matrix}\\right.\\)</span><span><br><br></span></p> <p><span><span>Graph</span> the <span>solution</span> to the system of linear equations.</span></p> <p><span>Graph the <span>system of equations</span> and the solution using the following steps:</span></p> <ul><li><span>Select the <span>Line</span> 1 button to graph line 1. Select two <span>points</span> on the <span>coordinate plane</span>. A line will be drawn through the two points.</span></li><li><span>Select the Line 2 button to graph line 2. Select two points on the coordinate plane. A line will be drawn through the two points.</span></li><li><span>Select the Solution button. Select a place on the coordinate plane to <span>plot</span> the point.<br><br><br></span></li></ul>",
+      "prompt": "A system of linear equations is shown.\n\\(\\left\\{\\begin{matrix}2x+y=5\\\\x-y=1\\end{matrix}\\right.\\)\n\nGraph the solution to the system of linear equations.\nGraph the system of equations and the solution using the following steps:\nSelect the Line 1 button to graph line 1. Select two points on the coordinate plane. A line will be drawn through the two points.\nSelect the Line 2 button to graph line 2. Select two points on the coordinate plane. A line will be drawn through the two points.\nSelect the Solution button. Select a place on the coordinate plane to plot the point.",
+      "coordinateResponse": {
+        "width": 450,
+        "height": 450,
+        "plot": {
+          "left": 53,
+          "top": 53,
+          "width": 344,
+          "height": 344
+        },
+        "xMin": -7,
+        "xMax": 7,
+        "yMin": -7,
+        "yMax": 7,
+        "xStep": 1,
+        "yStep": 1,
+        "xSnap": 1,
+        "ySnap": 1,
+        "tools": [
+          {
+            "id": "line-1",
+            "kind": "line",
+            "label": "Line 1",
+            "color": "#0000ff",
+            "correctPoints": [
+              {
+                "x": 0,
+                "y": 5
+              },
+              {
+                "x": 1,
+                "y": 3
+              }
+            ]
+          },
+          {
+            "id": "line-2",
+            "kind": "line",
+            "label": "Line 2",
+            "color": "#962d73",
+            "correctPoints": [
+              {
+                "x": -1,
+                "y": -2
+              },
+              {
+                "x": 2,
+                "y": 1
+              }
+            ]
+          },
+          {
+            "id": "solution",
+            "kind": "point",
+            "label": "Solution",
+            "color": "#465a5a",
+            "correctPoints": [
+              {
+                "x": 2,
+                "y": 1
+              }
+            ]
+          }
+        ],
+        "background": {
+          "src": "/exam-images/grade9-mini-adam-11-grid-passage.svgz",
+          "alt": "Coordinate plane for drawing the response."
+        }
+      },
+      "id": "grade-9-mini-adam-11",
+      "points": 1,
+      "topic": "Uncategorized",
+      "sourceQuestion": "11",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "11",
+        "moduleQuestion": "adam-11",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shb25-007-g9-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 11\">",
+      "review": {
+        "sourceQuestion": "11",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401718/3/SHB25-007-G9_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401718/3/SHB25-007-G9_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      }
+    },
+    {
+      "id": "grade-9-mini-adam-12",
+      "sourceQuestion": "12",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "Assume \\(S\\left(x\\right)\\) equals the sum of all positive even integers less than or equal to \\(x.\\) What is the value of \\(S\\left(7\\right)?\\)\nEnter your answer in the space.",
+      "promptHtml": "<p><span>Assume </span><span>\\(S\\left(x\\right)\\)</span> <span><span>equals</span> the <span>sum</span> of all <span>positive</span> even <span>integers</span> <span>less than</span> or equal to </span><span>\\(x.\\)</span><span> What is the <span>value</span> of </span><span>\\(S\\left(7\\right)?\\)</span></p><p><span>Enter your answer in the space.</span></p><div><p>\n</p>\n\n<p></p></div>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shm96-052-exp-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 12\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "12",
+        "moduleQuestion": "adam-12",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "12",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401719/3/SHM96-052_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401719/3/SHM96-052_exp_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "type": "short_response",
+      "correctTextAnswers": [
+        "12"
+      ]
+    },
+    {
+      "id": "grade-9-mini-adam-13",
+      "sourceQuestion": "13",
+      "points": 1,
+      "topic": "Uncategorized",
+      "prompt": "In the figure above, \\(△\\text{MPR}\\) is similar to \\(△\\text{NPQ.}\\) If the length of \\(\\overline{\\text{NQ}}\\) is 10 centimeters, what is the length of \\(\\overline{\\text{MR}}\\) in terms of \\(x?\\)",
+      "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/grade9-mini-shm05-095-1-svgz-passage.svgz\" alt=\"Triangle N P Q is set within the triangle M P R. The smaller triangle has a side length of 5 centimeters and a base of ten centimeters. A section on the outside left of the larger triangle is labeled x.\" width=\"259\" height=\"105\"></p><p><span>In the <span>figure</span> above, </span><span>\\(△\\text{MPR}\\)</span><span> is <span>similar</span> to </span><span>\\(△\\text{NPQ.}\\)</span><span> If the <span>length</span> of </span><span>\\(\\overline{\\text{NQ}}\\)</span><span> is </span><span data-no-break=\"true\"><span>10 <span>centimeters</span>,</span></span><span> what is the length of </span><span>\\(\\overline{\\text{MR}}\\)</span><span> in <span>terms</span> of </span><span>\\(x?\\)</span></p>",
+      "explanation": "",
+      "explanationHtml": "<img src=\"/exam-images/grade9-mini-shm05-095-exhibit-png-passage.png\" alt=\"Official answer and explanation for adam question 13\">",
+      "source": {
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "testnav",
+        "playerProfile": "testnav",
+        "sourceId": "grade-9-mini-adam",
+        "label": "SHSAT Grade 9 Sample Items — 2025",
+        "section": "Math",
+        "sourceQuestion": "13",
+        "moduleQuestion": "adam-13",
+        "url": "https://adam.testnav.com/client/index.html"
+      },
+      "review": {
+        "sourceQuestion": "13",
+        "sourceFile": "SHSAT Grade 9 Sample Items — 2025",
+        "answerSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401720/3/SHM05-095_exhibit.png",
+          "sourcePages": []
+        },
+        "explanationSource": {
+          "sourceFile": "https://adam.pearsontestcontent.com/nycqc/eea6011366df4917f1d0d05933541c215dd845d9/3861/3/401720/3/SHM05-095_exhibit.png",
+          "sourcePages": []
+        },
+        "warnings": [],
+        "classificationReviewed": false,
+        "completenessReviewed": false,
+        "sourceReviewed": false
+      },
+      "choices": [
+        {
+          "id": "A",
+          "text": "\\(2x\\)",
+          "html": "<p><span>\\(2x\\)</span></p>"
+        },
+        {
+          "id": "B",
+          "text": "\\(2x+10\\)",
+          "html": "<p><span>\\(2x+10\\)</span></p>"
+        },
+        {
+          "id": "C",
+          "text": "\\(x+5\\)",
+          "html": "<p><span>\\(x+5\\)</span></p>"
+        },
+        {
+          "id": "D",
+          "text": "\\(\\frac{1}{2}x+5\\)",
+          "html": "<p><span>\\(\\frac{1}{2}x+5\\)</span></p>"
+        }
+      ],
+      "type": "multiple_choice",
+      "correctChoiceId": "B"
+    }
+  ],
+  "review": {
+    "expectedQuestionCount": 13,
+    "warnings": [],
+    "classificationReviewed": false,
+    "completenessReviewed": false,
+    "sourceReviewed": false
+  },
+  "batch": {
+    "sourceId": "grade-9-mini-adam",
+    "jobId": "grade-9-mini-form-adam",
+    "section": "math",
+    "sourceLabel": "Grade 9 Mini Form — ADAM",
+    "requestedScope": "all 13 source questions",
+    "expectedQuestions": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13"
+    ],
+    "expectedTotal": 13,
+    "inventoryConfirmed": true,
+    "chunkId": "complete",
+    "completedQuestions": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10",
+      "11",
+      "12",
+      "13"
+    ],
+    "unresolvedQuestions": [],
+    "nextScope": ""
+  }
+}

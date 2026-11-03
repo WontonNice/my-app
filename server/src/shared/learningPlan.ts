@@ -13,9 +13,10 @@ export type PlanAssignment = {
   completion: CompletionEvidence | null; events?: PlanEvent[];
 };
 export type PlanSettings = { studentId: string; passagePace: number | null; targetDate: string | null; teacherNotes: string; updatedAt: string | null; revision: number };
-export type PlanContent = { id: string; kind: "passage" | "practice" | "exam"; title: string; href: string; subject: string; category: string; contentSource?: string; practiceMode?: "bank_set" | "infinite"; description?: string; moduleKind?: "focused" | "foundation" | "general"; generators?: import("./practiceCatalog").PracticeGeneratorDefinition[]; passageCategory?: import("./passageCategories").PassageCategory; skills: string[]; questionCount: number; aliases: string[]; classId?: string; versionLabel?: string };
-export type PriorContentActivity = { contentId: string; at: string | null; correct?: number; total?: number; source: string; reference?: string };
-export type InventoryStatus = "Never assigned" | "Planned" | "Assigned" | "In progress" | "Awaiting review" | "Completed" | "Previously assigned";
+export type PlanContent = { id: string; kind: "passage" | "practice" | "exam"; title: string; href: string; subject: string; category: string; contentSource?: string; practiceMode?: "bank_set" | "infinite"; description?: string; moduleKind?: "focused" | "foundation" | "general"; generators?: import("./practiceCatalog").PracticeGeneratorDefinition[]; passageCategory?: import("./passageCategories").PassageCategory; skills: string[]; questionCount: number; aliases: string[]; classId?: string; versionLabel?: string; passageSection?: import("./examTypes").ExamPassageSection; passageTextKey?: string; questionSetKey?: string; relationshipCandidateKey?: string };
+export type PassageRelation = { a: string; b: string; relation: "same" | "revised" | "different"; updatedAt: string; revision: number; aTextKey?: string; bTextKey?: string; stale?: boolean };
+export type PriorContentActivity = { contentId: string; at: string | null; correct?: number; total?: number; source: string; reference?: string; coverage?: "verified" | "recorded" | "related"; assessmentId?: string };
+export type InventoryStatus = "Never assigned" | "Planned" | "Assigned" | "In progress" | "Awaiting review" | "Completed" | "Previously assigned" | "Completion unverified" | "History unavailable";
 export const assignmentKinds: AssignmentKind[] = ["passage", "practice", "exam", "external", "offline"];
 export const assignmentStatuses: AssignmentStatus[] = ["planned", "assigned", "in_progress", "review", "completed", "skipped", "cancelled"];
 export const statusLabels: Record<AssignmentStatus, string> = { planned: "Planned", assigned: "Assigned", in_progress: "In progress", review: "Awaiting review", completed: "Completed", skipped: "Skipped", cancelled: "Cancelled" };
@@ -33,7 +34,7 @@ export function practiceAnswered(value: unknown): number {
   if (typeof count === "number" && Number.isFinite(count)) return Math.max(0, count);
   return Object.values(row).reduce<number>((sum, item) => sum + practiceAnswered(item), 0);
 }
-export function inventory(catalog: PlanContent[], assignments: PlanAssignment[], prior: PriorContentActivity[]) {
+export function inventory(catalog: PlanContent[], assignments: PlanAssignment[], prior: PriorContentActivity[], historyComplete = true) {
   const byContent = new Map<string, PlanAssignment[]>();
   const byPrior = new Map<string, PriorContentActivity[]>();
   for (const item of assignments) if (item.contentId) byContent.set(`${item.kind}:${item.contentId}`, [...(byContent.get(`${item.kind}:${item.contentId}`) ?? []), item]);
@@ -41,20 +42,25 @@ export function inventory(catalog: PlanContent[], assignments: PlanAssignment[],
   return catalog.map(content => {
     const history = (byContent.get(`${content.kind}:${content.id}`) ?? []).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
     const evidence = byPrior.get(content.id) ?? [];
+    const exactEvidence = evidence.filter(item => item.coverage !== "related");
+    const relatedEvidence = evidence.filter(item => item.coverage === "related");
     const active = history.find(item => activeStatuses.includes(item.status));
     const planned = history.find(item => item.status === "planned");
-    const completed = history.find(item => item.status === "completed");
+    // Old alias fan-out may have marked an assignment complete from a sibling's
+    // aggregate score. Preserve the record, but require matching evidence to use it.
+    const validCompletion = (item: PlanAssignment) => item.status === "completed" && (item.completion?.source !== "library" || exactEvidence.some(record => record.reference === item.completion?.reference));
+    const completed = history.find(validCompletion);
     const issued = history.find(item => item.assignedAt);
-    const status: InventoryStatus = active ? statusLabels[active.status] as InventoryStatus : planned ? "Planned" : completed || evidence.length ? "Completed" : issued ? "Previously assigned" : "Never assigned";
+    const status: InventoryStatus = active ? statusLabels[active.status] as InventoryStatus : planned ? "Planned" : completed || exactEvidence.length ? "Completed" : relatedEvidence.length || history.some(item => item.status === "completed") ? "Completion unverified" : issued ? "Previously assigned" : historyComplete ? "Never assigned" : "History unavailable";
     const dates = [...history.flatMap(item => [item.completedAt, item.assignedAt, item.updatedAt].filter((date): date is string => Boolean(date))), ...evidence.flatMap(item => item.at ? [item.at] : [])];
-    const completionDates = [...history.filter(item => item.status === "completed").map(item => item.completedAt ?? item.completion?.at), ...evidence.map(item => item.at)]
+    const completionDates = [...history.filter(validCompletion).map(item => item.completedAt ?? item.completion?.at), ...exactEvidence.map(item => item.at)]
       .filter((date): date is string => typeof date === "string" && (/^\d{4}-\d{2}-\d{2}$/.test(date) ? validDate(date) : Number.isFinite(Date.parse(date))));
     const lastCompletedAt = completionDates.sort((a, b) => Date.parse(a) - Date.parse(b)).at(-1) ?? null;
-    const scored = [...evidence, ...history.filter(item=>item.status==='completed'&&item.completion).map(item=>({...item.completion!,at:item.completedAt??item.completion!.at}))]
+    const scored = [...exactEvidence, ...history.filter(item=>validCompletion(item)&&item.completion).map(item=>({...item.completion!,at:item.completedAt??item.completion!.at}))]
       .filter((item):item is typeof item & {correct:number;total:number}=>typeof item.correct==='number'&&Number.isFinite(item.correct)&&typeof item.total==='number'&&Number.isFinite(item.total)&&item.total>0&&item.correct>=0&&item.correct<=item.total)
       .sort((a,b)=>(Date.parse(b.at??'')||0)-(Date.parse(a.at??'')||0));
     const latestScore=scored[0]?{correct:scored[0].correct,total:scored[0].total,at:scored[0].at}:null;
-    return { latestScore, content, status, history, evidence, active, planned, hasBeenAssigned: Boolean(issued || completed || evidence.length), hasCompleted: Boolean(completed || evidence.length), lastActivity: dates.sort().at(-1) ?? null, lastCompletedAt };
+    return { latestScore, content, status, history, evidence, relatedEvidence, active, planned, hasBeenAssigned: Boolean(issued || completed), hasCompleted: Boolean(completed || exactEvidence.length), historyComplete, lastActivity: dates.sort().at(-1) ?? null, lastCompletedAt };
   });
 }
 export function forecast(remaining: number, pace: number | null, targetDate: string | null, today = todayInNewYork()) {

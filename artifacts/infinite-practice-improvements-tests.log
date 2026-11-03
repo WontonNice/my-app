@@ -1,0 +1,639 @@
+✔ personal batches retain source snapshots, deduplicate additions and protect ownership/revisions (63.047ms)
+✔ batch export carries all sources, exact module IDs, instructions and refuses stale destinations (5.648ms)
+✔ renaming remains independent of skill assignment, reconciliation and validation (5.0911ms)
+✔ authenticated endpoints reject students and save teacher changes durably without assignments (94.5556ms)
+✔ remote persistence rejects failed writes and simultaneous stale saves (10.9303ms)
+✔ studio handoff opens the account planner and carries only the source selection (8.1401ms)
+✔ planner notifications refresh visible tabs without sharing data and clean up subscriptions (4.6596ms)
+✔ Math Center opens its document when the restored frame is still about:blank (2.2533ms)
+✖ Part B uses its own student document in authoring and Student view without reading content or keys leaking (3.5181ms)
+✔ direct Part B editing preserves rich text and paragraph boundaries without changing answer keys or other fields (5.5246ms)
+✔ Part B saves retain the draft on failure and always restore editing controls (2.5466ms)
+✔ imported Part B drafts use versioned draft saves and retain unsaved edits when completion fails (13.7803ms)
+✔ Part B draft deletion supports cancel, failure, next draft, bank fallback and an empty library (6.7758ms)
+✖ passage draft deletion preserves unsaved content on cancel or failure and clears only the deleted editor (4.9371ms)
+✔ reading preview keeps rich question instructions in one editable block and omits the empty directions placeholder (2.5744ms)
+✖ reading startup mounts the editable preview after its workspace controls and survives a Practice setup error (5.821ms)
+✔ category filter counts include empty categories and default legacy content without changing passages (2.1726ms)
+✔ catalog search matches separate terms across source fields, ignores accents and ranks titles first (2.9377ms)
+✔ passage library category and question-count sorting compose with format filtering and paging (13.7122ms)
+✔ SAT reader JSON maps all questions, answers, explanations, source numbers, and passage metadata (3.3359ms)
+✔ SAT importer accepts legacy current-question exports but warns about incomplete capture (1.5285ms)
+✔ SAT imports default to Prestige and retain bold/italic passage, question, choice, and explanation formatting (6.4273ms)
+✔ SAT poetry uses detected source format and keeps blank stanza blocks and inline emphasis (1.9211ms)
+✔ SAT importer never invents missing or ambiguous answers (4.6268ms)
+✔ SAT importer retains unsupported choice counts and prompt-only questions as editable drafts (12.6593ms)
+✔ SAT importer keeps duplicate labels, missing prompts, and malformed choices for manual repair (2.143ms)
+✔ SAT importer rejects mixed passages, duplicate numbers, empty groups, other sites, and invalid JSON (3.0127ms)
+✔ SAT importer warns about partial exports, gaps and media, and preserves poetry lines (1.3374ms)
+✔ focused editing follows the same question after a reorder without changing content (0.9837ms)
+✔ deleting the final selected question falls back safely, including an empty set (0.8933ms)
+✔ section and question selection survive rerenders but reset for another passage workspace (0.991ms)
+✔ a thousand-item library exposes every item once in bounded pages (2.1051ms)
+✔ search and type filters reset pagination, and sorting never reorders source data (2.1407ms)
+✔ pagination clamps after library shrinkage and keeps Part B and passages independent (1.4392ms)
+✔ ChatGPT export includes the classification prompt, every choice, and the answer key (2.1361ms)
+✔ ChatGPT export uses the editor's current topic list and omits interaction types (1.9541ms)
+✔ ChatGPT export limits topics to the passage section (0.9728ms)
+✔ universal prompt is the shared contract with source-only answers and complete scope (1.7128ms)
+✔ item task and question state are associated with stable IDs when returning to a passage (0.9428ms)
+✔ review identifies absent keys and explanations without supplying either or reordering questions (1.1682ms)
+✔ failed-save feedback survives request cleanup and dirty work remains dirty (1.5581ms)
+✔ layout preferences fail safely when browser storage is unavailable (1.023ms)
+✔ private question properties do not rebuild an active exam canvas, while visible edits and keys do (1.0482ms)
+✔ direct block commits preserve legacy poem separators, indentation, repeated words and untouched characters (1.5514ms)
+✔ direct authoring adds stable source-block markers without changing student passage markup (12.0605ms)
+✔ exam groups separate official forms from custom labels without moving source data (1.4766ms)
+✔ created labels remain visible before any exams are assigned (0.9638ms)
+✔ answer key changes validate a separate selection without mutating the question (1.0686ms)
+✔ math answer summaries preserve numeric keys and readable formula choices (0.961ms)
+✔ imported Math drafts enable answer controls directly, and saved questions unlock in place (1.2513ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:66:
+      2 │ ...rom 'react'; import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\components\\MathStudyHall.tsx"
+
+    <stdin>:3:32:
+      3 │ ...Hall} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\lib\\mathStudyHall.ts"
+
+    <stdin>:4:32:
+      4 │ ...Href} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:7:165:
+      7 │ ...'}};return renderToStaticMarkup(<MathStudyHall query={query} pre...
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections (24.5213ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:65:
+      2 │ ...from 'react';import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeModuleList.tsx"
+
+    <stdin>:3:37:
+      3 │ ...List} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\server\\src\\shared\\practiceCatalog.ts"
+
+    <stdin>:4:60:
+      4 │ ...dule} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\server\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:7:37:
+      7 │ ...onsole.log(renderToStaticMarkup(<PracticeModuleList catalog={cat...
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ student practice lists show parent modules while nested modules remain part of their generation set (4.017ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:65:
+      2 │ ...from 'react';import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeVideoList.tsx"
+
+    <stdin>:3:108:
+      3 │ ...abel} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:5:58:
+      5 │ ...gify({full:renderToStaticMarkup(<PracticeVideoList videos={[{......
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ YouTube references render in-site play buttons with thumbnails and optional metadata (2.1361ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:67:
+      2 │ ...from 'react';import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "./client/src/features/math-command/PracticeFeedback"
+
+    <stdin>:3:51:
+      3 │ ...edback} from './client/src/features/math-command/PracticeFeedback';
+        ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/InequalityPractice"
+
+    <stdin>:4:39:
+      4 │ ...tice} from './client/src/features/math-command/InequalityPractice';
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/generatorPreview"
+
+    <stdin>:5:44:
+      5 │ ...atalog} from './client/src/features/math-command/generatorPreview';
+        ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/components/ExamMathQuestion"
+
+    <stdin>:6:37:
+      6 │ ...{ExamMathQuestion} from './client/src/components/ExamMathQuestion';
+        ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./server/src/shared/inequalityPractice"
+
+    <stdin>:7:39:
+      7 │ ...{generateInequality} from './server/src/shared/inequalityPractice';
+        ╵                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./server/src/shared/practiceCatalog"
+
+    <stdin>:8:43:
+      8 │ ...defaultPracticeCatalog} from './server/src/shared/practiceCatalog';
+        ╵                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/inequalitySession"
+
+    <stdin>:9:81:
+      9 │ ...stion} from './client/src/features/math-command/inequalitySession';
+        ╵                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:15:36:
+      15 │ ...    return renderToStaticMarkup(<><PracticeStats state={state} ...
+         ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (24.2484ms)
+✖ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (1.1812ms)
+✖ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (0.1743ms)
+✖ mini preview retains the exam controls in a bounded nonmodal region (0.2541ms)
+✔ ten correct per generator unlocks independently, wrong answers reset only that type, checking twice is inert (4.9575ms)
+✔ unlock persists after a later miss; unfinished current questions cannot be hidden (0.3571ms)
+✖ saved sessions survive reopening with answers, streaks and snapshots; accounts and modules are isolated (3.4116ms)
+✔ passage scores retain zero, ignore invalid/missing scores, and choose latest scored evidence (2.5103ms)
+✔ editor links resolve exact stable question IDs, prefer assessment context, and do not guess missing questions (0.2308ms)
+ℹ tests 62
+ℹ suites 0
+ℹ pass 51
+ℹ fail 11
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1484.0635
+
+✖ failing tests:
+
+test at tools\content-studio-workspace.test.mjs:32:1
+✖ Part B uses its own student document in authoring and Student view without reading content or keys leaking (3.5181ms)
+  AssertionError [ERR_ASSERTION]: The input was expected to not match the regular expression /Reading sentinel|Other unsaved content|checked|studio-key-correct/. Input:
+  
+  '\n' +
+    '        <!doctype html>\n' +
+    '        <html lang="en">\n' +
+    '        <head>\n' +
+    '          <meta charset="utf-8">\n' +
+    '          <meta name="viewport" content="width=device-width, initial-scale=1">\n' +
+    '          <style></style>\n' +
+    '          <style>\n' +
+    '            html, body { margin: 0; min-width: 320px; min-height: 100%; }\n' +
+    '            html, body { min-width: 0; background: #f7f7f7; color: #111820; color-scheme: light; }\n' +
+    '            .exam-session-shell { min-height: 100vh; box-sizing: border-box; }\n' +
+    '            .exam-standalone-document { box-sizing: border-box; }\n' +
+    '            @media (max-width: 600px) { .exam-standalone-document { width: calc(100% - 24px); padding: 16px; } }\n' +
+    '            .preview-tool-glyph { font-size: 12px; font-weight: 800; line-height: 1; }\n' +
+    '            .exam-question-document { min-height: calc(100vh - 84px); }\n' +
+    '            .exam-question-panel { padding-top: 2px; }\n' +
+    '            @media (max-width: 760px) {\n' +
+    '              .exam-session-review-tools, .exam-session-work-tools { display: none; }\n' +
+    '              .exam-session-toolbar-cluster { gap: 0; }\n' +
+    '              .exam-question-document { grid-template-columns: 1fr; gap: 20px; }\n' +
+    '              .exam-question-passage-scroll { height: 390px; }\n' +
+    '              .exam-question-panel { padding: 0; }\n' +
+    '            }\n' +
+    '          </style>\n' +
+    '        </head>\n' +
+    '        <body>\n' +
+    '          <main class="exam-session-shell" data-player-profile="testnav">\n' +
+    '            <header class="exam-session-toolbar" aria-label="Exam controls">\n' +
+    '              <div class="exam-session-toolbar-inner">\n' +
+    '                <div class="exam-session-toolbar-cluster">\n' +
+    '                  <div class="exam-session-toolbar-group exam-session-question-nav">\n' +
+    '                    <button class="exam-session-toolbar-button is-muted" data-preview-delta="-1" disabled type="button"><span class="exam-session-arrow-glyph is-left"></span></button>\n' +
+    '                    <button class="exam-session-toolbar-button is-muted" data-preview-delta="1" disabled type="button"><span class="exam-session-arrow-glyph is-right"></span></button>\n' +
+    '                  </div>\n' +
+    '                  <div class="exam-session-toolbar-group exam-session-review-tools">\n' +
+    '                    <button class="exam-session-toolbar-button is-review" type="button"><span>Review</span><span class="preview-tool-glyph">☷</span></button>\n' +
+    '                    <button class="exam-session-toolbar-button is-bookmark" type="button"><span class="preview-tool-glyph">◇</span><span>Bookmark</span></button>\n' +
+    '                  </div>\n' +
+    '                  <div class="exam-session-toolbar-group exam-session-work-tools">\n' +
+    '                    <button class="exam-session-tool-button is-active" type="button"><span class="preview-tool-glyph">↖</span></button>\n' +
+    '                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">X</span></button>\n' +
+    '                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">▢</span></button>\n' +
+    '                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">✎</span></button>\n' +
+    '                  </div>\n' +
+    '                </div>\n' +
+    '                <div class="exam-session-user-tools">\n' +
+    '                  <button class="exam-session-timer-button" type="button"><span class="preview-tool-glyph">◷</span></button>\n' +
+    '                  <span class="exam-session-user-name">Student Preview</span>\n' +
+    '                  <button class="exam-session-user-button" type="button"><span class="preview-tool-glyph">●⌄</span></button>\n' +
+    '                </div>\n' +
+    '              </div>\n' +
+    '            </header>\n' +
+    '            <div class="exam-session-bluebar"></div>\n' +
+    '            <nav class="exam-session-breadcrumb" aria-label="Exam location">\n' +
+    '              <div class="exam-session-breadcrumb-inner">\n' +
+    '                <div class="exam-session-breadcrumb-text">\n' +
+    '                  <span>CONTENT STUDIO PREVIEW</span><span>/</span>\n' +
+    '                  <span>REVISING/EDITING PART B</span><span>/</span>\n' +
+    '                  <span>1 OF 1</span>\n' +
+    '                </div>\n' +
+    '                <span class="exam-session-status-icon" aria-hidden="true">▣</span>\n' +
+    '              </div>\n' +
+    '            </nav>\n' +
+    '            <section class="exam-standalone-document">\n' +
+    '              <form class="exam-standalone-panel">\n' +
+    '                <h1><span class="exam-rich-text">Which <strong>revision</strong>?</span></h1>\n' +
+    '                <div class="exam-standalone-stimulus">Paragraph text.</div>\n' +
+    '                \n' +
+    '                \n' +
+    '        <div class="exam-choice-list exam-standalone-choice-list">\n' +
+    '          \n' +
+    '            <label class="exam-choice">\n' +
+    '               <input name="student-preview-answer" type="radio">\n' +
+    '               <span>A.</span>\n' +
+    '               <span class="exam-rich-text">Answer A</span>\n' +
+    '             </label>\n' +
+    '           \n' +
+    '            <label class="exam-choice">\n' +
+    '               <input name="student-preview-answer" type="radio">\n' +
+    '               <span>B.</span>\n' +
+    '               <span class="exam-rich-text">Answer B</span>\n' +
+    '             </label>\n' +
+    '           \n' +
+    '            <label class="exam-choice">\n' +
+    '               <input name="student-preview-answer" type="radio">\n' +
+    '               <span>C.</span>\n' +
+    '               <span class="exam-rich-text">Answer C</span>\n' +
+    '             </label>\n' +
+    '           \n' +
+    '            <label class="exam-choice">\n' +
+    '               <input name="student-preview-answer" type="radio">\n' +
+    '               <span>D.</span>\n' +
+    '               <span class="exam-rich-text">Answer D</span>\n' +
+    '             </label>\n' +
+    '           \n' +
+    '        </div>\n' +
+    '      \n' +
+    '              </form>\n' +
+    '            </section>\n' +
+    '          </main>\n' +
+    '          <script type="module">\n' +
+    "            import { mountPassageGlossary } from '/content-studio-glossary.js';\n" +
+    '            mountPassageGlossary(document.body);\n' +
+    '          </script>\n' +
+    '          <script>\n' +
+    "            document.querySelectorAll('.is-evidence-matrix input').forEach(function (input) {\n" +
+    "              input.addEventListener('change', function () {\n" +
+    "                if (input.checked) input.closest('tr').querySelectorAll('input').forEach(function (other) { if (other !== input) other.checked = false; });\n" +
+    '              });\n' +
+    '            });\n' +
+    '            document.querySelectorAll("[data-preview-delta]").forEach(function (button) {\n' +
+    '              button.addEventListener("click", function () {\n' +
+    '                parent.postMessage({ type: "exam-content-preview-navigation", delta: Number(button.dataset.previewDelta) }, "*");\n' +
+    '              });\n' +
+    '            });\n' +
+    '            var selectedCategoryItem = null;\n' +
+    '            document.querySelectorAll("[data-preview-category-item]").forEach(function (item) {\n' +
+    '              item.addEventListener("click", function (event) {\n' +
+    '                // Selecting a placed card must not bubble into its current\n' +
+    '                // target and immediately place it again / clear selection.\n' +
+    '                event.stopPropagation();\n' +
+    '                document.querySelectorAll("[data-preview-category-item]").forEach(function (candidate) {\n' +
+    '                  candidate.classList.remove("is-selected");\n' +
+    '                });\n' +
+    '                selectedCategoryItem = item;\n' +
+    '                item.classList.add("is-selected");\n' +
+    '              });\n' +
+    '              item.addEventListener("dragstart", function (event) {\n' +
+    '                selectedCategoryItem = item;\n' +
+    '                event.dataTransfer.setData("text/plain", item.dataset.previewCategoryItem);\n' +
+    '              });\n' +
+    '            });\n' +
+    '            document.querySelectorAll("[data-preview-category-target]").forEach(function (target) {\n' +
+    '              function placeItem(item) {\n' +
+    '                if (!item) return;\n' +
+    '                if (target.dataset.previewCategoryCapacity === "1") {\n' +
+    '                  var occupiedItem = target.querySelector("[data-preview-category-item]");\n' +
+    '                  var answerBank = document.querySelector("[data-preview-category-bank]");\n' +
+    '                  if (occupiedItem && occupiedItem !== item && answerBank) {\n' +
+    '                    answerBank.appendChild(occupiedItem);\n' +
+    '                    occupiedItem.classList.remove("is-placed", "is-selected");\n' +
+    '                  }\n' +
+    '                }\n' +
+    '                target.querySelector("[data-preview-category-items], .exam-category-target-items").appendChild(item);\n' +
+    '                item.classList.add("is-placed");\n' +
+    '                item.classList.remove("is-selected");\n' +
+    '                selectedCategoryItem = null;\n' +
+    '              }\n' +
+    '              target.addEventListener("click", function () { placeItem(selectedCategoryItem); });\n' +
+    '              target.tabIndex = 0;\n' +
+    '              target.addEventListener("keydown", function (event) {\n' +
+    '                if (event.target === target && (event.key === "Enter" || event.key === " ")) {\n' +
+    '                  event.preventDefault(); placeItem(selectedCategoryItem);\n' +
+    '                }\n' +
+    '              });\n' +
+    '              target.addEventListener("dragover", function (event) { event.preventDefault(); });\n' +
+    '              target.addEventListener("drop", function (event) {\n' +
+    '                event.preventDefault();\n' +
+    `                placeItem(document.querySelector('[data-preview-category-item="' + event.dataTransfer.getData("text/plain") + '"]'));\n` +
+    '              });\n' +
+    '            });\n' +
+    '            var categoryBank = document.querySelector("[data-preview-category-bank]");\n' +
+    '            if (categoryBank) {\n' +
+    '              function returnToBank(item) {\n' +
+    '                if (!item) return;\n' +
+    '                categoryBank.appendChild(item);\n' +
+    '                item.classList.remove("is-placed", "is-selected");\n' +
+    '                selectedCategoryItem = null;\n' +
+    '              }\n' +
+    '              categoryBank.addEventListener("click", function (event) {\n' +
+    '                if (event.target === categoryBank) returnToBank(selectedCategoryItem);\n' +
+    '              });\n' +
+    '              categoryBank.tabIndex = 0;\n' +
+    '              categoryBank.addEventListener("keydown", function (event) {\n' +
+    '                if (event.target === categoryBank && (event.key === "Enter" || event.key === " ")) {\n' +
+    '                  event.preventDefault(); returnToBank(selectedCategoryItem);\n' +
+    '                }\n' +
+    '              });\n' +
+    '              categoryBank.addEventListener('... 3690 more characters
+  
+      at TestContext.<anonymous> (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/tools/content-studio-workspace.test.mjs:45:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: `\n        <!doctype html>\n        <html lang="en">\n        <head>\n          <meta charset="utf-8">\n          <meta name="viewport" content="width=device-width, initial-scale=1">\n          <style></style>\n          <style>\n            html, body { margin: 0; min-width: 320px; min-height: 100%; }\n            html, body { min-width: 0; background: #f7f7f7; color: #111820; color-scheme: light; }\n            .exam-session-shell { min-height: 100vh; box-sizing: border-box; }\n            .exam-standalone-document { box-sizing: border-box; }\n            @media (max-width: 600px) { .exam-standalone-document { width: calc(100% - 24px); padding: 16px; } }\n            .preview-tool-glyph { font-size: 12px; font-weight: 800; line-height: 1; }\n            .exam-question-document { min-height: calc(100vh - 84px); }\n            .exam-question-panel { padding-top: 2px; }\n            @media (max-width: 760px) {\n              .exam-session-review-tools, .exam-session-work-tools { display: none; }\n              .exam-session-toolbar-cluster { gap: 0; }\n              .exam-question-document { grid-template-columns: 1fr; gap: 20px; }\n              .exam-question-passage-scroll { height: 390px; }\n              .exam-question-panel { padding: 0; }\n            }\n          </style>\n        </head>\n        <body>\n          <main class="exam-session-shell" data-player-profile="testnav">\n            <header class="exam-session-toolbar" aria-label="Exam controls">\n              <div class="exam-session-toolbar-inner">\n                <div class="exam-session-toolbar-cluster">\n                  <div class="exam-session-toolbar-group exam-session-question-nav">\n                    <button class="exam-session-toolbar-button is-muted" data-preview-delta="-1" disabled type="button"><span class="exam-session-arrow-glyph is-left"></span></button>\n                    <button class="exam-session-toolbar-button is-muted" data-preview-delta="1" disabled type="button"><span class="exam-session-arrow-glyph is-right"></span></button>\n                  </div>\n                  <div class="exam-session-toolbar-group exam-session-review-tools">\n                    <button class="exam-session-toolbar-button is-review" type="button"><span>Review</span><span class="preview-tool-glyph">☷</span></button>\n                    <button class="exam-session-toolbar-button is-bookmark" type="button"><span class="preview-tool-glyph">◇</span><span>Bookmark</span></button>\n                  </div>\n                  <div class="exam-session-toolbar-group exam-session-work-tools">\n                    <button class="exam-session-tool-button is-active" type="button"><span class="preview-tool-glyph">↖</span></button>\n                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">X</span></button>\n                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">▢</span></button>\n                    <button class="exam-session-tool-button" type="button"><span class="preview-tool-glyph">✎</span></button>\n                  </div>\n                </div>\n                <div class="exam-session-user-tools">\n                  <button class="exam-session-timer-button" type="button"><span class="preview-tool-glyph">◷</span></button>\n                  <span class="exam-session-user-name">Student Preview</span>\n                  <button class="exam-session-user-button" type="button"><span class="preview-tool-glyph">●⌄</span></button>\n                </div>\n              </div>\n            </header>\n            <div class="exam-session-bluebar"></div>\n            <nav class="exam-session-breadcrumb" aria-label="Exam location">\n              <div class="exam-session-breadcrumb-inner">\n                <div class="exam-session-breadcrumb-text">\n                  <span>CONTENT STUDIO PREVIEW</span><span>/</span>\n                  <span>REVISING/EDITING PART B</span><span>/</span>\n                  <span>1 OF 1</span>\n                </div>\n                <span class="exam-session-status-icon" aria-hidden="true">▣</span>\n              </div>\n            </nav>\n            <section class="exam-standalone-document">\n              <form class="exam-standalone-panel">\n                <h1><span class="exam-rich-text">Which <strong>revision</strong>?</span></h1>\n                <div class="exam-standalone-stimulus">Paragraph text.</div>\n                \n                \n        <div class="exam-choice-list exam-standalone-choice-list">\n          \n            <label class="exam-choice">\n               <input name="student-preview-answer" type="radio">\n               <span>A.</span>\n               <span class="exam-rich-text">Answer A</span>\n             </label>\n           \n            <label class="exam-choice">\n               <input name="student-preview-answer" type="radio">\n               <span>B.</span>\n               <span class="exam-rich-text">Answer B</span>\n             </label>\n           \n            <label class="exam-choice">\n               <input name="student-preview-answer" type="radio">\n               <span>C.</span>\n               <span class="exam-rich-text">Answer C</span>\n             </label>\n           \n            <label class="exam-choice">\n               <input name="student-preview-answer" type="radio">\n               <span>D.</span>\n               <span class="exam-rich-text">Answer D</span>\n             </label>\n           \n        </div>\n      \n              </form>\n            </section>\n          </main>\n          <script type="module">\n            import { mountPassageGlossary } from '/content-studio-glossary.js';\n            mountPassageGlossary(document.body);\n          </script>\n          <script>\n            document.querySelectorAll('.is-evidence-matrix input').forEach(function (input) {\n              input.addEventListener('change', function () {\n                if (input.checked) input.closest('tr').querySelectorAll('input').forEach(function (other) { if (other !== input) other.checked = false; });\n              });\n            });\n            document.querySelectorAll("[data-preview-delta]").forEach(function (button) {\n              button.addEventListener("click", function () {\n                parent.postMessage({ type: "exam-content-preview-navigation", delta: Number(button.dataset.previewDelta) }, "*");\n              });\n            });\n            var selectedCategoryItem = null;\n            document.querySelectorAll("[data-preview-category-item]").forEach(function (item) {\n              item.addEventListener("click", function (event) {\n                // Selecting a placed card must not bubble into its current\n                // target and immediately place it again / clear selection.\n                event.stopPropagation();\n                document.querySelectorAll("[data-preview-category-item]").forEach(function (candidate) {\n                  candidate.classList.remove("is-selected");\n                });\n                selectedCategoryItem = item;\n                item.classList.add("is-selected");\n              });\n              item.addEventListener("dragstart", function (event) {\n                selectedCategoryItem = item;\n                event.dataTransfer.setData("text/plain", item.dataset.previewCategoryItem);\n              });\n            });\n            document.querySelectorAll("[data-preview-category-target]").forEach(function (target) {\n              function placeItem(item) {\n                if (!item) return;\n                if (target.dataset.previewCategoryCapacity === "1") {\n                  var occupiedItem = target.querySelector("[data-preview-category-item]");\n                  var answerBank = document.querySelector("[data-preview-category-bank]");\n                  if (occupiedItem && occupiedItem !== item && answerBank) {\n                    answerBank.appendChild(occupiedItem);\n                    occupiedItem.classList.remove("is-placed", "is-selected");\n                  }\n                }\n                target.querySelector("[data-preview-category-items], .exam-category-target-items").appendChild(item);\n                item.classList.add("is-placed");\n                item.classList.remove("is-selected");\n                selectedCategoryItem = null;\n              }\n              target.addEventListener("click", function () { placeItem(selectedCategoryItem); });\n              target.tabIndex = 0;\n              target.addEventListener("keydown", function (event) {\n                if (event.target === target && (event.key === "Enter" || event.key === " ")) {\n                  event.preventDefault(); placeItem(selectedCategoryItem);\n                }\n              });\n              target.addEventListener("dragover", function (event) { event.preventDefault(); });\n              target.addEventListener("drop", function (event) {\n                event.preventDefault();\n                placeItem(document.querySelector('[data-preview-category-item="' + event.dataTransfer.getData("text/plain") + '"]'));\n              });\n            });\n            var categoryBank = document.querySelector("[data-preview-category-bank]");\n            if (categoryBank) {\n              function returnToBank(item) {\n                if (!item) return;\n                categoryBank.appendChild(item);\n                item.classList.remove("is-placed", "is-selected");\n                selectedCategoryItem = null;\n              }\n              categoryBank.addEventListener("click", function (event) {\n                if (event.target === categoryBank) returnToBank(selectedCategoryItem);\n              });\n              categoryBank.tabIndex = 0;\n              categoryBank.addEventListener("keydown", function (event) {\n                if (event.target === categoryBank && (event.key === "Enter" || event.key === " ")) {\n                  event.preventDefault(); returnToBank(selectedCategoryItem);\n                }\n              });\n              categoryBank.addEventListener(`... 3690 more characters,
+    expected: /Reading sentinel|Other unsaved content|checked|studio-key-correct/,
+    operator: 'doesNotMatch',
+    diff: 'simple'
+  }
+
+test at tools\content-studio-workspace.test.mjs:160:1
+✖ passage draft deletion preserves unsaved content on cancel or failure and clears only the deleted editor (4.9371ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + undefined
+  - 'saved'
+  
+      at TestContext.<anonymous> (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/tools/content-studio-workspace.test.mjs:181:41)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: 'saved',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\content-studio-workspace.test.mjs:201:1
+✖ reading startup mounts the editable preview after its workspace controls and survives a Practice setup error (5.821ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///C:/Users/Nathan%20Im/Desktop/my-app-main/tools/content-studio-workspace.test.mjs:220:12)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\math-study-hall.test.cjs:8:1
+✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections (24.5213ms)
+  Error: Build failed with 5 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:66: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:32: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\components\\MathStudyHall.tsx"
+  <stdin>:4:32: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\lib\\mathStudyHall.ts"
+  <stdin>:7:165: ERROR: Could not resolve "react/jsx-runtime"
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\components\\\\MathStudyHall.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\lib\\\\mathStudyHall.ts"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\math-study-hall.test.cjs:61:1
+✖ student practice lists show parent modules while nested modules remain part of their generation set (4.017ms)
+  Error: Build failed with 5 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:65: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:37: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeModuleList.tsx"
+  <stdin>:4:60: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\server\\src\\shared\\practiceCatalog.ts"
+  <stdin>:7:37: ERROR: Could not resolve "react/jsx-runtime"
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1163:52
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\features\\\\math-command\\\\PracticeModuleList.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\server\\\\src\\\\shared\\\\practiceCatalog.ts"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\math-study-hall.test.cjs:78:1
+✖ YouTube references render in-site play buttons with thumbnails and optional metadata (2.1361ms)
+  Error: Build failed with 4 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:65: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:108: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeVideoList.tsx"
+  <stdin>:5:58: ERROR: Could not resolve "react/jsx-runtime"
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1163:52
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\features\\\\math-command\\\\PracticeVideoList.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:44:1
+✖ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (24.2484ms)
+  Error: Build failed with 10 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:39: ERROR: Could not resolve "./client/src/features/math-command/InequalityPractice"
+  <stdin>:5:44: ERROR: Could not resolve "./client/src/features/math-command/generatorPreview"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:53:1
+✖ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (1.1812ms)
+  Error: Build failed with 10 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:39: ERROR: Could not resolve "./client/src/features/math-command/InequalityPractice"
+  <stdin>:5:44: ERROR: Could not resolve "./client/src/features/math-command/generatorPreview"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:60:1
+✖ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (0.1743ms)
+  Error: Build failed with 10 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:39: ERROR: Could not resolve "./client/src/features/math-command/InequalityPractice"
+  <stdin>:5:44: ERROR: Could not resolve "./client/src/features/math-command/generatorPreview"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:67:1
+✖ mini preview retains the exam controls in a bounded nonmodal region (0.2541ms)
+  Error: Build failed with 10 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:39: ERROR: Could not resolve "./client/src/features/math-command/InequalityPractice"
+  <stdin>:5:44: ERROR: Could not resolve "./client/src/features/math-command/generatorPreview"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\student-practice-updates.test.cjs:28:1
+✖ saved sessions survive reopening with answers, streaks and snapshots; accounts and modules are isolated (3.4116ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /quota/. Input:
+  
+  'TypeError: storage.getItem is not a function'
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\student-practice-updates.test.cjs:35:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: TypeError: storage.getItem is not a function
+        at storedSession (C:\Users\Nathan Im\Desktop\my-app-main\client\src\features\math-command\practiceSessionStorage.ts:6:42)
+        at readPracticeProgress (C:\Users\Nathan Im\Desktop\my-app-main\client\src\features\math-command\practiceSessionStorage.ts:11:17)
+        at savePractice (C:\Users\Nathan Im\Desktop\my-app-main\client\src\features\math-command\practiceSessionStorage.ts:23:18)
+        at C:\Users\Nathan Im\Desktop\my-app-main\tools\student-practice-updates.test.cjs:35:20
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\student-practice-updates.test.cjs:35:9)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1306:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:897:18),
+    expected: /quota/,
+    operator: 'throws',
+    diff: 'simple'
+  }

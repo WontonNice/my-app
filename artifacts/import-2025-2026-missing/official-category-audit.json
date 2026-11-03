@@ -1,0 +1,76 @@
+{
+  "officialExams": 23,
+  "officialPassages": 149,
+  "assignedPassages": 147,
+  "corrected": [
+    {
+      "id": "dothemnoharm",
+      "title": "Excerpt from Do Them No Harm!",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    },
+    {
+      "id": "excerpt-from-in-search-of-the-unknown",
+      "title": "Excerpt from In Search of the Unknown",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    },
+    {
+      "id": "winter-wheat",
+      "title": "Excerpt from Winter Wheat",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    },
+    {
+      "id": "letter-from-brooklyn-2025-2026-form-b",
+      "title": "Letter from Brooklyn",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    },
+    {
+      "id": "massachusetts-lowell-national-historical-park-2020-2021-form-b",
+      "title": "Massachusetts: Lowell National Historical Park",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    },
+    {
+      "id": "massachusetts",
+      "title": "Massachusetts: Lowell National Historical Park",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    },
+    {
+      "id": "snowy-mountains-version-2",
+      "title": "Snowy Mountains",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    },
+    {
+      "id": "snowy-mountains",
+      "title": "Snowy Mountains",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    },
+    {
+      "id": "indoor-plants",
+      "title": "The Benefits of Indoor Plants",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    },
+    {
+      "id": "the-end-of-an-era",
+      "title": "The End of an Era",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    },
+    {
+      "id": "using-fire-to-keep-a-prairie-healthy-2020-2021-form-b",
+      "title": "Using Fire to Keep a Prairie Healthy",
+      "before": "miscellaneous",
+      "after": "official_handbook"
+    }
+  ],
+  "remainingMislabeled": 0,
+  "prestigePassagesUnchanged": 29,
+  "contentUnchanged": true
+}

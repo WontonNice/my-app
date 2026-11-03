@@ -1,0 +1,363 @@
+{
+  "keys": {
+    "adam": [
+      {
+        "correctChoiceId": "C"
+      },
+      {},
+      {
+        "correctChoiceId": "C"
+      },
+      {
+        "correctChoiceId": "D"
+      },
+      {
+        "dropdowns": [
+          "B",
+          "C",
+          "A"
+        ]
+      },
+      {
+        "correctChoiceId": "D"
+      },
+      {
+        "correctChoiceIds": [
+          "B",
+          "E"
+        ]
+      },
+      {
+        "correctChoiceId": "C"
+      },
+      {
+        "correctChoiceId": "D"
+      },
+      {
+        "correctChoiceId": "B"
+      },
+      {},
+      {
+        "correctTextAnswers": [
+          "12"
+        ]
+      },
+      {
+        "correctChoiceId": "B"
+      }
+    ],
+    "nyc": [
+      {
+        "correctChoiceId": "C"
+      },
+      {
+        "correctChoiceId": "C"
+      },
+      {
+        "correctChoiceId": "D"
+      },
+      {
+        "placements": [
+          1,
+          2,
+          1
+        ]
+      },
+      {
+        "correctChoiceId": "D"
+      },
+      {
+        "slots": [
+          "function",
+          "not-function",
+          "function",
+          "not-function"
+        ]
+      },
+      {
+        "correctChoiceId": "B"
+      },
+      {
+        "correctChoiceId": "A"
+      },
+      {
+        "correctChoiceId": "C"
+      },
+      {
+        "correctTextAnswers": [
+          "20"
+        ]
+      },
+      {
+        "correctChoiceId": "A"
+      },
+      {},
+      {
+        "correctTextAnswers": [
+          "11"
+        ]
+      }
+    ]
+  },
+  "exhibitNames": {
+    "adam": [
+      "SHM89-238_exp_exhibit.png",
+      "SHB25-021-G9_exhibit.png",
+      "SHM91-501_exp_exhibit.png",
+      "SHM12-016_exp_exhibit.png",
+      "SHB25-015-G9_exhibit.png",
+      "SHM06-065_exp_exhibit.png",
+      "SHB25-022-G9_exhibit.png",
+      "SHM13-346_exp_exhibit.png",
+      "SHM09-010_exp_exhibit.png",
+      "SHM14-045_exp_exhibit.png",
+      "SHB25-007-G9_exhibit.png",
+      "SHM96-052_exp_exhibit.png",
+      "SHM05-095_exhibit.png"
+    ],
+    "nyc": [
+      "shb239008_exp_exh.png",
+      "SHB239005_exp_exh.png",
+      "SHB239007_exp_exh.png",
+      "M269264_exp_exh.png",
+      "SHB239004_exp_exh.png",
+      "M269262_exp_exh.png",
+      "SHB239015_exp_exh.png",
+      "SHB239011_exp_exh.png",
+      "SHB239012_exp_exh.png",
+      "SHB239003_exp_exh.png",
+      "SHB239009_exp_exh.png",
+      "M269265_exp_exh.png",
+      "SHB239001_exp_exh.png"
+    ]
+  },
+  "coordinateKeys": {
+    "adam-2": {
+      "width": 774.8,
+      "height": 503,
+      "plot": {
+        "left": 285.8,
+        "top": 20,
+        "width": 446,
+        "height": 446
+      },
+      "xMin": -10,
+      "xMax": 10,
+      "yMin": -10,
+      "yMax": 10,
+      "xStep": 1,
+      "yStep": 1,
+      "xSnap": 1,
+      "ySnap": 1,
+      "tools": [],
+      "shapes": [
+        {
+          "id": "orientation-1",
+          "bankX": 30,
+          "bankY": 30,
+          "vertices": [
+            {
+              "x": 0,
+              "y": -5,
+              "label": "A'"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "label": "B'"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "label": "C'"
+            }
+          ]
+        },
+        {
+          "id": "orientation-2",
+          "bankX": 223.8,
+          "bankY": 141.5,
+          "vertices": [
+            {
+              "x": 0,
+              "y": 5,
+              "label": "A'"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "label": "B'"
+            },
+            {
+              "x": -3,
+              "y": 0,
+              "label": "C'"
+            }
+          ]
+        },
+        {
+          "id": "orientation-3",
+          "bankX": 96.9,
+          "bankY": 201.5,
+          "vertices": [
+            {
+              "x": 0,
+              "y": -5,
+              "label": "A'"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "label": "B'"
+            },
+            {
+              "x": -3,
+              "y": 0,
+              "label": "C'"
+            }
+          ]
+        },
+        {
+          "id": "orientation-4",
+          "bankX": 156.9,
+          "bankY": 313,
+          "vertices": [
+            {
+              "x": 0,
+              "y": 5,
+              "label": "A'"
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "label": "B'"
+            },
+            {
+              "x": 3,
+              "y": 0,
+              "label": "C'"
+            }
+          ]
+        }
+      ],
+      "correctShapeId": "orientation-1",
+      "correctAnchor": {
+        "x": -7,
+        "y": -4
+      },
+      "background": {
+        "src": "/exam-images/grade9-mini-adam-2-grid-passage.svgz",
+        "alt": "Coordinate plane with triangle A at (−7, 7), B at (−7, 2), and C at (−4, 2)."
+      }
+    },
+    "adam-11": {
+      "width": 450,
+      "height": 450,
+      "plot": {
+        "left": 53,
+        "top": 53,
+        "width": 344,
+        "height": 344
+      },
+      "xMin": -7,
+      "xMax": 7,
+      "yMin": -7,
+      "yMax": 7,
+      "xStep": 1,
+      "yStep": 1,
+      "xSnap": 1,
+      "ySnap": 1,
+      "tools": [
+        {
+          "id": "line-1",
+          "kind": "line",
+          "label": "Line 1",
+          "color": "#0000ff",
+          "correctPoints": [
+            {
+              "x": 0,
+              "y": 5
+            },
+            {
+              "x": 1,
+              "y": 3
+            }
+          ]
+        },
+        {
+          "id": "line-2",
+          "kind": "line",
+          "label": "Line 2",
+          "color": "#962d73",
+          "correctPoints": [
+            {
+              "x": -1,
+              "y": -2
+            },
+            {
+              "x": 2,
+              "y": 1
+            }
+          ]
+        },
+        {
+          "id": "solution",
+          "kind": "point",
+          "label": "Solution",
+          "color": "#465a5a",
+          "correctPoints": [
+            {
+              "x": 2,
+              "y": 1
+            }
+          ]
+        }
+      ],
+      "background": {
+        "src": "/exam-images/grade9-mini-adam-11-grid-passage.svgz",
+        "alt": "Coordinate plane for drawing the response."
+      }
+    },
+    "nyc-12": {
+      "width": 467,
+      "height": 467,
+      "plot": {
+        "left": 77,
+        "top": 53,
+        "width": 344,
+        "height": 344
+      },
+      "title": "Taxi Ride Cost",
+      "xMin": 0,
+      "xMax": 6,
+      "yMin": 0,
+      "yMax": 12,
+      "xStep": 0.5,
+      "yStep": 1,
+      "xSnap": 0.25,
+      "ySnap": 0.5,
+      "tools": [
+        {
+          "id": "line",
+          "kind": "line",
+          "label": "Line",
+          "color": "#0000ff",
+          "correctPoints": [
+            {
+              "x": 0,
+              "y": 4.5
+            },
+            {
+              "x": 1,
+              "y": 8
+            }
+          ]
+        }
+      ],
+      "background": {
+        "src": "/exam-images/grade9-mini-nyc-12-grid-passage.svgz",
+        "alt": "Coordinate plane for drawing the response."
+      }
+    }
+  }
+}

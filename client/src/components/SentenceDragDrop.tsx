@@ -30,7 +30,6 @@ export function SentenceDragDrop({ question, answer, onChange }: { question: Exa
     <div className="exam-transition-bank" aria-label="Drag-and-drop answer bank" onDragOver={event => event.preventDefault()} onDrop={event => { event.preventDefault(); const id = event.dataTransfer.getData('text/plain'); save(Object.fromEntries(Object.entries(values).filter(([, value]) => value !== id))); }}>
       {choices.map(choice => <button key={choice.id} type="button" className="exam-transition-chip" draggable aria-pressed={selected === choice.id} hidden={!question.allowReuse && Object.values(values).includes(choice.id)} onClick={() => slots.length === 1 ? place(slots[0].id, choice.id) : setSelected(choice.id)} onDragStart={event => { event.dataTransfer.setData('text/plain', choice.id); setSelected(choice.id); }}><ExamText text={choice.text} html={choice.html} /></button>)}
     </div>
-    <small className="exam-transition-help" role="status">{selected ? 'Choose a blank for the selected word.' : 'Drag a word into each blank, or choose a word and then a blank. Click a filled blank to clear it.'}</small>
     {modern && question.dragDropContentHtml ? <RichResponseTemplate html={question.dragDropContentHtml} renderText={renderParts} /> : lines.map((line, lineIndex) => <p className="exam-transition-sentence" key={lineIndex}>{lineIndex === 0 && question.transitionSentenceNumber ? <span>{question.transitionSentenceNumber} </span> : null}{renderParts(line,String(lineIndex))}</p>)}
   </div>;
 }

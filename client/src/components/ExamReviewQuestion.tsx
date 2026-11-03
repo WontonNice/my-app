@@ -1,3 +1,4 @@
+import { CoordinateResponse } from './CoordinateResponse';
 import { EXAM_PLAYER_PROFILE } from "../content/exams/playerPresentation";
 import { InlineTextSelection } from "./InlineTextSelection";
 import { RichResponseTemplate } from "./RichResponseTemplate";
@@ -59,6 +60,15 @@ function templateText(question: ExamQuestion, lines: string[]) {
 }
 
 export function ExamAnswer({ question, answer }: { question: ExamQuestion; answer?: SelectedAnswer }) {
+  if (question.type === "coordinate_response") return <CoordinateResponse key={question.id} question={question} answer={answer} readOnly />;
+  if (question.type === "math_drag_drop" && question.dragDropImage) {
+    const image = question.dragDropImage;
+    const values = answer && typeof answer === 'object' && !Array.isArray(answer) ? answer : {};
+    return <div className="exam-math-drag-response is-image"><div className="exam-math-drag-image" style={{position:'relative',width:image.width,maxWidth:'100%'}}>
+      <img src={image.src} alt={image.alt} style={{display:'block',width:'100%',height:'auto'}} />
+      {question.dragDropSlots?.map((slot,index) => <span key={slot.id} aria-label={`Answer box ${index+1}`} style={{position:'absolute',display:'grid',placeItems:'center',boxSizing:'border-box',border:'1px solid #333',background:'#fff',font:'14px Arial,sans-serif',left:`${100*(slot.left??0)/image.width}%`,top:`${100*(slot.top??0)/image.height}%`,width:`${100*(slot.width??100)/image.width}%`,height:`${100*(slot.height??28)/image.height}%`}}><ExamText text={question.items?.find(item=>item.id===values[slot.id])?.text ?? ''} /></span>)}
+    </div></div>;
+  }
   if (answer === undefined || answer === "" || Array.isArray(answer) && !answer.length || typeof answer === "object" && !Object.keys(answer).length) return <span>No answer submitted</span>;
   if (typeof answer === "string") {
     const choice = question.choices?.find(item => item.id === answer);
@@ -156,7 +166,7 @@ export function ReviewQuestionBody({ answerPresentation, item, showAnswers, view
     {question.dropdownContentHtml ? <RichResponseTemplate html={question.dropdownContentHtml} renderText={(text,key)=><ExamText key={key} text={templateText(question,[text])} />} /> : question.dropdownContent && <p><ExamText text={templateText(question, question.dropdownContent)} /></p>}
     {question.dragDropContentHtml ? <RichResponseTemplate html={question.dragDropContentHtml} renderText={(text,key)=><ExamText key={key} text={templateText(question,[text])} />} /> : question.dragDropContent && <p><ExamText text={templateText(question, question.dragDropContent)} /></p>}
     {question.items?.length && ['category_sort','table_match','math_drag_drop'].includes(question.type) ? <div className="exam-review-response-bank" aria-label="All answer cards"><ul>{question.items.map(card=><li key={card.id} aria-label={card.text}><ExamText text={card.text} html={card.html} /></li>)}</ul>{question.categories?.map(category=><p key={category.id}><strong>{category.title}</strong></p>)}</div> : null}
-    {answerPresentation === "comparison" && question.type === "matrix_choice" && question.items && question.categories ? <div className={`exam-matrix-choice-wrap${question.matrixStyle === 'evidence' ? ' is-evidence-matrix' : ''}`}><table className="exam-matrix-choice-table"><thead><tr><th scope="col">{question.matrixStyle === 'evidence' ? '' : question.tableHeaders?.row ?? "Sentence"}</th>{question.categories.map(category => <th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(matrixItem => <tr key={matrixItem.id}><th scope="row"><ExamText html={matrixItem.html} text={matrixItem.text} /></th>{question.categories!.map(category => <td key={category.id}><label className="exam-matrix-choice-option"><input aria-label={`${matrixItem.text}: ${category.title}`} checked={submittedPlacements[matrixItem.id] === category.id} disabled readOnly type={question.matrixStyle === 'evidence' ? 'checkbox' : 'radio'} /><span aria-hidden="true" /></label></td>)}</tr>)}</tbody></table></div> : null}
+    {answerPresentation === "comparison" && question.type === "matrix_choice" && question.items && question.categories ? <div className={`exam-matrix-choice-wrap${question.matrixStyle === 'evidence' ? ' is-evidence-matrix' : question.matrixStyle === 'compact' ? ' is-compact-matrix' : ''}`}><table className="exam-matrix-choice-table"><thead><tr><th scope="col">{question.matrixStyle === 'evidence' ? '' : question.tableHeaders?.row ?? "Sentence"}</th>{question.categories.map(category => <th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(matrixItem => <tr key={matrixItem.id}><th scope="row"><ExamText html={matrixItem.html} text={matrixItem.text} /></th>{question.categories!.map(category => <td key={category.id}><label className="exam-matrix-choice-option"><input aria-label={`${matrixItem.text}: ${category.title}`} checked={submittedPlacements[matrixItem.id] === category.id} disabled readOnly type={question.matrixStyle === 'evidence' ? 'checkbox' : 'radio'} /><span aria-hidden="true" /></label></td>)}</tr>)}</tbody></table></div> : null}
     {question.selectionHtml && <InlineTextSelection question={question} answer={item.submittedAnswer} correctIds={showAnswers ? typeof correctAnswer === "string" ? [correctAnswer] : Array.isArray(correctAnswer) ? correctAnswer : [] : []} />}
     {!question.selectionHtml && question.choices?.length && (answerPresentation === "comparison" || isStandardChoiceQuestion(question)) ? <div className={viewer ? "exam-choice-list exam-review-viewer-choices" : "exam-review-choices"}>{question.choices.map(choice => {
       const submitted = highlightsChoices && !item.isCorrect && answerIncludesChoice(item.submittedAnswer, choice.id);

@@ -1,0 +1,1399 @@
+=== PAGE 1 ===
+191.9,64.7,88.8: S T , F B
+207.0,69.2,87.2: AMPLE EST ORM
+118.8,93.5,117.5: P 1 — E L A
+133.8,98.0,116.0: ART NGLISH ANGUAGE RTS
+211.5,124.9,138.9: Suggested Time — 90 Minutes
+265.1,146.9,160.9: 57 QUESTIONS
+236.4,181.0,201.0: R /E
+250.9,184.8,199.8: EVISING DITING
+257.3,207.9,221.9: QUESTIONS 1–20
+262.5,230.5,241.0: IMPORTANT NOTE
+50.9,249.2,259.7: The Revising/Editing section (Questions 1-20) is in two parts: Part A and Part B.
+244.5,278.5,289.0: REVISING/EDITING Part A
+50.9,297.0,307.7: DIRECTIONS: Read and answer each of the following questions. You will be asked to recognize and
+50.9,309.7,320.2: correct errors in sentences or short paragraphs. Mark the bestanswer for each question.
+50.9,350.7,361.2: 1. Read this paragraph.
+80.9,384.3,394.8: (1) In September 2016, the National Museum of African American History and Culture opened,
+80.9,397.3,407.8: as part of the Smithsonian Institution, the museum is already the Smithsonian’s third most
+80.9,410.3,420.8: popular site. (2) Experts say that they expect this newest Smithsonian facility to welcome nearly
+80.9,423.3,433.8: 4 million visitors a year. (3) The museum features more than 30,000 objects, including
+80.9,436.3,446.8: Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. (4) A commemorative copy of
+80.9,449.3,459.8: the Emancipation Proclamation, which was written in 1863 during the presidency of Abraham
+80.9,462.3,472.8: Lincoln, is also available for viewing at the museum.
+74.9,497.5,508.0: Which sentence should be revised to correct a run-on?
+74.9,520.0,530.5: A. sentence 1
+74.9,536.5,547.0: B. sentence 2
+74.9,553.0,563.5: C. sentence 3
+74.9,569.5,580.0: D. sentence 4
+49.6,756.7,767.6: Form B 92 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 2 ===
+49.6,58.4,68.9: 2. Read this sentence.
+79.6,92.0,102.5: To promote their club, a bake sale will be sponsored by members of the debate team on
+79.6,105.0,115.5: Wednesday.
+73.6,140.3,150.8: How should this sentence be revised?
+73.6,162.8,173.3: E. To promote their club, on Wednesday a bake sale will be sponsored by members of the debate
+91.6,175.8,186.3: team.
+73.6,192.3,202.8: F. On Wednesday to promote their club, a bake sale will be sponsored by members of the debate
+91.6,205.3,215.8: team.
+73.6,221.8,232.3: G. To promote their club, members of the debate team will sponsor a bake sale on Wednesday.
+73.6,238.3,248.8: H. Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.
+49.6,270.6,281.1: 3. Read this paragraph.
+79.6,304.2,314.7: (1) Devon spent several hours preparing for an upcoming audition. (2) First, he did vocal
+79.6,317.2,327.7: exercises to practice his diction and projection. (3) Then, he studies the text of the monologue to
+79.6,330.2,340.7: better understand the emotions and motivations of the character he plans to portray. (4) Finally,
+79.6,343.2,353.7: he recited his monologue in front of a mirror many times, making slight adjustments and
+79.6,356.2,366.7: improvements to his performance each time.
+73.6,391.5,402.0: Which sentence should be revised to correct an inappropriate shift in verb tense?
+73.6,413.9,424.5: A. sentence 1
+73.6,430.4,440.9: B. sentence 2
+73.6,446.9,457.4: C. sentence 3
+73.6,463.4,473.9: D. sentence 4
+49.6,495.7,506.2: 4. Read this sentence.
+79.6,529.3,539.8: The Colosseum in Rome, Italy which is considered one of the New Seven Wonders of the World, is
+79.6,542.3,552.8: the largest amphitheater ever built and could hold more than 50,000 spectators.
+73.6,577.6,588.1: Which edit should be made to correct this sentence?
+73.6,600.1,610.6: E. delete the comma after Rome
+73.6,616.6,627.1: F. insert a comma after Italy
+73.6,633.1,643.6: G. delete the comma after World
+73.6,649.6,660.1: H. insert a comma after built
+49.6,756.7,767.6: Form B 93 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 3 ===
+49.8,58.2,68.7: 5. Read this sentence.
+79.8,91.8,102.3: The engineers tried some other things in the hope of finding a more effective insulation for the
+79.8,104.8,115.3: compartment.
+73.8,140.1,150.6: What is the most precise revision for the words The engineers tried some other things?
+73.8,162.6,173.1: A. The engineers did experiments with several new materials
+73.8,179.1,189.6: B. The engineers tested foam and fiberglass
+73.8,195.6,206.1: C. The engineers did tests with two new materials
+73.8,212.1,222.6: D. The engineers worked with foam and fiberglass
+49.6,756.7,767.6: Form B 94 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 4 ===
+243.2,70.9,81.4: REVISING/EDITING Part B
+49.9,89.4,100.1: DIRECTIONS: Read the passage below and answer the questions following it. You will be asked to
+49.9,102.1,112.6: improve the writing quality of the passage and to correct errors so that the passage follows the
+49.9,114.6,125.1: conventions of standard written English. You may reread the passage if you need to. Mark the best
+49.9,127.1,137.6: answer for each question.
+241.2,175.6,191.6: The Local Library
+55.9,204.7,215.2: (1) According to a 2015 survey, more than two-thirds of Americans own a smartphone, which means that
+55.9,217.7,228.2: obtaining information or communicating with people is easier than ever before. (2) With the swipe of a
+55.9,230.7,241.2: finger or the tap of an icon, people have instant access to articles, blogs, news, and social networking
+55.9,243.7,254.2: websites. (3) Even with all these immediate sources, one of the best resources also happens to be one of
+55.9,256.7,267.2: the oldest. (4) The public library is a great place for people to get information.
+55.9,281.7,292.2: (5) The public library serves a truly critical role in promoting community. (6) There has been an
+55.9,294.7,305.2: explosion of digital media in recent years. (7) This now allows people in different places to communicate
+55.9,307.7,318.2: almost instantaneously. (8) And yet many people complain of feeling more isolated and alone than ever
+55.9,320.7,331.2: before. (9) The library stands in a unique position to help community members meet this universal need
+55.9,333.7,344.2: for human connection and companionship.
+55.9,358.7,369.2: (10) Furthermore, libraries offer free assistance, training programs, and Internet access to all people.
+55.9,371.7,382.2: (11) A student who does not have a computer at home can research and type a paper for school. (12) An
+55.9,384.7,395.2: unemployed adult without access to the Internet can make use of library resources to find job
+55.9,397.7,408.2: opportunities. (13) A library’s selection of materials, known as its collection, can include classic novels,
+55.9,410.7,421.2: reference books, magazines, periodicals, CDs, and DVDs. (14) The stuff that is found at the library can
+55.9,423.7,434.2: help people get a lot done.
+55.9,448.7,459.2: (15) Public libraries also offer a variety of resources to community members. (16) One important
+55.9,461.7,472.2: resource is the local librarian, who does far more than check out books and collect fines. (17) Other
+55.9,474.7,485.2: library resources include free or low-cost tutoring and training programs. (18) Additionally, lectures,
+55.9,487.7,498.2: book groups, and town meetings promote critical thinking and community engagement. (19) A typical
+55.9,500.7,511.2: librarian holds a master’s degree and can help library patrons navigate through the flood of information
+55.9,513.7,524.2: available in print or on the Internet.
+55.9,538.7,549.2: (20) The hallmark of a public library is that its materials and services are accessible to all. (21) The
+55.9,551.7,562.2: library connects people to a network of information and resources and is an important part of a
+55.9,564.7,575.2: community.
+49.9,597.0,607.5: 6. Which sentence should replace sentence 4 to best introduce the main claim of the passage?
+73.9,619.4,630.0: E. The public library is a valuable resource that all members of a community should use.
+73.9,635.9,646.4: F. Going to the public library to gather information can be a valuable learning experience.
+73.9,652.4,662.9: G. The resources available at a public library are most useful for students.
+73.9,668.9,679.4: H. A public library offers many services to those who are interested in improving their communities.
+49.6,756.7,767.6: Form B 95 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 5 ===
+49.6,59.4,69.9: 7. What is the best way to combine sentences 6 and 7 to clarify the relationship between ideas?
+73.6,81.9,92.4: A. There has been an explosion of digital media in recent years, since people in different places can
+91.6,94.9,105.4: now communicate almost instantaneously.
+73.6,111.4,121.9: B. There has been an explosion of digital media in recent years, although it now allows people in
+91.6,124.4,134.9: different places to communicate almost instantaneously.
+73.6,140.9,151.4: C. In addition to the explosion of digital media in recent years, people in different places can
+91.6,153.9,164.4: communicate almost instantaneously.
+73.6,170.4,180.9: D. With the explosion of digital media in recent years, people in different places can now
+91.6,183.4,193.9: communicate almost instantaneously.
+49.6,215.7,226.2: 8. Which sentence can best follow and support sentence 9?
+73.6,238.1,248.7: E. Libraries, which have been around for centuries and are found throughout the world today, help
+91.6,251.1,261.6: preserve the history of a community.
+73.6,267.6,278.2: F. The public library is often used as a place for community leaders and organizers to host
+91.6,280.6,291.1: community events, such as hearings or town halls.
+73.6,297.1,307.7: G. Libraries rely on a combination of local, state, and federal dollars to provide the kinds of services
+91.6,310.1,320.6: and programs that community members have come to expect.
+73.6,326.6,337.2: H. At a public library, people can interact with others through a variety of programs, including teen
+91.6,339.6,350.1: book clubs, toddler story times, and senior-citizen exercise classes.
+49.6,372.0,382.5: 9. Which transition word or phrase should be added to the beginning of sentence 12?
+73.6,394.4,404.9: A. For example
+73.6,410.9,421.4: B. Similarly
+73.6,427.4,437.9: C. Indeed
+73.6,443.9,454.4: D. As a result
+49.6,476.2,486.7: 10. Which revision of sentence 14 best maintains the formal style established in the passage?
+73.6,498.7,509.2: E. The resources available at the library can help people accomplish many tasks.
+73.6,515.2,525.7: F. All the materials you can get at the library can help you do many different tasks.
+73.6,531.7,542.2: G. Everything in the library can help people work on a lot of different things.
+73.6,548.2,558.7: H. The resources you can find at the library can help you do whatever you need to do.
+49.6,580.5,591.0: 11. Where should sentence 19 be moved to improve the organization of the fourth paragraph
+73.6,593.5,604.0: (sentences 15–19)?
+73.6,616.0,626.5: A. to the beginning of the paragraph (before sentence 15)
+73.6,632.5,643.0: B. between sentences 15 and 16
+73.6,649.0,659.5: C. between sentences 16 and 17
+73.6,665.4,676.0: D. between sentences 17 and 18
+49.6,756.7,767.6: Form B 96 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 6 ===
+49.6,58.4,68.9: 12. Which sentence is irrelevant to the argument presented in the passage and should be deleted?
+73.6,80.9,91.5: E. sentence 3
+73.6,97.4,107.9: F. sentence 11
+73.6,113.9,124.4: G. sentence 13
+73.6,130.4,140.9: H. sentence 20
+49.6,162.7,173.2: 13. Which concluding sentence should be added after sentence 21 to support the argument presented in
+73.6,175.7,186.2: the passage?
+73.6,198.2,208.7: A. Finally, patrons of the public library can grow in both their interpersonal life and their level of
+91.6,211.2,221.7: community engagement.
+73.6,227.7,238.2: B. Clearly, it is in the best interest of community members to maintain, support, and use their
+91.6,240.7,251.2: public library.
+73.6,257.2,267.7: C. After all, the public library has been a part of American communities since the first one was
+91.6,270.2,280.7: founded in 1833.
+73.6,286.7,297.2: D. In the end, community leaders must work together to find ways to generate more involvement in
+91.6,299.7,310.2: public library events.
+49.6,756.7,767.6: Form B 97 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 7 ===
+204.0,60.4,76.4: Moving Through Mountains
+55.6,89.5,100.0: (1) An age-old proverb says that necessity is the mother of invention. (2) Centuries of human ingenuity
+55.6,102.5,113.0: in the face of obstacles prove this to be true. (3) For many years the Swiss Alps, a mountain range
+55.6,115.5,126.0: spanning southern Switzerland and northern Italy, were such an obstacle. (4) Roads and railways had to
+55.6,128.5,139.0: navigate around the mountains or through winding tunnels inside the mountains. (5) Transportation of
+55.6,141.5,152.0: people and goods was difficult and time consuming. (6) In 2016 these burdens were eased with the
+55.6,154.5,165.0: completion of the Gotthard Base Tunnel.
+55.6,179.5,190.0: (7) Construction of the high-speed railway tunnel began in 1996. (8) The tunnel was created through the
+55.6,192.5,203.0: use of tunnel-boring machines, which are giant drills with a rotating head. (9) Each of the tunnel-boring
+55.6,205.5,216.0: machines used during the construction of the tunnel was about the length of four football fields arranged
+55.6,218.5,229.0: end-to-end. (10) During the seventeen-year construction period, 28 million tons of rock were removed,
+55.6,231.5,242.0: enough to rebuild the Great Pyramid at Giza five times. (11) This massive construction project is
+55.6,244.5,255.0: reported to have cost $12 billion. (12) After that, 4 million cubic meters of concrete, or enough concrete to
+55.6,257.5,268.0: build eighty-four Empire State Buildings, were used to construct and support the tunnel.
+55.6,282.5,293.0: (13) By 2020 the high-speed railway will carry more than 250 freight trains and fifty-five passenger
+55.6,295.5,306.0: trains a day, with most traveling at speeds of around 100 to 125 miles an hour. (14) It will be faster for
+55.6,308.5,319.0: people to travel between northern and southern Europe. (15) The travel time between the European
+55.6,321.5,332.0: cities of Zurich, Switzerland, and Milan, Italy, will be reduced by an hour. (16) Many European leaders
+55.6,334.5,345.0: compare the Gotthard Base Tunnel to the Channel Tunnel, a 33-mile underwater tunnel that connects
+55.6,347.5,358.0: the United Kingdom and France. (17) While there is no roadway in the Channel Tunnel, people can
+55.6,360.5,371.0: drive their cars onto special trains that will carry vehicles through to the other side.
+55.6,385.5,396.0: (18) The Gotthard Base Tunnel project was successful, so now there is renewed interest in solving other
+55.6,398.5,409.0: problems associated with traveling to and from certain places. (19) Just as traffic congestion in major
+55.6,411.5,422.0: cities led to the construction of underground local transportation, natural formations, such as mountain
+55.6,424.5,435.0: ranges, have also sent people underground for faster, easier, and cheaper methods of transportation
+55.6,437.5,448.0: across larger areas.
+49.6,469.7,480.2: 14. What is the best way to combine sentences 4 and 5 to clarify the relationship between ideas?
+73.6,492.2,502.7: E. Roads and railways had to navigate around the mountains or through winding tunnels inside the
+91.6,505.2,515.7: mountains, making the transportation of people and goods difficult and time consuming.
+73.6,521.7,532.2: F. Even though roads and railways had to navigate around the mountains or through winding
+91.6,534.7,545.2: tunnels inside the mountains, the transportation of people and goods was difficult and time
+91.6,547.7,558.2: consuming.
+73.6,564.2,574.7: G. Roads and railways had to navigate around the mountains or through winding tunnels inside the
+91.6,577.2,587.7: mountains, emphasizing that the transportation of people and goods was difficult and time
+91.6,590.2,600.7: consuming.
+73.6,606.7,617.2: H. Roads and railways had to navigate around the mountains or through winding tunnels inside the
+91.6,619.7,630.2: mountains, since the transportation of people and goods was difficult and time consuming.
+49.6,756.7,767.6: Form B 98 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 8 ===
+49.6,58.4,68.9: 15. Which sentence should follow sentence 6 to most clearly introduce the topic of the passage?
+73.6,80.9,91.4: A. The Gotthard Base Tunnel was approved by Swiss voters in 1992 and was funded by tolls, fuel
+91.6,93.9,104.4: taxes, and government loans.
+73.6,110.4,120.9: B. Leaders from several European countries attended the opening ceremonies for the Gotthard Base
+91.6,123.4,133.9: Tunnel.
+73.6,139.9,150.4: C. The Gotthard Base Tunnel is the world’s longest and deepest railway tunnel, stretching
+91.6,152.9,163.4: 35.5 miles straight through the base of the Swiss Alps.
+73.6,169.4,179.9: D. The construction of the Gotthard Base Tunnel continues to help reduce the number of freight
+91.6,182.4,192.9: trucks on the roadways.
+49.6,214.7,225.2: 16. Which sentence could be added to follow and support sentence 8?
+73.6,237.2,247.7: E. The tunnel-boring machine is helpful to tunnel builders in the modern era and has been an
+91.6,250.2,260.7: improvement over dynamite.
+73.6,266.7,277.2: F. These enormous tunnel-boring machines function somewhat like a cheese grater, grinding slowly
+91.6,279.7,290.2: through rock and stone.
+73.6,296.2,306.7: G. Engineers had considered making a tunnel under the mountains for many years, but it was
+91.6,309.2,319.7: impossible to do without modern tunnel-boring machines.
+73.6,325.7,336.2: H. Different types of tunnel-boring machines are used depending on the geology of the area where
+91.6,338.7,349.2: the tunnel is being created.
+49.6,371.0,381.5: 17. Where should sentence 12 be moved to improve the organization of the second paragraph
+73.6,384.0,394.5: (sentences 7–12)?
+73.6,406.5,417.0: A. to the beginning of the paragraph (before sentence 7)
+73.6,422.9,433.5: B. between sentences 7 and 8
+73.6,439.4,450.0: C. between sentences 9 and 10
+73.6,455.9,466.5: D. between sentences 10 and 11
+49.6,488.3,498.8: 18. Which transition word or phrase should be added to the beginning of sentence 15?
+73.6,510.7,521.3: E. Even so
+73.6,527.2,537.8: F. Additionally
+73.6,543.7,554.2: G. For example
+73.6,560.2,570.7: H. Therefore
+49.6,756.7,767.6: Form B 99 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 9 ===
+49.6,58.4,68.9: 19. Which sentence is irrelevant to the topic presented in the passage and should be removed?
+73.6,80.9,91.4: A. sentence 3
+73.6,97.4,107.9: B. sentence 11
+73.6,113.9,124.4: C. sentence 13
+73.6,130.4,140.9: D. sentence 17
+49.6,162.7,173.2: 20. Which concluding sentence should be added after sentence 19 to support the topic presented in the
+73.6,175.7,186.2: passage?
+73.6,198.2,208.7: E. There is proof that underground tunnels like the Gotthard Base Tunnel are beneficial to the
+91.6,211.2,221.7: economy of the surrounding areas.
+73.6,227.7,238.2: F. The Gotthard Base Tunnel is an extraordinary example of how human ingenuity and persistence
+91.6,240.7,251.2: can overcome great obstacles.
+73.6,257.2,267.7: G. The completion of the Gotthard Base Tunnel shows that people can work together to achieve
+91.6,270.2,280.7: important goals.
+73.6,286.7,297.2: H. The Swiss government is confident that the economic impact of the Gotthard Base Tunnel will be
+91.6,299.7,310.2: worth its construction cost.
+49.6,756.7,767.6: Form B 100 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 10 ===
+199.9,69.4,89.4: R C
+214.3,73.3,88.3: EADING OMPREHENSION
+252.4,95.8,109.8: QUESTIONS 21–57
+49.9,119.1,129.9: DIRECTIONS: Read the passage below and answer the questions following it. Base your answers on
+49.9,131.9,142.4: information contained only in the passage. You may reread a passage if you need to. Mark the best
+49.9,144.4,154.9: answer for each question.
+67.9,196.3,207.2: On Monday evening, September 26, 1960, camera while answering questions, appearing
+67.9,209.3,220.2: seventy million Americans turned on their to speak directly to his viewers and give
+67.9,222.3,233.2: TV sets to view the first televised political 40 them straight answers. Nixon was recovering
+67.9,235.3,246.2: debate in a campaign for the presidency of from a severe bout of influenza, and he
+67.9,248.3,259.2: the United States. As of that date, it was by appeared tense and tired. He looked at the
+54.3,251.8,257.8: 5
+67.9,261.3,272.2: far the largest number ever to witness a reporters who asked the questions instead of
+67.9,274.3,285.2: political discussion. The novelty of the event at the camera, giving some viewers the
+67.9,287.3,298.2: drew even those with little or no interest in 45 impression that he avoided eye contact with
+67.9,300.3,311.2: politics. his audience and thus suggesting that he was
+343.9,313.3,323.8: not trustworthy. Most commentators agreed
+52.6,325.7,336.8: 10 The candidates, Republican Vice President that Kennedy gained from the encounter:
+67.9,338.7,349.8: Richard M. Nixon and Democratic Senator many viewers who had previously thought he
+67.9,351.7,362.8: John F. Kennedy, had agreed to face each lacked the maturity necessary to be president
+328.6,355.4,361.4: 50
+67.9,364.7,375.8: other and the nation in four one-hour were won over by his charm, poise, and
+67.9,377.7,388.8: sessions that the press dubbed the “Great confident manner.
+67.9,390.7,401.2: Debates.” Many expected Vice President
+52.6,393.8,399.8: 15
+67.9,403.3,414.2: Nixon to win the debates easily. He was While far fewer people watched the three
+67.9,416.3,427.2: ahead in the newspaper polls, he was an later sessions, much discussion ensued
+67.9,429.3,440.2: experienced public speaker, and he had 55 regarding the influence of the Great Debates
+67.9,442.3,453.2: served as vice president for nearly on the outcome of the 1960 presidential
+67.9,455.3,466.2: eight years. Senator Kennedy was less well- election. Some feared that the better TV
+52.6,458.8,464.8: 20
+67.9,468.3,479.2: known and, at forty-three, was the youngest performer was bound to come across as being
+67.9,481.3,492.2: man ever to run for president. Throughout the better candidate. “Is this a good way to
+67.9,494.3,505.2: the presidential race, his opponents criticized 60 judge a person’s ability to serve as president
+67.9,507.3,518.2: him for his relative youth and inexperience. of the United States?” they asked.
+67.9,532.3,543.2: By mutual agreement, the first session was Kennedy ultimately won the election, but it
+52.6,535.8,541.8: 25
+67.9,545.3,556.2: limited to domestic issues within the United was by the narrowest popular vote margin in
+67.9,558.3,569.2: States. Each candidate was given more than eighty years. Some observers
+67.9,571.3,582.2: eight minutes to make his opening remarks. 65 concluded that, had the Great Debates been
+67.9,584.3,595.2: During the remainder of the hour, the broadcast on radio and not on television,
+67.9,597.3,608.2: candidates took turns responding to Nixon would have won.
+52.6,600.8,606.8: 30
+67.9,610.7,621.2: questions posed by selected reporters. Both
+67.9,623.7,634.2: Kennedy and Nixon dealt with the issues
+67.9,636.7,647.2: calmly and carefully. Viewers who expected to
+67.9,649.7,660.2: see a free-for-all were disappointed. The way
+67.9,662.7,673.2: the two men appeared on the television
+52.6,665.8,671.8: 35
+67.9,675.7,686.2: screen, however, may have been as important
+67.9,688.7,699.2: as what they said. Kennedy looked at the
+49.6,756.7,767.6: Form B 101 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 11 ===
+49.6,58.4,68.9: 21. Which of the following best tells what this 24. How did Kennedy benefit from the debates?
+73.6,71.4,81.9: passage is about?
+343.6,81.0,91.5: E. He was able to prove that he knew more
+73.6,94.0,104.5: A. the reasons Nixon was expected to defeat about domestic issues than Nixon did.
+91.6,106.5,117.5: Kennedy in the 1960 election F. He was able to display favorable personal
+73.6,119.5,130.0: B. the discussion of domestic issues in the characteristics despite his inexperience.
+91.6,132.0,143.0: 1960 presidential debates G. He was able to show that he had a more
+73.6,145.0,155.5: C. the events related to the first televised positive relationship with reporters than
+91.6,158.0,168.5: presidential debate Nixon did.
+73.6,170.5,181.0: D. the qualifications of Nixon and Kennedy H. He was able to persuade viewers to agree
+91.6,183.5,194.0: for the role of president with his positions on domestic issues.
+49.6,215.7,226.2: 22. Which of the following would have been the 25. What evidence does the author provide to
+73.6,228.7,239.2: most likely result if the candidates had not support the last sentence of the passage?
+73.6,241.7,252.2: debated on television in 1960?
+343.6,251.2,261.8: A. Kennedy and Nixon drew much smaller
+73.6,264.2,274.8: E. Kennedy would have won the election audiences for their later debates.
+91.6,276.7,287.8: anyway. B. Kennedy and Nixon responded to
+73.6,289.7,300.3: F. Nixon would have had a better chance of questions calmly and carefully.
+91.6,302.2,313.3: winning the election. C. Nixon participated in the debate despite
+73.6,315.2,325.8: G. The election results would have been having been recently ill.
+91.6,327.8,338.8: much closer. D. Nixon was more experienced and well-
+73.6,340.8,351.3: H. The debates would not have become a known than Kennedy.
+91.6,353.8,364.3: tradition.
+319.6,373.0,383.5: 26. Why did people who were not normally
+49.6,386.0,396.5: 23. Which of the following did critics in 1960 interested in politics tune in to the first of the
+73.6,399.0,409.5: think could be an undesirable consequence of Great Debates?
+73.6,412.0,422.5: televised presidential debates?
+343.6,421.5,432.0: E. Vice President Nixon was a popular
+73.6,434.5,445.0: A. Candidates who are less well-known politician.
+91.6,447.0,458.0: would have to debate experienced F. Television had never before been used in
+91.6,460.0,471.0: politicians. this way.
+73.6,472.5,483.5: B. Candidates might have difficulty G. They had heard that Kennedy was young
+91.6,485.5,496.5: overcoming the pressure of being on live and charismatic.
+91.6,498.0,509.5: television. H. They wanted to see whether the
+73.6,511.0,522.0: C. Candidates would be evaluated based on newspaper polls were correct.
+91.6,524.5,535.0: their performance rather than their
+91.6,537.5,548.0: positions.
+73.6,550.0,560.5: D. Candidates would need to participate in
+91.6,563.0,573.5: multiple televised debates to fully cover
+91.6,576.0,586.5: important issues.
+49.6,756.7,767.6: Form B 102 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 12 ===
+63.6,68.3,79.2: If you have ever watched someone fall on the or liquid-like, regardless of friction or
+63.6,81.3,92.2: ice, you’ve seen slipperiness at work. But pressure. This notion was first proposed more
+63.6,94.3,105.2: have you wondered what makes ice slippery, than 150 years ago by physicist Michael
+63.6,107.3,118.2: or why skates or skis glide across ice so 40 Faraday. Faraday’s simple experiment
+63.6,120.3,131.2: easily? The answer might seem obvious: ice is illustrates this property: two ice cubes held
+49.9,123.8,129.8: 5
+63.6,133.3,144.2: smooth. Yet smoothness in itself does not against each other will fuse together. This
+63.6,146.3,157.2: explain slipperiness. Imagine, for example, happens, Faraday explained, because liquid
+63.6,159.3,170.2: skating on a smooth surface of glass or sheet on the cubes’ surfaces freezes solid when the
+63.6,172.3,183.2: metal. 45 surfaces make contact.
+63.6,197.3,208.2: Surprisingly, scientists do not fully Faraday’s hypothesis was overlooked, in part
+48.2,200.8,206.8: 10
+63.6,210.3,221.2: understand why ice is slippery. Past because scientists did not have the means to
+63.6,223.3,234.2: explanations of slipperiness have focused on detect molecular structures. However,
+63.6,236.3,247.2: friction and pressure. According to the technological advances during recent decades
+63.6,249.3,260.2: friction theory, a skate blade rubs across the 50 have allowed scientists to measure the thin
+63.6,262.3,273.2: ice, causing friction. The friction produces layer on the surface of ice. For example, in
+48.2,265.8,271.8: 15
+63.6,275.3,286.2: heat, melting the ice and creating a slippery, 1996, a chemist at Lawrence Berkeley
+63.6,288.3,299.2: microscopically thin layer of water for the Laboratory shot electrons at an ice surface
+63.6,301.3,312.2: skate to glide on. The friction theory, however, and recorded how they rebounded. The data
+63.6,314.3,325.2: cannot explain why ice is slippery even when 55 suggested that the ice surface remained
+63.6,327.3,338.2: someone stands completely motionless, liquid-like, even at temperatures far below
+48.2,330.8,336.8: 20
+63.6,340.3,351.2: creating no friction. freezing. Scientists speculate that water
+339.6,353.3,363.8: molecules on the ice surface are always in
+63.6,365.7,376.8: The pressure theory claims that pressure motion because there is nothing above them
+63.6,378.7,389.8: from a skate blade melts the ice surface, to hold them in place. The vibration creates a
+324.2,382.4,388.4: 60
+63.6,391.7,402.8: creating a slippery layer of water. The water slippery layer of molecules. According to this
+48.2,404.7,415.8: 25 refreezes when the pressure is lifted. Science interpretation of the Lawrence Berkeley
+63.6,417.7,428.8: textbooks typically cite this explanation, but Laboratory experiments, the molecules move
+63.6,430.7,441.8: many scientists disagree, claiming that the only up and down; if they also moved side to
+63.6,443.7,454.8: pressure effect is not great enough to melt side, they would constitute a true liquid.
+324.2,447.4,453.4: 65
+63.6,456.7,467.8: the ice. Nor can the pressure theory explain Thus it could be said that people are skating
+48.2,469.7,480.8: 30 why someone wearing flat-bottomed shoes— on wildly vibrating molecules!
+63.6,482.7,493.2: which have a greater surface area than skate
+63.6,495.3,506.2: blades and thus exert less pressure per The phenomenon of a slippery, liquid-like
+63.6,508.3,519.2: square inch—can glide across the ice or even surface is not limited to ice, although ice is
+63.6,521.3,532.2: go sprawling. 70 the most common example. Lead crystals and
+339.6,534.3,544.8: even diamond crystals, which are made of
+48.2,546.7,557.8: 35 During the 1990s, another theory found carbon, also show this property under certain
+63.6,559.7,570.8: acceptance: the thin top layer of ice is liquid, temperature and pressure conditions.
+49.6,756.7,767.6: Form B 103 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 13 ===
+49.6,58.4,68.9: 27. Which of the following best tells what this 31. According to researchers at the Lawrence
+73.6,71.4,81.9: passage is about? Berkeley Laboratory, why is the surface of ice
+343.6,84.4,94.9: liquid-like rather than a true liquid?
+73.6,93.9,104.5: A. the circumstances that allow ice to melt
+73.6,106.5,117.5: B. the theories behind what makes ice A. because electrons rebound from the ice
+91.6,119.5,130.5: slippery surface
+73.6,132.0,143.0: C. the discoveries of Michael Faraday B. because the ice surface molecules vibrate
+73.6,144.5,156.0: D. the processes of freezing and melting only up and down
+343.6,158.0,168.5: C. because the ice surface is a different
+361.6,171.0,181.5: temperature
+49.6,176.7,187.2: 28. What is the most likely reason that the
+343.6,183.5,194.0: D. because the ice surface is under pressure
+73.6,189.7,200.2: author mentions lead and diamond crystals
+73.6,202.7,213.2: in the last paragraph?
+319.6,217.0,227.5: 32. According to the passage, which of the
+73.6,225.2,235.8: E. to point out that solids other than ice
+343.6,230.0,240.5: following undermines the friction theory of
+91.6,238.3,248.8: have slippery surfaces
+343.6,243.0,253.5: slipperiness?
+73.6,250.7,261.3: F. to suggest that ice, lead, and diamonds
+91.6,263.8,276.0: are composed of the same materials E. a person wearing flat-bottomed shoes
+73.6,276.3,289.0: G. to cast doubt on Faraday’s theory of gliding across an icy surface
+91.6,289.3,301.5: slipperiness F. two ice cubes fusing together
+73.6,301.8,314.0: H. to illustrate the effects of temperature G. electrons bouncing off the surface of ice
+91.6,314.8,326.5: and pressure on slipperiness H. a person sliding while standing immobile
+361.6,329.0,339.5: on an icy surface
+49.6,347.0,357.5: 29. According to Faraday, why do two ice cubes
+73.6,360.0,371.7: fuse when held together? 33. The author includes details about the
+343.6,374.2,384.7: pressure theory in the third paragraph in
+73.6,382.5,393.0: A. Friction causes the surfaces of the ice to
+343.6,387.2,397.7: order to
+91.6,395.5,406.0: melt and refreeze.
+73.6,408.0,420.3: B. The applied pressure forces the surfaces A. highlight that there are different ideas
+91.6,421.1,433.3: of the cubes to stick to each other. regarding this theory about the
+73.6,433.5,446.3: C. Liquid layers on the surfaces freeze slipperiness of ice.
+91.6,446.6,458.8: together when the surfaces make contact. B. describe the most recently accepted
+73.6,459.0,471.8: D. The liquid layers on the surfaces of the theory for the slipperiness of ice.
+91.6,472.1,484.3: ice are perfectly smooth. C. emphasize that this theory has been
+361.6,486.8,497.3: tested by scientists who study the
+361.6,499.8,510.3: slipperiness of ice.
+49.6,504.3,514.8: 30. What is the most likely reason that the
+343.6,512.3,522.8: D. show that there is scientific support for a
+73.6,517.3,527.8: author mentions the 1996 experiment at
+361.6,525.3,535.8: plausible theory about the slipperiness of
+73.6,530.3,540.8: Lawrence Berkeley Laboratory?
+361.6,538.3,548.8: ice.
+73.6,552.8,563.3: E. to provide evidence about the surface of
+91.6,565.8,576.3: ice
+73.6,578.3,588.8: F. to illustrate that studying ice molecules is
+91.6,591.3,601.8: difficult
+73.6,603.8,614.4: G. to show how experiments on ice are
+91.6,616.8,627.3: inconclusive
+73.6,629.3,639.9: H. to explain why ice cubes freeze together
+49.6,756.7,767.6: Form B 104 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 14 ===
+63.6,68.3,79.2: One of the books that has done the most to people may use and enjoy, but not destroy, the
+63.6,81.3,92.2: alert the world to the dangers of riches of the earth.
+63.6,94.7,105.2: environmental degradation was George
+63.6,106.3,118.2: Perkins Marsh’s Man and Nature. Its Furthermore, he asserted that everything in
+63.6,119.3,131.2: message—that Western society was in the nature is significant and that even the tiniest
+49.9,123.8,129.8: 5
+63.6,132.3,144.2: process of causing irreparable harm to the 50 organism affects the fragile environmental
+63.6,145.3,157.2: environment—greatly influenced ecologists balance. His belief that drastic alteration of
+63.6,158.3,170.2: during the beginning of the modern this balance would be dangerous is now
+63.6,171.3,183.2: environmentalist movement in the 1960s. accepted as a fundamental principle of
+63.6,184.3,196.2: Marsh was not, however, part of this modern environmental science.
+48.2,188.8,194.8: 10
+63.6,198.7,209.2: movement. Surprisingly, Man and Nature
+63.6,209.3,222.2: was first published in 1864. 55 Although he pointed out environmental
+339.6,222.3,232.8: damage caused by irresponsible human
+63.6,235.3,247.2: Marsh first observed the environmentally activities, Marsh did not oppose every human
+63.6,248.3,260.2: destructive effects of human activities while alteration to the environment. To him, the
+63.6,261.3,273.2: growing up in Vermont in the early goal was proper management, not a return to
+48.2,265.8,271.8: 15
+63.6,274.3,286.2: nineteenth century. The heavy demand for 60 wilderness conditions. People should consider
+63.6,287.3,299.2: firewood had depleted the forests, and the consequences of their actions, he wrote,
+63.6,300.3,312.2: extensive sheep grazing had stripped the and become “co-worker[s] with nature.”
+63.6,313.3,325.2: land. The result was flooding and soil erosion. Marsh praised the Suez Canal, the human-
+63.6,326.3,338.2: Furthermore, streams were fouled by wastes made waterway between the Mediterranean
+48.2,330.8,336.8: 20
+63.6,339.3,351.2: dumped from numerous mills and dye 65 Sea and the Gulf of Aden, as “the greatest
+63.6,352.3,364.2: houses. and most truly cosmopolite physical
+339.6,365.3,375.8: improvement ever undertaken by man.” He
+63.6,378.3,389.2: Much later in his life, after careers in law, believed that the advantages of the canal—
+63.6,391.3,402.2: business, farming, and politics, Marsh served improved transportation and commerce—
+48.2,404.3,415.2: 25 as ambassador to Italy. There he noticed land 70 would outweigh any environmental damage.
+63.6,417.3,428.2: abuse similar to what he had seen in Yet he also warned of possible unintended
+63.6,430.3,441.2: Vermont. Overgrazing and forest consequences, such as destructive plants and
+63.6,443.3,454.2: mismanagement had rendered desolate areas animals spreading from one body of water to
+63.6,456.3,467.2: that had been productive farmland since the the other.
+63.6,469.7,480.2: days of the Roman Empire. Marsh attributed
+48.2,472.8,478.8: 30
+63.6,481.3,493.2: this to what he called “man’s ignorant 75 Marsh was considered a radical thinker
+63.6,494.3,506.2: disregard for the laws of nature.” during his lifetime. By the late nineteenth
+339.6,507.3,517.8: century, however, his writings, along with
+63.6,520.3,531.2: In Italy, Marsh began to organize his those of John Muir, Henry David Thoreau,
+63.6,533.3,544.2: observations and theories. He wrote in a way and others, had inspired what became known
+48.2,546.3,557.2: 35 intended to educate readers about the impact 80 as the conservation movement. The
+63.6,559.3,570.2: of industrial and agricultural practices on the conservationists of that time sought to
+63.6,572.3,583.2: environment. In Man and Nature, he educate the public that wilderness areas
+63.6,585.3,596.2: evaluated the important relationships were worth preserving, and they were
+63.6,598.3,609.2: between animals and plants, discussed responsible for creating the National Park
+48.2,611.3,622.2: 40 forestry practices in great detail, and 85 Service and the National Forest Service.
+63.6,624.7,635.2: analyzed the ways natural water supplies are
+63.6,637.7,648.2: affected by human use.
+63.6,662.7,673.2: Man and Naturechallenged the popular
+63.6,675.7,686.2: belief that nature could heal any damage
+63.6,688.7,699.2: that people inflict upon it. Marsh argued that
+48.2,691.8,697.8: 45
+49.6,756.7,767.6: Form B 105 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 15 ===
+49.6,58.4,68.9: 34. Which statement best describes the central 36. What is the most likely reason the author
+73.6,71.4,81.9: idea of the passage? uses the word “surprisingly” in line 11?
+73.6,93.9,104.4: E. Marsh’s experience growing up on a farm E. to argue that Marsh’s ideas are more
+91.6,106.9,117.4: allowed him to witness firsthand how applicable in the present than they were
+91.6,119.9,130.4: human demands on nature can lead to during his lifetime
+91.6,132.4,143.4: problems, and as an adult he wrote one of F. to show that Marsh introduced ideas a
+91.6,145.4,156.4: the first books about conservation. century before they became widely
+73.6,158.4,169.0: F. Marsh challenged the notion that nature accepted
+91.6,170.9,181.9: could repair the damage people cause to G. to emphasize that Marsh was unaware
+91.6,183.9,194.9: it, but he also supported human-made that his ideas would help begin a
+91.6,196.9,207.9: modifications to nature that improve conservation movement
+91.6,209.4,220.9: transportation and commerce. H. to prove that there would be fewer issues
+73.6,222.4,233.5: G. Marsh’s ideas about the environment with the environment today if people had
+91.6,235.4,246.4: were considered radical in his lifetime, accepted Marsh’s ideas earlier
+91.6,248.9,259.4: but they later gained popularity during
+91.6,261.9,272.4: the environmental movement in the
+319.6,267.7,278.2: 37. Which evidence supports the idea that
+91.6,274.9,285.4: twentieth century.
+343.6,280.7,291.2: Marsh’s theories about nature were accurate?
+73.6,287.4,297.9: H. Marsh was a radical thinker who believed
+91.6,300.4,313.7: that people’s actions could dramatically A. the details about Marsh’s observations of
+91.6,313.4,326.7: affect nature, and his writings are environmental degradation
+91.6,326.4,339.2: considered foundational to the B. the details about how Marsh’s writing
+91.6,339.4,352.2: conservation movement. inspired a conservation movement
+343.6,354.2,364.7: C. the details about how Marsh’s ideas are
+361.6,367.2,377.7: essential to modern environmental
+49.6,371.7,382.2: 35. Marsh believed that the people of his time
+361.6,380.2,390.7: science
+73.6,384.7,395.2: caused harm to the environment mostly
+343.6,392.7,403.2: D. the details about Marsh’s opinion on
+73.6,397.7,408.2: because
+361.6,405.7,416.2: human alterations to the environment
+73.6,420.2,430.7: A. they assumed future generations would
+91.6,433.2,443.7: solve any environmental problems.
+73.6,445.7,456.2: B. they thought industrial progress was
+91.6,458.7,469.2: more important than protecting nature.
+73.6,471.2,481.7: C. they were unwilling to change farming
+91.6,484.2,494.7: and waste-disposal practices.
+73.6,496.7,507.2: D. they lacked knowledge of nature and
+91.6,509.7,520.2: natural processes.
+49.6,756.7,767.6: Form B 106 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 16 ===
+49.6,58.4,68.9: 38. Which detail about Marsh provides support 39. Which of Marsh’s ideas most influenced the
+73.6,71.4,81.9: for the author’s statement in lines 55–58? environmental movement of the 1960s?
+73.6,93.9,104.5: E. his reputation as a radical thinker A. Some human alterations to the
+73.6,106.5,117.5: F. his contribution to the conservation environment are necessary.
+91.6,119.5,130.0: movement B. People lack an understanding of the
+73.6,132.0,143.0: G. his experience working as an ambassador environment.
+73.6,144.5,155.5: H. his approval of beneficial human-made C. Human activities could damage the
+91.6,157.5,168.5: projects in nature environment.
+343.6,170.5,181.0: D. Environmental degradation has been
+361.6,183.5,194.0: occurring for many years.
+49.6,756.7,767.6: Form B 107 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 17 ===
+63.6,68.3,79.2: Anyone who has watched TV news coverage of work, from sawmills and drainage
+63.6,81.3,92.2: of a hurricane has seen how destructive wind pumping to processing goods, such as dyes,
+63.6,94.3,105.2: energy can be. But the power of the wind can 40 tobacco, cocoa, and spices.
+63.6,107.7,118.2: also be put to constructive use. From
+63.6,119.3,131.2: sailboats to old-fashioned windmills to high- In the 1700s, as steam engines gained in
+49.9,123.8,129.8: 5
+63.6,132.3,144.2: tech wind turbines, people have devised ways popularity, the use of wind machines for
+63.6,145.3,157.2: to harness wind energy for thousands of many types of work declined. However,
+63.6,158.3,170.2: years. windmills still played an essential role in
+339.6,171.3,181.8: pumping water on farms throughout the
+324.2,174.4,180.4: 45
+63.6,184.3,195.2: The first known attempt to use wind power American West and Midwest. Between 1850
+63.6,197.3,208.2: was the sailboat. Ancient shipbuilders and 1970, over six million small windmills
+48.2,200.8,206.8: 10
+63.6,210.3,221.2: understood how to use forces like lift and were installed on American farms for
+63.6,223.3,234.2: momentum, even if they could not explain watering livestock and meeting other water
+63.6,236.3,247.2: those forces scientifically. The principles 50 needs. In many remote areas even today,
+63.6,249.3,260.2: behind sailing led to the development of the livestock production would be impossible
+63.6,262.3,273.2: windmill. The first known windmills without the use of windmills to provide
+48.2,265.8,271.8: 15
+63.6,275.3,286.2: originated in Persia, an area that is now Iran, water.
+63.6,288.7,299.2: as early as A.D. 500. They were created to
+63.6,300.3,312.2: help with the demanding chores of grinding Beginning in the late nineteenth century,
+63.6,313.3,325.2: grain and pumping water. By the tenth 55 windmills were adapted to generate
+63.6,326.3,338.2: century, windmills were used throughout electricity. During the 1930s and ’40s, thin-
+48.2,330.8,336.8: 20
+63.6,339.3,351.2: central Asia; they were used in China as bladed windmills provided electricity for
+63.6,352.3,364.2: early as the thirteenth century. hundreds of thousands of farms across the
+339.6,365.3,375.8: United States. By the 1950s, however, power
+63.6,378.3,389.2: In Europe, windmills came into widespread 60 lines connected almost every household in
+63.6,391.3,402.2: use during the twelfth century. As in other America to a central power source, such as a
+63.6,404.3,415.2: parts of the world, they were used for milling utility company. After that, there was little
+48.2,407.8,413.8: 25
+63.6,417.3,428.2: grain and pumping water. Windmills replaced need for wind turbines until the energy crisis
+63.6,430.3,441.2: the water wheel, which was turned by the of the 1970s. At that time, interest in wind
+63.6,443.3,454.2: movement of running water over paddles 65 turbines was renewed due to rising energy
+63.6,456.3,467.2: mounted around a wheel. The windmill was costs and concern about the future
+63.6,469.3,480.2: more adaptable and efficient than the water availability of fossil fuels, such as oil, coal,
+48.2,472.8,478.8: 30
+63.6,482.3,493.2: wheel and quickly became popular. For and natural gas. The last several decades
+63.6,495.3,506.2: example, Holland, famous for its windmills, have seen the development of “wind farms,”
+63.6,508.3,519.2: used the machines to pump seawater away 70 clusters of wind turbines that generate
+63.6,521.3,532.2: from low-lying coastal bogs. This allowed the electricity. Efficient, clean, and fairly
+63.6,534.3,545.2: Dutch to reclaim large areas of land from the inexpensive to operate, wind farms may
+48.2,537.8,543.8: 35
+63.6,547.3,558.2: sea. Windmills eventually became prove to be as important in the future as
+63.6,560.3,571.2: sophisticated enough for use in a broad range earlier windmills were in the past.
+49.6,756.7,767.6: Form B 108 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 18 ===
+49.6,58.4,68.9: 40. Which of the following best tells what this 43. Why were fewer American farms dependent
+73.6,71.4,81.9: passage is about? on wind machines for electrical power after
+343.6,84.4,94.9: the 1950s?
+73.6,93.9,104.4: E. the ways people have harnessed wind
+91.6,106.9,117.4: power throughout history A. The energy crisis had prompted interest
+73.6,119.4,130.4: F. reasons for developing wind farms to in other fuel sources.
+91.6,132.4,142.9: generate electricity B. Coal and natural gas could generate more
+73.6,144.9,155.9: G. how windmills are used in the United power than wind turbines.
+91.6,157.9,168.4: States C. Centralized power systems connected
+73.6,170.4,181.4: H. why windmills were modified to generate most places.
+91.6,183.4,193.9: electricity D. Wind farms had reduced the need for
+361.6,196.4,206.9: individual windmills.
+49.6,215.7,226.2: 41. What evidence best supports the idea that
+73.6,228.7,239.2: windmills were important resources in the 44. Which of the following best expresses the
+73.6,241.7,252.2: western United States? author’s opinion regarding the future use of
+343.6,254.7,265.2: wind energy?
+73.6,264.2,274.7: A. the details about the development and
+91.6,277.2,287.7: use of wind farms E. Wind farming methods are unlikely to
+73.6,289.7,300.7: B. the details about how windmills provided increase electrical output.
+91.6,302.7,313.2: water for farms and livestock F. Wind farms will most likely be used to
+73.6,315.2,326.2: C. the details about the role of wind energy provide energy in rural areas.
+91.6,328.2,338.7: during the energy crisis of the 1970s G. Wind farming output will likely
+73.6,340.7,351.7: D. the details about how steam engines supplement other sources of energy.
+91.6,353.7,364.2: influenced the use of windmills H. Wind farms may become an important
+361.6,366.7,377.2: source of electricity.
+49.6,387.0,397.5: 42. The author describes the tasks windmills
+73.6,399.0,410.5: were used for in lines 36–40 in order to 45. According to the passage, the people of
+343.6,412.0,422.5: Holland most notably used windmills to
+73.6,422.5,433.0: E. emphasize that windmills served a
+91.6,434.5,446.0: variety of purposes. A. pump water to remote locations.
+73.6,447.0,458.5: F. highlight that windmills are more B. turn bogs into usable land.
+91.6,459.5,471.5: efficient than water wheels. C. make the country famous.
+73.6,471.9,484.0: G. emphasize that windmills were used for D. process a variety of goods.
+91.6,486.5,497.0: many years.
+73.6,499.0,509.5: H. convey that some countries used
+91.6,512.0,522.5: windmills more than other countries.
+49.6,756.7,767.6: Form B 109 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 19 ===
+63.6,68.4,79.2: Archaeologists first succeeded in using logs used in the buildings. With this floating
+63.6,81.4,92.2: tree-ring dating while excavating ancient chronology, the archaeologists could tell
+63.6,94.4,105.2: Pueblo Native American villages in the 40 which logs were older and which were more
+63.6,107.4,118.2: southwestern United States during the recent. None could be precisely dated, since
+63.6,120.4,131.2: 1920s. At that time, no one knew when the no log had a pattern of tree rings that
+49.9,123.8,129.8: 5
+63.6,133.4,144.2: villages had been occupied, or for how long, matched any part of the established
+63.6,146.4,157.2: but the logs used in the buildings provided a chronology. It was clear from this evidence,
+63.6,159.4,170.2: clue. Scientists had long known that trees 45 however, that the buildings must have been
+63.6,172.4,183.2: add a new growth ring to their constructed before 1260.
+63.6,185.7,196.2: circumferences during each growing season.
+48.2,188.8,194.8: 10
+63.6,197.4,209.2: Drought or early frost results in little growth Finally, continued excavations turned up a
+63.6,210.4,222.2: and narrow rings. Good growing years result “key” beam. The outer ring pattern of the key
+63.6,223.3,235.2: in wide rings. Archaeologists knew that by beam overlapped the earliest rings in the
+63.6,236.3,248.2: matching identical patterns of wide and 50 established chronology. Furthermore, its
+63.6,249.3,261.2: narrow rings in sections of two different logs, inner ring pattern matched the pattern
+48.2,253.8,259.8: 15
+63.6,262.3,274.2: they could determine which log was older. For formed by the most recent rings of the
+63.6,275.3,287.2: example, a log with a certain pattern of rings floating chronology. Thus, the chronology for
+63.6,288.3,300.2: near its outside edge would indicate a specific the abandoned Pueblo villages could be
+63.6,301.3,313.2: series of good and bad growing seasons. This 55 known with certainty. Counting backward
+63.6,314.3,326.2: log would have been cut down before a log of from the present, the archaeologists
+48.2,318.8,324.8: 20
+63.6,327.3,339.2: comparable size that shows the identical estimated that the villages had been occupied
+63.6,340.3,352.2: pattern near its center. between 900 and 1300.
+63.6,365.3,377.2: But how could these ring patterns help The tree rings also suggested why the
+63.6,378.3,390.2: determine the actual dates for the abandoned 60 villages had been abandoned. The rings for
+63.6,391.3,403.2: Pueblo villages? Archaeologists had already the years 1276 to 1299 were very thin,
+48.2,395.8,401.8: 25
+63.6,404.3,416.2: used the ring patterns of trees with indicating a severe drought that lasted for
+63.6,417.3,429.2: overlapping lifetimes to establish a tree-ring twenty-three years. Most likely the villagers
+63.6,430.3,442.2: chronology for the southwestern United had left their homes to search for a more
+63.6,443.3,455.2: States that went back to A.D. 1260. That work 65 hospitable climate.
+63.6,457.7,468.2: had been done in a Hopi village called Oraibi.
+48.2,460.8,466.8: 30
+63.6,470.7,481.2: Oraibi had been continuously inhabited since
+63.6,483.7,494.2: before the arrival of the first Spanish
+63.6,496.7,507.2: explorers in 1540.
+63.6,521.7,532.2: That same team of archaeologists also
+63.6,534.7,545.2: developed a relative, or floating, chronology
+48.2,537.8,543.8: 35
+63.6,547.7,558.2: for the abandoned Pueblo villages by
+63.6,560.7,571.2: matching up the ring patterns of the various
+49.6,756.7,767.6: Form B 110 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 20 ===
+49.6,58.4,69.0: 46. Which of the following best tells what this 49. Which evidence best supports the idea that
+73.6,71.4,82.0: passage is about? tree-ring dating helped archaeologists
+343.6,84.5,95.0: understand why the Pueblo villages were
+73.6,93.9,104.5: E. how variations in weather conditions
+343.6,97.5,108.0: abandoned?
+91.6,107.0,117.5: affect tree growth
+73.6,119.5,130.5: F. recent breakthroughs in understanding A. the details about the Hopi village Oraibi
+91.6,132.5,143.0: Native American cultures B. the details about the twenty-three-year
+73.6,145.0,156.0: G. why the Pueblo villages were abandoned drought
+73.6,157.5,168.5: H. how tree-ring dating can establish the C. the details about the discovery of the
+91.6,170.5,181.5: age of archaeological findings Pueblo villages
+343.6,183.5,194.0: D. the details about the floating chronology
+49.6,202.7,213.2: 47. What was the importance of the key beam
+73.6,215.7,226.2: described in the fourth paragraph? 50. Why did the archaeologists conclude that the
+343.6,228.7,239.2: buildings in the abandoned Pueblo villages
+73.6,238.2,248.8: A. It proved that trees of the same age
+343.6,241.7,252.2: were constructed before A.D. 1260?
+91.6,251.3,261.8: would have identical tree-ring patterns.
+73.6,263.7,274.8: B. It helped archaeologists determine why E. The logs in the Pueblo buildings did not
+91.6,276.8,287.8: the villages had been built at that time. share any ring patterns with the
+73.6,289.3,300.8: C. It revealed a new floating chronology for established chronology from the Hopi
+91.6,302.3,313.8: archaeologists to investigate. village.
+73.6,314.8,326.3: D. It connected the floating chronology to F. The logs in the Pueblo buildings had
+91.6,327.8,339.3: the established chronology. fewer rings than the logs from the
+361.6,341.8,352.3: buildings in the Hopi village.
+343.6,354.3,364.8: G. The Pueblo villages were abandoned
+49.6,360.0,370.5: 48. The author explains the causes of wide and
+361.6,367.3,377.8: before the Hopi village was established.
+73.6,373.0,383.5: narrow tree rings in lines 8–13 in order to
+343.6,379.8,390.3: H. The Pueblo villages and the Hopi village
+73.6,392.8,406.0: E. emphasize that tree-ring dating is highly were constructed from logs of similar size.
+91.6,408.5,419.0: accurate.
+73.6,421.0,431.6: F. highlight how tree rings help determine
+319.6,425.0,435.5: 51. Why did archaeologists compare the logs
+91.6,434.1,444.6: past weather patterns.
+343.6,438.0,448.5: from buildings in the abandoned Pueblo
+73.6,446.5,457.1: G. emphasize that a tree’s ring patterns
+343.6,451.0,461.5: villages with logs from the Hopi village?
+91.6,459.6,470.1: grow in a unique way.
+73.6,472.0,484.0: H. highlight the importance of studying tree A. to find the oldest and most recent logs
+91.6,485.1,497.0: rings. used in the Pueblo villages
+343.6,499.0,509.6: B. to find evidence that would help explain
+361.6,512.1,522.6: what caused people to leave the Pueblo
+361.6,525.1,535.6: villages
+343.6,538.0,548.6: C. to find a log from the Pueblo villages that
+361.6,551.1,561.6: had tree rings that matched logs from the
+361.6,564.1,574.6: Hopi village
+343.6,576.5,587.1: D. to find evidence that the Pueblo villages
+361.6,589.6,600.1: were constructed before the Hopi village
+49.6,756.7,767.6: Form B 111 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 21 ===
+63.6,68.3,79.2: The decade that began with the stock market Reginald Marsh, Isabel Bishop, and the Soyer
+63.6,81.3,92.2: crash in 1929 and ended with the declaration brothers, were associated with the Art
+63.6,94.3,105.2: of war in Europe in 1939 was a turning point 40 Students League in New York. These painters
+63.6,107.3,118.2: for art in the United States. Rejecting showed the high price paid by individual men
+63.6,120.3,131.2: European trends, such as abstract art, and women struggling to survive the
+49.9,123.8,129.8: 5
+63.6,133.3,144.2: American painters searched for a style that Depression. The names of some of their
+63.6,146.3,157.2: was distinctly American. It was a time of works illustrate the style: Office Girls,
+63.6,159.3,170.2: great social change—a society based on rural 45 Waiting, The Bowery. For various reasons,
+63.6,172.3,183.2: and small-town life was rapidly being their work has been largely forgotten today.
+63.6,185.7,196.2: replaced by a society focused on city life and
+48.2,188.8,194.8: 10
+63.6,197.3,209.2: values. Although members of various groups Edward Hopper was an artist who was
+63.6,210.3,222.2: are all referred to as “American Scene” associated with the American Scene but
+63.6,223.3,235.2: painters, different groups painted their otherwise escaped further classification. Like
+63.6,236.3,248.2: images of the United States in very different 50 the Urban Realists, he painted the tired
+63.6,249.3,261.2: ways. dinginess of the urban streets during the
+48.2,253.8,259.8: 15
+339.6,262.3,272.8: Depression. Yet Hopper often found beauty in
+63.6,275.3,286.2: One group, sometimes called the the midst of the city’s monotony. For example,
+63.6,288.3,299.2: Regionalists, included Thomas Hart Benton, one of Hopper’s best-known paintings,
+63.6,301.3,312.2: Grant Wood, and John Steuart Curry, all 55 Nighthawks, shows several people sitting like
+63.6,314.3,325.2: from the Midwest. Their art was intensely robots in a brightly lit coffee shop at night,
+63.6,327.3,338.2: patriotic and frequently glorified an older, each apparently unaware of the others.
+48.2,330.8,336.8: 20
+63.6,340.3,351.2: simpler United States. Their subject matter Hopper was not interested in a return to the
+63.6,353.3,364.2: included church steeples, New England past. He presented what he saw without
+63.6,366.3,377.2: fishing villages, and Midwestern cornfields. 60 apology or sentimentality.
+63.6,379.7,390.2: Grant Wood’s most famous canvas is probably
+63.6,391.3,403.2: American Gothic, which shows a stiff and The American Scene art movement of the
+48.2,395.8,401.8: 25
+63.6,404.3,416.2: proper farm couple, the husband holding a 1930s was characterized by realistic
+63.6,417.3,429.2: pitchfork. The Regionalists were often paintings that expressed the traditions and
+63.6,430.3,442.2: muralists as well, painting local scenes on interests of people in the United States at
+63.6,443.3,455.2: walls of state capitols and other public 65 that time. Because the paintings presented
+63.6,456.3,468.2: buildings. Enormously popular during the common images and mirrored the lives of
+48.2,460.8,466.8: 30
+63.6,469.3,481.2: 1930s, Regionalist art is still treasured by many people, the general public readily
+63.6,482.3,494.2: many as a fond memory of times gone by. identified with the subjects of the paintings.
+339.6,495.3,505.8: With the onset of World War II, a new spirit
+63.6,508.3,519.2: While the Regionalists remembered the past, 70 of internationalism swept through the art of
+63.6,521.3,532.2: other American Scene artists painted the the United States, and the American Scene
+63.6,534.3,545.2: drab realities of the contemporary urban painters became out of date. Although the
+48.2,537.8,543.8: 35
+63.6,547.3,558.2: environment, testifying to its loneliness and movement did not last, it had reflected its
+63.6,560.3,571.2: anonymity. The Urban Realists, including own time with profound understanding.
+49.6,756.7,767.6: Form B 112 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 22 ===
+49.6,58.4,68.9: 52. Why did ordinary people in the 1930s 55. How does the fourth paragraph contribute to
+73.6,71.4,81.9: identify with the art of the American Scene the passage?
+73.6,84.4,94.9: painters?
+343.6,94.0,104.5: A. It describes the end of the American
+73.6,106.9,117.5: E. The artists were primarily concerned Scene movement.
+91.6,119.5,130.5: with painting farm life. B. It highlights Edward Hopper as a unique
+73.6,132.5,143.0: F. People appreciated the beauty reflected in American Scene painter.
+91.6,145.0,156.0: the paintings. C. It explains why Edward Hopper’s work
+73.6,158.0,168.5: G. People wanted paintings to show social has been forgotten.
+91.6,170.5,181.5: and cultural change. D. It contrasts the American Scene and
+73.6,183.5,194.0: H. The paintings reflected the times in ways Urban Realist styles.
+91.6,196.5,207.0: that were familiar to most viewers.
+319.6,215.7,226.2: 56. The author uses the phrase “without apology”
+49.6,228.7,239.2: 53. Which of the following subjects would an (lines 59–60) to explain that Hopper did not
+73.6,241.7,252.2: Urban Realist painter be most likely to think he needed to justify
+73.6,254.7,265.2: represent?
+343.6,264.2,274.8: E. how he portrayed his subjects.
+73.6,276.8,287.8: A. a scene with factory workers going home F. painting scenes of real places.
+91.6,289.3,300.8: from work G. why his paintings became popular.
+73.6,301.8,313.3: B. a scene with children playing games in a H. the classification of his art style.
+91.6,315.8,326.3: street
+73.6,328.3,338.8: C. a scene of a bustling European city
+319.6,334.0,344.5: 57. What is the most likely reason that
+73.6,340.8,351.3: D. a scene showing the stores along the
+343.6,347.0,357.5: Regionalist art has retained some of its
+91.6,353.8,364.3: main street in a city
+343.6,360.0,370.5: popularity while Urban Realist art has not?
+343.6,382.5,393.1: A. Regionalist art depicts modern life as
+49.6,386.0,396.5: 54. Hopper’s paintings contrast with the work of
+361.6,395.6,406.1: well as life in the past, while Urban
+73.6,399.0,409.5: the Urban Realist painters by
+361.6,408.6,419.1: Realist art depicts only the past.
+73.6,421.0,432.1: E. showing the ugliness of a city B. Regionalist art more accurately portrays
+91.6,434.1,445.1: environment. the time in which it was painted than
+73.6,447.0,457.6: F. illustrating the move toward an Urban Realist art does.
+91.6,459.6,470.6: international style. C. Regionalist art shows American life as
+73.6,472.5,483.1: G. revealing the ways that dull urban life people wish to remember it, while Urban
+91.6,485.6,496.1: can include beauty. Realist art does not.
+73.6,498.1,508.6: H. focusing on the portrayal of people rather D. Regionalist art depicts Americans
+91.6,511.1,521.6: than on the setting. overcoming the Depression, while Urban
+361.6,524.1,534.6: Realist art depicts life during World
+361.6,537.1,547.6: War II.
+49.6,756.7,767.6: Form B 113 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 23 ===
+178.4,63.5,87.5: P 2 — M
+193.4,68.0,86.0: ART ATHEMATICS
+210.5,94.9,108.9: Suggested Time — 90 Minutes
+264.1,116.9,130.9: 57 QUESTIONS
+258.0,151.5,162.0: IMPORTANT NOTES
+49.9,170.2,180.7: (1) Formulas and definitions of mathematical terms and symbols are notprovided.
+49.9,188.7,199.2: (2) Diagrams other than graphs are notnecessarily drawn to scale. Do not assume any relationship in a
+67.9,201.2,211.7: diagram unless it is specifically stated or can be figured out from the information given.
+49.9,219.7,230.2: (3) Assume that a diagram is in one plane unless the problem specifically states that it is not.
+49.9,238.2,248.7: (4) Graphs are drawn to scale. Unless stated otherwise, you can assume relationships according to
+67.9,250.7,261.2: appearance. For example, (on a graph) lines that appear to be parallel can be assumed to be parallel;
+67.9,263.2,273.7: likewise for concurrent lines, straight lines, collinear points, right angles, etc.
+49.9,281.7,292.2: (5) Reduce all fractions to lowest terms.
+228.9,314.0,334.0: G -I P
+244.5,317.8,332.8: RID N ROBLEMS
+252.4,340.9,354.9: QUESTIONS 58–62
+49.9,362.7,373.4: DIRECTIONS: Solve each problem. On the answer sheet, write your answer in the boxes at the top of the
+49.9,375.4,385.9: grid. Start on the left side of each grid. Print only one number or symbol in each box. DO NOT LEAVE
+49.9,387.9,398.4: A BOX BLANK IN THE MIDDLE OF AN ANSWER. Under each box, fill in the circle that matches the
+49.9,400.4,410.9: number or symbol you wrote above. DO NOT FILL IN A CIRCLE UNDER AN UNUSED BOX.
+49.9,444.7,457.6: 58. How many 5-digit numbers can be created 60. (−6) − (−5) + 4.2 − 3 − 9.6 =
+79.9,456.7,466.7: using the digits 2, 3, 5, 7, and 8 without
+79.9,468.7,478.7: repeating any digits within that 5-digit
+79.9,480.7,490.7: number?
+160.3,567.6,577.7: 147−x
+49.9,572.5,582.5: 59. =12
+169.8,579.3,589.3: 12
+79.9,597.5,607.5: What is the value of x in the equation shown
+79.9,610.5,620.5: above?
+49.6,756.7,767.6: Form B 114 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 24 ===
+49.5,66.8,76.8: 61. Tyler has completed 60 pages in his French 62.
+79.5,78.8,88.8: workbook. This is 20% of the total number of
+79.5,90.8,100.8: pages in the workbook. How many pages are
+79.5,102.8,112.8: in the workbook?
+465.7,149.3,161.3: 30°
+431.0,185.8,198.2: y° 60°
+466.6,203.3,215.3: P
+465.6,247.9,259.9: 25°
+349.5,330.9,340.9: Four straight lines intersect at point P as
+349.5,343.9,353.9: shown above. What is the value of y ?
+49.6,756.7,767.6: Form B 115 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 25 ===
+188.5,69.4,89.4: M C P
+205.1,73.3,88.3: ULTIPLE HOICE ROBLEMS
+248.5,94.3,108.3: QUESTIONS 63–114
+49.9,118.1,128.9: DIRECTIONS: Solve each problem. Select the bestanswer from the choices given. Mark the letter of
+49.9,130.9,141.4: your answer on the answer sheet. You can do your figuring in the test booklet or on paper provided by the
+49.9,143.4,153.9: proctor. DO NOT MAKE ANY MARKS ON YOUR ANSWER SHEET OTHER THAN FILLING IN
+49.9,155.8,166.3: YOUR ANSWER CHOICES.
+435.8,193.3,203.3: P R
+49.9,196.4,208.2: 63. If x = 9 and y = −7 , what is the value of 65. M = 3N = = Q+5 = > 0
+436.2,205.0,215.0: 4 7
+82.3,210.1,221.1: x(x − 2y) ?
+349.9,222.1,232.1: Based on the statement above, which variable
+79.9,234.1,244.1: A. 18 has the greatestvalue?
+79.9,247.1,257.1: B. 45
+79.9,260.1,270.2: C. 144
+349.9,264.1,274.1: A. M
+79.9,273.1,283.2: D. 207
+349.9,286.1,296.1: B. N
+349.9,308.1,318.2: C. P
+49.9,316.9,326.9: 64.
+349.9,330.1,340.2: D. R
+123.3,345.7,357.7: Q R
+319.9,373.9,383.9: 66. A roofing contractor uses shingles at a rate of
+121.9,377.3,386.3: 50°
+349.9,385.9,395.9: 3 bundles for every 96 square feet of roof
+349.9,397.9,407.9: covered. At this rate, how many bundles of
+349.9,409.9,419.9: shingles will he need in order to cover a roof
+349.9,421.9,431.9: that is 416 square feet?
+135.4,426.3,435.3: 70°
+92.6,440.4,452.7: P T S
+349.9,444.9,454.9: E. 5
+349.9,457.9,467.9: F. 12
+79.9,470.9,483.2: In the figure above, PQRS is a parallelogram. G. 13
+79.9,483.9,496.2: The measure of ∠PQT is 50° , and the H. 14
+79.9,499.2,509.2: measure of ∠PTQ is 70° . What is the
+79.9,512.2,522.2: measure of ∠QRS ?
+319.9,527.7,537.7: 67. To make party invitations, Macie could buy a
+79.9,540.7,552.2: E. 60° package of paper for $10.50, or she could buy
+352.3,553.7,563.7: x individual sheets of the same paper for
+79.9,564.2,576.7: F. 70° $0.15 each. What is the largest value of x that
+349.9,579.7,589.7: would make buying the individual sheets less
+79.9,586.2,596.2: G. 80°
+349.9,592.7,602.7: expensive than buying the package?
+79.9,608.2,618.2: H. 120°
+349.9,615.7,625.7: A. 60
+349.9,628.7,638.7: B. 65
+349.9,641.7,651.7: C. 69
+349.9,654.7,664.7: D. 70
+49.6,756.7,767.6: Form B 116 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 26 ===
+49.5,67.9,77.9: 68. At 1:00 p.m. one day, the temperature was 70.
+79.5,79.9,89.9: 8 degrees above zero. During the rest of the
+79.5,91.9,101.9: day, the temperature fell 3 degrees per hour.
+404.4,98.9,106.9: DESSERT CHOICES
+79.5,103.9,113.9: What was the temperature at 7:00 p.m. that
+79.5,115.9,125.9: day?
+372.7,124.3,132.3: Dessert Number of Times Ordered
+79.5,144.2,155.9: E. −13°
+373.1,151.2,159.2: Cookies 42
+79.5,166.2,177.9: F. −10°
+381.7,178.1,186.1: Pie 23
+79.5,188.2,199.9: G. −7°
+378.3,205.0,213.0: Cake 47
+79.5,211.9,221.9: H. 5°
+369.1,231.9,239.9: Ice Cream 48
+49.5,255.7,265.7: 69. A bag contains 75 marbles that are red, blue,
+79.5,265.5,277.7: or green. The ratio of red to blue marbles is The table above shows the number of times
+79.5,277.5,289.7: 15:7, and the ratio of blue to green marbles is that different desserts were ordered at a
+79.5,289.5,301.7: 7:3. If 2 blue marbles are removed and restaurant. Based on this information, what is
+79.5,301.5,313.7: replaced with 2 green marbles, what will be the probability of a customer ordering ice
+79.5,313.5,325.7: the new ratio of red to green marbles? cream as a dessert?
+79.5,336.5,348.7: A. 3:1 E. 25%
+79.5,349.5,361.7: B. 5:1 F. 30%
+79.5,362.5,374.7: C. 7:5 G. 40%
+79.5,375.5,387.7: D. 45:11 H. 48%
+319.5,419.3,429.3: 71. What is the least common multiple of 24, 6,
+349.5,431.3,441.3: and 18?
+349.5,454.3,464.3: A. 36
+349.5,467.3,477.3: B. 48
+349.5,480.3,490.3: C. 72
+349.5,493.3,503.3: D. 144
+319.5,537.1,547.1: 72. One day, the Early Bird Restaurant used
+349.5,549.1,559.1: 15 dozen eggs for 200 breakfast customers. At
+349.5,561.1,571.1: this rate, approximately how many dozen eggs
+349.5,573.1,583.1: are needed for 300 breakfast customers?
+349.5,596.1,606.1: E. 20
+349.5,609.1,619.1: F. 23
+349.5,622.1,632.1: G. 25
+349.5,635.1,645.1: H. 30
+49.6,756.7,767.6: Form B 117 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 27 ===
+49.5,67.9,77.9: 73. A cooler contains three types of beverages: 75.
+79.5,79.9,89.9: 5 bottles of apple juice, 3 bottles of grape juice,
+411.6,84.9,92.9: PRICES FOR AD
+79.5,91.9,101.9: and 6 bottles of fruit punch. What is the
+429.5,98.9,106.9: SPACE
+79.5,103.9,113.9: probability that a bottle chosen at random
+79.5,115.9,125.9: from this cooler is notapple juice?
+414.0,124.2,132.2: Space Price
+422.8,148.0,158.0: 1
+100.9,152.9,163.3: 1 200
+79.5,156.7,169.6: A. 4
+101.1,164.5,174.5: 9
+422.7,178.4,188.4: 1
+79.5,182.5,196.4: B. 5 350
+423.1,190.1,200.1: 2
+100.5,194.2,204.2: 14
+410.6,208.2,218.7: full page 600
+103.6,212.2,222.2: 9
+79.5,216.0,226.0: C.
+100.5,223.8,233.8: 14
+101.3,241.9,251.9: 2
+79.5,245.7,256.2: D. The table above shows prices for newspaper
+101.2,253.5,263.5: 3
+496.3,261.4,271.4: 1
+349.5,266.2,276.2: advertising. A store purchased pages,
+496.5,273.0,283.0: 4
+352.9,281.4,291.4: 1
+365.3,286.2,296.2: pages, and full pages of space in equal
+49.5,290.3,303.0: 74. A large circular dinner plate has a radius of 2
+79.5,303.3,316.2: 20 centimeters. A smaller circular plate with a numbers for a total of $11,500. What is the
+79.5,315.9,326.3: circumference of 20(cid:31) centimeters is placed in
+349.5,326.2,336.2: total amount of page space the store
+79.5,329.3,339.3: the center of the larger dinner plate. What is
+79.5,342.3,352.3: the area of the part of the larger dinner plate
+349.5,346.2,356.2: purchased?
+79.5,355.3,365.3: that is not covered by the smaller plate?
+79.5,383.2,398.0: E. 20(cid:31) sq cm A. 1 3 pages
+376.8,394.8,404.8: 4
+79.5,406.9,417.3: F. 100(cid:31) sq cm
+349.5,416.0,426.0: B. 10 pages
+79.5,428.9,439.3: G. 200(cid:31) sq cm
+382.0,441.0,451.0: 1
+349.5,444.9,455.8: C. 16 pages
+79.5,450.9,462.6: H. 300(cid:31) sq cm 2
+381.8,470.8,480.8: 1
+349.5,474.7,485.6: D. 17 pages
+382.2,482.4,492.4: 2
+49.6,756.7,767.6: Form B 118 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 28 ===
+430.8,63.1,73.1: 3
+49.5,67.9,77.9: 76. 79. Bryana bought 1 yards of cloth at $8.00 per
+430.7,74.7,84.7: 4
+349.5,87.9,97.9: yard. If there was an 8% sales tax, what was
+179.5,96.8,106.8: y
+349.5,107.9,117.9: the total cost of the cloth?
+349.5,130.9,140.9: A. $12.96
+152.7,135.6,144.6: R
+195.7,143.9,154.8: S B. $14.08
+242.1,156.9,167.2: x C. $15.12
+217.1,160.3,169.3: T
+349.5,169.9,179.9: D. $16.08
+205.6,177.2,186.2: U
+165.3,188.0,197.0: V
+319.5,213.7,223.7: 80.
+79.5,236.3,246.3: For which point on the graph above is the
+397.3,242.5,254.5: M N
+79.5,249.3,259.3: value of the y -coordinate greater than the
+79.5,262.3,272.3: value of the x -coordinate?
+516.9,273.9,285.9: 1
+508.3,279.2,291.2: 1
+79.5,285.3,298.4: E. R 3
+79.5,298.3,308.3: F. T
+79.5,311.3,321.3: G. U
+516.7,320.9,330.9: 5
+79.5,324.3,335.8: H. V On the number line above, MN = 5 . What
+516.6,332.6,342.6: 6
+349.5,345.8,355.8: is the position of point M ?
+93.3,363.2,373.2: 36
+49.5,368.1,378.1: 77. If = 4x , what is the value of x when
+96.9,374.9,384.9: y
+384.1,381.8,391.8: 1
+82.3,384.8,398.1: y = 3 ? E. −7
+384.3,393.4,403.4: 6
+79.5,411.1,421.4: A. 3 1
+349.5,414.5,426.3: F. −4
+79.5,423.0,434.1: B. 4 2
+79.5,437.1,447.1: C. 9
+377.7,441.1,451.1: 1
+349.5,445.9,455.9: G. 4
+79.5,450.1,462.7: D. 12 2
+377.0,470.7,480.7: 1
+349.5,475.5,485.6: H. 7
+377.2,482.3,492.3: 6
+49.5,493.8,503.8: 78. Points X , Y , and Z are on a straight line, and
+255.4,509.4,519.4: 3
+80.2,513.8,524.3: Y is between X and Z . Length YZ = XY ,
+255.4,520.2,531.0: 5 81. A United States presidential coin is made
+79.5,532.2,543.9: and length XY = 20 centimeters. What is the from an alloy of four metals—copper, zinc,
+349.5,544.2,554.2: manganese, and nickel—with weights in the
+79.5,553.8,566.2: length of XZ ? ratio of 177:12:7:4, respectively. The coin
+349.5,568.2,578.2: weighs a total of 8 grams. What is the weight
+79.5,576.8,586.8: E. 12 cm
+349.5,580.2,590.2: of the zinc in this coin?
+79.5,589.8,599.8: F. 24 cm
+79.5,602.8,613.2: G. 30 cm A. 0.28 g
+79.5,615.8,626.2: H. 32 cm B. 0.48 g
+349.5,629.2,639.2: C. 0.96 g
+349.5,642.2,652.2: D. 48 g
+49.6,756.7,767.6: Form B 119 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 29 ===
+49.5,67.9,77.9: 82. Jack scored an average of 15 points per game 86. If w − 1 is an odd integer, which one of the
+79.5,79.9,90.9: in his first 3 basketball games. In his following mustbe an even integer?
+79.5,91.9,101.9: 4th game, he scored 27 points. What is his
+79.5,103.9,113.9: average score for the first 4 games?
+349.5,110.9,120.9: E. w + 1
+79.5,126.9,136.9: E. 15
+349.5,132.9,142.9: F. 2w − 1
+79.5,139.9,149.9: F. 17
+79.5,152.9,164.9: G. 18 G. 2w − 2
+79.5,165.9,175.9: H. 21
+349.5,176.9,186.9: H. 2w + 1
+49.5,209.7,219.7: 83. A cylindrical oil drum can hold 4,320 liters
+319.5,220.7,230.7: 87. Three students stand at the starting line of a
+79.5,229.7,242.7: when it is completely full. Currently, the drum running track and begin running laps at the
+93.3,244.7,254.9: 1 same time. Ann completes 1 lap every
+79.5,249.7,259.7: is full of oil. How many kilolitersof oil
+93.6,256.5,266.7: 3 2 minutes, Jack completes 1 lap every
+79.5,268.7,279.7: need to be added in order to fill the drum 3 minutes, and Lee completes 1 lap every
+349.5,280.7,290.7: 4 minutes. How many laps does Ann complete
+79.5,289.7,302.7: completely? before all three runners are once again at the
+349.5,304.7,314.7: starting line at the same time?
+79.5,312.7,322.7: A. 1.44 kL
+79.5,325.7,337.7: B. 2.88 kL A. 4
+79.5,338.7,350.7: C. 4.32 kL B. 6
+79.5,351.7,363.7: D. 14.10 kL C. 12
+349.5,366.7,376.7: D. 20
+49.5,395.4,405.4: 84. Nicole’s age now is three times Carmen’s age.
+79.5,407.4,417.4: If Carmen will be 17 in two years, how old was
+319.5,410.4,420.4: 88. Simplify this expression:
+79.5,419.4,429.4: Nicole 5 years ago?
+416.3,437.1,447.1: 4(7−3x)−(5− x)
+79.5,442.4,452.5: E. 38 yr
+79.5,455.5,465.5: F. 40 yr
+79.5,468.4,478.5: G. 45 yr
+349.5,473.1,483.1: E. 23−4x
+79.5,481.5,491.5: H. 50 yr
+349.5,495.1,505.1: F. 23−11x
+349.5,517.1,527.1: G. 28−4x
+49.5,525.2,535.2: 85. A chemical decays in such a way that the
+79.5,537.2,549.1: amount left at the end of each week is 20% H. 28−12x
+79.5,549.2,559.2: less than the amount at the beginning of that
+79.5,561.2,571.2: same week. What percent of the original
+79.5,573.2,583.2: amount is left after two weeks?
+79.5,596.2,606.3: A. 40%
+79.5,609.2,619.3: B. 60%
+79.5,622.2,632.2: C. 64%
+79.5,635.2,645.3: D. 80%
+49.6,756.7,767.6: Form B 120 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 30 ===
+425.6,63.1,73.1: 3 1
+49.5,67.9,78.3: 89. 91. 5 x +3x+9+
+495.0,73.3,80.8: 2
+489.4,76.5,86.5: x
+349.5,92.9,102.9: If x =10, what is the value of the expression
+147.4,99.3,107.3: PET SURVEY
+349.5,105.9,115.9: above?
+98.7,123.8,131.8: Number of Pets Number of Students
+349.5,128.9,138.9: A. 2,539.01
+349.5,141.9,151.9: B. 5,039.01
+125.9,150.7,158.7: 0 12
+349.5,154.9,164.9: C. 5,039.1
+349.5,167.9,177.9: D. 5,139
+125.9,177.6,185.6: 1 16
+125.9,204.5,212.5: 2 7
+319.5,211.7,221.7: 92.
+111.1,231.4,239.4: 3 or more 5
+364.6,240.9,252.9: N S P
+79.5,265.1,275.1: Amy surveyed students at her school about
+79.5,277.1,287.1: the number of pets they have. What is the
+79.5,289.1,299.1: probability that a student who participated in
+79.5,301.1,311.1: the survey has at least 2 pets?
+364.6,321.9,334.9: R 6 cm
+104.0,334.9,344.9: 7
+79.5,338.7,348.7: A.
+101.3,346.5,356.5: 40
+103.2,364.5,374.5: 1
+79.5,368.4,378.4: B.
+100.5,376.2,386.2: 12
+100.9,394.2,404.2: 1
+79.5,398.0,408.0: C.
+101.1,403.9,415.9: 8 M T Q
+103.6,423.8,433.8: 3
+79.5,427.7,437.7: D.
+100.5,435.5,446.5: 10 R, S, and T are midpoints of the sides of
+349.5,448.5,458.5: square MNPQ, as shown above. What is the
+349.5,460.5,470.5: sum of the areas of the shaded triangles?
+49.5,477.5,487.5: 90. A large container is partially filled with
+349.5,483.5,493.5: E. 9 sq cm
+81.5,490.5,500.5: n liters of water. Ito adds 10 liters of water to
+349.5,496.5,506.5: F. 12 sq cm
+79.5,503.5,513.5: the container, making it 60% full. If Ito adds
+349.5,509.5,519.5: G. 18 sq cm
+79.5,516.5,526.5: 6 more liters of water, the container will be
+349.5,522.5,532.6: H. 36 sq cm
+79.5,529.5,539.5: 75% full. What is the value of n ?
+79.5,552.5,562.5: E. 14
+79.8,565.5,576.3: F. 15 93. The Chens spend $5 of every $8 they earn on
+79.5,578.3,588.6: G. 26 planned expenses. If the family earns $29,600
+79.5,590.3,601.6: H. 30 in one year, how much will they spend on
+349.5,602.3,612.3: planned expenses that year?
+349.5,625.3,635.3: A. $1,850
+349.5,638.3,648.3: B. $3,700
+349.5,651.3,661.3: C. $5,920
+349.5,664.3,674.3: D. $18,500
+49.6,756.7,767.6: Form B 121 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 31 ===
+49.5,67.9,77.9: 94. A pizza shop offers a choice of 3 sizes (small, 97. On a bike trip, Rajiv traveled 65 kilometers in
+79.5,79.9,89.9: medium, and large) and 7 different toppings. 5 hours, while Shaina traveled 72 kilometers
+79.5,91.9,101.9: Different pizzas can be created by changing in 4 hours. How much less was Rajiv’s mean
+79.5,103.9,113.9: the size and/or the choice of toppings. If Cody speed, in kilometers per hour (kph), than
+79.5,115.9,125.9: wants to order a pizza with exactly 2 different Shaina’s?
+79.5,127.9,137.9: toppings, how many different pizzas can he
+79.5,138.9,149.9: create? A. 1 kph
+349.5,151.9,161.9: B. 5 kph
+79.5,162.9,174.9: E. 6 C. 7 kph
+79.5,175.9,187.9: F. 21 D. 9 kph
+79.5,188.9,198.9: G 63
+79.5,201.9,211.9: H. 126
+319.5,219.9,231.7: 98. Points P, Q, R, and S represent − 3, −1, 0, and 2,
+349.5,234.7,244.7: respectively, on a number line. How many
+49.5,247.3,257.7: 95. units is the midpoint of PQ from the midpoint
+349.5,260.7,270.7: of RS ?
+114.4,278.3,286.3: SURVEY OF CATS PER FAMILY
+349.5,283.7,293.7: E. 1
+349.5,296.7,306.7: F. 2
+99.4,302.9,310.9: Number of Cats Number of Families
+349.5,309.7,319.7: G. 3
+349.5,322.7,332.7: H. 4
+127.0,329.8,337.8: 0 15
+127.0,356.7,364.7: 1 42
+319.5,366.4,376.4: 99. There are 1,000 cubic centimeters in 1 liter,
+349.5,378.4,388.4: and 1,000 cubic millimeters in 1 milliliter.
+127.0,383.6,391.6: 2 35
+349.5,390.4,400.4: How many cubic millimeters are there in
+349.5,402.4,412.4: 1,000 cubic centimeters?
+112.2,410.5,418.5: 3 or more 8
+349.5,425.4,435.5: A. 1,000
+349.5,438.4,448.5: B. 10,000
+79.5,444.1,454.1: The table above shows the number of cats per
+349.5,451.4,461.5: C. 100,000
+79.5,456.1,466.1: family in 100 households in the Blaine
+349.5,464.4,474.5: D. 1,000,000
+79.5,468.1,478.1: neighborhood. By what percentageis the
+79.5,480.1,490.1: number of families with 1 cat greater than the
+79.5,492.1,502.1: number of families with 2 cats?
+79.5,515.8,525.8: A. 7%
+79.5,528.8,538.8: B. 10%
+79.5,541.8,551.8: C. 17%
+79.5,554.8,564.8: D. 20%
+49.5,600.2,610.2: 96. A wooden box has a square base. The height of
+79.5,612.2,622.2: this box is 3 times the length of one side of the
+79.5,624.2,634.2: base. If one side of the base is 3 feet long, what
+79.5,636.2,646.2: is the volume of this box?
+79.5,659.2,669.2: E. 9 cu ft
+79.5,672.2,682.2: F. 27 cu ft
+79.5,685.2,695.2: G. 36 cu ft
+79.5,698.2,708.2: H. 81 cu ft
+49.6,756.7,767.6: Form B 122 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 32 ===
+49.5,65.9,77.9: 100. 101.
+376.4,94.7,106.7: M R T
+377.9,126.3,138.5: 1 5
+365.1,132.2,144.2: −
+377.1,139.1,151.3: 4 8
+349.5,170.8,180.8: The hash marks on the number line above are
+349.5,182.8,192.8: evenly spaced. What is the coordinate of
+158.4,188.7,201.7: 1
+152.5,194.7,208.0: + point R?
+147.0,201.9,214.4: x
+375.0,216.8,226.8: 7
+350.5,220.6,230.6: A.
+372.3,228.4,238.4: 40
+374.9,246.5,256.5: 9
+350.5,250.3,260.3: B.
+372.3,258.1,268.1: 40
+372.0,276.1,286.1: 11
+350.5,279.9,289.9: C.
+158.7,287.2,300.9: y 2 40
+372.4,305.8,315.8: 21
+350.5,309.6,319.6: D.
+79.5,317.4,329.9: In the quarter circle above, what is y in terms 40
+79.5,332.9,342.9: of x ?
+319.5,354.2,364.2: 102. Phan chose an Internet service that charges
+349.5,366.2,376.2: $18.00 per month plus $0.024 per minute.
+79.5,372.9,383.0: E. x−1
+349.5,378.2,388.2: Deion chose an Internet service that charges
+349.5,390.2,400.2: $30.00 per month for unlimited usage. At the
+79.5,400.9,412.2: F. x+1 end of the month, Phan’s and Deion’s charges
+349.5,414.2,424.2: were identical. For how many minutes did
+101.9,425.9,436.2: x+1 Phan use the Internet service that month?
+79.5,429.8,439.8: G.
+108.1,437.6,447.6: 2
+349.5,449.2,459.2: E. 50 min
+107.5,452.8,465.6: (x+1)2
+79.5,461.3,472.2: H. F. 60 min
+121.1,468.0,478.0: 2
+349.5,475.2,485.2: G. 100 min
+349.5,488.2,498.2: H. 500 min
+49.6,756.7,767.6: Form B 123 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 33 ===
+49.5,67.9,77.9: 103. In a sample of 50 cars at a local dealership, 105.
+79.5,79.9,89.9: there are 12 red cars and 10 cars with backup
+79.5,91.9,101.9: cameras. Of the 12 red cars, 4 have backup
+391.6,97.2,109.2: y
+79.5,103.9,113.9: cameras. If a car is selected at random from
+79.5,115.9,125.9: the given sample, what is the probability
+79.5,127.9,137.9: that bothof the following are true: the car is
+79.5,139.9,149.9: notred and does nothave a backup camera?
+383.7,165.6,177.6: 4
+101.1,188.9,198.9: 3
+79.5,192.7,202.7: A.
+101.1,200.5,210.5: 5
+551.0,214.9,226.9: x
+100.8,218.5,228.5: 16
+79.5,222.4,235.5: B. O
+101.3,227.9,240.2: 25 m n
+100.8,248.2,258.2: 19
+79.5,252.0,262.0: C.
+101.3,259.8,269.8: 25
+349.5,271.9,281.9: What is the area of the shaded triangle shown
+101.3,277.9,287.9: 4
+79.5,281.7,293.9: D. above?
+101.4,289.5,299.5: 5
+349.5,313.9,323.9: A. m+ n
+49.5,326.3,336.3: 104. The decimal 0.06 can be written as the
+349.5,335.9,345.9: B. n−m
+125.1,341.5,351.5: x
+79.5,346.3,356.3: fraction . What is the value of x ?
+121.8,353.1,363.1: 50
+349.5,356.9,367.9: C. 2(n−m)
+79.5,369.3,379.3: E. 3
+79.5,378.9,392.3: F. 6 D. 4(n−m)
+79.5,395.3,405.3: G. 12
+79.5,408.3,418.3: H. 30
+49.6,756.7,767.6: Form B 124 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 34 ===
+49.5,67.9,80.7: 106. 14 p
+319.5,75.6,87.5: 108. =
+440.8,82.3,92.3: 21 7
+142.7,98.9,106.9: ANIMAL CARDS
+349.5,110.5,120.5: In the equation above, what is the value of p ?
+104.4,124.3,132.3: Number of Cards Picture on Card
+371.3,147.5,157.5: 2
+134.5,151.3,161.4: 8 cat E.
+371.2,159.1,169.1: 3
+134.5,178.3,190.2: 6 dog F. 3
+134.5,205.2,215.2: 5 bird 14
+349.5,209.0,219.0: G.
+373.7,216.8,226.8: 3
+134.5,232.3,240.3: 4 fish
+349.5,237.8,247.8: H. 14
+134.5,259.3,267.3: 1 horse
+319.5,281.6,291.6: 109. A ball is selected at random from a box that
+79.5,293.0,303.6: The cards in the table above are mixed in a contains 7 black balls, 14 green balls, and 21
+79.5,305.0,315.6: box. Which animal pictured on a card has red balls. What is the probability that the ball
+79.5,317.0,327.6: exactly a 1 in 4 chance of being picked at selected is black?
+79.5,329.0,339.0: random from the box?
+79.5,352.0,364.6: E. cat 1
+349.5,358.4,368.4: A.
+79.5,365.0,376.2: F. dog 6
+79.5,378.0,388.0: G. fish
+370.8,384.3,394.3: 1
+79.5,388.1,401.0: H. horse B.
+371.1,395.9,405.9: 5
+370.8,413.9,423.9: 1
+349.5,417.8,427.8: C.
+371.1,425.5,435.5: 3
+49.5,434.8,444.8: 107. Which number line below shows the solution
+371.2,443.6,453.6: 5
+79.5,447.4,457.8: set for 2x−2 ≤ y ≤ 4x+10 when y =1 ? D.
+371.1,455.2,465.2: 6
+79.5,487.8,497.8: A.
+101.0,491.4,506.2: –3 –2 –1 0 1 2 3 110. At North High School, a survey asked two
+349.5,504.0,514.0: questions, Question A and Question B. For
+349.5,516.0,526.0: each question, students could answer either
+79.5,528.0,540.3: B. “yes” or “no.” Of the 800 students who
+101.0,533.9,548.7: –3 –2 –1 0 1 2 3
+349.5,540.0,550.0: responded to the survey, 720 answered “yes” to
+349.5,552.0,562.0: Question A, and 640 answered “yes” to
+349.5,564.0,574.0: Question B. What is the leastpossible number
+79.5,571.8,581.8: C.
+101.0,575.4,590.2: –3 –2 –1 0 1 2 3 of these students who could have answered
+349.5,588.0,598.0: “yes” to bothquestions?
+79.5,611.0,623.4: D. E. 80
+101.0,616.9,631.8: –3 –2 –1 0 1 2 3
+349.5,624.0,634.0: F. 160
+349.5,637.0,647.0: G. 560
+349.5,650.0,660.0: H. 640
+49.6,756.7,767.6: Form B 125 CONTINUE ON TO THE NEXT PAGE
+=== PAGE 35 ===
+49.5,67.9,77.9: 111. Raoul is at least 3 years older than Vahn. 113. There are now x cans stacked on a shelf that
+79.5,80.9,90.9: Which of the following inequalities gives the holds 36 cans when full. If 4 of these cans
+79.5,93.9,103.9: relationship between Raoul’s age ( r) and were removed, the shelf would be half full.
+79.5,106.9,116.9: Vahn’s age ( v )? What is the value of x ?
+349.5,129.9,139.9: A. 14
+79.5,136.9,146.9: A. r−v≥ 3
+349.5,142.9,152.9: B. 16
+79.5,155.9,168.9: B. r−v≤ 3 C. 18
+349.5,168.9,178.9: D. 22
+79.5,180.9,190.9: C. 3−v≤ r
+79.5,202.9,212.9: D. 3−r ≤ v
+319.5,212.7,222.7: 114. Carlos tossed a paper cup in the air 50 times
+349.5,224.7,234.7: and found that the probability of it landing on
+349.5,236.7,246.7: its side was 72%. If he tosses the cup in the air
+49.5,246.7,258.7: 112. 1 sind = 5.6 ricks 150 moretimes, what is the total number of
+127.3,260.7,270.7: 1 sind = 12.88 dalts times he can expect the cup to land on its
+349.5,272.7,282.7: side?
+79.5,284.7,294.7: Using the conversion above, how many dalts
+79.5,295.7,306.7: are equal to 1 rick? E. 72
+349.5,308.7,318.7: F. 108
+79.5,317.7,327.7: E. 0.43 dalt
+349.5,321.7,331.7: G. 144
+79.5,330.7,340.7: F. 2.30 dalts
+349.5,334.7,344.7: H. 158
+79.5,343.7,353.7: G. 7.28 dalts
+79.5,356.7,366.7: H. 18.48 dalts
+357.0,637.1,647.1: THIS IS THE END OF THE TEST.
+357.0,649.6,659.6: IF TIME REMAINS, YOU MAY CHECK
+357.0,662.1,672.1: YOUR ANSWERS. BE SURE THAT THERE
+357.0,674.6,684.6: ARE NO STRAY MARKS, PARTIALLY
+357.0,687.1,697.1: FILLED ANSWER CIRCLES, OR
+357.0,699.6,709.6: INCOMPLETE ERASURES ON YOUR
+357.0,711.5,722.1: ANSWER SHEET. j
+49.6,756.7,767.3: Form B 126

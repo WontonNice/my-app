@@ -1,0 +1,82 @@
+{
+  "english": 57,
+  "standaloneIds": [
+    "part-b-import-69ac133f53cf-d313d3e2",
+    "part-b-question-5",
+    "part-b-question-6",
+    "part-b-question-7"
+  ],
+  "changes": [
+    {
+      "id": "part-b-question-5",
+      "fields": [
+        "choices"
+      ]
+    },
+    {
+      "id": "part-b-question-6",
+      "fields": [
+        "promptHtml",
+        "stimulusHtml",
+        "versionLabels"
+      ]
+    },
+    {
+      "id": "part-b-question-7",
+      "fields": [
+        "promptHtml",
+        "stimulusHtml",
+        "choices"
+      ]
+    }
+  ],
+  "newQuestion": {
+    "id": "part-b-import-69ac133f53cf-d313d3e2",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "sourceFormat": "testnav",
+      "playerProfile": "testnav",
+      "label": "2025-2026 Form B",
+      "url": "https://adam.testnav.com/client/index.html",
+      "year": "2025-2026",
+      "form": "B",
+      "section": "English",
+      "sourceQuestion": "54"
+    },
+    "explanationHtml": "<p><img src=\"/exam-images/2025-2026-form-b-q54-explanation-passage.png\" alt=\"Official TestNav explanation for question 54\"></p>",
+    "points": 1,
+    "prompt": "Which part of the paragraph contains an error in sentence structure?",
+    "instructions": "Select the one error.",
+    "promptHtml": "Which part of the paragraph contains an error in sentence structure?",
+    "selectionHtml": "<p>In September 2016 the National Museum of African American History and Culture opened as part of the Smithsonian <span data-choice-id=\"A\">Institution, the</span> museum is already the Smithsonian’s third most popular site. Experts say that they expect this newest Smithsonian facility to welcome nearly 4 million visitors a <span data-choice-id=\"B\">year. The</span> museum features more than 30,000 <span data-choice-id=\"C\">objects, including</span> Muhammad Ali’s boxing gloves and a dress sewn by Rosa Parks. A commemorative copy of the Emancipation <span data-choice-id=\"D\">Proclamation, written</span> in 1863 during the presidency of Abraham Lincoln, is also on display at the museum.</p>",
+    "topic": "Sentence Structure",
+    "choices": [
+      {
+        "id": "A",
+        "html": "Institution, the",
+        "text": "Institution, the"
+      },
+      {
+        "id": "B",
+        "html": "year. The",
+        "text": "year. The"
+      },
+      {
+        "id": "C",
+        "html": "objects, including",
+        "text": "objects, including"
+      },
+      {
+        "id": "D",
+        "html": "Proclamation, written",
+        "text": "Proclamation, written"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice",
+    "versionLabels": [
+      "2025-2026 Form B"
+    ],
+    "versionLabel": "2025-2026 Form B"
+  }
+}

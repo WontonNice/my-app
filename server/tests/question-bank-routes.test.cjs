@@ -12,9 +12,9 @@ const bank = { revision: 1, questions: [question], sets: [set] };
 stub('../src/lib/questionBank.ts', { readQuestionBank: () => bank, libraryContentKind: id => id === set.id ? 'practice' : 'passage' });
 const completions = [];
 let mergedAssigned = false;
-stub('../src/lib/learningPlanStore.ts', { hasAssignedContent: async (student, kind, id) => student === studentId && (kind === 'practice' && id === set.id || mergedAssigned && kind === 'passage' && id === 'source-a'), learningCatalog: () => [{id:'book-fixture',title:'Merged fixture',subject:'English',href:'/study-hall/shsat/library/book-fixture'}, {id:set.id,title:set.title,subject:'English',href:'/study-hall/shsat/library/'+set.id}], recordPlanCompletion: async (...args) => completions.push(args) });
-const mergedBook = { id: 'book-fixture', versions: [{id:'source-a',label:'A'},{id:'source-b',label:'B'}], passageSet: { passage:{title:'Merged fixture'}, questions: [{...question,type:'multiple_choice'},{...question,type:'multiple_choice',id:'merged-q-2'}] } };
-stub('../src/lib/libraryBooks.ts', { getMergedLibraryBook: id => id === mergedBook.id ? mergedBook : undefined, canonicalLibraryBookId: id => ['book-fixture','source-a','source-b'].includes(id) ? 'book-fixture' : id, libraryBookAccessIds: id => ['book-fixture','source-a','source-b'].includes(id) ? ['book-fixture','source-a','source-b'] : [id] });
+stub('../src/lib/learningPlanStore.ts', { hasAssignedContent: async (student, kind, id) => student === studentId && (kind === 'practice' && id === set.id || mergedAssigned && kind === 'passage' && id === 'source-a'), learningCatalog: () => [{id:'book-fixture',aliases:['source-a','source-b'],title:'Merged fixture',subject:'English',href:'/study-hall/shsat/library/book-fixture'}, {id:set.id,aliases:[],title:set.title,subject:'English',href:'/study-hall/shsat/library/'+set.id}], recordPlanCompletion: async (...args) => completions.push(args) });
+const mergedBook = { id: 'book-fixture', questionPassages: {}, versions: [{id:'source-a',label:'A'},{id:'source-b',label:'B'}], passageSet: { passage:{title:'Merged fixture'}, questions: [{...question,type:'multiple_choice'},{...question,type:'multiple_choice',id:'merged-q-2'}] } };
+stub('../src/lib/libraryBooks.ts', { getLibraryAttemptBook: id => id === mergedBook.id ? mergedBook : undefined, getMergedLibraryBook: id => id === mergedBook.id ? mergedBook : undefined, canonicalLibraryBookId: id => ['book-fixture','source-a','source-b'].includes(id) ? 'book-fixture' : id, libraryBookAccessIds: id => ['book-fixture','source-a','source-b'].includes(id) ? ['book-fixture','source-a','source-b'] : [id] });
 const tables = { student_assignments: [], teacher_library_books: [], student_practice_progress: [], student_library_attempts: [], student_library_corrections: [] };
 let compatibility = false, accessFailure = false;
 const db = { auth: { admin: { listUsers: async () => ({ data: { users: Object.values(users) }, error: null }), getUserById: async id => ({ data: { user: Object.values(users).find(user => user.id === id) }, error: null }) } }, from(table) {
@@ -31,6 +31,23 @@ const db = { auth: { admin: { listUsers: async () => ({ data: { users: Object.va
 } };
 stub('../src/lib/supabase.ts', { supabase: db });
 const express = require('express'); const { libraryRouter } = require('../src/routes/library.ts');
+test('analytical feed retains current and archived exams; strict progress loads beyond one database page', async () => {
+  users.student.user_metadata = {};
+  const current = { assessmentId: 'history-fixture', attemptId: 'new', completedAt: '2026-10-02', subjects: [], passages: [] };
+  const archive = { ...current, attemptId: 'old', completedAt: '2026-09-02' };
+  tables.student_exam_results = [{ user_id: studentId, assessment_id: 'history-fixture', result: current }, { user_id: studentId, assessment_id: '__exam_history__:history-fixture:old', result: archive }];
+  const feed = (await call('/library/teacher/analytics/' + studentId)).data.inputs.filter(input => input.kind === 'exam');
+  assert.deepEqual(feed.map(input => [input.result.attemptId, input.origin]), [['new', 'current'], ['old', 'archive']]);
+  tables.student_exam_results.push(...Array.from({ length: 600 }, (_, i) => ({ user_id: studentId, assessment_id: 'page-' + i, result: { assessmentId: 'page-' + i } })));
+  const progress = await require('../src/routes/progress.ts').getDatabaseProgress(users.student, true);
+  assert.equal(progress.examResults.length, 601); assert.equal(progress.examHistory.length, 1);
+  const started = performance.now();
+  const largeFeed = await call('/library/teacher/analytics/' + studentId);
+  assert.equal(largeFeed.status, 200); assert.equal(largeFeed.data.inputs.filter(input => input.kind === 'exam').length, 602);
+  console.log(`602-result analytics fixture: ${Math.round(performance.now() - started)} ms`);
+  accessFailure = true;
+  try { await assert.rejects(() => require('../src/routes/progress.ts').getDatabaseProgress(users.student, true), /history is unavailable/); } finally { accessFailure = false; tables.student_exam_results = []; }
+});
 test('teacher analytical feed is student-scoped, rejects students/archived accounts and deduplicates compatibility copies', async () => {
   Object.assign(question,{prompt:'Stored fixture question',explanation:'Because A is supported.',incorrectChoiceExplanations:{},passage:null});
   const row={id:'analytics-fixture',user_id:studentId,book_id:set.id,attempt_number:1,score:0,total_questions:1,completed_at:'2026-10-01T12:00:00Z',question_stats:[{questionId:question.id,questionNumber:1,selectedAnswerId:'B',correctAnswerId:'A',isCorrect:false,timeSpentSeconds:12}]};
@@ -99,7 +116,7 @@ test('combined books use individual grants, preserve legacy access/history, reje
   assert.equal((await call('/library/books/source-a/attempts','student')).data.attempts.length,1);
   assert.equal((await call('/library/books/book-fixture/attempts','student')).data.attempts.length,0);
   assert.equal((await call('/library/books/book-fixture/attempts','other',attempt({questions:responses.slice(0,1)}))).status,400);
-  assert.deepEqual(completions.filter(row=>row[0]===otherId).map(row=>row[2]),['book-fixture','source-a','source-b']);
+  assert.deepEqual(completions.filter(row=>row[0]===otherId).map(row=>row[2]),['book-fixture']); // No version coverage exists in this legacy fixture.
 });
 test('library correction classification persists, previews are student-isolated, and the perfect-score gate remains enforced',async()=>{
   assert.equal((await call(`/library/books/${set.id}/corrections`,'student')).status,403);

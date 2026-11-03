@@ -1,4 +1,5 @@
 import { createPlainTextPassage } from "./formatters";
+import { grade9MiniFormContent } from "./tests/grade-9-mini-form";
 import { testnavPartADirections, testnavPartBDirections, testnavMathDirections } from "./testnavDirections";
 import { applyExamPresentation } from '../../../../server/src/shared/examPresentation';
 import { digitalShsatPracticeTest6Content } from "./tests/digital-shsat-practice-test-6";
@@ -39,6 +40,7 @@ import type {
 } from "./types";
 
 const examContentByAssessmentId: Record<string, ExamContent> = {
+  [grade9MiniFormContent.assessmentId]: grade9MiniFormContent,
   [digitalShsatPracticeTest6Content.assessmentId]: digitalShsatPracticeTest6Content,
   [digitalShsatPracticeTest5Content.assessmentId]: digitalShsatPracticeTest5Content,
   [digitalShsatPracticeTest4Content.assessmentId]: digitalShsatPracticeTest4Content,
@@ -195,8 +197,8 @@ function createFallbackExamContent(assessment: AssessmentContentSource): ExamCon
   };
 }
 
-export function resolveExamContent(assessment: AssessmentContentSource) {
-  const content = applyExamPresentation(examContentByAssessmentId[assessment.id] ?? createFallbackExamContent(assessment));
+export function resolveExamContent(assessment: AssessmentContentSource, savedContent?: ExamContent) {
+  const content = applyExamPresentation(savedContent ?? examContentByAssessmentId[assessment.id] ?? createFallbackExamContent(assessment));
   const sectionFor = (passageSet: ExamPassageSet): ExamPassageSection =>
     content.passageSections?.[passageSet.passage.id] ??
     content.passageSections?.[passageSet.id] ??

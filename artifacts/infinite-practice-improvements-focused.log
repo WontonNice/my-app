@@ -1,0 +1,32 @@
+✔ personal batches retain source snapshots, deduplicate additions and protect ownership/revisions (66.5552ms)
+✔ batch export carries all sources, exact module IDs, instructions and refuses stale destinations (7.2462ms)
+✔ renaming remains independent of skill assignment, reconciliation and validation (5.9655ms)
+✔ authenticated endpoints reject students and save teacher changes durably without assignments (95.6248ms)
+✔ remote persistence rejects failed writes and simultaneous stale saves (8.2742ms)
+✔ studio handoff opens the account planner and carries only the source selection (6.5627ms)
+✔ planner notifications refresh visible tabs without sharing data and clean up subscriptions (3.6302ms)
+✔ math question handoff keeps the editor open and carries only the exact selected ID (6.0064ms)
+✔ unsaved math questions cannot silently hand off an older saved snapshot (1.1825ms)
+✔ blocked popups get a usable link and failed handoffs close the blank tab and allow retry (2.3571ms)
+✔ Math Study Hall follows the managed hierarchy and reserves topic resource sections (465.2708ms)
+✔ student practice lists show parent modules while nested modules remain part of their generation set (306.146ms)
+✔ YouTube references render in-site play buttons with thumbnails and optional metadata (268.7133ms)
+✔ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (796.2317ms)
+✔ five streak stars unlock at exact ten-answer thresholds with accessible locked and earned labels (20.1611ms)
+✔ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (20.8305ms)
+✔ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (17.8007ms)
+✔ mini preview retains the exam controls in a bounded nonmodal region (16.5406ms)
+✔ ten correct per generator unlocks independently, wrong answers reset only that type, checking twice is inert (5.9158ms)
+✔ unlock persists after a later miss; unfinished current questions cannot be hidden (0.3722ms)
+✔ saved sessions survive reopening with answers, streaks and snapshots; accounts and modules are isolated (1.496ms)
+✔ module records retain all five milestones after mistakes, finishing and starting again, without crossing accounts (1.9322ms)
+✔ passage scores retain zero, ignore invalid/missing scores, and choose latest scored evidence (2.844ms)
+✔ editor links resolve exact stable question IDs, prefer assessment context, and do not guess missing questions (0.245ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1482.6293

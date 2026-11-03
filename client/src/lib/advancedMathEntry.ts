@@ -34,20 +34,24 @@ export const advancedMathKeypad: (AdvancedMathKey | null)[][] = [
     { label: "Absolute value", latex: "\\left|\\placeholder{}\\right|", text: "| |" }],
 ];
 
-function entryLetter(variable?: string) {
+function entryLetters(variable?: string) {
   const value = variable?.trim().normalize('NFKC');
-  return value && /^\p{L}$/u.test(value) ? value : undefined;
+  return value && /^\p{L}(?:\s*,\s*\p{L}){0,2}$/u.test(value)
+    ? [...new Set(value.split(',').map(letter => letter.trim()))] : [];
 }
 
 /** A variable key is opt-in; captured calculator-only palettes keep their layout. */
 export function advancedMathKeypadForVariable(variable?: string) {
-  const letter = entryLetter(variable);
-  if (!letter) return advancedMathKeypad;
+  const letters = entryLetters(variable);
+  if (!letters.length) return advancedMathKeypad;
   return advancedMathKeypad.map((row, index) => index === 0
-    ? row.map((key, column) => column === 5 ? { label: `Variable ${letter}`, latex: letter, text: letter } : key)
+    ? row.map((key, column) => {
+      const letter = letters[column - 5];
+      return letter ? { label: `Variable ${letter}`, latex: letter, text: letter } : key;
+    })
     : row);
 }
 
 export function isAdvancedMathCharacter(key: string, variable?: string) {
-  return /^[\d.+\-−%/*×·÷^()=<>|π≤≥]$/.test(key) || key === entryLetter(variable);
+  return /^[\d.+\-−%/*×·÷^()=<>|π≤≥]$/.test(key) || entryLetters(variable).includes(key);
 }

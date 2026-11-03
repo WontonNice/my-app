@@ -170,6 +170,7 @@ export const indoorPlantsPassageSet: ExamPassageSet = {
   "body": "Read the text or texts that follow and answer the related questions. You will be asked to improve the writing quality of each text and to correct errors so that each text follows the conventions of standard written English. You should reread relevant parts of each text, while being mindful of time, before selecting the best answer for each question."
 },
   passage: createSentenceNumberedPassage({
+    passageCategory: "official_handbook",
     id: "indoor-plants",
     passageType: "informational",
     title: "The Benefits of Indoor Plants",

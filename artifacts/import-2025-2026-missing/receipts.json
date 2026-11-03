@@ -1,0 +1,3172 @@
+{
+  "2020-2021-form-a": {
+    "passages": [
+      {
+        "id": "find-time-to-volunteer-2020-2021-form-a",
+        "count": 5
+      }
+    ],
+    "standalones": [
+      {
+        "id": "part-b-import-aae3824ad548-4d372338",
+        "sourceQuestion": "1"
+      },
+      {
+        "id": "part-b-import-d7cf6fc5ab7b-dd9ab404",
+        "sourceQuestion": "5"
+      }
+    ],
+    "standaloneImport": {
+      "drafts": [
+        {
+          "id": "part-b-import-40f9fe44301f-98508c2b",
+          "fingerprint": "40f9fe44301f46fea661894795c42cd9d891f80bf214445783ad0619d578569a",
+          "version": 1,
+          "original": {
+            "sourceQuestion": "48",
+            "prompt": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "promptHtml": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "stimulus": "(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.\n\nStudents could sign up to read an original poem aloud ________ three minutes was the strict time limit for each reader.",
+            "stimulusHtml": "<p>(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.</p><p><p>Students could sign up to read an original poem aloud <u>________</u> three minutes was the strict time limit for each reader.</p></p>",
+            "explanation": "A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. \"; then\" wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. \", so\" wrongly frames the time limit as a consequence of students signing up. \", and\" wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.",
+            "explanationHtml": "<p>A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. &quot;; then&quot; wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. &quot;, so&quot; wrongly frames the time limit as a consequence of students signing up. &quot;, and&quot; wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.</p>",
+            "topic": "",
+            "points": 1,
+            "versionLabels": [
+              "Digital SHSAT Practice Test 3"
+            ],
+            "notes": [
+              "SAT Crash Course source question 48.",
+              "Source sentence blank imported as a drag-and-drop answer box. The exact sentence and blank are included below the paragraph; original interaction retained."
+            ],
+            "type": "category_sort",
+            "items": [
+              {
+                "id": "card-1",
+                "text": ";",
+                "html": "<p><strong>;</strong></p>"
+              },
+              {
+                "id": "card-2",
+                "text": "; then",
+                "html": "<p><strong>; then</strong></p>"
+              },
+              {
+                "id": "card-3",
+                "text": ", so",
+                "html": "<p><strong>, so</strong></p>"
+              },
+              {
+                "id": "card-4",
+                "text": ", and",
+                "html": "<p><strong>, and</strong></p>"
+              }
+            ],
+            "categories": [
+              {
+                "id": "answer-box",
+                "title": "Sentence blank"
+              }
+            ],
+            "categoryCapacity": 1,
+            "requiredPlacements": 1,
+            "correctPlacements": {
+              "card-1": "answer-box"
+            },
+            "sourceInteraction": {
+              "type": "sentence_blank",
+              "contentHtml": "<p>Students could sign up to read an original poem aloud {{blank-1}} three minutes was the strict time limit for each reader.</p>",
+              "options": [
+                {
+                  "id": "option-1",
+                  "text": ";",
+                  "html": "<p><strong>;</strong></p>"
+                },
+                {
+                  "id": "option-2",
+                  "text": "; then",
+                  "html": "<p><strong>; then</strong></p>"
+                },
+                {
+                  "id": "option-3",
+                  "text": ", so",
+                  "html": "<p><strong>, so</strong></p>"
+                },
+                {
+                  "id": "option-4",
+                  "text": ", and",
+                  "html": "<p><strong>, and</strong></p>"
+                }
+              ],
+              "slots": [
+                {
+                  "id": "blank-1",
+                  "answer": ";",
+                  "answerHtml": "<p><strong>\n                        ;\n                    </strong></p>"
+                }
+              ]
+            }
+          },
+          "question": {
+            "sourceQuestion": "48",
+            "prompt": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "promptHtml": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "stimulus": "(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.\n\nStudents could sign up to read an original poem aloud ________ three minutes was the strict time limit for each reader.",
+            "stimulusHtml": "<p>(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.</p><p><p>Students could sign up to read an original poem aloud <u>________</u> three minutes was the strict time limit for each reader.</p></p>",
+            "explanation": "A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. \"; then\" wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. \", so\" wrongly frames the time limit as a consequence of students signing up. \", and\" wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.",
+            "explanationHtml": "A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. &quot;; then&quot; wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. &quot;, so&quot; wrongly frames the time limit as a consequence of students signing up. &quot;, and&quot; wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.",
+            "topic": "",
+            "points": 1,
+            "versionLabels": [
+              "Digital SHSAT Practice Test 3"
+            ],
+            "notes": [
+              "SAT Crash Course source question 48.",
+              "Source sentence blank imported as a drag-and-drop answer box. The exact sentence and blank are included below the paragraph; original interaction retained."
+            ],
+            "type": "category_sort",
+            "items": [
+              {
+                "id": "card-1",
+                "text": ";",
+                "html": "<strong>;</strong>"
+              },
+              {
+                "id": "card-2",
+                "text": "; then",
+                "html": "<strong>; then</strong>"
+              },
+              {
+                "id": "card-3",
+                "text": ", so",
+                "html": "<strong>, so</strong>"
+              },
+              {
+                "id": "card-4",
+                "text": ", and",
+                "html": "<strong>, and</strong>"
+              }
+            ],
+            "categories": [
+              {
+                "id": "answer-box",
+                "title": "Sentence blank"
+              }
+            ],
+            "categoryCapacity": 1,
+            "requiredPlacements": 1,
+            "correctPlacements": {
+              "card-1": "answer-box"
+            },
+            "sourceInteraction": {
+              "type": "sentence_blank",
+              "contentHtml": "<p>Students could sign up to read an original poem aloud {{blank-1}} three minutes was the strict time limit for each reader.</p>",
+              "options": [
+                {
+                  "id": "option-1",
+                  "text": ";",
+                  "html": "<p><strong>;</strong></p>"
+                },
+                {
+                  "id": "option-2",
+                  "text": "; then",
+                  "html": "<p><strong>; then</strong></p>"
+                },
+                {
+                  "id": "option-3",
+                  "text": ", so",
+                  "html": "<p><strong>, so</strong></p>"
+                },
+                {
+                  "id": "option-4",
+                  "text": ", and",
+                  "html": "<p><strong>, and</strong></p>"
+                }
+              ],
+              "slots": [
+                {
+                  "id": "blank-1",
+                  "answer": ";",
+                  "answerHtml": "<p><strong>\n                        ;\n                    </strong></p>"
+                }
+              ]
+            },
+            "id": "part-b-import-40f9fe44301f-98508c2b",
+            "instructions": "",
+            "versionLabel": "Digital SHSAT Practice Test 3"
+          },
+          "notes": [
+            "SAT Crash Course source question 48.",
+            "Source sentence blank imported as a drag-and-drop answer box. The exact sentence and blank are included below the paragraph; original interaction retained.",
+            "Choose a Revising/Editing topic."
+          ]
+        },
+        {
+          "id": "part-b-import-aae3824ad548-4d372338",
+          "fingerprint": "aae3824ad54833c14c283eb76c9957ddbc3c484fc890458fa5fee3d95854f0dd",
+          "version": 1,
+          "original": {
+            "prompt": "What is the best way to combine the sentences?\n\n(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.\n\n(2) One of Jupiter’s moons is named Io.\n\n(3) Io has the greatest number of active volcanoes in the solar system.",
+            "promptHtml": "<p>What is the best way to combine the sentences?</p><blockquote data-boxed=\"true\">(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.<br>(2) One of Jupiter’s moons is named Io.<br>(3) Io has the greatest number of active volcanoes in the solar system.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+                "html": "<p>Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>"
+              },
+              {
+                "id": "B",
+                "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.",
+                "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.</p>"
+              },
+              {
+                "id": "C",
+                "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.",
+                "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.</p>"
+              },
+              {
+                "id": "D",
+                "text": "Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+                "html": "<p>Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>"
+              }
+            ],
+            "id": "20202021-form-a-q001",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_a.pdf",
+              "sourceQuestion": "1",
+              "sourcePages": [
+                1
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_a_-_answers.pdf",
+                "sourcePages": [
+                  49
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_a_-_answers.pdf",
+                "sourcePages": [
+                  1
+                ]
+              }
+            },
+            "correctChoiceId": "C",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+            "sourceQuestion": "1",
+            "versionLabels": [
+              "2020-2021 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form A",
+              "year": "2020-2021",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_a.pdf",
+              "sourceQuestion": "1",
+              "pages": [
+                1
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_a.pdf; question 1."
+            ]
+          },
+          "question": {
+            "prompt": "What is the best way to combine the sentences?\n\n(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.\n\n(2) One of Jupiter’s moons is named Io.\n\n(3) Io has the greatest number of active volcanoes in the solar system.",
+            "promptHtml": "<p>What is the best way to combine the sentences?</p><blockquote data-boxed=\"true\">(1) Scientists now believe that Jupiter may have as many as seventy-nine moons.<br>(2) One of Jupiter’s moons is named Io.<br>(3) Io has the greatest number of active volcanoes in the solar system.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+                "html": "<p>Io, which is one of Jupiter’s moons, has the greatest number of active volcanoes in the solar system, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>"
+              },
+              {
+                "id": "B",
+                "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.",
+                "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, and one of them is named Io, which has the greatest number of active volcanoes in the solar system.</p>"
+              },
+              {
+                "id": "C",
+                "text": "Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.",
+                "html": "<p>Scientists now believe that Jupiter may have as many as seventy-nine moons, including one named Io, which has the greatest number of active volcanoes in the solar system.</p>"
+              },
+              {
+                "id": "D",
+                "text": "Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.",
+                "html": "<p>Io, a moon with the greatest number of active volcanoes in the solar system, is one of Jupiter’s moons, and scientists now believe that Jupiter may have as many as seventy-nine moons.</p>"
+              }
+            ],
+            "id": "part-b-import-aae3824ad548-4d372338",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_a.pdf",
+              "sourceQuestion": "1",
+              "sourcePages": [
+                1
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_a_-_answers.pdf",
+                "sourcePages": [
+                  49
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_a_-_answers.pdf",
+                "sourcePages": [
+                  1
+                ]
+              }
+            },
+            "correctChoiceId": "C",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+            "sourceQuestion": "1",
+            "versionLabels": [
+              "2020-2021 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form A",
+              "year": "2020-2021",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_a.pdf",
+              "sourceQuestion": "1",
+              "pages": [
+                1
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_a.pdf; question 1."
+            ],
+            "stimulus": "",
+            "instructions": "",
+            "versionLabel": "2020-2021 Form A",
+            "stimulusHtml": ""
+          },
+          "notes": [
+            "Source 20202021_form_a.pdf; question 1.",
+            "Choose a Revising/Editing topic.",
+            "Question or paragraph text is missing."
+          ]
+        },
+        {
+          "id": "part-b-import-d7cf6fc5ab7b-dd9ab404",
+          "fingerprint": "d7cf6fc5ab7b9309ecb334dd286d5279688df617cea0d33dd538905c2c0f8d66",
+          "version": 1,
+          "original": {
+            "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
+            "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) When coal was used to heat <u>homes</u>, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product <u>company</u> created a doughy substance to help people remove this soot. (3) Over time, as natural gas <u>becomes</u> more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he <u>remarketed</u> the product as the toy known today as Play-Doh.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became.",
+                "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>"
+              },
+              {
+                "id": "B",
+                "text": "Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed.",
+                "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>"
+              },
+              {
+                "id": "C",
+                "text": "Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became.",
+                "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>"
+              },
+              {
+                "id": "D",
+                "text": "Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed.",
+                "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>"
+              }
+            ],
+            "id": "20202021-form-a-q005",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_a.pdf",
+              "sourceQuestion": "5",
+              "sourcePages": [
+                3
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_a_-_answers.pdf",
+                "sourcePages": [
+                  49
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_a_-_answers.pdf",
+                "sourcePages": [
+                  3,
+                  4
+                ]
+              }
+            },
+            "correctChoiceId": "C",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q5-1-png-passage.png\" alt=\"Supplied explanation for question 5\"></p><p><img src=\"/exam-images/restore-20202021-form-a-answers-q5-2-png-passage.png\" alt=\"Supplied explanation for question 5\"></p>",
+            "sourceQuestion": "5",
+            "versionLabels": [
+              "2020-2021 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form A",
+              "year": "2020-2021",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_a.pdf",
+              "sourceQuestion": "5",
+              "pages": [
+                3
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_a.pdf; question 5."
+            ]
+          },
+          "question": {
+            "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
+            "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) When coal was used to heat <u>homes</u>, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product <u>company</u> created a doughy substance to help people remove this soot. (3) Over time, as natural gas <u>becomes</u> more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he <u>remarketed</u> the product as the toy known today as Play-Doh.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became.",
+                "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>"
+              },
+              {
+                "id": "B",
+                "text": "Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed.",
+                "html": "<p>Sentence 1: Delete the comma after <em><strong>homes</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>"
+              },
+              {
+                "id": "C",
+                "text": "Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became.",
+                "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 3: Change <em><strong>becomes</strong></em> to <strong>became</strong>.</p>"
+              },
+              {
+                "id": "D",
+                "text": "Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed.",
+                "html": "<p>Sentence 2: Insert a comma after <em><strong>company</strong></em>. Sentence 4: Change <em><strong>remarketed</strong></em> to <strong>had remarketed</strong>.</p>"
+              }
+            ],
+            "id": "part-b-import-d7cf6fc5ab7b-dd9ab404",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_a.pdf",
+              "sourceQuestion": "5",
+              "sourcePages": [
+                3
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_a_-_answers.pdf",
+                "sourcePages": [
+                  49
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_a_-_answers.pdf",
+                "sourcePages": [
+                  3,
+                  4
+                ]
+              }
+            },
+            "correctChoiceId": "C",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-a-answers-q5-1-png-passage.png\" alt=\"Supplied explanation for question 5\"></p><p><img src=\"/exam-images/restore-20202021-form-a-answers-q5-2-png-passage.png\" alt=\"Supplied explanation for question 5\"></p>",
+            "sourceQuestion": "5",
+            "versionLabels": [
+              "2020-2021 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form A",
+              "year": "2020-2021",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_a.pdf",
+              "sourceQuestion": "5",
+              "pages": [
+                3
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_a.pdf; question 5."
+            ],
+            "stimulus": "",
+            "instructions": "",
+            "versionLabel": "2020-2021 Form A",
+            "stimulusHtml": ""
+          },
+          "notes": [
+            "Source 20202021_form_a.pdf; question 5.",
+            "Choose a Revising/Editing topic.",
+            "Question or paragraph text is missing."
+          ]
+        }
+      ],
+      "added": [
+        "part-b-import-aae3824ad548-4d372338",
+        "part-b-import-d7cf6fc5ab7b-dd9ab404"
+      ],
+      "existing": [],
+      "published": []
+    },
+    "englishAssigned": true,
+    "math": {
+      "assessmentId": "2020-2021-form-a",
+      "added": [
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q058",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q059",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q060",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q061",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q062",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q063",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q064",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q065",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q066",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q067",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q068",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q069",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q070",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q071",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q072",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q073",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q074",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q075",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q076",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q077",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q078",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q079",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q080",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q081",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q082",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q083",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q084",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q085",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q086",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q087",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q088",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q089",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q090",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q091",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q092",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q093",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q094",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q095",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q096",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q097",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q098",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q099",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q100",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q101",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q102",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q103",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q104",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q105",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q106",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q107",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q108",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q109",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q110",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q111",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q112",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q113",
+        "2020-2021-form-a-pdf-shsat-2020-2021-a-q114"
+      ],
+      "existing": [],
+      "errors": []
+    },
+    "mathOrdered": true,
+    "mathSourceOrder": [
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q058",
+        "sourceQuestion": 58
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q059",
+        "sourceQuestion": 59
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q060",
+        "sourceQuestion": 60
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q061",
+        "sourceQuestion": 61
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q062",
+        "sourceQuestion": 62
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q063",
+        "sourceQuestion": 63
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q064",
+        "sourceQuestion": 64
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q065",
+        "sourceQuestion": 65
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q066",
+        "sourceQuestion": 66
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q067",
+        "sourceQuestion": 67
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q068",
+        "sourceQuestion": 68
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q069",
+        "sourceQuestion": 69
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q070",
+        "sourceQuestion": 70
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q071",
+        "sourceQuestion": 71
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q072",
+        "sourceQuestion": 72
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q073",
+        "sourceQuestion": 73
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q074",
+        "sourceQuestion": 74
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q075",
+        "sourceQuestion": 75
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q076",
+        "sourceQuestion": 76
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q077",
+        "sourceQuestion": 77
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q078",
+        "sourceQuestion": 78
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q079",
+        "sourceQuestion": 79
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q080",
+        "sourceQuestion": 80
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q081",
+        "sourceQuestion": 81
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q082",
+        "sourceQuestion": 82
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q083",
+        "sourceQuestion": 83
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q084",
+        "sourceQuestion": 84
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q085",
+        "sourceQuestion": 85
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q086",
+        "sourceQuestion": 86
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q087",
+        "sourceQuestion": 87
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q088",
+        "sourceQuestion": 88
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q089",
+        "sourceQuestion": 89
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q090",
+        "sourceQuestion": 90
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q091",
+        "sourceQuestion": 91
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q092",
+        "sourceQuestion": 92
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q093",
+        "sourceQuestion": 93
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q094",
+        "sourceQuestion": 94
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q095",
+        "sourceQuestion": 95
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q096",
+        "sourceQuestion": 96
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q097",
+        "sourceQuestion": 97
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q098",
+        "sourceQuestion": 98
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q099",
+        "sourceQuestion": 99
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q100",
+        "sourceQuestion": 100
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q101",
+        "sourceQuestion": 101
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q102",
+        "sourceQuestion": 102
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q103",
+        "sourceQuestion": 103
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q104",
+        "sourceQuestion": 104
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q105",
+        "sourceQuestion": 105
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q106",
+        "sourceQuestion": 106
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q107",
+        "sourceQuestion": 107
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q108",
+        "sourceQuestion": 108
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q109",
+        "sourceQuestion": 109
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q110",
+        "sourceQuestion": 110
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q111",
+        "sourceQuestion": 111
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q112",
+        "sourceQuestion": 112
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q113",
+        "sourceQuestion": 113
+      },
+      {
+        "id": "2020-2021-form-a-pdf-shsat-2020-2021-a-q114",
+        "sourceQuestion": 114
+      }
+    ]
+  },
+  "2020-2021-form-b": {
+    "passages": [
+      {
+        "id": "the-free-college-debate-2020-2021-form-b",
+        "count": 5
+      }
+    ],
+    "standalones": [
+      {
+        "id": "part-b-import-4918f97e972b-078ff032",
+        "sourceQuestion": "1"
+      },
+      {
+        "id": "part-b-import-9c2f067e7c86-17e7d0e4",
+        "sourceQuestion": "2"
+      },
+      {
+        "id": "part-b-import-2462ba9281da-812fa1d4",
+        "sourceQuestion": "3"
+      },
+      {
+        "id": "part-b-import-a90ecb961d8a-f9bf88c1",
+        "sourceQuestion": "4"
+      }
+    ],
+    "standaloneImport": {
+      "drafts": [
+        {
+          "id": "part-b-import-40f9fe44301f-98508c2b",
+          "fingerprint": "40f9fe44301f46fea661894795c42cd9d891f80bf214445783ad0619d578569a",
+          "version": 1,
+          "original": {
+            "sourceQuestion": "48",
+            "prompt": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "promptHtml": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "stimulus": "(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.\n\nStudents could sign up to read an original poem aloud ________ three minutes was the strict time limit for each reader.",
+            "stimulusHtml": "<p>(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.</p><p><p>Students could sign up to read an original poem aloud <u>________</u> three minutes was the strict time limit for each reader.</p></p>",
+            "explanation": "A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. \"; then\" wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. \", so\" wrongly frames the time limit as a consequence of students signing up. \", and\" wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.",
+            "explanationHtml": "<p>A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. &quot;; then&quot; wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. &quot;, so&quot; wrongly frames the time limit as a consequence of students signing up. &quot;, and&quot; wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.</p>",
+            "topic": "",
+            "points": 1,
+            "versionLabels": [
+              "Digital SHSAT Practice Test 3"
+            ],
+            "notes": [
+              "SAT Crash Course source question 48.",
+              "Source sentence blank imported as a drag-and-drop answer box. The exact sentence and blank are included below the paragraph; original interaction retained."
+            ],
+            "type": "category_sort",
+            "items": [
+              {
+                "id": "card-1",
+                "text": ";",
+                "html": "<p><strong>;</strong></p>"
+              },
+              {
+                "id": "card-2",
+                "text": "; then",
+                "html": "<p><strong>; then</strong></p>"
+              },
+              {
+                "id": "card-3",
+                "text": ", so",
+                "html": "<p><strong>, so</strong></p>"
+              },
+              {
+                "id": "card-4",
+                "text": ", and",
+                "html": "<p><strong>, and</strong></p>"
+              }
+            ],
+            "categories": [
+              {
+                "id": "answer-box",
+                "title": "Sentence blank"
+              }
+            ],
+            "categoryCapacity": 1,
+            "requiredPlacements": 1,
+            "correctPlacements": {
+              "card-1": "answer-box"
+            },
+            "sourceInteraction": {
+              "type": "sentence_blank",
+              "contentHtml": "<p>Students could sign up to read an original poem aloud {{blank-1}} three minutes was the strict time limit for each reader.</p>",
+              "options": [
+                {
+                  "id": "option-1",
+                  "text": ";",
+                  "html": "<p><strong>;</strong></p>"
+                },
+                {
+                  "id": "option-2",
+                  "text": "; then",
+                  "html": "<p><strong>; then</strong></p>"
+                },
+                {
+                  "id": "option-3",
+                  "text": ", so",
+                  "html": "<p><strong>, so</strong></p>"
+                },
+                {
+                  "id": "option-4",
+                  "text": ", and",
+                  "html": "<p><strong>, and</strong></p>"
+                }
+              ],
+              "slots": [
+                {
+                  "id": "blank-1",
+                  "answer": ";",
+                  "answerHtml": "<p><strong>\n                        ;\n                    </strong></p>"
+                }
+              ]
+            }
+          },
+          "question": {
+            "sourceQuestion": "48",
+            "prompt": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "promptHtml": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "stimulus": "(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.\n\nStudents could sign up to read an original poem aloud ________ three minutes was the strict time limit for each reader.",
+            "stimulusHtml": "<p>(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.</p><p><p>Students could sign up to read an original poem aloud <u>________</u> three minutes was the strict time limit for each reader.</p></p>",
+            "explanation": "A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. \"; then\" wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. \", so\" wrongly frames the time limit as a consequence of students signing up. \", and\" wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.",
+            "explanationHtml": "A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. &quot;; then&quot; wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. &quot;, so&quot; wrongly frames the time limit as a consequence of students signing up. &quot;, and&quot; wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.",
+            "topic": "",
+            "points": 1,
+            "versionLabels": [
+              "Digital SHSAT Practice Test 3"
+            ],
+            "notes": [
+              "SAT Crash Course source question 48.",
+              "Source sentence blank imported as a drag-and-drop answer box. The exact sentence and blank are included below the paragraph; original interaction retained."
+            ],
+            "type": "category_sort",
+            "items": [
+              {
+                "id": "card-1",
+                "text": ";",
+                "html": "<strong>;</strong>"
+              },
+              {
+                "id": "card-2",
+                "text": "; then",
+                "html": "<strong>; then</strong>"
+              },
+              {
+                "id": "card-3",
+                "text": ", so",
+                "html": "<strong>, so</strong>"
+              },
+              {
+                "id": "card-4",
+                "text": ", and",
+                "html": "<strong>, and</strong>"
+              }
+            ],
+            "categories": [
+              {
+                "id": "answer-box",
+                "title": "Sentence blank"
+              }
+            ],
+            "categoryCapacity": 1,
+            "requiredPlacements": 1,
+            "correctPlacements": {
+              "card-1": "answer-box"
+            },
+            "sourceInteraction": {
+              "type": "sentence_blank",
+              "contentHtml": "<p>Students could sign up to read an original poem aloud {{blank-1}} three minutes was the strict time limit for each reader.</p>",
+              "options": [
+                {
+                  "id": "option-1",
+                  "text": ";",
+                  "html": "<p><strong>;</strong></p>"
+                },
+                {
+                  "id": "option-2",
+                  "text": "; then",
+                  "html": "<p><strong>; then</strong></p>"
+                },
+                {
+                  "id": "option-3",
+                  "text": ", so",
+                  "html": "<p><strong>, so</strong></p>"
+                },
+                {
+                  "id": "option-4",
+                  "text": ", and",
+                  "html": "<p><strong>, and</strong></p>"
+                }
+              ],
+              "slots": [
+                {
+                  "id": "blank-1",
+                  "answer": ";",
+                  "answerHtml": "<p><strong>\n                        ;\n                    </strong></p>"
+                }
+              ]
+            },
+            "id": "part-b-import-40f9fe44301f-98508c2b",
+            "instructions": "",
+            "versionLabel": "Digital SHSAT Practice Test 3"
+          },
+          "notes": [
+            "SAT Crash Course source question 48.",
+            "Source sentence blank imported as a drag-and-drop answer box. The exact sentence and blank are included below the paragraph; original interaction retained.",
+            "Choose a Revising/Editing topic."
+          ]
+        },
+        {
+          "id": "part-b-import-4918f97e972b-078ff032",
+          "fingerprint": "4918f97e972beb78eb54d7ad8a321e87091901cfc75fa4dee5941ea1ecf02818",
+          "version": 1,
+          "original": {
+            "prompt": "Which revision corrects the error in sentence structure in the paragraph?\n\nThe land on Earth has not always been separated into the seven continents, at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface. Additionally, the supercontinent was surrounded by ocean waters called Panthalassa, much of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s crust. In fact, experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.",
+            "promptHtml": "<p>Which revision corrects the error in sentence structure in the paragraph?</p><blockquote data-boxed=\"true\">The land on Earth has not always been separated into the seven <u>continents, at</u> one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s <u>surface. Additionally,</u> the supercontinent was surrounded by ocean waters called <u>Panthalassa, much</u> of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s <u>crust. In fact,</u> experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "continents. At",
+                "html": "<p>continents. At</p>"
+              },
+              {
+                "id": "B",
+                "text": "surface; additionally,",
+                "html": "<p>surface; additionally,</p>"
+              },
+              {
+                "id": "C",
+                "text": "Panthalassa. Much",
+                "html": "<p>Panthalassa. Much</p>"
+              },
+              {
+                "id": "D",
+                "text": "crust, in fact,",
+                "html": "<p>crust, in fact,</p>"
+              }
+            ],
+            "id": "20202021-form-b-q001",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_b.pdf",
+              "sourceQuestion": "1",
+              "sourcePages": [
+                1
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  52
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  1
+                ]
+              }
+            },
+            "correctChoiceId": "A",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+            "sourceQuestion": "1",
+            "versionLabels": [
+              "2020-2021 Form B"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form B",
+              "year": "2020-2021",
+              "form": "B",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+              "sourceQuestion": "1",
+              "pages": [
+                1
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_b.pdf; question 1."
+            ]
+          },
+          "question": {
+            "prompt": "Which revision corrects the error in sentence structure in the paragraph?\n\nThe land on Earth has not always been separated into the seven continents, at one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s surface. Additionally, the supercontinent was surrounded by ocean waters called Panthalassa, much of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s crust. In fact, experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.",
+            "promptHtml": "<p>Which revision corrects the error in sentence structure in the paragraph?</p><blockquote data-boxed=\"true\">The land on Earth has not always been separated into the seven <u>continents, at</u> one time a massive supercontinent, known as Pangaea, covered one-third of Earth’s <u>surface. Additionally,</u> the supercontinent was surrounded by ocean waters called <u>Panthalassa, much</u> of which were in Earth’s Southern Hemisphere. Geologists believe that the supercontinent split apart over millions of years because of the movement of the tectonic plates that form Earth’s <u>crust. In fact,</u> experts predict that over the next 250 million years the movement of the plates will cause the seven continents to merge into a supercontinent again.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "continents. At",
+                "html": "<p>continents. At</p>"
+              },
+              {
+                "id": "B",
+                "text": "surface; additionally,",
+                "html": "<p>surface; additionally,</p>"
+              },
+              {
+                "id": "C",
+                "text": "Panthalassa. Much",
+                "html": "<p>Panthalassa. Much</p>"
+              },
+              {
+                "id": "D",
+                "text": "crust, in fact,",
+                "html": "<p>crust, in fact,</p>"
+              }
+            ],
+            "id": "part-b-import-4918f97e972b-078ff032",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_b.pdf",
+              "sourceQuestion": "1",
+              "sourcePages": [
+                1
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  52
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  1
+                ]
+              }
+            },
+            "correctChoiceId": "A",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+            "sourceQuestion": "1",
+            "versionLabels": [
+              "2020-2021 Form B"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form B",
+              "year": "2020-2021",
+              "form": "B",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+              "sourceQuestion": "1",
+              "pages": [
+                1
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_b.pdf; question 1."
+            ],
+            "stimulus": "",
+            "instructions": "",
+            "versionLabel": "2020-2021 Form B",
+            "stimulusHtml": ""
+          },
+          "notes": [
+            "Source 20202021_form_b.pdf; question 1.",
+            "Choose a Revising/Editing topic.",
+            "Question or paragraph text is missing."
+          ]
+        },
+        {
+          "id": "part-b-import-9c2f067e7c86-17e7d0e4",
+          "fingerprint": "9c2f067e7c86d9a11478f6caefea7a93cc7d6b37a47f7e184a9eef46554cd0fd",
+          "version": 1,
+          "original": {
+            "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.",
+            "promptHtml": "<p>Which sentence contains an error in its construction and should be revised?</p><blockquote data-boxed=\"true\">(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.</blockquote>",
+            "choices": [
+              {
+                "id": "E",
+                "text": "sentence 1",
+                "html": "<p>sentence 1</p>"
+              },
+              {
+                "id": "F",
+                "text": "sentence 2",
+                "html": "<p>sentence 2</p>"
+              },
+              {
+                "id": "G",
+                "text": "sentence 3",
+                "html": "<p>sentence 3</p>"
+              },
+              {
+                "id": "H",
+                "text": "sentence 4",
+                "html": "<p>sentence 4</p>"
+              }
+            ],
+            "id": "20202021-form-b-q002",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_b.pdf",
+              "sourceQuestion": "2",
+              "sourcePages": [
+                2
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  52
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  2
+                ]
+              }
+            },
+            "correctChoiceId": "E",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q2-1-png-passage.png\" alt=\"Supplied explanation for question 2\"></p>",
+            "sourceQuestion": "2",
+            "versionLabels": [
+              "2020-2021 Form B"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form B",
+              "year": "2020-2021",
+              "form": "B",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+              "sourceQuestion": "2",
+              "pages": [
+                2
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_b.pdf; question 2."
+            ]
+          },
+          "question": {
+            "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.",
+            "promptHtml": "<p>Which sentence contains an error in its construction and should be revised?</p><blockquote data-boxed=\"true\">(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "sentence 1",
+                "html": "<p>sentence 1</p>"
+              },
+              {
+                "id": "B",
+                "text": "sentence 2",
+                "html": "<p>sentence 2</p>"
+              },
+              {
+                "id": "C",
+                "text": "sentence 3",
+                "html": "<p>sentence 3</p>"
+              },
+              {
+                "id": "D",
+                "text": "sentence 4",
+                "html": "<p>sentence 4</p>"
+              }
+            ],
+            "id": "part-b-import-9c2f067e7c86-17e7d0e4",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_b.pdf",
+              "sourceQuestion": "2",
+              "sourcePages": [
+                2
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  52
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  2
+                ]
+              },
+              "sourceChoiceIds": [
+                "E",
+                "F",
+                "G",
+                "H"
+              ]
+            },
+            "correctChoiceId": "A",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q2-1-png-passage.png\" alt=\"Supplied explanation for question 2\"></p>",
+            "sourceQuestion": "2",
+            "versionLabels": [
+              "2020-2021 Form B"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form B",
+              "year": "2020-2021",
+              "form": "B",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+              "sourceQuestion": "2",
+              "pages": [
+                2
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_b.pdf; question 2."
+            ],
+            "stimulus": "",
+            "instructions": "",
+            "versionLabel": "2020-2021 Form B",
+            "stimulusHtml": ""
+          },
+          "notes": [
+            "Source 20202021_form_b.pdf; question 2.",
+            "Choose a Revising/Editing topic.",
+            "Question or paragraph text is missing."
+          ]
+        },
+        {
+          "id": "part-b-import-2462ba9281da-812fa1d4",
+          "fingerprint": "2462ba9281da2213f37a75701d8417b7ebab06be40b722dcd0497f8fd42d7648",
+          "version": 1,
+          "original": {
+            "prompt": "Which edit should be made to correct the sentence?\n\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and once could hold up to 50,000 spectators.",
+            "promptHtml": "<p>Which edit should be made to correct the sentence?</p><blockquote data-boxed=\"true\">The Colosseum in <u>Rome,</u> <u>Italy</u> which is considered one of the “new” Seven Wonders of the <u>World,</u> is the largest amphitheater ever <u>built</u> and once could hold up to 50,000 spectators.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Delete the comma after Rome.",
+                "html": "<p>Delete the comma after <em><strong>Rome</strong></em>.</p>"
+              },
+              {
+                "id": "B",
+                "text": "Insert a comma after Italy.",
+                "html": "<p>Insert a comma after <em><strong>Italy</strong></em>.</p>"
+              },
+              {
+                "id": "C",
+                "text": "Delete the comma after World.",
+                "html": "<p>Delete the comma after <em><strong>World</strong></em>.</p>"
+              },
+              {
+                "id": "D",
+                "text": "Insert a comma after built.",
+                "html": "<p>Insert a comma after <em><strong>built</strong></em>.</p>"
+              }
+            ],
+            "id": "20202021-form-b-q003",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_b.pdf",
+              "sourceQuestion": "3",
+              "sourcePages": [
+                2
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  52
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  2
+                ]
+              }
+            },
+            "correctChoiceId": "B",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q3-1-png-passage.png\" alt=\"Supplied explanation for question 3\"></p>",
+            "sourceQuestion": "3",
+            "versionLabels": [
+              "2020-2021 Form B"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form B",
+              "year": "2020-2021",
+              "form": "B",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+              "sourceQuestion": "3",
+              "pages": [
+                2
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_b.pdf; question 3."
+            ]
+          },
+          "question": {
+            "prompt": "Which edit should be made to correct the sentence?\n\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and once could hold up to 50,000 spectators.",
+            "promptHtml": "<p>Which edit should be made to correct the sentence?</p><blockquote data-boxed=\"true\">The Colosseum in <u>Rome,</u> <u>Italy</u> which is considered one of the “new” Seven Wonders of the <u>World,</u> is the largest amphitheater ever <u>built</u> and once could hold up to 50,000 spectators.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Delete the comma after Rome.",
+                "html": "<p>Delete the comma after <em><strong>Rome</strong></em>.</p>"
+              },
+              {
+                "id": "B",
+                "text": "Insert a comma after Italy.",
+                "html": "<p>Insert a comma after <em><strong>Italy</strong></em>.</p>"
+              },
+              {
+                "id": "C",
+                "text": "Delete the comma after World.",
+                "html": "<p>Delete the comma after <em><strong>World</strong></em>.</p>"
+              },
+              {
+                "id": "D",
+                "text": "Insert a comma after built.",
+                "html": "<p>Insert a comma after <em><strong>built</strong></em>.</p>"
+              }
+            ],
+            "id": "part-b-import-2462ba9281da-812fa1d4",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_b.pdf",
+              "sourceQuestion": "3",
+              "sourcePages": [
+                2
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  52
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  2
+                ]
+              }
+            },
+            "correctChoiceId": "B",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q3-1-png-passage.png\" alt=\"Supplied explanation for question 3\"></p>",
+            "sourceQuestion": "3",
+            "versionLabels": [
+              "2020-2021 Form B"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form B",
+              "year": "2020-2021",
+              "form": "B",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+              "sourceQuestion": "3",
+              "pages": [
+                2
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_b.pdf; question 3."
+            ],
+            "stimulus": "",
+            "instructions": "",
+            "versionLabel": "2020-2021 Form B",
+            "stimulusHtml": ""
+          },
+          "notes": [
+            "Source 20202021_form_b.pdf; question 3.",
+            "Choose a Revising/Editing topic.",
+            "Question or paragraph text is missing."
+          ]
+        },
+        {
+          "id": "part-b-import-a90ecb961d8a-f9bf88c1",
+          "fingerprint": "a90ecb961d8a79d87090fe0d63cff2a31d8bccb5eac826bd237390168d96a612",
+          "version": 1,
+          "original": {
+            "prompt": "How should this sentence be revised?\n\nTo promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.",
+            "promptHtml": "<p>How should this sentence be revised?</p><blockquote data-boxed=\"true\">To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</blockquote>",
+            "choices": [
+              {
+                "id": "E",
+                "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.",
+                "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>"
+              },
+              {
+                "id": "F",
+                "text": "On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.",
+                "html": "<p>On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.</p>"
+              },
+              {
+                "id": "G",
+                "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday.",
+                "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>"
+              },
+              {
+                "id": "H",
+                "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.",
+                "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>"
+              }
+            ],
+            "id": "20202021-form-b-q004",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_b.pdf",
+              "sourceQuestion": "4",
+              "sourcePages": [
+                3
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  52
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  2,
+                  3
+                ]
+              }
+            },
+            "correctChoiceId": "G",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q4-1-png-passage.png\" alt=\"Supplied explanation for question 4\"></p><p><img src=\"/exam-images/restore-20202021-form-b-answers-q4-2-png-passage.png\" alt=\"Supplied explanation for question 4\"></p>",
+            "sourceQuestion": "4",
+            "versionLabels": [
+              "2020-2021 Form B"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form B",
+              "year": "2020-2021",
+              "form": "B",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+              "sourceQuestion": "4",
+              "pages": [
+                3
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_b.pdf; question 4."
+            ]
+          },
+          "question": {
+            "prompt": "How should this sentence be revised?\n\nTo promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.",
+            "promptHtml": "<p>How should this sentence be revised?</p><blockquote data-boxed=\"true\">To promote their club, a bake sale will be sponsored by members of the debate team on Wednesday.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.",
+                "html": "<p>To promote their club, on Wednesday a bake sale will be sponsored by members of the debate team.</p>"
+              },
+              {
+                "id": "B",
+                "text": "On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.",
+                "html": "<p>On Wednesday, to promote their club, a bake sale will be sponsored by members of the debate team.</p>"
+              },
+              {
+                "id": "C",
+                "text": "To promote their club, members of the debate team will sponsor a bake sale on Wednesday.",
+                "html": "<p>To promote their club, members of the debate team will sponsor a bake sale on Wednesday.</p>"
+              },
+              {
+                "id": "D",
+                "text": "Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.",
+                "html": "<p>Members of the debate team, on Wednesday to promote their club, will sponsor a bake sale.</p>"
+              }
+            ],
+            "id": "part-b-import-a90ecb961d8a-f9bf88c1",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20202021_form_b.pdf",
+              "sourceQuestion": "4",
+              "sourcePages": [
+                3
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  52
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20202021_form_b_-_answers.pdf",
+                "sourcePages": [
+                  2,
+                  3
+                ]
+              },
+              "sourceChoiceIds": [
+                "E",
+                "F",
+                "G",
+                "H"
+              ]
+            },
+            "correctChoiceId": "C",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20202021-form-b-answers-q4-1-png-passage.png\" alt=\"Supplied explanation for question 4\"></p><p><img src=\"/exam-images/restore-20202021-form-b-answers-q4-2-png-passage.png\" alt=\"Supplied explanation for question 4\"></p>",
+            "sourceQuestion": "4",
+            "versionLabels": [
+              "2020-2021 Form B"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2020-2021 Form B",
+              "year": "2020-2021",
+              "form": "B",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20202021_form_b.pdf",
+              "sourceQuestion": "4",
+              "pages": [
+                3
+              ]
+            },
+            "notes": [
+              "Source 20202021_form_b.pdf; question 4."
+            ],
+            "stimulus": "",
+            "instructions": "",
+            "versionLabel": "2020-2021 Form B",
+            "stimulusHtml": ""
+          },
+          "notes": [
+            "Source 20202021_form_b.pdf; question 4.",
+            "Choose a Revising/Editing topic.",
+            "Question or paragraph text is missing."
+          ]
+        }
+      ],
+      "added": [
+        "part-b-import-4918f97e972b-078ff032",
+        "part-b-import-9c2f067e7c86-17e7d0e4",
+        "part-b-import-2462ba9281da-812fa1d4",
+        "part-b-import-a90ecb961d8a-f9bf88c1"
+      ],
+      "existing": [],
+      "published": []
+    },
+    "englishAssigned": true
+  },
+  "2024-2025-form-a": {
+    "passages": [],
+    "standalones": [
+      {
+        "id": "part-b-import-a230dac54eb9-0577ee73",
+        "sourceQuestion": "1"
+      },
+      {
+        "id": "part-b-import-6e34e1a52059-024cf95e",
+        "sourceQuestion": "2"
+      },
+      {
+        "id": "part-b-import-30519d115cab-1f91a2d7",
+        "sourceQuestion": "3"
+      },
+      {
+        "id": "part-b-import-383f7188a8c8-b7196781",
+        "sourceQuestion": "4"
+      }
+    ],
+    "standaloneImport": {
+      "drafts": [
+        {
+          "id": "part-b-import-40f9fe44301f-98508c2b",
+          "fingerprint": "40f9fe44301f46fea661894795c42cd9d891f80bf214445783ad0619d578569a",
+          "version": 1,
+          "original": {
+            "sourceQuestion": "48",
+            "prompt": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "promptHtml": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "stimulus": "(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.\n\nStudents could sign up to read an original poem aloud ________ three minutes was the strict time limit for each reader.",
+            "stimulusHtml": "<p>(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.</p><p><p>Students could sign up to read an original poem aloud <u>________</u> three minutes was the strict time limit for each reader.</p></p>",
+            "explanation": "A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. \"; then\" wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. \", so\" wrongly frames the time limit as a consequence of students signing up. \", and\" wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.",
+            "explanationHtml": "<p>A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. &quot;; then&quot; wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. &quot;, so&quot; wrongly frames the time limit as a consequence of students signing up. &quot;, and&quot; wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.</p>",
+            "topic": "",
+            "points": 1,
+            "versionLabels": [
+              "Digital SHSAT Practice Test 3"
+            ],
+            "notes": [
+              "SAT Crash Course source question 48.",
+              "Source sentence blank imported as a drag-and-drop answer box. The exact sentence and blank are included below the paragraph; original interaction retained."
+            ],
+            "type": "category_sort",
+            "items": [
+              {
+                "id": "card-1",
+                "text": ";",
+                "html": "<p><strong>;</strong></p>"
+              },
+              {
+                "id": "card-2",
+                "text": "; then",
+                "html": "<p><strong>; then</strong></p>"
+              },
+              {
+                "id": "card-3",
+                "text": ", so",
+                "html": "<p><strong>, so</strong></p>"
+              },
+              {
+                "id": "card-4",
+                "text": ", and",
+                "html": "<p><strong>, and</strong></p>"
+              }
+            ],
+            "categories": [
+              {
+                "id": "answer-box",
+                "title": "Sentence blank"
+              }
+            ],
+            "categoryCapacity": 1,
+            "requiredPlacements": 1,
+            "correctPlacements": {
+              "card-1": "answer-box"
+            },
+            "sourceInteraction": {
+              "type": "sentence_blank",
+              "contentHtml": "<p>Students could sign up to read an original poem aloud {{blank-1}} three minutes was the strict time limit for each reader.</p>",
+              "options": [
+                {
+                  "id": "option-1",
+                  "text": ";",
+                  "html": "<p><strong>;</strong></p>"
+                },
+                {
+                  "id": "option-2",
+                  "text": "; then",
+                  "html": "<p><strong>; then</strong></p>"
+                },
+                {
+                  "id": "option-3",
+                  "text": ", so",
+                  "html": "<p><strong>, so</strong></p>"
+                },
+                {
+                  "id": "option-4",
+                  "text": ", and",
+                  "html": "<p><strong>, and</strong></p>"
+                }
+              ],
+              "slots": [
+                {
+                  "id": "blank-1",
+                  "answer": ";",
+                  "answerHtml": "<p><strong>\n                        ;\n                    </strong></p>"
+                }
+              ]
+            }
+          },
+          "question": {
+            "sourceQuestion": "48",
+            "prompt": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "promptHtml": "Drag the correct option into the blank to fix the comma splice in sentence 2.",
+            "stimulus": "(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.\n\nStudents could sign up to read an original poem aloud ________ three minutes was the strict time limit for each reader.",
+            "stimulusHtml": "<p>(1) The library announced a poetry slam for the last Friday of the month. (2) Students could sign up to read an original poem aloud, three minutes was the strict time limit for each reader. (3) A rotating panel of three teachers would score each performance on delivery and originality rather than on rhyme or length. (4) By the Wednesday before the event, forty students had already signed up, twice as many as the librarian had expected.</p><p><p>Students could sign up to read an original poem aloud <u>________</u> three minutes was the strict time limit for each reader.</p></p>",
+            "explanation": "A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. \"; then\" wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. \", so\" wrongly frames the time limit as a consequence of students signing up. \", and\" wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.",
+            "explanationHtml": "A bare semicolon correctly joins the two independent clauses without asserting a relationship the sentence doesn't intend — the sign-up information and the time-limit rule are two separate facts, not a sequence, a result, or an addition. &quot;; then&quot; wrongly implies the time limit was announced only after sign-ups happened, as if in a sequence. &quot;, so&quot; wrongly frames the time limit as a consequence of students signing up. &quot;, and&quot; wrongly frames the time-limit rule as merely one more added fact rather than a distinct rule governing the event, understating its importance.",
+            "topic": "",
+            "points": 1,
+            "versionLabels": [
+              "Digital SHSAT Practice Test 3"
+            ],
+            "notes": [
+              "SAT Crash Course source question 48.",
+              "Source sentence blank imported as a drag-and-drop answer box. The exact sentence and blank are included below the paragraph; original interaction retained."
+            ],
+            "type": "category_sort",
+            "items": [
+              {
+                "id": "card-1",
+                "text": ";",
+                "html": "<strong>;</strong>"
+              },
+              {
+                "id": "card-2",
+                "text": "; then",
+                "html": "<strong>; then</strong>"
+              },
+              {
+                "id": "card-3",
+                "text": ", so",
+                "html": "<strong>, so</strong>"
+              },
+              {
+                "id": "card-4",
+                "text": ", and",
+                "html": "<strong>, and</strong>"
+              }
+            ],
+            "categories": [
+              {
+                "id": "answer-box",
+                "title": "Sentence blank"
+              }
+            ],
+            "categoryCapacity": 1,
+            "requiredPlacements": 1,
+            "correctPlacements": {
+              "card-1": "answer-box"
+            },
+            "sourceInteraction": {
+              "type": "sentence_blank",
+              "contentHtml": "<p>Students could sign up to read an original poem aloud {{blank-1}} three minutes was the strict time limit for each reader.</p>",
+              "options": [
+                {
+                  "id": "option-1",
+                  "text": ";",
+                  "html": "<p><strong>;</strong></p>"
+                },
+                {
+                  "id": "option-2",
+                  "text": "; then",
+                  "html": "<p><strong>; then</strong></p>"
+                },
+                {
+                  "id": "option-3",
+                  "text": ", so",
+                  "html": "<p><strong>, so</strong></p>"
+                },
+                {
+                  "id": "option-4",
+                  "text": ", and",
+                  "html": "<p><strong>, and</strong></p>"
+                }
+              ],
+              "slots": [
+                {
+                  "id": "blank-1",
+                  "answer": ";",
+                  "answerHtml": "<p><strong>\n                        ;\n                    </strong></p>"
+                }
+              ]
+            },
+            "id": "part-b-import-40f9fe44301f-98508c2b",
+            "instructions": "",
+            "versionLabel": "Digital SHSAT Practice Test 3"
+          },
+          "notes": [
+            "SAT Crash Course source question 48.",
+            "Source sentence blank imported as a drag-and-drop answer box. The exact sentence and blank are included below the paragraph; original interaction retained.",
+            "Choose a Revising/Editing topic."
+          ]
+        },
+        {
+          "id": "part-b-import-a230dac54eb9-0577ee73",
+          "fingerprint": "a230dac54eb9b2eec78fd5e6a83a3a921a97dfe713a0108ad9c3f6f377aac855",
+          "version": 1,
+          "original": {
+            "prompt": "Read this sentence.\n\nThe engineers tried some other things in the hope of finding a more effective insulation for the compartment.\n\nWhat is the most precise revision for the words The engineers tried some other things?",
+            "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\"><u>The engineers tried some other things</u> in the hope of finding a more effective insulation for the compartment.</blockquote><p>What is the <strong>most</strong> precise revision for the words <em><strong>The engineers tried some other things</strong></em>?</p>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "The engineers did experiments with several new materials",
+                "html": "<p>The engineers did experiments with several new materials</p>"
+              },
+              {
+                "id": "B",
+                "text": "The engineers tested foam and fiberglass",
+                "html": "<p>The engineers tested foam and fiberglass</p>"
+              },
+              {
+                "id": "C",
+                "text": "The engineers examined two new materials",
+                "html": "<p>The engineers examined two new materials</p>"
+              },
+              {
+                "id": "D",
+                "text": "The engineers worked with foam and fiberglass",
+                "html": "<p>The engineers worked with foam and fiberglass</p>"
+              }
+            ],
+            "id": "20242025-form-a-q001",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20242025_form_a.pdf",
+              "sourceQuestion": "1",
+              "sourcePages": [
+                3
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  65
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  1
+                ]
+              }
+            },
+            "correctChoiceId": "B",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+            "sourceQuestion": "1",
+            "versionLabels": [
+              "2024-2025 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2024-2025 Form A",
+              "year": "2024-2025",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+              "sourceQuestion": "1",
+              "pages": [
+                3
+              ]
+            },
+            "notes": [
+              "Source 20242025_form_a.pdf; question 1."
+            ]
+          },
+          "question": {
+            "prompt": "Read this sentence.\n\nThe engineers tried some other things in the hope of finding a more effective insulation for the compartment.\n\nWhat is the most precise revision for the words The engineers tried some other things?",
+            "promptHtml": "<p>Read this sentence.</p><blockquote data-boxed=\"true\"><u>The engineers tried some other things</u> in the hope of finding a more effective insulation for the compartment.</blockquote><p>What is the <strong>most</strong> precise revision for the words <em><strong>The engineers tried some other things</strong></em>?</p>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "The engineers did experiments with several new materials",
+                "html": "<p>The engineers did experiments with several new materials</p>"
+              },
+              {
+                "id": "B",
+                "text": "The engineers tested foam and fiberglass",
+                "html": "<p>The engineers tested foam and fiberglass</p>"
+              },
+              {
+                "id": "C",
+                "text": "The engineers examined two new materials",
+                "html": "<p>The engineers examined two new materials</p>"
+              },
+              {
+                "id": "D",
+                "text": "The engineers worked with foam and fiberglass",
+                "html": "<p>The engineers worked with foam and fiberglass</p>"
+              }
+            ],
+            "id": "part-b-import-a230dac54eb9-0577ee73",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20242025_form_a.pdf",
+              "sourceQuestion": "1",
+              "sourcePages": [
+                3
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  65
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  1
+                ]
+              }
+            },
+            "correctChoiceId": "B",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q1-1-png-passage.png\" alt=\"Supplied explanation for question 1\"></p>",
+            "sourceQuestion": "1",
+            "versionLabels": [
+              "2024-2025 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2024-2025 Form A",
+              "year": "2024-2025",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+              "sourceQuestion": "1",
+              "pages": [
+                3
+              ]
+            },
+            "notes": [
+              "Source 20242025_form_a.pdf; question 1."
+            ],
+            "stimulus": "",
+            "instructions": "",
+            "versionLabel": "2024-2025 Form A",
+            "stimulusHtml": ""
+          },
+          "notes": [
+            "Source 20242025_form_a.pdf; question 1.",
+            "Choose a Revising/Editing topic.",
+            "Question or paragraph text is missing."
+          ]
+        },
+        {
+          "id": "part-b-import-6e34e1a52059-024cf95e",
+          "fingerprint": "6e34e1a5205969bade1cb3c91a2be263380c9265c971b38cca303057106b5813",
+          "version": 1,
+          "original": {
+            "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.",
+            "promptHtml": "<p>Which sentence contains an error in its construction and should be revised?</p><blockquote data-boxed=\"true\">(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.</blockquote>",
+            "choices": [
+              {
+                "id": "E",
+                "text": "sentence 1",
+                "html": "<p>sentence 1</p>"
+              },
+              {
+                "id": "F",
+                "text": "sentence 2",
+                "html": "<p>sentence 2</p>"
+              },
+              {
+                "id": "G",
+                "text": "sentence 3",
+                "html": "<p>sentence 3</p>"
+              },
+              {
+                "id": "H",
+                "text": "sentence 4",
+                "html": "<p>sentence 4</p>"
+              }
+            ],
+            "id": "20242025-form-a-q002",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20242025_form_a.pdf",
+              "sourceQuestion": "2",
+              "sourcePages": [
+                3
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  65
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  1
+                ]
+              }
+            },
+            "correctChoiceId": "E",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q2-1-png-passage.png\" alt=\"Supplied explanation for question 2\"></p>",
+            "sourceQuestion": "2",
+            "versionLabels": [
+              "2024-2025 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2024-2025 Form A",
+              "year": "2024-2025",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+              "sourceQuestion": "2",
+              "pages": [
+                3
+              ]
+            },
+            "notes": [
+              "Source 20242025_form_a.pdf; question 2."
+            ]
+          },
+          "question": {
+            "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.",
+            "promptHtml": "<p>Which sentence contains an error in its construction and should be revised?</p><blockquote data-boxed=\"true\">(1) Walking dogs, cleaning kennels, hand-feeding newborn kittens, and supporting the pet-adoption process, the animal shelter is looking for volunteers to help with a variety of tasks. (2) Working at the animal shelter is a great way for young people, especially those who aspire to care for and protect animals, to gain valuable work experience. (3) In addition to hands-on training with animal care, volunteers will learn important job skills, such as punctuality, responsibility, and personal initiative. (4) Caring for animals can also help volunteers develop empathy, which is the awareness and understanding of the feelings of others.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "sentence 1",
+                "html": "<p>sentence 1</p>"
+              },
+              {
+                "id": "B",
+                "text": "sentence 2",
+                "html": "<p>sentence 2</p>"
+              },
+              {
+                "id": "C",
+                "text": "sentence 3",
+                "html": "<p>sentence 3</p>"
+              },
+              {
+                "id": "D",
+                "text": "sentence 4",
+                "html": "<p>sentence 4</p>"
+              }
+            ],
+            "id": "part-b-import-6e34e1a52059-024cf95e",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20242025_form_a.pdf",
+              "sourceQuestion": "2",
+              "sourcePages": [
+                3
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  65
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  1
+                ]
+              },
+              "sourceChoiceIds": [
+                "E",
+                "F",
+                "G",
+                "H"
+              ]
+            },
+            "correctChoiceId": "A",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q2-1-png-passage.png\" alt=\"Supplied explanation for question 2\"></p>",
+            "sourceQuestion": "2",
+            "versionLabels": [
+              "2024-2025 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2024-2025 Form A",
+              "year": "2024-2025",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+              "sourceQuestion": "2",
+              "pages": [
+                3
+              ]
+            },
+            "notes": [
+              "Source 20242025_form_a.pdf; question 2."
+            ],
+            "stimulus": "",
+            "instructions": "",
+            "versionLabel": "2024-2025 Form A",
+            "stimulusHtml": ""
+          },
+          "notes": [
+            "Source 20242025_form_a.pdf; question 2.",
+            "Choose a Revising/Editing topic.",
+            "Question or paragraph text is missing."
+          ]
+        },
+        {
+          "id": "part-b-import-30519d115cab-1f91a2d7",
+          "fingerprint": "30519d115cab1d860d15070b3e434f543c1c2a6dcdb0f82c454fa994aed3dfe8",
+          "version": 1,
+          "original": {
+            "prompt": "Which edit should be made to correct the sentence?\n\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and once could hold up to 50,000 spectators.",
+            "promptHtml": "<p>Which edit should be made to correct the sentence?</p><blockquote data-boxed=\"true\">The Colosseum in <u>Rome,</u> <u>Italy</u> which is considered one of the “new” Seven Wonders of the <u>World,</u> is the largest amphitheater ever <u>built</u> and once could hold up to 50,000 spectators.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Delete the comma after Rome.",
+                "html": "<p>Delete the comma after <em><strong>Rome</strong></em>.</p>"
+              },
+              {
+                "id": "B",
+                "text": "Insert a comma after Italy.",
+                "html": "<p>Insert a comma after <em><strong>Italy</strong></em>.</p>"
+              },
+              {
+                "id": "C",
+                "text": "Delete the comma after World.",
+                "html": "<p>Delete the comma after <em><strong>World</strong></em>.</p>"
+              },
+              {
+                "id": "D",
+                "text": "Insert a comma after built.",
+                "html": "<p>Insert a comma after <em><strong>built</strong></em>.</p>"
+              }
+            ],
+            "id": "20242025-form-a-q003",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20242025_form_a.pdf",
+              "sourceQuestion": "3",
+              "sourcePages": [
+                4
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  65
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  2
+                ]
+              }
+            },
+            "correctChoiceId": "B",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q3-1-png-passage.png\" alt=\"Supplied explanation for question 3\"></p>",
+            "sourceQuestion": "3",
+            "versionLabels": [
+              "2024-2025 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2024-2025 Form A",
+              "year": "2024-2025",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+              "sourceQuestion": "3",
+              "pages": [
+                4
+              ]
+            },
+            "notes": [
+              "Source 20242025_form_a.pdf; question 3."
+            ]
+          },
+          "question": {
+            "prompt": "Which edit should be made to correct the sentence?\n\nThe Colosseum in Rome, Italy which is considered one of the “new” Seven Wonders of the World, is the largest amphitheater ever built and once could hold up to 50,000 spectators.",
+            "promptHtml": "<p>Which edit should be made to correct the sentence?</p><blockquote data-boxed=\"true\">The Colosseum in <u>Rome,</u> <u>Italy</u> which is considered one of the “new” Seven Wonders of the <u>World,</u> is the largest amphitheater ever <u>built</u> and once could hold up to 50,000 spectators.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Delete the comma after Rome.",
+                "html": "<p>Delete the comma after <em><strong>Rome</strong></em>.</p>"
+              },
+              {
+                "id": "B",
+                "text": "Insert a comma after Italy.",
+                "html": "<p>Insert a comma after <em><strong>Italy</strong></em>.</p>"
+              },
+              {
+                "id": "C",
+                "text": "Delete the comma after World.",
+                "html": "<p>Delete the comma after <em><strong>World</strong></em>.</p>"
+              },
+              {
+                "id": "D",
+                "text": "Insert a comma after built.",
+                "html": "<p>Insert a comma after <em><strong>built</strong></em>.</p>"
+              }
+            ],
+            "id": "part-b-import-30519d115cab-1f91a2d7",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20242025_form_a.pdf",
+              "sourceQuestion": "3",
+              "sourcePages": [
+                4
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  65
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  2
+                ]
+              }
+            },
+            "correctChoiceId": "B",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q3-1-png-passage.png\" alt=\"Supplied explanation for question 3\"></p>",
+            "sourceQuestion": "3",
+            "versionLabels": [
+              "2024-2025 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2024-2025 Form A",
+              "year": "2024-2025",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+              "sourceQuestion": "3",
+              "pages": [
+                4
+              ]
+            },
+            "notes": [
+              "Source 20242025_form_a.pdf; question 3."
+            ],
+            "stimulus": "",
+            "instructions": "",
+            "versionLabel": "2024-2025 Form A",
+            "stimulusHtml": ""
+          },
+          "notes": [
+            "Source 20242025_form_a.pdf; question 3.",
+            "Choose a Revising/Editing topic.",
+            "Question or paragraph text is missing."
+          ]
+        },
+        {
+          "id": "part-b-import-383f7188a8c8-b7196781",
+          "fingerprint": "383f7188a8c821e27f57723a1474764f575c094208725cd558d14da8e6ab37d6",
+          "version": 1,
+          "original": {
+            "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.",
+            "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people <u>wonder:</u> what <u>is</u> the difference between the two? (2) To start <u>with,</u> the butterfat content is much higher in ice cream than <u>it is</u> in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing <u>process,</u> which adds less air to the frozen treat, <u>makes</u> gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the <u>gelato,</u> and <u>allow</u> it to melt more quickly.</blockquote>",
+            "choices": [
+              {
+                "id": "E",
+                "text": "Sentence 1: Delete the colon after wonder AND change is to are.",
+                "html": "<p>Sentence 1: Delete the colon after <em><strong>wonder</strong></em> AND change <em><strong>is</strong></em> to <strong>are</strong>.</p>"
+              },
+              {
+                "id": "F",
+                "text": "Sentence 2: Delete the comma after with AND change it is to they are.",
+                "html": "<p>Sentence 2: Delete the comma after <em><strong>with</strong></em> AND change <em><strong>it is</strong></em> to <strong>they are</strong>.</p>"
+              },
+              {
+                "id": "G",
+                "text": "Sentence 3: Delete the comma after process AND change makes to make.",
+                "html": "<p>Sentence 3: Delete the comma after <em><strong>process</strong></em> AND change <em><strong>makes</strong></em> to <strong>make</strong>.</p>"
+              },
+              {
+                "id": "H",
+                "text": "Sentence 4: Delete the comma after gelato AND change allow to allows.",
+                "html": "<p>Sentence 4: Delete the comma after <em><strong>gelato</strong></em> AND change <em><strong>allow</strong></em> to <strong>allows</strong>.</p>"
+              }
+            ],
+            "id": "20242025-form-a-q004",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20242025_form_a.pdf",
+              "sourceQuestion": "4",
+              "sourcePages": [
+                4
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  65
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  2,
+                  3
+                ]
+              }
+            },
+            "correctChoiceId": "H",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q4-1-png-passage.png\" alt=\"Supplied explanation for question 4\"></p><p><img src=\"/exam-images/restore-20242025-form-a-answers-q4-2-png-passage.png\" alt=\"Supplied explanation for question 4\"></p>",
+            "sourceQuestion": "4",
+            "versionLabels": [
+              "2024-2025 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2024-2025 Form A",
+              "year": "2024-2025",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+              "sourceQuestion": "4",
+              "pages": [
+                4
+              ]
+            },
+            "notes": [
+              "Source 20242025_form_a.pdf; question 4."
+            ]
+          },
+          "question": {
+            "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people wonder: what is the difference between the two? (2) To start with, the butterfat content is much higher in ice cream than it is in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing process, which adds less air to the frozen treat, makes gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the gelato, and allow it to melt more quickly.",
+            "promptHtml": "<p>Which pair of revisions need to be made in this paragraph?</p><blockquote data-boxed=\"true\">(1) Both Italian gelato and American ice cream are delightful treats to have on a hot summer day, but many people <u>wonder:</u> what <u>is</u> the difference between the two? (2) To start <u>with,</u> the butterfat content is much higher in ice cream than <u>it is</u> in gelato, making the Italian treat a wiser decision for people looking to make healthier choices. (3) Additionally, the mixing <u>process,</u> which adds less air to the frozen treat, <u>makes</u> gelato denser than ice cream. (4) Finally, gelato is served 10 to 15 degrees warmer than ice cream, which enhances the texture and flavor of the <u>gelato,</u> and <u>allow</u> it to melt more quickly.</blockquote>",
+            "choices": [
+              {
+                "id": "A",
+                "text": "Sentence 1: Delete the colon after wonder AND change is to are.",
+                "html": "<p>Sentence 1: Delete the colon after <em><strong>wonder</strong></em> AND change <em><strong>is</strong></em> to <strong>are</strong>.</p>"
+              },
+              {
+                "id": "B",
+                "text": "Sentence 2: Delete the comma after with AND change it is to they are.",
+                "html": "<p>Sentence 2: Delete the comma after <em><strong>with</strong></em> AND change <em><strong>it is</strong></em> to <strong>they are</strong>.</p>"
+              },
+              {
+                "id": "C",
+                "text": "Sentence 3: Delete the comma after process AND change makes to make.",
+                "html": "<p>Sentence 3: Delete the comma after <em><strong>process</strong></em> AND change <em><strong>makes</strong></em> to <strong>make</strong>.</p>"
+              },
+              {
+                "id": "D",
+                "text": "Sentence 4: Delete the comma after gelato AND change allow to allows.",
+                "html": "<p>Sentence 4: Delete the comma after <em><strong>gelato</strong></em> AND change <em><strong>allow</strong></em> to <strong>allows</strong>.</p>"
+              }
+            ],
+            "id": "part-b-import-383f7188a8c8-b7196781",
+            "type": "multiple_choice",
+            "points": 1,
+            "explanation": "",
+            "topic": "",
+            "review": {
+              "sourceFile": "20242025_form_a.pdf",
+              "sourceQuestion": "4",
+              "sourcePages": [
+                4
+              ],
+              "sourceReviewed": false,
+              "classificationReviewed": false,
+              "completenessReviewed": false,
+              "answerSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  65
+                ]
+              },
+              "explanationSource": {
+                "sourceFile": "20242025_form_a_-_answers.pdf",
+                "sourcePages": [
+                  2,
+                  3
+                ]
+              },
+              "sourceChoiceIds": [
+                "E",
+                "F",
+                "G",
+                "H"
+              ]
+            },
+            "correctChoiceId": "D",
+            "explanationHtml": "<p><img src=\"/exam-images/restore-20242025-form-a-answers-q4-1-png-passage.png\" alt=\"Supplied explanation for question 4\"></p><p><img src=\"/exam-images/restore-20242025-form-a-answers-q4-2-png-passage.png\" alt=\"Supplied explanation for question 4\"></p>",
+            "sourceQuestion": "4",
+            "versionLabels": [
+              "2024-2025 Form A"
+            ],
+            "source": {
+              "sourceFamily": "official_shsat",
+              "sourceFormat": "pdf",
+              "playerProfile": "testnav",
+              "label": "2024-2025 Form A",
+              "year": "2024-2025",
+              "form": "A",
+              "url": "https://www.stuyprep.nyc/uploads/1/2/4/0/124057757/20242025_form_a.pdf",
+              "sourceQuestion": "4",
+              "pages": [
+                4
+              ]
+            },
+            "notes": [
+              "Source 20242025_form_a.pdf; question 4."
+            ],
+            "stimulus": "",
+            "instructions": "",
+            "versionLabel": "2024-2025 Form A",
+            "stimulusHtml": ""
+          },
+          "notes": [
+            "Source 20242025_form_a.pdf; question 4.",
+            "Choose a Revising/Editing topic.",
+            "Question or paragraph text is missing."
+          ]
+        }
+      ],
+      "added": [
+        "part-b-import-a230dac54eb9-0577ee73",
+        "part-b-import-6e34e1a52059-024cf95e",
+        "part-b-import-30519d115cab-1f91a2d7",
+        "part-b-import-383f7188a8c8-b7196781"
+      ],
+      "existing": [],
+      "published": []
+    },
+    "englishAssigned": true
+  },
+  "2025-2026-form-a": {
+    "passages": [],
+    "standalones": [],
+    "math": {
+      "assessmentId": "2025-2026-form-a",
+      "added": [
+        "2025-2026-form-a-official-shsat-2025-a-84",
+        "2025-2026-form-a-official-shsat-2025-a-96",
+        "2025-2026-form-a-official-shsat-2025-a-97",
+        "2025-2026-form-a-official-shsat-2025-a-98",
+        "2025-2026-form-a-official-shsat-2025-a-100",
+        "2025-2026-form-a-official-shsat-2025-a-101",
+        "2025-2026-form-a-official-shsat-2025-a-102",
+        "2025-2026-form-a-official-shsat-2025-a-103",
+        "2025-2026-form-a-official-shsat-2025-a-104",
+        "2025-2026-form-a-official-shsat-2025-a-105",
+        "2025-2026-form-a-official-shsat-2025-a-107",
+        "2025-2026-form-a-official-shsat-2025-a-108",
+        "2025-2026-form-a-official-shsat-2025-a-109",
+        "2025-2026-form-a-official-shsat-2025-a-110",
+        "2025-2026-form-a-official-shsat-2025-a-111",
+        "2025-2026-form-a-official-shsat-2025-a-112",
+        "2025-2026-form-a-official-shsat-2025-a-113"
+      ],
+      "existing": [],
+      "errors": []
+    },
+    "mathOrdered": true,
+    "mathSourceOrder": [
+      {
+        "id": "2025-2026-form-a-math-1",
+        "sourceQuestion": 58
+      },
+      {
+        "id": "2025-2026-form-a-math-3",
+        "sourceQuestion": 59
+      },
+      {
+        "id": "2025-2026-form-a-math-4",
+        "sourceQuestion": 60
+      },
+      {
+        "id": "2025-2026-form-a-math-5",
+        "sourceQuestion": 61
+      },
+      {
+        "id": "2025-2026-form-a-math-6",
+        "sourceQuestion": 62
+      },
+      {
+        "id": "2025-2026-form-a-math-7",
+        "sourceQuestion": 63
+      },
+      {
+        "id": "simplify-linear-expression",
+        "sourceQuestion": 64
+      },
+      {
+        "id": "same-sum-course-grades",
+        "sourceQuestion": 65
+      },
+      {
+        "id": "2025-2026-form-a-math-9",
+        "sourceQuestion": 66
+      },
+      {
+        "id": "2025-2026-form-a-math-11",
+        "sourceQuestion": 67
+      },
+      {
+        "id": "2025-2026-form-a-math-2",
+        "sourceQuestion": 68
+      },
+      {
+        "id": "square-pyramid-lateral-surface-area",
+        "sourceQuestion": 69
+      },
+      {
+        "id": "rectangle-dimensions-ratio-perimeter",
+        "sourceQuestion": 70
+      },
+      {
+        "id": "2025-2026-form-a-math-13",
+        "sourceQuestion": 71
+      },
+      {
+        "id": "2025-2026-form-a-math-15",
+        "sourceQuestion": 72
+      },
+      {
+        "id": "colored-pencils-not-red",
+        "sourceQuestion": 73
+      },
+      {
+        "id": "lorgs-dalts-dollar-exchange",
+        "sourceQuestion": 74
+      },
+      {
+        "id": "shaded-region-area",
+        "sourceQuestion": 75
+      },
+      {
+        "id": "absolute-value-equivalent-drag",
+        "sourceQuestion": 76
+      },
+      {
+        "id": "meat-price-per-pound",
+        "sourceQuestion": 77
+      },
+      {
+        "id": "cards-without-replacement-not-blue",
+        "sourceQuestion": 78
+      },
+      {
+        "id": "most-valuable-coin",
+        "sourceQuestion": 79
+      },
+      {
+        "id": "college-student-faculty-ratio",
+        "sourceQuestion": 80
+      },
+      {
+        "id": "center-city-walk-vs-bicycle",
+        "sourceQuestion": 81
+      },
+      {
+        "id": "smallest-factor-of-91",
+        "sourceQuestion": 82
+      },
+      {
+        "id": "triangular-banner-scale-drawing",
+        "sourceQuestion": 83
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-84",
+        "sourceQuestion": 84
+      },
+      {
+        "id": "average-of-consecutive-integers",
+        "sourceQuestion": 85
+      },
+      {
+        "id": "2025-2026-form-a-math-33",
+        "sourceQuestion": 86
+      },
+      {
+        "id": "tien-jordan-age-ratio",
+        "sourceQuestion": 87
+      },
+      {
+        "id": "solve-equation-steps-drag",
+        "sourceQuestion": 88
+      },
+      {
+        "id": "sum-of-mixed-numbers",
+        "sourceQuestion": 89
+      },
+      {
+        "id": "longest-stick-common-factor",
+        "sourceQuestion": 90
+      },
+      {
+        "id": "choose-pairs-of-cookies",
+        "sourceQuestion": 91
+      },
+      {
+        "id": "combined-slide-creation-rate",
+        "sourceQuestion": 92
+      },
+      {
+        "id": "point-between-fraction-number-line",
+        "sourceQuestion": 93
+      },
+      {
+        "id": "solve-6x-equation-math-entry",
+        "sourceQuestion": 94
+      },
+      {
+        "id": "reading-additional-time",
+        "sourceQuestion": 95
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-96",
+        "sourceQuestion": 96
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-97",
+        "sourceQuestion": 97
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-98",
+        "sourceQuestion": 98
+      },
+      {
+        "id": "notebook-cost-graph-points",
+        "sourceQuestion": 99
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-100",
+        "sourceQuestion": 100
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-101",
+        "sourceQuestion": 101
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-102",
+        "sourceQuestion": 102
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-103",
+        "sourceQuestion": 103
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-104",
+        "sourceQuestion": 104
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-105",
+        "sourceQuestion": 105
+      },
+      {
+        "id": "inequality-number-line-ray",
+        "sourceQuestion": 106
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-107",
+        "sourceQuestion": 107
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-108",
+        "sourceQuestion": 108
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-109",
+        "sourceQuestion": 109
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-110",
+        "sourceQuestion": 110
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-111",
+        "sourceQuestion": 111
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-112",
+        "sourceQuestion": 112
+      },
+      {
+        "id": "2025-2026-form-a-official-shsat-2025-a-113",
+        "sourceQuestion": 113
+      },
+      {
+        "id": "compound-fraction-math-entry",
+        "sourceQuestion": 114
+      }
+    ]
+  },
+  "2025-2026-form-b": {
+    "passages": [],
+    "standalones": [],
+    "math": {
+      "assessmentId": "2025-2026-form-b",
+      "added": [
+        "2025-2026-form-b-official-shsat-2025-b-60",
+        "2025-2026-form-b-official-shsat-2025-b-63",
+        "2025-2026-form-b-official-shsat-2025-b-64",
+        "2025-2026-form-b-official-shsat-2025-b-65",
+        "2025-2026-form-b-official-shsat-2025-b-66",
+        "2025-2026-form-b-official-shsat-2025-b-67",
+        "2025-2026-form-b-official-shsat-2025-b-68",
+        "2025-2026-form-b-official-shsat-2025-b-69",
+        "2025-2026-form-b-official-shsat-2025-b-70",
+        "2025-2026-form-b-official-shsat-2025-b-71",
+        "2025-2026-form-b-official-shsat-2025-b-72",
+        "2025-2026-form-b-official-shsat-2025-b-73",
+        "2025-2026-form-b-official-shsat-2025-b-74",
+        "2025-2026-form-b-official-shsat-2025-b-75",
+        "2025-2026-form-b-official-shsat-2025-b-76",
+        "2025-2026-form-b-official-shsat-2025-b-77",
+        "2025-2026-form-b-official-shsat-2025-b-78",
+        "2025-2026-form-b-official-shsat-2025-b-79",
+        "2025-2026-form-b-official-shsat-2025-b-80",
+        "2025-2026-form-b-official-shsat-2025-b-81",
+        "2025-2026-form-b-official-shsat-2025-b-82",
+        "2025-2026-form-b-official-shsat-2025-b-83",
+        "2025-2026-form-b-official-shsat-2025-b-84",
+        "2025-2026-form-b-official-shsat-2025-b-85",
+        "2025-2026-form-b-official-shsat-2025-b-86",
+        "2025-2026-form-b-official-shsat-2025-b-87",
+        "2025-2026-form-b-official-shsat-2025-b-88",
+        "2025-2026-form-b-official-shsat-2025-b-89",
+        "2025-2026-form-b-official-shsat-2025-b-90",
+        "2025-2026-form-b-official-shsat-2025-b-91",
+        "2025-2026-form-b-official-shsat-2025-b-92",
+        "2025-2026-form-b-official-shsat-2025-b-93",
+        "2025-2026-form-b-official-shsat-2025-b-94",
+        "2025-2026-form-b-official-shsat-2025-b-95",
+        "2025-2026-form-b-official-shsat-2025-b-96",
+        "2025-2026-form-b-official-shsat-2025-b-97",
+        "2025-2026-form-b-official-shsat-2025-b-98",
+        "2025-2026-form-b-official-shsat-2025-b-99",
+        "2025-2026-form-b-official-shsat-2025-b-100",
+        "2025-2026-form-b-official-shsat-2025-b-101",
+        "2025-2026-form-b-official-shsat-2025-b-102",
+        "2025-2026-form-b-official-shsat-2025-b-103",
+        "2025-2026-form-b-official-shsat-2025-b-104",
+        "2025-2026-form-b-official-shsat-2025-b-105",
+        "2025-2026-form-b-official-shsat-2025-b-106",
+        "2025-2026-form-b-official-shsat-2025-b-107",
+        "2025-2026-form-b-official-shsat-2025-b-108",
+        "2025-2026-form-b-official-shsat-2025-b-109",
+        "2025-2026-form-b-official-shsat-2025-b-110",
+        "2025-2026-form-b-official-shsat-2025-b-111",
+        "2025-2026-form-b-official-shsat-2025-b-112",
+        "2025-2026-form-b-official-shsat-2025-b-113",
+        "2025-2026-form-b-official-shsat-2025-b-114"
+      ],
+      "existing": [],
+      "errors": []
+    },
+    "mathOrdered": true,
+    "mathSourceOrder": [
+      {
+        "id": "2025-2026-form-b-math-1",
+        "sourceQuestion": 58
+      },
+      {
+        "id": "2025-2026-form-b-math-3",
+        "sourceQuestion": 59
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-60",
+        "sourceQuestion": 60
+      },
+      {
+        "id": "2025-2026-form-b-math-2",
+        "sourceQuestion": 61
+      },
+      {
+        "id": "2025-2026-form-b-math-4",
+        "sourceQuestion": 62
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-63",
+        "sourceQuestion": 63
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-64",
+        "sourceQuestion": 64
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-65",
+        "sourceQuestion": 65
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-66",
+        "sourceQuestion": 66
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-67",
+        "sourceQuestion": 67
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-68",
+        "sourceQuestion": 68
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-69",
+        "sourceQuestion": 69
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-70",
+        "sourceQuestion": 70
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-71",
+        "sourceQuestion": 71
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-72",
+        "sourceQuestion": 72
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-73",
+        "sourceQuestion": 73
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-74",
+        "sourceQuestion": 74
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-75",
+        "sourceQuestion": 75
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-76",
+        "sourceQuestion": 76
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-77",
+        "sourceQuestion": 77
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-78",
+        "sourceQuestion": 78
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-79",
+        "sourceQuestion": 79
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-80",
+        "sourceQuestion": 80
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-81",
+        "sourceQuestion": 81
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-82",
+        "sourceQuestion": 82
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-83",
+        "sourceQuestion": 83
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-84",
+        "sourceQuestion": 84
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-85",
+        "sourceQuestion": 85
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-86",
+        "sourceQuestion": 86
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-87",
+        "sourceQuestion": 87
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-88",
+        "sourceQuestion": 88
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-89",
+        "sourceQuestion": 89
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-90",
+        "sourceQuestion": 90
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-91",
+        "sourceQuestion": 91
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-92",
+        "sourceQuestion": 92
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-93",
+        "sourceQuestion": 93
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-94",
+        "sourceQuestion": 94
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-95",
+        "sourceQuestion": 95
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-96",
+        "sourceQuestion": 96
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-97",
+        "sourceQuestion": 97
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-98",
+        "sourceQuestion": 98
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-99",
+        "sourceQuestion": 99
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-100",
+        "sourceQuestion": 100
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-101",
+        "sourceQuestion": 101
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-102",
+        "sourceQuestion": 102
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-103",
+        "sourceQuestion": 103
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-104",
+        "sourceQuestion": 104
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-105",
+        "sourceQuestion": 105
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-106",
+        "sourceQuestion": 106
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-107",
+        "sourceQuestion": 107
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-108",
+        "sourceQuestion": 108
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-109",
+        "sourceQuestion": 109
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-110",
+        "sourceQuestion": 110
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-111",
+        "sourceQuestion": 111
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-112",
+        "sourceQuestion": 112
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-113",
+        "sourceQuestion": 113
+      },
+      {
+        "id": "2025-2026-form-b-official-shsat-2025-b-114",
+        "sourceQuestion": 114
+      }
+    ]
+  }
+}

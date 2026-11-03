@@ -13,9 +13,33 @@
 .student-practice-shelf h2 { margin:0 0 7px; font:500 1.35rem/1.2 Georgia,serif; }
 .student-practice-shelf .math-study-modules { max-height:360px; }
 .practice-module-warning { color:#8a4938; }
-.practice-module-contents { margin-top: 12px; padding-top: 12px; border-top: 1px solid #d4ded8; font-size: .82rem; }
-.practice-module-contents summary { cursor: pointer; color: #286452; }
-.practice-module-contents li { margin: 12px 0; }
-.practice-module-contents p { margin: 4px 0; }
-.practice-focused-module { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 12px 0; }
-@media (max-width: 620px) { .practice-focused-module { align-items: start; flex-direction: column; } }
+
+.math-study-modules.practice-module-list { max-height:none; overflow:visible; padding:0; scrollbar-gutter:auto; }
+.math-study-practice-section > header { background:#edf3ec; border-bottom-color:#d8e2d6; }
+.practice-module-group + .practice-module-group { border-top:1px solid var(--student-line,#ddd6ca); }
+.practice-module-list article.practice-module-group { padding:26px; border-bottom:0; }
+.practice-module-list .practice-module-heading { align-items:start; gap:24px; }
+.practice-module-list .practice-module-heading h4 { font:600 1.12rem/1.3 Georgia,serif; margin-bottom:8px; }
+.practice-module-list .practice-module-heading p { max-width:65ch; font-size:.82rem; line-height:1.65; }
+.practice-module-list small { font-size:.72rem; line-height:1.5; }
+.practice-module-list .practice-module-heading button { min-height:44px; padding:11px 17px; background:#24533f; color:#fffdf8; border:1px solid #24533f; transition:background .15s; }
+.practice-module-list .practice-module-heading button:hover:not(:disabled) { background:#173d2d; }
+.practice-module-list .practice-module-heading button:disabled { cursor:not-allowed; }
+.practice-module-list .practice-module-heading button:focus-visible { outline:3px solid #548f77; outline-offset:3px; }
+.practice-module-progress { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:24px; padding:22px 0 14px; }
+.practice-module-progress dl { display:flex; flex-wrap:wrap; gap:32px; margin:0; }
+.practice-module-progress dt { display:flex; align-items:center; gap:6px; color:var(--student-muted,#59675e); font-size:.74rem; }
+.practice-module-progress dd { margin:7px 0 0; font-size:1.45rem; font-weight:600; color:var(--student-ink,#24382f); font-variant-numeric:tabular-nums; }
+.practice-module-progress dd span { font-size:.72rem; font-weight:400; color:var(--student-muted,#59675e); }
+.practice-module-list .practice-stars p { margin:9px 0 0; font-size:.74rem; }
+.practice-module-list .practice-module-save-note { display:block; color:var(--student-muted,#59675e); }
+@media (max-width:620px) {
+  .practice-module-list article.practice-module-group { padding:20px; }
+  .practice-module-list .practice-module-heading { flex-direction:column; gap:14px; }
+  .practice-module-list .practice-module-heading button { width:100%; justify-content:center; }
+  .practice-module-progress { gap:20px; }
+  .practice-module-progress dl { gap:20px; }
+  .practice-module-progress dd { font-size:1.25rem; }
+  .math-study-videos .math-study-video-card { grid-template-columns:minmax(0,42%) minmax(0,1fr); }
+}
+@media (prefers-reduced-motion:reduce) { .practice-module-list .practice-module-heading button { transition:none; } }

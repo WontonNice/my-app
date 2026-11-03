@@ -12,9 +12,10 @@ import { libraryContentKind, readQuestionBank } from "../lib/questionBank";
 import { gradeBankSet, bankPassageSet, bankPassage } from "../shared/questionBank";
 import type { ExamContent, ExamQuestion } from "../shared/examTypes";
 import { canonicalLibraryBookId, getMergedLibraryBook, libraryBookAccessIds } from "../lib/libraryBooks";
-import { gradeLibraryBook } from "../shared/libraryBooks";
+import { getLibraryAttemptBook } from "../lib/libraryBooks";
+import { gradeLibraryBook, verifiedLibraryVersions, type LibrarySnapshotStat } from "../shared/libraryBooks";
 
-type QuestionStat = {
+type QuestionStat = LibrarySnapshotStat & {
     correctAnswerId: string;
     isCorrect: boolean;
     questionId: string;
@@ -281,17 +282,18 @@ libraryRouter.get("/teacher/analytics/:studentId", async (request, response) => 
     }
     const bank = readQuestionBank(), seen = new Set<string>();
     const inputs: unknown[] = rows.filter(row => { if (!row.id || seen.has(row.id) || row.user_id !== id) return false; seen.add(row.id); return true; }).map(row => {
-        const bankSet = bankPassageSet(bank, row.book_id), book = getMergedLibraryBook(canonicalLibraryBookId(row.book_id));
+        const bankSet = bankPassageSet(bank, row.book_id), book = getLibraryAttemptBook(row.book_id);
         const original = bankSet ?? book?.passageSet;
         const stats = Array.isArray(row.question_stats) ? row.question_stats : [];
-        const questions: ExamQuestion[] = stats.map(stat => original?.questions.find(question => question.id === stat.questionId) ?? { id: stat.questionId, type: "multiple_choice", topic: "Unclassified", prompt: "Original question content unavailable. The recorded answer and grade are preserved.", choices: [] });
+        const questions: ExamQuestion[] = stats.map(stat => stat.questionSnapshot ?? original?.questions.find(question => question.id === stat.questionId) ?? { id: stat.questionId, type: "multiple_choice", topic: "Unclassified", prompt: "Original question content unavailable. The recorded answer and grade are preserved.", choices: [] });
         const passageSets = bankSet ? questions.map(question => ({ ...bankSet, id: question.id, passage: bankPassage(bank.questions.find(item => item.id === question.id) ?? { id: question.id, source: "Unknown", passage: null } as Parameters<typeof bankPassage>[0]), questions: [question] })) : [{ ...(original ?? { id: row.book_id, directions: { title: "Content unavailable", subject: "English", body: "" }, questionCount: questions.length, passage: { id: row.book_id, title: row.book_id, lines: [] } }), questions }];
-        const content: ExamContent = { assessmentId: `library:${row.book_id}`, title: bankSet?.directions.title ?? original?.passage.title ?? row.book_id, passageSets };
+        const frozen = stats.length > 0 && stats.every(stat => stat.questionSnapshot && stat.passageSnapshot);
+        const content: ExamContent = { assessmentId: `library:${row.book_id}`, title: bankSet?.directions.title ?? original?.passage.title ?? learningCatalog().find(item => item.id === row.book_id || item.aliases.includes(row.book_id))?.title ?? "Archived passage", passageSets: frozen ? stats.map((stat, index) => ({ id: `${row.book_id}:${stat.questionId}`, directions: original?.directions ?? { title: "Saved passage", subject: "English", body: "" }, passage: stat.passageSnapshot!, questions: [questions[index]], questionCount: 1 })) : passageSets };
         const topics = [...new Set(questions.map(question => question.topic))].map(topic => ({ topic, correct: stats.filter(stat => questions.find(q => q.id === stat.questionId)?.topic === topic && stat.isCorrect).length, total: questions.filter(question => question.topic === topic).length }));
         const subjects = [{ subject: "English Language Arts", correct: row.score, total: row.total_questions, topics }];
         const correction = corrections.find(item => item.attempt_id === row.id);
         return { kind: bankSet ? "practice" : "passage", sourceLabel: bankSet ? "Question-bank practice" : "Library passage", content, subjects, passages: [], responses: stats,
-            corrections: correction?.responses ?? [], result: { assessmentId: content.assessmentId, attemptId: row.id, title: content.title, source: "library", completedAt: row.completed_at, completedSections: ["english"], completionStatus: "english_complete", correct: row.score, total: row.total_questions, subjects, percentage: row.total_questions ? Math.round(100 * row.score / row.total_questions) : null, answers: Object.fromEntries(stats.map(stat => [stat.questionId, stat.selectedAnswerId])) } };
+            corrections: correction?.responses ?? [], result: { assessmentId: content.assessmentId, attemptId: row.id, title: content.title, source: "library", attemptNumber: row.attempt_number, ...(frozen ? { analysisContent: content } : {}), completedAt: row.completed_at, completedSections: ["english"], completionStatus: "english_complete", correct: row.score, total: row.total_questions, subjects, percentage: row.total_questions ? Math.round(100 * row.score / row.total_questions) : null, answers: Object.fromEntries(stats.map(stat => [stat.questionId, stat.selectedAnswerId])) } };
     });
     const examCorrections: { assessmentId:string; completedAt:string; responses:ExamCorrectionResponse[] }[] = [];
     for (const row of examRows.filter(row => !row.assessment_id.startsWith("__") || row.assessment_id.startsWith("__exam_history__:"))) {
@@ -301,7 +303,7 @@ libraryRouter.get("/teacher/analytics/:studentId", async (request, response) => 
             const correction=examRows.find(item=>item.result.resultVersion===version&&Array.isArray(item.result.responses));
             if (correction) examCorrections.push({ assessmentId:result.assessmentId, completedAt:result.completedAt, responses:correction.result.responses! });
         }
-        if (row.assessment_id.startsWith("__exam_history__:")) inputs.push({ kind:"exam",result,content:content??undefined,subjects:result.subjects??[],passages:result.passages??[],corrections:examCorrections.find(item=>item.assessmentId===result.assessmentId&&item.completedAt===result.completedAt)?.responses });
+        inputs.push({ kind:"exam",origin:row.assessment_id.startsWith("__exam_history__:") ? "archive" : "current",result,content:content??undefined,subjects:result.subjects??[],passages:result.passages??[],corrections:examCorrections.find(item=>item.assessmentId===result.assessmentId&&item.completedAt===result.completedAt)?.responses });
     }
     response.json({ inputs, examCorrections, limitations: ["Historical library grades are the original recorded outcomes. Question text and skill metadata use current matching content when no frozen snapshot exists.", "Legacy practice totals without saved question responses remain in Practice progress and cannot supply question-level evidence. Earlier exam attempts overwritten before attempt history was introduced cannot be reconstructed."] });
 });
@@ -423,8 +425,10 @@ async function completedBookAccess(userId: string, bookId: string) {
     }));
     return { unlockedAt: values.find(value => value.unlockedAt)?.unlockedAt ?? null, unlocked: values.some(value => value.unlockedAt || value.assigned) };
 }
-async function recordBookCompletion(userId: string, bookId: string, at: string, reference: string, correct: number, total: number) {
-    for (const id of libraryBookAccessIds(bookId)) await recordPlanCompletion(userId, libraryContentKind(id), id, { source: "library", at, reference, correct, total });
+async function recordBookCompletion(userId: string, bookId: string, at: string, reference: string, correct: number, total: number, stats: QuestionStat[]) {
+    const versions = verifiedLibraryVersions(stats);
+    if (versions.length) for (const version of versions) await recordPlanCompletion(userId, "passage", version.contentId, { source: "library", at, reference, correct: version.correct, total: version.total });
+    else await recordPlanCompletion(userId, libraryContentKind(bookId), bookId, { source: "library", at, reference, correct, total });
 }
 libraryRouter.get("/books/:bookId/access", async (request, response) => {
     const authenticated = await getAuthenticatedUser(request.headers.authorization);
@@ -663,7 +667,7 @@ libraryRouter.post("/books/:bookId/attempts", async (request, response) => {
         response.status(400).json({ message: accessProgress.error.message });
         return;
     }
-    const mergedBook = getMergedLibraryBook(request.params.bookId);
+    const mergedBook = getLibraryAttemptBook(request.params.bookId);
     if (!activeLibraryStudent(authenticated.user) || !(await completedBookAccess(authenticated.user.id, request.params.bookId)).unlocked) {
         response.status(403).json({ message: "Your teacher needs to enable this book for your account." }); return;
     }
@@ -728,7 +732,7 @@ libraryRouter.post("/books/:bookId/attempts", async (request, response) => {
             response.status(400).json({ message: fallbackSaved.error.message });
             return;
         }
-        await recordBookCompletion(authenticated.user.id, request.params.bookId, completedAt, attemptRow.id, score, questionStats.length);
+        await recordBookCompletion(authenticated.user.id, request.params.bookId, completedAt, attemptRow.id, score, questionStats.length, questionStats);
         response.status(201).json({ attempt: studentAttempt(attemptRow), storage: "compatibility" });
         return;
     }
@@ -737,7 +741,7 @@ libraryRouter.post("/books/:bookId/attempts", async (request, response) => {
         response.status(400).json({ message: saved.error?.message ?? "Could not save this attempt." });
         return;
     }
-    await recordBookCompletion(authenticated.user.id, request.params.bookId, completedAt, attemptRow.id, score, questionStats.length);
+    await recordBookCompletion(authenticated.user.id, request.params.bookId, completedAt, attemptRow.id, score, questionStats.length, questionStats);
     response.status(201).json({ attempt: studentAttempt(saved.data as LibraryAttemptRow) });
 });
 

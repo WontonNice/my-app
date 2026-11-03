@@ -1,0 +1,53 @@
+{
+  "changedQuestions": [
+    3
+  ],
+  "question": {
+    "id": "excerpt-from-it-s-time-to-stop-thinking-that-all-non-native-species-are-evil-3",
+    "points": 1,
+    "prompt": "Which two phrases from paragraph 3 most affect the tone of the excerpt?",
+    "instructions": "Move the two correct answers to the box.",
+    "instructionsHtml": "Move the <strong>two</strong> correct answers to the box.",
+    "promptHtml": "Which <strong>two</strong> phrases from paragraph 3 <strong>most</strong> affect the tone of the excerpt?",
+    "topic": "Tone & Mood",
+    "categories": [
+      {
+        "id": "category-1",
+        "title": "Phrases That Most Affect the Tone of the Excerpt"
+      }
+    ],
+    "correctPlacements": {
+      "item-1": "category-1",
+      "item-3": "category-1"
+    },
+    "items": [
+      {
+        "html": "“sounded the alarm”",
+        "id": "item-1",
+        "text": "“sounded the alarm”"
+      },
+      {
+        "html": "“gotten the message”",
+        "id": "item-2",
+        "text": "“gotten the message”"
+      },
+      {
+        "html": "“rip out”",
+        "id": "item-3",
+        "text": "“rip out”"
+      },
+      {
+        "html": "“become increasingly popular”",
+        "id": "item-4",
+        "text": "“become increasingly popular”"
+      },
+      {
+        "html": "“provide food”",
+        "id": "item-5",
+        "text": "“provide food”"
+      }
+    ],
+    "requiredPlacements": 2,
+    "type": "category_sort"
+  }
+}
