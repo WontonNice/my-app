@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import { readCachedJson } from "./cachedJson";
 import path from "node:path";
 import { supabase } from "./supabase";
 import { listTeacherAssessments } from "../config/assessments";
@@ -31,7 +31,7 @@ export async function assignmentSummaries(studentId?: string, statuses?: PlanAss
   }
 }
 export function learningCatalog(): PlanContent[] {
-  const base = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../../data/learning-catalog.json"), "utf8")) as PlanContent[];
+  const base = readCachedJson<PlanContent[]>(path.resolve(__dirname, "../../data/learning-catalog.json"));
   const exams = listTeacherAssessments().map(exam => {
     const content = getExamContent(exam.id);
     const questions = [...(content?.passageSets.flatMap(set => set.questions) ?? []), ...(content?.standaloneSection?.questions ?? []), ...(content?.mathSection?.questions ?? [])];
@@ -40,7 +40,7 @@ export function learningCatalog(): PlanContent[] {
   return [...base, ...bankCatalog(readQuestionBank()), ...exams.filter(exam => exam.questionCount > 0)];
 }
 export function passagePreview(id: string): { title: string; text: string } | undefined {
-  const sources = JSON.parse(fs.readFileSync(path.resolve(__dirname, "../../data/board-content.json"), "utf8")) as { id: string; title: string; text: string }[];
+  const sources = readCachedJson<{ id: string; title: string; text: string }[]>(path.resolve(__dirname, "../../data/board-content.json"));
   const source = sources.find(item => item.id === id);
   return source ? { title: source.title, text: source.text } : undefined;
 }

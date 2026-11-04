@@ -57,9 +57,12 @@ assessmentsRouter.get("/student", async (request, response) => {
 
     const classIds = getUserRole(user) === "teacher" ? ["shsat"] : getEnrolledClassIds(user.app_metadata);
 
-    const personal = getUserRole(user) === "student" ? await assignedContentIds(user.id, "exam", true) : new Set<string>();
-    const { grants } = await readExamReentries(user.id);
-    response.json({ assessments: (await listStudentAssessments(classIds)).map(assessment => applyReentry(personal.has(assessment.id) ? { ...assessment, status: "open" as const, allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, grants[assessment.id], assessment.status === "open")) });
+    const [personal, { grants }, assessments] = await Promise.all([
+        getUserRole(user) === "student" ? assignedContentIds(user.id, "exam", true) : Promise.resolve(new Set<string>()),
+        readExamReentries(user.id),
+        listStudentAssessments(classIds),
+    ]);
+    response.json({ assessments: assessments.map(assessment => applyReentry(personal.has(assessment.id) ? { ...assessment, status: "open" as const, allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, grants[assessment.id], assessment.status === "open")) });
 });
 
 assessmentsRouter.get("/student/:assessmentId", async (request, response) => {

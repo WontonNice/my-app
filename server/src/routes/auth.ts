@@ -1,3 +1,4 @@
+import { listDashboardUsers } from "../lib/studentRoster";
 import { Router } from "express";
 import { createCipheriv, createDecipheriv, createHash, randomBytes } from "node:crypto";
 import {
@@ -361,7 +362,7 @@ authRouter.get("/students", async (request, response) => {
         return;
     }
 
-    const listed = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
+    const listed = await listDashboardUsers();
     if (listed.error) {
         response.status(400).json({ message: listed.error.message });
         return;

@@ -52,6 +52,15 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
         const incomingRequestId = request.header("x-request-id")?.trim().slice(0, 128);
         const requestId = incomingRequestId || randomUUID();
         response.locals.requestId = requestId;
+        const started = performance.now();
+        response.once("finish", () => {
+            const durationMs = Math.round(performance.now() - started);
+            if (request.path.startsWith("/api/") && durationMs >= 2000) {
+                // Route pattern avoids logging student IDs, query strings or tokens.
+                console.warn("Slow API request", { requestId, method: request.method,
+                    route: request.route?.path ?? "unmatched", status: response.statusCode, durationMs });
+            }
+        });
         response.setHeader("x-request-id", requestId);
         if (request.path.startsWith("/api/") || request.path.startsWith("/health")) {
             response.setHeader("Cache-Control", "no-store");

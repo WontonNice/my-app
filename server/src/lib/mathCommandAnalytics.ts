@@ -1,4 +1,4 @@
-import fs from "node:fs";
+import { readCachedJson } from "./cachedJson";
 import path from "node:path";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
@@ -26,7 +26,7 @@ export async function mathCommandStudent(id: string) {
   if(found.error||!student||getUserRole(student)!=="student"||isStudentArchived(student)||!getEnrolledClassIds(student.app_metadata).includes("shsat"))throw mathCommandFail("Choose an active SHSAT student.",404);
   return student;
 }
-function contents() {return JSON.parse(fs.readFileSync(path.join(mathCommandRoot,"server/data/exam-content.json"),"utf8")) as Record<string,ExamContent>;}
+function contents() {return readCachedJson<Record<string,ExamContent>>(path.join(mathCommandRoot,"server/data/exam-content.json"));}
 export async function mathResultRows(studentId?: string):Promise<ResultRow[]> {
   const rows:ResultRow[]=[];
   for(let offset=0;;offset+=250){let query=supabase.from("student_exam_results").select("user_id,assessment_id,result").order("user_id").order("assessment_id");if(studentId)query=query.eq("user_id",studentId);const result=await query.range(offset,offset+249);checked(result.error);rows.push(...(result.data??[]).filter(row=>!row.assessment_id.startsWith("__")||row.assessment_id.startsWith("__exam_history__:")));if((result.data?.length??0)<250)return rows;}

@@ -1,3 +1,4 @@
+import { mapConcurrent } from "./mapConcurrent";
 import { supabase } from "./supabase";
 
 export type ProgressRow = Record<string, unknown>;
@@ -7,11 +8,12 @@ const legacySchemaErrors = new Set(["42P01", "42703", "PGRST204", "PGRST205"]);
 // Load each table once per roster batch, rather than four requests per student.
 // Pagination prevents Supabase's row cap from silently dropping saved work.
 async function loadRows(table: string, columns: string, key: string, ids: string[]): Promise<ProgressRows> {
-    const rows: ProgressRow[] = [];
-    for (let offset = 0; offset < ids.length; offset += 100) {
+    const batches = Array.from({ length: Math.ceil(ids.length / 100) }, (_, i) => ids.slice(i * 100, i * 100 + 100));
+    const results = await mapConcurrent(batches, 2, async batch => {
+        const rows: ProgressRow[] = [];
         for (let start = 0; ; start += 500) {
             const result = await supabase.from(table).select(`user_id,${columns}`)
-                .in("user_id", ids.slice(offset, offset + 100))
+                .in("user_id", batch)
                 .order("user_id").order(key).range(start, start + 499);
             if (result.error) {
                 // Existing deployments may still use metadata/legacy session storage.
@@ -22,8 +24,10 @@ async function loadRows(table: string, columns: string, key: string, ids: string
             rows.push(...page);
             if (page.length < 500) break;
         }
-    }
-    return { data: rows, error: null };
+        return { data: rows, error: null };
+    });
+    const failure = results.find(result => result.error);
+    return failure ?? { data: results.flatMap(result => result.data ?? []), error: null };
 }
 
 export async function loadStudentProgressRows(ids: string[]) {

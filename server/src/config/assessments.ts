@@ -1,3 +1,4 @@
+import { readCachedJson } from "../lib/cachedJson";
 import fs from "node:fs";
 import path from "node:path";
 
@@ -122,8 +123,7 @@ function readAssessments(): Assessment[] {
     ensureAssessmentFile();
 
     try {
-        const contents = fs.readFileSync(assessmentsFilePath, "utf8");
-        const assessments = JSON.parse(contents) as unknown;
+        const assessments = readCachedJson<unknown>(assessmentsFilePath);
 
         return Array.isArray(assessments)
             ? (assessments as Assessment[]).map((assessment) => {

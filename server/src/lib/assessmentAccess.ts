@@ -1,3 +1,4 @@
+import { mapConcurrent } from "./mapConcurrent";
 import type { Assessment } from '../config/assessments';
 import { supabase } from './supabase';
 import type { ErrorRequestHandler } from 'express';
@@ -16,14 +17,14 @@ function overlay<T extends Pick<Assessment, 'id' | 'status' | 'sectionAccess' | 
 }
 export async function resolveAssessmentAccessList<T extends Pick<Assessment, 'id' | 'status' | 'sectionAccess' | 'allowCompletedAccess'> & { correctionsOpen?: boolean }>(assessments: T[]): Promise<T[]> {
   if (!assessments.length) return assessments;
-  const rows: AccessRow[] = [];
+  const batches = Array.from({ length: Math.ceil(assessments.length / 100) }, (_, i) => assessments.slice(i * 100, i * 100 + 100));
   // Bound query size while keeping teacher and student lists consistent.
-  for (let offset = 0; offset < assessments.length; offset += 100) {
-    const result = await supabase.from('assessment_access').select('assessment_id,english_open,math_open,allow_completed_access,corrections_open').in('assessment_id', assessments.slice(offset, offset + 100).map(item => item.id));
+  const pages = await mapConcurrent(batches, 4, async batch => {
+    const result = await supabase.from('assessment_access').select('assessment_id,english_open,math_open,allow_completed_access,corrections_open').in('assessment_id', batch.map(item => item.id));
     if (result.error) throw unavailable();
-    rows.push(...(result.data ?? []) as AccessRow[]);
-  }
-  const byId = new Map(rows.map(row => [row.assessment_id, row]));
+    return (result.data ?? []) as AccessRow[];
+  });
+  const byId = new Map(pages.flat().map(row => [row.assessment_id, row]));
   return assessments.map(item => overlay(item, byId.get(item.id)));
 }
 export async function resolveAssessmentAccess<T extends Pick<Assessment, 'id' | 'status' | 'sectionAccess' | 'allowCompletedAccess'> & { correctionsOpen?: boolean }>(assessment: T | undefined): Promise<T | undefined> {

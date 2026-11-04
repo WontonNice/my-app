@@ -1,3 +1,4 @@
+import { listDashboardUsers } from "../lib/studentRoster";
 import { assessmentAccessErrorHandler, resolveAssessmentAccess, resolveAssessmentAccessList } from '../lib/assessmentAccess';
 import { contentForExamAttempt } from "../lib/examResume";
 import { preserveSubmittedSections } from "../shared/examResume";
@@ -271,7 +272,7 @@ progressRouter.get("/students", async (request, response) => {
         return;
     }
 
-    const listed = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
+    const listed = await listDashboardUsers();
     if (listed.error) {
         response.status(400).json({ message: listed.error.message });
         return;
