@@ -28,7 +28,7 @@ infinitePracticeRouter.get('/catalog',async(request,response)=>withMathCommandPe
 infinitePracticeRouter.put('/catalog',async(request,response)=>withMathCommandPersistence(mathCommandRoot,async()=>{
   const revision=request.body?.revision;
   if(!Number.isSafeInteger(revision)||revision<0){response.status(400).json({message:'Reload the studio before saving.'});return;}
-  let catalog;try{const taxonomy=readMathCommandTaxonomy();catalog=validatePracticeCatalog(reconcilePracticeTaxonomy(request.body.catalog,taxonomy,readMathCommandState().taxonomyTopicRenames),taxonomy);}catch(error){response.status(400).json({message:(error as Error).message});return;}
+  let catalog;try{const taxonomy=readMathCommandTaxonomy();catalog=validatePracticeCatalog(reconcilePracticeSkilled(reconcilePracticeTaxonomy(request.body.catalog,taxonomy,readMathCommandState().taxonomyTopicRenames),taxonomy.classificationSkills??[]),taxonomy);}catch(error){response.status(400).json({message:(error as Error).message});return;}
   const row={id:'main',catalog,revision:revision+1,updated_at:new Date().toISOString(),updated_by:response.locals.user.id};
   const saved=revision===0?await supabase.from('infinite_practice_catalog').insert(row).select('revision').maybeSingle():await supabase.from('infinite_practice_catalog').update(row).eq('id','main').eq('revision',revision).select('revision').maybeSingle();
   if(saved.error?.code==='23505'||!saved.error&&!saved.data){response.status(409).json({message:'Another window saved changes. Reload the latest catalog before saving.'});return;}

@@ -1,0 +1,39 @@
+✔ personal batches retain source snapshots, deduplicate additions and protect ownership/revisions (60.2021ms)
+✔ saved new modules can be reused by later questions and export to the same destination (33.059ms)
+✔ batch export carries all sources, exact module IDs, instructions and refuses stale destinations (3.8241ms)
+✔ selecting a skill replaces the draft name and persists the skill name and Foundation placement (4.1055ms)
+✔ authenticated endpoints reject students and save teacher changes durably without assignments (87.3367ms)
+✔ remote persistence rejects failed writes and simultaneous stale saves (10.6061ms)
+✔ studio handoff opens the account planner and carries only the source selection (8.589ms)
+✔ destination labels include every module in the category and saved skills without duplicate labels (19.4436ms)
+✔ catalog refresh survives failures, queues in-flight changes and ignores an old account after disposal (8.7373ms)
+✔ planner notifications refresh visible tabs without sharing data and clean up subscriptions (0.9044ms)
+✔ the shared Skilled registry starts empty and existing questions are TBD without inferred assignments (13.9271ms)
+✔ question skill IDs and linked module names follow the same shared definition (50.8278ms)
+✔ delete resets native and metadata assignments to TBD and cannot silently reattach a reused ID (41.9061ms)
+✔ scopes, reserved names, duplicates, malformed definitions, and stale saves are rejected (18.2067ms)
+✔ subcategory renames move Skilled definitions while preserving their IDs and question assignments (22.7986ms)
+✔ durable metadata survives a new adapter and never rewrites local source or sidecar (17.5358ms)
+✔ concurrent remote commits use compare-and-swap and preserve the winning edit (12.5894ms)
+✔ initial publication is previewable and never overwrites existing durable metadata (6.5913ms)
+✔ remote state controls catalog caches and analytics-compatible synchronous reads (23.2413ms)
+✔ missing migration and storage failures fail closed without modifying files (5.1773ms)
+✔ shared storage is the default; isolated file mode is explicit and production stays durable (0.3097ms)
+✔ deployed import review manifest survives without private drafts; local explicit status has precedence (18.7964ms)
+✔ all module labels enter one shared list including empty/unpublished modules; groups and duplicates do not (2.5637ms)
+✔ Content Editor service, catalog, planner and Practice Studio share names without assigning questions (12.716ms)
+✔ a rename keeps IDs and question assignments and updates every linked module, including after reload (45.9307ms)
+✔ new modules invalidate skill snapshots and catalog caches; stale saves cannot drop new labels (21.2474ms)
+✔ module moves, deletion and choosing another skill do not leave duplicate or orphan organization labels (0.5921ms)
+✔ a retained module with the same label preserves an assigned skill ID when the original module is removed (0.1912ms)
+✔ taxonomy renames update projected module skills in the same request (5.5772ms)
+✔ moving a skill preserves its identity and moves assigned questions and saved planner destinations on reload (60.7151ms)
+✔ module relocation preserves shared generators in their true topic and makes an empty moved module a draft (2.602ms)
+ℹ tests 31
+ℹ suites 0
+ℹ pass 31
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4293.8666

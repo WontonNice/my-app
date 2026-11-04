@@ -1,5 +1,5 @@
 /** Teacher-managed third classification level; independent of diagnostic skills and tags. */
-export type MathClassificationSkill={id:string;label:string;category:string;subcategory:string;moduleIds?:string[];moduleOwned?:boolean};
+export type MathClassificationSkill={id:string;label:string;category:string;subcategory:string;moduleIds?:string[];moduleOwned?:boolean;moduleScopeOverride?:boolean};
 export const skilledTbd='TBD';
 type Taxonomy={categories:{label:string;topics:string[]}[];classificationSkills?:MathClassificationSkill[]};
 const fail=(message:string):never=>{throw Object.assign(new Error(message),{status:400});};
@@ -12,6 +12,7 @@ export function validateClassificationSkills(value:unknown,taxonomy:Taxonomy):Ma
     for(const key of ['id','label','category','subcategory'] as const){if(typeof item[key]!=='string'||!item[key].trim()||item[key].length>(key==='id'?100:120))return fail('Skilled names must contain 1–120 characters.');skill[key]=item[key].trim();}
     if(item.moduleIds!==undefined){if(!Array.isArray(item.moduleIds)||item.moduleIds.length>1000||item.moduleIds.some((id:unknown)=>typeof id!=='string'||!/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,99}$/.test(id)))return fail('Invalid module references for this skill.');skill.moduleIds=[...new Set<string>(item.moduleIds)];}
     if(item.moduleOwned===true)skill.moduleOwned=true;
+    if(item.moduleScopeOverride===true)skill.moduleScopeOverride=true;
     if(!/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,99}$/.test(skill.id)||skill.id===skilledTbd||ids.has(skill.id))return fail('Skilled definitions need unique, stable IDs.');
     if(skill.label.toLowerCase()===skilledTbd.toLowerCase())return fail('TBD is reserved for questions without a Skilled classification.');
     if(!taxonomy.categories.some(category=>category.label===skill.category&&category.topics.includes(skill.subcategory)))return fail('Choose an existing main category and specific topic for every Skilled definition.');
@@ -27,6 +28,11 @@ export function resolveSkilled(value:unknown,category:string,subcategory:string|
 export type SkillModule={id:string;title:string;category:string;topic:string;skilled?:string;defaultType?:'foundation'|'general'};
 /** One organization vocabulary. Publication and generator counts never hide a skill. */
 export function universalClassificationSkills(definitions:MathClassificationSkill[],modules:SkillModule[]):MathClassificationSkill[] {
+  // An explicit skill move is authoritative over an older catalog snapshot.
+  modules=modules.map(module=>{
+    const skill=definitions.find(s=>s.moduleScopeOverride&&s.moduleIds?.includes(module.id));
+    return skill?{...module,category:skill.category,topic:skill.subcategory}:module;
+  });
   const focused=modules.filter(m=>!m.defaultType&&m.id!=='foundation'&&m.id!=='all').sort((a,b)=>a.id.localeCompare(b.id));
   const byId=new Map(focused.map(m=>[m.id,m]));
   const result=definitions.map(s=>({...s,...(s.moduleIds?{moduleIds:s.moduleIds.filter(id=>{

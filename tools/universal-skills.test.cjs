@@ -66,3 +66,44 @@ test('taxonomy renames update projected module skills in the same request',t=>{
   });
  });
 });
+
+test('moving a skill preserves its identity and moves assigned questions and saved planner destinations on reload',t=>{
+ const f=fixture(t),sourceBytes=fs.readFileSync(path.join(f.root,'server/data/exam-content.json'));
+ let movedId;
+ withPracticeSkillSnapshot(f.root,modules,1,()=>{
+  const initial=f.request('GET','/classification-skills'),skill=initial.skills.find(s=>s.label==='One-step Inequalities');movedId=skill.id;
+  const preview=store.previewMathMetadata(f.root,{revision:store.readMathCommandState(f.root).revision,questionIds:['q1'],patch:{skilled:skill.id}},'teacher');store.applyMathMetadata(f.root,preview.token,'teacher');
+  let planner=f.request('POST','/generator-planner',{action:'create',revision:'new',name:'My batch'});
+  planner=f.request('POST','/generator-planner',{action:'add',revision:planner.revision,batchId:planner.activeBatchId,questionIds:['q1']});
+  const batch=planner.batches[0];
+  planner=f.request('POST','/generator-planner',{action:'update',revision:planner.revision,batchId:batch.id,name:batch.name,notes:'',entries:batch.entries.map(e=>({...e,destination:{category:'Algebra',topic:'Inequalities',moduleId:'module0',moduleTitle:skill.label,skilled:skill.id,group:'foundation'}}))});
+  const before=f.request('GET','/classification-skills');
+  const after=f.request('POST','/classification-skills',{revision:before.revision,skills:before.skills.map(s=>s.id===skill.id?{...s,subcategory:'Equations'}:s)});
+  assert.equal(after.skills.length,4);assert.equal(after.skills.find(s=>s.id===skill.id).subcategory,'Equations');
+  const question=store.readMathCommandCatalog(f.root)[0].question;assert.equal(question.skilled,skill.id);assert.equal(question.subtopic,'Equations');
+  const next=f.request('GET','/generator-planner');assert.notEqual(next.revision,planner.revision);assert.equal(next.batches[0].entries[0].destination.topic,'Equations');
+  assert.equal(next.batches[0].entries[0].source.subcategory,'Inequalities','stored source evidence is untouched');
+  assert.throws(()=>f.request('POST','/classification-skills',{revision:before.revision,skills:before.skills}),/another window/);
+ });
+ withPracticeSkillSnapshot(f.root,modules,1,()=>{
+  const after=f.request('GET','/classification-skills');assert.equal(after.skills.find(s=>s.id===movedId).subcategory,'Equations');
+  assert.equal(store.readMathCommandCatalog(f.root)[0].question.skilled,movedId);
+ });
+ assert.deepEqual(fs.readFileSync(path.join(f.root,'server/data/exam-content.json')),sourceBytes);
+});
+test('module relocation preserves shared generators in their true topic and makes an empty moved module a draft',()=>{
+ const {ensureTopicPracticeModules,validatePracticeCatalog,defaultGeneratorSettings,generateCatalogQuestion,studentPracticeCatalog}=require('../server/src/shared/practiceCatalog.ts');
+ const taxonomy={categories:[{label:'Algebra',topics:['Inequalities','Equations']}]};
+ const raw=ensureTopicPracticeModules({modules:modules.map(m=>({...m,description:'',published:true,generatorIds:['shared']})),generators:[{id:'shared',title:'Inequalities',description:'',kind:'one-step',enabled:true,category:'Algebra',topic:'Inequalities',settings:defaultGeneratorSettings}],videos:[]});
+ const before=structuredClone(raw),skills=universalClassificationSkills(definitions,raw.modules);
+ const skill=skills.find(s=>s.moduleIds.includes('module0'));skill.subcategory='Equations';skill.moduleScopeOverride=true;
+ const result=reconcilePracticeSkilled(raw,skills),moved=result.modules.find(m=>m.id==='module0');
+ assert.equal(moved.topic,'Equations');assert.equal(moved.published,false);assert.deepEqual(moved.generatorIds,[]);assert.equal(moved.skilled,skill.id);
+ assert.equal(result.modules.find(m=>m.id===moved.parentId).topic,'Equations');
+ assert.equal(result.generators[0].topic,'Inequalities');assert.deepEqual(result.modules.find(m=>m.id==='module1').generatorIds,['shared']);
+ assert.equal(generateCatalogQuestion(result.generators[0],0,'move').subtopic,'Inequalities');
+ assert.doesNotThrow(()=>validatePracticeCatalog(result,{...taxonomy,classificationSkills:skills}));
+ assert.ok(!studentPracticeCatalog(result).modules.some(m=>m.id===moved.id));
+ assert.deepEqual(raw,before,'projection never mutates the saved catalog or session snapshot');
+ assert.deepEqual(reconcilePracticeSkilled(result,skills),result,'location projection is idempotent');
+});

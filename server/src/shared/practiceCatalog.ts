@@ -87,6 +87,7 @@ export function practiceModuleKind(module:ManagedPracticeModule) {
 }
 /** Explicitly linked modules follow the selected shared skill; legacy names remain intact. */
 export function reconcilePracticeSkilled(catalog:PracticeCatalog,skills:MathClassificationSkill[]):PracticeCatalog {
+  catalog=relocatePracticeSkills(catalog,skills);
   return {...catalog,generators:catalog.generators.map(generator=>({...generator,skilled:resolveSkilled(generator.skilled,generator.category??'Algebra',generator.topic??'Inequalities',skills)})),
     modules:catalog.modules.map(module=>{
       const linked=skills.find(skill=>skill.moduleIds?.includes(module.id)&&skill.category===module.category&&skill.subcategory===module.topic);
@@ -94,6 +95,25 @@ export function reconcilePracticeSkilled(catalog:PracticeCatalog,skills:MathClas
       const definition=skills.find(skill=>skill.id===skilled);
       return {...module,skilled,...(definition&&!practiceModuleKind(module)?{title:definition.label,titleMode:'skill' as const}:{})};
     })};
+}
+/** Skill moves change organization, never the mathematical meaning of a generator. */
+export function relocatePracticeSkills(catalog:PracticeCatalog,skills:MathClassificationSkill[]):PracticeCatalog {
+  let changed=false;
+  const modules=catalog.modules.map(module=>{
+    if(practiceModuleKind(module))return module;
+    const skill=skills.find(s=>s.moduleScopeOverride&&s.moduleIds?.includes(module.id));
+    if(!skill)return module;
+    const location={category:skill.category,topic:skill.subcategory};
+    const moved=!sameTopic(module,location);
+    const generatorIds=module.generatorIds.filter(id=>catalog.generators.some(g=>g.id===id&&sameTopic(g,location)));
+    const removed=generatorIds.length!==module.generatorIds.length;
+    if(!moved&&!removed)return module;
+    changed=true;
+    // A topic-wide module must not silently pick up unrelated destination content.
+    return {...module,...location,generatorIds,includeAll:moved?false:module.includeAll,
+      published:module.published&&generatorIds.length>0,parentId:null};
+  });
+  return changed?ensureTopicPracticeModules({...catalog,modules}):catalog;
 }
 /** Assign a shared skill without replacing the module, its generators, or its history. */
 export function assignPracticeModuleSkill(catalog:PracticeCatalog,moduleId:string,skill:MathClassificationSkill):PracticeCatalog {

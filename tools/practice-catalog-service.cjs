@@ -20,7 +20,7 @@ async function handlePracticeCatalogRequest({method,body,root},injected){
     if(method==='PUT'){
       if(!Number.isSafeInteger(body?.revision)||body.revision<0)fail(400,'Reload the studio before saving.');
       if(!body.catalog||typeof body.catalog!=='object'||!Array.isArray(body.catalog.generators)||!Array.isArray(body.catalog.modules)||!Array.isArray(body.catalog.videos))fail(400,'Provide a complete practice catalog.');
-      const catalog=r.validatePracticeCatalog(r.reconcilePracticeTaxonomy(body.catalog,taxonomy,renames),taxonomy);
+      const catalog=r.validatePracticeCatalog(r.reconcilePracticeSkilled(r.reconcilePracticeTaxonomy(body.catalog,taxonomy,renames),taxonomy.classificationSkills??[]),taxonomy);
       const row={id:'main',catalog,revision:body.revision+1,updated_at:new Date().toISOString()};
       const saved=body.revision===0?await r.supabase.from('infinite_practice_catalog').insert(row).select('revision').maybeSingle():await r.supabase.from('infinite_practice_catalog').update(row).eq('id','main').eq('revision',body.revision).select('revision').maybeSingle();
       if(saved.error?.code==='23505'||!saved.error&&!saved.data)fail(409,'Another window saved changes. Reload the latest catalog before saving.');

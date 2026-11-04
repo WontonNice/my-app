@@ -29,3 +29,10 @@
 .skilled-error button { margin-left:10px; }
 .skilled-manager ::selection { background:#dbece1; color:#203b32; }
 @media(max-width:600px) { .skilled-manager { width:calc(100vw - 20px); max-height:94dvh; } .skilled-manager header,.skilled-manager footer,.skilled-manager-body { padding:16px; } .skilled-scope { grid-template-columns:1fr; } .skilled-row { flex-wrap:wrap; } .skilled-row label { flex-basis:100%; } .skilled-manager footer { flex-wrap:wrap; } }
+
+.skilled-row > div { flex-wrap:wrap; }
+.skilled-relocate, .skilled-move-review { padding:16px; margin:12px 0; border:1px solid #bacbc1; border-radius:6px; background:#f1f5f0; }
+.skilled-relocate h4 { margin:0 0 12px; font-size:15px; }
+.skilled-relocate p { margin:12px 0; }
+.skilled-move-review p { margin-bottom:0; }
+.skilled-move-actions { display:flex; flex-wrap:wrap; gap:8px; }

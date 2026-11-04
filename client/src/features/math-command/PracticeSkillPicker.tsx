@@ -4,7 +4,7 @@ import { ChevronDown, Plus, Search, Trash2 } from 'lucide-react';
 import type { ManagedPracticeModule } from '../../../../server/src/shared/practiceCatalog';
 import type { MathClassificationSkill } from '../../../../server/src/shared/mathClassificationSkills';
 import { jsonRequest, type MathCommandRequest } from './client';
-import type { SkilledSnapshot } from './SkilledManager';
+import { SkilledManager, type SkilledSnapshot } from './SkilledManager';
 
 type Props = {
   module: ManagedPracticeModule;
@@ -33,6 +33,7 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
   const [deleting, setDeleting] = useState<string | null>(null);
   const [renaming, setRenaming] = useState<string | null>(null);
   const [renameName, setRenameName] = useState('');
+  const [manageLocation, setManageLocation] = useState(false);
 
   useEffect(() => {
     let active = true, loading = false;
@@ -89,6 +90,7 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
     void saveSkills([...snapshot.skills, skill], skill);
   }
   return <section className="ps-skill-picker" aria-label="Module skill">
+    {manageLocation&&<SkilledManager request={request} initialCategory={candidate?.category??module.category} initialTopic={candidate?.subcategory??module.topic} onClose={()=>setManageLocation(false)} onSaved={next=>{setSnapshot(next);onSkillsChanged(next);}}/>}
     <span className="ps-skill-label" id={`${panelId}-label`}>Skill</span>
     <button ref={trigger} className="ps-skill-trigger" type="button" aria-labelledby={`${panelId}-label ${panelId}-value`} aria-expanded={open} aria-controls={panelId} disabled={busy} onClick={() => setOpen(!open)}>
       <span id={`${panelId}-value`}>{selected?.label ?? 'Choose a skill'}<small>{selected ? `${selected.category} / ${selected.subcategory}` : 'Search your shared skills or create one'}</small></span><ChevronDown size={18} aria-hidden="true" />
@@ -114,6 +116,7 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
           <button type="button" onClick={() => { setCreating(!creating); setDeleting(null); setNewCategory(hasGenerators ? module.category : category || module.category); setNewTopic(hasGenerators ? module.topic : topic || (category && category !== module.category ? snapshot.categories.find(item => item.label === category)?.topics[0] ?? '' : module.topic)); }}><Plus size={15}/>Create skill</button>
           <button className="ps-delete" type="button" disabled={!candidate||Boolean(candidate.moduleIds?.length)} title={candidate?.moduleIds?.length?"Remove the linked module in Practice Studio first":undefined} onClick={() => setDeleting(candidate!.id)}><Trash2 size={15}/>Delete selected skill</button>
           <button type="button" disabled={!candidate} onClick={() => { setRenaming(candidate!.id); setRenameName(candidate!.label); setCreating(false); setDeleting(null); }}>Rename selected skill</button>
+          <button type="button" onClick={()=>setManageLocation(true)}>Edit skill categories</button>
           {(category || topic || search) && <button type="button" onClick={() => { setCategory(''); setTopic(''); setSearch(''); setDeleting(null); }}>Clear skill filters</button>}
           <button type="button" onClick={() => void reload()}>Refresh skills</button>
         </div>

@@ -35,7 +35,7 @@ export function handleMathCatalogRequest(input:{method:string;pathname:string;bo
   if(pathname === "/taxonomy" && method === "POST") return saveMathTaxonomy(root, body);
   if(pathname === '/classification-skills') {
     if(method==='GET')return readClassificationSkills(root);
-    if(method==='POST')return saveClassificationSkills(root,body);
+    if(method==='POST')return saveClassificationSkills(root,body,actor);
   }
   const personalSnapshot = () => { const snapshot = mathCatalogSnapshot(root, performance); return {...snapshot, catalog: teacherCatalog(snapshot.catalog, root, actor)}; };
   if(method==="GET"&&pathname==="/overview"){
