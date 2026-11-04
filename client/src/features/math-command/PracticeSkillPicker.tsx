@@ -1,3 +1,4 @@
+import { notifyPlannerChanged, subscribePlannerChanges } from './generatorPlannerSync';
 import { useEffect, useId, useRef, useState } from 'react';
 import { ChevronDown, Plus, Search, Trash2 } from 'lucide-react';
 import type { ManagedPracticeModule } from '../../../../server/src/shared/practiceCatalog';
@@ -30,13 +31,21 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
   const [newCategory, setNewCategory] = useState(module.category);
   const [newTopic, setNewTopic] = useState(module.topic);
   const [deleting, setDeleting] = useState<string | null>(null);
+  const [renaming, setRenaming] = useState<string | null>(null);
+  const [renameName, setRenameName] = useState('');
 
   useEffect(() => {
-    let active = true;
-    request<SkilledSnapshot>('/classification-skills').then(next => {
-      if (active) { setSnapshot(next); onSkillsChanged(next); }
-    }).catch(reason => { if (active) setError(reason instanceof Error ? reason.message : 'Skills could not be loaded.'); });
-    return () => { active = false; };
+    let active = true, loading = false;
+    const refresh = async () => {
+      if (loading) return;
+      loading = true;
+      try { const next = await request<SkilledSnapshot>('/classification-skills'); if (active) { setSnapshot(next); onSkillsChanged(next); } }
+      catch(reason) { if (active) setError(reason instanceof Error ? reason.message : 'Skills could not be loaded.'); }
+      finally { loading = false; }
+    };
+    void refresh();
+    const stop = subscribePlannerChanges(() => void refresh());
+    return () => { active = false; stop(); };
   }, [request, onSkillsChanged]);
 
   const selected = snapshot?.skills.find(skill => skill.id === module.skilled);
@@ -56,13 +65,15 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
     catch (reason) { setError(reason instanceof Error ? reason.message : 'Skills could not be loaded.'); }
     finally { setBusy(false); onBusyChange(false); }
   }
-  async function saveSkills(skills: MathClassificationSkill[], created?: MathClassificationSkill) {
+  async function saveSkills(skills: MathClassificationSkill[], created?: MathClassificationSkill, renamed?: string) {
     if (!snapshot || busy) return;
     setBusy(true); onBusyChange(true); setError(''); setNotice('');
     try {
       const next = await request<SkilledSnapshot>('/classification-skills', jsonRequest('POST', { revision: snapshot.revision, skills }));
-      setSnapshot(next); onSkillsChanged(next); setDeleting(null);
-      if (created) {
+      setSnapshot(next); onSkillsChanged(next); notifyPlannerChanged(); setDeleting(null);
+      if (renamed) {
+        setRenaming(null); setNotice('Skill and linked module names updated everywhere.');
+      } else if (created) {
         onChoose(created); setCandidateId(created.id); setCreating(false); setName(''); setSearch(''); setCategory(created.category); setTopic(created.subcategory); setOpen(false); trigger.current?.focus();
         setNotice('Skill created in your shared list. Save changes to apply it to this module.');
       } else {
@@ -82,7 +93,7 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
     <button ref={trigger} className="ps-skill-trigger" type="button" aria-labelledby={`${panelId}-label ${panelId}-value`} aria-expanded={open} aria-controls={panelId} disabled={busy} onClick={() => setOpen(!open)}>
       <span id={`${panelId}-value`}>{selected?.label ?? 'Choose a skill'}<small>{selected ? `${selected.category} / ${selected.subcategory}` : 'Search your shared skills or create one'}</small></span><ChevronDown size={18} aria-hidden="true" />
     </button>
-    {!selected && snapshot && <p className="ps-note">Choose a classification for this module. Edit its display name in Module name.</p>}
+    {!selected && snapshot && <p className="ps-note">Choose a skill to name this module and set its category and subcategory.</p>}
     {error && <p className="ps-message is-error" role="alert">{error}<button type="button" disabled={busy} onClick={() => void reload()}>Reload skills</button></p>}
     {notice && <p className="ps-note" role="status">{notice}</p>}
     {open && <div className="ps-skill-panel" id={panelId}>
@@ -99,9 +110,10 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
         <p className="ps-note" role="status">{matches.length ? `${matches.length} skill${matches.length === 1 ? '' : 's'} found` : 'No skills match. Clear the filters or create a skill.'}</p>
         {candidate && <p className="ps-note">Selected: {candidate.label} · {candidate.category} / {candidate.subcategory}</p>}
         <div className="ps-skill-actions">
-          <button className="ps-primary" type="button" disabled={!candidate || Boolean(hasGenerators && differentScope)} onClick={() => { if (candidate) { onChoose(candidate); setOpen(false); trigger.current?.focus(); setNotice('Skill selected. Save changes to apply the classification.'); } }}>Use selected skill</button>
+          <button className="ps-primary" type="button" disabled={!candidate || Boolean(hasGenerators && differentScope)} onClick={() => { if (candidate) { onChoose(candidate); setOpen(false); trigger.current?.focus(); setNotice('Skill selected and module named. Save changes to apply.'); } }}>Use selected skill</button>
           <button type="button" onClick={() => { setCreating(!creating); setDeleting(null); setNewCategory(hasGenerators ? module.category : category || module.category); setNewTopic(hasGenerators ? module.topic : topic || (category && category !== module.category ? snapshot.categories.find(item => item.label === category)?.topics[0] ?? '' : module.topic)); }}><Plus size={15}/>Create skill</button>
-          <button className="ps-delete" type="button" disabled={!candidate} onClick={() => setDeleting(candidate!.id)}><Trash2 size={15}/>Delete selected skill</button>
+          <button className="ps-delete" type="button" disabled={!candidate||Boolean(candidate.moduleIds?.length)} title={candidate?.moduleIds?.length?"Remove the linked module in Practice Studio first":undefined} onClick={() => setDeleting(candidate!.id)}><Trash2 size={15}/>Delete selected skill</button>
+          <button type="button" disabled={!candidate} onClick={() => { setRenaming(candidate!.id); setRenameName(candidate!.label); setCreating(false); setDeleting(null); }}>Rename selected skill</button>
           {(category || topic || search) && <button type="button" onClick={() => { setCategory(''); setTopic(''); setSearch(''); setDeleting(null); }}>Clear skill filters</button>}
           <button type="button" onClick={() => void reload()}>Refresh skills</button>
         </div>
@@ -109,6 +121,12 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
         {deleteSkill && <div className="ps-skill-confirm" role="alert">
           <p>Delete “{deleteSkill.label}” from your shared skills? Linked question classifications return to TBD. Practice modules and generators remain, and can be assigned another skill.</p>
           <div className="ps-skill-actions"><button type="button" className="ps-delete" onClick={() => void saveSkills(snapshot.skills.filter(skill => skill.id !== deleteSkill.id))}>Delete skill</button><button type="button" onClick={() => setDeleting(null)}>Cancel deletion</button></div>
+        </div>}
+        {renaming && <div className="ps-skill-create">
+          <h3>Rename skill</h3>
+          <label>Skill name<input value={renameName} maxLength={120} onChange={event => setRenameName(event.target.value)} /></label>
+          <p className="ps-note">This updates the label everywhere, including linked modules and question classifications.</p>
+          <div className="ps-skill-actions"><button type="button" disabled={!renameName.trim()} onClick={() => void saveSkills(snapshot.skills.map(skill => skill.id === renaming ? {...skill, label: renameName.trim()} : skill), undefined, renaming)}>Save name</button><button type="button" onClick={() => setRenaming(null)}>Cancel</button></div>
         </div>}
         {creating && <div className="ps-skill-create">
           <h3>Create a skill</h3>
@@ -118,7 +136,7 @@ export function PracticeSkillPicker({ module, request, onChoose, onSkillsChanged
           {duplicate && <p role="alert">That skill already exists in this subcategory. Select it from the list above.</p>}
           <div className="ps-skill-actions"><button type="button" disabled={!name.trim() || !newCategory || !newTopic || duplicate} onClick={create}>Create and use skill</button><button type="button" onClick={() => setCreating(false)}>Cancel</button></div>
         </div>}
-        <p className="ps-note">Shared skill creation and deletion save immediately. Choosing a skill also sets this module’s Category and Subcategory; save the module with Save changes.</p>
+        <p className="ps-note">Shared skill creation, renaming and deletion save immediately. Choosing a skill sets this module’s name, Category and Subcategory; save the module with Save changes.</p>
       </fieldset>}
     </div>}
   </section>;

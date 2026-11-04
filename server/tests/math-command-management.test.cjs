@@ -36,7 +36,7 @@ test('exam player queue covers filtered questions across pages in bank order wit
 
 test('preview/apply 30 existing questions modifies only explicit metadata and can be undone',t=>{
   const f=fixture(t),before=fs.readFileSync(f.contentPath),sourceBefore=fs.readFileSync(f.sourcePath),ids=f.questions.slice(0,30).map(q=>q.id);
-  const p=preview(f.root,ids,{category:'Geometry',subcategory:'Area & Perimeter',diagnosticSkill:'area-perimeter',difficulty:'hard'});
+  const p=preview(f.root,ids,{category:'Geometry',subcategory:'Perimeter, Area & Composite Figures',diagnosticSkill:'area-perimeter',difficulty:'hard'});
   assert.equal(p.count,30);assert.equal(p.changes.length,30);assert.deepEqual(p.changes[0].fields.map(f=>f.field),['category','subcategory','diagnosticSkill','difficulty']);
   assert.equal(fs.existsSync(path.join(f.root,'server/data/math-command.json')),false);
   const applied=store.applyMathMetadata(f.root,p.token,actor);assert.equal(applied.changed,30);
@@ -51,20 +51,20 @@ test('preview/apply 30 existing questions modifies only explicit metadata and ca
 
 test('metadata validation rejects content edits, invalid classifications and unverified mapping claims',t=>{
   const {root}=fixture(t);
-  for(const patch of [{prompt:'Replace text'},{correctChoiceId:'B'},{category:'Fake'},{category:'Geometry',subcategory:'Equations & Systems'},{category:'Geometry',subcategory:'Area & Perimeter',diagnosticSkill:'linear-equations'},{difficulty:'elite'},{standards:[{code:'NY-8.EE.7',verified:true}]}])assert.throws(()=>preview(root,['q-1'],patch));
-  assert.doesNotThrow(()=>preview(root,['q-1'],{category:'Geometry',subcategory:'Area & Perimeter',diagnosticSkill:'',difficulty:''}));
+  for(const patch of [{prompt:'Replace text'},{correctChoiceId:'B'},{category:'Fake'},{category:'Geometry',subcategory:'Equations & Systems'},{category:'Geometry',subcategory:'Perimeter, Area & Composite Figures',diagnosticSkill:'linear-equations'},{difficulty:'elite'},{standards:[{code:'NY-8.EE.7',verified:true}]}])assert.throws(()=>preview(root,['q-1'],patch));
+  assert.doesNotThrow(()=>preview(root,['q-1'],{category:'Geometry',subcategory:'Perimeter, Area & Composite Figures',diagnosticSkill:'',difficulty:''}));
   const p=preview(root,['q-1'],{standards:[{code:'NY-8.EE.7',verified:true,referenceUrl:'https://www.nysed.gov/standards-instruction/mathematics'}]});
   assert.equal(p.changes[0].fields[0].after[0].verified,true);
 });
 
 test('native saves retire only known overlays and preserve concurrent classification edits',t=>{
   const {root,questions}=fixture(t);
-  store.applyMathMetadata(root,preview(root,['q-1'],{category:'Geometry',subcategory:'Area & Perimeter'}).token,actor);
+  store.applyMathMetadata(root,preview(root,['q-1'],{category:'Geometry',subcategory:'Perimeter, Area & Composite Figures'}).token,actor);
   const savedRevision=store.readMathCommandState(root).revision;
   store.syncMathNativeClassifications(root,[questions[0]]);
   assert.equal(store.readMathCommandState(root).metadata['q-1'].category,'Geometry','legacy save cannot clear divergent metadata');
   store.applyMathMetadata(root,preview(root,['q-1'],{category:'Algebra',subcategory:'Inequalities'}).token,actor);
-  store.syncMathNativeClassifications(root,[{...questions[0],topic:'Geometry',subtopic:'Area & Perimeter'}],savedRevision);
+  store.syncMathNativeClassifications(root,[{...questions[0],topic:'Geometry',subtopic:'Perimeter, Area & Composite Figures'}],savedRevision);
   assert.equal(store.readMathCommandState(root).metadata['q-1'].subcategory,'Inequalities','in-flight save cannot clear newer classification');
   const currentRevision=store.readMathCommandState(root).revision;
   store.syncMathNativeClassifications(root,[questions[0]],currentRevision);
@@ -123,7 +123,7 @@ test('saved views, targets, rules and reference-only collections persist and val
   const {root}=fixture(t);
   const save=changes=>store.saveMathCommandPreferences(root,{revision:store.readMathCommandState(root).revision,...changes});
   const filters={category:['Algebra'],difficulty:['medium','hard'],sort:'difficulty',direction:'desc'};
-  save({savedViews:[{id:'v1',name:'Medium and hard algebra',filters}],collections:[{id:'c1',name:'Review set',questionIds:['q-1','q-2']}],targets:{defaultPerDifficulty:12,overrides:[{category:'Geometry',subcategory:'Area & Perimeter',difficulty:'hard',minimum:20}]},rules:{minAttempts:10,targetAccuracy:75},pacePerWeek:15});
+  save({savedViews:[{id:'v1',name:'Medium and hard algebra',filters}],collections:[{id:'c1',name:'Review set',questionIds:['q-1','q-2']}],targets:{defaultPerDifficulty:12,overrides:[{category:'Geometry',subcategory:'Perimeter, Area & Composite Figures',difficulty:'hard',minimum:20}]},rules:{minAttempts:10,targetAccuracy:75},pacePerWeek:15});
   const state=store.readMathCommandState(root);assert.deepEqual(state.savedViews[0].filters,filters);assert.deepEqual(state.collections[0],{id:'c1',name:'Review set',questionIds:['q-1','q-2']});assert.equal(state.targets.defaultPerDifficulty,12);assert.equal(state.rules.minAttempts,10);
   for(const bad of [{savedViews:[{id:'',name:'Empty',filters:{}}]},{savedViews:[{id:'a',name:'A',filters:{sort:'anything'}}]},{savedViews:[{id:'a',name:'A',filters:{category:'Algebra'}}]},{collections:[{id:'c',name:'C',questionIds:['missing']}]},{collections:[{id:'c',name:'C',questionIds:[]},{id:'c',name:'D',questionIds:[]}]},{targets:{defaultPerDifficulty:10,overrides:[{category:'Fake',subcategory:'Fake',difficulty:'hard',minimum:5}]}},{rules:{minAttempts:0}},{rules:{minAttempts:2.5}},{rules:{targetAccuracy:101}}])assert.throws(()=>save(bad));
   assert.deepEqual(store.readMathCommandState(root).savedViews[0].filters,filters);

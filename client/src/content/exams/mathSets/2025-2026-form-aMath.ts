@@ -310,7 +310,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, PQRS is a parallelogram. What is the value of x?\n\nEnter your answer in the space.",
     "promptHtml": "<div><p>In the figure above,&nbsp;\\(PQRS\\)&nbsp;is a parallelogram. What is the value of&nbsp;\\(x\\)?</p></div><div><p>Enter your answer in the space.</p></div>",
     "topic": "Geometry",
-    "subtopic": "Triangles & Polygons",
+    "subtopic": "Quadrilaterals & Polygons",
     "correctTextAnswers": [
       "162"
     ],
@@ -401,7 +401,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The perimeter of a rectangle is 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions of this rectangle?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -560,7 +560,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the area of the shaded region in the graph above?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -829,7 +829,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
     "topic": "Geometry",
-    "subtopic": "Similarity & Scale Drawings",
+    "subtopic": "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -870,7 +870,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "MATH QUIZ SCORES\nScore Number of Students\n85 4\n75 4\n65 2\n\nWhat is the mean score of the 10 students in the table above?",
     "promptHtml": "<p data-align=\"center\"><span><span>MATH</span><span> QUIZ </span><span>SCORES</span></span></p> <table data-table-style=\"compact\"><tbody><tr><th data-align=\"center\" scope=\"col\"><span>Score</span></th><th data-align=\"center\" scope=\"col\"><span><span>Number</span><span> of </span><span>Students</span></span></th></tr><tr><td data-align=\"center\"><span>85</span></td><td data-align=\"center\"><span>4</span></td></tr><tr><td data-align=\"center\"><span>75</span></td><td data-align=\"center\"><span>4</span></td></tr><tr><td data-align=\"center\"><span>65</span></td><td data-align=\"center\"><span>2</span></td></tr></tbody></table> <p>&nbsp;</p><p><span><span>What </span><span>is </span><span>the </span><span>mean</span><span> score </span><span>of </span><span>the </span><span>10 </span><span>students </span><span>in </span><span>the </span><span>table </span><span>above?</span></span></p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability",
+    "subtopic": "Averages & Spread",
     "choices": [
       {
         "id": "A",
@@ -1723,7 +1724,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
   },
   {
     "id": "inequality-number-line-ray",
-    "skilled": "TBD",
+    "skilled": "module-ca02b8f6-c345-4113-8249-87ec13615831-1qj1db7",
     "instructions": "Select a ray. Then move the endpoint of the ray to the correct position on the number line.",
     "points": 1,
     "prompt": "Graph the solution set for the inequality \\(-3 \\le 2x-5\\).",
@@ -1759,7 +1760,8 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(100{\\left(2+0\\text{.}1\\right)}^{2}-100=\\)",
     "promptHtml": "<p><span><span>\\(100{\\left(2+0\\text{.}1\\right)}^{2}-100=\\)</span></span></p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -1943,7 +1945,7 @@ export const content20252026FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, \\(\\text{JK}=3\\frac{1}{2}\\text{,}\\) \\(\\text{JM}=9\\frac{3}{4}\\text{,}\\) and \\(\\text{LM}=1\\frac{1}{8}\\text{.}\\) What is the position of point \\(\\text{L?}\\)",
     "promptHtml": "<p data-align=\"center\"><span><img src=\"/exam-images/restore-shm11-088-1-svgz-passage.svgz\" alt=\"A number line with points J, K, L, and M; Point K is 3 eighths.\" width=\"264\"></span></p><p><span><span>On </span><span>the </span><span>number line</span><span> above, </span></span><span><span>\\(\\text{JK}=3\\frac{1}{2}\\text{,}\\)</span></span> <span><span>\\(\\text{JM}=9\\frac{3}{4}\\text{,}\\)</span></span><span> and </span><span><span>\\(\\text{LM}=1\\frac{1}{8}\\text{.}\\)</span></span><span> What is the position of </span><span data-no-break=\"true\"><span><span>point</span> </span><span><span>\\(\\text{L?}\\)</span></span></span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",

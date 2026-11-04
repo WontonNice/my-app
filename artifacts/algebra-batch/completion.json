@@ -1,0 +1,253 @@
+{
+  "batchId": "55e91aa0-2ed9-4abd-b104-2e8456fbb35b",
+  "revision": 50,
+  "implementation": "complete",
+  "catalogRegistration": "saved; all eight enabled and unreviewed, five destinations and required parents published",
+  "deployment": "not deployed",
+  "studentAssignments": "none created",
+  "verification": {
+    "focusedTests": "10 passed; 12,338 unique stems exhaustively checked",
+    "clientTypecheck": "passed: node node_modules/typescript/bin/tsc -p client/tsconfig.json --noEmit",
+    "practiceStudioRegression": "155 tests: 118 passed, same 37 pre-existing failures, no new failures; serial run after concurrent run exhausted memory",
+    "idempotent": true,
+    "studentCatalog": "all eight present and capable of creating saved sessions",
+    "browser": "all eight rendered in the existing preview player; decimal and multi-select correct grading checked; Foundation settings and targeted Study Hall launch verified in local fixture using saved catalog"
+  },
+  "requests": [
+    {
+      "requestId": "7f296eec-e9dc-4229-a93c-3819864e77fe",
+      "sourceQuestionId": "2020-2021-form-b-q58",
+      "generatorIds": [
+        "algebra-decimal-coefficient-v1"
+      ],
+      "title": "Decimal Coefficient after Distribution",
+      "distinctStems": 2772,
+      "cycle": "continues after finite domain repeats",
+      "destination": {
+        "id": "ed43bc4b-77e7-42c2-b0fa-f677efd08459",
+        "title": "Simplifying Expressions",
+        "topic": "Algebraic Expressions",
+        "skilled": "9abd5350-a5f2-4fad-9822-c1e064977942",
+        "category": "Algebra",
+        "parentId": "foundation-algebra-algebraic-expressions-rj42ee",
+        "published": true,
+        "titleMode": "skill",
+        "includeAll": false,
+        "description": "",
+        "generatorIds": [
+          "algebra-distribute-negative-v1",
+          "algebra-decimal-coefficient-v1",
+          "algebra-combine-parenthesized-groups-v1",
+          "algebra-equivalent-expression-sums-v1"
+        ]
+      },
+      "validation": "passed",
+      "unfinishedWork": [],
+      "previewPath": "/teacher/practice-studio?generatorId=algebra-decimal-coefficient-v1"
+    },
+    {
+      "requestId": "ba789860-7372-40c3-ba40-80f12a00aa2a",
+      "sourceQuestionId": "2020-2021-form-b-q88",
+      "generatorIds": [
+        "algebra-substitute-linear-expression-v1"
+      ],
+      "title": "Substitution into a Distributed Expression",
+      "distinctStems": 5760,
+      "cycle": "continues after finite domain repeats",
+      "destination": {
+        "id": "evaluating-substituting-55e91aa0",
+        "title": "Evaluating & Substituting Expressions",
+        "topic": "Algebraic Expressions",
+        "skilled": "TBD",
+        "category": "Algebra",
+        "parentId": "foundation-algebra-algebraic-expressions-rj42ee",
+        "published": true,
+        "titleMode": "custom",
+        "includeAll": false,
+        "description": "Evaluating & Substituting Expressions",
+        "generatorIds": [
+          "algebra-substitute-linear-expression-v1"
+        ]
+      },
+      "validation": "passed",
+      "unfinishedWork": [],
+      "previewPath": "/teacher/practice-studio?generatorId=algebra-substitute-linear-expression-v1"
+    },
+    {
+      "requestId": "a88089fd-948f-40cf-a540-241038b234db",
+      "sourceQuestionId": "2020-2021-form-b-q101",
+      "generatorIds": [
+        "inequality-distribute-both-sides-v1"
+      ],
+      "title": "Inequalities with Parentheses on Both Sides",
+      "distinctStems": 1284,
+      "cycle": "continues after finite domain repeats",
+      "destination": {
+        "id": "2022-2023-form-b-q70",
+        "title": "Inequalities: Variables on Both Sides",
+        "topic": "Inequalities",
+        "skilled": "TBD",
+        "category": "Algebra",
+        "parentId": "foundation",
+        "published": true,
+        "includeAll": false,
+        "description": "Based on 2022–2023 Form B Q70. Collect variable terms and constants, then solve, reversing the sign when dividing by a negative number.",
+        "generatorIds": [
+          "variables-both-sides-inequalities-v1",
+          "inequality-distribute-both-sides-v1"
+        ]
+      },
+      "validation": "passed",
+      "unfinishedWork": [],
+      "previewPath": "/teacher/practice-studio?generatorId=inequality-distribute-both-sides-v1"
+    },
+    {
+      "requestId": "37840bf2-fea1-437c-a44d-8ecc6b2a71dd",
+      "sourceQuestionId": "2020-2021-form-b-q110",
+      "generatorIds": [
+        "inequality-absolute-value-number-line-v1"
+      ],
+      "title": "Graphing Absolute-Value Inequalities",
+      "distinctStems": 220,
+      "cycle": "continues after finite domain repeats",
+      "destination": {
+        "id": "ca02b8f6-c345-4113-8249-87ec13615831",
+        "title": "Graphing Inequalities",
+        "topic": "Inequalities",
+        "skilled": "TBD",
+        "category": "Algebra",
+        "parentId": "foundation",
+        "published": true,
+        "titleMode": "custom",
+        "includeAll": false,
+        "description": "",
+        "generatorIds": [
+          "inequality-absolute-value-number-line-v1",
+          "inequality-compound-number-line-v1"
+        ]
+      },
+      "validation": "passed",
+      "unfinishedWork": [],
+      "previewPath": "/teacher/practice-studio?generatorId=inequality-absolute-value-number-line-v1"
+    },
+    {
+      "requestId": "e08360d9-c70e-4be7-9b6b-4caff83e5e8d",
+      "sourceQuestionId": "2021-2022-form-a-q64",
+      "generatorIds": [
+        "algebra-combine-parenthesized-groups-v1"
+      ],
+      "title": "Combining Parenthesized Groups",
+      "distinctStems": 432,
+      "cycle": "continues after finite domain repeats",
+      "destination": {
+        "id": "ed43bc4b-77e7-42c2-b0fa-f677efd08459",
+        "title": "Simplifying Expressions",
+        "topic": "Algebraic Expressions",
+        "skilled": "9abd5350-a5f2-4fad-9822-c1e064977942",
+        "category": "Algebra",
+        "parentId": "foundation-algebra-algebraic-expressions-rj42ee",
+        "published": true,
+        "titleMode": "skill",
+        "includeAll": false,
+        "description": "",
+        "generatorIds": [
+          "algebra-distribute-negative-v1",
+          "algebra-decimal-coefficient-v1",
+          "algebra-combine-parenthesized-groups-v1",
+          "algebra-equivalent-expression-sums-v1"
+        ]
+      },
+      "validation": "passed",
+      "unfinishedWork": [],
+      "previewPath": "/teacher/practice-studio?generatorId=algebra-combine-parenthesized-groups-v1"
+    },
+    {
+      "requestId": "73db8c4e-7373-45fc-9fe4-72d67e8a8751",
+      "sourceQuestionId": "2021-2022-form-a-q71",
+      "generatorIds": [
+        "inequality-compound-number-line-v1"
+      ],
+      "title": "Graphing Compound Inequalities",
+      "distinctStems": 400,
+      "cycle": "continues after finite domain repeats",
+      "destination": {
+        "id": "ca02b8f6-c345-4113-8249-87ec13615831",
+        "title": "Graphing Inequalities",
+        "topic": "Inequalities",
+        "skilled": "TBD",
+        "category": "Algebra",
+        "parentId": "foundation",
+        "published": true,
+        "titleMode": "custom",
+        "includeAll": false,
+        "description": "",
+        "generatorIds": [
+          "inequality-absolute-value-number-line-v1",
+          "inequality-compound-number-line-v1"
+        ]
+      },
+      "validation": "passed",
+      "unfinishedWork": [],
+      "previewPath": "/teacher/practice-studio?generatorId=inequality-compound-number-line-v1"
+    },
+    {
+      "requestId": "8179b486-1ec3-4713-beab-300f99744bbb",
+      "sourceQuestionId": "2025-2026-form-a-math-2",
+      "generatorIds": [
+        "algebra-equivalent-expression-sums-v1"
+      ],
+      "title": "Equivalent Forms of an Expression Sum",
+      "distinctStems": 1410,
+      "cycle": "continues after finite domain repeats",
+      "destination": {
+        "id": "ed43bc4b-77e7-42c2-b0fa-f677efd08459",
+        "title": "Simplifying Expressions",
+        "topic": "Algebraic Expressions",
+        "skilled": "9abd5350-a5f2-4fad-9822-c1e064977942",
+        "category": "Algebra",
+        "parentId": "foundation-algebra-algebraic-expressions-rj42ee",
+        "published": true,
+        "titleMode": "skill",
+        "includeAll": false,
+        "description": "",
+        "generatorIds": [
+          "algebra-distribute-negative-v1",
+          "algebra-decimal-coefficient-v1",
+          "algebra-combine-parenthesized-groups-v1",
+          "algebra-equivalent-expression-sums-v1"
+        ]
+      },
+      "validation": "passed",
+      "unfinishedWork": [],
+      "previewPath": "/teacher/practice-studio?generatorId=algebra-equivalent-expression-sums-v1"
+    },
+    {
+      "requestId": "84024a78-035d-4795-bc51-e88590922e6f",
+      "sourceQuestionId": "average-of-consecutive-integers",
+      "generatorIds": [
+        "number-consecutive-integer-average-v1"
+      ],
+      "title": "Average of Consecutive Integer Endpoints",
+      "distinctStems": 60,
+      "cycle": "continues after finite domain repeats",
+      "destination": {
+        "id": "consecutive-integers-55e91aa0",
+        "title": "Consecutive Integers",
+        "topic": "Number Types & Properties",
+        "skilled": "6ef8aa5f-caf0-4820-9d24-eaf0e4b2c21e",
+        "category": "Arithmetic & Number Sense",
+        "parentId": "foundation-arithmetic-number-sense-number-properties-1j4ekza",
+        "published": true,
+        "titleMode": "skill",
+        "includeAll": false,
+        "description": "Consecutive Integers",
+        "generatorIds": [
+          "number-consecutive-integer-average-v1"
+        ]
+      },
+      "validation": "passed",
+      "unfinishedWork": [],
+      "previewPath": "/teacher/practice-studio?generatorId=number-consecutive-integer-average-v1"
+    }
+  ]
+}

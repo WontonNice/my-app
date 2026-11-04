@@ -1,0 +1,6 @@
+.venv/
+browsers/
+__pycache__/
+.env
+tmp/
+*.log

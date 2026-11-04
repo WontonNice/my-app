@@ -1,3 +1,6 @@
+import { usePracticeCatalog } from "../features/math-command/usePracticeCatalog";
+import { Check, ArrowRight } from "lucide-react";
+import "../styles/studentCorrections.css";
 import { useEffect, useState } from "react";
 import { CorrectionExamPlayer } from "../components/CorrectionExamPlayer";
 import { CorrectionCanvas } from "../components/CorrectionCanvas";
@@ -12,10 +15,12 @@ import { validateCorrections, type CorrectionResponse, type ExamCorrectionView }
 
 export function ExamCorrectionsPage() {
   const { accessToken, studentName, previewContext } = useStudentPortalAccess();
+  const { taxonomy, error: taxonomyError, reload: reloadTaxonomy } = usePracticeCatalog();
   const assessmentId = examCorrectionId(window.location.pathname);
   const [view, setView] = useState<ExamCorrectionView | null>(null);
   const [draft, setDraft] = useState<Record<string, CorrectionResponse>>({});
   const [active, setActive] = useState(0);
+  const [onlyUnfinished, setOnlyUnfinished] = useState(false);
   const [isQuestionMenuOpen, setIsQuestionMenuOpen] = useState(true);
   const [revealedQuestionIds, setRevealedQuestionIds] = useState<Set<string>>(() => new Set());
   const [error, setError] = useState("");
@@ -74,7 +79,16 @@ export function ExamCorrectionsPage() {
   const response = question ? draft[question.question.id] : undefined;
   const incorrect = view?.questions.filter(item => !item.isCorrect) ?? [];
   const submittedQuestionIds = new Set(view?.submission?.responses.map(item => item.questionId) ?? []);
-  const submittedCount = submittedQuestionIds.size;
+  const submittedCount = incorrect.filter(item => submittedQuestionIds.has(item.question.id)).length;
+  const pending = incorrect.length - submittedCount;
+  const questionTypes = question ? correctionQuestionTypes([question.question], question.section, question.passageSection ?? (question.passage ? "reading" : "revising_editing_a"), taxonomy ?? []) : [];
+  const sectionLabel = question?.section === "math" ? "Mathematics" : question?.passageSection === "revising_editing_a" || !question?.passage ? "Revising & editing" : "Reading comprehension";
+  function nextPending() {
+    if (!view) return;
+    const index = view.questions.findIndex((item, index) => index > active && !item.isCorrect && !submittedQuestionIds.has(item.question.id));
+    const fallback = view.questions.findIndex(item => !item.isCorrect && !submittedQuestionIds.has(item.question.id));
+    if (index >= 0 || fallback >= 0) goToQuestion(index >= 0 ? index : fallback);
+  }
 
   function goToQuestion(index: number) {
     setActive(index);
@@ -104,8 +118,8 @@ export function ExamCorrectionsPage() {
 
     <div className="exam-corrections-content">
       <header className="exam-corrections-intro">
-        <div><p>Learn from your answers</p><h1>{view?.result.title ?? "Exam corrections"}</h1></div>
-        <span>{submittedCount} of {incorrect.length} corrections submitted</span>
+        <div><h1>Make your next answer stronger.</h1><p>{view?.result.title ?? "Exam corrections"} · Revisit the question, then explain what changed.</p></div>
+        {view && <div className="correction-progress"><span><strong>{submittedCount} of {incorrect.length}</strong> corrections submitted</span><progress value={submittedCount} max={incorrect.length || 1} aria-label="Corrections submitted" /><span>{pending ? pending + " left to work through" : "All corrections complete"}</span></div>}
       </header>
       {readOnly && <p className="exam-review-success">Student preview · read only. The student can complete and submit corrections from their own account.</p>}
       {noPreviewStudent && <p role="alert">Select a student to preview their corrections.</p>}
@@ -115,9 +129,9 @@ export function ExamCorrectionsPage() {
       {!view && !error && !noPreviewStudent && assessmentId && <p className="exam-corrections-loading">Loading corrections…</p>}
       {view && <div className="exam-corrections-layout">
         {isQuestionMenuOpen && <nav className="exam-corrections-question-map" aria-label="Question navigation">
-          <div className="exam-corrections-question-map-heading"><h2>Questions</h2><p><span className="is-incorrect" /> Incorrect <span className="is-correct" /> Correct <strong>✓</strong> Submitted</p></div>
-          <div className="exam-corrections-question-sections">{(["english", "math"] as const).map(section => {
-            const sectionQuestions = view.questions.map((item, index) => ({ item, index })).filter(entry => entry.item.section === section);
+          <div className="exam-corrections-question-map-heading"><h2>Your questions</h2><p><span className="is-incorrect" /> Incorrect <span className="is-correct" /> Correct <strong>✓</strong> Submitted</p></div>
+          <button type="button" className="correction-resume" disabled={!pending} onClick={nextPending}>Next unfinished <ArrowRight size={16} /></button><div className="correction-nav-filter" role="group" aria-label="Filter questions"><button type="button" aria-pressed={!onlyUnfinished} onClick={() => setOnlyUnfinished(false)}>All questions</button><button type="button" aria-pressed={onlyUnfinished} onClick={() => setOnlyUnfinished(true)}>Unfinished ({pending})</button></div><div className="exam-corrections-question-sections">{(["english", "math"] as const).map(section => {
+            const sectionQuestions = view.questions.map((item, index) => ({ item, index })).filter(entry => entry.item.section === section && (!onlyUnfinished || (!entry.item.isCorrect && !submittedQuestionIds.has(entry.item.question.id))));
             if (!sectionQuestions.length) return null;
             return <section key={section}><h3>{section === "english" ? "English" : "Math"}</h3><div className="exam-correction-nav">{sectionQuestions.map(({ item, index }) => <button key={item.question.id} type="button" className={`${item.isCorrect ? "is-correct" : "is-incorrect"}${index === active ? " is-active" : ""}`} aria-current={index === active ? "step" : undefined} aria-label={`${section} question ${item.number}, ${item.isCorrect ? "correct" : "incorrect"}`} onClick={() => goToQuestion(index)}>{item.number}{submittedQuestionIds.has(item.question.id) ? " ✓" : ""}</button>)}</div></section>;
           })}</div>
@@ -128,23 +142,23 @@ export function ExamCorrectionsPage() {
           {!incorrect.length && <p className="exam-review-success">All answers were correct. No corrections are required.</p>}
           {question && <div key={question.question.id}>
             <article className="exam-correction-viewer">
-              <div className="exam-correction-question-heading"><strong>{question.section === "english" ? "English" : "Math"} · Question {question.number}</strong><div className="exam-correction-question-actions"><span className={question.isCorrect ? "is-correct" : "is-incorrect"}>{question.isCorrect ? "Correct answer" : "Incorrect answer"}</span><button type="button" aria-pressed={revealedQuestionIds.has(question.question.id)} onClick={() => setRevealedQuestionIds(current => { const next = new Set(current); if (next.has(question.question.id)) next.delete(question.question.id); else next.add(question.question.id); return next; })}>{revealedQuestionIds.has(question.question.id) ? "Hide answer" : "Show answer"}</button></div></div>
+              <div className="exam-correction-question-heading"><div><strong>{sectionLabel} · Question {question.number}</strong>{question.passage && <p className="correction-passage-label">{question.passage.title}</p>}</div><div className="exam-correction-question-actions"><span className={question.isCorrect ? "is-correct" : "is-incorrect"}>{question.isCorrect ? "Correct answer" : "Incorrect answer"}</span><button type="button" aria-pressed={revealedQuestionIds.has(question.question.id)} onClick={() => setRevealedQuestionIds(current => { const next = new Set(current); if (next.has(question.question.id)) next.delete(question.question.id); else next.add(question.question.id); return next; })}>{revealedQuestionIds.has(question.question.id) ? "Hide answer" : "Show answer"}</button></div></div>
               <CorrectionExamPlayer key={`${view.resultVersion}:${question.question.id}`} item={question} title={view.result.title} studentName={studentName} showAnswers={revealedQuestionIds.has(question.question.id)} readOnly={readOnly} canPrevious={active > 0} canNext={active < view.questions.length - 1} onPrevious={() => goToQuestion(active - 1)} onNext={() => goToQuestion(active + 1)} />
             </article>
 
             {!question.isCorrect ? <section className="exam-correction-response-panel" aria-labelledby={`correction-response-${question.question.id}`}>
-              <header><div><p>Correction response</p><h2 id={`correction-response-${question.question.id}`}>Explain your thinking</h2></div><span>{submittedQuestionIds.has(question.question.id) ? "Submitted" : "Required"}</span></header>
-              <fieldset disabled={saving || readOnly}>
-                <label>Question type <small>Select the skill or topic this question tests.</small><select required aria-label="Question type" value={response?.questionType || ""} onChange={event => update(question.question.id, { questionType: event.target.value })}><option value="">Choose a question type</option>{correctionQuestionTypes(view.questions.filter(item => item.section === question.section).map(item => item.question), question.section).map(type => <option key={type} value={type}>{type}</option>)}</select></label>
+              <header><div><h2 id={`correction-response-${question.question.id}`}>Explain your thinking</h2><p>Identify the skill, work through the answer, and reflect.</p></div><span>{submittedQuestionIds.has(question.question.id) ? "Submitted" : "Required"}</span></header>
+              {question.section === "math" && taxonomyError && <p role="alert">Current math categories could not load. <button type="button" onClick={() => void reloadTaxonomy()}>Retry categories</button></p>}<fieldset disabled={saving || readOnly}>
+                <label>Question type <small>Select the skill or topic this question tests.</small><select required aria-label="Question type" value={response?.questionType || ""} onChange={event => update(question.question.id, { questionType: event.target.value })}><option value="">Choose a question type</option>{response?.questionType && !questionTypes.includes(response.questionType) && <option value={response.questionType}>{response.questionType} (previously saved)</option>}{questionTypes.map(type => <option key={type} value={type}>{type}</option>)}</select></label>
                 {question.section === "english" && <label>Why is the answer you chose wrong? <small>Required; if blank, explain why you did not answer.</small><textarea required maxLength={10000} rows={4} value={response?.whyChosenIncorrect ?? ""} onChange={event => update(question.question.id, { whyChosenIncorrect: event.target.value })} /></label>}
                 <label>Why is the correct answer correct? <small>{question.section === "math" ? "Write your reasoning or draw your steps below." : "Required. Use evidence from the text."}</small><textarea required={question.section === "english" || !response?.drawing?.length} maxLength={10000} rows={4} value={response?.whyCorrectAnswerCorrect ?? ""} onChange={event => update(question.question.id, { whyCorrectAnswerCorrect: event.target.value })} /></label>
                 {question.section === "math" && <CorrectionCanvas value={response?.drawing} readOnly={readOnly || saving} onChange={drawing => update(question.question.id, { drawing })} />}
-                <label className="exam-correction-understanding">How much do you understand the question now?<strong>{response?.understanding ? `${response.understanding} / 5` : "Choose a rating from 1–5"}</strong><input aria-label="Understanding from 1 to 5" type="range" min={1} max={5} step={1} value={response?.understanding || 1} onChange={event => update(question.question.id, { understanding: Number(event.target.value) })} onPointerUp={event => update(question.question.id, { understanding: Number(event.currentTarget.value) })} onKeyUp={event => { if (["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(event.key)) update(question.question.id, { understanding: Number(event.currentTarget.value) }); }} /><span className="exam-slider-labels"><span>1 · Still unsure</span><span>5 · I can explain it</span></span></label>
+                <div className="exam-correction-understanding"><strong id="correction-confidence">How confident do you feel now?</strong><div className="correction-confidence" role="group" aria-labelledby="correction-confidence">{[1,2,3,4,5].map(value => <button key={value} type="button" aria-pressed={response?.understanding === value} onClick={() => update(question.question.id, { understanding: value })}>{response?.understanding === value && <Check size={16} />}{value}</button>)}</div><span className="exam-slider-labels"><span>1 · Still unsure</span><span>5 · I can explain it</span></span></div>
               </fieldset>
             </section> : <p className="exam-correction-not-required">This answer was correct, so no written correction is required.</p>}
           </div>}
 
-          <footer><div className="exam-correction-pagination"><button type="button" disabled={active === 0} onClick={() => goToQuestion(active - 1)}>← Previous</button><button type="button" disabled={active >= view.questions.length - 1} onClick={() => goToQuestion(active + 1)}>Next →</button></div><span>{readOnly ? "Read-only student preview" : question && submittedQuestionIds.has(question.question.id) ? "This correction is saved. You may update and submit it again." : draftNotice || "Complete and submit each incorrect question when it is ready."}</span>{question && !question.isCorrect && !readOnly && <button className="exam-review-primary" type="button" disabled={saving} onClick={submit}>{saving ? "Saving…" : submittedQuestionIds.has(question.question.id) ? "Update this correction" : "Submit this correction"}</button>}</footer>
+          <footer><div className="exam-correction-pagination"><button type="button" disabled={active === 0} onClick={() => goToQuestion(active - 1)}>← Previous</button><button type="button" disabled={active >= view.questions.length - 1} onClick={() => goToQuestion(active + 1)}>Next →</button></div><span role="status" aria-live="polite">{readOnly ? "Read-only student preview" : question && submittedQuestionIds.has(question.question.id) ? "This correction is saved. You may update and submit it again." : draftNotice || "Complete and submit each incorrect question when it is ready."}</span>{question && !question.isCorrect && !readOnly && <button className="exam-review-primary" type="button" disabled={saving} onClick={submit}>{saving ? "Saving…" : submittedQuestionIds.has(question.question.id) ? "Update this correction" : "Submit this correction"}</button>}</footer>
         </section>
       </div>}
     </div>

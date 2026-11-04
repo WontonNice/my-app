@@ -14746,6 +14746,11 @@ button {
 .exam-session-shell[data-player-profile="testnav"] .exam-category-sort.is-single-category .exam-category-target { box-sizing: content-box; width: 65%; min-height: 80px; padding: 12px 4px; border: 1px solid #ccc; border-radius: 5px; background: #f3f3f3; }
 .exam-math-panel .exam-choice-list.is-two-column { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .exam-math-drag-response.is-outlined .exam-rich-response-template p { line-height: 28px; }
+.exam-session-shell[data-player-profile="testnav"] .exam-standalone-panel.is-drag-drop h1,
+.exam-session-shell[data-player-profile="testnav"] .exam-standalone-panel.is-drag-drop .exam-math-drag-response {
+  width: 750px;
+  max-width: 100%;
+}
 .exam-session-shell[data-player-profile="testnav"] .exam-category-card {
   min-height: 0; padding: 12px 4px;
   border: 1px solid #2871bd; border-radius: 5px; color: #2871bd; background: #f3f3f3;
@@ -14885,3 +14890,13 @@ button {
   width: min(498px, 100%);
   min-height: 106px;
 }
+/* A focused, keyboard-accessible reference sheet inside the existing exam player. */
+dialog.exam-exhibits-dialog { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); margin: 0; padding: 0; max-height: min(80vh, 780px); width: min(760px, calc(100% - 32px)); overflow-y: auto; }
+dialog.exam-exhibits-dialog::backdrop { background: rgb(20 35 28 / 45%); }
+dialog.exam-exhibits-dialog header { position: sticky; top: 0; z-index: 1; background: #fff; min-height: 56px; height: auto; padding: 14px 20px; gap: 16px; }
+dialog.exam-exhibits-dialog header button { min-width: 40px; min-height: 40px; }
+dialog.exam-exhibits-dialog .exam-exhibits-content { min-height: 120px; padding: 24px; overflow-wrap: anywhere; line-height: 1.8; }
+dialog.exam-exhibits-dialog .exam-review-text p { margin: 0 0 16px; }
+dialog.exam-exhibits-dialog img { max-width: 100%; height: auto; }
+dialog.exam-exhibits-dialog .katex-display { overflow-x: auto; overflow-y: hidden; }
+.correction-explanation-source { color: #536158; font-size: 13px; margin-bottom: 20px !important; }

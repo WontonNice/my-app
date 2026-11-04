@@ -55,9 +55,9 @@ export function stageTemplate(catalog: PracticeCatalog, generator: PracticeGener
   if(catalog.generators.some(item=>item.id===generator.id))throw new Error('This generator already exists. Edit it in the generator library.');
   const existing=catalog.modules.find(item=>item.id===destination.id);
   if(existing&&(existing.category!==generator.category||existing.topic!==generator.topic))throw new Error('Choose a module in the source question’s category and subcategory.');
-  const parent=catalog.modules.find(item=>item.id===destination.parentId&&practiceModuleKind(item)&&item.category===generator.category&&item.topic===generator.topic);
+  const parent=catalog.modules.find(item=>practiceModuleKind(item)==='foundation'&&item.category===generator.category&&item.topic===generator.topic);
   if(!existing&&!parent)throw new Error('Choose an existing practice group in this topic.');
-  const module=existing??{...destination,titleMode:'custom' as const,description:'',published:false,includeAll:false,generatorIds:[],skilled:generator.skilled??'TBD'};
+  const module=existing??{...destination,parentId:parent!.id,titleMode:'custom' as const,description:'',published:false,includeAll:false,generatorIds:[],skilled:generator.skilled??'TBD'};
   const next={...catalog,generators:[...catalog.generators,generator],modules:existing?catalog.modules.map(item=>item.id===module.id?{...item,generatorIds:[...item.generatorIds,generator.id]}:item):[...catalog.modules,{...module,generatorIds:[generator.id]}]};
   return !existing&&practiceModuleKind(parent!)==='foundation'?movePracticeModule(next,module.id,parent!.id):next;
 }

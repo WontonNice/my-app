@@ -333,7 +333,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a scale drawing of a triangular park, the sides measure 5 inches, 7 inches, and 8 inches. The perimeter of the actual park is 25 miles. What is the actual length of the shortest side of the park?",
     "topic": "Geometry",
-    "subtopic": "Similarity & Scale Drawings",
+    "subtopic": "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -391,7 +391,7 @@ export const content20222023FormBMathSection: ExamMathSection = {
     "prompt": "In the right triangle shown above, what is the measure of the smallest angle?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-b-2022-2023-form-b-q73-add7619381a50931.png\" alt=\"Math diagram\" width=\"250\">In the right triangle shown above, what is the measure of the smallest angle?",
     "topic": "Geometry",
-    "subtopic": "Triangles & Polygons",
+    "subtopic": "Triangles",
     "choices": [
       {
         "id": "A",

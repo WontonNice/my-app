@@ -14,7 +14,7 @@ function record(value: unknown): Record<string, unknown> {
 function destination(value: unknown): PlannerDestination {
   const row = record(value);
   if (row.group !== 'general' && row.group !== 'foundation') throw fail('Choose a practice group.');
-  return { category: text(row.category, 120), topic: text(row.topic, 120), moduleId: text(row.moduleId, 500), moduleTitle: text(row.moduleTitle, 120), group: row.group };
+  return { category: text(row.category, 120), topic: text(row.topic, 120), moduleId: text(row.moduleId, 500), moduleTitle: text(row.moduleTitle, 120), group: row.moduleId ? row.group : 'foundation', ...(row.skilled===undefined?{}:{skilled:text(row.skilled,500,true)}) };
 }
 function context(value: unknown): PlannerContext | undefined {
   if (value === undefined || value === null) return undefined;
@@ -25,7 +25,9 @@ function context(value: unknown): PlannerContext | undefined {
 }
 export function readGeneratorPlanner(root: string, actor: string): GeneratorPlannerState {
   if (!actor || ['__proto__', 'constructor', 'prototype'].includes(actor)) throw fail('Teacher identity is required.', 403);
-  return structuredClone(readMathCommandState(root).generatorPlanners?.[actor] ?? emptyGeneratorPlanner());
+  const planner=structuredClone(readMathCommandState(root).generatorPlanners?.[actor] ?? emptyGeneratorPlanner());
+  for(const batch of planner.batches)for(const entry of batch.entries)if(!entry.destination.moduleId)entry.destination.group='foundation';
+  return planner;
 }
 export function saveGeneratorPlanner(root: string, actor: string, value: unknown) {
   const input = record(value), state = readMathCommandState(root), own = readGeneratorPlanner(root, actor);
@@ -52,7 +54,7 @@ export function saveGeneratorPlanner(root: string, actor: string, value: unknown
         if (existing) { if (!existing.context && contexts[source.id]) existing.context = context(contexts[source.id]); continue; }
         const category = source.question.topic ?? '', topic = source.question.subtopic ?? '';
         batch.entries.push({ id: randomUUID(), source: { id: source.id, question: structuredClone(source.question), sources: source.sources, category, subcategory: topic, skilled: source.question.skilled ?? 'TBD' },
-          destination: { category, topic, moduleId: '', moduleTitle: '', group: 'general' }, context: context(contexts[source.id]), notes: '', status: 'available', addedAt: now });
+          destination: { category, topic, moduleId: '', moduleTitle: '', group: 'foundation' }, context: context(contexts[source.id]), notes: '', status: 'available', addedAt: now });
       }
       if (batch.entries.length > 100) throw fail('Keep at most 100 questions in one batch. Create another batch for the rest.');
     } else if (input.action === 'update') {

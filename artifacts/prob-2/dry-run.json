@@ -1,0 +1,317 @@
+{
+  "mode": "read-only-preview",
+  "changed": true,
+  "saved": false,
+  "revision": 41,
+  "resources": [
+    {
+      "requestId": "74f48973-c295-4f83-b22d-054d37c52015",
+      "generator": "probability-missing-color-count-v1",
+      "module": "6416a55e-4152-4dec-833a-a405288cf40a",
+      "category": "Statistics and Probability",
+      "topic": "Probability",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "6416a55e-4152-4dec-833a-a405288cf40a",
+        "title": "Simple Probability",
+        "description": "Simple Probability",
+        "category": "Statistics and Probability",
+        "topic": "Probability",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "probability-ratio-removal-v1",
+          "probability-decimal-set-threshold-v1",
+          "probability-missing-color-count-v1",
+          "probability-combined-jars-v1"
+        ],
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "titleMode": "custom",
+        "skillId": "probability-after-removal",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Probability with an Unknown Color Count"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q74"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "foundation",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "probability-missing-color-count-v1",
+        "title": "Probability with an Unknown Color Count",
+        "description": "Use a probability ratio to recover a missing count before finding the total.",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "topic": "Probability",
+        "kind": "builtin",
+        "builtinId": "probability-missing-color-count-v1"
+      }
+    },
+    {
+      "requestId": "17ad6f7d-c938-44e7-aa33-3a6f92cf1df8",
+      "generator": "probability-combined-jars-v1",
+      "module": "6416a55e-4152-4dec-833a-a405288cf40a",
+      "category": "Statistics and Probability",
+      "topic": "Probability",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "6416a55e-4152-4dec-833a-a405288cf40a",
+        "title": "Simple Probability",
+        "description": "Simple Probability",
+        "category": "Statistics and Probability",
+        "topic": "Probability",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "probability-ratio-removal-v1",
+          "probability-decimal-set-threshold-v1",
+          "probability-missing-color-count-v1",
+          "probability-combined-jars-v1"
+        ],
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "titleMode": "custom",
+        "skillId": "probability-after-removal",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Combining Jars"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q86"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "foundation",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "probability-combined-jars-v1",
+        "title": "Combining Jars",
+        "description": "Recover favorable counts from each jar, then combine counts rather than averaging probabilities.",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "topic": "Probability",
+        "kind": "builtin",
+        "builtinId": "probability-combined-jars-v1"
+      }
+    },
+    {
+      "requestId": "66b8fa00-511a-4014-bc78-74d31eb0f8e2",
+      "generator": "algebra-distribute-negative-v1",
+      "module": "general-algebra-algebraic-expressions-rj42ee",
+      "category": "Algebra",
+      "topic": "Algebraic Expressions",
+      "enabled": true,
+      "published": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "general-algebra-algebraic-expressions-rj42ee",
+        "title": "General Practice",
+        "description": "Practice every available question type in this topic.",
+        "category": "Algebra",
+        "topic": "Algebraic Expressions",
+        "published": true,
+        "includeAll": true,
+        "generatorIds": [
+          "algebra-distribute-negative-v1"
+        ],
+        "parentId": null,
+        "defaultType": "general",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Distributing a Negative Sign"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q84"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "algebra-distribute-negative-v1",
+        "title": "Distributing a Negative Sign",
+        "description": "Subtract a parenthesized expression, changing every sign inside, then combine like terms.",
+        "enabled": true,
+        "category": "Algebra",
+        "topic": "Algebraic Expressions",
+        "kind": "builtin",
+        "builtinId": "algebra-distribute-negative-v1"
+      }
+    },
+    {
+      "requestId": "491a6fe8-089b-4cb2-9a92-c089caf7453e",
+      "generator": "rates-hourly-pay-before-tax-v1",
+      "module": "rates-f764fde9",
+      "category": "Arithmetic & Number Sense",
+      "topic": "Number Types & Properties",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "rates-f764fde9",
+        "title": "Rates",
+        "description": "Rates",
+        "category": "Arithmetic & Number Sense",
+        "topic": "Number Types & Properties",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "rates-hourly-pay-before-tax-v1"
+        ],
+        "parentId": "general-arithmetic-number-sense-number-properties-1j4ekza",
+        "titleMode": "custom",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Hourly Pay Before Taxes"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q95"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "rates-hourly-pay-before-tax-v1",
+        "title": "Hourly Pay Before Taxes",
+        "description": "Add deducted taxes back to take-home pay, then divide gross pay by hours.",
+        "enabled": true,
+        "category": "Arithmetic & Number Sense",
+        "topic": "Number Types & Properties",
+        "kind": "builtin",
+        "builtinId": "rates-hourly-pay-before-tax-v1"
+      }
+    },
+    {
+      "requestId": "c8cf1faa-ea9a-45bd-85e6-39e9c19659bf",
+      "generator": "factors-consecutive-integers-v1",
+      "module": "factors-multiples-f764fde9",
+      "category": "Arithmetic & Number Sense",
+      "topic": "Number Types & Properties",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "factors-multiples-f764fde9",
+        "title": "Factors & Multiples",
+        "description": "Factors & Multiples",
+        "category": "Arithmetic & Number Sense",
+        "topic": "Number Types & Properties",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "factors-consecutive-integers-v1",
+          "factors-smallest-factor-multiple-v1"
+        ],
+        "parentId": "general-arithmetic-number-sense-number-properties-1j4ekza",
+        "titleMode": "custom",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Greatest Middle of Consecutive Factors"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q93"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "factors-consecutive-integers-v1",
+        "title": "Greatest Middle of Consecutive Factors",
+        "description": "Find three consecutive integers that each divide the given number, and choose the greatest possible middle.",
+        "enabled": true,
+        "category": "Arithmetic & Number Sense",
+        "topic": "Number Types & Properties",
+        "kind": "builtin",
+        "builtinId": "factors-consecutive-integers-v1"
+      }
+    },
+    {
+      "requestId": "974457c3-c1b7-467f-9bc7-3883c86f35d5",
+      "generator": "factors-smallest-factor-multiple-v1",
+      "module": "factors-multiples-f764fde9",
+      "category": "Arithmetic & Number Sense",
+      "topic": "Number Types & Properties",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "factors-multiples-f764fde9",
+        "title": "Factors & Multiples",
+        "description": "Factors & Multiples",
+        "category": "Arithmetic & Number Sense",
+        "topic": "Number Types & Properties",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "factors-consecutive-integers-v1",
+          "factors-smallest-factor-multiple-v1"
+        ],
+        "parentId": "general-arithmetic-number-sense-number-properties-1j4ekza",
+        "titleMode": "custom",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Multiples of the Smallest Factor"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2021-2022-form-a-q82"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "factors-smallest-factor-multiple-v1",
+        "title": "Multiples of the Smallest Factor",
+        "description": "Find the smallest factor greater than 1, then identify a number divisible by it.",
+        "enabled": true,
+        "category": "Arithmetic & Number Sense",
+        "topic": "Number Types & Properties",
+        "kind": "builtin",
+        "builtinId": "factors-smallest-factor-multiple-v1"
+      }
+    }
+  ]
+}

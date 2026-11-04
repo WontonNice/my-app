@@ -1,0 +1,196 @@
+✔ personal batches retain source snapshots, deduplicate additions and protect ownership/revisions (59.5405ms)
+✔ saved new modules can be reused by later questions and export to the same destination (33.0692ms)
+✔ batch export carries all sources, exact module IDs, instructions and refuses stale destinations (3.9567ms)
+✖ renaming remains independent of skill assignment, reconciliation and validation (6.8694ms)
+✔ authenticated endpoints reject students and save teacher changes durably without assignments (76.5236ms)
+✔ remote persistence rejects failed writes and simultaneous stale saves (7.504ms)
+✔ studio handoff opens the account planner and carries only the source selection (8.544ms)
+✔ planner notifications refresh visible tabs without sharing data and clean up subscriptions (4.4815ms)
+✔ both modes share the full topic library regardless of legacy placement; only Foundation customizes modules (1.8532ms)
+✔ hidden/disabled content stays hidden after student filtering; enabling or publishing updates both modes (0.3927ms)
+✔ preferences persist per student and topic, exclude chosen modules, and include future modules by default (0.8404ms)
+✔ new custom sessions honor selections; resuming preserves questions and restarting preserves personal best (2.3965ms)
+✔ module streaks earn five separate milestones, survive mistakes and reloads, and remain account-scoped (3.477ms)
+✔ shared generator answers count only toward selected modules; hiding no longer requires ten correct (0.4681ms)
+✖ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (5.5028ms)
+✔ customized broad modules, hidden state, disabled generators, and reviewed metadata survive migration (2.3637ms)
+✖ registration restores a generator to its skill even when migration reused legacy module IDs (11.5476ms)
+✖ metadata is validated and survives saves and session snapshots without changing the generated questions (0.8397ms)
+✔ search, facets, focused usage, and bulk changes work across a 1000-generator library (8.9008ms)
+✖ bulk disabling the last generators hides empty focused modules and remains saveable (3.2825ms)
+✔ generation set filters combine inclusion, category, subcategory, and search without changing selections (1.7876ms)
+✔ included-only respects automatic groups, inherited selections, hidden children, and disabled generators (1.2594ms)
+✔ module preview snapshots the complete effective draft mix and allows unpublished modules without publishing edits (2.2735ms)
+✖ Skill is the module name; legacy classifications never replace it on reads or saves (1.264ms)
+✔ library Skill filtering uses module membership, including hidden modules and disabled generators (1.1196ms)
+✖ choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions (1.1801ms)
+✔ every topic receives exactly one Foundation Building and General Practice, including empty topics (8.1711ms)
+✔ migration retains legacy IDs, nested modules, curated selections, hidden state and resources (1.8428ms)
+✔ General Practice automatically follows enabled generators only in its own topic (1.7741ms)
+✔ each foundation accepts only its own topic modules and empty defaults remain available (2.3152ms)
+✔ studio grouping and filters remain usable with hundreds of resources (3.821ms)
+✖ individual modules default to their own General Practice and keep explicit Foundation placement (3.3508ms)
+✔ General Practice always includes the full library; Foundation settings honor selected modules in either placement (0.9762ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 25
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1380.7121
+
+✖ failing tests:
+
+test at server\tests\generator-planner.test.cjs:120:1
+✖ renaming remains independent of skill assignment, reconciliation and validation (6.8694ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Different skill title'
+  - 'My custom practice name'
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-planner.test.cjs:128:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Different skill title',
+    expected: 'My custom practice name',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\practice-organization.test.cjs:23:1
+✖ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (5.5028ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:177:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:243:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:28:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:61:1
+✖ registration restores a generator to its skill even when migration reused legacy module IDs (11.5476ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:177:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:243:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:66:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:72:1
+✖ metadata is validated and survives saves and session snapshots without changing the generated questions (0.8397ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:177:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:243:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:75:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:95:1
+✖ bulk disabling the last generators hides empty focused modules and remains saveable (3.2825ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Choose an existing math category and topic."
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Choose an existing math category and topic.
+        at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:177:57)
+        at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:243:225)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:164
+        at Array.map (<anonymous>)
+        at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:43)
+        at C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:27
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:10)
+        at Test.runInAsyncScope (node:async_hooks:227:14),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tools\practice-organization.test.cjs:142:1
+✖ Skill is the module name; legacy classifications never replace it on reads or saves (1.264ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:177:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:243:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:149:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:172:1
+✖ choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions (1.1801ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:177:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:243:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:182:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\topic-practice-defaults.test.cjs:75:1
+✖ individual modules default to their own General Practice and keep explicit Foundation placement (3.3508ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'foundation'
+  - 'general'
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\topic-practice-defaults.test.cjs:79:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'foundation',
+    expected: 'general',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

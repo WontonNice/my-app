@@ -6,7 +6,7 @@ import { generationSetEntries, type GenerationSetFilters } from './generationSet
 type Props={module:ManagedPracticeModule;catalog:PracticeCatalog;taxonomy:{label:string;topics:string[]}[];onChange:(patch:Partial<ManagedPracticeModule>)=>void;onPreview:(generator:PracticeGeneratorDefinition,trigger:HTMLButtonElement)=>void;onPreviewModule:(trigger:HTMLButtonElement)=>void;onEdit?:(generator:PracticeGeneratorDefinition)=>void};
 const emptyFilters:GenerationSetFilters={included:'all',category:'',topic:'',search:''};
 export function GenerationSetEditor({module,catalog,taxonomy,onChange,onPreview,onPreviewModule,onEdit}:Props) {
-  const [filters,setFilters]=useState<GenerationSetFilters>(emptyFilters);
+  const [filters,setFilters]=useState<GenerationSetFilters>(()=>({...emptyFilters,category:module.category,topic:module.topic}));
   const kind=practiceModuleKind(module),count=managedGeneratorIds(module,catalog).length;
   const entries=generationSetEntries(module,catalog,filters);
   const categories=taxonomy.filter(category=>!kind||category.label===module.category);
@@ -14,8 +14,8 @@ export function GenerationSetEditor({module,catalog,taxonomy,onChange,onPreview,
   return <section className="ps-generator-picker" aria-label="Generation set">
     <div className="ps-generation-heading"><h3>Generation set</h3><button className="ps-preview-button" disabled={!count} onClick={event=>onPreviewModule(event.currentTarget)}><Eye size={15}/>Preview module question</button></div>
     <p>Choose the generators for this skill. Questions alternate between the selected generators. For a focused skill module, leave automatic inclusion off.</p>
-    <label className="ps-check"><input type="checkbox" disabled={kind==='general'||kind==='foundation'&&catalog.modules.some(child=>child.parentId===module.id)} checked={kind==='general'||module.includeAll} onChange={event=>onChange({includeAll:event.target.checked})}/>Automatically include enabled generators, including future additions</label>
-    {kind&&<p className="ps-note">This group uses generators in {module.category} / {module.topic}.{kind==='general'?' General Practice includes every enabled generator in this subcategory.':''}</p>}
+    <label className="ps-check"><input type="checkbox" disabled={Boolean(kind)} checked={Boolean(kind)||module.includeAll} onChange={event=>onChange({includeAll:event.target.checked})}/>Automatically include enabled generators, including future additions</label>
+    {kind&&<p className="ps-note">Both practice modes use the same available content in {module.category} / {module.topic}. Students can customize their module choices in Foundation Building settings.</p>}
     <div className="ps-generation-filters">
       <label>Show generators<select value={filters.included} onChange={event=>setFilters({...filters,included:event.target.value as GenerationSetFilters['included']})}><option value="all">All generators</option><option value="included">Included only</option></select></label>
       <label>Generator category filter<select value={filters.category} onChange={event=>setFilters({...filters,category:event.target.value,topic:''})}><option value="">All categories</option>{categories.map(category=><option key={category.label}>{category.label}</option>)}</select></label>

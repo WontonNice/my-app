@@ -3,6 +3,24 @@ const MathCommandStudio = {
   mountInspector(root) {
     const question=app.mathDraft?.questions[app.selectedMathQuestionIndex];
     const stack=root.querySelector('.math-editor-stack');if(!question||!stack)return;
+    const classification=question.commandMetadata?.classification;
+    const current=classification?.category===question.topic&&classification?.subcategory===question.subtopic?classification:null;
+    const label=current?.status==='approved'?(current.source==='teacher'?'Teacher categorized':current.source==='ai'?'Teacher approved · AI':'Teacher approved'):current?.source==='ai'?'AI · needs approval':'Unverified';
+    const review=document.createElement('div');review.className='studio-classification-review';review.dataset.category=question.topic;review.dataset.topic=question.subtopic||'';
+    const badge=document.createElement('strong');badge.textContent=label;review.append(badge);review.dataset.label=label;
+    const approve=document.createElement('button');approve.type='button';approve.className='secondary';approve.textContent='Approve category & topic';approve.disabled=current?.status==='approved';review.append(approve);
+    const feedback=document.createElement('span');feedback.setAttribute('role','status');review.append(feedback);
+    stack.querySelector('#studio-math-classification-state')?.after(review);
+    approve.onclick=async()=>{approve.disabled=true;try{
+      const [detail,overview]=await Promise.all([api('/api/math-command/catalog/'+encodeURIComponent(question.id)),api('/api/math-command/overview')]);
+      if(app.mathDraft.managementRevision!==overview.classificationRevision)throw new Error('Classifications changed. Reload the saved section before approving.');
+      if(detail.row.category!==question.topic||detail.row.subcategory!==question.subtopic)throw new Error('Save your category and topic changes first.');
+      const preview=await api('/api/math-command/bulk-preview',{method:'POST',body:JSON.stringify({questionIds:[question.id],revision:overview.revision,patch:{approveClassification:true}})});
+      await api('/api/math-command/bulk-apply',{method:'POST',body:JSON.stringify({token:preview.token})});
+      question.commandMetadata=(await api('/api/math-command/catalog/'+encodeURIComponent(question.id))).record.metadata;
+      app.mathDraft.managementRevision=(await api('/api/math-command/overview')).classificationRevision;
+      badge.textContent=current?.source==='ai'?'Teacher approved · AI':current?.source==='teacher'?'Teacher categorized':'Teacher approved';review.dataset.label=badge.textContent;feedback.textContent='Approval saved.';
+    }catch(error){feedback.textContent=error.message;approve.disabled=false;}};
     const panel=document.createElement('details');panel.className='studio-disclosure studio-math-inspector';
     panel.innerHTML='<summary>Math inspector <span>Skills, difficulty, source & review</span></summary><div class="studio-inspector-body"></div>';
     stack.querySelector('#studio-math-classification-state')?.after(panel);
@@ -11,7 +29,7 @@ const MathCommandStudio = {
       const body=panel.querySelector('.studio-inspector-body');body.textContent='Loading question metadata…';
       try{
         const [detail,overview]=await Promise.all([api('/api/math-command/catalog/'+encodeURIComponent(question.id)),api('/api/math-command/overview')]);
-        if(app.mathDraft.managementRevision&&app.mathDraft.managementRevision!==overview.revision)throw new Error('Classification changed in another view. Reload the saved math section before editing metadata.');
+        if(app.mathDraft.managementRevision&&app.mathDraft.managementRevision!==overview.classificationRevision)throw new Error('Classification changed in another view. Reload the saved math section before editing metadata.');
         const metadata=detail.record.metadata||{};let revision=overview.revision,token='';
         const skills=overview.skills.filter(skill=>skill.category===question.topic&&skill.subcategory===question.subtopic);
         const options=(values,selected)=>'<option value="">Not classified</option>'+values.map(([id,label])=>`<option value="${escapeHtml(id)}" ${selected===id?'selected':''}>${escapeHtml(label)}</option>`).join('');
@@ -43,7 +61,7 @@ const MathCommandStudio = {
             save.textContent='Apply to this question';
           }else{
             const result=await api('/api/math-command/bulk-apply',{method:'POST',body:JSON.stringify({token})});revision=result.revision;token='';
-            if(app.mathDraft)app.mathDraft.managementRevision=revision;
+            if(app.mathDraft)app.mathDraft.managementRevision=(await api('/api/math-command/overview')).classificationRevision;
             const updated=await api('/api/math-command/catalog/'+encodeURIComponent(question.id));question.commandMetadata=updated.record.metadata||{};
             savedForm=readForm();
             save.textContent='Preview metadata changes';status.textContent='Metadata saved. Question wording and answer key were preserved.';

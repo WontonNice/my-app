@@ -1,5 +1,5 @@
 import { createAuthHeaders, requestApi } from "../../lib/api";
-import type { MathCatalogFilters, MathCatalogRow, MathCatalogSummary, MathDiagnosticSkill, MathInventoryTargets, MathQuestionMetadata, MathQuestionRecord, MathTaxonomy } from "../../../../server/src/shared/mathCommandTypes";
+import type { MathCatalogFilters, MathCatalogRow, MathCatalogSummary, MathDiagnosticSkill, MathInventoryTargets, MathQuestionRecord, MathTaxonomy } from "../../../../server/src/shared/mathCommandTypes";
 
 export type MathCommandRequest = <T>(path: string, options?: RequestInit) => Promise<T>;
 export type SavedMathView = { id: string; name: string; filters: MathCatalogFilters };
@@ -17,7 +17,7 @@ export type MathCommandOverview = {
   pacePerWeek?: number;
 };
 export type MathQuestionDetail = { record: MathQuestionRecord; row: MathCatalogRow };
-export type MathMetadataPatch = MathQuestionMetadata & { category?: string; subcategory?: string };
+export type { MathMetadataPatch } from "../../../../server/src/shared/mathCommandTypes";
 export type MathBulkPreview = { token: string; count: number; revision: string; changes: { id: string; fields: { field: string; before: unknown; after: unknown }[] }[] };
 export function mathCommandRequest(accessToken: string): MathCommandRequest {
   return <T>(path: string, options: RequestInit = {}) => requestApi<T>(`/api/math-command${path}`, { ...options, headers: { ...createAuthHeaders(accessToken), ...options.headers } });

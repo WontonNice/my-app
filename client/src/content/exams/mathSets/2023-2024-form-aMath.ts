@@ -36,7 +36,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Ms. Li opened a retirement account with a deposit of $2,500. This account earns 4% simple interest annually. How many years will it take her to earn $500 on her $2,500 deposit?",
     "promptHtml": "<p>Ms. Li opened a retirement account with a deposit of \\(\\$2{,}500\\). This account earns \\(4\\%\\) simple interest annually. How many years will it take her to earn \\(\\$500\\) on her \\(\\$2{,}500\\) deposit?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "correctTextAnswers": [
       "5"
     ],
@@ -63,7 +63,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(6 - 9 \\div |-3| + (-2)^3 \\times 1\\frac{1}{2}\\)\n\nWhat is the value of the expression shown above?",
     "promptHtml": "<p>\\(6 - 9 \\div |-3| + (-2)^3 \\times 1\\frac{1}{2}\\)</p><p>What is the value of the expression shown above?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Order of Operations",
     "correctTextAnswers": [
       "-9"
     ],
@@ -90,7 +90,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Solve for x:\n\n7x + 3 − 2(2x + 1) = 13",
     "promptHtml": "<p>Solve for \\(x\\):</p><p>\\(7x + 3 - 2(2x + 1) = 13\\)</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "correctTextAnswers": [
       "4"
     ],
@@ -117,7 +117,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In the figure above, line l is perpendicular to line n. What is the value of x?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q061-figure-1.png\" alt=\"Original source figure for Form A, question 61\" width=\"259\"></p><p>In the figure above, line \\(l\\) is perpendicular to line \\(n\\). What is the value of \\(x\\)?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Lines & Angles",
     "correctTextAnswers": [
       "55"
     ],
@@ -144,7 +144,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The mean value of 8 numbers is 17. Three of these numbers (9, 11, and 20) are discarded. What is the mean of the 5 remaining numbers?",
     "promptHtml": "<p>The mean value of \\(8\\) numbers is \\(17\\). Three of these numbers (\\(9\\), \\(11\\), and \\(20\\)) are discarded. What is the mean of the \\(5\\) remaining numbers?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Averages & Spread",
     "correctTextAnswers": [
       "19.2"
     ],
@@ -171,7 +171,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(3^4 + 7^4 =\\)",
     "promptHtml": "<p>\\(3^4 + 7^4 =\\)</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Exponents, Roots & Scientific Notation",
     "choices": [
       {
         "id": "A",
@@ -218,7 +218,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In one week, 1 \\(\\frac{3}{4}\\) inches of rain fell on Monday, 2 \\(\\frac{2}{3}\\) inches fell on Tuesday, and \\(\\frac{7}{8}\\) inch fell on Wednesday. How many inches of rain fell during those three days?",
     "promptHtml": "<p>In one week, \\(1\\frac{3}{4}\\) inches of rain fell on Monday, \\(2\\frac{2}{3}\\) inches fell on Tuesday, and \\(\\frac{7}{8}\\) inch fell on Wednesday. How many inches of rain fell during those three days?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Jamel works at a computer store. He is paid an hourly rate plus a 15% commission on all computer products he sells. Last week, Jamel was paid $802.50 for working 30 hours and selling $1,250.00 worth of computer products. What is Jamel’s hourly rate?",
     "promptHtml": "<p>Jamel works at a computer store. He is paid an hourly rate plus a \\(15\\%\\) commission on all computer products he sells. Last week, Jamel was paid \\(\\$802.50\\) for working \\(30\\) hours and selling \\(\\$1{,}250.00\\) worth of computer products. What is Jamel’s hourly rate?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -312,7 +312,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A revolving sign makes 1 complete revolution every 90 minutes. If the sign starts moving at 2:30 p.m., at what time will the sign complete 8 revolutions?",
     "promptHtml": "<p>A revolving sign makes \\(1\\) complete revolution every \\(90\\) minutes. If the sign starts moving at \\(2:30\\) p.m., at what time will the sign complete \\(8\\) revolutions?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -359,7 +359,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Points Y and Z are not shown on the number line above. If X is the midpoint of \\(\\overline{WY}\\), and Y is the midpoint of \\(\\overline{WZ}\\), where on the number line would point Z be located?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q067-figure-1.png\" alt=\"Original source figure for Form A, question 67\" width=\"276\"></p><p>Points \\(Y\\) and \\(Z\\) are not shown on the number line above. If \\(X\\) is the midpoint of \\(\\overline{WY}\\), and \\(Y\\) is the midpoint of \\(\\overline{WZ}\\), where on the number line would point \\(Z\\) be located?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -406,7 +406,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(\\frac{81}{10}\\) = \\(\\frac{9}{n}\\)\n\nWhat value of n makes the equation above true?",
     "promptHtml": "<p>\\(\\frac{81}{10} = \\frac{9}{n}\\)</p><p>What value of \\(n\\) makes the equation above true?</p>",
-    "topic": "Algebra",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -453,7 +453,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If n is an integer and 3n + 3 is an even number, which expression must also represent an even number?",
     "promptHtml": "<p>If \\(n\\) is an integer and \\(3n + 3\\) is an even number, which expression must also represent an even number?</p>",
-    "topic": "Algebra",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -500,7 +500,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The product of two positive integers is 65. Which number could be the sum of the two integers?",
     "promptHtml": "<p>The product of two positive integers is \\(65\\). Which number could be the sum of the two integers?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -547,7 +547,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If n is an odd integer that is less than −3.25, what is the greatest possible value of n?",
     "promptHtml": "<p>If \\(n\\) is an odd integer that is less than \\(-3.25\\), what is the <strong>greatest </strong>possible value of \\(n\\)?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -594,7 +594,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A swim instructor used the box plot below to display the distribution of the ages of students who signed up for swim lessons.\n\nWhich statement about the distribution of ages is true?",
     "promptHtml": "<p>A swim instructor used the box plot below to display the distribution of the ages of students who signed up for swim lessons.</p><p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q072-figure-1.png\" alt=\"Original source figure for Form A, question 72\" width=\"298\"></p><p>Which statement about the distribution of ages is true?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -641,7 +641,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Between which two consecutive integers is the fraction \\(\\frac{29}{7}\\)?",
     "promptHtml": "<p>Between which two consecutive integers is the fraction \\(\\frac{29}{7}\\)?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -688,7 +688,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A customer wants to buy a pair of hiking boots.\n\n• The original price of the boots is $85.75.\n\n• The store is offering a 15% discount on all boot purchases.\n\n• The customer has a coupon for an additional 25% off the sale price.\n\n• The tax rate is 8.5%.\n\nWhat is the final cost of the boots, including the tax, to the nearest cent?",
     "promptHtml": "<p>A customer wants to buy a pair of hiking boots.</p><p>• The original price of the boots is \\(\\$85.75\\).</p><p>• The store is offering a \\(15\\%\\) discount on all boot purchases.</p><p>• The customer has a coupon for an additional \\(25\\%\\) off the sale price.</p><p>• The tax rate is \\(8.5\\%\\).</p><p>What is the final cost of the boots, including the tax, to the nearest cent?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -735,7 +735,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Sheila is saving money for her summer vacation. She starts the summer with a balance of $90.00 and plans to save 15% of her earnings each week. She earns the same amount each week. After 12 weeks, Sheila has saved a total of $472.59. How much money does Sheila earn each week?",
     "promptHtml": "<p>Sheila is saving money for her summer vacation. She starts the summer with a balance of \\(\\$90.00\\) and plans to save \\(15\\%\\) of her earnings each week. She earns the same amount each week. After \\(12\\) weeks, Sheila has saved a total of \\(\\$472.59\\). How much money does Sheila earn each week?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -782,7 +782,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "x:35 = 20:28\n\nFor what value of x is the proportion shown above true?",
     "promptHtml": "<p>\\(x:35 = 20:28\\)</p><p>For what value of \\(x\\) is the proportion shown above true?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -829,7 +829,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(\\frac{3^2+(-8)^2+2^2}{(3-8+2)^2}=\\)",
     "promptHtml": "<p>\\(\\frac{3^2+(-8)^2+2^2}{(3-8+2)^2}=\\)</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Order of Operations",
     "choices": [
       {
         "id": "A",
@@ -876,7 +876,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A soccer coach purchased 15 pairs of cleats for team members and spent a total of $805.95, including tax. If the tax rate is 8%, what is the the price of each pair of cleats before tax?",
     "promptHtml": "<p>A soccer coach purchased \\(15\\) pairs of cleats for team members and spent a total of \\(\\$805.95\\), including tax. If the tax rate is \\(8\\%\\), what is the the price of each pair of cleats before tax?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -923,7 +923,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The numbers m, n, p, and q are different, and each is equal to one of the numbers 1, 2, 3, 6, or 12. If 2m = 6q = \\(\\frac{1}{2}\\) n = p, what is the value of p?",
     "promptHtml": "<p>The numbers \\(m\\), \\(n\\), \\(p\\), and \\(q\\) are different, and each is equal to one of the numbers \\(1\\), \\(2\\), \\(3\\), \\(6\\), or \\(12\\). If \\(2m = 6q = \\frac{1}{2}n = p\\), what is the value of \\(p\\)?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -970,7 +970,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "{0.1, 0.01, 0.001, 0.0001, 0.00001}\n\nIf a person chooses a number at random from the set above, what is the probability that the number is less than 0.005?",
     "promptHtml": "<p>\\(\\{0.1, 0.01, 0.001, 0.0001, 0.00001\\}\\)</p><p>If a person chooses a number at random from the set above, what is the probability that the number is less than \\(0.005\\)?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -1017,7 +1017,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A student uses Spinner R and Spinner T to generate a list of two-digit numbers.\n\nSpinner R determines the digit in the tens place, and Spinner T determines the digit in the ones place. What is the probability that the two-digit number determined by spinning each spinner one time is a prime number?",
     "promptHtml": "<p>A student uses Spinner \\(R\\) and Spinner \\(T\\) to generate a list of two-digit numbers.</p><p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q081-figure-1.png\" alt=\"Original source figure for Form A, question 81\" width=\"281\"></p><p>Spinner \\(R\\) determines the digit in the tens place, and Spinner \\(T\\) determines the digit in the ones place. What is the probability that the two-digit number determined by spinning each spinner one time is a prime number?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -1064,7 +1064,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Lines j and k intersect at point Q, and h is a straight line. What is the value of x?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q082-figure-1.png\" alt=\"Original source figure for Form A, question 82\" width=\"250\"></p><p>Lines \\(j\\) and \\(k\\) intersect at point \\(Q\\), and \\(h\\) is a straight line. What is the value of \\(x\\)?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Lines & Angles",
     "choices": [
       {
         "id": "A",
@@ -1111,7 +1111,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which statement must be true if x is a whole number greater than or equal to 1?",
     "promptHtml": "<p>Which statement <strong>must </strong>be true if \\(x\\) is a whole number greater than or equal to \\(1\\)?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1158,7 +1158,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A basket contains red balls, green balls, and white balls. There are 12 red balls in the basket. The probability of randomly choosing a red ball is 1 in 3. If the probability of randomly choosing a green ball is 1 in 4, how many green balls are in the basket?",
     "promptHtml": "<p>A basket contains red balls, green balls, and white balls. There are \\(12\\) red balls in the basket. The probability of randomly choosing a red ball is \\(1\\) in \\(3\\). If the probability of randomly choosing a green ball is \\(1\\) in \\(4\\), how many green balls are in the basket?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -1205,7 +1205,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "It took Lars 2 hours to ride his bicycle 48 kilometers. What was his average speed in miles per hour? (Use the approximation 1 mile = 1.6 kilometers.)",
     "promptHtml": "<p>It took Lars \\(2\\) hours to ride his bicycle \\(48\\) kilometers. What was his average speed in <strong>miles per hour</strong>? (Use the approximation \\(1\\) mile = \\(1.6\\) kilometers.)</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -1252,7 +1252,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Integer x is evenly divisible by 3. Which expression below is also evenly divisible by 3?",
     "promptHtml": "<p>Integer \\(x\\) is evenly divisible by \\(3\\). Which expression below is also evenly divisible by \\(3\\)?</p>",
-    "topic": "Algebra",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1299,7 +1299,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Lamel has a jar containing 6 red chips, 10 blue chips, and 4 yellow chips. If he removes one chip at random, what is the probability that it will not be red?",
     "promptHtml": "<p>Lamel has a jar containing \\(6\\) red chips, \\(10\\) blue chips, and \\(4\\) yellow chips. If he removes one chip at random, what is the probability that it will <strong>not </strong>be red?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -1346,7 +1346,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The arrow starts on Space P and moves clockwise around the circle. It moves through one space each minute. What space will the arrow point to in 100 minutes?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q088-figure-1.png\" alt=\"Original source figure for Form A, question 88\" width=\"113\"></p><p>The arrow starts on Space \\(P\\) and moves clockwise around the circle. It moves through one space each minute. What space will the arrow point to in \\(100\\) minutes?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Algebra", subtopic: "Patterns & Sequences",
     "choices": [
       {
         "id": "A",
@@ -1393,7 +1393,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Mei-Ling is one of 6 members of a committee. If 2 members of that committee are selected to go to a conference, how many of the possible pairs of members would include Mei-Ling?",
     "promptHtml": "<p>Mei-Ling is one of \\(6\\) members of a committee. If \\(2\\) members of that committee are selected to go to a conference, how many of the possible pairs of members would include Mei-Ling?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1440,7 +1440,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(m=5\\) and \\(t=-1\\), what is the value of \\(\\frac{6-8(2-t)}{2m+4(3-m)}\\)?",
     "promptHtml": "<p>If \\(m=5\\) and \\(t=-1\\), what is the value of \\(\\frac{6-8(2-t)}{2m+4(3-m)}\\)?</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -1487,7 +1487,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In the parallelogram above, what is the value of x + y?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q091-figure-1.png\" alt=\"Original source figure for Form A, question 91\" width=\"241\"></p><p>In the parallelogram above, what is the value of \\(x+y\\)?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Quadrilaterals & Polygons",
     "choices": [
       {
         "id": "A",
@@ -1534,7 +1534,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On the number line above, point L (not shown) is located on line segment JK so that JL = \\(\\frac{2}{3}\\) LK. What is the position of point L?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q092-figure-1.png\" alt=\"Original source figure for Form A, question 92\" width=\"271\"></p><p>On the number line above, point \\(L\\) (not shown) is located on line segment \\(JK\\) so that \\(JL = \\frac{2}{3}LK\\). What is the position of point \\(L\\)?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1581,7 +1581,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Josef and Mai divided some stamps between themselves. Josef got 60% of the stamps. If Josef received 500 more stamps than Mai, how many stamps did Josef receive?",
     "promptHtml": "<p>Josef and Mai divided some stamps between themselves. Josef got \\(60\\%\\) of the stamps. If Josef received \\(500\\) more stamps than Mai, how many stamps did Josef receive?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1628,7 +1628,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The shaded sector of the circle shown above has an area of 18π square feet. What is the circumference of the circle?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q094-figure-1.png\" alt=\"Original source figure for Form A, question 94\" width=\"152\"></p><p>The shaded sector of the circle shown above has an area of \\(18\\pi\\) square feet. What is the <strong>circumference </strong>of the circle?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Circles",
     "choices": [
       {
         "id": "A",
@@ -1675,7 +1675,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which graph represents the solution to −3x − 7 > −4?",
     "promptHtml": "<p>Which graph represents the solution to \\(-3x - 7 > -4\\)?</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -1734,7 +1734,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A scientist mixed three chemicals, R, S, and T, in a glass container. The amount of R is 3 times the amount of S, and the amount of T is \\(\\frac{1}{6}\\) the amount of S. What is the ratio of the amount of R to the amount of T?",
     "promptHtml": "<p>A scientist mixed three chemicals, \\(R\\), \\(S\\), and \\(T\\), in a glass container. The amount of \\(R\\) is \\(3\\) times the amount of \\(S\\), and the amount of \\(T\\) is \\(\\frac{1}{6}\\) the amount of \\(S\\). What is the ratio of the amount of \\(R\\) to the amount of \\(T\\)?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1781,7 +1781,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Ken has k video games, and Jeff has j video games. If Ken gives 6 video games to Jeff, Ken will have twice as many video games as Jeff. Which equation shows the relationship between k and j?",
     "promptHtml": "<p>Ken has \\(k\\) video games, and Jeff has \\(j\\) video games. If Ken gives \\(6\\) video games to Jeff, Ken will have twice as many video games as Jeff. Which equation shows the relationship between \\(k\\) and \\(j\\)?</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -1828,7 +1828,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Yesterday Sarah read 15% of her entire book. Today she read another 17% of the entire book. In lowest terms, what fraction of the book is left for her to read?",
     "promptHtml": "<p>Yesterday Sarah read \\(15\\%\\) of her entire book. Today she read another \\(17\\%\\) of the entire book. In lowest terms, what fraction of the book is left for her to read?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1875,7 +1875,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "{1,2,3,4,5,...,198,199,200}\n\nHow many members of the set shown above are multiples of 6 but not multiples of 9?",
     "promptHtml": "<p>\\(\\{1,2,3,4,5,\\ldots,198,199,200\\}\\)</p><p>How many members of the set shown above are multiples of \\(6\\) but <strong>not </strong>multiples of \\(9\\)?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1922,7 +1922,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Kim jogs 8 kilometers in 1 hour 40 minutes. At that rate, how many meters does she jog per minute?",
     "promptHtml": "<p>Kim jogs \\(8\\) kilometers in \\(1\\) hour \\(40\\) minutes. At that rate, how many <strong>meters </strong>does she jog per minute?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -1969,7 +1969,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "For what value of x is the equation \\(\\frac{x}{5}\\) − 4 = 3(4 − 2x) − 1 true?",
     "promptHtml": "<p>For what value of \\(x\\) is the equation \\(\\frac{x}{5} - 4 = 3(4 - 2x) - 1\\) true?</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -2016,7 +2016,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The diagram above shows line segment RS intersecting a rectangle. What is the measure of angle y?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q102-figure-1.png\" alt=\"Original source figure for Form A, question 102\" width=\"244\"></p><p>The diagram above shows line segment \\(RS\\) intersecting a rectangle. What is the measure of angle \\(y\\)?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Lines & Angles",
     "choices": [
       {
         "id": "A",
@@ -2063,7 +2063,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "ESSAY LENGTH\nNumber of Words | Number of Essays\n<100 | 6\n100–250 | 4\n251–500 | 11\n>500 | 9\n\nAll 150 students in Grade 8 at a school are assigned to write an essay on the same topic. A teacher records the number of words in a random sample of the essays, as shown in the table above. Based on this sample, how many students in the entire grade would be expected to write essays with at least 100 words?",
     "promptHtml": "<table><caption>ESSAY LENGTH</caption><thead><tr><th scope=\"col\">Number of Words</th><th scope=\"col\">Number of Essays</th></tr></thead><tbody><tr><td>&lt;\\(100\\)</td><td>\\(6\\)</td></tr><tr><td>\\(100\\)–\\(250\\)</td><td>\\(4\\)</td></tr><tr><td>\\(251\\)–\\(500\\)</td><td>\\(11\\)</td></tr><tr><td>&gt;\\(500\\)</td><td>\\(9\\)</td></tr></tbody></table><p>All \\(150\\) students in Grade \\(8\\) at a school are assigned to write an essay on the same topic. A teacher records the number of words in a random sample of the essays, as shown in the table above. Based on this sample, how many students in the entire grade would be expected to write essays with at least \\(100\\) words?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -2110,7 +2110,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which percentage is closest in value to 0.0099?",
     "promptHtml": "<p>Which percentage is closest in value to \\(0.0099\\)?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -2157,7 +2157,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The manager of a shipping company recorded the weights, in pounds, of the last 9 packages the company shipped. The manager displayed the distribution of the weights in a box plot with the five-number summary shown below:\n\n• minimum: 29\n\n• first quartile: 31\n\n• median: 42\n\n• third quartile: 73\n\n• maximum: 98\n\nWhich statement about the distribution of weights is supported by the box plot the manager created?",
     "promptHtml": "<p>The manager of a shipping company recorded the weights, in pounds, of the last \\(9\\) packages the company shipped. The manager displayed the distribution of the weights in a box plot with the five-number summary shown below:</p><p>• minimum: \\(29\\)</p><p>• first quartile: \\(31\\)</p><p>• median: \\(42\\)</p><p>• third quartile: \\(73\\)</p><p>• maximum: \\(98\\)</p><p>Which statement about the distribution of weights is supported by the box plot the manager created?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -2204,7 +2204,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In the figure above, the shaded rectangle is similar to the outer rectangle. The length of the outer rectangle is 4 feet, and the perimeter of the outer rectangle is 14 feet. If the width of the shaded rectangle is 2 feet, what is the area of the shaded rectangle?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q106-figure-1.png\" alt=\"Original source figure for Form A, question 106\" width=\"267\"></p><p>In the figure above, the shaded rectangle is similar to the outer rectangle. The length of the outer rectangle is \\(4\\) feet, and the perimeter of the outer rectangle is \\(14\\) feet. If the width of the shaded rectangle is \\(2\\) feet, what is the area of the shaded rectangle?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -2251,7 +2251,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A rectangular concrete driveway is 30 feet long, 8 feet wide, and 6 inches thick. What is the volume of the concrete?",
     "promptHtml": "<p>A rectangular concrete driveway is \\(30\\) feet long, \\(8\\) feet wide, and \\(6\\) inches thick. What is the volume of the concrete?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -2298,7 +2298,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At a carnival, visitors can win a prize if an employee cannot correctly guess their age. The employee records the first 15 ages that he guesses one Saturday. The box plot shown below displays data about the ages he recorded.\n\nWhat is the interquartile range of the box plot?",
     "promptHtml": "<p>At a carnival, visitors can win a prize if an employee cannot correctly guess their age. The employee records the first \\(15\\) ages that he guesses one Saturday. The box plot shown below displays data about the ages he recorded.</p><p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q108-figure-1.png\" alt=\"Original source figure for Form A, question 108\" width=\"242\"></p><p>What is the interquartile range of the box plot?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Averages & Spread",
     "choices": [
       {
         "id": "A",
@@ -2345,7 +2345,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Vicente and Carla each ran 8 laps around a track. They started at the same time and place. If Vicente ran 1.5 times as fast as Carla, how many laps did Carla have left to finish when Vicente finished his 8th lap?",
     "promptHtml": "<p>Vicente and Carla each ran \\(8\\) laps around a track. They started at the same time and place. If Vicente ran \\(1.5\\) times as fast as Carla, how many laps did Carla have left to finish when Vicente finished his 8th lap?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -2392,7 +2392,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At West College, students are randomly assigned to one of 20 dormitories and one of 6 dining rooms. Kharleen likes 6 of the dormitories and 2 of the dining rooms. What is the probability that she is assigned to both a dormitory and a dining room that she likes?",
     "promptHtml": "<p>At West College, students are randomly assigned to one of \\(20\\) dormitories and one of \\(6\\) dining rooms. Kharleen likes \\(6\\) of the dormitories and \\(2\\) of the dining rooms. What is the probability that she is assigned to both a dormitory and a dining room that she likes?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -2439,7 +2439,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A train travels 2,200 miles from Phoenix to New York City. The train covers the first 240 miles in 5 hours. If the train continues to travel at this rate, how many more hours will it take to reach New York City? Round your answer to the nearest whole hour.",
     "promptHtml": "<p>A train travels \\(2{,}200\\) miles from Phoenix to New York City. The train covers the first \\(240\\) miles in \\(5\\) hours. If the train continues to travel at this rate, how many <strong>more</strong> hours will it take to reach New York City? Round your answer to the nearest whole hour.</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -2486,7 +2486,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the least of four consecutive integers whose sum is 58?",
     "promptHtml": "<p>What is the <strong>least </strong>of four consecutive integers whose sum is \\(58\\)?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -2533,7 +2533,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If all possible values of x are indicated by the shaded part of the number line above, which number line best shows all possible values of \\(\\frac{1}{x}\\)?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-a-q113-figure-1.png\" alt=\"Original source figure for Form A, question 113\" width=\"251\"></p><p>If all possible values of \\(x\\) are indicated by the shaded part of the number line above, which number line best shows all possible values of \\(\\frac{1}{x}\\)?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -2592,7 +2592,7 @@ export const content20232024FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Chanelle selects a marble from a container and then returns it to the container. When she does this 3 times, the probability of choosing a red marble all 3 times is \\(\\frac{1}{216}\\). Based on this information, what is the probability of Chanelle choosing a red marble the first time she selects a marble?",
     "promptHtml": "<p>Chanelle selects a marble from a container and then returns it to the container. When she does this \\(3\\) times, the probability of choosing a red marble all \\(3\\) times is \\(\\frac{1}{216}\\). Based on this information, what is the probability of Chanelle choosing a red marble the <strong>first </strong>time she selects a marble?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",

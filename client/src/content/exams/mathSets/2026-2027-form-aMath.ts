@@ -275,7 +275,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, PQRS is a parallelogram. What is the value of \\(x\\)?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-a-2026-2027-form-a-math-item-9-01bd04354d77d92e.png\" alt=\"Math diagram\" width=\"250\">In the figure above, PQRS is a parallelogram. What is the value of \\(x\\)?",
     "topic": "Geometry",
-    "subtopic": "Triangles & Polygons",
+    "subtopic": "Quadrilaterals & Polygons",
     "correctTextAnswers": [
       "162"
     ],
@@ -367,7 +367,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The perimeter of a rectangle is 510 centimeters. The ratio of the length to the width is 3:2. What are the dimensions of this rectangle?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -487,7 +487,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "What is the area of the shaded region in the graph above?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-a-2026-2027-form-a-math-item-16-752ddb19fd4f3552.png\" alt=\"Math diagram\" width=\"200\">What is the area of the shaded region in the graph above?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -717,7 +717,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a scale drawing of a triangular banner, one side measures 16 centimeters and the other two sides each measure 12 centimeters. On the actual banner, these two sides each measure 36 feet. What is the length of the remaining side of the actual banner?",
     "topic": "Geometry",
-    "subtopic": "Similarity & Scale Drawings",
+    "subtopic": "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -1541,7 +1541,7 @@ export const content20262027FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, \\(\\text{JK}=3\\frac{1}{2}\\text{,}\\) \\(\\text{JM}=9\\frac{3}{4}\\text{,}\\) and \\(\\text{LM}=1\\frac{1}{8}\\text{.}\\) What is the position of point \\(\\text{L?}\\)",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-a-33daa22a6e5eded801a9.svg\" alt=\"A number line with points J, K, L, and M; Point K is 3 eighths.\" width=\"264\"></p><p><span>On the <span>number line</span> above, </span><span>\\(\\text{JK}=3\\frac{1}{2}\\text{,}\\)</span> <span>\\(\\text{JM}=9\\frac{3}{4}\\text{,}\\)</span><span> and </span><span>\\(\\text{LM}=1\\frac{1}{8}\\text{.}\\)</span><span> What is the position of </span><span><span><span>point</span> </span><span>\\(\\text{L?}\\)</span></span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",

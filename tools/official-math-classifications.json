@@ -1,0 +1,4688 @@
+[
+  {
+    "id": "2025-2026-form-a-official-shsat-2025-a-84",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "9507e0e2711140da055b8781cfb4610218b173c4b84b4d64f74da3c7be86a24a"
+  },
+  {
+    "id": "2025-2026-form-a-official-shsat-2025-a-107",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Order of Operations",
+    "reason": "AI review of question content: Order of Operations.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1a4ee22169a167b01661329633b2a1d19d6209a6dbb53004e2312d32e2f80e2f"
+  },
+  {
+    "id": "2025-2026-form-b-math-1",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Algebra",
+      "topic": "Unclassified"
+    },
+    "contentHash": "83adf418ef5332c35344fead85444744647301732b064452fb805570d95467f0"
+  },
+  {
+    "id": "2025-2026-form-b-math-3",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Algebra",
+      "topic": "Unclassified"
+    },
+    "contentHash": "59fefb62fae0e328632f83ca246b42b1397144522dfe9c60c714484246b661b9"
+  },
+  {
+    "id": "2025-2026-form-b-math-2",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "AI review of question content: Ratios & Proportions.",
+    "previous": {
+      "category": "Algebra",
+      "topic": "Unclassified"
+    },
+    "contentHash": "f77c2bf08c241b4d9a89c8709efb3a334b018da6e7fe766b42fc159f377e2221"
+  },
+  {
+    "id": "2025-2026-form-b-math-4",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Algebra",
+      "topic": "Unclassified"
+    },
+    "contentHash": "b9f8ba364ec002024f60419f46bbd6ff9118c12351d28eb45a47ee127e8fb79d"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-65",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-57.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "db1007061e1601b5589ead7f44935b5bad4944453591670105c8fdaa7b3a413d"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-66",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-58.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "681612b4d594fa520ed62ad46c218f284044d380f79d74f8575c7747959107fa"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q070",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-58.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "ff40978531e4734b950c383d62244838d6db14c91ddaaf04a44d4b374d231f15"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q066",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-58.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "63f39c5bac94fbf838e245787df9aaa9cb8e39d8c53331577d4ccdfc2d7f398e"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q066",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-58.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "5bd3e49876fc48d4a1e35966ce6b123c00193ea35c8362f4b7a3e565e7aa5e8c"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-67",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-59.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "8a2adf80cb1e91b2d9a54ca01e0601047bd00254793a5b9a926ba151f6eba174"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q067",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-59.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "2f8865f28f309a830c8b943db5ea44a5ee10e743b1f801d292ee3f9f23d1da42"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q067",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-59.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "c546192d5370d88f2fb1bee90e30a67087438df5723646a21c0c5b24c8798370"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q067",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-59.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "fee0ca8babc56aa58bf04971396fdb3f93d4f20f9af561250b30a673792bca58"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-68",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-60.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "9fbb89282f99ac0f7eb7a898e458dd65d3e3700d7ce3c101b91e25d385e72bfe"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q068",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-60.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "babd72af129d8f44f3ce58fa9fcf4d1956d2f41d99a14d7c060ac02ba4785ca4"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q068",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-60.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "becf01132583382d530c207441fc4dc71ee61b28668bdb9f3c95260f99327e77"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q068",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-60.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "fbcce96f09451c36565db353cf94526540e0ef68003a926cc7ba9d5a420ca076"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-69",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-61.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "a51f24d87a2ea86554d0d91335f693c118a1c78711468dfce73f19418872c518"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q069",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-61.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "82d2e6a89ff8d9951059d320fba62657e679ffee41490e6909be40803f65425d"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q069",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-61.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "df65cd76bf6afba2a686f62b899b6776c5702a9327a376a77f52fc129f7b00b2"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q069",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-61.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "6ab998c40f3d37e198318e4c9e1fc199d3c650fc9b7ba92a3656cf0f72ac278b"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-71",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "198ca626866eb5d9c92846fcbe1c59bc799b3d6052e5da778b1f47055b180110"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q071",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "e08015f8939713172bb59b77f7ae920873af34ebd2b8763af4ccbe19fb6073b3"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q071",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "29e680d9c28f490c33a8afb8888de9f5e80bd8c3bf39361baa2f37e4971e33f4"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q071",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "4c226623f7330b5ae6c14b986869a3c647e27bfd796b29ad2fa1d66c03dffb0c"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-73",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-64.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "2637f9117a210549cdbb2681aa895527e7fd07cb52a1c02d77c751e141ab9e5c"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q073",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-64.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "efc61435e16123ecf61846b8e009411e47e867de6e995951e5f1018883f5f86b"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q073",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-64.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a022d4a9c894dc228f909e7daaff0f0a5be02a5dbc5d6c9b69122969973f1dbc"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-74",
+    "category": "Geometry",
+    "topic": "Circles",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-65.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "97edfabf4af5d2fd0871f5310e537e5ac108a89680f6d2672d83be54d5de390b"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q074",
+    "category": "Geometry",
+    "topic": "Circles",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-65.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "deca70d4af986b4202cfe70a78b57ced1afaecd2beb34d84dd7126b2346d2490"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q074",
+    "category": "Geometry",
+    "topic": "Circles",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-65.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "69fe448d385870aea218b8fdee3798bcba9ff5f497cb91357c6f5ab04689d4f4"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q074",
+    "category": "Geometry",
+    "topic": "Circles",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-65.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "5003d37d537043b290fc1621d1f742e3ef0eb99c6e2144f2a4e4b2a8cd797e41"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-77",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-68.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "c3a1fd3da12eab1cab1c288d70900f22e7ba6ee77aad5634cf967bc94901f7ac"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q077",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-68.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "8c97b4fdad503f8f4e7a4d3fb5b69d0ba43953799b06dc6ae3d328d028e0ea07"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q077",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-68.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "07bfd3c68879adea4054bed7505562963669b8929b8b9a390a42474e9c9bfe8e"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q077",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-68.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "b0c3b1473bca8e3405f183dde27e505f2825f2000f9e197dbb2654d1e52ff630"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q078",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-78.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "d273c82d6f2f248f6c8a4d91fd22b9b63667b0a3b7c1c066286933d07351f0ce"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q078",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-78.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "eff9c8733a54d4a56469c9102ed90dfe44fc373e893f0b3dca38fbcd8579040d"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q078",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-78.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "d3588dcf93c616263be28e74aa40008545d1d668208a66789ffae98106ee40ad"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q079",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-79.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a44acc53ae4e7fcd53265076c03c0f3d280991223c6649ecab3d4c8236e18ff8"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q079",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-79.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "f9879804dc81273c2464280d62b9a9da04cd44969d2faeb4b3410f8db665d8a9"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q079",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-79.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "680b2d6ef57dc104e99318f545e7a1d623eeaf402d42c5ee278bc5a941066eca"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q080",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-80.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "575bf75e8b4d0f8944b917474763c31de8b907bc6ccdd718d2773531ae8b417b"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q080",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-80.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1985e7e93d5707585cb8a806ed20b2f2f0c2736082b568e3e7cfea0f34102750"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q080",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-80.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "77ed7818425418c9b3b06efad1d71eb7b6f732c257bad2b5e6040244092d251d"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-81",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-72.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "a96b9d67dd5f93cad65caa42406330295a3f32351989edbc4a7b8d00914974d7"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q081",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-72.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "06aa8884abe8a039e346299e841d59def4d1da3c275053c579b00d27dc605d6f"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q081",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-72.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1919586f59570639f21a3469a08d89a8c619a66cba87dc38ea4144386a1c6b48"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q081",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-72.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "0b3c9ad335bcee7806daea9126bcbc126d7beb4700f296cf30bf6c8e2305f239"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-82",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "e35b6873ec08e7830603b058a6b152efd0540bf2c3b0c38611b4af656c930851"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q082",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "6ace32af334f0c2603cf4dc0ea61ce98f1141385ab29897c7bd4a91a8256306a"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q082",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "3be908cf9ff2d248ffc9ae239c8a9ecfd3c43b214cebe1db616ec7d00fb2f25b"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-83",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "a37ac4b0ccfc6f7360e9cf51c75628ca4b6e5559e12f84096a54ce1d7ba3b942"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q083",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "5fb22d2e1e29adec49d1bf3d67ae2f9c5d4707ce742847f4c4acc8e9bf866f78"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q083",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "9c1d0aa21a04f785f377b664c0f7cc5f35e7f756224ccf240f8de29de9bc7723"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q083",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "36946335d7b94a47502cab3b20f714cfb0f37930e99ed98bdcd084ca530f792f"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-86",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-75.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "103e872b6676cab1dc264970b30213d93cb7c72b56f078ff49bbeed61e0322f1"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q086",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-75.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "0c64b966b0ebf0ea1122378f1550049d02d6ea81492dabfe86a5aa1f9a802344"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q086",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-75.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "4948c6ba9182cf10ff945b303c8f3ab843bb2eb51a444f2a705301cc39b90c9a"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q086",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-75.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "936f392eb5dd80398a74d074a18a6b9644be8d8b4f40c0c90cfcea7eb2e50688"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-87",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "18cbbafcfb6ea6068b9aec9af2e9348af8c9439dc336c5f0ef7a78f2f41e8243"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q087",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "06a6f4331b5637d24a35e3dd11384efc6b1a3e225a36aeb4913d0a5452b244c3"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q087",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "31ee5e892a894537d7b13a3499352d0039fd33571943ae9b313bd7b420e47d0e"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q087",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "e90563f3af277501013f569df238e35a41f290d44251a17b65349a0d4d2de5e7"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q091",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-91.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "c2c3c2821cf60197e5a71da2c68b417016cf6c322f531b6acbd58d404c450032"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q091",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-91.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "b7f880f94a454cd73d208dd8e34f47737fff74b6ac988693857243a35ec73fda"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q091",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-91.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "ee3c33dbd8be27b59b4cb21bfe7121308dd985885578693c0156bdc11b104c25"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q092",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-92.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "0b8ccce21806e3f6b69afbd71d73bd3cb72199f9a98e3703108a9a9635ba16b8"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q092",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-92.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "f13f2c8019ef23be5aaed151d2809144e097f6c7b95e8c7fa919c320406bc9bc"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q092",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-92.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "8f06b9bd0095f24a407dc3481d0e8fad367322f84da90afe2daad8f81fabb18e"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-93",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-80.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "97ac151797d6dccea8f5d7d8fc6c65bfbd231f0a90168d671ec2c668dcf7f631"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q093",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-80.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "07717309342669be10b6b95957d0e19ce113c659765a7720f73000314ed1248e"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q093",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-80.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "7cd16871053ae4ac4d9b3352c5628dfa0f1d6955a4e4efad4144dc79c19d5116"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q093",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-80.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "db10c15aefd743094b0fe1b03b7cf106b42369e3f22b835d85eeecedf0226b1d"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-94",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-81.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "930cbb4d474ffc600f79c36588276cf3f3dd3ed3da52a392e4e21ea91324e614"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-95",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-82.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "800ca39e764465a8e242e27d3e3ef98b026c517a913bbb08821df0ca56a28fd8"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q110",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-82.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "73afed15573fbd8a43a4dc5b84d88c27b976868f358d4b74fb47e24cc3660f76"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q110",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-82.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a51f2bca64bb5a38117299aedfae9fe1f45090428a5f471edf188d656c4002cd"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q110",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-82.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "12e22b2e6232ef45f29dc9a72f44e381e9f039d8ad122b2633b04a8ce73b3fa3"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-96",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-83.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "fb9cf53f49c8e2e72f106db1fdc2c13bd6b3c17ea89addca35777300044bb7f8"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q096",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-83.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "3205d54a692a7624434fa8eb60da0f89be3213dd44312a6f7c3f71d521c71c31"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q096",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-83.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1de70d47c87616a8b94c53868dcdf9a8b79e8aab64b2b0119a3cb827e9b9ade2"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q096",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-83.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "fbbade97255f49b978304d693518b6aedc438984edb4c73cbf70c3d54aeb67b4"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-97",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-84.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "7c6127f4100abb572f06c5ec62c8dac4a0d9bba60fd7397c7b8daa79178927cf"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q097",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-84.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "8654ccba82345edaefa777ff0ae3da071abbed52e42397cb86182f992e3dcb49"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q097",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-84.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "fdd996945724ec13a7a8a19fc86cd90b2c26a2b74f8d77492a483ee2bc5c79eb"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q097",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-84.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "3e5db7a359a300147e4dd2d37cae10b10a3ac563c2d90c4251e35fda417fbaa2"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-99",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "927a989fd5d7d51ed804ed3baff5d8b9317ba1d9919c4065b6e05280d556e6ef"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q099",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "4e502c74cec6eb2e70cbe1949041f80385cef5aa632093e14a61927becd31e0f"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q099",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "0bc865b1d19645cefe9b66b7d422c17399ffb94ff8de8d3f218ad292651ef504"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q099",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "10167948df47dee709a57d9e19d1dc9f45841d973749633ec9b81ba95d89814b"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-100",
+    "category": "Geometry",
+    "topic": "Circles",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-86.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "37fe7bf4b17d3498639bc8eea80c1aee7700d192ba82be86df6948cfe0385b4d"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q100",
+    "category": "Geometry",
+    "topic": "Circles",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-86.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "cf13bdaae3555d21040b2a8db4d6ec6bff80d3f801e03722c4624e1eea748f10"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q100",
+    "category": "Geometry",
+    "topic": "Circles",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-86.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a72540424e9975b23b93c8b0d61efb962f809427471dd648c8279f73b23c5805"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q100",
+    "category": "Geometry",
+    "topic": "Circles",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-86.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "04dcd23e778ef40623e1b5f6b7cff50be2e207013bd18eb51e5b5cd4ba302e0c"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q101",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-101.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "83ed65843af6eeb571eb6b84f972a9586163e0d91252bf067fc9a5a28e364a21"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q101",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-101.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "bd4d340f2d071e04a0e9d20ed1f7e7ae20fa69433013623bb81d58b6a2678d21"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q101",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "Matches the mathematical task in 2025-2026-form-b-official-shsat-2025-b-101.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "c09f4c4a62b221c3f3858803065d2279e064d0b79ab3e3c6c3cb22d05b28a1f5"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-102",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-88.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "7302688e7bb69de9ed18beeed4b4596a11f89cdd9feca55e31d0f93537977199"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q102",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-88.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "4daaa2fe50d55e72a9ee775cbceb60d88cdd8123320a3d3371eae7bc66e6850e"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q102",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-88.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "41ba0c7dac0b54566611c0da081e8d7643c068d3b788e02374bdde25df0843b8"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q102",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-88.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a1e3457efa1ec34c29f74b20908dad48ac04795cba08e89c8e3215ec09e8600a"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-103",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-89.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "9d162fbf91357cd34f38aa26d0d0fba87188257ef19a00d2ea9fb00cf9555c5a"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q105",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-89.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "0620052463f53f1975dfdc291d7919a80b77f9d239ebf61bc9c7fce7cd5ded4d"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q103",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-89.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "9b47ca9838c9a87101cb3d84c5568bebe5f78ea213851d9ad2e808a506e72c37"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q103",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-89.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "38baede5143fea8fdd37d203a068983402af31c8ff45557503c6035362a88ea5"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-105",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-91.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "15060769356c15ed8dea2b7219dc87ea4384fd71ab7125e3af4c247a27524398"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q103",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-91.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "ef521da637632655553c2db4e220a1e648dc01cf1658b23bcba1bb0bf8686924"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q105",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-91.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "e3030645c8d8a21a3318ad602f35b67f62ffeee988822edf50c5ee7e765388f0"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q105",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-91.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "c4dcaa827dd9213993960931f242560da4e3fc57158d715778a89ed9f508f63a"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-108",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-94.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "6bb3dca12899c8709afb89b3045d82590d29d40fa3f1abef1693c968414a22d1"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q108",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-94.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "0b527e6ea3476c3373bef38512e9a3d51dd6fc2d1e66c6d72114e5ce302d2260"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q108",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-94.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "b196a3aa86c6155f84cf21bead494771969aca7c5eaf596694c93c0ca38af609"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q108",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-94.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1cdf42a3fd2f7ed160d79baa7334092f6d90d1732bd3f5b2c39bab69bf5c7ab3"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-109",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-95.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "862fe3554a8ee10066311d86e69b4c83b7ce2f02e50941485442e026ec42803b"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q109",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-95.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "953542cfe01bae236d672a9a3e9df9d96721eb5a9599c365196ae0b7d8692046"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q109",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-95.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "fd41634eb4fb237227114855dc0c41790ed45702b3cc4c0244ca8972ab758a6b"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q109",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-95.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "972c14b41816e9c9e9ecb88a457f79b3eecb98b150e79ce89717e0ae22e2b41a"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-111",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-97.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "f79961171e0ebaee9bdd09ae37c4ee8ddff7e62eda6606429663be57bc772b11"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q111",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-97.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "05722a1418dd28e499837157e010b01bb2800873138bf2e88d30ede46ae13815"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q111",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-97.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "78b7e9e721bf7bc83c308be77496b6375bbe9d4d30bf73e4bae0afc7bdc2cb4c"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q111",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-97.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "adba6eb39183eddd62b24c35842759168ccbe730ac9af373bf5859d9c0a4d433"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-112",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "2161065b9876370574daeceef6eff121bf634884000b40b829cb0f3faa2e01f9"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-113",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-98.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "c250ba3d2f83d4170fe623057a0866ef889a6b8fc432b9e2aa147d99ced4fcf2"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q113",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-98.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "e6221f533df2f8b3575f8c08f51b75f88e5e5b9d8578d1cca2a4215dbf1eec4e"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q113",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-98.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "56d80e1da1a08b2f9dcd46e40970c8d0672762967960e2fb65c6b71a0984b544"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q113",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-98.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "e81703a450d771183a4e13d159d03b1c996274e2aa4977da76656918e8c18a58"
+  },
+  {
+    "id": "2025-2026-form-b-official-shsat-2025-b-114",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-99.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": "Unclassified"
+    },
+    "contentHash": "47be3d0d6f7c5025470df2bba7dbc213a493560f63823ed096c5f06018a8602b"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q114",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-99.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "cf47e81407e6165382ad834d7c94854fba6b71395be45a2f76eea006f0251f7b"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q114",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-99.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "8e572a6a4204c700f1eb5f57f98f163a5b1f1250b644ddece9f97c3b00055903"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q114",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-99.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "4f770c814c58b7a7b74f2115a18820f16584a277a8b023f588821a911bcea65e"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q058",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q58.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "f7749cd1091cabe008a3573137135312eaaeeab8f0b859a439d01649996a0571"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q062",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q62.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "7b3e88bd0d0b98f876cdcc27e21b2f9fb752a7d719716ed3be508566721f391c"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q063",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q63.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "b0e55bcb2a0f86712e431731bd8bb3e4628f81fc097880e23e136ced7f36e194"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q064",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q64.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "d20360d456922f302b8ada1d0f6162e65ced8f8916e0c00f9aca1fe9f3514290"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q066",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q66.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "13465779d355736294140820ee3f0e237d22d2c02e0514e8dd93f3890df2a066"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q068",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q68.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "5020aef6e953012635f15990944117ed5cdb133aa1aad30356467f5ef19d3eb8"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q069",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q69.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "e0394af003213b81f9a6c86d463f7ca1e89015bec0215a598ae5fe01af32bf2f"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q070",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q70.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1e0ad1f965904ed0acc1b2aba531d449c2196d8545c1658224fc03e2955213d0"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q072",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q72.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "4e2faca759e28cb434c173544c5cb54ebab4c2534bca0ecbcb5eadf10b87f2d7"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q073",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q73.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "ec70afc9778a1a0ddfd7affc1e3473f308b75574d9ec18ae960e5dcaf054727c"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q074",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q74.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "8631a9bdda0887afb0a728174d28294359b9e029a7a30d4025b604556e095f5b"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q078",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q78.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "fe0089763a5931f22ea5c65100619f74e28a2dd745d2326ef11ca74bc931405f"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q079",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q79.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "78b74852f32f193e37a86aeed2c660504126671dd809d3777e50edc0629d4346"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q080",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q80.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "7134bfa3eeefdaa3652cc618b0312acb9432ba9f6af4a45a551e2e77d1ed34f8"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q081",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q81.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "f572d9b232751a15881afbabb6527f628b5a1304228387ec8ee5255042c10107"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q084",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q84.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "873b7c35bc001740b01c3707c1771352fbe9f5d9613ee9987a81b9a0f2e4a28a"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q086",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q86.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "28116391c2c4d1acd344e588617388f060118752fce114e9e9cf726752c1eb27"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q088",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q88.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1ec527cc7fb2be7a85f76e6de176c57579b22c763a2f1f5ce4ced6950db7bfaa"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q089",
+    "category": "Geometry",
+    "topic": "Circles",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q89.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "18699a893d61ff37dc71d46254b4a7aa7c0f920f36658f33a46f374e36af1259"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q090",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q90.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "4e5707674e357f50bba2fc9de7f687424b94ccbcea7fdbe711b112f5248266e9"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q093",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q93.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "51f9e8ea257f28857299a905004a41037bdcb0870360ce427dd34658ef14bb7f"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q094",
+    "category": "Algebra",
+    "topic": "Patterns & Sequences",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q94.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "c8c888c6286d1d433a6e14c0d87aba7ac024e94a8450bffa706c51ae1e4b787f"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q095",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q95.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "79ee777ccd2a938ffef480b9341c1ed840c3c8b4923840daa180036248953bb1"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q096",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q96.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1768423a5c832b87d9cb275bccd4ebf72f6cc8f448073bb39626545a9866f876"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q097",
+    "category": "Algebra",
+    "topic": "Functions & Graphs",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q97.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "8fac9a072e2f890ebed561e0931d7ab94d042dfe6c402160478472d3c43c7104"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q098",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q98.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "6cab5924cede7542a81f51085131f99e34d4c564c34bcd87e591d3d0fe254c03"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q099",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q99.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a6a2309a8f17389725e19de34947430fc6fef21bb6223ffc1d61feb69bf2f455"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q100",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q100.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "861f2bc02fe55088ef725e6d179aecc538d4889959deef9ce71b4f1ff1eb4334"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q102",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q102.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1d810c0a3d1be6bb8b4a4de2344cd61e79345c0d25a64a7e3ecc7250bb9457a1"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q103",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q103.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "12faf6a3974ba83368dcfffaf3a2e53114e8cec01138fbe9164f27422d18fc37"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q104",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q104.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1fc93a4d633985866948780569806405e71905cdfc7ce4bca43b7b7e9883d6c3"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q105",
+    "category": "Geometry",
+    "topic": "Similarity, Scale & Proportional Geometry",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q105.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "d9e623d92cf71f0de30b240536a2d71cdaaf19b2b3a8da65c672f002cd941d89"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q106",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q106.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "2b7cf6c60bc27f79e4c627aec07ccd1191b357ece9a1b2173fc8f087c81527d6"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q107",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q107.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "62e1e433c389d59d6efd44464633faef0b664b55ca2c9766685db6753053f54e"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q108",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q108.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "4095855f0e713337984fa1e73b4cd808f9cccaefebc87374d093eae032f958d0"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q109",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q109.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "22e51e06244bd23b12dbf5482f875bb8919d864147472dc666d91a7451e03cc0"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q111",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q111.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a65d6d2c7287f1a83ffd5960f91855eddd66e6b7bd74a9810576e2c193ec1c6f"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q112",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q112.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "416c2c87ff7d665d8ed035ea2bf9564f97afc35f8637f4a68c080e6d045ef69f"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q113",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q113.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "113de8dadec7e3ab7fd2f496b4bcfc91b6ae4050bde6971578b991fead3b49a1"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q114",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in 2020-2021-form-b-q114.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "accceae4bdfda246b5399aed2e84797d72938914a58b3e80a424908f9354b843"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q058",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "249ae0b32396e69134be3172430b3f43552285681c2432c6f58ea28d96ed182d"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q058",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "589b29e66fdc9b07657b479dc0ac0da3f60fbc3a03006413c7bf80b44d743a6a"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q058",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "5eb04cd72929596cba5449730a23775ffa43c49514448c643b543be7fa21018f"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q059",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "b5c10d5e43572e2a659cda67ce48bdab3f07397d58dd7e31a9301bc7ae17341c"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q059",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "0c0a3b74fa656887053b078d299bb913f3cf651387c13f39e3f5d317061de5e6"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q059",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "c5c4fcf5a645238793bddeb83f53b4d6bc6f08c91669fba36b0df58bdaa39e0a"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q060",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "AI review of question content: Integers & Absolute Value.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "6662d737689c8f65d81d6965d863ecb153fb379204d428f32fdd9898d18cc004"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q060",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "AI review of question content: Integers & Absolute Value.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "18bc4fe3e21b07c1b50cfadc8d35c5cf1a350344d3ac0e88590543fd65b70a20"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q060",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "AI review of question content: Integers & Absolute Value.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "1e20d0cb6e4f9590d9f5ee05e51912d58b64140647e740edcd2f1d13c9d23adb"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q061",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a9f630d46e065b33e91e5ae8af627930e7bf79c6d192dd08d7e4b7231fcfb2a8"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q061",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "50cfcd8beb4f34deeec35ee2e3a64f4161629184e009176841e30b562e472810"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q061",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "67675dfab8e052756be16bab5189a9bad55fe48ca42481919d162f979dca77ec"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q062",
+    "category": "Geometry",
+    "topic": "Lines & Angles",
+    "reason": "AI review of question content: Lines & Angles.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "c346d9214606f2abbc1ff708f5ac902b7c127dd56a40e1e8983bbc5040f5bc94"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q062",
+    "category": "Geometry",
+    "topic": "Lines & Angles",
+    "reason": "AI review of question content: Lines & Angles.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a69b8571ebc1da0f3e44ad72bc5490f7fac2ad114acb08c694159ffa0fe83364"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q062",
+    "category": "Geometry",
+    "topic": "Lines & Angles",
+    "reason": "AI review of question content: Lines & Angles.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "89ffe2e3475f72a1b69738eeb8825223dd366bdf103d34bffa6ea3b452957776"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q063",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "cb386ad9b99433d6ab1e5061d0aca2623e08e32c1928cb32c89490ad539fcc8b"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q063",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "6b1b41096be9860a75349b38284e4900a7e6734c3f93b21862e37e5b60083648"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q063",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "734901b9675f106414e0ff3b887749d9ce9d986528deef9f3cd0aa3463456b42"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q064",
+    "category": "Geometry",
+    "topic": "Quadrilaterals & Polygons",
+    "reason": "AI review of question content: Quadrilaterals & Polygons.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "bbecb0051691dda62299906cc915b7c1580aa099b32c7a4c755c336ccd0f8831"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q064",
+    "category": "Geometry",
+    "topic": "Quadrilaterals & Polygons",
+    "reason": "AI review of question content: Quadrilaterals & Polygons.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "bcfaad511e5e210c393b74475ec9f34c9d3a16df117a6a3d32f86635f7ce1509"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q064",
+    "category": "Geometry",
+    "topic": "Quadrilaterals & Polygons",
+    "reason": "AI review of question content: Quadrilaterals & Polygons.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "4d255898315b15424640abf32dfd772e152431631903c3886c0f6c2810aa1076"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q065",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "92db8248f6f0081f0ea649cad541814b9771edc7ae5322db981d1c9609c96f13"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q065",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "3d068afabf1978da3436c44f9bd51b984040347913694e2411ad669001ed46ca"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q065",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "f25dc339f54a5747c43ef89164e0f84e97b46ea423acd45ff2e0bafc0eb073c9"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q066",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "62ac6ba4b720c91d2969b238d1ab0f9ee7069f05805ccaa1a6cc7c77cb1571d5"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q070",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "7d4b19460f4dab5d15785bb255c74930341df2d651212feb42cc2034fe7690c6"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q070",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "9dfd839f5dd34b4082ded78dd612dd037a01fa3aeabced7d62243e4f43cc78ba"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q072",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "AI review of question content: Ratios & Proportions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "ad1772f5508c23b0f167bf5af3e875274eba86ab112009eb78f590069c06ef50"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q072",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "AI review of question content: Ratios & Proportions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "529daf6b1913608e1b4086ff4d8edfcd9735c9152ddf8943915f33b6fb7f8546"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q072",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "AI review of question content: Ratios & Proportions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "ec58963885f25698a0b1f40a4f90f7c215109ef7b32907caace467f6949e65f8"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q075",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "f07eb9d5a004365af120805accea03b6f23f8166c555e25e4fe6242156170051"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q075",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "05cdd53fc1ad0f0cb270f4c0a2145f5ae48d531486d7cee1e8340c0c66369e73"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q076",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "AI review of question content: Inequalities.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "7faa412bafa6c83ad6bde8c92d152e9cd608e186b2b836a6da64e419a40101e4"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q076",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "AI review of question content: Inequalities.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "89a8f80af05e3c34b461434a1f656e04988f5474762b7bccf197a6d0d3d79371"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q084",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "0b38ca6eee969ad867042c82723101a55aee3d2cf8352c4d0b1382b344e0b461"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q084",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "08c82836b1f2827467a315ec29a84d9251000504fcdf474a6ce6cae4b3d35863"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q084",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "26ae72b17dd1253914503e49ef53faea25f25538f1cf243031582072ab7d73ed"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q085",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "0592ede0223cb8aa131f87171865405336cf88fb3293de0541b4da772ee7fbdc"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q085",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a93613d9d07945c6928a047c18fd514eb14e0f38a6c0dc372eeeb3a83dbfce80"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q085",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "38b3f61091b1167ea8f0cebd210a19b6103f2f29bf2011c49531d984c072aeb6"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q088",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "d0ff289c3c68381e990f5409cf74ce10fd5a81347c38d33ef0aedacdbe3add43"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q088",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "7b6dce2ba6ddca57fbdad7ad616c75258f2bc7c5ccea7da86b945487fb3bc48f"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q088",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "857b7db426b5485a923fba44b6511f742407d7fe1fd06313acdc8f64606b3d32"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q089",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "54630e765d2219469ddea0439abf1f8cac0e8c98c11910416a42fb3bb42cc137"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q089",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "6d69ebea97ff29a1e82a320cd42621ece392e79824af6505a04eb97d5c102147"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q089",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "7be4991fc86239419dbfcabee8e34e02e434f3c27b14bb893a79f14891f6425b"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q090",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "95207523421b8cefb833ce0f37ca268a814af3742718106824b657e8d639b410"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q090",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "b3bcdc795c7e47344804b0452885b2fb1cae0e36abcacb878eaa256683eb60e7"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q094",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "2c76b3d8979ff7d5e508b59c5a51fe32ea25ec58ae715cc2839bc4ccebe645ce"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q094",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "17c025510ad1c4a8ebf0d0463e1832ded7913849b96ca8325e6ccec2c4cc0d81"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q094",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "614ad4c9e5982b6a5656018f38b70c1775104514f5aa1ff8ad7c1261f744ecf9"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q095",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "8b707ae5d4612f446e447b2a1d010ae57227dbad2d536ad9931ad53c3836d42f"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q095",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "3d62204e5f378857e9d371e143bb2a28c8998d48cb026043738dc2d06c140314"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q095",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "a587d61c3b1d716d7682438c26e76f91ffeb1058b2b306d5fa4f0a2d2a6b99dd"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q098",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "AI review of question content: Coordinate Geometry & Transformations.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "eb731b463cdeb034fcd351a9b5155a4ae91f0cd38171e87a3288848b408c103e"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q098",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "AI review of question content: Coordinate Geometry & Transformations.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "2bf0fb64361bbb40ed3e6d1e0b832bf63896e8065645daf9e4af7e87f839aada"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q098",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "AI review of question content: Coordinate Geometry & Transformations.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "0367fea962f5c0bb809fa17276d741d368d7077d969e92688b20a4b74310cb3c"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q104",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-51.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "c4f11855965b709e741939fd63ca5ba91909f85be2798c581c0d53c140c2c78d"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q104",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-51.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "b72e1e21936f47af640caa8372368e929e79b3a06e32ea97474851f5dfbff0e1"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q104",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in official-shsat-2026-b-51.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "6217b240c7274aa04a4c185053a6ca26bf139370569ded7f60804b7bc94b99ec"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q106",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "432ca8e6dbd9b41406e0d670c172adef81ee9af68cf1f7c0cbeebc4c7be557b7"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q106",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "9726417ad8ff89d4b04fb3b137cbab72e6dd4b3a7b02710f3c7c282c48d5e9d1"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q106",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "e27e5b1564249806246d0eab991f1f59d9516c9829bcf56180d02be8e9afcafa"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q107",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "AI review of question content: Inequalities.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "6560a6a474a14ec3cde91c513b841e9d81fcf86456b719ab98016375f4d25b0f"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q107",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "AI review of question content: Inequalities.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "d364706f1600f1dc3f64fcd0f37df27555363f5b194c4c02c04b2cc76f362acb"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q107",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "AI review of question content: Inequalities.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "7a0b01fa8354e08099a429a940c13d93eddc9fabc5ed3abb9551465b10232a42"
+  },
+  {
+    "id": "2021-2022-form-b-pdf-shsat-2021-2022-b-q112",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "7f94d5d8eed684ae8fdb2c227ca095c8da8471d7b8cf400d8059ee514417db0f"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q112",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "c9edccdac1107576ca6c62d433f4ebba006806a27f6b54c46fff2a7be4b0fcd9"
+  },
+  {
+    "id": "2018-2019-form-b-pdf-shsat-2018-2019-b-q112",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "88133598bab27eda6b54795248b112671a8db78b755c66639dd9fd2864600902"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q058",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q58.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "c78d3a631262d7e5ad09306b824856078021011de2cfea479736df62dab55d30"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q059",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Order of Operations",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q59.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "7243f5f58f85f1dc82dc5607de9d4ae2a0b209c3ea0b2aeac75670c52520fa89"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q060",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q60.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "02b5ad4dc5bdbc539f2360ae3080da751fdc41a90a2339363f2a6368caf2dc77"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q061",
+    "category": "Geometry",
+    "topic": "Lines & Angles",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q61.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "a9d85a7e0a1a3a122815034de878447d5ad211d978b84acd48729fde5c3bf432"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q062",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q62.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "7f4dd1577402c7ca74dd99c262eb9ea286b64cce20351b609b607f0aa7b2a34b"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q063",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Exponents, Roots & Scientific Notation",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q63.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "3520a6f10122061d3652561b14f6a730e81160137c05110e01b02be562e50fd4"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q064",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q64.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "e914246e68e30e659edf579e45b966d021031949261adea9a6ac1666945fc490"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q065",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "6ce3d5b896a191575e6d257e6efcd7674f73f2561282603ef9b74fcc1bcc4f73"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q066",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q66.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "2ec534b2a0317b3ce2f62ca04a16fc3a3b0efddcdce26f441fad99edb2c12595"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q067",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q67.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "978fd8866d827d736cbc2eef0be091072b173d4376eac95daaa0264e347c0e63"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q068",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q68.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "fd9529211ee72d9f237c272de92baef9687b38068326f49dc7520c37efdcb4d4"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q069",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q69.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "4a09731a439fa86b05c47b8a3acff9d116d6d3ae512278026592097ef78a95d8"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q070",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q70.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "096689de5d6ab2734dfb093a1938dceeab9b3b67e0d99dbefbf978e0ead4755b"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q071",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q71.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "c650da86dfadf5f9ba10812d11b30c6dedd62950c22b50a13be2c211aa166ab0"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q072",
+    "category": "Statistics and Probability",
+    "topic": "Data Displays & Sampling",
+    "reason": "AI review of question content: Data Displays & Sampling.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "bea44917ff3bb5eb55ad449baf1a943055ebdf4d4c2cd8a188a5dc35aae11d38"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q073",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q73.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "8522b41d2c1c2f7864babc4446f62f6d284aace9ceff7724ee8e4097fff7ac21"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q074",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "a28f144fa8edfd852a66a4e5f237739b3c57242ac3e3fb78fc5a8f93b521c56d"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q075",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "698bed3acbc7ba02d49df42bd78d27deecbbf61632b4339ab2db464c65e48575"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q076",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q76.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "6220ecbf1e0096bd0f4f81a260bbc70eeef50c43c13b264f7765be28dd40561c"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q077",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Order of Operations",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q77.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "871ef10af60272b812c9d21a5ffe617a9832d997276f1deeaa1968b431dc71bd"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q078",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "3109497370dfdd67855e471236defec47052b13d5ffe86860c881600b0f964f1"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q079",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q79.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "1211b00c33c35e233f142474cf436ff72b6665b5d96279b41fb16da17c4383ef"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q080",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q80.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "3861a8cd9fcba217dc84fa172e33fa411d1a91f7a66bdb3bcdf1b76cb19213eb"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q081",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "49576dc012f1ac142733fdf20a2feccb6de7bdd317c9fa054913a09238a23c2f"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q082",
+    "category": "Geometry",
+    "topic": "Lines & Angles",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q82.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "cca869060e2d423af8e9af18fa4e703fb079e6f3803be5de69ebb4fc6d0b7c87"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q083",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q83.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "d7cbd60c99ca16d37123f39b92fc123b6bc3af32dc9f91ee67aa1d7f83d40547"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q084",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q84.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "663b6fc92c3e3fbb8f6121c2f6b4a4abe90194b5a5c6dde403b18bf6dee80d58"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q085",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q85.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "af9e6ad6446975c7e3271b986a18fa890a646b2c5d60eb874ccf862c5ffa7b20"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q086",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q86.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "bf433d1d725921c3181f3c0f0b681668da3d68fc8a4dfc23153e7415fa67ca1c"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q087",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q87.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "21b60f96e3182b53447c7392e856022cf97ebc64ee8effb2864955a710242fea"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q088",
+    "category": "Algebra",
+    "topic": "Patterns & Sequences",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q88.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "4709d67a5dd4515e3881dbfe375d0a364e1c2dd9414e06e50e6f7e9c02f23af9"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q089",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q89.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "558b1bfc44678aaae49a0a95f3c41d44acceff3df8364eec5b7121a2eef43e34"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q090",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q90.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "ad41162f99e1ed7e8aa6a1b6a9ba5b6b34ed802091e0427eae9166a44d91953f"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q091",
+    "category": "Geometry",
+    "topic": "Quadrilaterals & Polygons",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q91.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "8e98b72b41a62aa2080624cffc249def3e494e8647a4ed09ee9715b7c31bd9db"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q092",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "AI review of question content: Coordinate Geometry & Transformations.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "cf9d687f2642cb43e191ecf9a8c0228c825a5c7df9256b32cea3a8d0ac50265d"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q093",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q93.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "826a7297b1974b2c0d5135f01feb5fada64ff509bd0e30891c03180593ba562c"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q094",
+    "category": "Geometry",
+    "topic": "Circles",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q94.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "dce35c5446db181375adcea4d51dddd15a12c427d37112ad008b0101af8eaa75"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q095",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q95.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "552427fb1a3ee5290e477b86c3b258056f39922e4592d77d5a0acd4ab571619b"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q096",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q96.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "530bf299d6ea7a741850b39ac3454ea9c85ff33a63c9be65f7df8fba435346cc"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q097",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q97.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "8947dd1119942a0fa02ee84758f012043a0a5d1345300dd8e501b056efa4b598"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q098",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q98.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "841a0b302415aaea8f4769a5c64a703ca9bda444a20faa23a811877a5d23b7fb"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q099",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q99.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "ba2ac5cb35ed9129be3e4b8aa4545effc98b866e2cc881c319a0ad32a6bdc8d9"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q100",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q100.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "866cf12d2010faf12dc08a6b4a78b4498ccc29001d332fd8bf823e2ba1365097"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q101",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q101.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "608c8f2ce0f9a52c3b383d824b1021182eea0b890bcdeeb59e5e6b2c324d38e8"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q102",
+    "category": "Geometry",
+    "topic": "Lines & Angles",
+    "reason": "AI review of question content: Lines & Angles.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "0c495ca36078f63a19c5c6c614e5956a826321e676673f0e4a37e8f9a8e57d73"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q103",
+    "category": "Statistics and Probability",
+    "topic": "Data Displays & Sampling",
+    "reason": "AI review of question content: Data Displays & Sampling.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "3fdb556e78a28a96dfbbab35475816cf13ac428bd8af80ab9966c5182e0873c8"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q104",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q104.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "cfa12b859f25716f7eff0ba563f313cba8cd3ab7e8da9c371696e99ff425874c"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q105",
+    "category": "Statistics and Probability",
+    "topic": "Data Displays & Sampling",
+    "reason": "AI review of question content: Data Displays & Sampling.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "14d8706d154819bc2742c593f49bd4a8408375737d5d72df769355610fa00883"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q106",
+    "category": "Geometry",
+    "topic": "Similarity, Scale & Proportional Geometry",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q106.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "171c535505c2f3d4e9b185caf685020cba924629ab79d07f21725a829cf0cbb8"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q107",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q107.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "cecc46637e0e9dda0f98c46fc4cbc77c6dfd21c90d1cc6696a2a67ccea977201"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q108",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "9114595fadf83a898ff352740c3b9183980485061caa7bd47c91730578c69ffa"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q109",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q109.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "6311651c70f4f9e22229d9646bac623bcc926f7e8faa58b319c62b35b798fe06"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q110",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q110.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "0665aa2da30eb945d4467623bb536d582bba8d1de59ac5399f1230f481206cb4"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q111",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q111.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "f16d77cdf5a018f520c67592d8f1f9e10ffff78b86f3d96122107ecdd87451d3"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q112",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q112.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "ff4a09354ba39761ba37b8bb7da0c9c8e8bfc990c496c628d0a1ab6aa007a961"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q113",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q113.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "4989ef09015df2790a53e31a2d97fa3da5aa2da7aef226a9c197ee2a025c0495"
+  },
+  {
+    "id": "2023-2024-form-a-pdf-shsat-2023-2024-a-q114",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "Matches the mathematical task in 2019-2020-form-a-q114.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "0b5855b4afd0214112128f6644ba6364877bde0a1c6edc7aa945af8a9e5b6fed"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q058",
+    "category": "Statistics and Probability",
+    "topic": "Data Displays & Sampling",
+    "reason": "AI review of question content: Data Displays & Sampling.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "272227052287072e26f499943d5481e06d7253cffaf8867d07486483666c1e97"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q058",
+    "category": "Statistics and Probability",
+    "topic": "Data Displays & Sampling",
+    "reason": "AI review of question content: Data Displays & Sampling.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "bf94eac05d30f8ab6dba412fbbe833139e5014d3322cee94e58b0542f831b77e"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q059",
+    "category": "Geometry",
+    "topic": "Similarity, Scale & Proportional Geometry",
+    "reason": "AI review of question content: Similarity, Scale & Proportional Geometry.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "83f678305c27142ec10d3f7dece9edc0dfb708531911d64959d562e3dc365e6a"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q059",
+    "category": "Geometry",
+    "topic": "Similarity, Scale & Proportional Geometry",
+    "reason": "AI review of question content: Similarity, Scale & Proportional Geometry.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "d6183bbd01914aadc61431006e8621ab4e30db4dc008f6798ee9fdfe242cdcb7"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q060",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "8a61dfa901398053a651aa8f7fb1c65d6c3e95ac9e8b66e5e9b49cca028c32ce"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q060",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "a2ce399a8acf321a6155775c83a0b3be0d5617f10f1e43c717c039f86fe63381"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q061",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "f1d99b54ad8a5bebb8c26cb04a2bcf440af8e8dfe5160dac6e878b6e253bd7da"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q061",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "8381c9fda8a9aca1e7ec5a7d6450691efa0f00a4312944e43e577a750861c40f"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q062",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "eeea8d1c97bd4d3911b72fb82399a3f5022827971b0d55068d611344da3be351"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q062",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "56d6ce286c345ff5e6d2b2d5642a0dd2e544dfc0a278352ec7b0bed1c241366b"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q063",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "babb80d563e5339a83462defa4fcd790124715ac67841553d8504c55f1e9056c"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q064",
+    "category": "Geometry",
+    "topic": "Similarity, Scale & Proportional Geometry",
+    "reason": "AI review of question content: Similarity, Scale & Proportional Geometry.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "3655cbea0add7522c3cf47c37cef4524874d408fca10e3a85b6aad17036b4296"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q064",
+    "category": "Geometry",
+    "topic": "Similarity, Scale & Proportional Geometry",
+    "reason": "AI review of question content: Similarity, Scale & Proportional Geometry.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "0925d764cc3bb23d94ebbe83cad4f2106f9974480292c03b31e4b0f5da46899b"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q065",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "68c28d2aa3a83cb498a02600ee747eed3c3bb70643f74a5adc78e6f438435e5b"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q065",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "620f0b7d3cbd342a7c3e428c6e49a55d68be3a5c53ed9a7673acfeab69e0c00e"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q066",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "ccae2b13f2f9f98193411abccb72fd1d3ab70df54f456df8b8a19814dcb0060c"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q066",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "f8b05de600eb95770c72478cf4c81d91e768bccbef4b8126e3f4bae5c2873cde"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q067",
+    "category": "Statistics and Probability",
+    "topic": "Data Displays & Sampling",
+    "reason": "AI review of question content: Data Displays & Sampling.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "a62f4178799e3fbec4d933828f86d57c4c05778258a8ed7aae5bb10375e69a89"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q068",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "6293e910d93d86c8fc3c413561e022146d0a8b651412f6d49e19eb033ba5d055"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q068",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "a81633729e5c7758fff3dd1099967dbcfb2590655087a01b8078f5ceb991e466"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q069",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "AI review of question content: Perimeter, Area & Composite Figures.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "51f03e6378493feba5102287c87b01b1e26b891f898fca6d745cc3285e1a3ac2"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q069",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "AI review of question content: Perimeter, Area & Composite Figures.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "a63f616386da9aa80019633210a020400592fbbf8ee2614c68169d2c6f187522"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q070",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "957a47c180bf1112c0e0563e9d48b4c92d2f1fc272efad15eaf9c5606ebe2a02"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q070",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "6e7675ee080f583d95e70a91318560b30f234d189d97945865963016403cbef3"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q071",
+    "category": "Algebra",
+    "topic": "Patterns & Sequences",
+    "reason": "AI review of question content: Patterns & Sequences.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "b2f74af511bffd4d2314345a788ec84812de447845103c7a9ae412c7d2f3fdf8"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q071",
+    "category": "Algebra",
+    "topic": "Patterns & Sequences",
+    "reason": "AI review of question content: Patterns & Sequences.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "157936e6ce9f91747f82e25c1c623e29c80cd8596795b843f680753eaaf64c3c"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q072",
+    "category": "Geometry",
+    "topic": "Similarity, Scale & Proportional Geometry",
+    "reason": "AI review of question content: Similarity, Scale & Proportional Geometry.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "7603b731e467c20cf260a4f581c49319d8458ffa8a5522fc0985b05cb810dba5"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q072",
+    "category": "Geometry",
+    "topic": "Similarity, Scale & Proportional Geometry",
+    "reason": "AI review of question content: Similarity, Scale & Proportional Geometry.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "f5a07f9162e9d1412d577f85a17556896a1b7e98cceebe238ea3fa9b4e5c7107"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q073",
+    "category": "Geometry",
+    "topic": "Lines & Angles",
+    "reason": "AI review of question content: Lines & Angles.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "c3ac7fef1d9a99ea37d74c811a2f7cdb92fac64e936f7a49fb5c5f7545be86ca"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q073",
+    "category": "Geometry",
+    "topic": "Lines & Angles",
+    "reason": "AI review of question content: Lines & Angles.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "cc9f454ea67137de66cbb02c908511e076d0431f10dea14b046d745e8a9141d1"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q074",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "da8a3e961ecb0e5a34f43df8b259f81d3da4a6dbd3453499107478a97a247922"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q074",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "8a2546dcd7f02070557124fa8dd64224dfd504567b12511a58228b1fdf2c8c6d"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q075",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "AI review of question content: Perimeter, Area & Composite Figures.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "25d3975e72f814eeb8da745cb3f23b4d123c645c8021148dc5e65f03376dd490"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q075",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "AI review of question content: Perimeter, Area & Composite Figures.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "1d15aad2f4097a083489618c69de5aca1ec75ed136a762dd56cfbdb82d08e301"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q076",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "455cbe07adbee20f1b71ed2fb1a3d156f7d86a1cb8e628aa141c15bd978859a0"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q076",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "afb791e33f3cf787d1f7f81a527721c1847c21ea3e5587c4b5f34766216bfa23"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q077",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "2ecbf991b6a760164b53f3cd527a000a46364719f2f8c76f1ee0e006d17f99c5"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q077",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "8f65a5043deab869a449262acbc083936ac3edc36929f4ac275ee367b50e9995"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q078",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "AI review of question content: Integers & Absolute Value.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "61aefa5f0ed02e2a7e78ca19e6ed0b248309939ca3bbaf63e5f47b5c7cba2b16"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q078",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "AI review of question content: Integers & Absolute Value.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "d823bfc3c184a2f8f59726b14a5166128f8f98c7ee6886e08e8ec1e7d8a02832"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q079",
+    "category": "Statistics and Probability",
+    "topic": "Data Displays & Sampling",
+    "reason": "AI review of question content: Data Displays & Sampling.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "a08e4987416b4a2fac4e45a8fc96e1f561dacd5b9b66c58e48dec3d44fc861e2"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q080",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "d6cf44aeb532bf5f3b3a595f1dd9327a11dcf29565e2162889ff022fd692ab70"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q080",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "637cf5fcc3d5dac8e1ab8835b4e7e8d3e52afebd00f3968f3746a6710b718a9b"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q081",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "AI review of question content: Surface Area & Volume.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "00cfd9502e6d1bcb3dd72567ba1d74bbca05d703ab0c646c0ceced7f3fc78d3b"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q082",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "AI review of question content: Rates & Unit Rates.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "a30654f7f301498d8e78c36620616ff11e7b1ae95e4504a2185b58498e9f5aef"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q082",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "AI review of question content: Rates & Unit Rates.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "ac2d6ea93731fd49c96a9ac35ee600496e8dcebd75eb1162f54df126967c18a5"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q083",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "91623cd1b7f12a45a2a516dff9b5095703dff4e761ea36ab7fa145f3ea221903"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q084",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "6692ccaed71cf4a2be8fd025f7a4cd0b8eacdd79d8b30bdb1075bdd79cc61246"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q084",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "66c31ea8f878a5bfd51fc40080bc78046d6f5f37ff532b7c725b0df9de83131a"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q085",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "AI review of question content: Ratios & Proportions.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "54cc544f29e004736eb7d986a82524e0faa297f54cce1e593d06b96d7c44a013"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q085",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "AI review of question content: Ratios & Proportions.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "73663e0c4cdea0ffdba88781ca72513199e7f9e21e2330eb5b758a8d35a4bf3a"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q086",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "cc9c1ec4ad95b73e73c6eded813cde09ef9e0675eaf38bf863904347c2a18eba"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q086",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Number Types & Properties",
+    "reason": "AI review of question content: Number Types & Properties.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "99f25b63332c02408f07f04c67ba05cabf4cf7dd29d6cadf91fe7000eb050646"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q087",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "a2e31df478249ad37c7d0ed1c51a25a69220ef5e47d777849530c35726f37b46"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q087",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "b987232c280543a71435c0263adf683b662fa171c4a3d9336cf7fc76d6cdc844"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q088",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "6f7e6e1e6c40efe91f216346c19437eac5bdae5729ef96278b16b19f17d6b7b2"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q088",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "8ab4c1d637524b7fd5e384b97978237bed5913695aadc84bf12e0e73689aa83f"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q089",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "AI review of question content: Coordinate Geometry & Transformations.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "29941d65ef426815b1eb5ef59b98bb21455510b5f0b32d794f07000e3cb23414"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q089",
+    "category": "Geometry",
+    "topic": "Coordinate Geometry & Transformations",
+    "reason": "AI review of question content: Coordinate Geometry & Transformations.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "72b8bccadbec6d6311159ceb39581cbbc91fc7e2c6d8f526da638610489e62f7"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q090",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "cfeed63608fd2bbe5240807533f5523f3afe218c905090d871172e1dc6e16f50"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q090",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "83458a1004f6991fd5a32d05663c94058cf7a9c1bbcfa9ba7922c394b7e60e2d"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q091",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "84d50c5c622e782bbd4affd9499cacdb12ec039b2ac41ac9b379a9fec28e35d8"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q091",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "1a6e9f24bbe739cd1edfdb5b99a2d742ef82f91ef6de6e0d855e91a9c64f0e2e"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q092",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "AI review of question content: Ratios & Proportions.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "99ea924d139e035e8f375d37221f0083bee705c0b205bb8bdf2e17ad0b3c4949"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q092",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "AI review of question content: Ratios & Proportions.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "da59e4141d52d671301a4f520a1f73b1e948282a4377e746c46c6a230dedd2d6"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q093",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "AI review of question content: Perimeter, Area & Composite Figures.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "c5c0bcf970e7f8aeb422eba93cc27279413ac5329bb49b0418635d5f10147989"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q093",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "AI review of question content: Perimeter, Area & Composite Figures.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "e78a1618ef9103dea2632335e43695ea1a1d5829871ebf94d2008e0e1cf55915"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q094",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "bf8784fb8193586796bd1fdb9a438c75ec9c88739c73c01d38ac9c9633f08a5d"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q095",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "f27c2a701cdbc07a920217cdfb605e6c5883175af04d5a3c918815cb311125f5"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q095",
+    "category": "Algebra",
+    "topic": "Algebraic Expressions",
+    "reason": "AI review of question content: Algebraic Expressions.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "36f373b2799d577946ef1ac0a2ad380bdd89159d90554bec9850146e077150ed"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q096",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "58e768ae84ac59a94f4caa0a98a238d1e6c281237ac82c63ed4cbf86ccf0b2c3"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q096",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "51e33af80762343f93faed20ca9dca4f08e8e6a6b1928aa8802a83296f835927"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q097",
+    "category": "Geometry",
+    "topic": "Lines & Angles",
+    "reason": "AI review of question content: Lines & Angles.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "e01dab7f7a12918593fffdbc3c672396501ddcbd3ce11fb1e3ef3bfe2e03b761"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q097",
+    "category": "Geometry",
+    "topic": "Lines & Angles",
+    "reason": "AI review of question content: Lines & Angles.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "6930bfd86213d595cc451d0f88b0302e1bcb1feb66146ca2e7f7f9caf343c994"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q098",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "3a9abe8702476b8d9774a940af322ec6ab9e213ada27ee3c8bb2ef293a8d9844"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q098",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "c4b48cb9f1182d4e173212a20353c28c9451b014f5b2d1167120417dcd415bea"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q099",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Exponents, Roots & Scientific Notation",
+    "reason": "AI review of question content: Exponents, Roots & Scientific Notation.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "08d37831794df3bb5be94b45abf7bfeb863a73ea9f41b5883f88f31e6eef2ce1"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q099",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Exponents, Roots & Scientific Notation",
+    "reason": "AI review of question content: Exponents, Roots & Scientific Notation.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "2f2488e9f499532701f7c7878acefea053251dbf9f7e8b953d6cb5ddb37fbfcc"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q100",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "AI review of question content: Surface Area & Volume.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "c5eddfb891772f55234b9e98d473d78f65dbb9fbd4a6b620a401413752880507"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q100",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "AI review of question content: Surface Area & Volume.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "234691c4825b3219749e1097ca24c9a9ddd89ac3b713bb3dc88c60a66f2eb6cd"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q101",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "76a75e057b1d464e8f01f69bf884556559fb3da3e19530999e8ad529b6b60986"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q101",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "cdf0588929fbb568daf6be4af0309b361a83b9a19a2b65e70cab94ceb62543a4"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q102",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "95e16816ed48fc9817b7bc7303d6532c0fbdfb0a094ff65186b03a824d8712cf"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q102",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "d6615acc3817c18c2abf207a42fbb7fdc6820efceca05dde3bc050a895cfbf4b"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q103",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Exponents, Roots & Scientific Notation",
+    "reason": "AI review of question content: Exponents, Roots & Scientific Notation.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "6c3d485a15eafe0689ef5c6de78dcdf22ad12a88bd5322e28ebcefa037ccd55a"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q103",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Exponents, Roots & Scientific Notation",
+    "reason": "AI review of question content: Exponents, Roots & Scientific Notation.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "e98966a6cd55142c918093630df81dc29fb414e38cef10f307ddf2b9a1a0a1b4"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q104",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "c76bbba0e209ca3bde857bd22a68dd4aae55969be3df66126dfa0cace999046e"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q105",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "AI review of question content: Rates & Unit Rates.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "9d06ed26f24ebf687a2836ac07335462aa8ba732d632c8c944fe13b515ab14c3"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q106",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "AI review of question content: Surface Area & Volume.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "689371e022641c7928273ec004abefbf26fb7efaab24b817140ae21f5052d0a8"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q106",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "AI review of question content: Surface Area & Volume.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "326e958997298d347235cff5c1df079626d08861abaaf0ac2ab1cd27864bc652"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q107",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "fd8f18ea85a8352c05fea87d3b98da9b50cfbdeaf02d31f601ad92afc383d9f5"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q107",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "102d7629bd41e1e17fd56978712b12ecd03651495bdffa30d692eb0118740318"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q108",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "549ad14b9b4e8dcaf6bbf6d0a90da6165cdc3c9b8d1c5a64d20193f9167d1d32"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q108",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Algebra",
+      "topic": ""
+    },
+    "contentHash": "3ab997208de9ceeace83e737a16732b305a246cde3e23cc682f53d5e6db5581a"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q109",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "AI review of question content: Perimeter, Area & Composite Figures.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "e7d52391ae372afa5156834900878536445d67b313e160fc82c48a76548c92b3"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q109",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "AI review of question content: Perimeter, Area & Composite Figures.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "8b6979e22830e60ac1a5cfbf763d352da3c92fbb1e7db262557e7c1259e22882"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q110",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "7a48b3a25a225f217f84763e51bbe28e10ae8271aa65bb0040bf654e5e8a3bc2"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q110",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "89940de378f7ff7d180f8a22cabfddd9ea0dfe77db71903787d3a51bc2008a6c"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q111",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "c8abc7d11c44b4917ed210484cf4a2f2730d51b2d2da8bcaf9906e5fb784dd6e"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q111",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Ratios and Proportional Relationships",
+      "topic": ""
+    },
+    "contentHash": "627477e8dde7445fceb8bc753419c2d740eddec3137a864d193676850e12f12f"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q112",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "b73c849cd0cc41975a54f89dc4e083696f39b9368e7b260ada4fad375b507cb5"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q112",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Arithmetic & Number Sense",
+      "topic": ""
+    },
+    "contentHash": "527b14f2a298ed96dca78d4153eae518f6e8c2f1146486065a257b7c1ef334ec"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q113",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "AI review of question content: Perimeter, Area & Composite Figures.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "7c032feda5fda96c1cdbbe6137fa69d141f4230d75614485e88e649b56c4b0cb"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q113",
+    "category": "Geometry",
+    "topic": "Perimeter, Area & Composite Figures",
+    "reason": "AI review of question content: Perimeter, Area & Composite Figures.",
+    "previous": {
+      "category": "Geometry",
+      "topic": ""
+    },
+    "contentHash": "76c0c57e34dbddba309dc4c4750f6557230c8e1453e369015ddf2910618a6a4d"
+  },
+  {
+    "id": "2023-2024-form-b-pdf-shsat-2023-2024-b-q114",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "411fd79e1463b299ae6a8c12f417acec7497f2e49bade7ceada3ec8a4bd8083e"
+  },
+  {
+    "id": "2019-2020-form-b-pdf-shsat-2019-2020-b-q114",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Statistics and Probability",
+      "topic": ""
+    },
+    "contentHash": "a1e2ded7bfcedf064c41c9951823b2fc161b7fbe3254e7ff603f7c90069f744d"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q073",
+    "category": "Statistics and Probability",
+    "topic": "Probability",
+    "reason": "AI review of question content: Probability.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "90fc86277f5571f4c54732deece0172fe5bbd7a3a52f1d1671f2012c076237fa"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q075",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "85ce4436463652b5c367d650b2307b69825d93c717006baa6a7f8c1fc2ea77e0"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q082",
+    "category": "Statistics and Probability",
+    "topic": "Averages & Spread",
+    "reason": "AI review of question content: Averages & Spread.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "97c3363b600dd1eb0a764831a2ee555615a585e65cc493e40b3061cbb6e7da87"
+  },
+  {
+    "id": "2017-2018-form-b-pdf-shsat-2017-2018-b-q090",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "5348e197c29ca242c4123c987be2a608db7d5e52470eb3b31afc034848a54972"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q059",
+    "category": "Statistics and Probability",
+    "topic": "Counting & Sets",
+    "reason": "AI review of question content: Counting & Sets.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "77a7da0d8488b99223b7255b2674ebbfc7e3082a569f1cf14098377299cbf524"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q060",
+    "category": "Geometry",
+    "topic": "Similarity, Scale & Proportional Geometry",
+    "reason": "AI review of question content: Similarity, Scale & Proportional Geometry.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "5de8944fcce293a661e0e5b8a24e57413130656d79523d3ee047fe60bb24f11a"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q061",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Integers & Absolute Value",
+    "reason": "AI review of question content: Integers & Absolute Value.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "9f9a4e59f6519a957c879d4241a5442f640ed6c65fc4016047b702649e767f45"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q065",
+    "category": "Algebra",
+    "topic": "Equations & Systems",
+    "reason": "AI review of question content: Equations & Systems.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "f58b9942d2b6a261d75ff25066ea50d856d02a262f8a239e30661f2718aba1d2"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q067",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Fractions & Decimals",
+    "reason": "AI review of question content: Fractions & Decimals.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "9b5dfb4487a5ea96dbf2ef2e6396e4b8dbc2d872c6375747cded277eb423bc12"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q071",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Rates & Unit Rates",
+    "reason": "AI review of question content: Rates & Unit Rates.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "d2566a60f79ea14af9b59ca68c7a5e3cdd7f3232257eae707e28a2ce72c6e31e"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q075",
+    "category": "Statistics and Probability",
+    "topic": "Data Displays & Sampling",
+    "reason": "AI review of question content: Data Displays & Sampling.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "419d0f1cdc4c3584488478e6f17febb931befbfda02e2010ec8fa6a9bb8d9962"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q076",
+    "category": "Algebra",
+    "topic": "Functions & Graphs",
+    "reason": "AI review of question content: Functions & Graphs.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "73fd6b530f4c3cd44d5b885e23266a44b75a385883152f3b2acca620192ae042"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q077",
+    "category": "Statistics and Probability",
+    "topic": "Data Displays & Sampling",
+    "reason": "AI review of question content: Data Displays & Sampling.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "500c87c590889e3f1f48b87882cff708bd0618f357c3afd54b51f267a053a325"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q082",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "AI review of question content: Inequalities.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "020fa82cdfde3f59fa59b8ee823c7a80c41c0b2b49dbc04f2e436737d7f86fbc"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q083",
+    "category": "Arithmetic & Number Sense",
+    "topic": "Units & Conversions",
+    "reason": "AI review of question content: Units & Conversions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "b518d07b0608b9d14156b3773087906bdcaba66ee65d2591ba8b42d446ebf8e5"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q085",
+    "category": "Statistics and Probability",
+    "topic": "Data Displays & Sampling",
+    "reason": "AI review of question content: Data Displays & Sampling.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "bdcee0d40afae8a40a5406d1fe971d614c2f9f3eb2c4556e7e553b93d0efd153"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q087",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Ratios & Proportions",
+    "reason": "AI review of question content: Ratios & Proportions.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "f54166ad2dcced9903075e0c380e1a88eb95a7010aeb7575fa61e9036fa479a0"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q091",
+    "category": "Geometry",
+    "topic": "Surface Area & Volume",
+    "reason": "AI review of question content: Surface Area & Volume.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "e7ae45cd4e47a680aa005b408be90f56d84f362df3c3b6b65e65d7767180c8a9"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q092",
+    "category": "Ratios and Proportional Relationships",
+    "topic": "Percentages",
+    "reason": "AI review of question content: Percentages.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "df6ee8dc7a12cb74565d5e162e8b6378a07708a092573448f2912d7695cf82f9"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q101",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "AI review of question content: Inequalities.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "60aa75f5ec202d1cab9ba95257cad9da4d4f7134cd7220ead984698208005df9"
+  },
+  {
+    "id": "pdf-shsat-2024-2025-b-q110",
+    "category": "Algebra",
+    "topic": "Inequalities",
+    "reason": "AI review of question content: Inequalities.",
+    "previous": {
+      "category": "Uncategorized",
+      "topic": ""
+    },
+    "contentHash": "24970dd2283dc255d2f26e57ebbb95362e616f046d5e08e629225f9afc4609c3"
+  }
+]

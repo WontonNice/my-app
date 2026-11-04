@@ -42,7 +42,7 @@ test('Part B uses its own student document in authoring and Student view without
   assert.match(student, /<section class="exam-standalone-document">/);
   assert.match(student, /Which <strong>revision<\/strong>\?/);
   assert.match(student, /Paragraph text\./);
-  assert.doesNotMatch(student, /Reading sentinel|Other unsaved content|checked|studio-key-correct/);
+  assert.doesNotMatch(student, /Reading sentinel|Other unsaved content|<input[^>]*\schecked(?:[\s=>])|studio-key-correct/);
   assert.equal(app.previewQuestionIndex, 0);
   const frame = { tagName: 'IFRAME', dataset: { editor: 'standalone' } };
   app.previewMode = 'math'; nodes['#student-preview-modal'].hidden = true;
@@ -60,6 +60,56 @@ test('Part B uses its own student document in authoring and Student view without
   assert.match(frame.srcdoc, /class="exam-standalone-category-card"/);
   assert.match(frame.srcdoc, /class="exam-standalone-category-target-items" data-preview-category-items/);
   assert.doesNotMatch(frame.srcdoc, /class="exam-category-card"/);
+});
+
+test('Form D multi-select and inline drag-and-drop, and selectable-text items open the interactive ELA player', async () => {
+  const source = await readFile(new URL('../client/src/content/exams/standaloneItems.ts', import.meta.url), 'utf8');
+  const items = JSON.parse(source.slice(source.indexOf('= [') + 2, source.indexOf('\n];') + 2));
+  for (const id of ['official-shsat-2026-d-48', 'official-shsat-2026-d-49', 'official-shsat-2026-b-47']) {
+    const question = items.find(item => item.id === id);
+    assert.ok(question, id);
+    const before = JSON.stringify(question);
+    const editor = {}, button = { addEventListener() {} };
+    const app = { standaloneDraft: question };
+    let boots = 0, message;
+    const frame = { dataset: { mathStudentPreview: 'standalone-editor' }, contentWindow: { postMessage(value, origin) { message = { value, origin }; } } };
+    const context = {
+      app, $: selector => selector === '#standalone-editor' ? editor : button,
+      studioUI: { captureStandalonePosition() {} }, escapeHtml: String,
+      openStandaloneStudentPreview() {}, startMathPreviewFrames() { boots++; },
+      location: { origin: 'http://localhost:4326' }, clone: structuredClone, window: { addEventListener() {} },
+    };
+    const actions = vm.runInNewContext(`${editorFunction('renderStandaloneEditor')}\n${editorFunction('sendMathPreview')}\n({renderStandaloneEditor,sendMathPreview});`, context);
+    actions.renderStandaloneEditor(); actions.sendMathPreview(frame);
+    assert.equal(boots, 1);
+    assert.match(editor.innerHTML, /Interactive Part B student preview/);
+    assert.doesNotMatch(editor.innerHTML, /unsupported|friendly creator/);
+    assert.equal(message.value.preview.subject, 'english');
+    assert.equal(message.value.preview.question.id, id);
+    assert.equal(message.value.preview.count, 1);
+    assert.equal(JSON.stringify(message.value.preview.question), before);
+    assert.equal(JSON.stringify(question), before, 'Preview must not change authored questions or keys');
+  }
+});
+
+test('standalone prompts containing their own boxed paragraph do not render an extra empty stimulus', () => {
+  const nodes = { '#student-preview-modal': { hidden: false }, '#student-preview-subtitle': {}, '#student-preview-question': {}, '#student-preview-frame': {} };
+  const app = { previewMode: 'standalone', previewQuestionIndex: 0, studentStyles: '', standaloneDraft: {
+    type: 'multiple_choice', source: { sourceFamily: 'official_shsat' }, prompt: 'Read this sentence.', promptHtml: '<p>Read this sentence.</p><blockquote data-boxed="true"><u>Source text</u></blockquote>', choices: [{ id: 'A', text: 'Answer' }],
+  } };
+  const render = vm.runInNewContext(`${editorFunction('inlineRichValue')}\n${editorFunction('studentQuestionMarkup')}\n${editorFunction('renderStudentPreview')}\nrenderStudentPreview;`, {
+    app, $: selector => nodes[selector], studioUI: {}, escapeHtml: String,
+  });
+  render();
+  const html = nodes['#student-preview-frame'].srcdoc;
+  assert.match(html, /<blockquote data-boxed="true"><u>Source text<\/u><\/blockquote>/);
+  assert.doesNotMatch(html, /<div class="exam-standalone-stimulus">/);
+  const frame = { tagName: 'IFRAME', dataset: { editor: 'standalone' } };
+  render(frame);
+  assert.doesNotMatch(frame.srcdoc, /<div class="exam-standalone-stimulus">/);
+  delete app.standaloneDraft.source;
+  render(frame);
+  assert.match(frame.srcdoc, /<div class="exam-standalone-stimulus"><\/div>/, 'New handwritten questions still need an editable paragraph placeholder');
 });
 
 test('direct Part B editing preserves rich text and paragraph boundaries without changing answer keys or other fields', () => {

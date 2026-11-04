@@ -1,0 +1,18 @@
+✔ Decimal Coefficient after Distribution: exhaust 2772 distinct stems and solve displayed inputs independently (114.606ms)
+✔ Substitution into a Distributed Expression: exhaust 5760 distinct stems and solve displayed inputs independently (137.4729ms)
+✔ Inequalities with Parentheses on Both Sides: exhaust 1284 distinct stems and solve displayed inputs independently (46.9029ms)
+✔ Graphing Absolute-Value Inequalities: exhaust 220 distinct stems and solve displayed inputs independently (39.3068ms)
+✔ Combining Parenthesized Groups: exhaust 432 distinct stems and solve displayed inputs independently (13.694ms)
+✔ Graphing Compound Inequalities: exhaust 400 distinct stems and solve displayed inputs independently (95.0133ms)
+✔ Equivalent Forms of an Expression Sum: exhaust 1410 distinct stems and solve displayed inputs independently (99.9943ms)
+✔ Average of Consecutive Integer Endpoints: exhaust 60 distinct stems and solve displayed inputs independently (2.8821ms)
+✔ all eight original source scenarios occur in their corresponding families (0.2825ms)
+✔ batch appends to exact shared modules, enables and publishes all eight, preserves old sessions and is idempotent (46.2106ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1440.5706

@@ -1,0 +1,141 @@
+{
+  "auditedAt": "2026-11-04T10:37:22.126Z",
+  "examCount": 22,
+  "questionCount": 1226,
+  "aiClassified": 426,
+  "existingPreserved": 800,
+  "exams": [
+    {
+      "id": "2025-2026-form-a",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 2
+    },
+    {
+      "id": "2025-2026-form-b",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 34
+    },
+    {
+      "id": "2020-2021-form-b",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 0
+    },
+    {
+      "id": "2020-2021-form-a",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 0
+    },
+    {
+      "id": "2021-2022-form-a",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 0
+    },
+    {
+      "id": "2022-2023-form-a",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 0
+    },
+    {
+      "id": "2022-2023-form-b",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 0
+    },
+    {
+      "id": "2021-2022-form-b",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 57
+    },
+    {
+      "id": "2023-2024-form-a",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 57
+    },
+    {
+      "id": "2023-2024-form-b",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 57
+    },
+    {
+      "id": "2017-2018-form-a",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 0
+    },
+    {
+      "id": "2017-2018-form-b",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 56
+    },
+    {
+      "id": "2018-2019-form-a",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 0
+    },
+    {
+      "id": "2018-2019-form-b",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 57
+    },
+    {
+      "id": "2019-2020-form-a",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 0
+    },
+    {
+      "id": "2019-2020-form-b",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 49
+    },
+    {
+      "id": "2024-2025-form-a",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 0
+    },
+    {
+      "id": "2024-2025-form-b",
+      "questions": 57,
+      "classified": 57,
+      "aiPending": 57
+    },
+    {
+      "id": "2026-2027-form-a",
+      "questions": 50,
+      "classified": 50,
+      "aiPending": 0
+    },
+    {
+      "id": "2026-2027-form-b",
+      "questions": 50,
+      "classified": 50,
+      "aiPending": 0
+    },
+    {
+      "id": "2026-2027-form-c",
+      "questions": 50,
+      "classified": 50,
+      "aiPending": 0
+    },
+    {
+      "id": "2026-2027-form-d",
+      "questions": 50,
+      "classified": 50,
+      "aiPending": 0
+    }
+  ]
+}

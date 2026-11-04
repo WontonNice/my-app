@@ -1,3 +1,4 @@
+import { useStudentRecordFilter } from "../lib/studentRecordFilters";
 import { Fragment, useState, type ReactNode } from "react";
 import { percentage, scoresAreComparable, type AnalyticsExam, type SkillMetric } from "../lib/studentAnalytics";
 import { activityLabel, rawScore, recordDate } from "../lib/sessionPreparation";
@@ -11,7 +12,7 @@ export function StudentAssessmentHistory({ exams, skills, openExam, setOpenExam,
   exams: AnalyticsExam[]; skills: SkillMetric[]; openExam: string; setOpenExam: (key: string) => void;
   showEvidence: (key: string, status?: string) => void; renderExam: (exam: AnalyticsExam) => ReactNode;
 }) {
-  const [activity, setActivity] = useState("exam"), [fullOnly, setFullOnly] = useState(false), [sort, setSort] = useState("newest"), [compare, setCompare] = useState<string[]>([]);
+  const [activity, setActivity] = useStudentRecordFilter("AssessmentHistory.activity", "exam"), [fullOnly, setFullOnly] = useStudentRecordFilter("AssessmentHistory.fullOnly", false), [sort, setSort] = useStudentRecordFilter("AssessmentHistory.sort", "newest"), [compare, setCompare] = useState<string[]>([]);
   const focused = exams.find(exam => exam.key === openExam);
   const shownActivity = focused && focused.kind && focused.kind !== "exam" && activity === "exam" ? "all" : activity;
   const rows = exams.filter(exam => (shownActivity === "all" || (shownActivity === "exam" ? (exam.kind ?? "exam") === "exam" : exam.kind === "practice" || exam.kind === "passage")) && (!fullOnly || exam.complete)).sort((a, b) => sort === "score" ? (percentage(b.correct ?? 0, b.total ?? 0) ?? -1) - (percentage(a.correct ?? 0, a.total ?? 0) ?? -1) : ((Date.parse(a.date ?? "") || 0) - (Date.parse(b.date ?? "") || 0)) * (sort === "oldest" ? 1 : -1));

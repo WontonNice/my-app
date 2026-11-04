@@ -2563,7 +2563,8 @@ async function saveMathImage(input) {
   };
 }
 
-async function saveMath(input, { importedStatuses = {} } = {}) {
+async function saveMath(input, options = {}) { return practiceCatalogService.withSharedMathContext(workspaceRoot,()=>saveMathInContext(input,options)); }
+async function saveMathInContext(input, { importedStatuses = {} } = {}) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Math section data is invalid.");
   }
@@ -2664,7 +2665,7 @@ async function saveMath(input, { importedStatuses = {} } = {}) {
     if (status && question.importNeedsEditing === false) status.needsEditing = false;
   }
   if (Object.keys(importStatus).length) await writeMathImportStatus(importStatus);
-  mathCommand.syncMathNativeClassifications(workspaceRoot, section.questions, managementRevision);
+  mathCommand.syncMathNativeClassifications(workspaceRoot, section.questions, managementRevision, {previousQuestions: [...previousQuestions.values()].filter(question => !importedStatuses[question.id]), actor: process.env.CONTENT_STUDIO_TEACHER_ID || 'local-teacher:' + createHash('sha256').update(homedir()).digest('hex').slice(0, 24)});
   return {
     assessmentId,
     questionCount: section.questions.length,
@@ -3177,7 +3178,8 @@ async function saveContentTopics(input) {
   return getContentTopicConfiguration();
 }
 
-async function getState() {
+async function getState() { return practiceCatalogService.withSharedMathContext(workspaceRoot,getStateInContext); }
+async function getStateInContext() {
   topicSections = await readEnglishTopicSections(workspaceRoot);
   topics = [...new Set(Object.values(topicSections).flat())];
   mathTopicConfiguration = await readMathTopicConfiguration(workspaceRoot);
@@ -3644,7 +3646,8 @@ async function handleRequest(request, response) {
         sendJson(response, 200, await openTeacherWorkspace(typeof body.query === 'string' ? body.query.slice(0, 20000) : ''));
         return;
       }
-      const result = mathCommand.handleMathCatalogRequest({ method: request.method, pathname: url.pathname.slice('/api/math-command'.length), body: request.method === 'GET' ? undefined : await readJson(request), query: Object.fromEntries(url.searchParams), root: workspaceRoot, actor: process.env.CONTENT_STUDIO_TEACHER_ID || 'local-teacher:' + createHash('sha256').update(homedir()).digest('hex').slice(0, 24) });
+      const body = request.method === 'GET' ? undefined : await readJson(request);
+      const result = await practiceCatalogService.withSharedMathContext(workspaceRoot,()=>mathCommand.handleMathCatalogRequest({ method: request.method, pathname: url.pathname.slice('/api/math-command'.length), body, query: Object.fromEntries(url.searchParams), root: workspaceRoot, actor: process.env.CONTENT_STUDIO_TEACHER_ID || 'local-teacher:' + createHash('sha256').update(homedir()).digest('hex').slice(0, 24) }));
       if (result === undefined) throw new EditorError(404, 'Open the authenticated teacher workspace for student records and assignments.');
       sendJson(response, 200, result); return;
     }
@@ -4012,12 +4015,12 @@ async function handleRequest(request, response) {
       return;
     }
     if (url.pathname === "/api/math-topics" && request.method === "GET") {
-      sendJson(response, 200, await readMathTopicConfiguration(workspaceRoot)); return;
+      sendJson(response, 200, await practiceCatalogService.withSharedMathContext(workspaceRoot,()=>readMathTopicConfiguration(workspaceRoot))); return;
     }
     if (url.pathname === "/api/math-topics" && request.method === "PUT") {
       verifyEditRequest(request);
       const body = await readJson(request);
-      const result = await mutateMath(() => saveMathTopicConfiguration(workspaceRoot, body));
+      const result = await mutateMath(() => practiceCatalogService.withSharedMathContext(workspaceRoot,()=>saveMathTopicConfiguration(workspaceRoot, body)));
       mathTopicConfiguration = result; mathTopics = result.categories.map(category => category.label);
       sendJson(response, 200, result); return;
     }

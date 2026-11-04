@@ -1,5 +1,5 @@
 import { coordinateAnswerComplete, correctCoordinateAnswer } from '../../../server/src/shared/coordinateResponse';
-import { ExamAnswer } from "../components/ExamReviewQuestion";
+import { ExamAnswer, ExamText } from "../components/ExamReviewQuestion";
 import { correctExamAnswer } from "../lib/examReviewAnswer";
 import { ExamGeneralDirections } from "../components/ExamGeneralDirections";
 import { InlineTextSelection } from "../components/InlineTextSelection";
@@ -17,7 +17,7 @@ import { restoredReentryTimer } from "../../../server/src/shared/examReentry";
 import { normalizeExamNavigation, type ExamNavigation } from "../../../server/src/shared/examNavigation";
 import { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction, type DragEvent, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { getBoldFormattedText, renderMathAuthoredText, ExamMathQuestion, renderMathRichText, renderInlineMathText, MatrixChoiceResponse } from "../components/ExamMathQuestion";
+import { getBoldFormattedText, renderMathAuthoredText, ExamMathQuestion, renderMathRichText, renderInlineMathText, MatrixChoiceResponse, MathDragDropResponse } from "../components/ExamMathQuestion";
 import { PassageGlossary } from "../components/PassageGlossary";
 import { isMathAnswerComplete } from "../../../server/src/shared/mathAnswer";
 import "katex/dist/katex.min.css";
@@ -491,13 +491,20 @@ function ExamModuleHeader({
   );
 }
 
-function ExamExhibits({ showExhibits = false }: { showExhibits?: boolean }) {
+function ExamExhibits({ showExhibits = false, explanationQuestion }: { showExhibits?: boolean; explanationQuestion?: ExamQuestion }) {
   const [isExhibitsOpen, setIsExhibitsOpen] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    if (isExhibitsOpen) dialogRef.current?.showModal();
+  }, [isExhibitsOpen]);
+  const close = () => { dialogRef.current?.close(); setIsExhibitsOpen(false); triggerRef.current?.focus(); };
 
   return (
     <>
       {showExhibits ? (
         <button
+          ref={triggerRef}
           aria-expanded={isExhibitsOpen}
           className="exam-exhibits-toggle"
           onClick={() => setIsExhibitsOpen(true)}
@@ -510,18 +517,23 @@ function ExamExhibits({ showExhibits = false }: { showExhibits?: boolean }) {
 
       {isExhibitsOpen ? (
         <div className="exam-exhibits-layer">
-          <section aria-labelledby="exam-exhibits-title" aria-modal="true" className="exam-exhibits-dialog" role="dialog">
+          <dialog ref={dialogRef} aria-labelledby="exam-exhibits-title" className="exam-exhibits-dialog" onCancel={event => { event.preventDefault(); close(); }}>
             <header>
-              <h2 id="exam-exhibits-title">Exhibits</h2>
-              <button aria-label="Close exhibits" onClick={() => setIsExhibitsOpen(false)} type="button">
+              <h2 id="exam-exhibits-title">{explanationQuestion ? "Answer explanation" : "Exhibits"}</h2>
+              <button aria-label="Close exhibits" onClick={close} type="button">
                 x
               </button>
             </header>
-            <div className="exam-exhibits-tabs"><span>Exhibit 1</span></div>
+            {!explanationQuestion && <div className="exam-exhibits-tabs"><span>Exhibit 1</span></div>}
             <div className="exam-exhibits-content">
-              <p>Reference materials provided for a question will appear in this window.</p>
+              {explanationQuestion ? <>
+                <p className="correction-explanation-source">Saved with this question</p>
+                {explanationQuestion.explanationHtml?.trim() || explanationQuestion.explanation?.trim()
+                  ? <ExamText text={explanationQuestion.explanation} html={explanationQuestion.explanationHtml} />
+                  : <p>No official explanation has been imported for this question yet.</p>}
+              </> : <p>Reference materials provided for a question will appear in this window.</p>}
             </div>
-          </section>
+          </dialog>
         </div>
       ) : null}
     </>
@@ -751,6 +763,7 @@ export function ExamToolbar({
   reviewQuestionCount = 0,
   questionProgress,
   showProgress = false,
+  explanationQuestion,
   showExhibits = false,
   showReviewTools = true,
   showStatusIcon = true,
@@ -804,6 +817,7 @@ export function ExamToolbar({
   reviewQuestionCount?: number;
   questionProgress?: { answered: number; total: number };
   showProgress?: boolean;
+  explanationQuestion?: ExamQuestion;
   showExhibits?: boolean;
   showReviewTools?: boolean;
   showStatusIcon?: boolean;
@@ -1097,7 +1111,7 @@ export function ExamToolbar({
           ) : null}
         </div>
       </nav>
-      {showWorkTools ? <ExamExhibits showExhibits={showExhibits} /> : null}
+      {showWorkTools ? <ExamExhibits showExhibits={showExhibits} explanationQuestion={explanationQuestion} /> : null}
       {showWorkTools && pencilStorage && !pencilInPassage ? <PencilWorkspace active={activeTool === "pencil"} drawingKey={pencilKey} storage={pencilStorage} onDeactivate={() => onSelectTool?.("pointer")} /> : null}
       {onTimeExpiredSubmit && <ExamTimeExpiredDialog onSubmit={onTimeExpiredSubmit} />}
     </>
@@ -1110,7 +1124,7 @@ export type ExamGameSession = {
   answers: SelectedAnswers; onAnswersChange: (answers: SelectedAnswers) => void;
   onSubmit: (answers: SelectedAnswers) => Promise<boolean>; timerText: string;
   hideTimer?: boolean;
-  correctionReview?: { number: number; canNext: boolean; canPrevious: boolean; onNext: () => void; onPrevious: () => void };
+  correctionReview?: { question?: ExamQuestion; number: number; canNext: boolean; canPrevious: boolean; onNext: () => void; onPrevious: () => void };
   subjectPosition: { current: number; total: number };
   sharedTools?: SharedExamTools;
   lockedQuestionIds?: string[];
@@ -1573,14 +1587,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     ? getExamTimerDisplay(timerState, timerNow)
     : { isOvertime: false, text: "3:00:00" };
   const isExamPaused = Boolean(timerState && timerState.pausedAt !== null);
-  const activePassageSection =
-    activePassageSet?.section ?? (activePassageSet ? examContent.passageSections?.[activePassageSet.id] : undefined) ?? "reading";
-  const passageSetDisplayLabel =
-    activePassageSection === "reading"
-      ? getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length)
-      : activePassageSection === "revising_editing_a"
-        ? "ELA Rev/Edit A"
-        : activePassageSet?.label ?? getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length);
+  const passageSetDisplayLabel = getPassageSetLabel(activePassageSetIndex, examContent.passageSets.length);
   const passageSetLabel = passageSetDisplayLabel.toUpperCase();
   const isProsePassage = activePassageSet?.passage.format === "prose";
   const isSentenceProsePassage = activePassageSet?.passage.format === "sentence_prose";
@@ -2715,6 +2722,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
   const correctionToolbarProps = gameSession?.correctionReview ? {
     breadcrumbCurrent: `QUESTION ${gameSession.correctionReview.number}`,
     breadcrumbMiddle: "CORRECTIONS",
+    explanationQuestion: gameSession.correctionReview.question,
     isNextActive: gameSession.correctionReview.canNext,
     isPreviousActive: gameSession.correctionReview.canPrevious,
     onNext: gameSession.correctionReview.onNext,
@@ -3076,7 +3084,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
               </div>
             </div>
           </div>}
-          <form key={activeStandaloneQuestion.id} className={activeStandaloneQuestion.selectionHtml ? "exam-question-panel" : "exam-standalone-panel"} onSubmit={event => event.preventDefault()}>
+          <form key={activeStandaloneQuestion.id} className={activeStandaloneQuestion.selectionHtml ? "exam-question-panel" : `exam-standalone-panel${activeStandaloneQuestion.type === 'math_drag_drop' ? ' is-drag-drop' : ''}`} onSubmit={event => event.preventDefault()}>
             <PassageGlossary contextKey={activeStandaloneQuestion.id}>
             <QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeStandaloneQuestion.id} />
             <h1
@@ -3116,7 +3124,13 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
               </p>
             ) : null}
 
-            {activeStandaloneQuestion.selectionHtml ? null : activeStandaloneQuestion.type === 'transition_drop' ? <SentenceDragDrop key={activeStandaloneQuestion.id} question={activeStandaloneQuestion} answer={selectedAnswers[activeStandaloneQuestion.id]} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeStandaloneQuestion.id]: answer }))} /> : activeStandaloneQuestion.type === "matrix_choice" &&
+            {activeStandaloneQuestion.selectionHtml ? null : activeStandaloneQuestion.type === 'math_drag_drop' ? (
+              <MathDragDropResponse
+                answer={activeStandaloneQuestionCategoryPlacements}
+                onChange={(answer) => handleChangeStructuredAnswer(activeStandaloneQuestion.id, answer)}
+                question={activeStandaloneQuestion}
+              />
+            ) : activeStandaloneQuestion.type === 'transition_drop' ? <SentenceDragDrop key={activeStandaloneQuestion.id} question={activeStandaloneQuestion} answer={selectedAnswers[activeStandaloneQuestion.id]} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeStandaloneQuestion.id]: answer }))} /> : activeStandaloneQuestion.type === "matrix_choice" &&
             activeStandaloneQuestion.items &&
             activeStandaloneQuestion.categories ? (
               <MatrixChoiceResponse

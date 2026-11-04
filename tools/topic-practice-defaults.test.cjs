@@ -49,9 +49,9 @@ test('each foundation accepts only its own topic modules and empty defaults rema
  const moved=movePracticeModule(catalog,'2021-2022-form-a-q76',foundation.id);
  assert.equal(moved.modules.find(module=>module.id==='2021-2022-form-a-q76').parentId,foundation.id);
  const groupedIds=catalog.modules.find(module=>module.id==='2021-2022-form-a-q76').generatorIds;
- const directIds=managedGeneratorIds(foundation,catalog).filter(id=>!groupedIds.includes(id));
+ const directIds=managedGeneratorIds(foundation,catalog).filter(id=>!catalog.modules.some(module=>!practiceModuleKind(module)&&module.category===foundation.category&&module.topic===foundation.topic&&module.generatorIds.includes(id)));
  assert.deepEqual(managedGeneratorIds(moved.modules.find(module=>module.id===foundation.id),moved,{childModuleIds:[]}),directIds);
- assert.deepEqual(new Set(managedGeneratorIds(moved.modules.find(module=>module.id===foundation.id),moved)),new Set([...directIds,...groupedIds]));
+ assert.deepEqual(managedGeneratorIds(moved.modules.find(module=>module.id===foundation.id),moved),managedGeneratorIds(foundation,catalog));
  assert.throws(()=>movePracticeModule(catalog,'inequalities',foundation.id));
  assert.throws(()=>movePracticeModule(catalog,foundation.id,'foundation'));
  const removed=removePracticeGenerator(catalog,'overlapping-groups-v1');
@@ -72,30 +72,33 @@ test('studio grouping and filters remain usable with hundreds of resources',()=>
  assert.ok([...ids].every(id=>/^[a-zA-Z0-9][a-zA-Z0-9_-]{0,99}$/.test(id)));
 });
 
-test('individual modules default to their own General Practice and keep explicit Foundation placement',()=>{
+test('individual modules nest under Foundation Building and retain stable identities',()=>{
  const catalog=defaultPracticeCatalog(taxonomy);
  for(const module of catalog.modules.filter(module=>!practiceModuleKind(module))){
   const parent=catalog.modules.find(item=>item.id===module.parentId);
-  assert.equal(practiceModuleKind(parent),module.generatorIds.some(id=>id.startsWith('probability-'))?'foundation':'general');assert.equal(parent.category,module.category);assert.equal(parent.topic,module.topic);
+  assert.equal(practiceModuleKind(parent),'foundation');assert.equal(parent.category,module.category);assert.equal(parent.topic,module.topic);
  }
  const legacy=structuredClone(catalog);legacy.modules.find(item=>item.id==='2021-2022-form-a-q76').parentId=null;
  legacy.modules.push({...legacy.modules.find(item=>item.id==='2021-2022-form-a-q76'),id:'2025-2026-form-a-math-5',generatorIds:['overlapping-survey-totals-v1']});
  const foundation=legacy.modules.find(module=>module.topic==='Counting & Sets'&&practiceModuleKind(module)==='foundation');
  const assigned=ensureTopicPracticeModules(movePracticeModule(legacy,'2025-2026-form-a-math-5',foundation.id),taxonomy);
  assert.equal(assigned.modules.find(item=>item.id==='2025-2026-form-a-math-5').parentId,foundation.id);
- assert.equal(practiceModuleKind(assigned.modules.find(item=>item.id===assigned.modules.find(module=>module.id==='2021-2022-form-a-q76').parentId)),'general');
+ assert.equal(practiceModuleKind(assigned.modules.find(item=>item.id===assigned.modules.find(module=>module.id==='2021-2022-form-a-q76').parentId)),'foundation');
  assert.deepEqual(ensureTopicPracticeModules(assigned,taxonomy),assigned);
- assert.equal(practiceModuleKind(assigned.modules.find(item=>item.id===movePracticeModule(assigned,'2025-2026-form-a-math-5',null).modules.find(module=>module.id==='2025-2026-form-a-math-5').parentId)),'general');
+ assert.equal(practiceModuleKind(assigned.modules.find(item=>item.id===movePracticeModule(assigned,'2025-2026-form-a-math-5',null).modules.find(module=>module.id==='2025-2026-form-a-math-5').parentId)),'foundation');
  assert.doesNotThrow(()=>validatePracticeCatalog(assigned,taxonomy));
 });
 
-test('General Practice settings honor selected and unpublished nested modules',()=>{
+test('General Practice always includes the full library; Foundation settings honor selected modules in either placement',()=>{
  const catalog=defaultPracticeCatalog(taxonomy),general=catalog.modules.find(module=>module.topic==='Counting & Sets'&&practiceModuleKind(module)==='general');
  const child=catalog.modules.find(module=>module.id==='2021-2022-form-a-q76');
  // Keep this selection test focused on the two overlapping-group generators.
  catalog.generators=catalog.generators.filter(generator=>child.generatorIds.includes(generator.id));
  assert.deepEqual(managedGeneratorIds(general,catalog,{childModuleIds:[child.id]}),child.generatorIds);
- assert.deepEqual(managedGeneratorIds(general,catalog,{childModuleIds:[]}),[]);
+ assert.deepEqual(managedGeneratorIds(general,catalog,{childModuleIds:[]}),child.generatorIds);
+ const foundation=catalog.modules.find(module=>module.topic===general.topic&&module.category===general.category&&practiceModuleKind(module)==='foundation');
+ assert.deepEqual(managedGeneratorIds(foundation,catalog,{childModuleIds:[]}),[]);
+ assert.deepEqual(managedGeneratorIds(foundation,catalog,{childModuleIds:[child.id]}),child.generatorIds);
  child.published=false;
  assert.deepEqual(managedGeneratorIds(general,catalog),[]);
 });

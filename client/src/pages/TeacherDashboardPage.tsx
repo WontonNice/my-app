@@ -1,3 +1,4 @@
+import { StudentRecordFilterProvider } from "../components/StudentRecordFilterProvider";
 import { mergeAnalyticsInputs } from "../lib/studentAnalytics";
 import { teacherPlanClient } from "../lib/api";
 import { teacherNavItems } from '../lib/teacherNavigation';
@@ -1641,7 +1642,7 @@ export function TeacherDashboardPage() {
       <section className={`teacher-panel teacher-roster-panel${selectedStudent ? " sa-selected-workspace" : ""}`} id="students">
           {selectedStudent ? <div className="sa-student-picker"><button onClick={() => setSelectedStudentId("")} type="button"><ArrowLeft size={14} /> All students</button><label>Student <select value={selectedStudentId} onChange={event => setSelectedStudentId(event.target.value)}>{shsatStudents.map(student => <option key={student.id} value={student.id}>{student.fullName}</option>)}</select></label><span>{shsatStudents.length} enrolled</span></div> : <div className="teacher-panel-header"><div><span>Roster</span><h2>SHSAT student progress</h2></div><p>Select a student to review progression and question evidence.</p></div>}
           {!selectedStudent && <StudentProgressRoster plans={planRoster} students={shsatStudents} inputsFor={student => buildTeacherAnalyticsInputs(student, assessments)} onSelect={setSelectedStudentId} />}
-          {selectedStudent && <StudentDetail key={selectedStudent.id+":"+(new URLSearchParams(window.location.search).get("exam")??"")} accessToken={accessToken} assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={selectedStudent} />}
+          <StudentRecordFilterProvider key={teacherUserId}>{selectedStudent && <StudentDetail key={selectedStudent.id+":"+(new URLSearchParams(window.location.search).get("exam")??"")} accessToken={accessToken} assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={selectedStudent} />}</StudentRecordFilterProvider>
 
       </section>
       ) : null}

@@ -23,6 +23,10 @@ export function savePractice(storage:Storage,owner:string,state:PracticeState) {
   const previous=readPracticeProgress(storage,owner,state.moduleId);
   // Save the record before replacing the last session, including legacy sessions.
   storage.setItem(bestKey(owner,state.moduleId),String(Math.max(previous.longestStreak,state.longestStreak)));
+  for(const [moduleId,best] of Object.entries(state.moduleLongestStreaks??{})){
+    const previousBest=readPracticeProgress(storage,owner,moduleId).longestStreak;
+    storage.setItem(bestKey(owner,moduleId),String(Math.max(previousBest,best)));
+  }
   storage.setItem(prefix(owner)+encodeURIComponent(state.moduleId),JSON.stringify(state));
   storage.setItem(prefix(owner)+'recent',state.moduleId);
   if(typeof window!=='undefined'&&(previous.checked!==state.checked||previous.streak!==state.streak||previous.resumable===state.finished))window.dispatchEvent(new Event(practiceProgressEvent));

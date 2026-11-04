@@ -36,7 +36,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "LAST YEAR’S TOTAL SALES\nVehicles | Number\nFour-door cars | 5,850\nTwo-door cars | 2,250\nTrucks | 900\nTotal | 9,000\n\nThe table above shows the number of each type of vehicle sold at a dealership last year. If 1,000 vehicles will be sold next month, what is the best estimate (based on last year’s sales) of the number of two-door cars that will be sold?",
     "promptHtml": "<table><caption>LAST YEAR’S TOTAL SALES</caption><thead><tr><th scope=\"col\">Vehicles</th><th scope=\"col\">Number</th></tr></thead><tbody><tr><td>Four-door cars</td><td>\\(5{,}850\\)</td></tr><tr><td>Two-door cars</td><td>\\(2{,}250\\)</td></tr><tr><td>Trucks</td><td>\\(900\\)</td></tr><tr><td>Total</td><td>\\(9{,}000\\)</td></tr></tbody></table><p>The table above shows the number of each type of vehicle sold at a dealership last year. If \\(1{,}000\\) vehicles will be sold next month, what is the best estimate (based on last year’s sales) of the number of two-door cars that will be sold?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Statistics and Probability", subtopic: "Data Displays & Sampling",
     "correctTextAnswers": [
       "250"
     ],
@@ -63,7 +63,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a scale drawing of a rectangular garden, the length is 15 inches and the width is 9 inches. In the drawing, 2 inches represents 3 yards. What is the width of the actual garden, in yards?",
     "promptHtml": "<p>In a scale drawing of a rectangular garden, the length is \\(15\\) inches and the width is \\(9\\) inches. In the drawing, \\(2\\) inches represents \\(3\\) yards. What is the width of the actual garden, in yards?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Geometry", subtopic: "Similarity, Scale & Proportional Geometry",
     "correctTextAnswers": [
       "13.5"
     ],
@@ -90,7 +90,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A kindergarten teacher has 72 crayons, 60 pencils, and 84 sheets of paper to distribute to the children in her class. If each child receives an equal number of each item and there are no items remaining, what is the greatest possible number of children in the class?",
     "promptHtml": "<p>A kindergarten teacher has \\(72\\) crayons, \\(60\\) pencils, and \\(84\\) sheets of paper to distribute to the children in her class. If each child receives an equal number of each item and there are no items remaining, what is the greatest possible number of children in the class?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "correctTextAnswers": [
       "12"
     ],
@@ -117,7 +117,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Mr. Smith opened a retirement account with a deposit of $900. This account earns 5% simple interest annually. How many years will it take for his $900 deposit to earn $360 interest?",
     "promptHtml": "<p>Mr. Smith opened a retirement account with a deposit of \\(\\$900\\). This account earns \\(5\\%\\) simple interest annually. How many years will it take for his \\(\\$900\\) deposit to earn \\(\\$360\\) interest?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "correctTextAnswers": [
       "8"
     ],
@@ -144,7 +144,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Solve the equation for x:\n\n\\(\\frac{(21)(14)x}{(49)(48)}\\) = 0.875",
     "promptHtml": "<p>Solve the equation for \\(x\\):</p><p>\\(\\frac{(21)(14)x}{(49)(48)} = 0.875\\)</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "correctTextAnswers": [
       "7"
     ],
@@ -171,7 +171,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of \\(3\\frac{1}{4}-1\\frac{2}{3}-\\left(-4\\frac{1}{2}\\right)\\)?",
     "promptHtml": "<p>What is the value of \\(3\\frac{1}{4}-1\\frac{2}{3}-\\left(-4\\frac{1}{2}\\right)\\)?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -218,7 +218,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On Fran’s map, 2 centimeters represents 3 kilometers. The points on this map that represent Fran’s home and Bryant State Park are 4.5 centimeters apart. How many kilometers apart are Fran’s home and Bryant State Park, to the nearest kilometer?",
     "promptHtml": "<p>On Fran’s map, \\(2\\) centimeters represents \\(3\\) kilometers. The points on this map that represent Fran’s home and Bryant State Park are \\(4.5\\) centimeters apart. How many kilometers apart are Fran’s home and Bryant State Park, to the nearest kilometer?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Geometry", subtopic: "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -265,7 +265,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Solve for x in terms of y if 2x + 4 = y.",
     "promptHtml": "<p>Solve for \\(x\\) in terms of \\(y\\) if \\(2x + 4 = y\\).</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -312,7 +312,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Bryan completed a 100-meter race in 11.74 seconds. Luis completed the same race in 11.69 seconds. What was the difference between their times, expressed as a fraction of a second?",
     "promptHtml": "<p>Bryan completed a \\(100\\)-meter race in \\(11.74\\) seconds. Luis completed the same race in \\(11.69\\) seconds. What was the difference between their times, expressed as a fraction of a second?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -359,7 +359,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A total of 24 students in a math class took a 100-point test:\n\n• None of the students scored 100 points.\n\n• 75% of the students scored less than 82 points.\n\n• The lowest score in the class was 54 points.\n\nWhich box plot best represents the test scores from this math class?",
     "promptHtml": "<p>A total of \\(24\\) students in a math class took a \\(100\\)-point test:</p><p>• None of the students scored \\(100\\) points.</p><p>• \\(75\\%\\) of the students scored less than \\(82\\) points.</p><p>• The lowest score in the class was \\(54\\) points.</p><p>Which box plot best represents the test scores from this math class?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -418,7 +418,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "n = 0.13 + \\(\\frac{207}{100}\\)\n\nWhat is the value of n expressed as a fraction?",
     "promptHtml": "<p>\\(n = 0.13 + \\frac{207}{100}\\)</p><p>What is the value of \\(n\\) expressed as a fraction?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -465,7 +465,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The perimeter of a 12-sided polygon is 100 centimeters. The length of one side is 25 centimeters. The length of another side is 35 centimeters. The remaining sides are equal in length to one another. What is the length of each of the remaining sides, in centimeters?",
     "promptHtml": "<p>The perimeter of a \\(12\\)-sided polygon is \\(100\\) centimeters. The length of one side is \\(25\\) centimeters. The length of another side is \\(35\\) centimeters. The remaining sides are equal in length to one another. What is the length of each of the remaining sides, in centimeters?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Geometry", subtopic: "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -512,7 +512,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Shiow-Chen has a box that contains 4 green cards, 7 yellow cards, and 6 red cards. She randomly draws one card at a time from the box and does not return the cards to the box after they have been drawn. The first card she draws is yellow. The second card she draws is green. What is the probability that the third card she draws will also be green?",
     "promptHtml": "<p>Shiow-Chen has a box that contains \\(4\\) green cards, \\(7\\) yellow cards, and \\(6\\) red cards. She randomly draws one card at a time from the box and does not return the cards to the box after they have been drawn. The first card she draws is yellow. The second card she draws is green. What is the probability that the third card she draws will also be green?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -559,7 +559,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Each number in a sequence is 3 more than twice the number that comes just before it. If 93 is a number in the sequence, what number comes just before it?",
     "promptHtml": "<p>Each number in a sequence is \\(3\\) more than twice the number that comes just before it. If \\(93\\) is a number in the sequence, what number comes just before it?</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Patterns & Sequences",
     "choices": [
       {
         "id": "A",
@@ -606,7 +606,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On a map, the distance between Deshawn’s house and Xin’s house is 5.4 inches. If 2 inches on the map represents 3 miles, what is the distance between these two houses, in miles?",
     "promptHtml": "<p>On a map, the distance between Deshawn’s house and Xin’s house is \\(5.4\\) inches. If \\(2\\) inches on the map represents \\(3\\) miles, what is the distance between these two houses, in miles?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Geometry", subtopic: "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -653,7 +653,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "This wheel has 15 spokes, equally spaced. What is the measure of the angle between adjacent spokes?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q073-figure-1.png\" alt=\"Original source figure for Form B, question 73\" width=\"123\"></p><p>This wheel has \\(15\\) spokes, equally spaced. What is the measure of the angle between adjacent spokes?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Lines & Angles",
     "choices": [
       {
         "id": "A",
@@ -700,7 +700,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "m • t = 72\n\nFor the equation above, what is the sum\n\nof the values of m when t = 1, when\n\nt = 2, and when t = 3?",
     "promptHtml": "<p>\\(m \\cdot t = 72\\)</p><p>For the equation above, what is the sum of the values of \\(m\\) when \\(t=1\\), when \\(t=2\\), and when \\(t=3\\)?</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -747,7 +747,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The diagram above shows a rectangle with an inscribed triangle. The triangle’s vertex and base touch the sides of the rectangle as shown. What is the total area of the shaded portion?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q075-figure-1.png\" alt=\"Original source figure for Form B, question 75\" width=\"246\"></p><p>The diagram above shows a rectangle with an inscribed triangle. The triangle’s vertex and base touch the sides of the rectangle as shown. What is the total area of the shaded portion?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -794,7 +794,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Orange juice costs $2 per gallon, and grapefruit juice costs $3 per gallon. A recent shipment of equal amounts of the two types of juice costs a total of $250. How many gallons of orange juice are in the shipment?",
     "promptHtml": "<p>Orange juice costs \\(\\$2\\) per gallon, and grapefruit juice costs \\(\\$3\\) per gallon. A recent shipment of equal amounts of the two types of juice costs a total of \\(\\$250\\). How many gallons of orange juice are in the shipment?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -841,7 +841,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Five consecutive numbers have a sum of 110. What is the least of these consecutive numbers?",
     "promptHtml": "<p>Five consecutive numbers have a sum of \\(110\\). What is the <strong>least </strong>of these consecutive numbers?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -888,7 +888,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "−mn (−m)(−n) |mn| |−mn| |(−m)(−n)|\n\nIf m and n are positive integers, how many of the five expressions above are equivalent to mn?",
     "promptHtml": "<p>\\[\\begin{gathered}-mn\\\\(-m)(-n)\\\\|mn|\\\\|-mn|\\\\|(-m)(-n)|\\end{gathered}\\]</p><p>If \\(m\\) and \\(n\\) are positive integers, how many of the five expressions above are equivalent to \\(mn\\)?</p>",
-    "topic": "Algebra",
+    "topic": "Arithmetic & Number Sense", subtopic: "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -935,7 +935,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A vendor is selling 10 packages of homemade fudge at a bake sale. The vendor weighed and labeled each package. The package weights are given in ounces:\n\n4.6 6.0 3.8 3.5 4.5 5.4 3.9 6.5 4.8 6.2\n\nThe vendor created a box plot of the package weights. Which box plot best represents the data?",
     "promptHtml": "<p>A vendor is selling \\(10\\) packages of homemade fudge at a bake sale. The vendor weighed and labeled each package. The package weights are given in ounces:</p><p>\\(4.6\\) \\(6.0\\) \\(3.8\\) \\(3.5\\) \\(4.5\\) \\(5.4\\) \\(3.9\\) \\(6.5\\) \\(4.8\\) \\(6.2\\)</p><p>The vendor created a box plot of the package weights. Which box plot best represents the data?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -994,7 +994,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "FRUIT SOLD AT STORE XYZ\nFruit | Number Sold\nApples | 8\nBananas | 6\nCherries | 12\nOranges | 6\nPeaches | ?\nTotal | 50\n\nPeaches made up what percentage of the total number of pieces of fruit sold at Store XYZ, according to the table above?",
     "promptHtml": "<table><caption>FRUIT SOLD AT STORE XYZ</caption><thead><tr><th scope=\"col\">Fruit</th><th scope=\"col\">Number Sold</th></tr></thead><tbody><tr><td>Apples</td><td>\\(8\\)</td></tr><tr><td>Bananas</td><td>\\(6\\)</td></tr><tr><td>Cherries</td><td>\\(12\\)</td></tr><tr><td>Oranges</td><td>\\(6\\)</td></tr><tr><td>Peaches</td><td>?</td></tr><tr><td>Total</td><td>\\(50\\)</td></tr></tbody></table><p>Peaches made up what percentage of the total number of pieces of fruit sold at Store XYZ, according to the table above?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1041,7 +1041,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A prism is made up of 9 congruent cubes. Each of the cubes has side lengths measuring 4 units. What is the volume, in cubic units, of the prism?",
     "promptHtml": "<p>A prism is made up of \\(9\\) congruent cubes. Each of the cubes has side lengths measuring \\(4\\) units. What is the volume, in cubic units, of the prism?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -1088,7 +1088,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The town of Waterville covers an area of 50 square miles. In 2005, its population was 84,000. In 2006, its population had decreased so that the average population per square mile was equal to 1,500. What was the total decrease in population from 2005 to 2006?",
     "promptHtml": "<p>The town of Waterville covers an area of \\(50\\) square miles. In \\(2005\\), its population was \\(84{,}000\\). In \\(2006\\), its population had decreased so that the average population per square mile was equal to \\(1{,}500\\). What was the total decrease in population from \\(2005\\) to \\(2006\\)?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -1135,7 +1135,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The box plot below represents a set of data.\n\nWhat is the interquartile range of the set of data?",
     "promptHtml": "<p>The box plot below represents a set of data.</p><p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q083-figure-1.png\" alt=\"Original source figure for Form B, question 83\" width=\"276\"></p><p>What is the interquartile range of the set of data?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Averages & Spread",
     "choices": [
       {
         "id": "A",
@@ -1182,7 +1182,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "N = {6, 7, . . . , 21, 22}\n\nSet L (not shown) is a list of 25 consecutive integers. The median of the integers in set N above is equal to the least integer in set L. What is the median of the integers in set L?",
     "promptHtml": "<p>\\(N=\\{6,7,\\ldots,21,22\\}\\)</p><p>Set \\(L\\) (not shown) is a list of \\(25\\) consecutive integers. The median of the integers in set \\(N\\) above is equal to the least integer in set \\(L\\). What is the median of the integers in set \\(L\\)?</p>",
-    "topic": "Algebra",
+    "topic": "Statistics and Probability", subtopic: "Averages & Spread",
     "choices": [
       {
         "id": "A",
@@ -1229,7 +1229,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The sum of the numbers x, y, and z is 40. The ratio of x to y is 1:2, and the ratio of y to z is 2:5. What is the value of y?",
     "promptHtml": "<p>The sum of the numbers \\(x\\), \\(y\\), and \\(z\\) is \\(40\\). The ratio of \\(x\\) to \\(y\\) is \\(1:2\\), and the ratio of \\(y\\) to \\(z\\) is \\(2:5\\). What is the value of \\(y\\)?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1276,7 +1276,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which number could be the sum of 4 consecutive integers?",
     "promptHtml": "<p>Which number could be the sum of \\(4\\) consecutive integers?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1323,7 +1323,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "PRICE OF A USED VIDEO GAME AT VARIOUS STORES\nPrice of Used Video Game | Number of Stores\n$10.99 | 5\n$11.99 | 2\n$12.99 | 1\n$13.99 | 4\n\nThe table above shows the price of a certain used video game at 12 different stores. What is the median price of this video game?",
     "promptHtml": "<table><caption>PRICE OF A USED VIDEO GAME AT VARIOUS STORES</caption><thead><tr><th scope=\"col\">Price of Used Video Game</th><th scope=\"col\">Number of Stores</th></tr></thead><tbody><tr><td>\\(\\$10.99\\)</td><td>\\(5\\)</td></tr><tr><td>\\(\\$11.99\\)</td><td>\\(2\\)</td></tr><tr><td>\\(\\$12.99\\)</td><td>\\(1\\)</td></tr><tr><td>\\(\\$13.99\\)</td><td>\\(4\\)</td></tr></tbody></table><p>The table above shows the price of a certain used video game at \\(12\\) different stores. What is the median price of this video game?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Averages & Spread",
     "choices": [
       {
         "id": "A",
@@ -1370,7 +1370,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If xy = 30, what is the value of 10 ÷ x in terms of y?",
     "promptHtml": "<p>If \\(xy=30\\), what is the value of \\(10 \\div x\\) in terms of \\(y\\)?</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -1417,7 +1417,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On the number line above, how many units longer is \\(\\overline{QR}\\) than \\(\\overline{PQ}\\)?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q089-figure-1.png\" alt=\"Original source figure for Form B, question 89\" width=\"276\"></p><p>On the number line above, how many units longer is \\(\\overline{QR}\\) than \\(\\overline{PQ}\\)?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1464,7 +1464,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The distance from W to X is 70% of the distance from W to Y. If the distance from X to Y is 15 miles, what is the distance, in miles, from W to X?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q090-figure-1.png\" alt=\"Original source figure for Form B, question 90\" width=\"174\"></p><p>The distance from \\(W\\) to \\(X\\) is \\(70\\%\\) of the distance from \\(W\\) to \\(Y\\). If the distance from \\(X\\) to \\(Y\\) is \\(15\\) miles, what is the distance, in miles, from \\(W\\) to \\(X\\)?</p>",
-    "topic": "Geometry",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1511,7 +1511,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "There are 3 different highways from City W to City X, 4 different highways from City X to City Y, and 3 different highways from City Y to City Z. How many different routes are there for a trip from City W to City X to City Y to City Z?",
     "promptHtml": "<p>There are \\(3\\) different highways from City \\(W\\) to City \\(X\\), \\(4\\) different highways from City \\(X\\) to City \\(Y\\), and \\(3\\) different highways from City \\(Y\\) to City \\(Z\\). How many different routes are there for a trip from City \\(W\\) to City \\(X\\) to City \\(Y\\) to City \\(Z\\)?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1558,7 +1558,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In Center City, the ratio of people to dogs is 4:1, and the ratio of dogs to cats is 3:2. What is the ratio of people to cats?",
     "promptHtml": "<p>In Center City, the ratio of people to dogs is \\(4:1\\), and the ratio of dogs to cats is \\(3:2\\). What is the ratio of people to cats?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1605,7 +1605,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The side length of square S is shorter than the side length of square T by 1 centimeter. The area of square S is 9 square centimeters. What is the difference, in square centimeters, between the area of square T and the area of square S?",
     "promptHtml": "<p>The side length of square \\(S\\) is shorter than the side length of square \\(T\\) by \\(1\\) centimeter. The area of square \\(S\\) is \\(9\\) square centimeters. What is the difference, in square centimeters, between the area of square \\(T\\) and the area of square \\(S\\)?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -1652,7 +1652,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which expression is equivalent to \\(\\frac{1}{2}x+7-\\left(x-\\frac{9}{2}\\right)\\)?",
     "promptHtml": "<p>Which expression is equivalent to \\(\\frac{1}{2}x+7-\\left(x-\\frac{9}{2}\\right)\\)?</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -1699,7 +1699,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "How is \\(\\frac{1}{x}\\) − \\(\\frac{1}{2x}\\) written as a single fraction? (Assume x ≠ 0.)",
     "promptHtml": "<p>How is \\(\\frac{1}{x} - \\frac{1}{2x}\\) written as a single fraction? (Assume \\(x \\ne 0\\).)</p>",
-    "topic": "Algebra",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -1746,7 +1746,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a certain competition, 1 person finished in first place, 5 people tied for second place, 10 people tied for third place, and the other 4,984 people did not place. What percentage of the people in the competition placed first, second, or third altogether?",
     "promptHtml": "<p>In a certain competition, \\(1\\) person finished in first place, \\(5\\) people tied for second place, \\(10\\) people tied for third place, and the other \\(4{,}984\\) people did not place. What percentage of the people in the competition placed first, second, or third altogether?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1793,7 +1793,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Angle A and angle B are complementary. If the measure of angle B is three times as great as the measure of angle A, what is the measure of angle B?",
     "promptHtml": "<p>Angle \\(A\\) and angle \\(B\\) are complementary. If the measure of angle \\(B\\) is three times as great as the measure of angle \\(A\\), what is the measure of angle \\(B\\)?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Lines & Angles",
     "choices": [
       {
         "id": "A",
@@ -1840,7 +1840,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The height of a tree in 2013 is 300% of the height it was in 2003. By what percentage did its height increase over this ten-year period?",
     "promptHtml": "<p>The height of a tree in \\(2013\\) is \\(300\\%\\) of the height it was in \\(2003\\). By what percentage did its height increase over this ten-year period?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1887,7 +1887,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "1 gallon = 16 cups\n1 cup = 8 fluid ounces\n\nIf 1 gallon = \\(2^x\\) fluid ounces, what is the value of \\(x\\)?",
     "promptHtml": "<p>\\(1\\) gallon = \\(16\\) cups<br>\\(1\\) cup = \\(8\\) fluid ounces</p><p>If \\(1\\) gallon = \\(2^x\\) fluid ounces, what is the value of \\(x\\)?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Arithmetic & Number Sense", subtopic: "Exponents, Roots & Scientific Notation",
     "choices": [
       {
         "id": "A",
@@ -1934,7 +1934,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A certain square puzzle has an area of 64 square inches, and a cubic block has a volume of 64 cubic inches. What is the ratio of the length of a side of the puzzle to the length of a side of the block?",
     "promptHtml": "<p>A certain square puzzle has an area of \\(64\\) square inches, and a cubic block has a volume of \\(64\\) cubic inches. What is the ratio of the length of a side of the puzzle to the length of a side of the block?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -1981,7 +1981,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a certain class, Rosa will take a total of 4 tests. She has already taken 2 of the tests and earned scores of 81 and 83. What is the least possible score Rosa can earn on the third test and still be able to finish the class with an average score of 85 on all 4 tests? (Assume that test scores can range from 0 to 100.)",
     "promptHtml": "<p>In a certain class, Rosa will take a total of \\(4\\) tests. She has already taken \\(2\\) of the tests and earned scores of \\(81\\) and \\(83\\). What is the <strong>least </strong>possible score Rosa can earn on the third test and still be able to finish the class with an average score of \\(85\\) on all \\(4\\) tests? (Assume that test scores can range from \\(0\\) to \\(100\\).)</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Averages & Spread",
     "choices": [
       {
         "id": "A",
@@ -2028,7 +2028,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The Barnes family and the Ramirez family each have a pizza of equal size. The first pizza is cut into 18 equal slices, and the second pizza is cut into 15 equal slices. If the Barnes family eats 11 slices from the first pizza, what is the greatest number of whole slices from the second pizza that the Ramirez family can eat without eating a greater percentage of a pizza than the Barnes family ate?",
     "promptHtml": "<p>The Barnes family and the Ramirez family each have a pizza of equal size. The first pizza is cut into \\(18\\) equal slices, and the second pizza is cut into \\(15\\) equal slices. If the Barnes family eats \\(11\\) slices from the first pizza, what is the greatest number of whole slices from the second pizza that the Ramirez family can eat without eating a greater percentage of a pizza than the Barnes family ate?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -2075,7 +2075,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(0^3+4^0+2^{-1}+(-1)^2\\)\n\nWhat is the value of the expression above, in decimal form?",
     "promptHtml": "<p>\\(0^3+4^0+2^{-1}+(-1)^2\\)</p><p>What is the value of the expression above, in decimal form?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Exponents, Roots & Scientific Notation",
     "choices": [
       {
         "id": "A",
@@ -2122,7 +2122,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Four slips of paper numbered 1, 2, 3, and 4 were placed in a bag:\n\n• One slip was selected from the bag, and the number recorded.\n\n• Without replacement, a second slip was chosen.\n\n• This process continued until no more slips remained in the bag.\n\n• One part of a tree diagram representing the sample space is shown.\n\nWhich number should be placed in the box to complete this part of the tree diagram?",
     "promptHtml": "<p>Four slips of paper numbered \\(1\\), \\(2\\), \\(3\\), and \\(4\\) were placed in a bag:</p><p>• One slip was selected from the bag, and the number recorded.</p><p>• Without replacement, a second slip was chosen.</p><p>• This process continued until no more slips remained in the bag.</p><p>• One part of a tree diagram representing the sample space is shown.</p><p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q104-figure-1.png\" alt=\"Original source figure for Form B, question 104\" width=\"120\"></p><p>Which number should be placed in the box to complete this part of the tree diagram?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -2169,7 +2169,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The outdoor temperature was 4.2° F at 10 p.m. After 3 \\(\\frac{1}{2}\\) hours, the outdoor temperature was −0.7° F. Which value best represents the average change in temperature per hour?",
     "promptHtml": "<p>The outdoor temperature was \\(4.2^{\\circ}\\) F at \\(10\\) p.m. After \\(3\\frac{1}{2}\\) hours, the outdoor temperature was \\(-0.7^{\\circ}\\) F. Which value best represents the average change in temperature per hour?</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -2216,7 +2216,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A rectangular swimming pool of uniform depth is 20 yards long and 14 yards wide. If the water is 6 feet deep, what is the volume of water in the pool, in cubic yards?",
     "promptHtml": "<p>A rectangular swimming pool of uniform depth is \\(20\\) yards long and \\(14\\) yards wide. If the water is \\(6\\) <strong>feet </strong>deep, what is the volume of water in the pool, in cubic yards?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -2263,7 +2263,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "{3, 4, 5, 6, 7}\n\nA student made a list of all possible products of 2 different numbers in the set above. What fraction of the products are odd?",
     "promptHtml": "<p>\\(\\{3,4,5,6,7\\}\\)</p><p>A student made a list of all possible products of \\(2\\) <strong>different </strong>numbers in the set above. What fraction of the products are odd?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -2310,7 +2310,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A number, n, is divided by 25. If the quotient is 10 with a remainder of 5, what is the quotient expressed as a decimal?",
     "promptHtml": "<p>A number, \\(n\\), is divided by \\(25\\). If the quotient is \\(10\\) with a remainder of \\(5\\), what is the quotient expressed as a decimal?</p>",
-    "topic": "Algebra",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -2357,7 +2357,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The garden design shown above is created in the shape of three semicircles whose diameters lie on the sides of an equilateral triangle. If each diameter is 2 meters long, what is the perimeter of the garden, in meters?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q109-figure-1.png\" alt=\"Original source figure for Form B, question 109\" width=\"130\"></p><p>The garden design shown above is created in the shape of three semicircles whose diameters lie on the sides of an equilateral triangle. If each diameter is \\(2\\) meters long, what is the perimeter of the garden, in meters?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -2404,7 +2404,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Micha is playing a game with five cards numbered 1 through 5. He will place the cards in a bag and draw one card at random three times, replacing the card each time. To win a prize, he must draw the number 5 all three times. What is the probability he will draw the number 5 all three times?",
     "promptHtml": "<p>Micha is playing a game with five cards numbered \\(1\\) through \\(5\\). He will place the cards in a bag and draw one card at random three times, replacing the card each time. To win a prize, he must draw the number \\(5\\) all three times. What is the probability he will draw the number \\(5\\) all three times?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -2451,7 +2451,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The speed 10 meters per second is equivalent to how many feet per hour? (Use the approximation 1 foot = 0.3 meter.)",
     "promptHtml": "<p>The speed \\(10\\) meters per second is equivalent to how many feet per hour? (Use the approximation \\(1\\) foot = \\(0.3\\) meter.)</p>",
-    "topic": "Ratios and Proportional Relationships",
+    "topic": "Arithmetic & Number Sense", subtopic: "Units & Conversions",
     "choices": [
       {
         "id": "A",
@@ -2498,7 +2498,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(6.\\overline{34}-4.\\overline{12}\\)\n\nWhat is the value of the expression above, written as an improper fraction?",
     "promptHtml": "<p>\\(6.\\overline{34}-4.\\overline{12}\\)</p><p>What is the value of the expression above, written as an improper fraction?</p>",
-    "topic": "Arithmetic & Number Sense",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -2545,7 +2545,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Lines s and t intersect at point P (3, 5). What is the area, in square units, of the shaded region in the graph above?",
     "promptHtml": "<p data-numbered=\"false\"><img src=\"/exam-images/pdf-2023-2024-b-q113-figure-1.png\" alt=\"Original source figure for Form B, question 113\" width=\"207\"></p><p>Lines \\(s\\) and \\(t\\) intersect at point \\(P\\ (3,5)\\). What is the area, in square units, of the shaded region in the graph above?</p>",
-    "topic": "Geometry",
+    "topic": "Geometry", subtopic: "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -2592,7 +2592,7 @@ export const content20232024FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A box contains 14 red marbles, 10 black marbles, and 16 white marbles. How many more white marbles need to be added to the box so that the probability of randomly drawing a white marble is \\(\\frac{3}{5}\\)?",
     "promptHtml": "<p>A box contains \\(14\\) red marbles, \\(10\\) black marbles, and \\(16\\) white marbles. How many more white marbles need to be added to the box so that the probability of randomly drawing a white marble is \\(\\frac{3}{5}\\)?</p>",
-    "topic": "Statistics and Probability",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",

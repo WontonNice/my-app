@@ -7,6 +7,7 @@ const {mathCommandRouter}=require('../src/routes/mathCommand.ts');
 const {handleMathCatalogRequest}=require('../src/lib/mathCommandCatalogService.ts');
 const store=require('../src/lib/mathCommandCatalogStore.ts');
 const {generatorBatchExport}=require('../../client/src/features/math-command/generatorBatchExport.ts');
+const {plannerModuleChoices}=require('../../client/src/features/math-command/plannerModuleChoices.ts');
 const {defaultPracticeCatalog,assignPracticeModuleSkill,validatePracticeCatalog,reconcilePracticeSkilled}=require('../src/shared/practiceCatalog.ts');
 const express=require('express');
 const app=express();app.use(express.json());app.use('/api/math-command',mathCommandRouter);app.use((error,req,res,next)=>res.status(error.status||500).json({message:error.message}));
@@ -22,12 +23,12 @@ test('personal batches retain source snapshots, deduplicate additions and protec
   own=mutate('planner-one',own,{action:'create',name:'Mixed topic builds'});
   const batchId=own.activeBatchId,ids=fixture.data.questions.slice(0,3).map(q=>q.id);
   own=mutate('planner-one',own,{action:'add',batchId,questionIds:ids});
-  assert.equal(own.batches[0].entries.length,3);
+  assert.equal(own.batches[0].entries.length,3);assert.ok(own.batches[0].entries.every(entry=>entry.destination.group==='foundation'));
   assert.ok(own.batches[0].entries.every(entry=>entry.status==='available'));
   own=mutate('planner-one',own,{action:'export',batchId,entryIds:own.batches[0].entries.map(entry=>entry.id)});
   assert.ok(own.batches[0].entries.every(entry=>entry.status==='available'),'export keeps the requested student availability');
   own=mutate('planner-one',own,{action:'add',batchId,questionIds:ids});
-  assert.equal(own.batches[0].entries.length,3);
+  assert.equal(own.batches[0].entries.length,3);assert.ok(own.batches[0].entries.every(entry=>entry.destination.group==='foundation'));
   assert.deepEqual(own.batches[0].entries[0].source.question,store.readMathCommandCatalog(root).find(q=>q.id===ids[0]).question);
   assert.deepEqual(call('planner-two').batches,[]);
   assert.throws(()=>mutate('planner-two',call('planner-two'),{action:'activate',batchId}),/not in your planner/);
@@ -48,6 +49,44 @@ test('personal batches retain source snapshots, deduplicate additions and protec
   assert.notEqual(duplicated.batches[1].entries[0].id,duplicated.batches[0].entries[0].id);
   assert.equal(store.mathClassificationRevision(root),classification);
   assert.equal(fs.readFileSync(path.join(root,'server/data/exam-content.json'),'utf8'),content);
+});
+
+test('saved new modules can be reused by later questions and export to the same destination',()=>{
+  const actor='planner-reuse';
+  let state=mutate(actor,call(actor),{action:'create',name:'Reusable modules'});
+  const batchId=state.activeBatchId,ids=fixture.data.questions.slice(0,2).map(question=>question.id);
+  state=mutate(actor,state,{action:'add',batchId,questionIds:[ids[0]]});
+  let batch=state.batches[0];
+  batch.entries[0].destination.moduleTitle='Factors & Multiples';
+  batch.entries[0].destination.group='foundation';
+  state=mutate(actor,state,{action:'update',batchId,name:batch.name,notes:batch.notes,entries:batch.entries});
+  state=mutate(actor,call(actor),{action:'add',batchId,questionIds:[ids[1]]});
+  batch=state.batches[0];
+  const choices=plannerModuleChoices(batch.entries);
+  assert.equal(choices.length,1);
+  assert.equal(choices[0].destination.moduleTitle,'Factors & Multiples');
+  batch.entries[1].destination={...choices[0].destination};
+  mutate(actor,state,{action:'update',batchId,name:batch.name,notes:batch.notes,entries:batch.entries});
+  batch=call(actor).batches[0];
+  assert.equal(plannerModuleChoices(batch.entries).length,1,'shared destinations appear once after reloading');
+  assert.deepEqual(batch.entries[0].destination,batch.entries[1].destination);
+  const taxonomy=store.readMathCommandTaxonomy(root),catalog=defaultPracticeCatalog(taxonomy);
+  const {requests}=generatorBatchExport(batch,batch.entries,catalog,taxonomy.categories).manifest;
+  for(const request of requests){
+    assert.equal(request.destination.moduleId,null);
+    assert.equal(request.destination.moduleTitle,'Factors & Multiples');
+    assert.equal(request.destination.groupType,'foundation');
+    assert.equal(request.destination.parentId,requests[0].destination.parentId);
+  }
+  const first=batch.entries[0];
+  assert.equal(plannerModuleChoices([
+    first,{...first,destination:{...first.destination,moduleTitle:' Factors & Multiples '}},
+    {...first,destination:{...first.destination,group:'general'}},
+    {...first,destination:{...first.destination,topic:'Another topic'}},
+    {...first,destination:{...first.destination,moduleId:'existing-module'}},
+    {...first,destination:{...first.destination,moduleTitle:'  '}},
+  ]).length,3,'same names in different topics/groups remain distinct; blank/existing destinations are excluded');
+  assert.deepEqual(plannerModuleChoices([]),[],'choices stay scoped to the current batch');
 });
 
 test('batch export carries all sources, exact module IDs, instructions and refuses stale destinations',()=>{
@@ -78,7 +117,7 @@ test('batch export carries all sources, exact module IDs, instructions and refus
   assert.throws(()=>generatorBatchExport(batch,[incomplete],catalog,taxonomy.categories),/name the new module/);
 });
 
-test('renaming remains independent of skill assignment, reconciliation and validation',()=>{
+test('selecting a skill replaces the draft name and persists the skill name and Foundation placement',()=>{
   const taxonomy=require('../../tools/math-topics.json'),catalog=defaultPracticeCatalog(taxonomy);
   const module=catalog.modules.find(m=>!m.defaultType);
   module.title='My custom practice name';module.titleMode='custom';
@@ -86,7 +125,7 @@ test('renaming remains independent of skill assignment, reconciliation and valid
   const assigned=assignPracticeModuleSkill(catalog,module.id,skill);
   const validated=validatePracticeCatalog(reconcilePracticeSkilled(assigned,[skill]),{...taxonomy,classificationSkills:[skill]});
   const saved=validated.modules.find(m=>m.id===module.id);
-  assert.equal(saved.title,'My custom practice name');assert.equal(saved.skilled,skill.id);assert.deepEqual(saved.generatorIds,module.generatorIds);
+  assert.equal(saved.title,skill.label);assert.equal(saved.titleMode,'skill');assert.equal(validated.modules.find(m=>m.id===saved.parentId).defaultType,'foundation');assert.equal(saved.skilled,skill.id);assert.deepEqual(saved.generatorIds,module.generatorIds);
 });
 
 test('authenticated endpoints reject students and save teacher changes durably without assignments',async()=>{
@@ -133,6 +172,50 @@ test('studio handoff opens the account planner and carries only the source selec
   assert.equal(plannerQuestionIds('?plannerQuestionId=&plannerQuestionId='+ 'x'.repeat(501)).length,0);
   assert.throws(()=>generatorPlannerQuery(Array.from({length:110},(_,i)=>String(i))),/at most 100/);
   assert.throws(()=>generatorPlannerQuery(Array.from({length:100},(_,i)=>String(i)+'x'.repeat(500))),/too large/);
+});
+
+test('destination labels include every module in the category and saved skills without duplicate labels',()=>{
+  const {plannerExistingModuleGroups,plannerModuleDestination,plannerSkillDestination}=require('../../client/src/features/math-command/plannerModuleChoices.ts');
+  const catalog=defaultPracticeCatalog(require('../../tools/math-topics.json'));
+  const module=catalog.modules.find(m=>m.id==='inequalities');module.published=false;
+  const skills=[{id:'existing-label',label:module.title,category:'Algebra',subcategory:'Inequalities'},{id:'new-label',label:'Simplifying Expressions',category:'Algebra',subcategory:'Algebraic Expressions'},{id:'other-category',label:'Triangles',category:'Geometry',subcategory:'Shapes & Angles'}];
+  const groups=plannerExistingModuleGroups(catalog,'Algebra','Algebraic Expressions',skills);
+  assert.equal(groups[0].label,'Algebraic Expressions');
+  assert.ok(groups.find(g=>g.label==='Inequalities').modules.some(m=>m.id===module.id),'draft modules from another subcategory remain selectable');
+  assert.deepEqual(groups.flatMap(g=>g.skills).map(s=>s.id),['new-label']);
+  assert.ok(groups.flatMap(g=>g.modules).every(m=>m.category==='Algebra'));
+  const destination=plannerModuleDestination(module);
+  assert.equal(destination.topic,'Inequalities');assert.equal(destination.group,'foundation');assert.equal(destination.moduleId,module.id);
+  const newDestination=plannerSkillDestination(skills[1]);
+  assert.equal(newDestination.moduleTitle,skills[1].label);assert.equal(newDestination.skilled,skills[1].id);assert.equal(newDestination.moduleId,'');
+  let own=mutate('skill-label-plan',call('skill-label-plan'),{action:'create',name:'Saved skill labels'});
+  own=mutate('skill-label-plan',own,{action:'add',batchId:own.activeBatchId,questionIds:[fixture.data.questions[0].id]});
+  const batch=own.batches[0];batch.entries[0].destination=newDestination;
+  own=mutate('skill-label-plan',own,{action:'update',batchId:batch.id,name:batch.name,notes:batch.notes,entries:batch.entries});
+  const reloaded=call('skill-label-plan').batches[0];assert.deepEqual(reloaded.entries[0].destination,newDestination);
+  const exported=generatorBatchExport(reloaded,reloaded.entries,catalog,require('../../tools/math-topics.json').categories);
+  assert.equal(exported.manifest.requests[0].destination.skilled,skills[1].id);
+  assert.equal(exported.manifest.requests[0].destination.moduleTitle,skills[1].label);
+  const renamed={...skills[1],label:'Combining Like Terms'};
+  assert.equal(generatorBatchExport(reloaded,reloaded.entries,catalog,require('../../tools/math-topics.json').categories,[renamed]).manifest.requests[0].destination.moduleTitle,renamed.label);
+  assert.throws(()=>generatorBatchExport(reloaded,reloaded.entries,catalog,require('../../tools/math-topics.json').categories,[]),/skill label changed or was removed/);
+  catalog.modules.push({...module,id:'built-from-label',title:renamed.label,skilled:renamed.id,category:renamed.category,topic:renamed.subcategory,parentId:catalog.modules.find(m=>m.defaultType==='foundation'&&m.topic===renamed.subcategory).id});
+  assert.equal(generatorBatchExport(reloaded,reloaded.entries,catalog,require('../../tools/math-topics.json').categories,[renamed]).manifest.requests[0].destination.moduleId,'built-from-label','reuse the module once the saved label has been built');
+});
+
+test('catalog refresh survives failures, queues in-flight changes and ignores an old account after disposal',async()=>{
+  const {watchPlannerCatalog}=require('../../client/src/features/math-command/plannerCatalogSync.ts');
+  const pending=[],received=[],errors=[];let notify,disposed=false;
+  const request=path=>{assert.equal(path,'/catalog?manage=1');return new Promise((resolve,reject)=>pending.push({resolve,reject}));};
+  const sync=watchPlannerCatalog(request,data=>received.push(data),message=>errors.push(message),refresh=>{notify=refresh;return()=>{disposed=true;};});
+  const tick=()=>new Promise(resolve=>setImmediate(resolve));
+  assert.equal(pending.length,1);notify();notify();assert.equal(pending.length,1);
+  pending[0].resolve({catalog:{modules:[{title:'Earlier name'}]}});await tick();assert.equal(pending.length,2);
+  pending[1].resolve({catalog:{modules:[{title:'Updated skill name'}]}});await tick();assert.equal(received.at(-1).catalog.modules[0].title,'Updated skill name');
+  notify();pending[2].reject(Error('Offline'));await tick();assert.deepEqual(errors,['Offline']);assert.equal(received.length,2);
+  notify();pending[3].resolve({catalog:{modules:[{title:'New module'}]}});await tick();assert.equal(received.at(-1).catalog.modules[0].title,'New module');
+  notify();sync.dispose();pending[4].resolve({catalog:{modules:[{title:'Old account data'}]}});await tick();
+  assert.equal(received.length,3);assert.equal(disposed,true);notify();assert.equal(pending.length,5);
 });
 
 test('planner notifications refresh visible tabs without sharing data and clean up subscriptions',()=>{

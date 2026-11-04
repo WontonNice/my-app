@@ -1,0 +1,1052 @@
+
+> nathantutors@0.0.0 test:practice-studio
+> node --test tools/foundation-customization.test.cjs tools/prob-2.test.cjs tools/probability-batch.test.cjs tools/today-generator-batch.test.cjs server/tests/generator-planner.test.cjs tools/math-subcategory-migration.test.cjs server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/symbolic-fraction-division.test.cjs tools/student-practice-updates.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs
+
+✔ personal batches retain source snapshots, deduplicate additions and protect ownership/revisions (80.6986ms)
+✔ saved new modules can be reused by later questions and export to the same destination (55.9866ms)
+✔ batch export carries all sources, exact module IDs, instructions and refuses stale destinations (5.7543ms)
+✔ selecting a skill replaces the draft name and persists the skill name and Foundation placement (6.6867ms)
+✔ authenticated endpoints reject students and save teacher changes durably without assignments (117.2788ms)
+✔ remote persistence rejects failed writes and simultaneous stale saves (14.3511ms)
+✔ studio handoff opens the account planner and carries only the source selection (10.8279ms)
+✔ planner notifications refresh visible tabs without sharing data and clean up subscriptions (7.7181ms)
+✔ every variant has the independently computed answer and explanation, with a complete deterministic cycle (36.7101ms)
+✔ constraints guard division before derived values and exact fractions work for short response (4.966ms)
+✔ invalid domains, code, unknown fields, placeholders, and inconsistent stems are rejected (2.2554ms)
+✔ numeric-equivalent choices and undefined fractions cannot pass validation (0.7089ms)
+✖ import adds source-linked drafts without changing existing resources; sessions retain their version (10.4509ms)
+✖ custom names survive classification reconciliation and topic group normalization (7.2602ms)
+✖ adding a Foundation child preserves the group’s existing practice selection (1.5624ms)
+✔ creation prompt retains the full source and destination without asking for executable code (2.2193ms)
+✔ local Content Studio shares durable saves, rejects stale revisions and validates before writes (15.2659ms)
+✔ the shared Skilled registry starts empty and existing questions are TBD without inferred assignments (23.4058ms)
+✖ question classifications can change without renaming teacher-assigned module skills (59.6611ms)
+✔ delete resets native and metadata assignments to TBD and cannot silently reattach a reused ID (57.4237ms)
+✔ scopes, reserved names, duplicates, malformed definitions, and stale saves are rejected (26.7489ms)
+✔ subcategory renames move Skilled definitions while preserving their IDs and question assignments (33.6736ms)
+✔ Q70 is published under Inequalities, snapshots its generator, and registers safely in saved catalogs (139.0135ms)
+✖ moving a module makes it a Foundation child and settings exclude its generators from a session (6.222ms)
+✖ deleting either built-in generator cleans references and preserves sessions already running (11.0206ms)
+✖ General Practice includes all enabled generators in its own topic and snapshots student choices (1.6663ms)
+✖ teachers can add a two-step generator, mix it into Foundation Building, and preserve order and placement (1.7752ms)
+✔ generated one-step and two-step keys solve the displayed inequality, including negative coefficients and inclusive endpoints (52.5956ms)
+✔ invalid generators and empty published modules cannot be saved (5.3303ms)
+✖ YouTube references accept video links only and normalize safe hosts (10.2167ms)
+✖ optional video details persist and reject invalid durations, counts and dates (2.0362ms)
+✖ catalog permissions, durable saves, conflicts and student publication filtering (132.8969ms)
+✖ renaming a subcategory keeps studio GET, saves, student reads and generated tags consistent (12.2499ms)
+✖ unmapped stale taxonomy returns a repairable conflict instead of an unexpected server error (1.5977ms)
+✖ deleting individual modules keeps generators, other resources and running snapshots (2.9628ms)
+✖ Overlapping Groups is one module using both generators and legacy split modules merge without losing settings (3.2266ms)
+✔ both modes share the full topic library regardless of legacy placement; only Foundation customizes modules (15.835ms)
+✔ hidden/disabled content stays hidden after student filtering; enabling or publishing updates both modes (1.2339ms)
+✔ preferences persist per student and topic, exclude chosen modules, and include future modules by default (12.2721ms)
+✔ new custom sessions honor selections; resuming preserves questions and restarting preserves personal best (16.7156ms)
+✔ module streaks earn five separate milestones, survive mistakes and reloads, and remain account-scoped (11.5466ms)
+✔ shared generator answers count only toward selected modules; hiding no longer requires ten correct (0.5272ms)
+✔ all 1,056 stems are distinct, calculator-free, and have exactly one equivalent answer (19.1448ms)
+✔ a seed reproduces a question, cycles are explicit, and invalid indices fail (2.1229ms)
+✔ Q70 generates distinct variables-on-both-sides stems with exactly one correct answer throughout its cycle (1628.521ms)
+✔ Q70 seeds reproduce questions, repeat only after a complete cycle, and reject invalid indices (0.6527ms)
+✔ teacher login returns to its same-origin destination and rejects external redirects (0.4799ms)
+✔ teacher launcher preserves a local or configured origin and fixes the destination path (2.9414ms)
+✔ teacher previews snapshot unsaved and disabled generators without changing their catalog (5.4096ms)
+✔ modules expose enabled registered types, foundation stays easy, and targeted practice stays focused (10.7767ms)
+✔ session metrics distinguish answering, feedback, unfinished questions and longest streak (0.9322ms)
+✔ module generator selection is snapshotted for a running session (0.2847ms)
+✔ session storage preserves typed and structured responses for future generators (0.3173ms)
+✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections (68.1341ms)
+✖ student practice lists show parent modules while nested modules remain part of their generation set (4.0827ms)
+✖ YouTube references render in-site play buttons with thumbnails and optional metadata (7.5266ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:66:
+      2 │ ...rom 'react'; import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\components\\MathStudyHall.tsx"
+
+    <stdin>:3:32:
+      3 │ ...Hall} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\lib\\mathStudyHall.ts"
+
+    <stdin>:4:32:
+      4 │ ...Href} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:7:165:
+      7 │ ...'}};return renderToStaticMarkup(<MathStudyHall query={query} pre...
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:65:
+      2 │ ...from 'react';import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeModuleList.tsx"
+
+    <stdin>:3:37:
+      3 │ ...List} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\server\\src\\shared\\practiceCatalog.ts"
+
+    <stdin>:4:60:
+      4 │ ...dule} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\server\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:7:37:
+      7 │ ...onsole.log(renderToStaticMarkup(<PracticeModuleList catalog={cat...
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:65:
+      2 │ ...from 'react';import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeVideoList.tsx"
+
+    <stdin>:3:108:
+      3 │ ...abel} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:5:58:
+      5 │ ...gify({full:renderToStaticMarkup(<PracticeVideoList videos={[{......
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ subcategory migration retains practice IDs, content, selections and Foundation placement (49.4985ms)
+✔ existing skills are only rehomed, retaining IDs, labels, prerequisites and question assignments (1.8133ms)
+✔ consolidation merges default parents and preserves focused practice and skill assignments (2.6199ms)
+✖ every overlapping-groups variant has a valid population, distinct stem and exactly one correct choice (2622.0803ms)
+✔ overlapping-group sequences are deterministic, cycle explicitly and validate indices (1.4318ms)
+✖ Overlapping Groups is a statistics topic and catalog registration preserves existing resources (400.9075ms)
+✖ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (23.4472ms)
+✔ customized broad modules, hidden state, disabled generators, and reviewed metadata survive migration (4.1671ms)
+✖ registration restores a generator to its skill even when migration reused legacy module IDs (200.8259ms)
+✖ metadata is validated and survives saves and session snapshots without changing the generated questions (1.4735ms)
+✔ search, facets, focused usage, and bulk changes work across a 1000-generator library (16.0028ms)
+✖ bulk disabling the last generators hides empty focused modules and remains saveable (4.5162ms)
+✔ generation set filters combine inclusion, category, subcategory, and search without changing selections (2.6132ms)
+✔ included-only respects automatic groups, inherited selections, hidden children, and disabled generators (1.7962ms)
+✔ module preview snapshots the complete effective draft mix and allows unpublished modules without publishing edits (4.1631ms)
+✖ Skill is the module name; legacy classifications never replace it on reads or saves (5.0916ms)
+✔ library Skill filtering uses module membership, including hidden modules and disabled generators (4.2115ms)
+✖ choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions (13.7399ms)
+✖ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (49.4288ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:67:
+      2 │ ...from 'react';import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "./client/src/features/math-command/PracticeFeedback"
+
+    <stdin>:3:51:
+      3 │ ...edback} from './client/src/features/math-command/PracticeFeedback';
+        ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/PracticeStars"
+
+    <stdin>:4:34:
+      4 │ ...ticeStars} from './client/src/features/math-command/PracticeStars';
+        ╵                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/InequalityPractice"
+
+    <stdin>:6:39:
+      6 │ ...tice} from './client/src/features/math-command/InequalityPractice';
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/generatorPreview"
+
+    <stdin>:7:44:
+      7 │ ...atalog} from './client/src/features/math-command/generatorPreview';
+        ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/components/ExamMathQuestion"
+
+    <stdin>:8:37:
+      8 │ ...{ExamMathQuestion} from './client/src/components/ExamMathQuestion';
+        ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./server/src/shared/inequalityPractice"
+
+    <stdin>:9:39:
+      9 │ ...{generateInequality} from './server/src/shared/inequalityPractice';
+        ╵                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./server/src/shared/practiceCatalog"
+
+    <stdin>:10:43:
+      10 │ ...efaultPracticeCatalog} from './server/src/shared/practiceCatalog';
+         ╵                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/inequalitySession"
+
+    <stdin>:11:81:
+      11 │ ...tion} from './client/src/features/math-command/inequalitySession';
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:5:70:
+      5 │ ...) { return renderToStaticMarkup(<PracticeStars longestStreak={be...
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ five streak stars unlock at exact ten-answer thresholds with accessible locked and earned labels (1.5392ms)
+✖ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (0.2492ms)
+✖ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (0.223ms)
+✖ mini preview retains the exam controls in a bounded nonmodal region (0.2015ms)
+✔ Probability with an Unknown Color Count: exhaust domain, derive keys from displayed inputs, check source and distractors (39.0065ms)
+✔ Combining Jars: exhaust domain, derive keys from displayed inputs, check source and distractors (15.984ms)
+✔ Distributing a Negative Sign: exhaust domain, derive keys from displayed inputs, check source and distractors (207.2034ms)
+✔ Hourly Pay Before Taxes: exhaust domain, derive keys from displayed inputs, check source and distractors (192.548ms)
+✔ Greatest Middle of Consecutive Factors: exhaust domain, derive keys from displayed inputs, check source and distractors (4.6401ms)
+✔ Multiples of the Smallest Factor: exhaust domain, derive keys from displayed inputs, check source and distractors (5.8194ms)
+✔ seeds, cycles and invalid indices are deterministic and safe (2.898ms)
+✔ mixed batch preserves catalog, shares factors module, publishes exact groups, starts student sessions, and is idempotent (49.8142ms)
+✔ stale topic-group destinations and unpublished generators cannot be published (5.7556ms)
+✔ Raffle and Specific Card: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (20778.3272ms)
+✔ Two Candies Excluding a Flavor: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (24.8993ms)
+✔ Paint Arrangements Without Repeats: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (1.0349ms)
+✔ Probability from a Decimal Set: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (0.9626ms)
+✔ Choosing Unordered Pairs: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (0.8644ms)
+✔ seeds, safe indices and explicit repeat cycles preserve stable question identities (1.673ms)
+✔ one batch targets exact IDs, preserves customization, publishes only authorized destinations, and is idempotent (25.1396ms)
+✔ stale exact destinations and conflicting IDs fail without modifying inputs (2.7847ms)
+✔ Probability: Number-cube Sum Counts: every stem is valid, unique, and includes its source example (11.0372ms)
+✔ Probability: Ratio Counts After Removal: every stem is valid, unique, and includes its source example (171.1808ms)
+✔ Probability: Ordered Draws Without Replacement: every stem is valid, unique, and includes its source example (265.184ms)
+✔ Probability: Complementary Color Draws: every stem is valid, unique, and includes its source example (16.1188ms)
+✔ Probability: Repeated Draws With Replacement: every stem is valid, unique, and includes its source example (29.0473ms)
+✔ Probability: Spinner Products: every stem is valid, unique, and includes its source example (6.0446ms)
+✔ Probability: Unordered Sample Spaces: every stem is valid, unique, and includes its source example (53.9333ms)
+✔ Probability: One Specific Conditional Outcome: every stem is valid, unique, and includes its source example (88.6549ms)
+✔ all eight probability sequences reproduce, complete explicit cycles and validate safe indices (3.6402ms)
+✔ Probability uses five focused Foundation Building children with eight generators, preserving other topics and snapshots (68.8883ms)
+✔ every numeric scenario varies the requested color or ordered color pair (217.7172ms)
+✔ saved v1/v2 questions retain their exact stems, choices and explanations; next question opts into color variation (33.3087ms)
+✔ generator streaks reset independently, checking twice is inert, and hiding needs no milestone (9.0796ms)
+✔ hiding is available after a miss without a streak; unfinished current questions cannot be hidden (0.5526ms)
+✔ saved sessions survive reopening with answers, streaks and snapshots; accounts and modules are isolated (2.6768ms)
+✔ module records retain all five milestones after mistakes, finishing and starting again, without crossing accounts (2.9097ms)
+✔ passage scores retain zero, ignore invalid/missing scores, and choose latest scored evidence (5.5817ms)
+✔ editor links resolve exact stable question IDs, prefer assessment context, and do not guess missing questions (0.5129ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\pages\\StudentDashboardPage.tsx"
+
+    <stdin>:1:35:
+      1 │ ...Page} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\content\\advancedPractice\\index.ts"
+
+    <stdin>:1:165:
+      1 │ ...ages} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react"
+
+    <stdin>:1:278:
+      1 │ ...\index.ts";import React from 'react';import {renderToStaticMarku...
+        ╵                                 ~~~~~~~
+
+  You can mark the path "react" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:1:321:
+      1 │ ...erToStaticMarkup} from 'react-dom/server';import {StudentMateria...
+        ╵                           ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\pages\\StudentMaterialsPage.tsx"
+
+    <stdin>:1:375:
+      1 │ ...Page} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:1:902:
+      1 │ ...onsole.log(renderToStaticMarkup(<StudentMaterialsPage/>));consol...
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (57.6326ms)
+✔ all 48 stems: independent symbolic key, four distinct traps, explanations, and grading (77.5657ms)
+✖ source example, all seed offsets, repeat cycle, determinism, and safe indices (117.3932ms)
+✔ exact existing module registration preserves all resources and stays disabled and unreviewed (30.543ms)
+✔ draft previews and saved sessions retain definitions and the existing grading contract (6.3554ms)
+✔ all decimal stems: independent long division, primitive blocks, exact cycles, distinct choices and grading (1873.6207ms)
+✔ short practice sessions mix fractions and denominators, including across the cycle boundary (58.704ms)
+✔ legacy questions keep their exact content and grading; advancing adopts the mixed sequence (10.3033ms)
+✔ all area stems: derive the change from displayed dimensions, validate explanations, units and distractors (146.0869ms)
+✔ original keyed examples, deterministic seed permutations, repeat cycles and invalid indices (88.535ms)
+✔ batch registration respects both exact groups, keeps every existing resource and is idempotent (16.8262ms)
+✔ explicit activation includes both generators while preserving review, modules, unrelated resources and saved sessions (4.0516ms)
+✔ draft preview grading and saved sessions remain independent of later catalog edits (3.4552ms)
+✔ every topic receives exactly one Foundation Building and General Practice, including empty topics (33.1926ms)
+✔ migration retains legacy IDs, nested modules, curated selections, hidden state and resources (2.8946ms)
+✔ General Practice automatically follows enabled generators only in its own topic (2.9309ms)
+✔ each foundation accepts only its own topic modules and empty defaults remain available (4.2085ms)
+✔ studio grouping and filters remain usable with hundreds of resources (11.8151ms)
+✔ individual modules nest under Foundation Building and retain stable identities (7.0823ms)
+✔ General Practice always includes the full library; Foundation settings honor selected modules in either placement (13.1914ms)
+✔ all survey total stems subtract overlap once and include neither, including zero-size cells (3473.0216ms)
+✖ every remaining-reading stem asks for additional time and has one exact hours answer (269.5524ms)
+✖ every mixture stem uses all ratio parts and all projects with one correct choice (1701.3276ms)
+✔ new word-problem sequences reproduce, cycle explicitly, and reject invalid indices (0.925ms)
+✖ batch registration preserves teacher resources and snapshots all three generators in their own topics (29.0325ms)
+✔ Writing Inequalities visits every stem and includes the original Form D item 26 (1793.8498ms)
+✔ typed budgets accept both orientations, term orders and notation, and reject modelling errors (542.109ms)
+✔ Writing Inequalities sequences are reproducible, cycle explicitly, and validate indices (1.7186ms)
+✔ Writing Inequalities registers in saved catalogs without changing nesting or existing resources (394.0612ms)
+ℹ tests 143
+ℹ suites 0
+ℹ pass 106
+ℹ fail 37
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22415.8506
+
+✖ failing tests:
+
+test at server\tests\generator-template.test.cjs:55:1
+✖ import adds source-linked drafts without changing existing resources; sessions retain their version (10.4509ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:56:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\generator-template.test.cjs:66:1
+✖ custom names survive classification reconciliation and topic group normalization (7.2602ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:67:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\generator-template.test.cjs:73:1
+✖ adding a Foundation child preserves the group’s existing practice selection (1.5624ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:74:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\math-classification-skills.test.cjs:26:1
+✖ question classifications can change without renaming teacher-assigned module skills (59.6611ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\math-classification-skills.test.cjs:33:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:29:1
+✖ moving a module makes it a Foundation child and settings exclude its generators from a session (6.222ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:30:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:39:1
+✖ deleting either built-in generator cleans references and preserves sessions already running (11.0206ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Choose an existing math category and topic."
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:44:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Choose an existing math category and topic.
+        at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+        at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+        at Array.map (<anonymous>)
+        at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:44:26
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:44:9)
+        at Test.runInAsyncScope (node:async_hooks:227:14),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at server\tests\practice-catalog.test.cjs:46:1
+✖ General Practice includes all enabled generators in its own topic and snapshots student choices (1.6663ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:49:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:56:1
+✖ teachers can add a two-step generator, mix it into Foundation Building, and preserve order and placement (1.7752ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:82:1
+✖ YouTube references accept video links only and normalize safe hosts (10.2167ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:85:191)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:88:1
+✖ optional video details persist and reject invalid durations, counts and dates (2.0362ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:91:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:107:1
+✖ catalog permissions, durable saves, conflicts and student publication filtering (132.8969ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 200
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:110:64)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server\tests\practice-catalog.test.cjs:117:1
+✖ renaming a subcategory keeps studio GET, saves, student reads and generated tags consistent (12.2499ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  409 !== 200
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:122:55)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 409,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server\tests\practice-catalog.test.cjs:137:1
+✖ unmapped stale taxonomy returns a repairable conflict instead of an unexpected server error (1.5977ms)
+  TypeError: Cannot read properties of null (reading 'catalog')
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:139:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7)
+
+test at server\tests\practice-catalog.test.cjs:144:1
+✖ deleting individual modules keeps generators, other resources and running snapshots (2.9628ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:149:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:155:1
+✖ Overlapping Groups is one module using both generators and legacy split modules merge without losing settings (3.2266ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Choose an existing math category and topic."
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:167:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Choose an existing math category and topic.
+        at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+        at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+        at Array.map (<anonymous>)
+        at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:167:26
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:167:9)
+        at Test.runInAsyncScope (node:async_hooks:227:14),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tools\math-study-hall.test.cjs:8:1
+✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections (68.1341ms)
+  Error: Build failed with 5 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:66: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:32: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\components\\MathStudyHall.tsx"
+  <stdin>:4:32: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\lib\\mathStudyHall.ts"
+  <stdin>:7:165: ERROR: Could not resolve "react/jsx-runtime"
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\components\\\\MathStudyHall.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\lib\\\\mathStudyHall.ts"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\math-study-hall.test.cjs:70:1
+✖ student practice lists show parent modules while nested modules remain part of their generation set (4.0827ms)
+  Error: Build failed with 5 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:65: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:37: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeModuleList.tsx"
+  <stdin>:4:60: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\server\\src\\shared\\practiceCatalog.ts"
+  <stdin>:7:37: ERROR: Could not resolve "react/jsx-runtime"
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1163:52
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\features\\\\math-command\\\\PracticeModuleList.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\server\\\\src\\\\shared\\\\practiceCatalog.ts"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\math-study-hall.test.cjs:88:1
+✖ YouTube references render in-site play buttons with thumbnails and optional metadata (7.5266ms)
+  Error: Build failed with 4 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:65: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:108: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeVideoList.tsx"
+  <stdin>:5:58: ERROR: Could not resolve "react/jsx-runtime"
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1163:52
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\features\\\\math-command\\\\PracticeVideoList.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\math-subcategory-migration.test.cjs:7:1
+✖ subcategory migration retains practice IDs, content, selections and Foundation placement (49.4985ms)
+  AssertionError [ERR_ASSERTION]: foundation-statistics-and-probability-counting-sets-6rpha4
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\math-subcategory-migration.test.cjs:26:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\overlapping-groups.test.cjs:7:1
+✖ every overlapping-groups variant has a valid population, distinct stem and exactly one correct choice (2622.0803ms)
+  AssertionError [ERR_ASSERTION]: Source question 76 is included in the generated bank
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\overlapping-groups.test.cjs:25:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\overlapping-groups.test.cjs:40:1
+✖ Overlapping Groups is a statistics topic and catalog registration preserves existing resources (400.9075ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(taxonomy.categories.find(c=>c.label==='Statistics and Probability').topics.includes('Overlapping Groups'))
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\overlapping-groups.test.cjs:45:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\practice-organization.test.cjs:23:1
+✖ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (23.4472ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:28:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:61:1
+✖ registration restores a generator to its skill even when migration reused legacy module IDs (200.8259ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:66:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:72:1
+✖ metadata is validated and survives saves and session snapshots without changing the generated questions (1.4735ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:75:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:95:1
+✖ bulk disabling the last generators hides empty focused modules and remains saveable (4.5162ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Choose an existing math category and topic."
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Choose an existing math category and topic.
+        at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+        at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+        at Array.map (<anonymous>)
+        at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+        at C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:27
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:10)
+        at Test.runInAsyncScope (node:async_hooks:227:14),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tools\practice-organization.test.cjs:142:1
+✖ Skill is the module name; legacy classifications never replace it on reads or saves (5.0916ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:148:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:171:1
+✖ choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions (13.7399ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:181:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-player.test.cjs:46:1
+✖ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (49.4288ms)
+  Error: Build failed with 11 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:34: ERROR: Could not resolve "./client/src/features/math-command/PracticeStars"
+  <stdin>:5:70: ERROR: Could not resolve "react/jsx-runtime"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeStars"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:55:1
+✖ five streak stars unlock at exact ten-answer thresholds with accessible locked and earned labels (1.5392ms)
+  Error: Build failed with 11 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:34: ERROR: Could not resolve "./client/src/features/math-command/PracticeStars"
+  <stdin>:5:70: ERROR: Could not resolve "react/jsx-runtime"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeStars"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:66:1
+✖ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (0.2492ms)
+  Error: Build failed with 11 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:34: ERROR: Could not resolve "./client/src/features/math-command/PracticeStars"
+  <stdin>:5:70: ERROR: Could not resolve "react/jsx-runtime"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeStars"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:73:1
+✖ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (0.223ms)
+  Error: Build failed with 11 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:34: ERROR: Could not resolve "./client/src/features/math-command/PracticeStars"
+  <stdin>:5:70: ERROR: Could not resolve "react/jsx-runtime"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeStars"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:80:1
+✖ mini preview retains the exam controls in a bounded nonmodal region (0.2015ms)
+  Error: Build failed with 11 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:34: ERROR: Could not resolve "./client/src/features/math-command/PracticeStars"
+  <stdin>:5:70: ERROR: Could not resolve "react/jsx-runtime"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeStars"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' } ],
+    warnings: []
+  }
+
+test at tools\study-hall-view.test.cjs:6:1
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (57.6326ms)
+  Error: Build failed with 7 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:1:35: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\pages\\StudentDashboardPage.tsx"
+  <stdin>:1:165: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\content\\advancedPractice\\index.ts"
+  <stdin>:1:278: ERROR: Could not resolve "react"
+  <stdin>:1:321: ERROR: Could not resolve "react-dom/server"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\pages\\\\StudentDashboardPage.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\content\\\\advancedPractice\\\\index.ts"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\pages\\\\StudentMaterialsPage.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\symbolic-fraction-division.test.cjs:68:1
+✖ source example, all seed offsets, repeat cycle, determinism, and safe indices (117.3932ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal 0. What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?'
+  - 'Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal \\(0\\). What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?'
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\symbolic-fraction-division.test.cjs:71:48)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal 0. What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?',
+    expected: 'Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal \\(0\\). What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\word-problem-practice.test.cjs:26:1
+✖ every remaining-reading stem asks for additional time and has one exact hours answer (269.5524ms)
+  AssertionError [ERR_ASSERTION]: Includes the source stem: 2021-2022-form-a-q95
+      at verifyCycle (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:16:9)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:28:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\word-problem-practice.test.cjs:38:1
+✖ every mixture stem uses all ratio parts and all projects with one correct choice (1701.3276ms)
+  AssertionError [ERR_ASSERTION]: Includes the source stem: 2021-2022-form-a-q114
+      at verifyCycle (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:16:9)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:40:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\word-problem-practice.test.cjs:59:1
+✖ batch registration preserves teacher resources and snapshots all three generators in their own topics (29.0325ms)
+  Error: Individual modules can only be contained in Foundation Building or General Practice in the same topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:256:97)
+      at addBuiltinPractice (C:\Users\Nathan Im\Desktop\my-app-main\tools\register-practice-generator.cjs:68:3)
+      at Array.reduce (<anonymous>)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:65:60)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12) {
+    status: 400
+  }

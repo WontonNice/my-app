@@ -1,3 +1,4 @@
+import { currentMathClassification } from "./mathClassificationReview";
 import { correctCoordinateAnswer, coordinateAnswerCorrect } from './coordinateResponse';
 import { resolveSkilled, skilledLabel as classificationLabel } from './mathClassificationSkills';
 import type { ExamQuestion } from "./examTypes";
@@ -178,7 +179,7 @@ export function buildMathCommandCatalog(records:MathQuestionRecord[],taxonomy:Ma
   const rows=records.map(record=>{
     const q=effectiveMathQuestion(record),m=record.metadata||{},duplicateKinds=kinds.get(record.id)||[],issues=reviewMathQuestion(record,taxonomy,duplicateKinds), answer=mathAnswerStatus(q);
     const representations:MathRepresentation[]=unique([...(m.representations||[]),...(imagesIn(q).length?["diagram" as const]:[]),...(q.graph||q.numberLineResponse||q.choices?.some(c=>c.numberLine)?["graph" as const]:[]),...(/<table\b/i.test([q.promptHtml,q.stimulusHtml].join(" "))||q.tableHeaders?["table" as const]:[])]);
-    return {id:record.id,prompt:mathPlainText(q.promptHtml||q.prompt).slice(0,600),type:q.type,category:words(q.topic),subcategory:words(q.subtopic),skilled:resolveSkilled(m.skilled??q.skilled,q.topic,q.subtopic,taxonomy.classificationSkills),skilledLabel:classificationLabel(resolveSkilled(m.skilled??q.skilled,q.topic,q.subtopic,taxonomy.classificationSkills),taxonomy.classificationSkills),diagnosticSkill:words(m.diagnosticSkill),secondarySkills:m.secondarySkills||[],difficulty:mathDifficulties.includes(m.difficulty!)?m.difficulty!:"",source:words(m.source)||unique(record.sources.map(s=>s.source||s.title)).join("; "),sourceQuestionId:words(m.sourceQuestionId),sources:record.sources,years:unique(record.sources.flatMap(s=>s.year?[s.year]:[])),forms:unique(record.sources.flatMap(s=>s.form?[s.form]:[])),standards:m.standards||[],representations,context:words(m.context),importedAt:m.importedAt&&Number.isFinite(Date.parse(m.importedAt))?m.importedAt:null,issues,ready:issues.length===0,hasAnswer:answer.hasAnswer&&answer.valid,hasExplanation:hasRichContent(q.explanation,q.explanationHtml),duplicateKinds,performance:options.performance?.[record.id]||null} as MathCatalogRow;
+    return {classification:currentMathClassification(m,q.topic,q.subtopic),id:record.id,prompt:mathPlainText(q.promptHtml||q.prompt).slice(0,600),type:q.type,category:words(q.topic),subcategory:words(q.subtopic),skilled:resolveSkilled(m.skilled??q.skilled,q.topic,q.subtopic,taxonomy.classificationSkills),skilledLabel:classificationLabel(resolveSkilled(m.skilled??q.skilled,q.topic,q.subtopic,taxonomy.classificationSkills),taxonomy.classificationSkills),diagnosticSkill:words(m.diagnosticSkill),secondarySkills:m.secondarySkills||[],difficulty:mathDifficulties.includes(m.difficulty!)?m.difficulty!:"",source:words(m.source)||unique(record.sources.map(s=>s.source||s.title)).join("; "),sourceQuestionId:words(m.sourceQuestionId),sources:record.sources,years:unique(record.sources.flatMap(s=>s.year?[s.year]:[])),forms:unique(record.sources.flatMap(s=>s.form?[s.form]:[])),standards:m.standards||[],representations,context:words(m.context),importedAt:m.importedAt&&Number.isFinite(Date.parse(m.importedAt))?m.importedAt:null,issues,ready:issues.length===0,hasAnswer:answer.hasAnswer&&answer.valid,hasExplanation:hasRichContent(q.explanation,q.explanationHtml),duplicateKinds,performance:options.performance?.[record.id]||null} as MathCatalogRow;
   });
   return {rows,duplicates:duplicateResult.groups,duplicateSearch:duplicateResult.search};
 }
@@ -193,6 +194,10 @@ export function queryMathCommandCatalog(catalog:MathCatalog,filters:MathCatalogF
     if(filters.teacherLabelIds?.length && !filters.teacherLabelIds.every(id => row.personal?.labelIds.includes(id))) return false;
     if(!matches(filters.skilled,row.skilled??'TBD')||!matches(filters.category,row.category)||!matches(filters.subcategory,row.subcategory)||!matches(filters.diagnosticSkill,row.diagnosticSkill)||!matches(filters.secondarySkill,row.secondarySkills)||!matches(filters.standard,row.standards.filter(s=>s.verified).map(s=>s.code))||!matches(filters.difficulty,row.difficulty||"unclassified")||!matches(filters.responseType,row.type)||!matches(filters.source,[row.source,...row.sources.map(s=>s.source||s.title)])||!matches(filters.year,row.years)||!matches(filters.form,row.forms)||!matches(filters.assessmentId,row.sources.map(s=>s.assessmentId)))return false;
     if(terms.length){const haystack=[row.id,row.prompt,row.category,row.subcategory,row.skilledLabel??'TBD',row.diagnosticSkill,...row.secondarySkills,row.source,row.context,row.personal?.note ?? "",...(row.teacherLabelNames ?? []),...row.sources.map(s=>s.title)].join(" ").toLowerCase();if(!terms.every(term=>haystack.includes(term)))return false;}
+    if(filters.classification === "ai" && !(row.classification?.source === "ai" && row.classification.status !== "approved"))return false;
+    if(filters.classification === "teacher" && row.classification?.source !== "teacher")return false;
+    if(filters.classification === "approved" && row.classification?.status !== "approved")return false;
+    if(filters.classification === "unverified" && row.classification)return false;
     if(filters.context&&!row.context.toLowerCase().includes(filters.context.toLowerCase()))return false;
     for(const type of ["diagram","graph","table"] as const)if(filters[type]!==undefined&&row.representations.includes(type)!==filters[type])return false;
     if(filters.issue?.length&&!filters.issue.some(issue=>row.issues.includes(issue)))return false;
@@ -220,7 +225,7 @@ export function validateMathCatalogFilters(value:unknown):MathCatalogFilters {
   if(!parsed||typeof parsed!=="object"||Array.isArray(parsed)||JSON.stringify(parsed).length>250_000)throw new Error("Invalid question filters.");
   const filter=parsed as Record<string,unknown>;
   const lists=["skilled","teacherLabelIds","category","subcategory","diagnosticSkill","secondarySkill","standard","difficulty","responseType","source","year","form","assessmentId","issue","collectionQuestionIds","excludeQuestionIds"];
-  const strings=["search","context","status","sort","direction"],numbers=["page","pageSize"],booleans=["favoritesOnly","diagram","graph","table"];
+  const strings=["classification","search","context","status","sort","direction"],numbers=["page","pageSize"],booleans=["favoritesOnly","diagram","graph","table"];
   if(Object.keys(filter).some(key=>![...lists,...strings,...numbers,...booleans].includes(key)))throw new Error("Unsupported question filter.");
   for(const key of lists)if(filter[key]!==undefined&&(!Array.isArray(filter[key])||(filter[key] as unknown[]).length>10000||(filter[key] as unknown[]).some(item=>typeof item!=="string"||item.length>2000)))throw new Error(`Invalid ${key} filter.`);
   for(const key of strings)if(filter[key]!==undefined&&(typeof filter[key]!=="string"||String(filter[key]).length>2000))throw new Error(`Invalid ${key} filter.`);
@@ -228,6 +233,7 @@ export function validateMathCatalogFilters(value:unknown):MathCatalogFilters {
   for(const key of booleans)if(filter[key]!==undefined&&typeof filter[key]!=="boolean")throw new Error(`Invalid ${key} filter.`);
   if(filter.difficulty&&(filter.difficulty as string[]).some(d=>![...mathDifficulties,"unclassified"].includes(d)))throw new Error("Invalid difficulty filter.");
   if(filter.issue&&(filter.issue as string[]).some(d=>!(d in mathReviewIssueLabels)))throw new Error("Invalid review filter.");
+  if(filter.classification!==undefined&&!["ai","teacher","approved","unverified"].includes(String(filter.classification)))throw new Error("Invalid classification filter.");
   if(filter.status!==undefined&&!["ready","needs_review","never_assigned","previously_assigned","possible_duplicate"].includes(String(filter.status)))throw new Error("Invalid status filter.");
   if(filter.sort!==undefined&&!["favorite","taggedAt","category","subcategory","difficulty","importedAt","attempts","accuracy","incorrect","unanswered","lastAssignedAt","source","id"].includes(String(filter.sort)))throw new Error("Invalid sort field.");
   if(filter.direction!==undefined&&!["asc","desc"].includes(String(filter.direction)))throw new Error("Invalid sort direction.");

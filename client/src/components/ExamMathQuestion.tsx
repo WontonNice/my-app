@@ -217,7 +217,7 @@ function renderInteractionMath(text: string, keyPrefix: string) {
     });
 }
 
-function MathDragDropResponse({
+export function MathDragDropResponse({
   answer,
   onChange,
   question,

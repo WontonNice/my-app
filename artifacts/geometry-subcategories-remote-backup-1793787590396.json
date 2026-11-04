@@ -1,0 +1,3109 @@
+{
+  "math": {
+    "revision": "e97a5064-58ef-4b44-a0de-3c2b7589126f",
+    "state": {
+      "rules": {
+        "recentDays": 90,
+        "minAttempts": 5,
+        "minAssessments": 2,
+        "targetAccuracy": 70,
+        "trendDifference": 10,
+        "trendMinAttempts": 3,
+        "recentMinAttempts": 3,
+        "minUniqueQuestions": 3
+      },
+      "skills": [
+        {
+          "id": "integer-operations",
+          "label": "Integer Operations",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "order-of-operations",
+          "label": "Order of Operations",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations",
+          "prerequisiteIds": [
+            "integer-operations"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "factors-multiples",
+          "label": "Factors and Multiples",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "divisibility-primes",
+          "label": "Divisibility and Prime Factorization",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "fraction-operations",
+          "label": "Fraction Operations",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "decimal-operations",
+          "label": "Decimal Operations",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "rational-conversions",
+          "label": "Fraction and Decimal Conversions",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "exponents-roots",
+          "label": "Exponents and Roots",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Exponents, Roots & Scientific Notation",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "scientific-notation",
+          "label": "Scientific Notation",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Exponents, Roots & Scientific Notation",
+          "prerequisiteIds": [
+            "exponents-roots"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "unit-conversions",
+          "label": "Unit Conversions",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Units & Conversions",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "counting-sets",
+          "label": "Counting and Set Relationships",
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "distributive-property",
+          "label": "Distributive Property",
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions",
+          "prerequisiteIds": [
+            "integer-operations"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "combining-like-terms",
+          "label": "Combining Like Terms",
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions",
+          "prerequisiteIds": [
+            "integer-operations"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "evaluate-expressions",
+          "label": "Evaluate Expressions",
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions",
+          "prerequisiteIds": [
+            "order-of-operations"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "one-step-equations",
+          "label": "One-Step Equations",
+          "category": "Algebra",
+          "subcategory": "Equations & Systems",
+          "prerequisiteIds": [
+            "integer-operations"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "linear-equations",
+          "label": "Linear Equations",
+          "category": "Algebra",
+          "subcategory": "Equations & Systems",
+          "prerequisiteIds": [
+            "one-step-equations",
+            "distributive-property",
+            "combining-like-terms"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "systems-equations",
+          "label": "Systems of Equations",
+          "category": "Algebra",
+          "subcategory": "Equations & Systems",
+          "prerequisiteIds": [
+            "linear-equations"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "linear-inequalities",
+          "label": "Linear Inequalities",
+          "category": "Algebra",
+          "subcategory": "Inequalities",
+          "prerequisiteIds": [
+            "integer-operations",
+            "linear-equations"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "slope-linear-graphs",
+          "label": "Slope and Linear Graphs",
+          "category": "Algebra",
+          "subcategory": "Functions & Graphs",
+          "prerequisiteIds": [
+            "unit-rates"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "function-tables",
+          "label": "Function Tables and Rules",
+          "category": "Algebra",
+          "subcategory": "Functions & Graphs",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "patterns-sequences",
+          "label": "Patterns and Sequences",
+          "category": "Algebra",
+          "subcategory": "Patterns & Sequences",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "angle-relationships",
+          "label": "Angle Relationships",
+          "category": "Geometry",
+          "subcategory": "Lines & Angles",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "triangles-polygons",
+          "label": "Triangles and Polygons",
+          "category": "Geometry",
+          "subcategory": "Triangles & Polygons",
+          "prerequisiteIds": [
+            "angle-relationships"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "area-perimeter",
+          "label": "Area and Perimeter",
+          "category": "Geometry",
+          "subcategory": "Area & Perimeter",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "circles",
+          "label": "Circle Measurements",
+          "category": "Geometry",
+          "subcategory": "Area & Perimeter",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "composite-area",
+          "label": "Composite Area",
+          "category": "Geometry",
+          "subcategory": "Area & Perimeter",
+          "prerequisiteIds": [
+            "area-perimeter",
+            "circles"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "surface-area",
+          "label": "Surface Area",
+          "category": "Geometry",
+          "subcategory": "Surface Area & Volume",
+          "prerequisiteIds": [
+            "area-perimeter"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "volume",
+          "label": "Volume",
+          "category": "Geometry",
+          "subcategory": "Surface Area & Volume",
+          "prerequisiteIds": [
+            "area-perimeter"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "coordinate-distance",
+          "label": "Coordinate Distance and Locations",
+          "category": "Geometry",
+          "subcategory": "Coordinates & Segment Relationships",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "pythagorean-theorem",
+          "label": "Pythagorean Theorem",
+          "category": "Geometry",
+          "subcategory": "Triangles & Polygons",
+          "prerequisiteIds": [
+            "exponents-roots"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "scale-drawings",
+          "label": "Scale Drawings",
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings",
+          "prerequisiteIds": [
+            "proportional-relationships"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "transformations",
+          "label": "Transformations",
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings",
+          "prerequisiteIds": [
+            "coordinate-distance"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "read-data-displays",
+          "label": "Read Data Displays",
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "simple-probability",
+          "label": "Simple Probability",
+          "category": "Statistics and Probability",
+          "subcategory": "Probability",
+          "prerequisiteIds": [
+            "fraction-operations"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "compound-probability",
+          "label": "Compound Probability",
+          "category": "Statistics and Probability",
+          "subcategory": "Probability",
+          "prerequisiteIds": [
+            "simple-probability",
+            "counting-sets"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "center-spread",
+          "label": "Measures of Center and Spread",
+          "category": "Statistics and Probability",
+          "subcategory": "Averages & Spread",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "ratio-comparisons",
+          "label": "Ratio Comparisons",
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "proportional-relationships",
+          "label": "Proportional Relationships",
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions",
+          "prerequisiteIds": [
+            "ratio-comparisons"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "unit-rates",
+          "label": "Unit Rates",
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Rates & Unit Rates",
+          "prerequisiteIds": [],
+          "standardReferences": []
+        },
+        {
+          "id": "percent-amounts",
+          "label": "Percent Amounts",
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages",
+          "prerequisiteIds": [
+            "rational-conversions"
+          ],
+          "standardReferences": []
+        },
+        {
+          "id": "percent-change",
+          "label": "Percent Change",
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages",
+          "prerequisiteIds": [
+            "percent-amounts"
+          ],
+          "standardReferences": []
+        }
+      ],
+      "history": [
+        {
+          "at": "2026-10-27T14:26:58.557Z",
+          "id": "2da1e4d9-1011-4d1f-a571-16852b7e7d80",
+          "actor": "content-studio",
+          "after": {
+            "2026-2027-form-a-math-item-22": {
+              "category": "Statistics and Probability",
+              "subcategory": "Data Displays"
+            }
+          },
+          "before": {
+            "2026-2027-form-a-math-item-22": {}
+          },
+          "revision": "88712720b1c7e0bcb1da7d63c962930bb8ed8f9626026dfe95d5d4e6945167f2"
+        },
+        {
+          "at": "2026-10-27T14:27:32.472Z",
+          "id": "b21ac4b9-4ed5-4199-9fcc-2592a50b5f00",
+          "actor": "content-studio",
+          "after": {
+            "2021-2022-form-a-q76": {
+              "category": "Statistics and Probability",
+              "subcategory": "Data Displays"
+            }
+          },
+          "before": {
+            "2021-2022-form-a-q76": {}
+          },
+          "revision": "af9cd1b8-ab6a-4037-8cec-9e2e395c5b44"
+        },
+        {
+          "at": "2026-10-27T15:04:50.720Z",
+          "id": "b1bf4b9c-4aab-4cbd-b810-d30b39706e3f",
+          "actor": "local-teacher:13ef5f1c8c364eb30800ad0b",
+          "after": {
+            "2025-2026-form-a-math-5": {
+              "category": "Statistics and Probability",
+              "subcategory": "Overlapping Groups"
+            }
+          },
+          "before": {
+            "2025-2026-form-a-math-5": {}
+          },
+          "revision": "53c73826-dc50-4ec5-86dd-f7c97bf1aedb"
+        },
+        {
+          "at": "2026-10-27T18:22:13.312Z",
+          "id": "cd7aebf0-0bfd-4bf9-9d7c-b6e683d10821",
+          "actor": "local-teacher:13ef5f1c8c364eb30800ad0b",
+          "after": {
+            "2025-2026-form-a-math-1": {
+              "category": "Ratios and Proportional Relationships",
+              "subcategory": "Ratios & Proportions"
+            }
+          },
+          "before": {
+            "2025-2026-form-a-math-1": {}
+          },
+          "revision": "e2f7a9cf-5fcc-4498-a273-4647943fdf08"
+        },
+        {
+          "at": "2026-10-27T18:22:46.321Z",
+          "id": "0857eb34-ccdc-4ce6-ab38-1d8cbb965bae",
+          "actor": "local-teacher:13ef5f1c8c364eb30800ad0b",
+          "after": {
+            "2026-2027-form-a-math-item-1": {
+              "category": "Ratios and Proportional Relationships",
+              "subcategory": "Ratios & Proportions"
+            }
+          },
+          "before": {
+            "2026-2027-form-a-math-item-1": {}
+          },
+          "revision": "9ac0fb40-e501-4e86-af5a-4a19f3d1839a"
+        }
+      ],
+      "targets": {
+        "defaultPerDifficulty": 10
+      },
+      "metadata": {
+        "2019-2020-form-a-q58": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2019-2020-form-a-q59": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2019-2020-form-a-q61": {
+          "category": "Geometry",
+          "subcategory": "Lines & Angles"
+        },
+        "2019-2020-form-a-q63": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Exponents, Roots & Scientific Notation"
+        },
+        "2019-2020-form-a-q64": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2019-2020-form-a-q67": {
+          "category": "Geometry",
+          "subcategory": "Coordinates & Segment Relationships"
+        },
+        "2019-2020-form-a-q69": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2019-2020-form-a-q70": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2019-2020-form-a-q71": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2019-2020-form-a-q73": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2019-2020-form-a-q74": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2019-2020-form-a-q75": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Units & Conversions"
+        },
+        "2019-2020-form-a-q77": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2019-2020-form-a-q80": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2019-2020-form-a-q82": {
+          "category": "Geometry",
+          "subcategory": "Lines & Angles"
+        },
+        "2019-2020-form-a-q83": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2019-2020-form-a-q84": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2019-2020-form-a-q86": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2019-2020-form-a-q87": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2019-2020-form-a-q88": {
+          "category": "Algebra",
+          "subcategory": "Patterns & Sequences"
+        },
+        "2019-2020-form-a-q89": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2019-2020-form-a-q90": {
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions"
+        },
+        "2019-2020-form-a-q91": {
+          "category": "Geometry",
+          "subcategory": "Triangles & Polygons"
+        },
+        "2019-2020-form-a-q92": {
+          "category": "Geometry",
+          "subcategory": "Coordinates & Segment Relationships"
+        },
+        "2019-2020-form-a-q94": {
+          "category": "Geometry",
+          "subcategory": "Circles"
+        },
+        "2019-2020-form-a-q97": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2019-2020-form-a-q99": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2020-2021-form-b-q61": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "2020-2021-form-b-q64": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "2020-2021-form-b-q66": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2020-2021-form-b-q67": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2020-2021-form-b-q68": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2020-2021-form-b-q69": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2020-2021-form-b-q70": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2020-2021-form-b-q71": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Rates & Unit Rates"
+        },
+        "2020-2021-form-b-q72": {
+          "category": "Algebra",
+          "subcategory": "Inequalities"
+        },
+        "2020-2021-form-b-q73": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2020-2021-form-b-q74": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2020-2021-form-b-q76": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2020-2021-form-b-q77": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2020-2021-form-b-q78": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2020-2021-form-b-q79": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2020-2021-form-b-q80": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2020-2021-form-b-q81": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2020-2021-form-b-q86": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2020-2021-form-b-q87": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2020-2021-form-b-q89": {
+          "category": "Geometry",
+          "subcategory": "Circles"
+        },
+        "2020-2021-form-b-q92": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2020-2021-form-b-q93": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2020-2021-form-b-q94": {
+          "category": "Algebra",
+          "subcategory": "Patterns & Sequences"
+        },
+        "2020-2021-form-b-q98": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2021-2022-form-a-q58": {
+          "category": "Geometry",
+          "subcategory": "Triangles & Polygons"
+        },
+        "2021-2022-form-a-q61": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2021-2022-form-a-q62": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2021-2022-form-a-q66": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2021-2022-form-a-q73": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2021-2022-form-a-q76": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2021-2022-form-a-q78": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2021-2022-form-a-q81": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2021-2022-form-a-q82": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2021-2022-form-a-q83": {
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings"
+        },
+        "2021-2022-form-a-q87": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2021-2022-form-a-q88": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2021-2022-form-a-q89": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2021-2022-form-a-q90": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2021-2022-form-a-q91": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2021-2022-form-a-q93": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2021-2022-form-a-q94": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2021-2022-form-a-q97": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2021-2022-form-a-q98": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2021-2022-form-a-q99": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2022-2023-form-a-q58": {
+          "category": "Geometry",
+          "subcategory": "Circles"
+        },
+        "2022-2023-form-a-q60": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "2022-2023-form-a-q63": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2022-2023-form-a-q67": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2022-2023-form-a-q68": {
+          "category": "Geometry",
+          "subcategory": "Triangles & Polygons"
+        },
+        "2022-2023-form-a-q72": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2022-2023-form-a-q73": {
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings"
+        },
+        "2022-2023-form-a-q75": {
+          "category": "Geometry",
+          "subcategory": "Lines & Angles"
+        },
+        "2022-2023-form-a-q77": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2022-2023-form-a-q78": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2022-2023-form-a-q79": {
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions"
+        },
+        "2022-2023-form-a-q80": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2022-2023-form-a-q81": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2022-2023-form-a-q82": {
+          "category": "Geometry",
+          "subcategory": "Coordinates & Segment Relationships"
+        },
+        "2022-2023-form-a-q84": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2022-2023-form-a-q85": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2022-2023-form-a-q90": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-a-q91": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-a-q92": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-a-q93": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2022-2023-form-a-q94": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2022-2023-form-a-q96": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2022-2023-form-a-q97": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2022-2023-form-a-q98": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2022-2023-form-a-q99": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2022-2023-form-b-q58": {
+          "category": "Geometry",
+          "subcategory": "Surface Area & Volume"
+        },
+        "2022-2023-form-b-q59": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-b-q60": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2022-2023-form-b-q61": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2022-2023-form-b-q62": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2022-2023-form-b-q63": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2022-2023-form-b-q64": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2022-2023-form-b-q65": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2022-2023-form-b-q67": {
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions"
+        },
+        "2022-2023-form-b-q71": {
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings"
+        },
+        "2022-2023-form-b-q72": {
+          "category": "Geometry",
+          "subcategory": "Lines & Angles"
+        },
+        "2022-2023-form-b-q73": {
+          "category": "Geometry",
+          "subcategory": "Triangles & Polygons"
+        },
+        "2022-2023-form-b-q74": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2022-2023-form-b-q75": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2022-2023-form-b-q76": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2022-2023-form-b-q77": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2022-2023-form-b-q79": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2022-2023-form-b-q80": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "2022-2023-form-b-q81": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2022-2023-form-b-q82": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "2022-2023-form-b-q83": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2022-2023-form-b-q93": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2022-2023-form-b-q94": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2022-2023-form-b-q96": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2022-2023-form-b-q97": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2022-2023-form-b-q98": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2022-2023-form-b-q99": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2024-2025-form-a-q58": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "2024-2025-form-a-q59": {
+          "category": "Geometry",
+          "subcategory": "Lines & Angles"
+        },
+        "2024-2025-form-a-q63": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2024-2025-form-a-q64": {
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions"
+        },
+        "2024-2025-form-a-q65": {
+          "category": "Geometry",
+          "subcategory": "Circles"
+        },
+        "2024-2025-form-a-q66": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2024-2025-form-a-q68": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2024-2025-form-a-q69": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2024-2025-form-a-q71": {
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings"
+        },
+        "2024-2025-form-a-q72": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2024-2025-form-a-q73": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2024-2025-form-a-q74": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2024-2025-form-a-q75": {
+          "category": "Algebra",
+          "subcategory": "Patterns & Sequences"
+        },
+        "2024-2025-form-a-q79": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Units & Conversions"
+        },
+        "2024-2025-form-a-q81": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2024-2025-form-a-q82": {
+          "category": "Geometry",
+          "subcategory": "Coordinates & Segment Relationships"
+        },
+        "2024-2025-form-a-q84": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2024-2025-form-a-q87": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2024-2025-form-a-q91": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2024-2025-form-a-q92": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "2024-2025-form-a-q94": {
+          "category": "Geometry",
+          "subcategory": "Coordinates & Segment Relationships"
+        },
+        "2024-2025-form-a-q95": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2024-2025-form-a-q96": {
+          "category": "Geometry",
+          "subcategory": "Surface Area & Volume"
+        },
+        "2024-2025-form-a-q97": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "sum-of-mixed-numbers": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2019-2020-form-a-q102": {
+          "category": "Geometry",
+          "subcategory": "Lines & Angles"
+        },
+        "2019-2020-form-a-q103": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2019-2020-form-a-q106": {
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings"
+        },
+        "2019-2020-form-a-q107": {
+          "category": "Geometry",
+          "subcategory": "Surface Area & Volume"
+        },
+        "2019-2020-form-a-q108": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2019-2020-form-a-q110": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2019-2020-form-a-q112": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2019-2020-form-a-q113": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2019-2020-form-a-q114": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2020-2021-form-b-q100": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2020-2021-form-b-q102": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2020-2021-form-b-q103": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2020-2021-form-b-q104": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2020-2021-form-b-q105": {
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings"
+        },
+        "2020-2021-form-b-q106": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2020-2021-form-b-q107": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2020-2021-form-b-q109": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2020-2021-form-b-q113": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2020-2021-form-b-q114": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2021-2022-form-a-q100": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2021-2022-form-a-q102": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2021-2022-form-a-q104": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2021-2022-form-a-q108": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2021-2022-form-a-q109": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2021-2022-form-a-q111": {
+          "category": "Geometry",
+          "subcategory": "Coordinates & Segment Relationships"
+        },
+        "2021-2022-form-a-q112": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2022-2023-form-a-q100": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2022-2023-form-a-q101": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2022-2023-form-a-q102": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2022-2023-form-a-q103": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2022-2023-form-a-q104": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2022-2023-form-a-q105": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2022-2023-form-a-q107": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2022-2023-form-a-q109": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-a-q110": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2022-2023-form-a-q112": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-a-q113": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-a-q114": {
+          "category": "Geometry",
+          "subcategory": "Circles"
+        },
+        "2022-2023-form-b-q100": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2022-2023-form-b-q101": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2022-2023-form-b-q102": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-b-q103": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2022-2023-form-b-q104": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-b-q105": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-b-q106": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2022-2023-form-b-q107": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2022-2023-form-b-q108": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2022-2023-form-b-q109": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2022-2023-form-b-q110": {
+          "category": "Geometry",
+          "subcategory": "Surface Area & Volume"
+        },
+        "2022-2023-form-b-q111": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2022-2023-form-b-q112": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2022-2023-form-b-q114": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2024-2025-form-a-q100": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2024-2025-form-a-q103": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2024-2025-form-a-q104": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2024-2025-form-a-q105": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2024-2025-form-a-q106": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2024-2025-form-a-q108": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2024-2025-form-a-q109": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2024-2025-form-a-q110": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2024-2025-form-a-q111": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2024-2025-form-a-q112": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2024-2025-form-a-q113": {
+          "category": "Geometry",
+          "subcategory": "Coordinates & Segment Relationships"
+        },
+        "2024-2025-form-a-q114": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "smallest-factor-of-91": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "tien-jordan-age-ratio": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2020-2021-form-b-math-2": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2020-2021-form-b-math-3": {
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings"
+        },
+        "2025-2026-form-a-math-1": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2025-2026-form-a-math-5": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2025-2026-form-a-math-9": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "choose-pairs-of-cookies": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "colored-pencils-not-red": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2025-2026-form-a-math-11": {
+          "category": "Geometry",
+          "subcategory": "Triangles & Polygons"
+        },
+        "2025-2026-form-a-math-15": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "notebook-cost-graph-points": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "center-city-walk-vs-bicycle": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "longest-stick-common-factor": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2026-2027-form-a-math-item-1": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2026-2027-form-a-math-item-4": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2026-2027-form-a-math-item-8": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2026-2027-form-a-math-item-9": {
+          "category": "Geometry",
+          "subcategory": "Triangles & Polygons"
+        },
+        "2026-2027-form-d-math-item-1": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2026-2027-form-d-math-item-2": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2026-2027-form-d-math-item-4": {
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions"
+        },
+        "2026-2027-form-d-math-item-5": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2026-2027-form-d-math-item-7": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2026-2027-form-d-math-item-9": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "compound-fraction-math-entry": {
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions"
+        },
+        "2026-2027-form-a-math-item-14": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2026-2027-form-a-math-item-15": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2026-2027-form-a-math-item-17": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "2026-2027-form-a-math-item-19": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2026-2027-form-a-math-item-22": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2026-2027-form-a-math-item-23": {
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings"
+        },
+        "2026-2027-form-a-math-item-26": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2026-2027-form-a-math-item-28": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2026-2027-form-a-math-item-29": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2026-2027-form-a-math-item-31": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2026-2027-form-a-math-item-35": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2026-2027-form-a-math-item-36": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2026-2027-form-a-math-item-37": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2026-2027-form-a-math-item-38": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2026-2027-form-a-math-item-41": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2026-2027-form-a-math-item-44": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2026-2027-form-a-math-item-45": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2026-2027-form-a-math-item-47": {
+          "category": "Geometry",
+          "subcategory": "Coordinates & Segment Relationships"
+        },
+        "2026-2027-form-a-math-item-48": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2026-2027-form-a-math-item-50": {
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions"
+        },
+        "2026-2027-form-d-math-item-11": {
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings"
+        },
+        "2026-2027-form-d-math-item-12": {
+          "category": "Geometry",
+          "subcategory": "Lines & Angles"
+        },
+        "2026-2027-form-d-math-item-13": {
+          "category": "Geometry",
+          "subcategory": "Triangles & Polygons"
+        },
+        "2026-2027-form-d-math-item-14": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2026-2027-form-d-math-item-15": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2026-2027-form-d-math-item-16": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2026-2027-form-d-math-item-17": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2026-2027-form-d-math-item-18": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2026-2027-form-d-math-item-19": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2026-2027-form-d-math-item-20": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        },
+        "2026-2027-form-d-math-item-21": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "2026-2027-form-d-math-item-22": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "2026-2027-form-d-math-item-23": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "2026-2027-form-d-math-item-28": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2026-2027-form-d-math-item-29": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2026-2027-form-d-math-item-31": {
+          "category": "Statistics and Probability",
+          "subcategory": "Data Displays & Sampling"
+        },
+        "2026-2027-form-d-math-item-33": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "2026-2027-form-d-math-item-34": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2026-2027-form-d-math-item-35": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2026-2027-form-d-math-item-37": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2026-2027-form-d-math-item-38": {
+          "category": "Statistics and Probability",
+          "subcategory": "Counting & Sets"
+        },
+        "2026-2027-form-d-math-item-39": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "2026-2027-form-d-math-item-41": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Ratios & Proportions"
+        },
+        "2026-2027-form-d-math-item-44": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2026-2027-form-d-math-item-45": {
+          "category": "Algebra",
+          "subcategory": "Equations & Systems"
+        },
+        "2026-2027-form-d-math-item-47": {
+          "category": "Geometry",
+          "subcategory": "Surface Area & Volume"
+        },
+        "2026-2027-form-d-math-item-49": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        "2026-2027-form-d-math-item-50": {
+          "category": "Ratios and Proportional Relationships",
+          "subcategory": "Percentages"
+        },
+        "absolute-value-equivalent-drag": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Integers & Absolute Value"
+        },
+        "triangular-banner-scale-drawing": {
+          "category": "Geometry",
+          "subcategory": "Similarity & Scale Drawings"
+        },
+        "cards-without-replacement-not-blue": {
+          "category": "Statistics and Probability",
+          "subcategory": "Probability"
+        },
+        "point-between-fraction-number-line": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Fractions & Decimals"
+        },
+        "digital-shsat-practice-test-4-satcc-66050f1c9020a8c9d047-math-9": {
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Order of Operations"
+        }
+      },
+      "revision": "e97a5064-58ef-4b44-a0de-3c2b7589126f",
+      "taxonomy": {
+        "categories": [
+          {
+            "label": "Algebra",
+            "topics": [
+              "Algebraic Expressions",
+              "Equations & Systems",
+              "Inequalities",
+              "Functions & Graphs",
+              "Patterns & Sequences"
+            ]
+          },
+          {
+            "label": "Geometry",
+            "topics": [
+              "Lines & Angles",
+              "Triangles & Polygons",
+              "Circles",
+              "Area & Perimeter",
+              "Surface Area & Volume",
+              "Coordinates & Segment Relationships",
+              "Similarity & Scale Drawings"
+            ]
+          },
+          {
+            "label": "Statistics and Probability",
+            "topics": [
+              "Data Displays & Sampling",
+              "Averages & Spread",
+              "Counting & Sets",
+              "Probability"
+            ]
+          },
+          {
+            "label": "Ratios and Proportional Relationships",
+            "topics": [
+              "Ratios & Proportions",
+              "Rates & Unit Rates",
+              "Percentages"
+            ]
+          },
+          {
+            "label": "Arithmetic & Number Sense",
+            "topics": [
+              "Number Types & Properties",
+              "Integers & Absolute Value",
+              "Fractions & Decimals",
+              "Order of Operations",
+              "Exponents, Roots & Scientific Notation",
+              "Units & Conversions"
+            ]
+          }
+        ]
+      },
+      "savedViews": [],
+      "collections": [],
+      "pacePerWeek": 20,
+      "classificationSkills": [
+        {
+          "id": "057217b6-5a0d-4c3e-aef9-be5e38a5d0e9",
+          "label": "Angles",
+          "category": "Geometry",
+          "subcategory": "Lines & Angles"
+        },
+        {
+          "id": "6ef8aa5f-caf0-4820-9d24-eaf0e4b2c21e",
+          "label": "Consecutive Integers",
+          "category": "Arithmetic & Number Sense",
+          "subcategory": "Number Types & Properties"
+        },
+        {
+          "id": "9abd5350-a5f2-4fad-9822-c1e064977942",
+          "label": "Simplifying Expressions",
+          "category": "Algebra",
+          "subcategory": "Algebraic Expressions"
+        }
+      ],
+      "taxonomyTopicRenames": [
+        {
+          "to": "Set Relationships",
+          "from": "Overlapping Groups",
+          "category": "Statistics and Probability"
+        },
+        {
+          "to": "Lines & Angles",
+          "from": "Shapes & Angles",
+          "category": "Geometry"
+        },
+        {
+          "to": "Coordinates & Segment Relationships",
+          "from": "Coordinate Geometry",
+          "category": "Geometry"
+        },
+        {
+          "to": "Triangles & Polygons",
+          "from": "Pythagorean Theorem",
+          "category": "Geometry"
+        },
+        {
+          "to": "Similarity & Scale Drawings",
+          "from": "Scale & Transformations",
+          "category": "Geometry"
+        },
+        {
+          "to": "Basic Probability",
+          "from": "Probability",
+          "category": "Statistics and Probability"
+        },
+        {
+          "to": "Counting & Combinations",
+          "from": "Counting & Sets",
+          "category": "Statistics and Probability"
+        },
+        {
+          "to": "Number Types & Properties",
+          "from": "Number Properties",
+          "category": "Arithmetic & Number Sense"
+        },
+        {
+          "to": "Fractions",
+          "from": "Fractions & Decimals",
+          "category": "Arithmetic & Number Sense"
+        },
+        {
+          "to": "Integers & Absolute Value",
+          "from": "Number Operations",
+          "category": "Arithmetic & Number Sense"
+        },
+        {
+          "to": "Counting & Combinations",
+          "from": "Counting & Sets",
+          "category": "Arithmetic & Number Sense",
+          "toCategory": "Statistics and Probability"
+        },
+        {
+          "to": "Units & Conversions",
+          "from": "Units & Conversions",
+          "category": "Ratios and Proportional Relationships",
+          "toCategory": "Arithmetic & Number Sense"
+        },
+        {
+          "to": "Equations & Systems",
+          "from": "Formulas & Rearranging Equations",
+          "category": "Algebra"
+        },
+        {
+          "to": "Equations & Systems",
+          "from": "Algebraic Word Problems",
+          "category": "Algebra"
+        },
+        {
+          "to": "Data Displays & Sampling",
+          "from": "Data Displays",
+          "category": "Statistics and Probability"
+        },
+        {
+          "to": "Data Displays & Sampling",
+          "from": "Sampling & Predictions",
+          "category": "Statistics and Probability"
+        },
+        {
+          "to": "Counting & Sets",
+          "from": "Counting & Combinations",
+          "category": "Statistics and Probability"
+        },
+        {
+          "to": "Counting & Sets",
+          "from": "Set Relationships",
+          "category": "Statistics and Probability"
+        },
+        {
+          "to": "Probability",
+          "from": "Basic Probability",
+          "category": "Statistics and Probability"
+        },
+        {
+          "to": "Probability",
+          "from": "Compound Probability",
+          "category": "Statistics and Probability"
+        },
+        {
+          "to": "Ratios & Proportions",
+          "from": "Proportional Relationships",
+          "category": "Ratios and Proportional Relationships"
+        },
+        {
+          "to": "Percentages",
+          "from": "Percent Change & Applications",
+          "category": "Ratios and Proportional Relationships"
+        },
+        {
+          "to": "Fractions & Decimals",
+          "from": "Fractions",
+          "category": "Arithmetic & Number Sense"
+        },
+        {
+          "to": "Fractions & Decimals",
+          "from": "Decimals",
+          "category": "Arithmetic & Number Sense"
+        }
+      ],
+      "retiredClassificationSkillIds": []
+    }
+  },
+  "practice": {
+    "revision": 32,
+    "catalog": {
+      "videos": [
+        {
+          "id": "e5c3579a-9741-49ec-886b-cf0243e2c210",
+          "url": "https://www.youtube.com/watch?v=O5vRDwTE3pU",
+          "title": "Understanding Inequalities & Their Graphs",
+          "topic": "Inequalities",
+          "category": "Algebra",
+          "duration": "10:37",
+          "published": true,
+          "description": "In this video lesson we will learn how to graph an inequality using an open or closed circle and an arrow.  We will learn that the open circle represents less than or greater than since the value is NOT part of the solution set.  We will learn that a closed circle is used to represent greater than or equal to and less than or equal to.  We will graph inequalities and we will write inequalities from graphs.  We will also determine if a value is a solution of an inequality.  Student Practice is embedded in the lesson with modeled exemplar solutions.",
+          "channelTitle": "The Magic Of Math"
+        }
+      ],
+      "modules": [
+        {
+          "id": "foundation",
+          "title": "Foundation Building",
+          "topic": "Inequalities",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": null,
+          "published": true,
+          "includeAll": false,
+          "defaultType": "foundation",
+          "description": "Build confidence with one-step inequalities, including positive division and sign flips.",
+          "generatorIds": []
+        },
+        {
+          "id": "all",
+          "title": "General Practice",
+          "topic": "Inequalities",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Mix every available practice type in one session.",
+          "generatorIds": []
+        },
+        {
+          "id": "inequalities",
+          "title": "One-step Inequalities",
+          "topic": "Inequalities",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": "foundation",
+          "published": true,
+          "includeAll": false,
+          "description": "Practice positive and negative coefficients, strict inequalities, and sign flips.",
+          "generatorIds": [
+            "one-step-inequalities-v1"
+          ]
+        },
+        {
+          "id": "2022-2023-form-b-q70",
+          "title": "Inequalities: Variables on Both Sides",
+          "topic": "Inequalities",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": "foundation",
+          "published": true,
+          "includeAll": false,
+          "description": "Based on 2022–2023 Form B Q70. Collect variable terms and constants, then solve, reversing the sign when dividing by a negative number.",
+          "generatorIds": [
+            "variables-both-sides-inequalities-v1"
+          ]
+        },
+        {
+          "id": "2026-2027-form-d-math-item-26",
+          "title": "Writing Inequalities",
+          "topic": "Inequalities",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": "foundation",
+          "published": true,
+          "includeAll": false,
+          "description": "Based on 2026–2027 Form D, math item 26. Write a budget inequality using an hourly rental rate and a one-time fee.",
+          "generatorIds": [
+            "writing-inequalities-v1"
+          ]
+        },
+        {
+          "id": "2021-2022-form-a-q76",
+          "title": "Overlapping Groups",
+          "topic": "Counting & Sets",
+          "skilled": "TBD",
+          "category": "Statistics and Probability",
+          "parentId": "general-statistics-and-probability-overlapping-groups-e6op6z",
+          "published": true,
+          "includeAll": false,
+          "description": "Practice overlapping group percentages and survey totals, including both groups and neither group.",
+          "generatorIds": [
+            "overlapping-groups-v1",
+            "overlapping-survey-totals-v1"
+          ]
+        },
+        {
+          "id": "foundation-algebra-algebraic-expressions-rj42ee",
+          "title": "Foundation Building",
+          "topic": "Algebraic Expressions",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-algebra-algebraic-expressions-rj42ee",
+          "title": "General Practice",
+          "topic": "Algebraic Expressions",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-algebra-equations-systems-1iaob9y",
+          "title": "Foundation Building",
+          "topic": "Equations & Systems",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "foundation-algebra-formulas-rearranging-equations-hkimmj",
+            "foundation-algebra-algebraic-word-problems-ifpicp"
+          ]
+        },
+        {
+          "id": "general-algebra-equations-systems-1iaob9y",
+          "title": "General Practice",
+          "topic": "Equations & Systems",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "general-algebra-formulas-rearranging-equations-hkimmj",
+            "general-algebra-algebraic-word-problems-ifpicp"
+          ]
+        },
+        {
+          "id": "foundation-algebra-functions-graphs-w7fmwh",
+          "title": "Foundation Building",
+          "topic": "Functions & Graphs",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-algebra-functions-graphs-w7fmwh",
+          "title": "General Practice",
+          "topic": "Functions & Graphs",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-algebra-patterns-sequences-1f8v94i",
+          "title": "Foundation Building",
+          "topic": "Patterns & Sequences",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-algebra-patterns-sequences-1f8v94i",
+          "title": "General Practice",
+          "topic": "Patterns & Sequences",
+          "skilled": "TBD",
+          "category": "Algebra",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-geometry-shapes-angles-y1d10t",
+          "title": "Foundation Building",
+          "topic": "Lines & Angles",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-geometry-shapes-angles-y1d10t",
+          "title": "General Practice",
+          "topic": "Lines & Angles",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-geometry-area-perimeter-1kz9wsp",
+          "title": "Foundation Building",
+          "topic": "Area & Perimeter",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-geometry-area-perimeter-1kz9wsp",
+          "title": "General Practice",
+          "topic": "Area & Perimeter",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-geometry-surface-area-volume-1l75wmt",
+          "title": "Foundation Building",
+          "topic": "Surface Area & Volume",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-geometry-surface-area-volume-1l75wmt",
+          "title": "General Practice",
+          "topic": "Surface Area & Volume",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-geometry-coordinate-geometry-1js46n",
+          "title": "Foundation Building",
+          "topic": "Coordinates & Segment Relationships",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-geometry-coordinate-geometry-1js46n",
+          "title": "General Practice",
+          "topic": "Coordinates & Segment Relationships",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-geometry-pythagorean-theorem-1qv40h7",
+          "title": "Foundation Building",
+          "topic": "Triangles & Polygons",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-geometry-pythagorean-theorem-1qv40h7",
+          "title": "General Practice",
+          "topic": "Triangles & Polygons",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-geometry-scale-transformations-1q4h9dr",
+          "title": "Foundation Building",
+          "topic": "Similarity & Scale Drawings",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-geometry-scale-transformations-1q4h9dr",
+          "title": "General Practice",
+          "topic": "Similarity & Scale Drawings",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-statistics-and-probability-data-displays-e3a8k7",
+          "title": "Foundation Building",
+          "topic": "Data Displays & Sampling",
+          "skilled": "TBD",
+          "category": "Statistics and Probability",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "foundation-statistics-and-probability-sampling-predictions-llj4n7"
+          ]
+        },
+        {
+          "id": "general-statistics-and-probability-data-displays-e3a8k7",
+          "title": "General Practice",
+          "topic": "Data Displays & Sampling",
+          "skilled": "TBD",
+          "category": "Statistics and Probability",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "general-statistics-and-probability-sampling-predictions-llj4n7"
+          ]
+        },
+        {
+          "id": "foundation-statistics-and-probability-probability-mzsbkv",
+          "title": "Foundation Building",
+          "topic": "Probability",
+          "skilled": "TBD",
+          "category": "Statistics and Probability",
+          "parentId": null,
+          "published": true,
+          "includeAll": false,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "foundation-statistics-and-probability-compound-probability-1vfe8i8"
+          ]
+        },
+        {
+          "id": "general-statistics-and-probability-probability-mzsbkv",
+          "title": "General Practice",
+          "topic": "Probability",
+          "skilled": "TBD",
+          "category": "Statistics and Probability",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "general-statistics-and-probability-compound-probability-1vfe8i8"
+          ]
+        },
+        {
+          "id": "foundation-statistics-and-probability-overlapping-groups-e6op6z",
+          "title": "Foundation Building",
+          "topic": "Counting & Sets",
+          "skilled": "TBD",
+          "category": "Statistics and Probability",
+          "parentId": null,
+          "published": true,
+          "includeAll": false,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "foundation-arithmetic-number-sense-counting-sets-136amh8"
+          ]
+        },
+        {
+          "id": "general-statistics-and-probability-overlapping-groups-e6op6z",
+          "title": "General Practice",
+          "topic": "Counting & Sets",
+          "skilled": "TBD",
+          "category": "Statistics and Probability",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "general-arithmetic-number-sense-counting-sets-136amh8"
+          ]
+        },
+        {
+          "id": "foundation-statistics-and-probability-averages-spread-tscqx",
+          "title": "Foundation Building",
+          "topic": "Averages & Spread",
+          "skilled": "TBD",
+          "category": "Statistics and Probability",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-statistics-and-probability-averages-spread-tscqx",
+          "title": "General Practice",
+          "topic": "Averages & Spread",
+          "skilled": "TBD",
+          "category": "Statistics and Probability",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-ratios-and-proportional-relationships-ratios-proportions-r19h39",
+          "title": "Foundation Building",
+          "topic": "Ratios & Proportions",
+          "skilled": "TBD",
+          "category": "Ratios and Proportional Relationships",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "foundation-ratios-and-proportional-relationships-proportional-relationships-18hq0as"
+          ]
+        },
+        {
+          "id": "general-ratios-and-proportional-relationships-ratios-proportions-r19h39",
+          "title": "General Practice",
+          "topic": "Ratios & Proportions",
+          "skilled": "TBD",
+          "category": "Ratios and Proportional Relationships",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "general-ratios-and-proportional-relationships-proportional-relationships-18hq0as"
+          ]
+        },
+        {
+          "id": "foundation-ratios-and-proportional-relationships-rates-unit-rates-e78tk2",
+          "title": "Foundation Building",
+          "topic": "Rates & Unit Rates",
+          "skilled": "TBD",
+          "category": "Ratios and Proportional Relationships",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-ratios-and-proportional-relationships-rates-unit-rates-e78tk2",
+          "title": "General Practice",
+          "topic": "Rates & Unit Rates",
+          "skilled": "TBD",
+          "category": "Ratios and Proportional Relationships",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-ratios-and-proportional-relationships-percentages-4bd37f",
+          "title": "Foundation Building",
+          "topic": "Percentages",
+          "skilled": "TBD",
+          "category": "Ratios and Proportional Relationships",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "foundation-ratios-and-proportional-relationships-percent-change-applications-vtd6xe"
+          ]
+        },
+        {
+          "id": "general-ratios-and-proportional-relationships-percentages-4bd37f",
+          "title": "General Practice",
+          "topic": "Percentages",
+          "skilled": "TBD",
+          "category": "Ratios and Proportional Relationships",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "general-ratios-and-proportional-relationships-percent-change-applications-vtd6xe"
+          ]
+        },
+        {
+          "id": "foundation-arithmetic-number-sense-number-properties-1j4ekza",
+          "title": "Foundation Building",
+          "topic": "Number Types & Properties",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-arithmetic-number-sense-number-properties-1j4ekza",
+          "title": "General Practice",
+          "topic": "Number Types & Properties",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-arithmetic-number-sense-fractions-decimals-7j6qc9",
+          "title": "Foundation Building",
+          "topic": "Fractions & Decimals",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "foundation-arithmetic-number-sense-decimals-adr7d2"
+          ]
+        },
+        {
+          "id": "general-arithmetic-number-sense-fractions-decimals-7j6qc9",
+          "title": "General Practice",
+          "topic": "Fractions & Decimals",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": [],
+          "selectionAliases": [
+            "general-arithmetic-number-sense-decimals-adr7d2"
+          ]
+        },
+        {
+          "id": "foundation-arithmetic-number-sense-number-operations-27w2sd",
+          "title": "Foundation Building",
+          "topic": "Integers & Absolute Value",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-arithmetic-number-sense-number-operations-27w2sd",
+          "title": "General Practice",
+          "topic": "Integers & Absolute Value",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-arithmetic-number-sense-exponents-roots-scientific-notation-1pbgwsc",
+          "title": "Foundation Building",
+          "topic": "Exponents, Roots & Scientific Notation",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-arithmetic-number-sense-exponents-roots-scientific-notation-1pbgwsc",
+          "title": "General Practice",
+          "topic": "Exponents, Roots & Scientific Notation",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-arithmetic-number-sense-units-conversions-1qqbgus",
+          "title": "Foundation Building",
+          "topic": "Units & Conversions",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-arithmetic-number-sense-units-conversions-1qqbgus",
+          "title": "General Practice",
+          "topic": "Units & Conversions",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "2021-2022-form-a-q95",
+          "title": "Rates: Remaining Reading Time",
+          "topic": "Rates & Unit Rates",
+          "skilled": "TBD",
+          "category": "Ratios and Proportional Relationships",
+          "parentId": "general-ratios-and-proportional-relationships-rates-unit-rates-e78tk2",
+          "published": true,
+          "includeAll": false,
+          "description": "Based on 2021–2022 Form A Q95. Use a constant reading rate to find additional time, expressed in hours.",
+          "generatorIds": [
+            "remaining-reading-time-v1"
+          ]
+        },
+        {
+          "id": "2021-2022-form-a-q114",
+          "title": "Ratios: Mixture Amounts",
+          "topic": "Ratios & Proportions",
+          "skilled": "TBD",
+          "category": "Ratios and Proportional Relationships",
+          "parentId": "general-ratios-and-proportional-relationships-ratios-proportions-r19h39",
+          "published": true,
+          "includeAll": false,
+          "description": "Based on 2021–2022 Form A Q114. Find one ingredient’s share of a mixture needed for several projects.",
+          "generatorIds": [
+            "ratio-mixture-amounts-v1"
+          ]
+        },
+        {
+          "id": "probability-foundation",
+          "title": "Probability With & Without Replacement",
+          "topic": "Probability",
+          "skillId": "probability-after-removal",
+          "skilled": "03a21542-bc74-4216-af87-a403aee66a60",
+          "category": "Statistics and Probability",
+          "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+          "published": true,
+          "titleMode": "custom",
+          "includeAll": false,
+          "description": "Focused practice in probability after removal.",
+          "generatorIds": [
+            "probability-ratio-removal-v1",
+            "probability-ordered-draws-v1",
+            "probability-with-replacement-v1"
+          ]
+        },
+        {
+          "id": "e876c061-103a-4fbb-9b06-5858c33918f6",
+          "title": "Listing Outcomes",
+          "topic": "Counting & Sets",
+          "skillId": "probability-listing-outcomes",
+          "skilled": "TBD",
+          "category": "Statistics and Probability",
+          "parentId": "foundation-statistics-and-probability-overlapping-groups-e6op6z",
+          "published": true,
+          "includeAll": false,
+          "description": "",
+          "generatorIds": [
+            "probability-cube-sum-counts-v1",
+            "probability-spinner-products-v1",
+            "probability-unordered-sample-spaces-v1"
+          ]
+        },
+        {
+          "id": "foundation-geometry-circles-tthtg",
+          "title": "Foundation Building",
+          "topic": "Circles",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-geometry-circles-tthtg",
+          "title": "General Practice",
+          "topic": "Circles",
+          "skilled": "TBD",
+          "category": "Geometry",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        },
+        {
+          "id": "foundation-arithmetic-number-sense-order-of-operations-1kkbrb9",
+          "title": "Foundation Building",
+          "topic": "Order of Operations",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "foundation",
+          "description": "Build confidence with a focused selection of question types.",
+          "generatorIds": []
+        },
+        {
+          "id": "general-arithmetic-number-sense-order-of-operations-1kkbrb9",
+          "title": "General Practice",
+          "topic": "Order of Operations",
+          "skilled": "TBD",
+          "category": "Arithmetic & Number Sense",
+          "parentId": null,
+          "published": true,
+          "includeAll": true,
+          "defaultType": "general",
+          "description": "Practice every available question type in this topic.",
+          "generatorIds": []
+        }
+      ],
+      "generators": [
+        {
+          "id": "one-step-inequalities-v1",
+          "kind": "builtin",
+          "title": "One-step Inequalities and Sign Flips",
+          "topic": "Inequalities",
+          "skills": [
+            "One-step Inequalities and Sign Flips"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Algebra",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "one-step-inequalities-v1",
+          "difficulty": "unassigned",
+          "description": "Positive and negative coefficients, including sign flips.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2022-2023-form-a-q71"
+          ]
+        },
+        {
+          "id": "variables-both-sides-inequalities-v1",
+          "kind": "builtin",
+          "title": "Inequalities with Variables on Both Sides",
+          "topic": "Inequalities",
+          "skills": [
+            "Inequalities with Variables on Both Sides"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Algebra",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "variables-both-sides-inequalities-v1",
+          "difficulty": "unassigned",
+          "description": "Based on 2022–2023 Form B Q70. Collect variable terms and constants, then solve, reversing the sign when dividing by a negative number.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2022-2023-form-b-q70"
+          ]
+        },
+        {
+          "id": "writing-inequalities-v1",
+          "kind": "builtin",
+          "title": "Writing Inequalities",
+          "topic": "Inequalities",
+          "skills": [
+            "Writing Inequalities"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Algebra",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "writing-inequalities-v1",
+          "difficulty": "unassigned",
+          "description": "Based on 2026–2027 Form D, math item 26. Write a budget inequality using an hourly rental rate and a one-time fee.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2026-2027-form-d-math-item-26"
+          ]
+        },
+        {
+          "id": "overlapping-groups-v1",
+          "kind": "builtin",
+          "title": "Overlapping Groups",
+          "topic": "Counting & Sets",
+          "skills": [
+            "Overlapping Groups"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Statistics and Probability",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "overlapping-groups-v1",
+          "difficulty": "unassigned",
+          "description": "Based on 2021–2022 Form A Q76. Use two overlapping group percentages to find the percentage in neither group.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2021-2022-form-a-q76"
+          ]
+        },
+        {
+          "id": "overlapping-survey-totals-v1",
+          "kind": "builtin",
+          "title": "Overlapping Groups: Survey Totals",
+          "topic": "Counting & Sets",
+          "skills": [
+            "Overlapping Groups: Survey Totals"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Statistics and Probability",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "overlapping-survey-totals-v1",
+          "difficulty": "unassigned",
+          "description": "Based on 2025–2026 Form A math item 5. Subtract a survey overlap once and include those in neither group to find the total.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2025-2026-form-a-math-5"
+          ]
+        },
+        {
+          "id": "remaining-reading-time-v1",
+          "kind": "builtin",
+          "title": "Rates: Remaining Reading Time",
+          "topic": "Rates & Unit Rates",
+          "skills": [
+            "Rates: Remaining Reading Time"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Ratios and Proportional Relationships",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "remaining-reading-time-v1",
+          "difficulty": "unassigned",
+          "description": "Based on 2021–2022 Form A Q95. Use a constant reading rate to find additional time, expressed in hours.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2021-2022-form-a-q95"
+          ]
+        },
+        {
+          "id": "ratio-mixture-amounts-v1",
+          "kind": "builtin",
+          "title": "Ratios: Mixture Amounts",
+          "topic": "Ratios & Proportions",
+          "skills": [
+            "Ratios: Mixture Amounts"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Ratios and Proportional Relationships",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "ratio-mixture-amounts-v1",
+          "difficulty": "unassigned",
+          "description": "Based on 2021–2022 Form A Q114. Find one ingredient’s share of a mixture needed for several projects.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2021-2022-form-a-q114"
+          ]
+        },
+        {
+          "id": "probability-cube-sum-counts-v1",
+          "kind": "builtin",
+          "title": "Number-cube Sum Counts",
+          "topic": "Counting & Sets",
+          "skills": [
+            "Number-cube Sum Counts"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Statistics and Probability",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "probability-cube-sum-counts-v1",
+          "difficulty": "unassigned",
+          "description": "Count the ordered outcomes of two six-sided number cubes that produce a specified sum.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2020-2021-form-b-math-2"
+          ]
+        },
+        {
+          "id": "probability-ratio-removal-v1",
+          "kind": "builtin",
+          "title": "Ratio Counts After Removal",
+          "topic": "Probability",
+          "skills": [
+            "Ratio Counts After Removal"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Statistics and Probability",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "probability-ratio-removal-v1",
+          "difficulty": "unassigned",
+          "description": "Convert a color ratio to counts, remove the specified items, and update the probability.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2020-2021-form-b-q102"
+          ]
+        },
+        {
+          "id": "probability-ordered-draws-v1",
+          "kind": "builtin",
+          "title": "Ordered Draws Without Replacement",
+          "topic": "Probability",
+          "skills": [
+            "Ordered Draws Without Replacement"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Statistics and Probability",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "probability-ordered-draws-v1",
+          "difficulty": "unassigned",
+          "description": "Find the probability of two different colors in a specified order without replacement.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2020-2021-form-b-q107"
+          ]
+        },
+        {
+          "id": "probability-same-color-no-replacement-v1",
+          "kind": "builtin",
+          "title": "Same-color Draws Without Replacement",
+          "topic": "Probability",
+          "skills": [
+            "Same-color Draws Without Replacement"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Statistics and Probability",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "probability-same-color-no-replacement-v1",
+          "difficulty": "unassigned",
+          "description": "Use the complement color and reduce both the favorable and total counts after a draw.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2021-2022-form-a-q78"
+          ]
+        },
+        {
+          "id": "probability-with-replacement-v1",
+          "kind": "builtin",
+          "title": "Repeated Draws With Replacement",
+          "topic": "Probability",
+          "skills": [
+            "Repeated Draws With Replacement"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Statistics and Probability",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "probability-with-replacement-v1",
+          "difficulty": "unassigned",
+          "description": "Multiply unchanged single-draw probabilities when the first item is returned.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2022-2023-form-a-q100"
+          ]
+        },
+        {
+          "id": "probability-spinner-products-v1",
+          "kind": "builtin",
+          "title": "Spinner Products",
+          "topic": "Counting & Sets",
+          "skills": [
+            "Spinner Products"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Statistics and Probability",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "probability-spinner-products-v1",
+          "difficulty": "unassigned",
+          "description": "Count favorable ordered spinner pairs and divide by all equally likely outcomes.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2022-2023-form-b-q100"
+          ]
+        },
+        {
+          "id": "probability-unordered-sample-spaces-v1",
+          "kind": "builtin",
+          "title": "Unordered Sample Spaces",
+          "topic": "Counting & Sets",
+          "skills": [
+            "Unordered Sample Spaces"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Statistics and Probability",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "probability-unordered-sample-spaces-v1",
+          "difficulty": "unassigned",
+          "description": "List possible color pairs once each, allowing repeats only when enough items exist.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2022-2023-form-b-q101"
+          ]
+        },
+        {
+          "id": "probability-specific-conditional-outcome-v1",
+          "kind": "builtin",
+          "title": "Conditional Probability",
+          "topic": "Probability",
+          "skills": [
+            "Conditional Probability"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Statistics and Probability",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "probability-specific-conditional-outcome-v1",
+          "difficulty": "unassigned",
+          "description": "Multiply an event probability by the conditional probability of one equally likely cause.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2022-2023-form-b-q99"
+          ]
+        },
+        {
+          "id": "symbolic-fraction-division-v1",
+          "kind": "builtin",
+          "title": "Dividing Symbolic Fractions",
+          "topic": "Algebraic Expressions",
+          "skills": [
+            "Dividing Symbolic Fractions"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Algebra",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "symbolic-fraction-division-v1",
+          "difficulty": "unassigned",
+          "description": "Divide two fractions expressed in four nonzero variables by multiplying by the reciprocal. 48 symbolic stems per seeded cycle; variable placements and quotient direction vary.",
+          "reviewStatus": "approved",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2021-2022-form-a-q96"
+          ]
+        },
+        {
+          "id": "repeating-decimal-digit-position-v1",
+          "kind": "builtin",
+          "title": "Repeating Decimals: Digit Positions",
+          "topic": "Patterns & Sequences",
+          "skills": [
+            "Repeating Decimals: Digit Positions"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Algebra",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "repeating-decimal-digit-position-v1",
+          "difficulty": "unassigned",
+          "description": "Find a distant digit in a repeating decimal using its 3-, 4-, or 6-digit cycle. 136,800 distinct fraction-and-position stems per seeded cycle; includes exact cycle endings and leading zeros.",
+          "reviewStatus": "approved",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2021-2022-form-a-q105"
+          ]
+        },
+        {
+          "id": "rectangle-area-percent-increase-v1",
+          "kind": "builtin",
+          "title": "Rectangular Area: Percent Increase",
+          "topic": "Percentages",
+          "skills": [
+            "Rectangular Area: Percent Increase"
+          ],
+          "enabled": true,
+          "skilled": "TBD",
+          "subject": "Math",
+          "category": "Ratios and Proportional Relationships",
+          "programs": [
+            "SHSAT"
+          ],
+          "builtinId": "rectangle-area-percent-increase-v1",
+          "difficulty": "unassigned",
+          "description": "Find the area increase when a field’s length grows by a percentage and its width grows by a number of meters. 2,064 distinct numerical stems per seeded cycle, with worked area calculations and misconception distractors.",
+          "reviewStatus": "unreviewed",
+          "prerequisites": [],
+          "sourceQuestionIds": [
+            "2020-2021-form-b-q113"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -17,6 +17,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   questions: [
   {
     "id": "2026-2027-form-d-math-item-1",
+    "skilled": "TBD",
     "explanation": "(B) By observation, 3,575 ends in 75; therefore, 3,575 is divisible by 25.\n\\[3{,}575\\div25=143\\]\nTest 143 for factors and eliminate 3, 5, and 7, but 11 is a factor.\n\\[143\\div11=13\\]; both 11 and 13 are prime numbers.\nThe first factor, 25, is not prime but is the product of primes, \\(5\\times5=5^2\\).\nThe prime factorization of 3,575 is \\(5^2\\times11\\times13\\).",
     "points": 1,
     "prompt": "What is the prime factorization of 3,575?",
@@ -49,6 +50,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-2",
+    "skilled": "TBD",
     "explanation": "(D) First, multiply both sides of the equation by 10 to eliminate the fractions. In other words, multiply each term by 10.\n\\[\\frac{x}{10}+\\frac{y-x}{5}=\\frac{z}{10}\\]\n\\[10\\left(\\frac{x}{10}+\\frac{y-x}{5}\\right)=10\\left(\\frac{z}{10}\\right)\\]\n\\[\\frac{10x}{10}+\\frac{10(y-x)}{5}=\\frac{10z}{10}\\]\n\\[x+2(y-x)=z\\]\nThen, distribute and combine like terms to find the value for z.\n\\[x+2(y-x)=z\\]\n\\[x+2y-2x=z\\]\n\\[2y-x=z\\]",
     "points": 1,
     "prompt": "What is the value of \\(z\\) in \\(\\frac{x}{10}+\\frac{y-x}{5}=\\frac{z}{10}\\)?",
@@ -79,6 +81,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-3",
+    "skilled": "TBD",
     "explanation": "(B) First, find the sum for each set by adding the terms in each set separately.\nThe sum for set R is 5 + x + 3 + 8, which is x + 16.\nThe sum for set S is 6 + y + 4 + 1, which is y + 11.\nThe question states that these two sums are equal to each other, so write the equation and then rearrange using inverse operations.\n\\[x+16=y+11\\]\n\\[x=y-5\\]\n\\[x-y=-5\\]\nIf the rearranging to obtain the target value is unclear, use the equation x + 16 = y + 11 and find a few possible values for x and y.\nFor example, if x = 1, then y = 6 because 1 + 16 = 6 + 11. If x = 2, then y = 7 because 2 + 16 = 7 + 11. Then find the value of x − y. No matter which values are chosen, x − y will always be −5.",
     "points": 1,
     "prompt": "Two sets, R and S, are described below. The sum of the elements in set R equals the sum of the elements in set S.\n\n\\[\\mathrm{R}=\\{5,x,3,8\\}\\]\n\\[\\mathrm{S}=\\{6,y,4,1\\}\\]\n\nWhat is the value of \\(x-y\\)?",
@@ -112,6 +115,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-4",
+    "skilled": "TBD",
     "explanation": "(C) The first step is to substitute the value for x into the expression to get \\(\\frac{2}{2-\\frac{1}{4}}\\).\nThen, evaluate the denominator and finally divide the numerator by the denominator.\n\\[\\frac{2}{2-\\frac{1}{4}}=2\\div\\frac{7}{4}=2\\left(\\frac{4}{7}\\right)=\\frac{8}{7}=1\\frac{1}{7}\\]",
     "points": 1,
     "prompt": "If \\(x=\\frac{1}{4}\\), what is the value of \\(\\frac{2}{2-x}\\)?",
@@ -144,6 +148,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-5",
+    "skilled": "03a21542-bc74-4216-af87-a403aee66a60",
     "explanation": "\\[\\frac{1}{25}\\cdot\\frac{1}{100}\\]\nTo calculate the joint probability, first determine the probability of each independent event.\nThe probability that a randomly selected student wins the prize is \\(\\frac{1}{25}\\).\nThe probability that a randomly selected student will receive Card C17 is \\(\\frac{1}{100}\\), because Card C17 is 1 card out of 100 labeled cards.\nThe probability that a student wins the prize and receives Card C17 is the product of those two probabilities, \\(\\frac{1}{25}\\cdot\\frac{1}{100}\\).",
     "instructions": "Enter your answer in the space provided. Enter only your answer.",
     "points": 1,
@@ -162,6 +167,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-6",
+    "skilled": "TBD",
     "explanation": "(B) Since the additional cost per pound is not added until the package weighs more than 3 pounds, the total cost for 1, 2, or 3 pounds is $12.\n• 1 pound is $12\n• 2 pounds is $12\n• 3 pounds is $12\nSince p is greater than or equal to 3 pounds, the total cost for:\n• 4 pounds is \\(12+(4-3)(2)=14\\)\n• 5 pounds is \\(12+(5-3)(2)=16\\)\n• p pounds is \\(12+(p-3)(2)=12+2(p-3)\\)\nYou may try to write the expression without generating the pattern by recognizing that subtracting 3 from the number of pounds for the package before multiplying by $2 and then adding $12 results in the total cost.",
     "points": 1,
     "prompt": "The cost of shipping a package is $12, plus $2 for each additional pound over 3 pounds. Which expression represents the total cost, in dollars, of shipping a package that weighs \\(p\\) pounds? Assume that \\(p\\geq3\\).",
@@ -194,6 +200,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-7",
+    "skilled": "TBD",
     "explanation": "(2.5%) The probability that book number 223 will be selected at random from 40 books is 1 out of 40. To find the probability as a percentage, convert the fraction to a decimal.\nThe chance of selecting one specific book is \\(\\frac{1}{40}=0.025\\).\nConvert the decimal to a percentage: \\(0.025\\times100=2.5\\%\\)",
     "instructions": "Enter your answer in the space provided.",
     "instructionsHtml": "Enter your answer in the space provided.&nbsp;&nbsp;",
@@ -210,6 +217,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-8",
+    "skilled": "TBD",
     "explanation": "(5.86) To determine the area of a square, use \\(A=s^2\\).\nBegin by finding the length of the side of the square, which is 3 inches. The area of the square is \\((3\\text{ in.})^2=9\\) square inches.\nTo determine the area of the circle, use \\(A=\\pi r^2\\).\nThe radius of the circle (the hole) is one-half the diameter or \\(2\\text{ in.}\\div2=1\\text{ in.}\\), so the area of the entire circle is \\(\\pi(1\\text{ in.})^2\\approx3.14\\text{ sq in.}\\)\nTo determine the area of the shaded region, subtract the area of the hole in the square from the area of the square:\n\\[9\\text{ sq in.}-\\pi\\text{ sq in.}=\\]\n\\[9\\text{ sq in.}-(3.14)\\text{ sq in.}=\\]\n\\[5.86\\text{ sq in.}\\]\nThe shaded area to the nearest hundredth of a square inch = 5.86 sq in.",
     "instructions": "Enter your answer in the space.",
     "instructionsHtml": "Enter your answer in the space.&nbsp;&nbsp;",
@@ -217,7 +225,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
     "prompt": "A square metal plate has a side length of 3 inches. A circular hole with a diameter of 2 inches is cut out from the center of the plate.\nWhat is the area of the shaded region, to the nearest hundredth of a square inch?",
     "promptHtml": "A square metal plate has a side length of 3 inches. A circular hole with a diameter of 2 inches is cut out from the center of the plate.<br><img src=\"/exam-images/2026-2027-form-d-2026-2027-form-d-math-item-8-4e123bcba58ebc8b.png\" alt=\"Math diagram\" width=\"250\">What is the area of the shaded region, to the nearest hundredth of a square inch?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "correctTextAnswers": [
       "5.86"
     ],
@@ -225,6 +233,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-9",
+    "skilled": "TBD",
     "explanation": "(A, B, D)\nEach of the expressions must be considered:\n\\(-m+k\\), where m is a negative integer and k is a positive integer: Correct\nThe “−” in front of m acts like a −1 multiplier that flips the sign of m, so −m + k is positive when m is negative and k is positive.\n\\(-m\\cdot k\\), where m is a negative integer and k is a positive integer: Correct\nThe “−” in front of m acts like a −1 multiplier that flips the sign of m, so −m · k is positive when m is negative and k is positive.\n\\(m-k\\), where m is a negative integer and k is a positive integer:\nA negative number minus a positive number gives a negative number.\n\\(-k\\cdot m\\), where m is a negative integer and k is a positive integer: Correct\nA positive times a negative is a negative. Then, taking the opposite of that makes it positive.\n\\(\\frac{m}{k}\\), where m is a negative integer and k is a positive integer:\nA negative divided by a positive remains negative.\nTherefore, \\(-m+k\\), \\(-m\\cdot k\\), and \\(-k\\cdot m\\) must all result in a positive number.",
     "points": 1,
     "prompt": "Let \\(m\\) be a negative integer and \\(k\\) be a positive integer.\n\nWhich of the expressions below must result in a positive value?\n\nSelect the three correct answers.",
@@ -268,6 +277,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-10",
+    "skilled": "TBD",
     "explanation": "(A) Use inverse operations to isolate the variable x by first getting the x variable on one side.\n\\[2x+11>3x+9\\]\n\\[2x-3x+11>3x-3x+9\\]\n\\[-x+11>9\\]\n\\[-x+11-11>9-11\\]\n\\[-x>-2\\]\nNow, when dividing by −1, the direction of the inequality sign changes.\n\\[x<2\\]\nAnother way to solve is to keep the coefficient of x positive and then recognizing that 2 > x is the same as x < 2.\n\\[2x+11>3x+9\\]\n\\[11>x+9\\]\n\\[2>x\\]\n\\[x<2\\]",
     "points": 1,
     "prompt": "\\[2x+11>3x+9\\]\n\nFor what values of \\(x\\) is the above inequality true?",
@@ -300,11 +310,12 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-11",
+    "skilled": "TBD",
     "explanation": "(A) To find the perimeter of a triangle, add the measures of the three sides. The perimeter of the scale drawing is 5 + 7 + 8 = 20 inches.\nNow, use the perimeters to find the scale factor for the scale drawing to the actual perimeter.\nThe scale factor is 20 inches to 25 miles, which reduces to a scale factor of 4 inches to 5 miles. Note that the scale for the perimeter is the same as the scale for the side lengths.\nSince the smallest side on the scale drawing is 5 inches, use the scale factor to find the actual side length of the smallest side:\n\\[5\\text{ inches}\\left(\\frac{5\\text{ miles}}{4\\text{ inches}}\\right)=6.25\\text{ miles}\\]",
     "points": 1,
     "prompt": "In a scale drawing of a triangular park, the sides measure 5 inches, 7 inches, and 8 inches. The perimeter of the actual park is 25 miles. What is the actual length of the shortest side of the park?",
     "topic": "Geometry",
-    "subtopic": "Similarity & Scale Drawings",
+    "subtopic": "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -328,6 +339,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-12",
+    "skilled": "TBD",
     "explanation": "(D) \\(\\overline{SP}\\) represents the radius of the circle and has length 12.\nBoth \\(\\overline{RP}\\) and \\(\\overline{PT}\\) are radii and also have length 12.\nTherefore, the length of \\(\\overline{RT}\\), which is a diameter, is 24 and is also represented by \\(x+5\\).\n\\[x+5=24\\]\n\\[x=19\\]",
     "points": 1,
     "prompt": "\\(P\\) is the center of the circle above, and \\(R\\), \\(S\\), and \\(T\\) are points on the circle. What is the value of \\(x\\)?",
@@ -357,12 +369,13 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-13",
+    "skilled": "TBD",
     "explanation": "(A) Since the three angles of a triangle have a sum of 180°, and since one angle is a right angle, the other two angles have a sum of 90°. By writing an equation and using inverse operations, the value of x can be found.\n\\[(2x+9)+(3x-14)=90\\]\n\\[5x-5=90\\]\n\\[5x=95\\]\n\\[x=19\\]\nNow, use substitution to find the measure of the two angles to determine the smallest angle of the triangle.\n\\[2x+9=2(19)+9=47\\]\n\\[3x-14=3(19)-14=43\\]\nThe smallest angle is 43°.",
     "points": 1,
     "prompt": "In the right triangle shown above, what is the measure of the smallest angle?",
     "promptHtml": "<img src=\"/exam-images/2026-2027-form-d-2026-2027-form-d-math-item-13-a2a97944a0b21b25.png\" alt=\"Math diagram\" width=\"200\">In the right triangle shown above, what is the measure of the smallest angle?",
     "topic": "Geometry",
-    "subtopic": "Triangles & Polygons",
+    "subtopic": "Triangles",
     "choices": [
       {
         "id": "A",
@@ -386,6 +399,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-14",
+    "skilled": "TBD",
     "explanation": "(B) Pages read in the morning: \\(\\left(\\frac{1}{4}\\right)(84)=21\\)\nPages remaining after the morning: \\(84-21=63\\)\nPages read in the afternoon: \\(\\left(\\frac{1}{3}\\right)(63)=21\\)\nPages he still needs to read: \\(63-21=42\\)",
     "points": 1,
     "prompt": "James must read 84 pages of a book for a class assignment. If he reads \\(\\frac{1}{4}\\) of the pages in the morning and \\(\\frac{1}{3}\\) of the remaining pages in the afternoon, how many pages will he still need to read?",
@@ -415,6 +429,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-15",
+    "skilled": "TBD",
     "explanation": "(C) To add fractions, find a common denominator and rename the fractions using the common denominator. The least common denominator for 11, 22, and 33 is 66. After adding the fractions, the final fraction can be reduced to lowest terms.\n\\[\\frac{1}{11}=\\frac{1\\times6}{11\\times6}=\\frac{6}{66}\\]\n\\[\\frac{1}{22}=\\frac{1\\times3}{22\\times3}=\\frac{3}{66}\\]\n\\[\\frac{1}{33}=\\frac{1\\times2}{33\\times2}=\\frac{2}{66}\\]\n\\[\\frac{6}{66}+\\frac{3}{66}+\\frac{2}{66}=\\frac{11}{66}=\\frac{1}{6}\\]",
     "points": 1,
     "prompt": "\\[\\frac{1}{11}+\\frac{1}{22}+\\frac{1}{33}\\]\n\nWhat is the value of the expression shown above?",
@@ -447,6 +462,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-16",
+    "skilled": "TBD",
     "explanation": "(0.5) To find p, the constant of proportionality of ounces of raisins, y, to cups of oatmeal, x, use the equation y = px.\nThe table shows that there is 1 ounce of raisins for 2 cups of oatmeal.\n\\[1=2p\\]\n\\[\\frac{1}{2}=\\frac{2p}{2}\\]\n\\[0.5=p\\]\nThe constant of proportionality is 0.5.",
     "instructions": "Enter your answer in the space.",
     "instructionsHtml": "Enter your answer in the space.&nbsp;&nbsp;",
@@ -463,6 +479,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-17",
+    "skilled": "TBD",
     "explanation": "(D) First, add the number of students that are members of both orchestra and choir.\n\\[38+46=84\\]\nThen, subtract to find the number of students that are members of both orchestra and choir.\n\\[84-64=20\\]\nThen, find the fraction of the 64 students that are members of both orchestra and choir.\n\\[\\frac{20}{64}=\\frac{5}{16}\\]",
     "points": 1,
     "prompt": "At Midville High School, 64 students are members of either the orchestra or the choir, or both. Of these students, 38 are members of the orchestra, and 46 are members of the choir. What fraction of the total is the number of students who are members of both the orchestra and the choir?",
@@ -496,6 +513,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-18",
+    "skilled": "TBD",
     "explanation": "(C) First, add the mixed numbers. Then, convert the fraction \\(\\frac{1}{9}\\) to a decimal.\n\\[1\\frac{2}{3}+2\\frac{4}{9}\\]\n\\[1\\frac{6}{9}+2\\frac{4}{9}\\]\n\\[3\\frac{10}{9}\\]\n\\[3+1\\frac{1}{9}\\]\n\\[4\\frac{1}{9}=4.111\\ldots=4.\\overline{1}\\]",
     "points": 1,
     "prompt": "Which of the following decimals is equivalent to \\(1\\frac{2}{3}+2\\frac{4}{9}\\)?",
@@ -528,6 +546,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-19",
+    "skilled": "TBD",
     "explanation": "(C) Given a purchase price of $456.00, the 125% increase in price is calculated as:\n\\[456\\times1.25=570\\]\nThe selling price equals the purchase price plus the increase, or:\n\\[456+570=1{,}026\\]\nThe sales tax on the selling price is:\n\\[1{,}026(0.08)=82.08\\]\nThe customer pays the selling price plus the sales tax:\n\\[1{,}026+82.08=1{,}108.08\\]",
     "points": 1,
     "prompt": "A store manager purchases a piece of furniture for $456.00. To determine the selling price, the manager increases the purchase cost by 125%. A customer buys the furniture and pays an additional 8% sales tax. How much does the customer pay for the furniture?",
@@ -556,6 +575,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-20",
+    "skilled": "TBD",
     "explanation": "(B) Use the order of operations to evaluate the expression. It is important to recognize that the fraction bar is a grouping symbol and so the entire numerator should be evaluated first. Exponents are evaluated first.\n\\[\\frac{-9(-4)^2+36(-4)+304}{-4}\\]\n\\[\\frac{-9(16)+36(-4)+304}{-4}\\]\nThen multiplication, recognizing that the product of a negative factor and a positive factor is negative.\n\\[\\frac{-144-144+304}{-4}\\]\nThen addition and subtraction in order from left to right, recognizing the rules for adding and subtracting signed numbers.\n\\[\\frac{-288+304}{-4}=\\frac{16}{-4}\\]\nAnd finally the fraction can be evaluated by division, recognizing that the quotient of a positive and a negative number is negative.\n\\[\\frac{16}{-4}=-4\\]",
     "points": 1,
     "prompt": "What is the value of \\(\\frac{-9(-4)^2+36(-4)+304}{-4}\\)?",
@@ -584,6 +604,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-21",
+    "skilled": "TBD",
     "explanation": "(C) First, determine the total amount Maxie borrowed, in dollars:\n\\[7.75+11.00+4.50=23.25\\]\nThen use subtraction to determine the difference between the amount her grandmother gave her and the amount she borrowed:\n\\[25.00-23.25=1.75\\]\nThe difference is positive, which means that Maxie will still have $1.75 left from the amount her grandmother gave her.",
     "points": 1,
     "prompt": "Maxie borrowed $7.75 from her mother, $11.00 from her father, and $4.50 from her brother to purchase a video game. Her grandmother gave her $25.00 as a gift. How much money will Maxie have left or still owe if she uses the money her grandmother gave her to pay back the money she borrowed?",
@@ -612,6 +633,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-22",
+    "skilled": "TBD",
     "explanation": "(B) When Seth picks strawberries, the value represents a positive number, and when he eats the strawberries, the value represents a negative number. Write an expression and then evaluate the expression, where the negative value is multiplied by 3 because he ate the same amount on 3 different days.\n\\[2\\frac{1}{2}+4+(3)\\left(-\\frac{3}{4}\\right)\\]\n\\[2\\frac{1}{2}+4-2\\frac{1}{4}\\]\n\\[6\\frac{1}{2}-2\\frac{1}{4}=4\\frac{1}{4}\\]\nIf the multiplication is confusing, evaluate the expression below which represents the sum for the 5 days with each day listed separately.\n\\[2\\frac{1}{2}+4-\\frac{3}{4}-\\frac{3}{4}-\\frac{3}{4}=4\\frac{1}{4}\\]",
     "points": 1,
     "prompt": "Seth grows strawberries in his garden.\n\n• He picked \\(2\\frac{1}{2}\\) cups of strawberries on Monday.\n• He picked 4 cups of strawberries on Tuesday.\n• He ate \\(\\frac{3}{4}\\) cup of strawberries for breakfast each day on Wednesday, Thursday, and Friday.\n\nHow many cups of strawberries did Seth have left?",
@@ -642,6 +664,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-23",
+    "skilled": "TBD",
     "explanation": "(A) When looking for a situation where quantities combine to make zero, find two values with the same absolute value where one value is positive and one value is negative.\nIn the situation in option A, receiving a gift of $5 is represented by +5, and giving a friend $5 is represented by −5. These values combine to equal zero because +5 − 5 = 0.",
     "points": 1,
     "prompt": "Which situation involves quantities that combine to equal zero?",
@@ -670,6 +693,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-24",
+    "skilled": "TBD",
     "explanation": "(B) To determine the number of kilometers in 1 minute, find the unit rate in kilometers per minute: \\(\\frac{\\frac{1}{8}\\text{ kilometer}}{\\frac{3}{4}\\text{ minute}}\\).\nTo evaluate the fraction, use the reciprocal when dividing to get \\(\\frac{1}{6}\\) kilometer per 1 minute.\n\\[\\frac{1}{8}\\div\\frac{3}{4}=\\frac{1}{8}\\times\\frac{4}{3}=\\frac{4}{24}=\\frac{1}{6}\\]",
     "points": 1,
     "prompt": "An athlete runs \\(\\frac{1}{8}\\) kilometer in \\(\\frac{3}{4}\\) minute. At this rate, how many kilometers would the athlete run in 1 minute?",
@@ -701,6 +725,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-25",
+    "skilled": "TBD",
     "explanation": "(B) First, find the length of the bus trip in miles by multiplying the time, 9 hours, by the average (mean) speed, 50 miles per hour, to get 450 miles.\nThen, divide the total distance, 450 miles, by the average (mean) speed, 45 miles per hour, to get the total time:\n\\[450\\div45=10\\text{ hours}\\]",
     "points": 1,
     "prompt": "A bus trip takes 9 hours if the mean speed is 50 miles per hour. How many hours would this trip take if the mean speed was 45 miles per hour?",
@@ -729,6 +754,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-26",
+    "skilled": "TBD",
     "explanation": "(30 + 18x ≤ 120)\nLet x represent the number of hours Jordan can rent the truck.\nThe hourly rental cost can be represented as $18 · x, written as 18x.\nThe onetime cleaning fee of $30 is added to the hourly cost to obtain the total cost.\nThe sum of the cleaning fee and the hourly rental cost is represented as 30 + 18x.\nAs Jordan has $120 to spend, the total cost must be less than or equal to $120.\nThis is represented as \\(30+18x\\leq120\\) or \\(120\\geq30+18x\\).",
     "instructions": "Enter your answer in the space provided. Enter only your answer.",
     "instructionsHtml": "Enter your answer in the space provided. Enter only your answer.&nbsp;&nbsp;",
@@ -744,10 +770,13 @@ export const content20262027FormDMathSection: ExamMathSection = {
       "120\\ge30+18x"
     ],
     "entryLayout": "plain",
+    "entryVariable": "x",
+    "entryPrefixVariable": "x",
     "type": "expression_entry"
   },
   {
     "id": "2026-2027-form-d-math-item-27",
+    "skilled": "TBD",
     "explanation": "(B) First, calculate the amount of sunflower seeds in 25 pounds of this birdseed by using ratio reasoning to find that there are 10 pounds of sunflower seeds in the birdseed.\n\\[\\frac{2}{5}=\\frac{10}{25}\\]\nThen, use ratio reasoning to find the cost of the sunflower seeds per pound.\n\\[\\left(\\frac{\\$0.10}{1\\text{ oz.}}\\right)\\left(\\frac{16\\text{ ounces}}{1\\text{ pound}}\\right)=\\$1.60\\]\nThe cost of the sunflower seeds is $1.60 per pound.\nFinally, find the total cost using ratios by multiplying the unit cost per pound by 10 pounds.\n\\[\\left(\\frac{\\$1.60}{1\\text{ pound}}\\right)(10\\text{ pounds})=\\$16.00\\]\nThe first two steps above could be done in the other order; that is, find $1.60 per pound first and 10 pounds of sunflower seeds second.",
     "points": 1,
     "prompt": "A birdseed mixture is \\(\\frac{2}{5}\\) sunflower seeds. The cost of the sunflower seeds is $0.10 per ounce. At this rate, what is the cost of the sunflower seeds in 25 pounds of this birdseed? (Note: 1 lb = 16 oz.)",
@@ -776,6 +805,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-28",
+    "skilled": "TBD",
     "explanation": "(C) It is given that x-values on the graph represent the numbers of hours for which water was added to the tank, and the y-values represent the numbers of gallons of water added in x hours. In the ordered pair (3, 24), 3 represents an x-value and 24 represents a y-value.\nTherefore, (3, 24) represents a data point for 24 gallons of water being added to the tank in a 3-hour period.",
     "points": 1,
     "prompt": "A graph shows the relationship between the number of gallons of water, \\(y\\), that has been added to a tank and the number of hours, \\(x\\), that water has been added to the tank at a constant rate. What does the ordered pair \\((3,24)\\) represent?",
@@ -804,6 +834,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-29",
+    "skilled": "TBD",
     "explanation": "(B) There are four possible outcomes for each spin of the spinner:\n1, 2, 3, 4\nThe possible outcomes of two spins are:\n11 12 13 14\n21 22 23 24\n31 32 33 34\n41 42 43 44\nOf the 16 possible outcomes, only 3 pairings have a product of 4: 14, 22, and 41.\nTherefore, the probability that the two numbers resulting from two consecutive spins have a product of 4 is \\(\\frac{3}{16}\\).",
     "points": 1,
     "prompt": "Karl has one red spinner and one blue spinner. Each spinner is divided into 4 equal sections, numbered 1 through 4. He spins each spinner once and writes down the number that each lands on. What is the probability that the two numbers, when multiplied together, will have 4 as a product?",
@@ -836,6 +867,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-30",
+    "skilled": "TBD",
     "explanation": "(A) To find the cups of sugar for each cup of flour, find the unit rate using this ratio:\n\\[\\frac{\\frac{2}{3}\\text{ cup of sugar}}{1\\frac{1}{4}\\text{ cups of flour}}\\]\nThen, convert the denominator to an improper fraction and divide to find the cups of sugar per cup of flour.\n\\[\\frac{2}{3}\\div\\frac{5}{4}=\\frac{2}{3}\\times\\frac{4}{5}=\\frac{8}{15}\\]",
     "points": 1,
     "prompt": "A recipe uses \\(\\frac{2}{3}\\) cup of sugar for every \\(1\\frac{1}{4}\\) cups of flour. A cook wants to increase the recipe. How many cups of sugar are needed for each cup of flour?",
@@ -868,6 +900,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-31",
+    "skilled": "TBD",
     "explanation": "(C) In this context, the phrase “this sample is representative” means that the ratio of 2 red marbles to 8 green marbles is the same as the ratio of red to green marbles in the entire box. Use this ratio of 2 to 8 to set up a proportion and solve, where x represents the number of green marbles in the box.\n\\[\\frac{2}{8}=\\frac{100}{x}\\]\n\\[2x=800\\]\n\\[x=400\\]",
     "points": 1,
     "prompt": "A box contains an unknown number of green marbles. An experimenter adds 100 red marbles to the box, mixes the marbles thoroughly, and then draws out 10 marbles at random. Assume that this sample is representative of the proportion in the box. If there are 2 red marbles and 8 green marbles in this sample, approximately how many green marbles are in the box?",
@@ -896,6 +929,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-32",
+    "skilled": "TBD",
     "explanation": "(B) Since 36 people each drank 2 cups of juice, the total amount of juice they drank was 36 × 2 = 72 cups.\nConvert 72 cups to gallons:\n\\[72\\text{ cups}\\times\\frac{1\\text{ quart}}{4\\text{ cups}}\\times\\frac{1\\text{ gallon}}{4\\text{ quarts}}=4\\frac{1}{2}\\text{ gallons}\\]",
     "points": 1,
     "prompt": "There were 36 people at Emily’s party. If each person at the party drank 2 cups of juice, how many gallons of juice did they drink altogether?\n\nNote: 1 gallon = 4 quarts; 1 quart = 4 cups.",
@@ -927,6 +961,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-33",
+    "skilled": "TBD",
     "explanation": "(C) First, find the sales tax. Then, add the sales tax to the cost of the car. Finally, subtract the down payment to find out how much she has left to pay.\n\\[(0.08)(24{,}000)=1{,}920\\]\n\\[\\$24{,}000+\\$1{,}920=\\$25{,}920\\]\n\\[\\$25{,}920-\\$10{,}000=\\$15{,}920\\]",
     "points": 1,
     "prompt": "A car costing $24,000 is subject to a sales tax of 8%. If Bindu made a $10,000 down payment on this car, what is the total amount she has left to pay?",
@@ -955,6 +990,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-34",
+    "skilled": "TBD",
     "explanation": "(C) Using the joint probability formula, find the product of the two independent events. The probability that Emily will ride the bus to school on any given morning is \\(\\frac{3}{5}\\). The probability that Emily will ride the bus to school on any given afternoon is \\(\\frac{4}{5}\\). Therefore, the probability that Emily will ride the bus in the morning and the afternoon is \\(\\frac{3}{5}\\times\\frac{4}{5}=\\frac{12}{25}\\).",
     "points": 1,
     "prompt": "Last week, Emily rode the bus to school on 3 of the 5 mornings and rode the bus home on 4 of the 5 afternoons. Based on last week’s events, what is the probability that Emily will ride the bus in the morning and the afternoon next Monday?",
@@ -987,6 +1023,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-35",
+    "skilled": "TBD",
     "explanation": "(C) An organized list can be used to determine the number of groups of 3 people that include only 1 male.\nLet the letters A, B, C, and D represent the females, and let the numbers 1 and 2 represent the males.\nThen, create a list of all possible combinations of 3 people with only 1 male.\nAB1, AB2, AC1, AC2, AD1, AD2\nBC1, BC2, BD1, BD2\nCD1, CD2\nThere are 12 possible groups with only 1 male.",
     "points": 1,
     "prompt": "XYZ Corporation hired 6 people as summer workers. Of these 6 people, 3 will be hired as permanent employees in the fall. If 2 of the 6 people are male, how many of the possible groups of 3 people hired in the fall will include only 1 male?",
@@ -1016,6 +1053,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-36",
+    "skilled": "TBD",
     "explanation": "(25.6%) First, determine the number of pages read each day. Since the pages per assignment are inclusive, subtract the first page from the last page assigned and then add 1 to determine the pages read for each day.\nDay 1: (90 − 45) + 1 = 46 pages\nDay 2: (135 − 100) + 1 = 36 pages\nDay 3: (190 − 145) + 1 = 46 pages\nLeah read a total of 128 pages, since 46 + 36 + 46 = 128.\nTo determine the percent, express 128 pages out of 500 pages as a fraction.\n\\[\\frac{128}{500}=\\frac{32}{125}\\]\n\\[\\frac{32}{125}=0.256=25.6\\%\\]",
     "instructions": "Enter your answer in the space.",
     "instructionsHtml": "Enter your answer in the space.&nbsp;&nbsp;",
@@ -1031,6 +1069,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-37",
+    "skilled": "TBD",
     "explanation": "(640)\nThe final digit of the three-digit number is 0. Each of the digits 0 through 9, inclusive, must be considered.\nTo narrow the choices, first consider that the number between 630 and 650 must be divisible by both 5 and 8.\nA number divisible by 5 must end in 0 or 5. Therefore, the only possibilities are 0 and 5.\n• If the number ended in 0, the whole number 640 must also be divisible by 8:\n640 ÷ 8 = 80 and 640 ÷ 5 = 128\nBoth result in a remainder of 0.\n• If the number ended in 5, the whole numbers 635 and 645 must also be divisible by 8:\n635 ÷ 8 = 79 R3 and 635 ÷ 5 = 127\n645 ÷ 8 = 80 R5 and 645 ÷ 5 = 129\nDividing 635 by 5 results in a remainder of 0, but dividing 635 by 8 results in a remainder of 3.\nDividing 645 by 5 results in a remainder of 0, but dividing 645 by 8 results in a remainder of 5.\nTherefore, 640 is the only whole number between 630 and 650 that is divisible by both 5 and 8.",
     "instructions": "Enter your answer in the space.",
     "instructionsHtml": "Enter your answer in the space.&nbsp; &nbsp;",
@@ -1045,6 +1084,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-38",
+    "skilled": "TBD",
     "explanation": "(D) The sample space of a random experiment is the collection of all possible outcomes. For this experiment, R represents a red marble, G represents a green marble, and W represents a white marble.\nSince two marbles are being drawn, the possible outcomes for the first marble drawn are R, G, W.\nList the possible results for each initial outcome combined with the second choice of marble. For example, if the first marble and second marble are both red, the sample space will include RR (red, red).\nRR, RG, RW\nGR, GG, GW\nWR, WG, WW\nSince order does not matter in this selection, remove any pairing that presents a duplicate choice, such as RG and GR—only one of the two pairings will be included in the sample space. Those are removed and leave a sample space of:\nRR, RG, RW, GG, GW, WW",
     "points": 1,
     "prompt": "Melissa has a bag of marbles that are all the same size. The bag contains three red (R) marbles, three green (G) marbles, and two white (W) marbles. For an experiment, she will take two marbles out of the bag without looking. Which list shows the sample space for Melissa’s experiment?",
@@ -1073,6 +1113,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-39",
+    "skilled": "TBD",
     "explanation": "(C) To find the probability that any one of several mutually exclusive events occurs, use the addition rule, and add the probabilities of each event:\n\\[P(A\\text{ or }B)=P(A)+P(B)\\]\nUsing the data in the table, the probability that the team will score 3 or more goals in the next game is represented by\n\\[P(3)+P(4)+P(5)=\\]\n\\[0.21+0.09+0.04=0.34\\]",
     "points": 1,
     "prompt": "The table shows the probabilities of a hockey team scoring different numbers of goals in a game.\nWhat is the probability that the team will score three or more goals in the next game?",
@@ -1102,6 +1143,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-40",
+    "skilled": "TBD",
     "explanation": "(D) Since each can is worth 5 points, the total number of points earned from all the cans, x, is 5x. The team started with 53 points. That is a constant value and doesn’t change. So the total number of points the team will earn is 53 + 5x. The team wants to earn at least (≥) 100 points, so they need \\(53+5x\\geq100\\) total points.",
     "points": 1,
     "prompt": "A team is participating in a contest to collect canned goods for a food drive. The team has 53 points and must have a total of at least 100 points to win a prize. The team earns 5 points for each can of food a member collects. Which inequality can be used to find \\(x\\), the number of cans of food the team needs to collect to win a prize?",
@@ -1134,6 +1176,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-41",
+    "skilled": "TBD",
     "explanation": "(B) The constant of proportionality is the ratio of y (90) to x (3). 90 ÷ 3 = 30. So the constant of proportionality is 30.",
     "points": 1,
     "prompt": "The distance an eagle flies is proportional to the time the eagle spends flying. An eagle flies 90 miles in 3 hours. What is the constant of proportionality for this relationship?",
@@ -1162,6 +1205,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-42",
+    "skilled": "TBD",
     "explanation": "(B) To find the fraction of the book the student can read in 1 hour, find the unit rate per hour. First, set up the ratio.\n\\[\\frac{\\frac{1}{12}\\text{ book}}{\\frac{1}{3}\\text{ hour}}\\]\nThen use division to find the unit rate.\n\\[\\frac{1}{12}\\div\\frac{1}{3}=\\frac{1}{12}\\times\\frac{3}{1}=\\frac{3}{12}=\\frac{1}{4}\\]\nAnother way to solve the problem is to set up the ratio and then multiply both the numerator and denominator by 3, since \\(\\frac{1}{3}\\) hour times 3 equals 1 hour.\n\\[\\frac{3\\times\\frac{1}{12}\\text{ book}}{3\\times\\frac{1}{3}\\text{ hour}}=\\frac{\\frac{1}{4}\\text{ book}}{1\\text{ hour}}\\]",
     "points": 1,
     "prompt": "A student reads \\(\\frac{1}{12}\\) of a book in \\(\\frac{1}{3}\\) hour. What fraction of the book can the student read in 1 hour?",
@@ -1194,6 +1238,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-43",
+    "skilled": "TBD",
     "explanation": "($0.65; $0.50; $0.15)\nTo determine the cost per bar from the Art Club, divide the total cost by the total number of bars:\n\\[\\frac{\\$12.00}{24}=\\$0.50\\text{ per bar}\\]\nTo determine the cost per bar from the Science Club, divide the total cost by the total number of bars:\n\\[\\frac{\\$6.50}{10}=\\$0.65\\text{ per bar}\\]\nTo find the difference in price per bar, subtract the cost per bar for the Art Club from the cost per bar for the Science Club:\n$0.65 per bar − $0.50 per bar = $0.15 per bar",
     "instructions": "Select the correct answer from each drop-down to complete the sentences.",
     "points": 1,
@@ -1277,6 +1322,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-44",
+    "skilled": "TBD",
     "explanation": "(C) Using the specified equation p = 2.50 + 1.25c, determine the number of cupcakes Samantha bought by substituting the total paid ($22.50) for p, and solve the equation for the value of c, the number of cupcakes bought.\n\\[22.50=2.50+1.25c\\]\n\\[22.50-2.50=1.25c\\]\n\\[20.00\\div1.25=c\\]\n\\[16=c\\]",
     "points": 1,
     "prompt": "A bakery charges $1.25 for each cupcake and $2.50 for a serving tray. The equation describes \\(p\\), the price of \\(c\\) cupcakes and a serving tray, not including tax.\n\n\\[p=2.50+1.25c\\]\n\nIf Samantha bought some cupcakes and a serving tray for a total of $22.50, not including tax, how many cupcakes did she buy?",
@@ -1306,6 +1352,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-45",
+    "skilled": "TBD",
     "explanation": "(6)\nDefine the variable:\nLet w represent the amount of money Marcus and Isla save per week.\nConstruct an equation:\nStart with $8.\nMarcus and Isla save w each week for 3 weeks, which can be expressed as 3 · w or 3w.\nThe total amount saved can be represented by the expression 8 + 3w.\nAfter 3 weeks, Marcus and Isla have $26. This can be represented by the equation 8 + 3w = 26.\nSolve the equation:\n\\[8+3w=26\\]\n\\[3w=18\\text{ (subtracting 8 from both sides)}\\]\n\\[w=6\\text{ (dividing both sides by 3)}\\]\nMarcus and Isla are saving $6 per week.",
     "instructions": "Enter your answer in the space.",
     "instructionsHtml": "Enter your answer in the space.&nbsp;&nbsp;",
@@ -1321,6 +1368,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-46",
+    "skilled": "TBD",
     "explanation": "Total Weight (pounds) | Total Cost to Ship (dollars)\n2 | 2\n3 | 2.50\n6 | 4\n9 | 5.50\nLet x represent the weight of the package in pounds. The first pound is included in the base fee of $1.50, so (x − 1) represents the number of pounds that cost $0.50 each.\nThe cost equation can be written as Cost = $1.50 + $0.50(x − 1).\n���� The cost for a 2-pound package is $1.50 + $0.50(2 − 1) = $1.50 + $0.50(1) = $2.00\n• The cost for a 6-pound package is $1.50 + $0.50(6 − 1) = $1.50 + $0.50(5) = $1.50 + $2.50 = $4.00\n• The weight of a package that costs $2.50 to ship can be found by solving\n$2.50 = $1.50 + $0.50(x − 1)\n$1.00 = $0.50(x − 1)\n2 = x − 1\nx = 3 pounds\n• The weight of a package that costs $5.50 to ship can be found by solving\n$5.50 = $1.50 + $0.50(x − 1)\n$4.00 = $0.50(x − 1)\n8 = x − 1\nx = 9 pounds\nTo check:\nGiven that the total cost is $3.00 for the initial package\n$3.00 = $1.50 + $0.50(x − 1)\n$1.50 = $0.50(x − 1)\n3 = x − 1\nx = 4 pounds fits the linear pattern of the table.",
     "instructions": "Move the correct answer to each box. Not all answers will be used.",
     "points": 1,
@@ -1392,6 +1440,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-47",
+    "skilled": "TBD",
     "explanation": "(A) Based on the diagram, the figure shown is a right rectangular prism with a square base. A horizontal slice of the figure will be a plane parallel to the square base, as in this example.\nSince the horizontal slice is parallel to the base, it will be congruent to the base, which is a square with 2-inch sides.",
     "points": 1,
     "prompt": "What shape will result from a horizontal slice of the figure above?",
@@ -1421,6 +1470,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-48",
+    "skilled": "TBD",
     "explanation": "(C) First, set up the ratio of the perimeter of the square to the triangle as 2:1 because the question states that the perimeter of the square is twice the perimeter of the triangle.\nRecognizing that the square has 4 equal sides and that an equilateral triangle has 3 sides, use division to find the ratio of the sides.\nPerimeter: 2:1\nSides: \\(\\frac{2}{4}:\\frac{1}{3}=\\frac{1}{2}:\\frac{1}{3}=3:2\\)",
     "points": 1,
     "prompt": "The perimeter of square W is twice the perimeter of equilateral triangle X. What is the ratio of the length of one side of square W to the length of one side of equilateral triangle X?",
@@ -1449,6 +1499,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-49",
+    "skilled": "TBD",
     "explanation": "(C) Given that each piece will be a square, the length and width will be the same. The greatest possible length can be determined by finding the greatest common factor of the length and width of the original piece of cloth.\nBegin by finding the prime factorization of the length (75 in.) and width (45 in.).\n45 = 3 × 3 × 5\n75 = 3 × 5 × 5\nThe common factors can be seen as 3 × 5.\nThe greatest possible side length, in inches, will be 3 × 5 = 15.",
     "points": 1,
     "prompt": "Anise has a piece of cloth measuring 45 inches by 75 inches. She wants to cut it into squares of equal size, without any cloth left over. What is the greatest possible side length, in inches, of one of those squares?",
@@ -1478,6 +1529,7 @@ export const content20262027FormDMathSection: ExamMathSection = {
   },
   {
     "id": "2026-2027-form-d-math-item-50",
+    "skilled": "TBD",
     "explanation": "(B) To determine the percent decrease from Monday to Tuesday, first calculate the decrease in the number of birds at the feeder.\n30 − 24 = 6\nThe difference in the number of birds at the feeder divided by the number of birds on Monday will yield the percent decrease from Monday to Tuesday.\n\\[\\frac{6}{30}=0.20\\]\n0.20 represents 20%.\nThere was a 20% decrease from Monday to Tuesday.",
     "points": 1,
     "prompt": "This table shows the number of birds that came to a bird feeder on Monday and Tuesday.\nWhat was the percent decrease in the number of birds from Monday to Tuesday?",

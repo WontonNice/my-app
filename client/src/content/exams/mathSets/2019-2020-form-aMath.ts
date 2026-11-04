@@ -198,7 +198,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Points Y and Z are not shown on the number line above. If X is the midpoint of \\(\\overline{WY}\\), and Y is the midpoint of \\(\\overline{WZ}\\), where on the number line would point Z be located?",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -901,7 +901,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "In the parallelogram above, what is the value of \\(x+y\\)?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q91-8764efa58ce707c2.png\" alt=\"Math diagram\" width=\"300\">In the parallelogram above, what is the value of \\(x+y\\)?",
     "topic": "Geometry",
-    "subtopic": "Triangles & Polygons",
+    "subtopic": "Quadrilaterals & Polygons",
     "choices": [
       {
         "id": "A",
@@ -930,7 +930,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, point L (not shown) is located on line segment \\(\\overline{JK}\\) so that \\(\\overline{JL}=\\frac{2}{3}\\overline{LK}\\). What is the position of point L?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q92-ee2c5ae34c09e077.png\" alt=\"Math diagram\" width=\"360\">On the number line above, point L (not shown) is located on line segment \\(\\overline{JK}\\) so that \\(\\overline{JL}=\\frac{2}{3}\\overline{LK}\\). What is the position of point L?",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1387,7 +1387,7 @@ export const content20192020FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, the shaded rectangle is similar to the outer rectangle. The length of the outer rectangle is 4 feet, and the perimeter of the outer rectangle is 14 feet. If the width of the shaded rectangle is 2 feet, what is the area of the shaded rectangle?",
     "promptHtml": "<img src=\"/exam-images/2019-2020-form-a-2019-2020-form-a-q106-ea21fdab7a73d409.png\" alt=\"Math diagram\" width=\"300\">In the figure above, the shaded rectangle is similar to the outer rectangle. The length of the outer rectangle is 4 feet, and the perimeter of the outer rectangle is 14 feet. If the width of the shaded rectangle is 2 feet, what is the area of the shaded rectangle?",
     "topic": "Geometry",
-    "subtopic": "Similarity & Scale Drawings",
+    "subtopic": "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",

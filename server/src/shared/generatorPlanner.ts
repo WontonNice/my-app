@@ -6,6 +6,7 @@ export type PlannerStatus = typeof plannerStatuses[number];
 export type PlannerDestination = {
   category: string; topic: string; moduleId: string; moduleTitle: string;
   group: 'general' | 'foundation';
+  skilled?: string;
 };
 export type PlannerSource = {
   id: string; question: ExamQuestion; sources: MathQuestionRecord['sources'];

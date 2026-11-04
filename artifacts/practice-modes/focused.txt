@@ -1,0 +1,47 @@
+✔ both modes share the full topic library regardless of legacy placement; only Foundation customizes modules (1.8267ms)
+✔ hidden/disabled content stays hidden after student filtering; enabling or publishing updates both modes (0.3886ms)
+✔ preferences persist per student and topic, exclude chosen modules, and include future modules by default (0.8554ms)
+✔ new custom sessions honor selections; resuming preserves questions and restarting preserves personal best (1.7699ms)
+✔ all decimal stems: independent long division, primitive blocks, exact cycles, distinct choices and grading (1116.6626ms)
+✔ short practice sessions mix fractions and denominators, including across the cycle boundary (43.0622ms)
+✔ legacy questions keep their exact content and grading; advancing adopts the mixed sequence (5.9279ms)
+✔ all area stems: derive the change from displayed dimensions, validate explanations, units and distractors (88.9617ms)
+✔ original keyed examples, deterministic seed permutations, repeat cycles and invalid indices (69.4259ms)
+✖ batch registration respects both exact groups, keeps every existing resource and is idempotent (14.353ms)
+✔ explicit activation includes both generators while preserving review, modules, unrelated resources and saved sessions (3.4721ms)
+✔ draft preview grading and saved sessions remain independent of later catalog edits (3.0428ms)
+✔ every topic receives exactly one Foundation Building and General Practice, including empty topics (7.9002ms)
+✔ migration retains legacy IDs, nested modules, curated selections, hidden state and resources (1.6557ms)
+✔ General Practice automatically follows enabled generators only in its own topic (1.4955ms)
+✔ each foundation accepts only its own topic modules and empty defaults remain available (1.9845ms)
+✔ studio grouping and filters remain usable with hundreds of resources (3.6194ms)
+✔ individual modules default to their own General Practice and keep explicit Foundation placement (2.9963ms)
+✔ General Practice always includes the full library; Foundation settings honor selected modules in either placement (0.9018ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 18
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2081.8226
+
+✖ failing tests:
+
+test at tools\today-generator-batch.test.cjs:130:1
+✖ batch registration respects both exact groups, keeps every existing resource and is idempotent (14.353ms)
+  AssertionError [ERR_ASSERTION]: Missing expected exception.
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\today-generator-batch.test.cjs:142:119)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /curated selection/,
+    operator: 'throws',
+    diff: 'simple'
+  }

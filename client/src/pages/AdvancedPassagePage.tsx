@@ -198,7 +198,7 @@ export function LibraryCorrectionsWorkspace({
                   <div className="library-correction-congrats"><CheckCircle2 size={20} /><span><strong>Congratulations, you got it correct.</strong><small>No written correction is needed for this question.</small></span></div>
                 ) : (
                   <div className="library-correction-explanations">
-                    <label><span>Question type</span>{locked ? <strong>{savedResponse?.questionType || draft.questionType || "Not recorded for this question"}</strong> : <select required value={draft.questionType || ""} onChange={event => onDraftChange(responseQuestionId, "questionType", event.target.value)}><option value="">Choose a question type</option>{correctionQuestionTypes(passageSet.questions, "english").map(type => <option key={type} value={type}>{type}</option>)}</select>}</label>
+                    <label><span>Question type</span>{locked ? <strong>{savedResponse?.questionType || draft.questionType || "Not recorded for this question"}</strong> : <select required value={draft.questionType || ""} onChange={event => onDraftChange(responseQuestionId, "questionType", event.target.value)}><option value="">Choose a question type</option>{correctionQuestionTypes(passageSet.questions, "english", passageSet.section ?? "reading").map(type => <option key={type} value={type}>{type}</option>)}</select>}</label>
                     <label>
                       <span>Why is the answer I chose incorrect?</span>
                       <textarea

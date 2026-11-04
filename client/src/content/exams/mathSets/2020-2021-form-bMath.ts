@@ -55,7 +55,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "prompt": "The figure above shows a scale drawing of\na garden, where 1 centimeter represents\n2.5 meters. What is the perimeter of the\nactual garden in meters?",
     "promptHtml": "The figure above shows a scale drawing of\na garden, where 1 centimeter represents\n2.5 meters. What is the perimeter of the\nactual garden in meters?&nbsp;&nbsp;",
     "topic": "Geometry",
-    "subtopic": "Similarity & Scale Drawings",
+    "subtopic": "Similarity, Scale & Proportional Geometry",
     "correctTextAnswers": [
       "95"
     ],
@@ -1363,7 +1363,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "prompt": "Triangle MNP is similar to triangle XYZ, and \\(MN=NP\\). What is the perimeter of triangle MNP?",
     "promptHtml": "<img src=\"/exam-images/2020-2021-form-b-2020-2021-form-b-q105-0f0c9fe7ceac19e3.png\" alt=\"Math diagram\" width=\"350\">Triangle MNP is similar to triangle XYZ, and \\(MN=NP\\). What is the perimeter of triangle MNP?",
     "topic": "Geometry",
-    "subtopic": "Similarity & Scale Drawings",
+    "subtopic": "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -1545,7 +1545,7 @@ export const content20202021FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A rectangular kitchen floor is 12 feet long and 7.5 feet wide. It will be covered completely with new square tiles measuring 0.75 foot on each side. How many tiles will cover the floor?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",

@@ -18,6 +18,12 @@ function sequence(index:number,seed:string,count:number){
   let stride=101;while(gcd(stride,count)!==1)stride+=2;
   return ((index%count)*stride+hash%count)%count;
 }
+// Shuffle answer positions independently of the requested event's color.
+function colorChoiceRotation(variant:number,seed:string){
+  let hash=2166136261;for(const char of seed+':color-choices:'+variant)hash=Math.imul(hash^char.charCodeAt(0),16777619);
+  hash=Math.imul(hash^(hash>>>16),0x85ebca6b);hash=Math.imul(hash^(hash>>>13),0xc2b2ae35);
+  return (hash^(hash>>>16))>>>0;
+}
 function rotate<T>(values:T[],variant:number){const at=variant%values.length;return values.slice(at).concat(values.slice(0,at));}
 function probabilityChoices(answer:Fraction,candidates:Fraction[],variant:number){
   if(answer.n<0||answer.n>answer.d)throw new Error('The probability must be between zero and one.');
@@ -51,50 +57,56 @@ export function generateCubeSums(index:number,seed='cube-sums'){
 
 const ratioCases:{parts:number[];scale:number;removed:number}[]=[];
 for(let red=1;red<=5;red++)for(let white=1;white<=5;white++)for(let blue=1;blue<=5;blue++)for(let scale=2;scale<=6;scale++)for(let removed=1;removed<scale;removed++)ratioCases.push({parts:[red,white,blue],scale,removed});
-export const ratioRemovalTemplate=template('probability-ratio-removal-v1','2020-2021-form-b-q102','Probability: Ratio Counts After Removal','Convert a color ratio to counts, remove the specified items, and update the probability.',ratioCases.length);
-export function generateRatioRemoval(index:number,seed='ratio-removal'){
-  const variant=sequence(index,seed,ratioCases.length),{parts,scale,removed}=ratioCases[variant],counts=parts.map(part=>part*scale);
-  const total=counts.reduce((sum,count)=>sum+count,0),remainingTotal=total-3*removed,remainingBlue=counts[2]-removed,answer=fraction(remainingBlue,remainingTotal);
+export const ratioRemovalTemplate=template('probability-ratio-removal-v1','2020-2021-form-b-q102','Probability: Ratio Counts After Removal','Convert a color ratio to counts, remove the specified items, and update the probability.',ratioCases.length*3);
+export function generateRatioRemoval(index:number,seed='ratio-removal',varyColors=true){
+  const variant=sequence(index,seed,ratioCases.length*(varyColors?3:1)),targetIndex=varyColors?variant%3:2,targetColor=['red','white','blue'][targetIndex],{parts,scale,removed}=ratioCases[varyColors?Math.floor(variant/3):variant],counts=parts.map(part=>part*scale);
+  const total=counts.reduce((sum,count)=>sum+count,0),remainingTotal=total-3*removed,remainingTarget=counts[targetIndex]-removed,answer=fraction(remainingTarget,remainingTotal);
+  const choiceVariant=varyColors?colorChoiceRotation(variant,seed):variant;
   const question:ExamQuestion={...base(ratioRemovalTemplate,index,seed),type:'multiple_choice',
-    prompt:`A box contains a total of ${total} paper clips with colors in the ratio red:white:blue = ${parts.join(':')}. Suppose that ${removed===1?'one paper clip':`${removed} paper clips`} of each color ${removed===1?'is':'are'} removed from the box and not replaced. What is the probability that the next paper clip chosen will be blue?`,
-    ...probabilityChoices(answer,[fraction(counts[2],total),fraction(remainingBlue,total),fraction(counts[2],remainingTotal),fraction(counts[0]-removed,remainingTotal),fraction(counts[1]-removed,remainingTotal)],variant),
-    explanation:`The ratio has ${parts.join(' + ')} = ${parts.reduce((a,b)=>a+b,0)} parts. Each part represents ${scale} paper clips, so there are ${counts[2]} blue paper clips initially.\n\nRemoving ${removed} of each of the three colors removes ${3*removed} paper clips in all.\nRemaining blue: ${counts[2]} − ${removed} = ${remainingBlue}.\nRemaining total: ${total} − ${3*removed} = ${remainingTotal}.\n\nTherefore, the probability is \\(${remainingBlue}/${remainingTotal}=${latex(answer)}\\).`};
-  return {question,variant,parts:[...parts],counts,total,removed,remainingBlue,remainingTotal};
+    prompt:`A box contains a total of ${total} paper clips with colors in the ratio red:white:blue = ${parts.join(':')}. Suppose that ${removed===1?'one paper clip':`${removed} paper clips`} of each color ${removed===1?'is':'are'} removed from the box and not replaced. What is the probability that the next paper clip chosen will be ${targetColor}?`,
+    ...probabilityChoices(answer,[fraction(counts[targetIndex],total),fraction(remainingTarget,total),fraction(counts[targetIndex],remainingTotal),fraction(counts[0]-removed,remainingTotal),fraction(counts[1]-removed,remainingTotal)],choiceVariant),
+    explanation:`The ratio has ${parts.join(' + ')} = ${parts.reduce((a,b)=>a+b,0)} parts. Each part represents ${scale} paper clips, so there are ${counts[targetIndex]} ${targetColor} paper clips initially.\n\nRemoving ${removed} of each of the three colors removes ${3*removed} paper clips in all.\nRemaining ${targetColor}: ${counts[targetIndex]} − ${removed} = ${remainingTarget}.\nRemaining total: ${total} − ${3*removed} = ${remainingTotal}.\n\nTherefore, the probability is \\(${remainingTarget}/${remainingTotal}=${latex(answer)}\\).`};
+  return {question,variant,targetColor,targetIndex,parts:[...parts],counts,total,removed,remainingTarget,remainingTotal};
 }
 
 const shirtNames=['Chris','Alex','Jordan','Taylor'];
-export const orderedDrawsTemplate=template('probability-ordered-draws-v1','2020-2021-form-b-q107','Probability: Ordered Draws Without Replacement','Find the probability of two different colors in a specified order without replacement.',8**3*shirtNames.length);
-export function generateOrderedDraws(index:number,seed='ordered-draws'){
-  const variant=sequence(index,seed,orderedDrawsTemplate.distinctCount);let rank=variant;
+export const orderedDrawsTemplate=template('probability-ordered-draws-v1','2020-2021-form-b-q107','Probability: Ordered Draws Without Replacement','Find the probability of two different colors in a specified order without replacement.',8**3*shirtNames.length*6);
+export function generateOrderedDraws(index:number,seed='ordered-draws',varyColors=true){
+  const variant=sequence(index,seed,8**3*shirtNames.length*(varyColors?6:1));let rank=varyColors?Math.floor(variant/6):variant;
+  const [firstColor,secondColor]=([['black','red'],['red','black'],['red','white'],['white','red'],['black','white'],['white','black']] as const)[varyColors?variant%6:0];
   const name=shirtNames[rank%4];rank=Math.floor(rank/4);const red=rank%8+1;rank=Math.floor(rank/8);const white=rank%8+1,black=Math.floor(rank/8)+1,total=red+white+black;
-  const answer=fraction(black*red,total*(total-1));
+  const counts={red,white,black},firstCount=counts[firstColor],secondCount=counts[secondColor],answer=fraction(firstCount*secondCount,total*(total-1));
+  const choiceVariant=varyColors?colorChoiceRotation(variant,seed):variant;
   const question:ExamQuestion={...base(orderedDrawsTemplate,index,seed),type:'multiple_choice',
-    prompt:`${name} has ${red} red ${red===1?'shirt':'shirts'}, ${white} white ${white===1?'shirt':'shirts'}, and ${black} black ${black===1?'shirt':'shirts'}. ${name} picks a shirt at random. Without putting the first shirt back, ${name} picks a second shirt at random. What is the probability that the first shirt is black and the second shirt is red?`,
-    ...probabilityChoices(answer,[fraction(black*red,total*total),fraction(2*black*red,total*(total-1)),fraction(black,total),fraction(red,total-1)],variant),
-    explanation:`There are ${total} shirts. The probability of black first is ${black}/${total}. After a black shirt is removed, ${total-1} shirts remain, including all ${red} red shirts.\n\nMultiply the probabilities for this specific order:\n\\[\\frac{${black}}{${total}}\\times\\frac{${red}}{${total-1}}=${latex(answer)}\\]\n\nDo not double the result: red then black is not the requested order.`};
-  return {question,variant,name,red,white,black,total};
+    prompt:`${name} has ${red} red ${red===1?'shirt':'shirts'}, ${white} white ${white===1?'shirt':'shirts'}, and ${black} black ${black===1?'shirt':'shirts'}. ${name} picks a shirt at random. Without putting the first shirt back, ${name} picks a second shirt at random. What is the probability that the first shirt is ${firstColor} and the second shirt is ${secondColor}?`,
+    ...probabilityChoices(answer,[fraction(firstCount*secondCount,total*total),fraction(2*firstCount*secondCount,total*(total-1)),fraction(firstCount,total),fraction(secondCount,total-1)],choiceVariant),
+    explanation:`There are ${total} shirts. The probability of ${firstColor} first is ${firstCount}/${total}. After a ${firstColor} shirt is removed, ${total-1} shirts remain, including all ${secondCount} ${secondColor} shirts.\n\nMultiply the probabilities for this specific order:\n\\[\\frac{${firstCount}}{${total}}\\times\\frac{${secondCount}}{${total-1}}=${latex(answer)}\\]\n\nDo not double the result: ${secondColor} then ${firstColor} is not the requested order.`};
+  return {question,variant,firstColor,secondColor,name,red,white,black,total};
 }
 
-export const sameColorTemplate=template('probability-same-color-no-replacement-v1','2021-2022-form-a-q78','Probability: Both Not Blue','Use the complement color and reduce both the favorable and total counts after a draw.',400);
-export function generateSameColor(index:number,seed='same-color'){
-  const variant=sequence(index,seed,sameColorTemplate.distinctCount),red=variant%20+1,blue=Math.floor(variant/20)+1,total=red+blue,answer=fraction(red*(red-1),total*(total-1));
+export const sameColorTemplate=template('probability-same-color-no-replacement-v1','2021-2022-form-a-q78','Probability: Complementary Color Draws','Use the complement color and reduce both the favorable and total counts after a draw.',800);
+export function generateSameColor(index:number,seed='same-color',varyColors=true){
+  const variant=sequence(index,seed,400*(varyColors?2:1)),rank=varyColors?Math.floor(variant/2):variant,red=rank%20+1,blue=Math.floor(rank/20)+1,total=red+blue;
+  const excludedColor=varyColors&&variant%2?'red':'blue',targetColor=excludedColor==='blue'?'red':'blue',targetCount=targetColor==='red'?red:blue,otherCount=total-targetCount,answer=withoutReplacementSuccessProbability(targetCount,total);
+  const choiceVariant=varyColors?colorChoiceRotation(variant,seed):variant;
   const question:ExamQuestion={...base(sameColorTemplate,index,seed),type:'multiple_choice',
-    prompt:`In a sample of ${total} cards, ${red} are red and ${blue} are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not blue?`,
-    ...probabilityChoices(answer,[fraction(red*red,total*total),fraction(red,total),fraction(blue*(blue-1),total*(total-1)),fraction(red*(red-1),total*total)],variant),
-    explanation:`Only red and blue cards are present, so “not blue” means red. The probability of red on the first draw is ${red}/${total}. After drawing red, ${red-1} red cards remain among ${total-1} cards.\n\\[\\frac{${red}}{${total}}\\times\\frac{${red-1}}{${total-1}}=${latex(answer)}\\]\n${red===1?'There is only one red card, so drawing two red cards is impossible.':'Both the favorable count and total count decrease because the first card is not replaced.'}`};
-  return {question,variant,red,blue,total};
+    prompt:`In a sample of ${total} cards, ${red} are red and ${blue} are blue. If 2 cards are selected at random from the sample, one at a time without replacement, what is the probability that both cards are not ${excludedColor}?`,
+    ...probabilityChoices(answer,[fraction(targetCount*targetCount,total*total),fraction(targetCount,total),fraction(otherCount*(otherCount-1),total*(total-1)),fraction(targetCount*(targetCount-1),total*total)],choiceVariant),
+    explanation:`Only red and blue cards are present, so “not ${excludedColor}” means ${targetColor}. The probability of ${targetColor} on the first draw is ${targetCount}/${total}. After drawing ${targetColor}, ${targetCount-1} ${targetColor} cards remain among ${total-1} cards.\n\\[\\frac{${targetCount}}{${total}}\\times\\frac{${targetCount-1}}{${total-1}}=${latex(answer)}\\]\n${targetCount===1?`There is only one ${targetColor} card, so drawing two ${targetColor} cards is impossible.`:'Both the favorable count and total count decrease because the first card is not replaced.'}`};
+  return {question,variant,red,blue,total,targetColor,excludedColor};
 }
 
 const marbleNames=['Sarah','Maya','Lena','Ava'];
-export const replacementTemplate=template('probability-with-replacement-v1','2022-2023-form-a-q100','Probability: Repeated Draws With Replacement','Multiply unchanged single-draw probabilities when the first item is returned.',15*15*marbleNames.length);
-export function generateReplacement(index:number,seed='replacement'){
-  const variant=sequence(index,seed,replacementTemplate.distinctCount);let rank=variant;
-  const name=marbleNames[rank%4];rank=Math.floor(rank/4);const red=rank%15+1,blue=Math.floor(rank/15)+1,total=red+blue,answer=fraction(red*red,total*total);
+export const replacementTemplate=template('probability-with-replacement-v1','2022-2023-form-a-q100','Probability: Repeated Draws With Replacement','Multiply unchanged single-draw probabilities when the first item is returned.',15*15*marbleNames.length*2);
+export function generateReplacement(index:number,seed='replacement',varyColors=true){
+  const variant=sequence(index,seed,15*15*marbleNames.length*(varyColors?2:1));let rank=varyColors?Math.floor(variant/2):variant;
+  const name=marbleNames[rank%4];rank=Math.floor(rank/4);const red=rank%15+1,blue=Math.floor(rank/15)+1,total=red+blue,targetColor=varyColors&&variant%2?'blue':'red',targetCount=targetColor==='red'?red:blue,otherCount=total-targetCount,answer=fraction(targetCount*targetCount,total*total);
+  const choiceVariant=varyColors?colorChoiceRotation(variant,seed):variant;
   const question:ExamQuestion={...base(replacementTemplate,index,seed),type:'multiple_choice',
-    prompt:`A bag contains ${total} marbles: ${blue} blue ${blue===1?'marble':'marbles'} and ${red} red ${red===1?'marble':'marbles'}. ${name} picks one marble randomly, returns it to the bag, and then randomly picks one marble again. What is the probability that she picks a red marble both times?`,
-    ...probabilityChoices(answer,[fraction(red*red,blue*blue),fraction(2*red,total),fraction(blue*blue,total*total),fraction(red,total),fraction(red*(red-1),total*(total-1))],variant),
-    explanation:`The probability of red on one draw is ${red}/${total}. Because the marble is returned, the second draw has the same probability.\n\\[\\frac{${red}}{${total}}\\times\\frac{${red}}{${total}}=${latex(answer)}\\]\n\nThe number of marbles stays ${total} on both draws.`};
-  return {question,variant,name,red,blue,total};
+    prompt:`A bag contains ${total} marbles: ${blue} blue ${blue===1?'marble':'marbles'} and ${red} red ${red===1?'marble':'marbles'}. ${name} picks one marble randomly, returns it to the bag, and then randomly picks one marble again. What is the probability that she picks a ${targetColor} marble both times?`,
+    ...probabilityChoices(answer,[fraction(targetCount*targetCount,otherCount*otherCount),fraction(2*targetCount,total),fraction(otherCount*otherCount,total*total),fraction(targetCount,total),fraction(targetCount*(targetCount-1),total*(total-1))],choiceVariant),
+    explanation:`The probability of ${targetColor} on one draw is ${targetCount}/${total}. Because the marble is returned, the second draw has the same probability.\n\\[\\frac{${targetCount}}{${total}}\\times\\frac{${targetCount}}{${total}}=${latex(answer)}\\]\n\nThe number of marbles stays ${total} on both draws.`};
+  return {question,variant,name,red,blue,total,targetColor};
 }
 
 const spinnerNames=['Karl','Mia','Ali','Lena'];
@@ -136,8 +148,12 @@ export function generateSampleSpaces(index:number,seed='sample-spaces'){
 const conditionalCases:{people:number;viruses:number;virus:number}[]=[];
 for(let people=5;people<=40;people+=5)for(let viruses=20;viruses<=200;viruses+=20)for(let virus=1;virus<=viruses;virus++)conditionalCases.push({people,viruses,virus});
 export const specificOutcomeTemplate=template('probability-specific-conditional-outcome-v1','2022-2023-form-b-q99','Probability: One Specific Conditional Outcome','Multiply an event probability by the conditional probability of one equally likely cause.',conditionalCases.length);
+export function conditionalOutcomeParameters(index:number,seed:string){
+  const variant=sequence(index,seed,conditionalCases.length),{people,viruses,virus}=conditionalCases[variant];
+  return {variant,people,viruses,virus,answer:fraction(1,people*viruses)};
+}
 export function generateSpecificOutcome(index:number,seed='specific-outcome'){
-  const variant=sequence(index,seed,conditionalCases.length),{people,viruses,virus}=conditionalCases[variant],answer=fraction(1,people*viruses);
+  const {variant,people,viruses,virus,answer}=conditionalOutcomeParameters(index,seed);
   const question:ExamQuestion={...base(specificOutcomeTemplate,index,seed),type:'multiple_choice',
     prompt:`In a probability model, one person out of every ${people} people has a cold. Assume that a cold can be caused by any one of ${viruses} different viruses, each equally likely to be the cause. One is labeled V${virus}. What is the probability that a randomly selected person has a cold caused by virus V${virus}?`,
     ...probabilityChoices(answer,[fraction(1,people),fraction(1,viruses),fraction(1,people+viruses),fraction(people+viruses,people*viruses)],variant),
@@ -155,3 +171,10 @@ export const probabilityPractice=[
   {...sampleSpacesTemplate,generate:generateSampleSpaces},
   {...specificOutcomeTemplate,generate:generateSpecificOutcome},
 ];
+
+// Shared arithmetic and sequence contracts for source-specific variants.
+export function withoutReplacementSuccessProbability(favorable:number,total:number){
+  if(!Number.isSafeInteger(favorable)||!Number.isSafeInteger(total)||favorable<0||favorable>total||total<2)throw new Error("Invalid draw counts.");
+  return fraction(favorable*(favorable-1),total*(total-1));
+}
+export {fraction as probabilityFraction, sequence as probabilitySequence, probabilityChoices};

@@ -14,7 +14,7 @@ const PracticePlayer = lazy(() => import("../features/math-command/InequalityPra
 
 export function MathStudyHall({ query, previewContext }: { query: string; previewContext: StudentPreviewContext }) {
   const [search, setSearch] = useState(() => window.location.search);
-  const [selectedModule, setSelectedModule] = useState<{id:string;selection:PracticeSelection} | null>(null);
+  const [selectedModule, setSelectedModule] = useState<{id:string;selection:PracticeSelection;startNew?:boolean} | null>(null);
   const {catalog,taxonomy,error,loading,reload}=usePracticeCatalog();
   const {profile}=useAccountProfile();
   const owner=previewContext.isPreview?'preview:'+previewContext.mode+':'+(previewContext.studentId||'teacher'):profile?.id;
@@ -46,9 +46,9 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
   }
   const modules=catalog?.modules.filter(module=>module.published&&module.category===category?.label&&module.topic===topic)??[];
   const videos=catalog?.videos.filter(video=>video.published&&video.category===category?.label&&video.topic===topic)??[];
-  async function startModule(id:string,selection:PracticeSelection) {
+  async function startModule(id:string,selection:PracticeSelection,startNew=false) {
     const next=await reload();
-    if(next?.modules.some(module=>module.id===id&&module.published&&managedGeneratorIds(module,next,selection).length>0))setSelectedModule({id,selection});
+    if(next?.modules.some(module=>module.id===id&&module.published&&managedGeneratorIds(module,next,selection).length>0))setSelectedModule({id,selection,startNew});
   }
   const resourceStatus=loading?<p className="math-study-resource-status" role="status">Loading resources…</p>:error?<div className="math-study-resource-status" role="alert"><p>{error}</p><button type="button" onClick={()=>void reload()}>Try again</button></div>:null;
 
@@ -70,8 +70,8 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
       {previewContext.mode==='teacher'&&<AppLink className="math-study-manage" href={`/teacher/practice-studio?${new URLSearchParams({category:category.label,topic})}`}>Manage practice &amp; videos <ArrowRight size={15}/></AppLink>}
       <div className="math-study-resources">
         <section aria-labelledby="math-infinite-title" className="math-study-resource-section math-study-practice-section">
-          <header><InfinityIcon size={28} aria-hidden="true" /><div><h3 id="math-infinite-title">Infinite practice</h3><p>Fresh questions. A new personal best to work toward. Earn a star every 10 correct in a row, up to 50.</p></div></header>
-          {resourceStatus??(modules.length?<PracticeModuleList catalog={catalog!} previewContext={previewContext} category={category.label} topic={topic} onStart={(id,selection)=>void startModule(id,selection)}/>:<div className="math-study-resource-empty"><InfinityIcon size={34} aria-hidden="true" /><strong>No practice modules yet</strong><p>Modules published by your teacher will appear here.</p></div>)}
+          <header><InfinityIcon size={28} aria-hidden="true" /><div><h3 id="math-infinite-title">Infinite practice</h3><p>Practice the full topic in General Practice, or choose modules and earn module stars in Foundation Building.</p></div></header>
+          {resourceStatus??(modules.length?<PracticeModuleList catalog={catalog!} previewContext={previewContext} category={category.label} topic={topic} onStart={(id,selection,startNew)=>void startModule(id,selection,startNew)}/>:<div className="math-study-resource-empty"><InfinityIcon size={34} aria-hidden="true" /><strong>No practice modules yet</strong><p>Modules published by your teacher will appear here.</p></div>)}
         </section>
         <section aria-labelledby="math-worksheets-title" className="math-study-resource-section">
           <header><FileText size={21} aria-hidden="true" /><div><h3 id="math-worksheets-title">Worksheets</h3><p>Work through a focused set at your own pace.</p></div></header>
@@ -95,6 +95,6 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
         {!mathStudyCategories.some(item => matches(`${item.label} ${item.topics.join(" ")}`)) && <p className="math-study-empty">No math categories match your search.</p>}
       </div>}
     </>}
-    {selectedModule && catalog && <Suspense fallback={<p role="status">Opening practice…</p>}><PracticePlayer key={selectedModule.id} initialModuleId={selectedModule.id} initialSelection={selectedModule.selection} catalog={catalog} onClose={() => setSelectedModule(null)} /></Suspense>}
+    {selectedModule && catalog && <Suspense fallback={<p role="status">Opening practice…</p>}><PracticePlayer key={selectedModule.id} initialModuleId={selectedModule.id} initialSelection={selectedModule.selection} initialStartNew={selectedModule.startNew} catalog={catalog} onClose={() => setSelectedModule(null)} /></Suspense>}
   </section>;
 }

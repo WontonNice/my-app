@@ -1,0 +1,16 @@
+✔ Raffle and Specific Card: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (21064.7971ms)
+✔ Two Candies Excluding a Flavor: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (25.8056ms)
+✔ Paint Arrangements Without Repeats: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (1.1444ms)
+✔ Probability from a Decimal Set: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (0.9507ms)
+✔ Choosing Unordered Pairs: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (0.8553ms)
+✔ seeds, safe indices and explicit repeat cycles preserve stable question identities (1.7488ms)
+✔ one batch targets exact IDs, preserves customization, publishes only authorized destinations, and is idempotent (25.1735ms)
+✔ stale exact destinations and conflicting IDs fail without modifying inputs (3.2045ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21768.9543

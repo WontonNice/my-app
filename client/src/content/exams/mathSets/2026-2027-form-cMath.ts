@@ -235,7 +235,7 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "prompt": "In the parallelogram above, what is the value of x?",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-e8809dfe9e69af542188.svg\" alt=\"The image of a parallelogram with two angles shown. Top left  angle has a measure of 3x degrees. Lower left angle has a measure of 2x degrees. \" width=\"170\"></p><p><span>In the parallelogram above, what is the value of <em>x</em>?</span></p>",
     "topic": "Geometry",
-    "subtopic": "Triangles & Polygons",
+    "subtopic": "Quadrilaterals & Polygons",
     "choices": [
       {
         "id": "A",
@@ -778,7 +778,7 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "prompt": "What is the distance between the midpoints of \\(\\overline{\\text{MN}}\\) and \\(\\overline{\\text{RS?}}\\)",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-d03d7f22712ec3583148.svg\" alt=\"The image, on a number line, that goes from 0 to 8, with some points labeled, M, R, S, and N., Point M is at 1, Point R is at 3, Point S is at 6, and Point N is at 7. \" width=\"271\"></p><p><span>What is the distance between the midpoints of </span><span>\\(\\overline{\\text{MN}}\\)</span><span> and </span><span>\\(\\overline{\\text{RS?}}\\)</span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1033,7 +1033,7 @@ export const content20262027FormCMathSection: ExamMathSection = {
     "prompt": "On parallelogram PQRS above, the length of \\(\\overline{\\text{QT}}\\) is 18 centimeters. What is the area of the parallelogram?",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-c-f0f5e35acd0cdade40ea.svg\" alt=\"The image of parallelogram PQRS with a line segment QT that is perpendicular to line segment PS creating a right triangle QTP. Line segment QT has a measure of 18 centimeters. Side PS has a length of 34 centimeters and side RS has a length of 22 centimeters.\" width=\"188\"></p><p><span>On parallelogram PQRS above, the length of </span><span>\\(\\overline{\\text{QT}}\\)</span><span>&nbsp;is <span>18 centimeters.</span> What is the area of the parallelogram?</span></p>",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",

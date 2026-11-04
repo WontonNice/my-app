@@ -22,7 +22,7 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "prompt": "If \\(x = 9\\)  and \\(y=−7\\) , what is the value of \\(x(x − 2y)?\\)",
     "promptHtml": "If&nbsp;\\(x&nbsp;=&nbsp;9\\) &nbsp;and&nbsp;\\(y=−7\\) ,&nbsp;what&nbsp;is&nbsp;the&nbsp;value&nbsp;of&nbsp;\\(x(x&nbsp;−&nbsp;2y)?\\)",
     "topic": "Algebra",
-    "subtopic": "Unclassified",
+    "subtopic": "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -54,8 +54,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The decimal 0.06 can be written as the fraction \\(\\frac{x}{50}\\) . What is the value of \\(x\\) ?",
     "promptHtml": "The&nbsp;decimal&nbsp;0.06&nbsp;can&nbsp;be&nbsp;written&nbsp;as&nbsp;the&nbsp;fraction&nbsp;\\(\\frac{x}{50}\\) .&nbsp;What&nbsp;is&nbsp;the&nbsp;value&nbsp;of&nbsp;\\(x\\) ?&nbsp;&nbsp;",
-    "topic": "Algebra",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -154,8 +154,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At a diner, 18 dozen buns were used yesterday for 150 lunch customers. Today, there were 250 lunch customers. Assuming that the bun usage rate is the same for both days, which proportions can be used to determine how many dozen buns are needed for 250 lunch customers?\n\nSelect the three correct answers.",
     "promptHtml": "<p></p><p>At&nbsp;a&nbsp;diner,&nbsp;18&nbsp;dozen&nbsp;buns&nbsp;were&nbsp;used&nbsp;yesterday&nbsp;for&nbsp;150&nbsp;lunch&nbsp;customers.&nbsp;Today,&nbsp;there&nbsp;were&nbsp;250&nbsp;lunch&nbsp;customers.&nbsp;Assuming&nbsp;that&nbsp;the&nbsp;bun&nbsp;usage&nbsp;rate&nbsp;is&nbsp;the&nbsp;same&nbsp;for&nbsp;both&nbsp;days,&nbsp;which&nbsp;proportions&nbsp;can be&nbsp;used&nbsp;to&nbsp;determine&nbsp;how&nbsp;many&nbsp;dozen&nbsp;buns&nbsp;are&nbsp;needed&nbsp;for&nbsp;250&nbsp;lunch&nbsp;customers?</p><p></p><p></p><p>Select&nbsp;the&nbsp;<strong>three</strong>&nbsp;correct&nbsp;answers.</p><p></p>",
-    "topic": "Algebra",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -201,8 +201,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Maria is playing a game in which players earn points called minks, zogs, and barts.\n\\(1\\)  mink = \\(3\\)  zogs\n\\(1\\)  mink =\\(\\frac14\\)  bart\nMaria has 60 zogs and 24 barts. She wants to exchange her zogs and barts for minks.\nHow many minks will Maria receive from the exchange?\n\nEnter your answer in the space.",
     "promptHtml": "<p></p><p>Maria&nbsp;is&nbsp;playing&nbsp;a&nbsp;game&nbsp;in&nbsp;which&nbsp;players&nbsp;earn&nbsp;points&nbsp;called&nbsp;minks,&nbsp;zogs,&nbsp;and&nbsp;barts.</p><p>\\(1\\) &nbsp;mink&nbsp;= \\(3\\) &nbsp;zogs<br>\\(1\\) &nbsp;mink&nbsp;=\\(\\frac14\\) &nbsp;bart</p><p>Maria&nbsp;has&nbsp;60&nbsp;zogs&nbsp;and&nbsp;24&nbsp;barts.&nbsp;She&nbsp;wants&nbsp;to&nbsp;exchange&nbsp;her&nbsp;zogs&nbsp;and&nbsp;barts&nbsp;for&nbsp;minks.</p><p>How&nbsp;many&nbsp;minks&nbsp;will&nbsp;Maria&nbsp;receive&nbsp;from&nbsp;the&nbsp;exchange?</p><p></p><p></p><p>Enter&nbsp;your&nbsp;answer&nbsp;in&nbsp;the&nbsp;space.</p><p></p>",
-    "topic": "Algebra",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Units & Conversions",
     "correctTextAnswers": [
       "116"
     ],
@@ -254,7 +254,7 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "prompt": "In the figure above, \\(\\text{PQRS}\\) is a parallelogram. The measure of \\(∠\\text{PQT}\\) is \\(50^{\\circ}\\), and the measure of \\(∠\\text{PTQ}\\) is \\(70^{\\circ}\\). What is the measure of \\(∠\\text{QRS?}\\)",
     "promptHtml": "<p data-align=\"center\"><span><img src=\"/exam-images/restore-shm04-201-1-svgz-passage.svgz\" alt=\"Figure PQRS is a parallelogram. Point T is between Point P and Point S. A straight line connects point T at the bottom of the parallelogram to point Q at the top.  \" width=\"270\"></span></p><p><span><span>In </span><span>the </span><span>figure</span><span> above, </span></span><span><span>\\(\\text{PQRS}\\)</span></span><span><span> is </span><span>a </span><span>parallelogram</span><span>. </span><span>The </span><span>measure</span><span> of </span></span><span><span>\\(∠\\text{PQT}\\)</span></span><span> is </span><span><span>\\(50^{\\circ}\\)</span></span><span>,</span><span> and the measure of </span><span><span>\\(∠\\text{PTQ}\\)</span></span><span> is </span><span><span>\\(70^{\\circ}\\)</span></span><span>.</span><span> What is the measure of </span><span><span>\\(∠\\text{QRS?}\\)</span></span></p>",
     "topic": "Geometry",
-    "subtopic": "Triangles & Polygons",
+    "subtopic": "Quadrilaterals & Polygons",
     "choices": [
       {
         "id": "A",
@@ -299,8 +299,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(M=3N=\\frac{P}{4}=Q+5=\\frac{R}{7}>0\\)\nBased on the statement above, which variable has the greatest value?",
     "promptHtml": "<p data-align=\"center\"><span><span>\\(M=3N=\\frac{P}{4}=Q+5=\\frac{R}{7}&gt;0\\)</span></span></p> <p><span><span>Based </span><span>on </span><span>the </span><span>statement </span><span>above, </span><span>which </span><span>variable</span><span> has </span><span>the </span><strong>greatest</strong> <span>value</span><span>?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -345,8 +345,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A roofing contractor uses shingles at a rate of 3 bundles for every 96 square feet of roof covered. At this rate, how many bundles of shingles will he need in order to cover a roof that is 416 square feet?",
     "promptHtml": "<p><span><span>A </span><span>roofing </span><span>contractor </span><span>uses </span><span>shingles </span><span>at </span><span>a </span><span>rate</span><span> of </span><span>3 </span><span>bundles </span><span>for </span><span>every </span></span><span><span data-no-break=\"true\">96 <span>square feet</span> </span></span> <span><span>of </span><span>roof </span><span>covered. </span><span>At </span><span>this </span><span>rate, </span><span>how </span><span>many </span><span>bundles </span><span>of </span><span>shingles </span><span>will </span><span>he </span><span>need </span><span>in </span><span>order</span><span> to </span><span>cover </span><span>a </span><span>roof </span><span>that </span><span>is </span><span data-no-break=\"true\">416 square</span><span> feet?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -391,8 +391,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "To make party invitations, Macie could buy a package of paper for $10.50, or she could buy \\(x\\) individual sheets of the same paper for $0.15 each. What is the largest value of \\(x\\) that would make buying the individual sheets less expensive than buying the package?",
     "promptHtml": "<p><span>To make party invitations, Macie could buy a package of paper for $10.50, or she could buy </span><span><span>\\(x\\)</span></span><span><span> individual </span><span>sheets </span><span>of </span><span>the </span><span>same </span><span>paper </span><span>for </span><span>$0.15 </span><span>each</span><span>. </span><span>What </span><span>is </span><span>the </span><span>largest </span><span>value</span><span> of </span></span><span><span>\\(x\\)</span></span><span><span> that </span><span>would </span><span>make </span><span>buying </span><span>the </span><span>individual </span><span>sheets </span><span><strong>less</strong></span><span> expensive </span><span>than </span><span>buying </span><span>the </span><span>package?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -437,8 +437,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At 1:00 p.m. one day, the temperature was 8 degrees above zero. During the rest of the day, the temperature fell 3 degrees per hour. What was the temperature at 7:00 p.m. that day?",
     "promptHtml": "<p><span><span>At </span><span>1:00 </span><span>p.m. </span><span>one </span><span>day, </span><span>the </span><span>temperature</span><span> was </span><span data-no-break=\"true\">8 degrees</span><span> above </span><span>zero. </span><span>During </span><span>the </span><span>rest </span><span>of </span><span>the </span><span>day, </span><span>the </span><span>temperature </span><span>fell </span><span data-no-break=\"true\">3 degrees</span> <span>per</span> <span>hour</span><span>. </span><span>What </span><span>was </span><span>the </span><span>temperature </span><span>at </span><span data-no-break=\"true\">7:00 p.m.</span><span> that </span><span>day?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -483,8 +483,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A bag contains 75 marbles that are red, blue, or green. The ratio of red to blue marbles is 15:7, and the ratio of blue to green marbles is 7:3. If 2 blue marbles are removed and replaced with 2 green marbles, what will be the new ratio of red to green marbles?",
     "promptHtml": "<p><span><span>A </span><span>bag </span><span>contains </span><span>75 </span><span>marbles </span><span>that </span><span>are </span><span>red, </span><span>blue, </span><span>or </span><span>green. </span><span>The </span><span>ratio</span><span> of </span><span>red </span><span>to </span><span>blue </span><span>marbles </span><span>is </span></span><span><span>15:7,</span></span><span> and the ratio of blue to green marbles is </span><span><span>7:3.</span></span><span> If 2 blue marbles are removed and replaced with 2 green marbles, what will be the new ratio of red to green marbles?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -575,8 +575,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the least common multiple of 24, 6, and 18?",
     "promptHtml": "<p><span><span>What </span><span>is </span><span>the </span><span>least </span><span>common </span><span>multiple of</span><span> 24, </span><span>6, </span><span>and </span><span>18?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -743,8 +743,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A cooler contains three types of beverages: 5 bottles of apple juice, 3 bottles of grape juice, and 6 bottles of orange juice. What is the probability that a bottle chosen at random from this cooler is not apple juice?",
     "promptHtml": "<p><span><span>A </span><span>cooler </span><span>contains </span><span>three </span><span>types </span><span>of </span><span>beverages: </span><span>5 </span><span>bottles </span><span>of </span><span>apple </span><span>juice, </span><span>3 </span><span>bottles </span><span>of </span><span>grape </span><span>juice, </span><span>and </span><span>6 </span><span>bottles </span><span>of </span><span>orange </span><span>juice. </span><span>What </span><span>is </span><span>the </span><span>probability</span><span> that </span><span>a </span><span>bottle </span><span>chosen </span><span>at </span><span>random</span><span> from </span><span>this </span><span>cooler </span><span>is </span><span><strong>not</strong></span><span> apple </span><span>juice?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -789,8 +789,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A large circular dinner plate has a radius of 20 centimeters. A smaller circular plate with a circumference of \\(20\\pi \\) centimeters is placed in the center of the larger dinner plate. What is the area of the part of the larger dinner plate that is not covered by the smaller plate?",
     "promptHtml": "<p><span><span>A </span><span>large</span> <span>circular</span><span> dinner </span><span>plate </span><span>has </span><span>a </span><span>radius</span><span> of </span></span><span data-no-break=\"true\"><span><span>20 </span><span>centimeters</span><span>.</span></span></span><span><span> A </span><span>smaller </span><span>circular </span><span>plate </span><span>with </span><span>a </span><span>circumference</span><span> of </span></span><span data-no-break=\"true\"><span><span>\\(20\\pi \\)</span></span><span> centimeters</span></span><span><span> is </span><span>placed </span><span>in </span><span>the </span><span>center</span><span> of </span><span>the </span><span>larger </span><span>dinner </span><span>plate. </span><span>What </span><span>is </span><span>the </span><span>area</span><span> of </span><span>the </span><span>part </span><span>of </span><span>the </span><span>larger </span><span>dinner </span><span>plate </span><span>that </span><span>is </span><span><strong>not</strong></span><span> covered </span><span>by </span><span>the </span><span>smaller </span><span>plate?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Geometry",
+    "subtopic": "Circles",
     "choices": [
       {
         "id": "A",
@@ -917,8 +917,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(\\frac{36}{y}=4x,\\) what is the value of \\(x\\) when \\(y=3?\\)",
     "promptHtml": "<p><span>If </span><span><span>\\(\\frac{36}{y}=4x,\\)</span></span><span><span> what </span><span>is </span><span>the </span><span>value</span><span> of </span></span><span><span>\\(x\\)</span></span><span> when </span><span><span>\\(y=3?\\)</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -964,7 +964,7 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "prompt": "Points \\(\\text{X, Y,}\\) and \\(\\text{Z}\\) are on a straight line, and \\(\\text{Y}\\) is between \\(\\text{X}\\) and \\(\\text{Z.}\\) Length \\(\\overline{\\text{YZ}}=\\frac{3}{5}\\overline{\\text{XY}}\\text{,}\\) and length \\(\\overline{\\text{XY}}=20\\text{ centimeters.}\\) What is the length of \\(\\overline{\\text{XZ}}\\text{?}\\)",
     "promptHtml": "<p><span><span>Points</span> </span><span><span>\\(\\text{X, Y,}\\)</span></span><span> and </span><span><span>\\(\\text{Z}\\)</span></span><span><span> are </span><span>on </span><span>a </span><span>straight</span> <span>line</span><span>, </span><span>and </span></span><span><span>\\(\\text{Y}\\)</span></span><span><span> is </span><span>between</span> </span><span><span>\\(\\text{X}\\)</span></span><span> and </span><span><span>\\(\\text{Z.}\\)</span></span> <span><span>Length</span> </span><span><span>\\(\\overline{\\text{YZ}}=\\frac{3}{5}\\overline{\\text{XY}}\\text{,}\\)</span></span><span> and length </span><span><span>\\(\\overline{\\text{XY}}=20\\text{ centimeters.}\\)</span></span><span> What is the length of </span><span><span>\\(\\overline{\\text{XZ}}\\text{?}\\)</span></span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1056,7 +1056,7 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "prompt": "On the number line above, \\(\\text{MN}=5\\frac{5}{6}.\\) What is the position of point \\(\\text{M?}\\)",
     "promptHtml": "<p data-align=\"center\"><span><img src=\"/exam-images/restore-shm11-089-1-svgz-passage.svgz\" alt=\"A number line with points M and N. N is marked as 1 and 1 third \" width=\"264\"></span></p><p><span><span>On </span><span>the </span><span>number line</span><span> above, </span></span><span><span>\\(\\text{MN}=5\\frac{5}{6}.\\)</span></span><span> What is the position of </span><span data-no-break=\"true\"><span><span>point</span> </span><span><span>\\(\\text{M?}\\)</span></span></span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1101,8 +1101,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A United States presidential coin is made from an alloy of four metals—copper, zinc, manganese, and nickel—with weights in the ratio of 177:12:7:4, respectively. The coin weighs a total of 8 grams. What is the weight of the zinc in this coin?",
     "promptHtml": "<p><span>A United States presidential coin is made from an alloy of four metals</span><span>—</span><span><span>copper, </span><span>zinc, </span><span>manganese, </span><span>and </span><span>nickel</span></span><span>—</span><span><span>with </span><span>weights </span><span>in </span><span>the </span><span>ratio</span><span> of </span></span><span>177:12:7:4,</span><span><span> respectively. </span><span>The </span><span>coin </span><span>weighs </span><span>a </span><span>total</span><span> of </span></span><span data-no-break=\"true\"><span><span>8 </span><span>grams</span><span>.</span></span></span><span> What is the weight of the zinc in this coin?</span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1147,8 +1147,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Jack scored a mean of 15 points per game in his first 3 basketball games. In his 4th game, he scored 27 points. What is his mean score for the first 4 games?",
     "promptHtml": "<p><span><span>Jack </span><span>scored </span><span>a </span><span>mean</span><span> of </span></span><span data-no-break=\"true\"><span><span>15 </span><span>points</span></span></span> <span><span>per</span><span> game </span><span>in </span><span>his </span><span>first</span><span> 3 </span><span>basketball </span><span>games. </span><span>In </span><span>his </span><span>4th </span><span>game, </span><span>he </span><span>scored </span><span data-no-break=\"true\">27 points.</span><span> What </span><span>is </span><span>his </span><span>mean </span><span>score </span><span>for </span><span>the </span><span>first </span><span>4 </span><span>games?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Averages & Spread",
     "choices": [
       {
         "id": "A",
@@ -1193,8 +1193,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A cylindrical oil drum can hold 4,320 liters when it is completely full. Currently, the drum is \\(\\frac{1}{3}\\) full of oil. How many kiloliters of oil need to be added in order to fill the drum completely?",
     "promptHtml": "<p><span>A cylindrical oil drum can hold </span><span data-no-break=\"true\"><span><span>4,320 </span><span>liters</span></span></span><span> when it is completely full. Currently, the drum is </span><span><span>\\(\\frac{1}{3}\\)</span></span><span><span> full </span><span>of </span><span>oil. </span><span>How </span><span>many </span><strong>kiloliters</strong><span> of </span><span>oil </span><span>need </span><span>to </span><span>be </span><span>added </span><span>in </span><span>order</span><span> to </span><span>fill </span><span>the </span><span>drum </span><span>completely?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Units & Conversions",
     "choices": [
       {
         "id": "A",
@@ -1331,8 +1331,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(w-1\\) is an odd integer, which one of the following must be an even integer?",
     "promptHtml": "<p><span>If </span><span><span>\\(w-1\\)</span></span><span><span> is </span><span>an </span><span>odd</span> <span>integer</span><span>, </span><span>which </span><span>one </span><span>of </span><span>the </span><span>following </span><strong>must</strong><span> be </span><span>an </span><span>even </span><span>integer?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1377,8 +1377,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Three students stand at the starting line of a running track and begin running laps at the same time. Ann completes 1 lap every 2 minutes, Jack completes 1 lap every 3 minutes, and Lee completes 1 lap every 4 minutes. How many laps does Ann complete before all three runners are once again at the starting line at the same time?",
     "promptHtml": "<p><span><span>Three </span><span>students </span><span>stand </span><span>at </span><span>the </span><span>starting </span><span>line</span><span> of </span><span>a </span><span>running </span><span>track </span><span>and </span><span>begin </span><span>running </span><span>laps </span><span>at </span><span>the </span><span>same </span><span>time. </span><span>Ann </span><span>completes </span><span>1 </span><span>lap </span><span>every </span></span><span data-no-break=\"true\"><span><span>2 </span><span>minutes</span><span>,</span></span></span><span><span> Jack </span><span>completes </span><span>1 </span><span>lap </span><span>every </span><span data-no-break=\"true\">3 minutes,</span><span> and </span><span>Lee </span><span>completes </span><span>1 </span><span>lap </span><span>every </span><span data-no-break=\"true\">4 minutes.</span><span> How </span><span>many </span><span>laps </span><span>does </span><span>Ann </span><span>complete </span><span>before</span><span> all </span><span>three </span><span>runners </span><span>are </span><span>once </span><span>again </span><span>at </span><span>the </span><span>starting </span><span>line </span><span>at </span><span>the </span><span>same </span><span>time?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1589,7 +1589,7 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "prompt": "R, S, and T are midpoints of the sides of square MNPQ, as shown above. What is the sum of the areas of the shaded triangles?",
     "promptHtml": "<p data-align=\"center\"><span><img src=\"/exam-images/restore-shm88-474-1-svgz-passage.svgz\" alt=\"The figure is a square labeled MNPQ. Point R is between N and M. Point S is between N and P. Point T is between M and Q. A straight line connects S at the top to T at the bottom. Side PQ equals 6 centimeters. There are two shaded triangles marked in the upper left corner and the lower left corner.\" width=\"259\"></span></p><p><span><span>R, </span><span>S, </span><span>and </span><span>T </span><span>are </span><span>midpoints</span><span> of </span><span>the </span><span>sides</span><span> of </span></span><span data-no-break=\"true\"><span><span>square</span><span> MNPQ,</span></span></span><span><span> as </span><span>shown </span><span>above. </span><span>What </span><span>is </span><span>the </span><span>sum</span><span> of </span><span>the </span><span>areas</span><span> of </span><span>the </span><span>shaded</span> <span>triangles</span><span>?</span></span></p>",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -1634,8 +1634,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The Chens spend $5 of every $8 they earn on planned expenses. If the family earns $29,600 in one year, how much will they spend on planned expenses that year?",
     "promptHtml": "<p><span>The </span><span>Chens</span><span><span> spend </span><span>$5 </span><span>of </span><span>every </span><span>$8 </span><span>they </span><span>earn </span><span>on </span><span>planned </span><span>expenses</span><span>. </span><span>If </span><span>the </span><span>family </span><span>earns </span><span>$29,600 </span><span>in </span><span>one </span><span>year, </span><span>how </span><span>much </span><span>will </span><span>they </span><span>spend </span><span>on </span><span>planned </span><span>expenses </span><span>that </span><span>year?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1680,8 +1680,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A pizza shop offers a choice of 3 sizes (small, medium, and large) and 7 different toppings. Different pizzas can be created by changing the size and the choice of toppings. If Cody wants to order a pizza with exactly 2 different toppings, how many different pizzas can he create?",
     "promptHtml": "<p><span><span>A </span><span>pizza </span><span>shop </span><span>offers </span><span>a </span><span>choice </span><span>of </span><span>3 </span><span>sizes </span><span>(</span><span>small</span><span>, </span><span>medium, </span><span>and </span><span>large</span><span>) </span><span>and </span><span>7 </span><span>different </span><span>toppings. </span><span>Different </span><span>pizzas </span><span>can </span><span>be </span><span>created </span><span>by </span><span>changing </span><span>the </span><span>size </span><span>and </span><span>the </span><span>choice </span><span>of </span><span>toppings. </span><span>If </span><span>Cody </span><span>wants </span><span>to </span><span>order</span><span> a </span><span>pizza </span><span>with </span><span>exactly </span><span>2 </span><span>different </span><span>toppings, </span><span>how </span><span>many </span><span>different </span><span>pizzas </span><span>can </span><span>he </span><span>create?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1726,8 +1726,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At North High School, a survey asked two questions, Question A and Question B. For each question, students could answer either “yes” or “no.” Of the 800 students who responded to the survey, 720 answered “yes” to Question A, and 640 answered “yes” to Question B. What is the least possible number of these students who could have answered “yes” to both questions?",
     "promptHtml": "<p><span><span>At </span><span>North </span><span>High </span><span>School, </span><span>a </span><span>survey</span><span> asked </span><span>two </span><span>questions, </span><span data-no-break=\"true\">Question A</span><span> and </span><span data-no-break=\"true\">Question B.</span><span> For </span><span>each</span><span> question, </span><span>students </span><span>could </span><span>answer </span><span>either </span><span>“yes” </span><span>or </span><span>“no.” </span><span>Of </span><span>the </span><span>800 </span><span>students </span><span>who </span><span>responded </span><span>to </span><span>the </span><span>survey, </span><span>720 </span><span>answered </span><span>“yes” </span><span>to </span><span data-no-break=\"true\">Question A,</span><span> and </span><span>640 </span><span>answered </span><span>“yes” </span><span>to </span><span data-no-break=\"true\">Question B.</span><span> What </span><span>is </span><span>the </span><strong>least</strong><span> possible </span><span>number</span><span> of </span><span>these </span><span>students </span><span>who </span><span>could </span><span>have </span><span>answered </span><span>“yes” </span><span>to </span><strong>both</strong><span> questions?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1772,8 +1772,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A wooden box has a square base. The height of this box is 3 times the length of one side of the base. If one side of the base is 3 feet long, what is the volume of this box?",
     "promptHtml": "<p><span><span>A </span><span>wooden </span><span>box </span><span>has </span><span>a </span><span>square</span> <span>base</span><span>. </span><span>The </span><span>height</span><span> of </span><span>this </span><span>box </span><span>is </span></span><span data-no-break=\"true\"><span><span>3 </span><span>times</span></span></span><span><span> the </span><span>length</span><span> of </span><span>one </span><span>side</span><span> of </span><span>the </span><span>base. </span><span>If </span><span>one </span><span>side </span><span>of </span><span>the </span><span>base </span><span>is </span></span><span data-no-break=\"true\"><span><span>3 </span><span>feet</span></span></span> <span><span>long</span><span>, </span><span>what </span><span>is </span><span>the </span><span>volume</span><span> of </span><span>this </span><span>box?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Geometry",
+    "subtopic": "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -1818,8 +1818,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On a bike trip, Rajiv traveled 65 kilometers in 5 hours, while Shaina traveled 72 kilometers in 4 hours. How much less was Rajiv’s mean speed, in kilometers per hour (kph), than Shaina’s?",
     "promptHtml": "<p><span>On a bike trip, Rajiv traveled </span><span data-no-break=\"true\"><span><span>65 </span><span>kilometers</span></span></span><span> in </span><span data-no-break=\"true\"><span><span>5 </span><span>hours</span><span>,</span></span></span><span><span> while </span><span>Shaina </span><span>traveled </span><span data-no-break=\"true\">72 kilometers</span><span> in </span><span data-no-break=\"true\">4 hours.</span><span> How </span><span>much </span><span><strong>less</strong></span><span> was </span><span>Rajiv’s </span><span>mean</span> <span>speed</span><span>, </span><span>in </span><span>kilometers </span><span>per</span><span> hour </span><span>(kph), </span><span>than </span><span>Shaina’s?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -1865,7 +1865,7 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "prompt": "Points P, Q, R, and S represent \\(-3\\text{, }-1\\text{, }0\\text{,}\\) and \\(2,\\) respectively, on a number line. How many units is the midpoint of \\(\\overline{\\text{PQ}}\\) from the midpoint of \\(\\overline{\\text{RS}}?\\)",
     "promptHtml": "<p><span><span>Points</span><span> P, </span><span>Q, </span><span>R, </span><span>and </span><span>S </span><span>represent </span></span><span><span>\\(-3\\text{, }-1\\text{, }0\\text{,}\\)</span></span><span>&nbsp;and </span><span><span>\\(2,\\)</span></span><span><span> respectively, </span><span>on </span><span>a </span><span>number line</span><span>. </span><span>How </span><span>many </span><span>units</span><span> is </span><span>the </span><span>midpoint</span><span> of </span></span><span><span>\\(\\overline{\\text{PQ}}\\)</span></span><span> from the midpoint of </span><span><span>\\(\\overline{\\text{RS}}?\\)</span></span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1910,8 +1910,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "There are 1,000 cubic centimeters in 1 liter, and 1,000 cubic millimeters in 1 milliliter. How many cubic millimeters are there in 1,000 cubic centimeters?",
     "promptHtml": "<p><span>There are </span><span data-no-break=\"true\"><span><span>1,000 </span><span>cubic centimeters</span></span></span><span> in </span><span data-no-break=\"true\"><span><span>1 </span><span>liter</span><span>,</span></span></span><span><span> and </span><span data-no-break=\"true\">1,000 cubic</span><span> millimeters </span><span>in </span></span><span data-no-break=\"true\"><span><span>1 </span><span>milliliter</span><span>.</span></span></span><span><span> How </span><span>many </span><span>cubic </span><span>millimeters </span><span>are </span><span>there </span><span>in </span><span data-no-break=\"true\">1,000 cubic</span><span> centimeters?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Units & Conversions",
     "choices": [
       {
         "id": "A",
@@ -1956,8 +1956,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In the quarter circle above, what is \\(y\\) in terms of \\(x?\\)",
     "promptHtml": "<p data-align=\"center\"><span><img src=\"/exam-images/restore-shm96-036-1-svgz-passage.svgz\" alt=\"A quarter circle with a triangle in the middle. The triangle's side length is x plus 1. The triangle has a right angle. A line segment labeled y runs under the triangle, a second, connected line segment is labeled 2.\" width=\"259\"></span></p><p><span><span>In </span><span>the </span><span>quarter</span> <span>circle</span><span> above, </span><span>what </span><span>is </span></span><span><span>\\(y\\)</span></span><span><span> in </span><span>terms</span><span> of </span></span><span><span>\\(x?\\)</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Geometry",
+    "subtopic": "Circles",
     "choices": [
       {
         "id": "A",
@@ -2003,7 +2003,7 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "prompt": "The hash marks on the number line above are evenly spaced. What is the coordinate of point R?",
     "promptHtml": "<p data-align=\"center\"><span><img src=\"/exam-images/restore-shm08-046-1-svgz-passage.svgz\" alt=\"A number line with points labeled M, R, T.  At the left, point M is marked negative one fourth, and at the right, point T is labeled five eighths. Point R is in between Points M and T.\" width=\"304\"></span></p><p><span><span>The </span><span>hash </span><span>marks </span><span>on </span><span>the </span><span>number line</span><span> above </span><span>are </span><span>evenly </span><span>spaced. </span><span>What </span><span>is </span><span>the </span><span>coordinate</span><span> of </span></span><span data-no-break=\"true\"><span><span>point</span><span> R?</span></span></span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -2048,8 +2048,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Phan chose an Internet service that charges $18.00 per month plus $0.024 per minute. Deion chose an Internet service that charges $30.00 per month for unlimited usage. At the end of the month, Phan’s and Deion’s charges were identical. For how many minutes did Phan use the Internet service that month?",
     "promptHtml": "<p><span><span>Phan </span><span>chose </span><span>an </span><span>Internet </span><span>service </span><span>that </span><span>charges </span><span>$18.00 </span><span>per </span><span>month </span><span>plus </span><span>$0.024 </span><span>per</span> <span>minute</span><span>. </span><span>Deion </span><span>chose </span><span>an </span><span>Internet </span><span>service </span><span>that </span><span>charges </span><span>$30.00 </span><span>per </span><span>month </span><span>for </span><span>unlimited </span><span>usage. </span><span>At </span><span>the </span><span>end </span><span>of </span><span>the </span><span>month, </span><span>Phan’s </span><span>and </span><span>Deion’s </span><span>charges </span><span>were </span><span>identical. </span><span>For </span><span>how </span><span>many </span><span>minutes </span><span>did </span><span>Phan </span><span>use </span><span>the </span><span>Internet </span><span>service </span><span>that </span><span>month?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -2094,8 +2094,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a sample of 50 cars at a local dealership, there are 12 red cars and 10 cars with backup cameras. Of the 12 red cars, 4 have backup cameras. If a car is selected at random from the given sample, what is the probability that both of the following are true: the car is not red and does not have a backup camera?",
     "promptHtml": "<p><span><span>In </span><span>a </span><span>sample </span><span>of </span><span>50 </span><span>cars </span><span>at </span><span>a </span><span>local </span><span>dealership, </span><span>there </span><span>are </span><span>12 </span><span>red </span><span>cars </span><span>and </span><span>10 </span><span>cars </span><span>with </span><span>backup </span><span>cameras. </span><span>Of </span><span>the </span><span>12 </span><span>red </span><span>cars, </span><span>4 </span><span>have </span><span>backup </span><span>cameras. </span><span>If </span><span>a </span><span>car </span><span>is </span><span>selected </span><span>at </span><span>random</span><span> from </span><span>the </span><span>given </span><span>sample, </span><span>what </span><span>is </span><span>the </span><span>probability</span><span> that </span><strong>both</strong><span> of </span><span>the </span><span>following </span><span>are </span><span>true: </span><span>the </span><span>car </span><span>is </span><span><strong>not</strong></span><span> red </span><span>and </span><span>does </span><strong>not</strong><span> have </span><span>a </span><span>backup </span><span>camera?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -2166,8 +2166,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the area of the shaded triangle shown above?",
     "promptHtml": "<p data-align=\"center\"><span><img src=\"/exam-images/restore-shm98-080-1-svgz-passage.svgz\" alt=\"A triangle is drawn along the x axis of a coordinate plane.  The left corner of the base is labeled M and the right corner of the base is labeled N. A dotted line runs along the tip of the triangle at 4 on the y axis.\" width=\"272\"></span></p><p><span><span>What </span><span>is </span><span>the </span><span>area</span><span> of </span><span>the </span><span>shaded</span> <span>triangle</span><span> shown </span><span>above?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Geometry",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -2316,8 +2316,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(\\frac{14}{21}=\\frac{p}{7}\\)\nIn the equation above, what is the value of \\(p?\\)",
     "promptHtml": "<p data-align=\"center\"><span><span>\\(\\frac{14}{21}=\\frac{p}{7}\\)</span></span></p><p><span><span>In </span><span>the </span><span>equation</span><span> above, </span><span>what </span><span>is </span><span>the </span><span>value</span><span> of </span></span><span><span>\\(p?\\)</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Ratios and Proportional Relationships",
+    "subtopic": "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -2362,8 +2362,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A ball is selected at random from a box that contains 7 black balls, 14 green balls, and 21 red balls. What is the probability that the ball selected is black?",
     "promptHtml": "<p><span><span>A </span><span>ball </span><span>is </span><span>selected </span><span>at </span><span>random</span><span> from </span><span>a </span><span>box </span><span>that </span><span>contains </span><span>7 </span><span>black </span><span>balls, </span><span>14 </span><span>green </span><span>balls, </span><span>and </span><span>21 </span><span>red </span><span>balls. </span><span>What </span><span>is </span><span>the </span><span>probability</span><span> that </span><span>the </span><span>ball </span><span>selected </span><span>is </span><span>black?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",
@@ -2436,8 +2436,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Raoul is at least 3 years older than Vahn. Which of the following inequalities gives the relationship between Raoul’s age \\((r)\\) and Vahn’s age \\((v)?\\)",
     "promptHtml": "<p><span><span>Raoul </span><span>is </span><span>at least</span> <span data-no-break=\"true\">3 years</span><span> older </span><span>than </span><span>Vahn. </span><span>Which </span><span>of </span><span>the </span><span>following </span><span>inequalities</span><span> gives </span><span>the </span><span>relationship </span><span>between</span><span> Raoul’s </span><span>age </span></span><span><span>\\((r)\\)</span></span><span> and Vahn’s age </span><span><span>\\((v)?\\)</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -2482,8 +2482,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "1 sind = 5.6 ricks\n1 sind = 12.88 dalts\nUsing the conversion above, how many dalts are equal to 1 rick?",
     "promptHtml": "<p data-align=\"center\">&nbsp;</p> <p data-align=\"center\"><span>1 sind </span><span><span>=</span></span><span> 5.6 ricks</span></p> <p data-align=\"center\"><span>1 sind </span><span><span>=</span></span><span> 12.88 dalts</span></p> <p><span><span>Using </span><span>the </span><span>conversion </span><span>above, </span><span>how </span><span>many </span><span>dalts </span><span>are </span><span>equal</span><span> to </span><span data-no-break=\"true\">1 rick?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Arithmetic & Number Sense",
+    "subtopic": "Units & Conversions",
     "choices": [
       {
         "id": "A",
@@ -2528,8 +2528,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "There are now \\(x\\) cans stacked on a shelf that holds 36 cans when full. If 4 of these cans were removed, the shelf would be half full. What is the value of \\(x?\\)",
     "promptHtml": "<p><span>There are now </span><span><span>\\(x\\)</span></span><span><span> cans </span><span>stacked </span><span>on </span><span>a </span><span>shelf </span><span>that </span><span>holds </span><span>36 </span><span>cans </span><span>when </span><span>full. </span><span>If </span><span>4 </span><span>of </span><span>these </span><span>cans </span><span>were </span><span>removed, </span><span>the </span><span>shelf </span><span>would </span><span>be </span><span>half</span><span> full. </span><span>What </span><span>is </span><span>the </span><span>value</span><span> of </span></span><span><span>\\(x?\\)</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Algebra",
+    "subtopic": "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -2574,8 +2574,8 @@ export const content20252026FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Carlos tossed a paper cup in the air 50 times and found that the probability of it landing on its side was 72%. If he tosses the cup in the air 150 more times, what is the total number of times he can expect the cup to land on its side?",
     "promptHtml": "<p><span><span>Carlos </span><span>tossed </span><span>a </span><span>paper </span><span>cup</span><span> in </span><span>the </span><span>air </span><span>50 </span><span>times</span><span> and </span><span>found </span><span>that </span><span>the </span><span>probability</span><span> of </span><span>it </span><span>landing </span><span>on </span><span>its </span><span>side</span><span> was </span><span>72%. </span><span>If </span><span>he </span><span>tosses </span><span>the </span><span>cup </span><span>in </span><span>the </span><span>air </span><span>150 </span><strong>more</strong><span> times, </span><span>what </span><span>is </span><span>the </span><span>total</span> <span>number</span><span> of </span><span>times </span><span>he </span><span>can </span><span>expect </span><span>the </span><span>cup </span><span>to </span><span>land </span><span>on </span><span>its </span><span>side?</span></span></p>",
-    "topic": "Uncategorized",
-    "subtopic": "Unclassified",
+    "topic": "Statistics and Probability",
+    "subtopic": "Probability",
     "choices": [
       {
         "id": "A",

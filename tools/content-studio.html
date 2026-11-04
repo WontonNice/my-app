@@ -3307,6 +3307,16 @@ Why D is wrong."></textarea>
       sendMathPreview(frame);
     }
 
+    function renderStandalonePlayerPreview() {
+      $('#student-preview-question').innerHTML = '<option value="0">Question 1 of 1</option>';
+      $('#student-preview-subtitle').textContent = 'Student player · current unsaved Part B question';
+      const frame = $('#student-preview-frame');
+      const needsBoot = frame.dataset.mathStudentPreview !== 'standalone-modal' || !frame.dataset.mathPreviewBoot;
+      frame.title = 'Interactive Part B student preview'; frame.dataset.mathStudentPreview = 'standalone-modal';
+      if (needsBoot) bootMathPreviewFrame(frame);
+      sendMathPreview(frame);
+    }
+
     function renderMathExpressionPreview(expression) {
       return renderKatexExpression(expression);
     }
@@ -3326,6 +3336,9 @@ Why D is wrong."></textarea>
       const draft = standalone ? app.standaloneDraft : app.passageDraft;
       if (!draft) return;
       $("#student-preview-subtitle").textContent = standalone ? "Live preview of the current unsaved Part B question" : "Live preview of the current unsaved passage and questions";
+      if (standalone && !authoring && (draft.selectionHtml || !["multiple_choice", "category_sort"].includes(draft.type))) {
+        renderStandalonePlayerPreview(); return;
+      }
       const questions = standalone ? [draft] : draft.questions || [];
       app.previewQuestionIndex = Math.max(0, Math.min(app.previewQuestionIndex, Math.max(questions.length - 1, 0)));
       const questionIndex = standalone ? 0 : authoring ? studioUI.selectedQuestionIndex : app.previewQuestionIndex;
@@ -3409,7 +3422,7 @@ Why D is wrong."></textarea>
             ${standalone ? `<section class="exam-standalone-document">
               <form class="exam-standalone-panel">
                 <h1><span class="exam-rich-text">${inlineRichValue(draft.promptHtml, draft.prompt)}</span></h1>
-                <div class="exam-standalone-stimulus">${draft.stimulusHtml || escapeHtml(draft.stimulus || '').replaceAll('\n', '<br>')}</div>
+                ${draft.stimulus || draft.stimulusHtml || (authoring && !draft.source) ? `<div class="exam-standalone-stimulus">${inlineRichValue(draft.stimulusHtml, draft.stimulus)}</div>` : ''}
                 ${draft.instructions ? `<p class="exam-standalone-instructions">${escapeHtml(draft.instructions)}</p>` : ''}
                 ${studentQuestionMarkup(draft, true)}
               </form>
@@ -4436,13 +4449,17 @@ Why D is wrong."></textarea>
         $("#standalone-editor").innerHTML = `<div class="editor-empty">Choose a Part B question or create a new one.</div>`;
         return;
       }
-      if (item.type !== "multiple_choice" && item.type !== "category_sort") {
+      if (item.selectionHtml || !["multiple_choice", "category_sort"].includes(item.type)) {
         $("#standalone-editor").innerHTML = `
           <div class="standalone-bank-editor">
-            <header><div><h1>${escapeHtml(item.prompt || item.id)}</h1><p>${escapeHtml(item.id)} · ${escapeHtml(String(item.type).replaceAll("_", " "))}</p></div></header>
-            <div class="unsupported">This existing Part B interaction remains available in the bank. The friendly creator currently edits multiple-choice and one-box drag-and-drop questions.</div>
+            <header><div><h1>Part B question</h1><p>${escapeHtml(item.id)} · ${escapeHtml(String(item.type).replaceAll("_", " "))}</p></div>
+              <button class="secondary" id="standalone-student-view" type="button">Student view</button></header>
+            <p>Interactive student preview. Preview answers are not saved.</p>
+            <iframe class="studio-math-student-frame" title="Interactive Part B student preview" data-math-student-preview="standalone-editor"></iframe>
           </div>
         `;
+        $("#standalone-student-view").addEventListener("click", openStandaloneStudentPreview);
+        startMathPreviewFrames();
         return;
       }
       const isDragDrop = item.type === "category_sort";
@@ -5805,6 +5822,12 @@ Why D is wrong."></textarea>
       });
     }
     function sendMathPreview(frame) {
+      const standalone = frame.dataset.mathStudentPreview?.startsWith('standalone-');
+      if (standalone) {
+        if (!app.standaloneDraft) return;
+        frame.contentWindow?.postMessage({ type: 'studio:math-preview', preview: { question: clone(app.standaloneDraft), index: 0, count: 1, title: app.standaloneDraft.versionLabel || 'Content Studio preview', subject: 'english' } }, location.origin);
+        return;
+      }
       const imported = frame.dataset.mathStudentPreview === 'math-import-review';
       const index = frame.dataset.mathStudentPreview === 'math-modal' ? app.previewQuestionIndex : app.selectedMathQuestionIndex;
       const question = imported ? app.mathImportReview?.question : app.mathDraft?.questions?.[index];
@@ -5816,7 +5839,7 @@ Why D is wrong."></textarea>
       const frame = Array.from(document.querySelectorAll('[data-math-student-preview]')).find(frame => frame.contentWindow === event.source);
       if (!frame) return;
       if (event.data?.type === 'studio:math-preview-ready') sendMathPreview(frame);
-      if (event.data?.type === 'studio:math-preview-navigate' && frame.dataset.mathStudentPreview !== 'math-import-review') {
+      if (event.data?.type === 'studio:math-preview-navigate' && !frame.dataset.mathStudentPreview.startsWith('standalone-') && frame.dataset.mathStudentPreview !== 'math-import-review') {
         const delta = event.data.delta; if (delta !== 1 && delta !== -1) return;
         if (frame.dataset.mathStudentPreview === 'math-modal') { app.previewQuestionIndex = Math.max(0,Math.min(app.mathDraft.questions.length - 1, app.previewQuestionIndex + delta)); renderMathStudentPreview(); return; }
         app.selectedMathQuestionIndex = Math.max(0,Math.min(app.mathDraft.questions.length - 1, app.selectedMathQuestionIndex + delta)); renderMathBuilder();
@@ -7447,7 +7470,17 @@ WRONG D:`;
       app.previewQuestionIndex = Number(event.target.value);
       renderStudentPreview();
     });
-    window.addEventListener('focus',()=>{if(!app.state?.mathManagement)return;api('/api/math-command/classification-skills').then(snapshot=>{if(JSON.stringify(snapshot.skills)!==JSON.stringify(app.state.mathManagement.classificationSkills||[]))window.dispatchEvent(new CustomEvent('studio:skilled-changed',{detail:snapshot}));}).catch(()=>setStatus('Skilled definitions could not be refreshed. Reload the studio before assigning a skill.','warning'));});
+    let refreshingSkills=false;
+    async function refreshSharedSkills(){
+      if(refreshingSkills||document.visibilityState==='hidden'||!app.state?.mathManagement)return;
+      refreshingSkills=true;
+      try{const snapshot=await api('/api/math-command/classification-skills');if(JSON.stringify(snapshot.skills)!==JSON.stringify(app.state.mathManagement.classificationSkills||[]))window.dispatchEvent(new CustomEvent('studio:skilled-changed',{detail:snapshot}));}
+      catch{setStatus('Skills could not be refreshed. Reload the studio before assigning a skill.','warning');}
+      finally{refreshingSkills=false;}
+    }
+    window.addEventListener('focus',refreshSharedSkills);
+    document.addEventListener('visibilitychange',refreshSharedSkills);
+    window.setInterval(refreshSharedSkills,15000);
     window.addEventListener('studio:skilled-changed',event=>{
       app.state.mathManagement={...app.state.mathManagement,classificationSkills:event.detail.skills};
       if(app.mathDraft){const question=app.mathDraft.questions[app.selectedMathQuestionIndex];const picker=document.querySelector('[data-math-field="skilled"]');if(question&&picker){if(!event.detail.skills.some(skill=>skill.id===question.skilled&&skill.category===question.topic&&skill.subcategory===question.subtopic))question.skilled='TBD';picker.innerHTML=mathSkilledOptions(question.topic,question.subtopic,question.skilled);}}

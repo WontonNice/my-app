@@ -33,6 +33,7 @@ export type ReviewQuestion = {
   passage?: ExamPassage;
   number: number;
   section: "english" | "math";
+  passageSection?: "reading" | "revising_editing_a";
   submittedAnswer?: SelectedAnswer;
   isCorrect: boolean;
 };
@@ -57,8 +58,8 @@ export function reviewQuestions(content: ExamContent, result: ExamResult): Revie
   const passageOrder = new Map((result.passages ?? []).map((passage, index) => [passage.id, index]));
   const passageSets = [...content.passageSets].sort((a, b) => (passageOrder.get(a.id) ?? Number.MAX_SAFE_INTEGER) - (passageOrder.get(b.id) ?? Number.MAX_SAFE_INTEGER));
   const english = [
-    ...passageSets.flatMap(set => set.questions.map(question => ({ question, passage: set.passage }))),
-    ...(content.standaloneSection?.questions ?? []).map(question => ({ question, passage: undefined })),
+    ...passageSets.flatMap(set => set.questions.map(question => ({ question, passage: set.passage, passageSection: set.section ?? content.passageSections?.[set.id] ?? "reading" as const }))),
+    ...(content.standaloneSection?.questions ?? []).map(question => ({ question, passage: undefined, passageSection: "revising_editing_a" as const })),
   ];
   return [
     ...(sections.includes("english") ? english.map((item, index) => ({ ...item, number: index + 1, section: "english" as const })) : []),

@@ -5,6 +5,8 @@ const {defaultPracticeCatalog,validatePracticeCatalog,studentPracticeCatalog,rec
 const {validateClassificationSkills}=require('../server/src/shared/mathClassificationSkills.ts');
 let classificationSkills=[],skilledRevision=0;
 const taxonomy=require('./math-topics.json');let catalog=defaultPracticeCatalog(taxonomy),revision=0;
+const catalogFile=process.argv.find(value=>value.startsWith('--catalog='))?.slice(10);
+if(catalogFile){const input=JSON.parse(require('node:fs').readFileSync(resolve(catalogFile),'utf8'));catalog=validatePracticeCatalog(input.catalog??input,taxonomy);}
 const generatorCount=Number(process.argv.find(value=>value.startsWith('--generators='))?.split('=')[1]);
 if(Number.isInteger(generatorCount)&&generatorCount>catalog.generators.length&&generatorCount<=1000){
  const original=[...catalog.generators];

@@ -1,0 +1,64 @@
+Probability batch 0b340ac9-b499-4ce8-8805-c66297658d92
+Completed 2026-11-04; saved catalog revision 40.
+
+Implementation: five source-faithful seeded variants. Conditional-outcome parameter logic and complement-draw arithmetic are shared with existing families; previous question versions remain unchanged.
+Registration: shared helper; --enable --publish-validated; revision-checked write. Second dry-run: changed=false.
+Student availability: all five enabled and unreviewed; exact destination modules and required parents published. Existing names, generator selections, metadata and videos preserved.
+Deployment: not deployed. The saved catalog is updated; a hosted application needs this source build before it can execute the new built-in IDs. No student work assigned.
+
+Completion list
+
+Request 73016a97-d9d6-41ab-91b6-787443886026
+Source: 2026-2027-form-d-math-item-5
+Generator: probability-raffle-card-expression-v1 (Raffle and Specific Card)
+Destination: Compound Probability [probability-foundation]
+Location: Statistics and Probability > Probability > Foundation Building
+Distinct stems per seeded cycle: 8800.
+Validation: Full-domain independent answers and grading; determinism/cycles; preserved sessions; rendered preview passed.
+Unfinished generator work: none.
+
+Request 2827a75e-31d7-4283-abba-23f31ec302b9
+Source: 2021-2022-form-a-q99
+Generator: probability-complement-candy-draws-v1 (Two Candies Excluding a Flavor)
+Destination: Compound Probability [probability-foundation]
+Location: Statistics and Probability > Probability > Foundation Building
+Distinct stems per seeded cycle: 1536.
+Validation: Full-domain independent answers and grading; determinism/cycles; preserved sessions; rendered preview passed.
+Unfinished generator work: none.
+
+Request b52428e8-11e6-4e11-ac89-ea20045bdfb5
+Source: 2020-2021-form-b-q104
+Generator: counting-distinct-paint-arrangements-v1 (Paint Arrangements Without Repeats)
+Destination: Combinatorics [combinatorics-0b340ac9]
+Location: Statistics and Probability > Counting & Sets > General Practice
+Distinct stems per seeded cycle: 13.
+Validation: Full-domain independent answers and grading; determinism/cycles; preserved sessions; rendered preview passed.
+Unfinished generator work: none.
+
+Request ce69c192-bbc2-4964-be83-11e577430de4
+Source: 2019-2020-form-a-q80
+Generator: probability-decimal-set-threshold-v1 (Probability from a Decimal Set)
+Destination: Simple Probability [6416a55e-4152-4dec-833a-a405288cf40a]
+Location: Statistics and Probability > Probability > Foundation Building
+Distinct stems per seeded cycle: 36.
+Validation: Full-domain independent answers and grading; determinism/cycles; preserved sessions; rendered preview passed.
+Unfinished generator work: none.
+
+Request 3a167138-a2b3-408a-8333-416edf20a507
+Source: choose-pairs-of-cookies
+Generator: counting-unordered-cookie-pairs-v1 (Choosing Unordered Pairs)
+Destination: Combinatorics [combinatorics-0b340ac9]
+Location: Statistics and Probability > Counting & Sets > General Practice
+Distinct stems per seeded cycle: 12.
+Validation: Full-domain independent answers and grading; determinism/cycles; preserved sessions; rendered preview passed.
+Unfinished generator work: none.
+
+Preview
+In Math Command Center > Practice studio, select Statistics and Probability, then Probability or Counting & Sets. Open Compound Probability, Simple Probability, or Combinatorics and use Preview example for the desired generator.
+Study Hall > Math > Statistics and Probability > Probability > Foundation Building includes Compound Probability and Simple Probability. Counting & Sets > General Practice includes Combinatorics. New sessions receive the additions; saved running sessions retain their original mix.
+All five rendered examples were checked in the existing mini player. Counting & Sets started from Study Hall in an isolated preview.
+The independent full-domain checks cover all 10,397 stems. Raffle labels contribute to its 8,800 distinct stems, but there are 80 numerical probability pairs. Paint has only 13 numerical stems; cookie pairs have 12. Practice repeats after each explicit finite cycle.
+Correction: raffle answers require the unsimplified two-factor product in ordinary or MathLive notation. Simplified fractions and decimals are rejected. The displayed answer key and explanation show the product expression. The existing grader does not generally simplify arbitrary equivalent expressions.
+
+Tests: 8 focused tests passed; client/server typechecks passed; studio suite 98 passed, 29 failed. The same 29 failures reproduce with this batch removed in memory (pre-existing source/taxonomy/Study Hall fixture mismatches); no new failures. See regression-comparison.json and test logs.
+Raffle correction saved: catalog description revision 41. Focused tests 8/8; client typecheck passed; studio 98 passed / same 29 baseline failures.

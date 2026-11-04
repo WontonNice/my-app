@@ -1,0 +1,419 @@
+{
+  "mode": "read-only-preview",
+  "changed": true,
+  "saved": false,
+  "revision": 48,
+  "resources": [
+    {
+      "requestId": "7f296eec-e9dc-4229-a93c-3819864e77fe",
+      "generator": "algebra-decimal-coefficient-v1",
+      "module": "ed43bc4b-77e7-42c2-b0fa-f677efd08459",
+      "category": "Algebra",
+      "topic": "Algebraic Expressions",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "ed43bc4b-77e7-42c2-b0fa-f677efd08459",
+        "title": "Simplifying Expressions",
+        "description": "",
+        "category": "Algebra",
+        "topic": "Algebraic Expressions",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "algebra-distribute-negative-v1",
+          "algebra-decimal-coefficient-v1",
+          "algebra-combine-parenthesized-groups-v1",
+          "algebra-equivalent-expression-sums-v1"
+        ],
+        "parentId": "foundation-algebra-algebraic-expressions-rj42ee",
+        "titleMode": "skill",
+        "skilled": "9abd5350-a5f2-4fad-9822-c1e064977942"
+      },
+      "definition": {
+        "skills": [
+          "Decimal Coefficient after Distribution"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q58"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "9abd5350-a5f2-4fad-9822-c1e064977942",
+        "id": "algebra-decimal-coefficient-v1",
+        "title": "Decimal Coefficient after Distribution",
+        "description": "Distribute a fractional multiplier and combine variable terms; enter the coefficient as a decimal.",
+        "enabled": true,
+        "category": "Algebra",
+        "topic": "Algebraic Expressions",
+        "kind": "builtin",
+        "builtinId": "algebra-decimal-coefficient-v1"
+      }
+    },
+    {
+      "requestId": "ba789860-7372-40c3-ba40-80f12a00aa2a",
+      "generator": "algebra-substitute-linear-expression-v1",
+      "module": "evaluating-substituting-55e91aa0",
+      "category": "Algebra",
+      "topic": "Algebraic Expressions",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "evaluating-substituting-55e91aa0",
+        "title": "Evaluating & Substituting Expressions",
+        "description": "Evaluating & Substituting Expressions",
+        "category": "Algebra",
+        "topic": "Algebraic Expressions",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "algebra-substitute-linear-expression-v1"
+        ],
+        "parentId": "foundation-algebra-algebraic-expressions-rj42ee",
+        "titleMode": "custom",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Substitution into a Distributed Expression"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q88"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "algebra-substitute-linear-expression-v1",
+        "title": "Substitution into a Distributed Expression",
+        "description": "Substitute a variable relationship, distribute, and combine like terms.",
+        "enabled": true,
+        "category": "Algebra",
+        "topic": "Algebraic Expressions",
+        "kind": "builtin",
+        "builtinId": "algebra-substitute-linear-expression-v1"
+      }
+    },
+    {
+      "requestId": "a88089fd-948f-40cf-a540-241038b234db",
+      "generator": "inequality-distribute-both-sides-v1",
+      "module": "2022-2023-form-b-q70",
+      "category": "Algebra",
+      "topic": "Inequalities",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "2022-2023-form-b-q70",
+        "title": "Inequalities: Variables on Both Sides",
+        "description": "Based on 2022–2023 Form B Q70. Collect variable terms and constants, then solve, reversing the sign when dividing by a negative number.",
+        "category": "Algebra",
+        "topic": "Inequalities",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "variables-both-sides-inequalities-v1",
+          "inequality-distribute-both-sides-v1"
+        ],
+        "parentId": "foundation",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Inequalities with Parentheses on Both Sides"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q101"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "inequality-distribute-both-sides-v1",
+        "title": "Inequalities with Parentheses on Both Sides",
+        "description": "Distribute a negative multiplier before collecting terms and reversing the inequality when needed.",
+        "enabled": true,
+        "category": "Algebra",
+        "topic": "Inequalities",
+        "kind": "builtin",
+        "builtinId": "inequality-distribute-both-sides-v1"
+      }
+    },
+    {
+      "requestId": "37840bf2-fea1-437c-a44d-8ecc6b2a71dd",
+      "generator": "inequality-absolute-value-number-line-v1",
+      "module": "ca02b8f6-c345-4113-8249-87ec13615831",
+      "category": "Algebra",
+      "topic": "Inequalities",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "ca02b8f6-c345-4113-8249-87ec13615831",
+        "title": "Graphing Inequalities",
+        "description": "",
+        "category": "Algebra",
+        "topic": "Inequalities",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "inequality-absolute-value-number-line-v1",
+          "inequality-compound-number-line-v1"
+        ],
+        "parentId": "foundation",
+        "titleMode": "skill",
+        "skilled": "ea141ebd-e8f9-4280-95ab-94ac7bb17534"
+      },
+      "definition": {
+        "skills": [
+          "Graphing Absolute-Value Inequalities"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q110"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "inequality-absolute-value-number-line-v1",
+        "title": "Graphing Absolute-Value Inequalities",
+        "description": "Translate distance from a point into an interval or two rays, with open or closed endpoints.",
+        "enabled": true,
+        "category": "Algebra",
+        "topic": "Inequalities",
+        "kind": "builtin",
+        "builtinId": "inequality-absolute-value-number-line-v1"
+      }
+    },
+    {
+      "requestId": "e08360d9-c70e-4be7-9b6b-4caff83e5e8d",
+      "generator": "algebra-combine-parenthesized-groups-v1",
+      "module": "ed43bc4b-77e7-42c2-b0fa-f677efd08459",
+      "category": "Algebra",
+      "topic": "Algebraic Expressions",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "ed43bc4b-77e7-42c2-b0fa-f677efd08459",
+        "title": "Simplifying Expressions",
+        "description": "",
+        "category": "Algebra",
+        "topic": "Algebraic Expressions",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "algebra-distribute-negative-v1",
+          "algebra-decimal-coefficient-v1",
+          "algebra-combine-parenthesized-groups-v1",
+          "algebra-equivalent-expression-sums-v1"
+        ],
+        "parentId": "foundation-algebra-algebraic-expressions-rj42ee",
+        "titleMode": "skill",
+        "skilled": "9abd5350-a5f2-4fad-9822-c1e064977942"
+      },
+      "definition": {
+        "skills": [
+          "Combining Parenthesized Groups"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2021-2022-form-a-q64"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "9abd5350-a5f2-4fad-9822-c1e064977942",
+        "id": "algebra-combine-parenthesized-groups-v1",
+        "title": "Combining Parenthesized Groups",
+        "description": "Remove parentheses with the correct signs, then group constants and variable terms.",
+        "enabled": true,
+        "category": "Algebra",
+        "topic": "Algebraic Expressions",
+        "kind": "builtin",
+        "builtinId": "algebra-combine-parenthesized-groups-v1"
+      }
+    },
+    {
+      "requestId": "73db8c4e-7373-45fc-9fe4-72d67e8a8751",
+      "generator": "inequality-compound-number-line-v1",
+      "module": "ca02b8f6-c345-4113-8249-87ec13615831",
+      "category": "Algebra",
+      "topic": "Inequalities",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "ca02b8f6-c345-4113-8249-87ec13615831",
+        "title": "Graphing Inequalities",
+        "description": "",
+        "category": "Algebra",
+        "topic": "Inequalities",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "inequality-absolute-value-number-line-v1",
+          "inequality-compound-number-line-v1"
+        ],
+        "parentId": "foundation",
+        "titleMode": "skill",
+        "skilled": "ea141ebd-e8f9-4280-95ab-94ac7bb17534"
+      },
+      "definition": {
+        "skills": [
+          "Graphing Compound Inequalities"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2021-2022-form-a-q71"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "inequality-compound-number-line-v1",
+        "title": "Graphing Compound Inequalities",
+        "description": "Multiply all three parts of a compound inequality and graph the bounded interval.",
+        "enabled": true,
+        "category": "Algebra",
+        "topic": "Inequalities",
+        "kind": "builtin",
+        "builtinId": "inequality-compound-number-line-v1"
+      }
+    },
+    {
+      "requestId": "8179b486-1ec3-4713-beab-300f99744bbb",
+      "generator": "algebra-equivalent-expression-sums-v1",
+      "module": "ed43bc4b-77e7-42c2-b0fa-f677efd08459",
+      "category": "Algebra",
+      "topic": "Algebraic Expressions",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "ed43bc4b-77e7-42c2-b0fa-f677efd08459",
+        "title": "Simplifying Expressions",
+        "description": "",
+        "category": "Algebra",
+        "topic": "Algebraic Expressions",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "algebra-distribute-negative-v1",
+          "algebra-decimal-coefficient-v1",
+          "algebra-combine-parenthesized-groups-v1",
+          "algebra-equivalent-expression-sums-v1"
+        ],
+        "parentId": "foundation-algebra-algebraic-expressions-rj42ee",
+        "titleMode": "skill",
+        "skilled": "9abd5350-a5f2-4fad-9822-c1e064977942"
+      },
+      "definition": {
+        "skills": [
+          "Equivalent Forms of an Expression Sum"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2025-2026-form-a-math-2"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "9abd5350-a5f2-4fad-9822-c1e064977942",
+        "id": "algebra-equivalent-expression-sums-v1",
+        "title": "Equivalent Forms of an Expression Sum",
+        "description": "Select both an expanded form and a simplified form of a sum whose variable terms cancel.",
+        "enabled": true,
+        "category": "Algebra",
+        "topic": "Algebraic Expressions",
+        "kind": "builtin",
+        "builtinId": "algebra-equivalent-expression-sums-v1"
+      }
+    },
+    {
+      "requestId": "84024a78-035d-4795-bc51-e88590922e6f",
+      "generator": "number-consecutive-integer-average-v1",
+      "module": "consecutive-integers-55e91aa0",
+      "category": "Arithmetic & Number Sense",
+      "topic": "Number Types & Properties",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "consecutive-integers-55e91aa0",
+        "title": "Consecutive Integers",
+        "description": "Consecutive Integers",
+        "category": "Arithmetic & Number Sense",
+        "topic": "Number Types & Properties",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "number-consecutive-integer-average-v1"
+        ],
+        "parentId": "foundation-arithmetic-number-sense-number-properties-1j4ekza",
+        "titleMode": "skill",
+        "skilled": "6ef8aa5f-caf0-4820-9d24-eaf0e4b2c21e"
+      },
+      "definition": {
+        "skills": [
+          "Average of Consecutive Integer Endpoints"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "average-of-consecutive-integers"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "6ef8aa5f-caf0-4820-9d24-eaf0e4b2c21e",
+        "id": "number-consecutive-integer-average-v1",
+        "title": "Average of Consecutive Integer Endpoints",
+        "description": "Express the greatest integer using the least, then simplify the average of the endpoints.",
+        "enabled": true,
+        "category": "Arithmetic & Number Sense",
+        "topic": "Number Types & Properties",
+        "kind": "builtin",
+        "builtinId": "number-consecutive-integer-average-v1"
+      }
+    }
+  ]
+}

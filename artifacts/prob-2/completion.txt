@@ -1,0 +1,65 @@
+Batch prob 2 — completed
+Saved catalog revision: 42
+Implementation: complete. Registration: saved and idempotent.
+Student availability: enabled/published in saved catalog; verified using updated code locally.
+Deployment: not performed. No student work assigned.
+
+Preview: Practice Studio > Question generators > search the title > Preview a generated question.
+Student discovery: Study Hall > Math > category/subcategory > its Foundation Building or General Practice group.
+
+Validation: 17 focused tests passed; client typecheck passed. Full suite: 100 passed, 37 failed; same 37 failure names as the pre-change baseline (91 passed, 37 failed).
+
+Completion list:
+
+74f48973-c295-4f83-b22d-054d37c52015
+2020-2021-form-b-q74 -> probability-missing-color-count-v1
+Probability with an Unknown Color Count -> Statistics and Probability / Probability / Simple Probability
+Module ID: 6416a55e-4152-4dec-833a-a405288cf40a
+Finite cycle: 528 variants; 528 distinct stems.
+Enabled, published, unreviewed. Full-domain independent answers, unique choices, source example, determinism, cycles, safe indices, grading, session restore, rendered teacher preview and student catalog/startup checks passed.
+Unfinished generator work: none.
+
+17ad6f7d-c938-44e7-aa33-3a6f92cf1df8
+2020-2021-form-b-q86 -> probability-combined-jars-v1
+Combining Jars -> Statistics and Probability / Probability / Simple Probability
+Module ID: 6416a55e-4152-4dec-833a-a405288cf40a
+Finite cycle: 284 variants; 284 distinct stems.
+Enabled, published, unreviewed. Full-domain independent answers, unique choices, source example, determinism, cycles, safe indices, grading, session restore, rendered teacher preview and student catalog/startup checks passed.
+Unfinished generator work: none.
+
+66b8fa00-511a-4014-bc78-74d31eb0f8e2
+2020-2021-form-b-q84 -> algebra-distribute-negative-v1
+Distributing a Negative Sign -> Algebra / Algebraic Expressions / General Practice
+Module ID: general-algebra-algebraic-expressions-rj42ee
+Finite cycle: 6240 variants; 6240 distinct stems.
+Enabled, published, unreviewed. Full-domain independent answers, unique choices, source example, determinism, cycles, safe indices, grading, session restore, rendered teacher preview and student catalog/startup checks passed.
+Unfinished generator work: none.
+
+491a6fe8-089b-4cb2-9a92-c089caf7453e
+2020-2021-form-b-q95 -> rates-hourly-pay-before-tax-v1
+Hourly Pay Before Taxes -> Arithmetic & Number Sense / Number Types & Properties / Rates
+Module ID: rates-f764fde9
+Finite cycle: 7449 variants; 7449 distinct stems.
+Enabled, published, unreviewed. Full-domain independent answers, unique choices, source example, determinism, cycles, safe indices, grading, session restore, rendered teacher preview and student catalog/startup checks passed.
+Unfinished generator work: none.
+
+c8cf1faa-ea9a-45bd-85e6-39e9c19659bf
+2020-2021-form-b-q93 -> factors-consecutive-integers-v1
+Greatest Middle of Consecutive Factors -> Arithmetic & Number Sense / Number Types & Properties / Factors & Multiples
+Module ID: factors-multiples-f764fde9
+Finite cycle: 51 variants; 51 distinct stems.
+Enabled, published, unreviewed. Full-domain independent answers, unique choices, source example, determinism, cycles, safe indices, grading, session restore, rendered teacher preview and student catalog/startup checks passed.
+Unfinished generator work: none.
+
+974457c3-c1b7-467f-9bc7-3883c86f35d5
+2021-2022-form-a-q82 -> factors-smallest-factor-multiple-v1
+Multiples of the Smallest Factor -> Arithmetic & Number Sense / Number Types & Properties / Factors & Multiples
+Module ID: factors-multiples-f764fde9
+Finite cycle: 242 variants; 22 distinct stems.
+Enabled, published, unreviewed. Full-domain independent answers, unique choices, source example, determinism, cycles, safe indices, grading, session restore, rendered teacher preview and student catalog/startup checks passed.
+Unfinished generator work: none.
+
+Rates intentionally follows the explicit Arithmetic & Number Sense / Number Types & Properties destination; the source remains Rates & Unit Rates.
+The two factor families share a single Factors & Multiples module.
+242 smallest-factor question variants use 22 distinct number stems with 11 answer-choice sets each. Other cycle counts are distinct stems. All families repeat after a finite cycle.
+Existing generators, review statuses, videos, module names, nesting and curated selections were preserved.

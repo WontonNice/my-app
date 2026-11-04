@@ -1,3 +1,6 @@
+import { probabilityBatchPractice } from './probabilityBatchPractice';
+import { prob2Practice } from './prob2Practice';
+import { algebraPlannerPractice } from './algebraPlannerPractice';
 import type { ExamQuestion } from './examTypes';
 import { generateInequality, generateVariablesBothSidesInequality, variablesBothSidesTemplate } from './inequalityPractice';
 import { generateWritingInequality, writingInequalitiesTemplate } from './writingInequalities';
@@ -32,6 +35,9 @@ export const practiceGenerators: Generator[] = [
   { ...symbolicFractionDivisionTemplate, foundation: false, generate: (index, seed) => generateSymbolicFractionDivision(index, seed).question },
   { ...repeatingDecimalDigitsTemplate, foundation: true, generate: (index, seed) => generateRepeatingDecimalDigit(index, seed, 1).question },
   { ...rectangleAreaPercentTemplate, foundation: false, generate: (index, seed) => generateRectangleAreaPercent(index, seed).question },
+  ...probabilityBatchPractice.map(template=>({...template,foundation:template.destination.groupType==='foundation',generate:(index:number,seed:string)=>template.generate(index,seed).question})),
+  ...prob2Practice.map(template=>({...template,foundation:template.destination.groupType==='foundation',generate:(index:number,seed:string)=>template.generate(index,seed).question})),
+  ...algebraPlannerPractice.map(template=>({...template,foundation:true,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
 ];
 
 // Targeted modules can combine any number of registered generators. Stable IDs
@@ -51,9 +57,11 @@ export function moduleGeneratorIds(module: PracticeModule): string[] {
   return practiceGenerators.filter(generator => generator.enabled !== false && (module.selection === 'all' || (module.selection === 'foundation' ? generator.foundation&&(generator.category??'Algebra')===(module.category??'Algebra')&&(generator.topic??'Inequalities')===(module.topic??'Inequalities') : module.selection.includes(generator.id)))).map(generator => generator.id);
 }
 
-export function generatePracticeQuestion(generatorIds: string[], index: number, seed: string): ExamQuestion {
+export function generatePracticeQuestion(generatorIds: string[], index: number, seed: string, generationVersion:1|2|3=3): ExamQuestion {
   if (!generatorIds.length || !Number.isSafeInteger(index) || index < 0) throw new Error('Invalid practice sequence.');
   const generator = practiceGenerators.find(item => item.id === generatorIds[(index + hash(seed)) % generatorIds.length]);
   if (!generator) throw new Error('This practice type is no longer available.');
+  const probability=probabilityPractice.find(item=>item.id===generator.id);
+  if(probability)return probability.generate(Math.floor(index / generatorIds.length),seed,generationVersion>=3).question;
   return generator.generate(Math.floor(index / generatorIds.length), seed);
 }

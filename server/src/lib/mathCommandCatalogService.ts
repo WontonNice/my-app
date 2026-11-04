@@ -1,3 +1,4 @@
+import { mathClassificationRevision } from "./mathCommandCatalogStore";
 import { readTeacherLabels, saveTeacherLabels, teacherCatalog } from "./teacherLabels";
 import { readGeneratorPlanner, saveGeneratorPlanner } from './generatorPlanner';
 import { saveMathTaxonomy } from "./mathTaxonomyManagement";
@@ -9,7 +10,7 @@ import type { MathCatalog, MathCatalogFilters, MathQuestionPerformance, MathQues
 import { applyMathMetadata, mathCommandRoot, previewMathMetadata, readMathCommandCatalog, readMathCommandState, readMathCommandTaxonomy, saveMathCommandPreferences, undoMathMetadata } from "./mathCommandCatalogStore";
 
 const cache = new Map<string,{signature:string;records:MathQuestionRecord[];catalog:MathCatalog;taxonomy:MathTaxonomy}>();
-const signature = (root:string) => ["server/data/exam-content.json","server/data/question-bank.json","server/data/math-command.json","server/data/math-import-review.json","tools/math-topics.json","tools/.content-drafts/math-import-status.json"].map(file=>{try{const s=fs.statSync(path.join(root,file));return `${s.mtimeMs}:${s.size}`;}catch{return "missing";}}).join("|")+"|"+readMathCommandState(root).revision;
+const signature = (root:string) => ["server/data/exam-content.json","server/data/question-bank.json","server/data/math-command.json","server/data/math-import-review.json","tools/math-topics.json","tools/.content-drafts/math-import-status.json"].map(file=>{try{const s=fs.statSync(path.join(root,file));return `${s.mtimeMs}:${s.size}`;}catch{return "missing";}}).join("|")+"|"+readMathCommandState(root).revision+"|"+mathClassificationRevision(root);
 export function mathCatalogSnapshot(root=mathCommandRoot, performance?:Record<string,MathQuestionPerformance>) {
   const version=signature(root);let snapshot=cache.get(root);
   if(!snapshot||snapshot.signature!==version){const records=readMathCommandCatalog(root),taxonomy=readMathCommandTaxonomy(root);snapshot={signature:version,records,taxonomy,catalog:buildMathCommandCatalog(records,taxonomy)};cache.set(root,snapshot);if(cache.size>8)cache.delete(cache.keys().next().value!);}
@@ -39,7 +40,7 @@ export function handleMathCatalogRequest(input:{method:string;pathname:string;bo
   const personalSnapshot = () => { const snapshot = mathCatalogSnapshot(root, performance); return {...snapshot, catalog: teacherCatalog(snapshot.catalog, root, actor)}; };
   if(method==="GET"&&pathname==="/overview"){
     const {catalog,taxonomy}=mathCatalogSnapshot(root,performance),state=readMathCommandState(root);
-    return {revision:state.revision,summary:summarizeMathCommandCatalog(catalog,taxonomy,state.targets),taxonomy,targets:state.targets,savedViews:state.savedViews,collections:state.collections,skills:state.skills,prerequisites:Object.fromEntries(state.skills.map(skill=>[skill.id,skill.prerequisiteIds??[]])),rules:state.rules,pacePerWeek:state.pacePerWeek};
+    return {revision:state.revision,classificationRevision:mathClassificationRevision(root),summary:summarizeMathCommandCatalog(catalog,taxonomy,state.targets),taxonomy,targets:state.targets,savedViews:state.savedViews,collections:state.collections,skills:state.skills,prerequisites:Object.fromEntries(state.skills.map(skill=>[skill.id,skill.prerequisiteIds??[]])),rules:state.rules,pacePerWeek:state.pacePerWeek};
   }
   if(method==="GET"&&pathname==="/catalog")return queryMathCommandCatalog(personalSnapshot().catalog,parseFilters(query.filters));
   if(method==="GET"&&pathname==="/player-queue"){

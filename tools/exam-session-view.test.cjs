@@ -118,6 +118,36 @@ test('registered exams render their available section introductions', async () =
   }
 });
 
+test('Form D whispering-gallery standalone renders its bank, sentence and saved placement', async () => {
+  const { renderExam } = await loadRenderer();
+  const { load } = require('cheerio');
+  const id = 'official-shsat-2026-d-48';
+  const isolate = content => ({ ...content, passageSets: [], mathSection: undefined,
+    standaloneSection: { ...content.standaloneSection,
+      // Node has no DOMParser. Exercise the equivalent plain sentence here;
+      // the authored rich response layout is checked in the browser preview.
+      questions: content.standaloneSection.questions.filter(question => question.id === id)
+        .map(question => ({ ...question, dragDropContentHtml: undefined })), questionCount: 1 },
+    questionOrder: [id],
+  });
+  const empty = load(renderExam('2026-2027-form-d', 'standaloneQuestion', isolate));
+  assert.deepEqual(empty('.exam-math-drag-bank button').map((_, el) => empty(el).text()).get(), [
+    'guide the sound waves in a specific direction',
+    'focus the sound waves to travel through the space',
+    'direct the sound waves to move along the curves of the arches',
+    'transfer the sound waves to a variety of different locations',
+  ]);
+  assert.equal(empty('[data-answer-slot="slot-1"]').length, 1);
+  assert.match(empty('[data-answer-slot="slot-1"]').attr('style'), /width:475px/);
+  assert.match(empty('.exam-math-drag-lines').text(), /because the tiled archways/);
+  assert.equal(empty('h1 blockquote u').text(), 'send the sound through the environment');
+  const filled = load(renderExam('2026-2027-form-d', 'standaloneQuestion', isolate, {
+    answers: { [id]: { 'slot-1': 'item-3' } },
+  }));
+  assert.equal(filled('.exam-math-drag-bank button').length, 3);
+  assert.equal(filled('[data-answer-slot="slot-1"]').text(), 'direct the sound waves to move along the curves of the arches');
+});
+
 test('all transferred category-sort screens retain every card, source markup and keyboard target',async()=>{
   const {assessments,resolveExamContent,renderExam}=await loadRenderer();
   const {load}=require('cheerio');

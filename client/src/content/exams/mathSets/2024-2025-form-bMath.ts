@@ -36,7 +36,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(\\frac{3}{5}\\)(2x + 5) − 2x\n\nAfter the expression above is simplified, what is the coefficient of x, expressed as a decimal?",
     "promptHtml": "<p>\\(\\frac{3}{5}\\)(2<em>x </em>+ 5) − 2<em>x</em></p><p>After the expression above is simplified, what is the coefficient of <em>x</em>, expressed as a decimal?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "correctTextAnswers": [
       "-0.8"
     ],
@@ -64,7 +64,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Two number cubes have sides labeled 1 through 6. Both number cubes are rolled. How many different outcomes will have a sum of 6?",
     "promptHtml": "<p>Two number cubes have sides labeled 1 through 6. Both number cubes are rolled. How many different outcomes will have a sum of 6?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Counting & Sets",
     "correctTextAnswers": [
       "5"
     ],
@@ -92,7 +92,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Source diagram\n\nThe figure above shows a scale drawing of a garden, where 1 centimeter represents 2.5 meters. What is the perimeter of the actual garden in meters?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2024-2025-form-b-q060-figure-1.png\" alt=\"An L-shaped garden. The top horizontal side is 13 cm, the left vertical side is 6 cm, the right upper vertical side is 3 cm, and the lower horizontal side is 8 cm. The inward horizontal and vertical sides are unlabeled.\" width=\"276\"></p><p>The figure above shows a scale drawing of a garden, where 1 centimeter represents 2.5 meters. What is the perimeter of the actual garden in meters?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Similarity, Scale & Proportional Geometry",
     "correctTextAnswers": [
       "95"
     ],
@@ -120,7 +120,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At one location, the temperature increased from −7° F to 4° F between 5:00 a.m. and 9:00 a.m. By 11:00 a.m., the temperature was 3.5 times the 9:00 a.m. temperature. What was the total increase in temperature between 5:00 a.m. and 11:00 a.m., in degrees Fahrenheit?",
     "promptHtml": "<p>At one location, the temperature increased from −7° F to 4° F between 5:00 a.m. and 9:00 a.m. By 11:00 a.m., the temperature was 3.5 times the 9:00 a.m. temperature. What was the total increase in temperature between 5:00 a.m. and 11:00 a.m., in degrees Fahrenheit?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Integers & Absolute Value",
     "correctTextAnswers": [
       "21"
     ],
@@ -148,7 +148,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The figure below is a triangular prism. The lateral sides are rectangles.\n\nSource diagram\n\nWhat is the volume of the figure, in cubic inches?",
     "promptHtml": "<p>The figure below is a triangular prism. The lateral sides are rectangles.</p><p><img src=\"/exam-images/pdf-2024-2025-form-b-q062-figure-1.png\" alt=\"A triangular prism. One triangular face has a side labeled 4 inches and a perpendicular height labeled 8 inches. The distance between the triangular faces is 2 inches. A right-angle marker identifies the perpendicular height.\" width=\"286\"></p><p>What is the volume of the figure, in cubic inches?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Surface Area & Volume",
     "correctTextAnswers": [
       "32"
     ],
@@ -176,7 +176,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "This graph shows y, the weight of a pole of length x.\n\nSource diagram\n\nWhat is represented by the point with coordinates (1, 4)?",
     "promptHtml": "<p>This graph shows <em>y</em>, the weight of a pole of length <em>x</em>.</p><p><img src=\"/exam-images/pdf-2024-2025-form-b-q063-figure-1.png\" alt=\"Weight of Pole graph. Horizontal axis: length in feet, marked 1 through 4. Vertical axis: weight in ounces, marked 4, 8, 12, 16. A straight line rises from the origin through the marked point (1, 4) and through (4, 16).\" width=\"200\"></p><p>What is represented by the point with coordinates (1, 4)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -223,7 +223,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The number line shows points E, F, G, and H.\n\nSource diagram\n\nWhich point represents the sum of 2.5 + (−4.5)?",
     "promptHtml": "<p>The number line shows points E, F, G, and H.</p><p><img src=\"/exam-images/pdf-2024-2025-form-b-q064-figure-1.png\" alt=\"A number line marked by ones from −7 to 7. Point E is at −7, F at −2, G at 2, and H at 7.\" width=\"310\"></p><p>Which point represents the sum of 2.5 + (−4.5)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -270,7 +270,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(\\frac{9}{2x}\\) = \\(\\frac{3y}{8}\\), where x ≠ 0 and y ≠ 0, what is the product of x and y?",
     "promptHtml": "<p>If \\(\\frac{9}{2x}\\) = \\(\\frac{3y}{8}\\), where <em>x </em>≠ 0 and <em>y </em>≠ 0, what is the product of <em>x </em>and <em>y</em>?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -317,7 +317,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A car dealership is having a sale where all cars have a 12% discount. What is the discounted price of a car that originally cost $15,600?",
     "promptHtml": "<p>A car dealership is having a sale where all cars have a 12% discount. What is the discounted price of a car that originally cost $15,600?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -364,7 +364,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "4 \\(\\frac{2}{3}\\) ÷ 2 \\(\\frac{1}{2}\\) =",
     "promptHtml": "<p>4 \\(\\frac{2}{3}\\) ÷ 2 \\(\\frac{1}{2}\\) =</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -411,7 +411,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a sports league, each team has 36 players and 3 coaches. There are also a number of team assistants. The ratio of team assistants to players is \\(\\frac{1}{6}\\). What is the ratio of coaches to assistants?",
     "promptHtml": "<p>In a sports league, each team has 36 players and 3 coaches. There are also a number of team assistants. The ratio of team assistants to players is \\(\\frac{1}{6}\\). What is the ratio of coaches to assistants?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -458,7 +458,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Lena is building a fence. She will need to dig holes to help support the posts that hold up the fence. The holes need to have a depth of 3 \\(\\frac{1}{3}\\) feet below the ground. Each post is 10 feet long. What is the height of the part of the post that is above the ground?",
     "promptHtml": "<p>Lena is building a fence. She will need to dig holes to help support the posts that hold up the fence. The holes need to have a depth of 3 \\(\\frac{1}{3}\\) feet below the ground. Each post is 10 feet long. What is the height of the part of the post that is above the ground?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -505,7 +505,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "p + 2r = r(p + 1) + 1\n\nIn the equation above, if r = 2, what is the value of p?",
     "promptHtml": "<p><em>p </em>+ 2<em>r </em>= <em>r</em>(<em>p </em>+ 1) + 1</p><p>In the equation above, if <em>r </em>= 2, what is the value of <em>p</em>?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -552,7 +552,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Karen reads at the rate of 60 pages per day. Martina reads 25% more pages per day than Karen. If the two students begin 1,500-page reading assignments on the same day, how many days sooner will Martina complete the assignment than Karen?",
     "promptHtml": "<p>Karen reads at the rate of 60 pages per day. Martina reads 25% more pages per day than Karen. If the two students begin 1,500-page reading assignments on the same day, how many days sooner will Martina complete the assignment than Karen?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -599,7 +599,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Claire is running on a circular track. She has already run 650 meters. Each lap around the track is a distance of 120 meters. Her goal is to run at least 2,500 meters in all. How many more laps does she need to complete in order to reach her goal?",
     "promptHtml": "<p>Claire is running on a circular track. She has already run 650 meters. Each lap around the track is a distance of 120 meters. Her goal is to run at least 2,500 meters in all. How many more laps does she need to complete in order to reach her goal?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -646,7 +646,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A company with 200 employees grew in size by 25% between 2005 and 2010. The company grew again by 10% between 2010 and 2015. What was the total number of employees in 2015?",
     "promptHtml": "<p>A company with 200 employees grew in size by 25% between 2005 and 2010. The company grew again by 10% between 2010 and 2015. What was the total number of employees in 2015?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -693,7 +693,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A bowl contains 12 green candies, 4 yellow candies, and some red candies. The probability of choosing a green candy at random is twice as great as the probability of choosing a red candy at random. What is the probability of choosing a yellow candy at random?",
     "promptHtml": "<p>A bowl contains 12 green candies, 4 yellow candies, and some red candies. The probability of choosing a green candy at random is twice as great as the probability of choosing a red candy at random. What is the probability of choosing a yellow candy at random?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -740,7 +740,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A taxi driver recorded the number of fares each day for one month. The box plot displays the data.\n\nSource diagram\n\nBased on the box plot, which statement is a correct interpretation of the data?",
     "promptHtml": "<p>A taxi driver recorded the number of fares each day for one month. The box plot displays the data.</p><p><img src=\"/exam-images/pdf-2024-2025-form-b-q075-figure-1.png\" alt=\"Daily Fares box plot. Horizontal axis is number of fares, marked from 0 through 32 by twos. The left whisker is at 2, left edge of the box at 12, median at 16, right edge of the box at 24, and right whisker at 32.\" width=\"312\"></p><p>Based on the box plot, which statement is a correct interpretation of the data?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -787,7 +787,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Serena was studying the number of water stations for different lengths of races. The table below shows the data she collected. WATER STATIONS IN RACES Length of Race Number of (mi) Water Stations 3 2 12 8 18 12\n\nWhich equation represents the relationship between the length of the race, x miles, and the number of water stations, y?",
     "promptHtml": "<p>Serena was studying the number of water stations for different lengths of races. The table below shows the data she collected.</p><table><caption>WATER STATIONS IN RACES</caption><thead><tr><th scope=\"col\">Length of Race (mi)</th><th scope=\"col\">Number of Water Stations</th></tr></thead><tbody><tr><td>3</td><td>2</td></tr><tr><td>12</td><td>8</td></tr><tr><td>18</td><td>12</td></tr></tbody></table><p>Which equation represents the relationship between the length of the race, <em>x</em> miles, and the number of water stations, <em>y</em>?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Functions & Graphs",
     "choices": [
       {
         "id": "A",
@@ -834,7 +834,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Centerville will hold a vote on whether to build a new park. The town council surveyed a random sample of 200 residents to determine whether they would be in favor of building this park. The table shows the results of the survey.\n\nSURVEY RESULTS\n\nOpinion Number of Residents Yes 142 No 38 Undecided 20\n\nThe mayor estimates that half the undecided voters will vote in favor of building the park. Based on the survey results, if the mayor is correct, how many of the 24,100 voters will be in favor of building the park?",
     "promptHtml": "<p>Centerville will hold a vote on whether to build a new park. The town council surveyed a random sample of 200 residents to determine whether they would be in favor of building this park. The table shows the results of the survey.</p><table><caption>SURVEY RESULTS</caption><thead><tr><th scope=\"col\">Opinion</th><th scope=\"col\">Number of Residents</th></tr></thead><tbody><tr><td>Yes</td><td>142</td></tr><tr><td>No</td><td>38</td></tr><tr><td>Undecided</td><td>20</td></tr></tbody></table><p>The mayor estimates that half the undecided voters will vote in favor of building the park. Based on the survey results, if the mayor is correct, how many of the 24,100 voters will be in favor of building the park?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -881,7 +881,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "− \\(\\frac{1}{49}\\) , −49, − \\(\\frac{1}{7}\\) , −1\n\nWhich number shown above is the greatest?",
     "promptHtml": "<p>− \\(\\frac{1}{49}\\) , −49, − \\(\\frac{1}{7}\\) , −1</p><p>Which number shown above is the <strong>greatest</strong>?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -928,7 +928,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What decimal is equivalent to − \\(\\frac{13}{11}\\)?",
     "promptHtml": "<p>What decimal is equivalent to − \\(\\frac{13}{11}\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -975,7 +975,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Each loaf of bread a baker makes requires \\(\\frac{1}{5}\\) ounce of salt. How many loaves can be made if 40 ounces of salt are used?",
     "promptHtml": "<p>Each loaf of bread a baker makes requires \\(\\frac{1}{5}\\) ounce of salt. How many loaves can be made if 40 ounces of salt are used?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1022,7 +1022,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the value of \\(\\frac{\\left(1\\frac{5}{7}-1\\frac{6}{7}\\right)}{\\left(3\\frac{4}{7}-3\\frac{6}{7}\\right)}\\)?",
     "promptHtml": "<p>What is the value of \\(\\frac{\\left(1\\frac{5}{7}-1\\frac{6}{7}\\right)}{\\left(3\\frac{4}{7}-3\\frac{6}{7}\\right)}\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1069,7 +1069,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which number line represents the values of x that satisfy the inequality −5 ≤ 1 − 3x ≤ 4?",
     "promptHtml": "<p>Which number line represents the values of <em>x </em>that satisfy the inequality −5 ≤ 1 − 3<em>x </em>≤ 4?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -1116,7 +1116,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If 1 sind = 0.75 plunk, how many sinds are equivalent to 8 plunks, rounded to the nearest hundredth?",
     "promptHtml": "<p>If 1 sind = 0.75 plunk, how many sinds are equivalent to 8 plunks, rounded to the nearest hundredth?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Units & Conversions",
     "choices": [
       {
         "id": "A",
@@ -1163,7 +1163,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Simplify:\n\n8x − (7 + 2.5x) + 2",
     "promptHtml": "<p>Simplify:</p><p>8<em>x </em>− (7 + 2.5<em>x</em>) + 2</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -1210,7 +1210,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A community center has two 30-member exercise groups. The director recorded the ages of each group’s members in the box plots.\n\nSource diagram\n\nWhich statement about the two groups can be verified based on the box plots?",
     "promptHtml": "<p>A community center has two 30-member exercise groups. The director recorded the ages of each group’s members in the box plots.</p><p><img src=\"/exam-images/pdf-2024-2025-form-b-q085-figure-1.png\" alt=\"Ages of Groups box plots. Group P: minimum 17, first quartile 19, median 24, third quartile 27, maximum 33. Group Q: minimum 15, first quartile 17, median 21, third quartile 26, maximum 29. The horizontal age axis is marked from 15 to 33 in years.\" width=\"313\"></p><p>Which statement about the two groups can be verified based on the box plots?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Data Displays & Sampling",
     "choices": [
       {
         "id": "A",
@@ -1257,7 +1257,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Jar Q contains 12 balls, and Jar R contains 8 balls. The probability of drawing a yellow ball at random from Jar Q is \\(\\frac{1}{3}\\). The probability of drawing a yellow ball at random from Jar R is \\(\\frac{3}{4}\\). All the balls are poured into an empty jar, Jar S. What is the probability of drawing a yellow ball at random from Jar S?",
     "promptHtml": "<p>Jar Q contains 12 balls, and Jar R contains 8 balls. The probability of drawing a yellow ball at random from Jar Q is \\(\\frac{1}{3}\\). The probability of drawing a yellow ball at random from Jar R is \\(\\frac{3}{4}\\). All the balls are poured into an empty jar, Jar S. What is the probability of drawing a yellow ball at random from Jar S?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -1304,7 +1304,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "GIA’S MIX\n\nSnack Number in Bag Pretzels 12 Raisins 9\n\nGia and her friends counted the numbers of pretzels and raisins in their snack mix. The table above shows the numbers in Gia’s mix. Which other mix has a ratio of pretzels to raisins in the same proportional relationship as Gia’s mix?",
     "promptHtml": "<table><caption>GIA’S MIX</caption><thead><tr><th scope=\"col\">Snack</th><th scope=\"col\">Number in Bag</th></tr></thead><tbody><tr><td>Pretzels</td><td>12</td></tr><tr><td>Raisins</td><td>9</td></tr></tbody></table><p>Gia and her friends counted the numbers of pretzels and raisins in their snack mix. The table above shows the numbers in Gia’s mix. Which other mix has a ratio of pretzels to raisins in the same proportional relationship as Gia’s mix?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1351,7 +1351,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If y = 4x, what is the value of 3y + 2(3y + 5) − x in terms of x?",
     "promptHtml": "<p>If <em>y </em>= 4<em>x</em>, what is the value of 3<em>y </em>+ 2(3<em>y </em>+ 5) − <em>x </em>in terms of <em>x</em>?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -1398,7 +1398,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Two circular plates have the dimensions shown.\n\nSource diagram\n\nWhat is the difference between the areas of the two plates, in square inches?",
     "promptHtml": "<p>Two circular plates have the dimensions shown.</p><p><img src=\"/exam-images/pdf-2024-2025-form-b-q089-figure-1.png\" alt=\"Two circular plates. A dashed diameter across the larger plate is labeled 18 inches; a dashed diameter across the smaller plate is labeled 12 inches.\" width=\"275\"></p><p>What is the difference between the areas of the two plates, in square inches?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Circles",
     "choices": [
       {
         "id": "A",
@@ -1445,7 +1445,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If x = −4, what is the sum of x and 10% of |x|?",
     "promptHtml": "<p>If <em>x </em>= −4, what is the sum of <em>x </em>and 10% of |<em>x</em>|?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1492,7 +1492,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The volume of a cube is 512 cubic centimeters. What is the length, in centimeters, of one edge of this cube?",
     "promptHtml": "<p>The volume of a cube is 512 cubic centimeters. What is the length, in centimeters, of <strong>one </strong>edge of this cube?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -1539,7 +1539,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The high temperature on Monday was x° F. On Tuesday, the high temperature was 84° F, which was a 5% increase from Monday’s high temperature. On Wednesday, the high temperature was 10% lower than it was on Monday. How much lower was the high temperature on Wednesday than the high temperature on Monday?",
     "promptHtml": "<p>The high temperature on Monday was <em>x</em>° F. On Tuesday, the high temperature was 84° F, which was a 5% increase from Monday’s high temperature. On Wednesday, the high temperature was 10% lower than it was on Monday. How much lower was the high temperature on Wednesday than the high temperature on Monday?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1586,7 +1586,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The integers (n − 1), n, and (n + 1) are factors of 168. What is the greatest possible value of n?",
     "promptHtml": "<p>The integers (<em>n </em>− 1), <em>n</em>, and (<em>n </em>+ 1) are factors of 168. What is the <strong>greatest</strong> possible value of <em>n</em>?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1633,7 +1633,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Raoul gave two musical performances. His second performance occurred 86 days after his first performance. If Raoul’s second performance was on a Tuesday, on what day of the week was his first performance?",
     "promptHtml": "<p>Raoul gave two musical performances. His second performance occurred 86 days after his first performance. If Raoul’s second performance was on a Tuesday, on what day of the week was his first performance?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Patterns & Sequences",
     "choices": [
       {
         "id": "A",
@@ -1680,7 +1680,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Michael received a check for $213 for working 20 hours at his part-time job. The amount on the check was his total pay after $32 in taxes was deducted. What was Michael’s hourly pay rate before taxes were deducted?",
     "promptHtml": "<p>Michael received a check for $213 for working 20 hours at his part-time job. The amount on the check was his total pay after $32 in taxes was deducted. What was Michael’s hourly pay rate before taxes were deducted?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -1727,7 +1727,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Source diagram\n\nWhat is the total surface area, in square centimeters, of the closed box shown above?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2024-2025-form-b-q096-figure-1.png\" alt=\"A closed rectangular prism with dimensions labeled 20 cm high, 40 cm deep, and 50 cm long.\" width=\"265\"></p><p>What is the total surface area, in square centimeters, of the closed box shown above?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -1774,7 +1774,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The value of a particular car decreases at a constant rate. If the car is worth $15,000 three years after its original purchase date and $10,000 five years after its original purchase date, what was the value of the car on its original purchase date?",
     "promptHtml": "<p>The value of a particular car decreases at a constant rate. If the car is worth $15,000 three years after its original purchase date and $10,000 five years after its original purchase date, what was the value of the car on its original purchase date?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Functions & Graphs",
     "choices": [
       {
         "id": "A",
@@ -1821,7 +1821,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A bag contains 2 green, 4 blue, and 3 yellow disks. Alana selects 4 disks from the bag at random, one at a time, without replacing them. What is the probability that she selects all 4 blue disks?",
     "promptHtml": "<p>A bag contains 2 green, 4 blue, and 3 yellow disks. Alana selects 4 disks from the bag at random, one at a time, without replacing them. What is the probability that she selects all 4 blue disks?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -1868,7 +1868,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Jevon earns \\(\\frac{1}{2}\\) % per year on the money in his savings account. Which expression is not another way to write \\(\\frac{1}{2}\\) %?",
     "promptHtml": "<p>Jevon earns \\(\\frac{1}{2}\\) % per year on the money in his savings account. Which expression is <strong>not </strong>another way to write \\(\\frac{1}{2}\\) %?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1915,7 +1915,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A community garden had 50 members in 2001. In each of the next three years, the number of members increased by 40% over the number of members from the previous year. How many members were there in 2004? (Round to the nearest whole number.)",
     "promptHtml": "<p>A community garden had 50 members in 2001. In each of the next three years, the number of members increased by 40% over the number of members from the previous year. How many members were there in 2004? (Round to the nearest whole number.)</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1962,7 +1962,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which inequality is equivalent to 6x − 20 < 5x − 2(5 − 3x)?",
     "promptHtml": "<p>Which inequality is equivalent to 6<em>x </em>− 20 &lt; 5<em>x </em>− 2(5 − 3<em>x</em>)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -2009,7 +2009,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A box contains a total of 30 paper clips with colors in the ratio red:white:blue = 2:5:3. Suppose that one paper clip of each color is removed from the box and not replaced. What is the probability that the next paper clip chosen will be blue?",
     "promptHtml": "<p>A box contains a total of 30 paper clips with colors in the ratio red:white:blue = 2:5:3. Suppose that one paper clip of each color is removed from the box and not replaced. What is the probability that the next paper clip chosen will be blue?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -2056,7 +2056,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The least positive integer evenly divisible by the first 6 positive integers is 60. What is the least positive integer evenly divisible by the first 8 positive integers?",
     "promptHtml": "<p>The least positive integer evenly divisible by the first 6 positive integers is 60. What is the least positive integer evenly divisible by the first 8 positive integers?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -2103,7 +2103,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Three different colors of paint are available to paint the window frame, the door, and the wall of a house. If no two parts of the house may be painted the same color, how many different ways are there to paint the three parts of the house?",
     "promptHtml": "<p>Three different colors of paint are available to paint the window frame, the door, and the wall of a house. If no two parts of the house may be painted the same color, how many different ways are there to paint the three parts of the house?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -2150,7 +2150,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Source diagram\n\nTriangle MNP is similar to triangle XYZ, and MN = NP. What is the perimeter of triangle MNP?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2024-2025-form-b-q105-figure-1.png\" alt=\"Triangle MNP has N at the top, M at lower left, P at lower right. Sides MN and NP have matching tick marks; base MP is 10 cm. Triangle XYZ has Y at the top, X at lower left, Z at lower right; XY and YZ are each 9 cm, and base XZ is 6 cm.\" width=\"251\"></p><p>Triangle MNP is similar to triangle XYZ, and MN = NP. What is the perimeter of triangle MNP?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -2197,7 +2197,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Suppose that w, x, y, and z are integers, none of which are zero. Under which set of conditions would the product x2 y z3|w| always be positive?",
     "promptHtml": "<p>Suppose that <em>w</em>, <em>x</em>, <em>y</em>, and <em>z </em>are integers, none of which are zero. Under which set of conditions would the product <em>x</em><sup>2 </sup><em>y z</em><sup>3</sup>|<em>w</em>| <strong>always </strong>be positive?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -2244,7 +2244,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Chris has 1 red shirt, 2 white shirts, and 3 black shirts. Chris picks a shirt at random. Without putting the first shirt back, he picks a second shirt at random. What is the probability that the first shirt is black and the second shirt is red?",
     "promptHtml": "<p>Chris has 1 red shirt, 2 white shirts, and 3 black shirts. Chris picks a shirt at random. Without putting the first shirt back, he picks a second shirt at random. What is the probability that the first shirt is black and the second shirt is red?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -2291,7 +2291,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Rita used 125 small solid cubes to build a large solid cube. The measure of each edge of the small cubes equals 1 inch. What is the measure of each edge of the large cube, in inches?",
     "promptHtml": "<p>Rita used 125 small solid cubes to build a large solid cube. The measure of each edge of the small cubes equals 1 inch. What is the measure of each edge of the large cube, in inches?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -2338,7 +2338,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Source diagram\n\nFive numbered balls are placed in two boxes as shown in the figure above. Davina picks one ball at random from Box B and places it in Box A. Then Yusuf picks one ball from Box A without looking. What is the probability that Yusuf will pick a ball with an odd number?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2024-2025-form-b-q109-figure-1.png\" alt=\"Box A contains two balls labeled 2 and 6. Box B contains three balls labeled 3, 4, and 5.\" width=\"320\"></p><p>Five numbered balls are placed in two boxes as shown in the figure above. Davina picks one ball at random from Box B and places it in Box A. Then Yusuf picks one ball from Box A without looking. What is the probability that Yusuf will pick a ball with an odd number?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -2385,7 +2385,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which graph represents the solution to |x + 1| ≥ 2?",
     "promptHtml": "<p>Which graph represents the solution to |<em>x </em>+ 1| ≥ 2?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -2432,7 +2432,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A rectangular kitchen floor is 12 feet long and 7.5 feet wide. It will be covered completely with new square tiles measuring 0.75 foot on each side. How many tiles will cover the floor?",
     "promptHtml": "<p>A rectangular kitchen floor is 12 feet long and 7.5 feet wide. It will be covered completely with new square tiles measuring 0.75 foot on each side. How many tiles will cover the floor?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -2479,7 +2479,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Typically, an amusement park sells 3 times as many tickets on Sunday as on any weekday, and 4 times as many tickets on Saturday as on Sunday. If the number of tickets sold on Saturday and Sunday totaled 30,000, how many tickets are expected to be sold on the following Monday?",
     "promptHtml": "<p>Typically, an amusement park sells 3 times as many tickets on Sunday as on any weekday, and 4 times as many tickets on Saturday as on Sunday. If the number of tickets sold on Saturday and Sunday totaled 30,000, how many tickets are expected to be sold on the following Monday?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -2526,7 +2526,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A rectangular field had a length of 80 meters and a width of 50 meters. The field was recently enlarged, with the length increased by 15% and the width increased by 10 meters. By what percentage was the area of the field increased?",
     "promptHtml": "<p>A rectangular field had a length of 80 meters and a width of 50 meters. The field was recently enlarged, with the length increased by 15% and the width increased by 10 meters. By what percentage was the area of the field increased?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -2573,7 +2573,7 @@ export const content20242025FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If x and y are both negative integers with x < y, which expression has the least value?",
     "promptHtml": "<p>If <em>x </em>and <em>y </em>are both negative integers with <em>x </em>&lt; <em>y</em>, which expression has the <strong>least </strong>value?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",

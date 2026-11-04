@@ -6,21 +6,21 @@ const {defaultPracticeCatalog,generateCatalogQuestion}=require('../server/src/sh
 const {inventory}=require('../server/src/shared/learningPlan.ts');
 const {filterContentInventory}=require('../client/src/lib/passageOrganization.ts');
 const {resolveMathQuestionLink}=require('./content-studio-question-link.js');
-function session(){const catalog=defaultPracticeCatalog();const module=catalog.modules.find(m=>m.id==='all');module.includeAll=false;const state=createPracticeState(module.id,'test',catalog);state.generatorIds=state.generatorIds.slice(0,2);state.generatorDefinitions=state.generatorDefinitions.filter(g=>state.generatorIds.includes(g.id));return state;}
+function session(){const catalog=defaultPracticeCatalog();const module=catalog.modules.find(m=>m.id==='all');module.includeAll=false;const state=createPracticeState(module.id,'test',catalog);state.generatorIds=state.generatorIds.slice(0,2);state.generatorDefinitions=state.generatorDefinitions.filter(g=>state.generatorIds.includes(g.id));delete state.moduleGeneratorIds;delete state.moduleTitles;delete state.moduleStreaks;delete state.moduleLongestStreaks;return state;}
 const answer=(state,correct)=>checkPracticeAnswer({...state,answer:'A'},correct);
-test('ten correct per generator unlocks independently, wrong answers reset only that type, checking twice is inert',()=>{
+test('generator streaks reset independently, checking twice is inert, and hiding needs no milestone',()=>{
  let state=session(),[a,b]=state.generatorIds;
  for(let i=0;i<19;i++){const id=currentPracticeGeneratorId(state);state=answer(state,id===a);assert.deepEqual(checkPracticeAnswer(state,true),state);if(i<18)state=nextPracticeQuestion(state);}
- assert.equal(state.generatorStreaks[a],10);assert.equal(state.generatorStreaks[b],0);assert.deepEqual(state.unlockedGeneratorIds,[a]);assert.equal(hidePracticeGenerator(state,b),state);
+ assert.equal(state.generatorStreaks[a],10);assert.equal(state.generatorStreaks[b],0);assert.equal(state.unlockedGeneratorIds,undefined);assert.ok(hidePracticeGenerator(state,b).hiddenGeneratorIds.includes(b));
  const saved=parsePracticeState(JSON.stringify(state));assert.deepEqual(saved,state);
  state=hidePracticeGenerator(state,a);assert.deepEqual(state.hiddenGeneratorIds,[a]);
  for(let i=0;i<10;i++){state=nextPracticeQuestion(state);assert.equal(currentPracticeGeneratorId(state),b);const q=generateCatalogQuestion(state.generatorDefinitions.find(g=>g.id===b),Math.floor(state.sequenceIndex/state.generatorIds.length),state.seed);assert.ok(q.id.endsWith(':'+Math.floor(state.sequenceIndex/2)));state=answer(state,true);}
  assert.equal(state.generatorStreaks[b],10);assert.equal(state.checked,29);assert.equal(state.index,28);
  state=hidePracticeGenerator(state,b);assert.equal(state.finished,true);assert.deepEqual(parsePracticeState(JSON.stringify(state)),state);assert.equal(nextPracticeQuestion(state),state);
 });
-test('unlock persists after a later miss; unfinished current questions cannot be hidden',()=>{
- let state=createPracticeState('inequalities','one');for(let i=0;i<10;i++)state=nextPracticeQuestion(answer(state,true));const id=currentPracticeGeneratorId(state);
- assert.equal(hidePracticeGenerator(state,id),state);state=answer(state,false);assert.equal(state.generatorStreaks[id],0);assert.ok(state.unlockedGeneratorIds.includes(id));
+test('hiding is available after a miss without a streak; unfinished current questions cannot be hidden',()=>{
+ let state=createPracticeState('inequalities','one');const id=currentPracticeGeneratorId(state);
+ assert.equal(hidePracticeGenerator(state,id),state);state=answer(state,false);assert.equal(state.generatorStreaks[id],0);assert.equal(state.unlockedGeneratorIds,undefined);
  assert.equal(hidePracticeGenerator(state,id).finished,true);
  assert.equal(parsePracticeState(JSON.stringify({...state,hiddenGeneratorIds:['not-a-generator']})),null);
  assert.equal(parsePracticeState(JSON.stringify({...state,sequenceIndex:-1})),null);

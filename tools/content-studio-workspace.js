@@ -1479,6 +1479,8 @@ const studioUI = {
   updateMathClassification() {
     const questions = app.mathDraft?.questions || [], question = questions[app.selectedMathQuestionIndex];
     const missing = questions.filter(item => !item.subtopic || item.subtopic === 'Unclassified').length;
+    const review = document.querySelector('.studio-classification-review');
+    if(review && question){const changed=question.topic!==review.dataset.category||(question.subtopic||'')!==review.dataset.topic;review.querySelector('strong').textContent=changed?'Unsaved · teacher edit':review.dataset.label;const classification=question.commandMetadata?.classification;review.querySelector('button').disabled=changed||(classification?.category===question.topic&&classification?.subcategory===question.subtopic&&classification.status==='approved');}
     const coverage = document.getElementById('studio-math-classification-state');
     if (coverage) { coverage.textContent = missing ? `${questions.length - missing} of ${questions.length} questions classified · ${missing} need a specific topic` : `All ${questions.length} questions have both categories`; coverage.dataset.complete = String(!missing); }
     const row = document.querySelector(`.math-question-nav-list [data-math-question-index="${app.selectedMathQuestionIndex}"] small`);

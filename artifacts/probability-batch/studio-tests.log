@@ -1,0 +1,657 @@
+
+> nathantutors@0.0.0 test:practice-studio
+> node --test tools/probability-batch.test.cjs tools/today-generator-batch.test.cjs server/tests/generator-planner.test.cjs tools/math-subcategory-migration.test.cjs server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/symbolic-fraction-division.test.cjs tools/student-practice-updates.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs
+
+✔ personal batches retain source snapshots, deduplicate additions and protect ownership/revisions (107.8473ms)
+✔ batch export carries all sources, exact module IDs, instructions and refuses stale destinations (9.1659ms)
+✔ renaming remains independent of skill assignment, reconciliation and validation (9.0544ms)
+✔ authenticated endpoints reject students and save teacher changes durably without assignments (140.2193ms)
+✔ remote persistence rejects failed writes and simultaneous stale saves (12.6324ms)
+✔ studio handoff opens the account planner and carries only the source selection (11.3472ms)
+✔ planner notifications refresh visible tabs without sharing data and clean up subscriptions (6.7223ms)
+✔ every variant has the independently computed answer and explanation, with a complete deterministic cycle (17.5475ms)
+✔ constraints guard division before derived values and exact fractions work for short response (1.821ms)
+✔ invalid domains, code, unknown fields, placeholders, and inconsistent stems are rejected (2.168ms)
+✔ numeric-equivalent choices and undefined fractions cannot pass validation (0.6314ms)
+✖ import adds source-linked drafts without changing existing resources; sessions retain their version (5.6868ms)
+✖ custom names survive classification reconciliation and topic group normalization (7.6584ms)
+✖ adding a Foundation child preserves the group’s existing practice selection (1.6572ms)
+✔ creation prompt retains the full source and destination without asking for executable code (0.435ms)
+✔ local Content Studio shares durable saves, rejects stale revisions and validates before writes (19.372ms)
+✔ the shared Skilled registry starts empty and existing questions are TBD without inferred assignments (50.8873ms)
+✖ question classifications can change without renaming teacher-assigned module skills (51.5153ms)
+✔ delete resets native and metadata assignments to TBD and cannot silently reattach a reused ID (195.6286ms)
+✔ scopes, reserved names, duplicates, malformed definitions, and stale saves are rejected (31.0806ms)
+✔ subcategory renames move Skilled definitions while preserving their IDs and question assignments (48.8034ms)
+✔ Q70 is published under Inequalities, snapshots its generator, and registers safely in saved catalogs (35.4357ms)
+✖ moving a module makes it a Foundation child and settings exclude its generators from a session (1.639ms)
+✖ deleting either built-in generator cleans references and preserves sessions already running (7.2036ms)
+✖ General Practice includes all enabled generators in its own topic and snapshots student choices (4.033ms)
+✖ teachers can add a two-step generator, mix it into Foundation Building, and preserve order and placement (1.7095ms)
+✔ generated one-step and two-step keys solve the displayed inequality, including negative coefficients and inclusive endpoints (50.3535ms)
+✔ invalid generators and empty published modules cannot be saved (3.9207ms)
+✖ YouTube references accept video links only and normalize safe hosts (1.3294ms)
+✖ optional video details persist and reject invalid durations, counts and dates (1.0443ms)
+✖ catalog permissions, durable saves, conflicts and student publication filtering (131.0597ms)
+✖ renaming a subcategory keeps studio GET, saves, student reads and generated tags consistent (7.8889ms)
+✖ unmapped stale taxonomy returns a repairable conflict instead of an unexpected server error (0.4955ms)
+✖ deleting individual modules keeps generators, other resources and running snapshots (1.9024ms)
+✖ Overlapping Groups is one module using both generators and legacy split modules merge without losing settings (2.2753ms)
+✔ all 1,056 stems are distinct, calculator-free, and have exactly one equivalent answer (23.5971ms)
+✔ a seed reproduces a question, cycles are explicit, and invalid indices fail (11.338ms)
+✔ Q70 generates distinct variables-on-both-sides stems with exactly one correct answer throughout its cycle (1718.6643ms)
+✔ Q70 seeds reproduce questions, repeat only after a complete cycle, and reject invalid indices (0.6317ms)
+✔ teacher login returns to its same-origin destination and rejects external redirects (0.5363ms)
+✔ teacher launcher preserves a local or configured origin and fixes the destination path (3.6551ms)
+✔ teacher previews snapshot unsaved and disabled generators without changing their catalog (8.8935ms)
+✔ modules expose enabled registered types, foundation stays easy, and targeted practice stays focused (16.9358ms)
+✔ session metrics distinguish answering, feedback, unfinished questions and longest streak (1.3695ms)
+✔ module generator selection is snapshotted for a running session (0.3955ms)
+✔ session storage preserves typed and structured responses for future generators (0.4381ms)
+✔ Math Study Hall follows the managed hierarchy and reserves topic resource sections (1803.3104ms)
+✔ student practice lists show parent modules while nested modules remain part of their generation set (588.9301ms)
+✔ YouTube references render in-site play buttons with thumbnails and optional metadata (565.8511ms)
+✖ subcategory migration retains practice IDs, content, selections and Foundation placement (27.607ms)
+✔ existing skills are only rehomed, retaining IDs, labels, prerequisites and question assignments (1.6332ms)
+✔ consolidation merges default parents and preserves focused practice and skill assignments (3.447ms)
+✖ every overlapping-groups variant has a valid population, distinct stem and exactly one correct choice (2966.2244ms)
+✔ overlapping-group sequences are deterministic, cycle explicitly and validate indices (1.2558ms)
+✖ Overlapping Groups is a statistics topic and catalog registration preserves existing resources (363.4985ms)
+✖ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (11.4916ms)
+✔ customized broad modules, hidden state, disabled generators, and reviewed metadata survive migration (3.4885ms)
+✖ registration restores a generator to its skill even when migration reused legacy module IDs (20.8513ms)
+✖ metadata is validated and survives saves and session snapshots without changing the generated questions (1.6229ms)
+✔ search, facets, focused usage, and bulk changes work across a 1000-generator library (30.9527ms)
+✖ bulk disabling the last generators hides empty focused modules and remains saveable (4.4057ms)
+✔ generation set filters combine inclusion, category, subcategory, and search without changing selections (2.3477ms)
+✔ included-only respects automatic groups, inherited selections, hidden children, and disabled generators (1.3967ms)
+✔ module preview snapshots the complete effective draft mix and allows unpublished modules without publishing edits (2.9335ms)
+✖ Skill is the module name; legacy classifications never replace it on reads or saves (1.839ms)
+✔ library Skill filtering uses module membership, including hidden modules and disabled generators (1.3655ms)
+✖ choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions (1.7261ms)
+✔ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (2485.8395ms)
+✔ five streak stars unlock at exact ten-answer thresholds with accessible locked and earned labels (29.1567ms)
+✔ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (40.2073ms)
+✔ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (31.6427ms)
+✔ mini preview retains the exam controls in a bounded nonmodal region (30.3829ms)
+✔ Raffle and Specific Card: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (6342.1133ms)
+✔ Two Candies Excluding a Flavor: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (25.1167ms)
+✔ Paint Arrangements Without Repeats: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (1.0029ms)
+✔ Probability from a Decimal Set: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (0.9525ms)
+✔ Choosing Unordered Pairs: exhaust finite domain, independently solve displayed inputs, retain source and validate grading (1.1248ms)
+✔ seeds, safe indices and explicit repeat cycles preserve stable question identities (1.6759ms)
+✔ one batch targets exact IDs, preserves customization, publishes only authorized destinations, and is idempotent (25.0491ms)
+✔ stale exact destinations and conflicting IDs fail without modifying inputs (2.4825ms)
+✔ Probability: Number-cube Sum Counts: every stem is valid, unique, and includes its source example (24.6103ms)
+✔ Probability: Ratio Counts After Removal: every stem is valid, unique, and includes its source example (157.268ms)
+✔ Probability: Ordered Draws Without Replacement: every stem is valid, unique, and includes its source example (238.7526ms)
+✔ Probability: Complementary Color Draws: every stem is valid, unique, and includes its source example (14.4991ms)
+✔ Probability: Repeated Draws With Replacement: every stem is valid, unique, and includes its source example (28.117ms)
+✔ Probability: Spinner Products: every stem is valid, unique, and includes its source example (7.2057ms)
+✔ Probability: Unordered Sample Spaces: every stem is valid, unique, and includes its source example (54.3866ms)
+✔ Probability: One Specific Conditional Outcome: every stem is valid, unique, and includes its source example (134.617ms)
+✔ all eight probability sequences reproduce, complete explicit cycles and validate safe indices (3.5124ms)
+✔ Probability uses five focused Foundation Building children with eight generators, preserving other topics and snapshots (97.9543ms)
+✔ every numeric scenario varies the requested color or ordered color pair (259.8877ms)
+✔ saved v1/v2 questions retain their exact stems, choices and explanations; next question opts into color variation (44.309ms)
+✔ ten correct per generator unlocks independently, wrong answers reset only that type, checking twice is inert (7.7252ms)
+✔ unlock persists after a later miss; unfinished current questions cannot be hidden (0.5712ms)
+✔ saved sessions survive reopening with answers, streaks and snapshots; accounts and modules are isolated (2.4239ms)
+✔ module records retain all five milestones after mistakes, finishing and starting again, without crossing accounts (4.6188ms)
+✔ passage scores retain zero, ignore invalid/missing scores, and choose latest scored evidence (4.1712ms)
+✔ editor links resolve exact stable question IDs, prefer assessment context, and do not guess missing questions (0.3525ms)
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (3519.5159ms)
+✔ all 48 stems: independent symbolic key, four distinct traps, explanations, and grading (91.8207ms)
+✖ source example, all seed offsets, repeat cycle, determinism, and safe indices (151.6914ms)
+✔ exact existing module registration preserves all resources and stays disabled and unreviewed (22.2455ms)
+✔ draft previews and saved sessions retain definitions and the existing grading contract (10.3246ms)
+✔ all decimal stems: independent long division, primitive blocks, exact cycles, distinct choices and grading (1936.9759ms)
+✔ short practice sessions mix fractions and denominators, including across the cycle boundary (53.5ms)
+✔ legacy questions keep their exact content and grading; advancing adopts the mixed sequence (5.7742ms)
+✔ all area stems: derive the change from displayed dimensions, validate explanations, units and distractors (110.5029ms)
+✔ original keyed examples, deterministic seed permutations, repeat cycles and invalid indices (79.6311ms)
+✔ batch registration respects both exact groups, keeps every existing resource and is idempotent (20.8795ms)
+✔ explicit activation includes both generators while preserving review, modules, unrelated resources and saved sessions (3.456ms)
+✔ draft preview grading and saved sessions remain independent of later catalog edits (3.114ms)
+✔ every topic receives exactly one Foundation Building and General Practice, including empty topics (18.8395ms)
+✔ migration retains legacy IDs, nested modules, curated selections, hidden state and resources (2.5439ms)
+✔ General Practice automatically follows enabled generators only in its own topic (2.3104ms)
+✔ each foundation accepts only its own topic modules and empty defaults remain available (3.4786ms)
+✔ studio grouping and filters remain usable with hundreds of resources (6.092ms)
+✔ individual modules default to their own General Practice and keep explicit Foundation placement (5.08ms)
+✔ General Practice settings honor selected and unpublished nested modules (1.8715ms)
+✔ all survey total stems subtract overlap once and include neither, including zero-size cells (3483.5878ms)
+✖ every remaining-reading stem asks for additional time and has one exact hours answer (269.0413ms)
+✖ every mixture stem uses all ratio parts and all projects with one correct choice (1521.6137ms)
+✔ new word-problem sequences reproduce, cycle explicitly, and reject invalid indices (0.9373ms)
+✖ batch registration preserves teacher resources and snapshots all three generators in their own topics (22.4869ms)
+✔ Writing Inequalities visits every stem and includes the original Form D item 26 (1773.5904ms)
+✔ typed budgets accept both orientations, term orders and notation, and reject modelling errors (643.6895ms)
+✔ Writing Inequalities sequences are reproducible, cycle explicitly, and validate indices (1.5311ms)
+✔ Writing Inequalities registers in saved catalogs without changing nesting or existing resources (340.0145ms)
+ℹ tests 127
+ℹ suites 0
+ℹ pass 98
+ℹ fail 29
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7971.0162
+
+✖ failing tests:
+
+test at server\tests\generator-template.test.cjs:55:1
+✖ import adds source-linked drafts without changing existing resources; sessions retain their version (5.6868ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:56:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\generator-template.test.cjs:66:1
+✖ custom names survive classification reconciliation and topic group normalization (7.6584ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:67:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\generator-template.test.cjs:73:1
+✖ adding a Foundation child preserves the group’s existing practice selection (1.6572ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\generator-template.test.cjs:74:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\math-classification-skills.test.cjs:26:1
+✖ question classifications can change without renaming teacher-assigned module skills (51.5153ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\math-classification-skills.test.cjs:33:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:29:1
+✖ moving a module makes it a Foundation child and settings exclude its generators from a session (1.639ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:30:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:39:1
+✖ deleting either built-in generator cleans references and preserves sessions already running (7.2036ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Choose an existing math category and topic."
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:44:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Choose an existing math category and topic.
+        at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+        at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+        at Array.map (<anonymous>)
+        at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:44:26
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:44:9)
+        at Test.runInAsyncScope (node:async_hooks:227:14),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at server\tests\practice-catalog.test.cjs:46:1
+✖ General Practice includes all enabled generators in its own topic and snapshots student choices (4.033ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:49:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:56:1
+✖ teachers can add a two-step generator, mix it into Foundation Building, and preserve order and placement (1.7095ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:82:1
+✖ YouTube references accept video links only and normalize safe hosts (1.3294ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:85:191)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:88:1
+✖ optional video details persist and reject invalid durations, counts and dates (1.0443ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:91:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:107:1
+✖ catalog permissions, durable saves, conflicts and student publication filtering (131.0597ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 200
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:110:64)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server\tests\practice-catalog.test.cjs:117:1
+✖ renaming a subcategory keeps studio GET, saves, student reads and generated tags consistent (7.8889ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  409 !== 200
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:122:55)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 409,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server\tests\practice-catalog.test.cjs:137:1
+✖ unmapped stale taxonomy returns a repairable conflict instead of an unexpected server error (0.4955ms)
+  TypeError: Cannot read properties of null (reading 'catalog')
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:139:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7)
+
+test at server\tests\practice-catalog.test.cjs:144:1
+✖ deleting individual modules keeps generators, other resources and running snapshots (1.9024ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:149:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:155:1
+✖ Overlapping Groups is one module using both generators and legacy split modules merge without losing settings (2.2753ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Choose an existing math category and topic."
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:167:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Choose an existing math category and topic.
+        at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+        at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+        at Array.map (<anonymous>)
+        at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:167:26
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:167:9)
+        at Test.runInAsyncScope (node:async_hooks:227:14),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tools\math-subcategory-migration.test.cjs:7:1
+✖ subcategory migration retains practice IDs, content, selections and Foundation placement (27.607ms)
+  AssertionError [ERR_ASSERTION]: foundation-statistics-and-probability-counting-sets-6rpha4
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\math-subcategory-migration.test.cjs:26:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\overlapping-groups.test.cjs:7:1
+✖ every overlapping-groups variant has a valid population, distinct stem and exactly one correct choice (2966.2244ms)
+  AssertionError [ERR_ASSERTION]: Source question 76 is included in the generated bank
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\overlapping-groups.test.cjs:25:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\overlapping-groups.test.cjs:40:1
+✖ Overlapping Groups is a statistics topic and catalog registration preserves existing resources (363.4985ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(taxonomy.categories.find(c=>c.label==='Statistics and Probability').topics.includes('Overlapping Groups'))
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\overlapping-groups.test.cjs:45:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\practice-organization.test.cjs:23:1
+✖ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (11.4916ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:28:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:61:1
+✖ registration restores a generator to its skill even when migration reused legacy module IDs (20.8513ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:66:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:72:1
+✖ metadata is validated and survives saves and session snapshots without changing the generated questions (1.6229ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:75:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:95:1
+✖ bulk disabling the last generators hides empty focused modules and remains saveable (4.4057ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Choose an existing math category and topic."
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Choose an existing math category and topic.
+        at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+        at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+        at Array.map (<anonymous>)
+        at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+        at C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:27
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:10)
+        at Test.runInAsyncScope (node:async_hooks:227:14),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tools\practice-organization.test.cjs:142:1
+✖ Skill is the module name; legacy classifications never replace it on reads or saves (1.839ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:148:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:171:1
+✖ choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions (1.7261ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:240:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:242:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:241:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:181:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\study-hall-view.test.cjs:6:1
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (3519.5159ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Start Foundation Building/. Input:
+  
+  '<main class="student-portal-shell "><header class="student-portal-topbar"><button aria-label="Open navigation" class="student-portal-mobile-menu" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button><a href="/study-hall/shsat" class="student-portal-brand"><strong>The Learning Room</strong><small>Student portal</small></a><form class="student-portal-global-search"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><label class="sr-only" for="student-portal-search">Search assignments and Study Hall</label><input id="student-portal-search" placeholder="Search assignments and Study Hall" type="search" value=""/></form><div class="student-portal-profile-menu"><button aria-expanded="false" aria-haspopup="menu" aria-label="Account menu for QA Student" class="student-portal-profile-trigger" type="button"><span>QS</span><strong>QA Student</strong><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div></header><aside class="student-portal-sidebar "><button aria-label="Close navigation" class="student-portal-mobile-close" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button><div class="student-portal-course-context"><small>Current course</small><strong>SHSAT Prep</strong><span>Fall intensive</span></div><nav aria-label="Student portal navigation"><a href="/study-hall/shsat" class="is-active"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house lucide-home" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span>Home</span></a><a href="/study-hall/shsat/assignments"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span>Assignments</span><em>3</em></a><a href="/study-hall/shsat/boards"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg><span>Boards</span></a><a href="/study-hall/shsat#coming-up"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M8 13h.01"></path><path d="M12 13h.01"></path><path d="M16 13h.01"></path><path d="M8 17h.01"></path><path d="M12 17h.01"></path><path d="M16 17h.01"></path></svg><span>Calendar</span></a><button aria-expanded="false" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-bookmark lucide-book-marked" aria-hidden="true"><path d="M10 2v7.751a.25.25 0 00.407.195l2.28-1.834a.5.5 0 01.627 0l2.28 1.834A.25.25 0 0016 9.751V2"></path><path d="M4 19.5v-15A2.5 2.5 0 016.5 2H19a1 1 0 011 1v18a1 1 0 01-1 1H6.5a1 1 0 010-5H20"></path></svg><span>Study Hall</span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><a href="/study-hall/shsat/answer-sheets"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span>Answer sheets</span></a><a href="/study-hall/shsat/assessments"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-library" aria-hidden="true"><path d="m16 6 4 14"></path><path d="M12 6v14"></path><path d="M8 8v12"></path><path d="M4 4v16"></path></svg><span>Assessments</span></a><a href="/study-hall/shsat/results"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column lucide-bar-chart-3" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg><span>Results</span></a><a href="/study-hall/shsat/games"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2" aria-hidden="true"><line x1="6" x2="10" y1="11" y2="11"></line><line x1="8" x2="8" y1="9" y2="13"></line><line x1="15" x2="15.01" y1="12" y2="12"></line><line x1="18" x2="18.01" y1="10" y2="10"></line><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"></path></svg><span>Game rooms</span></a><a href="/study-hall/shsat/achievements"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy" aria-hidden="true"><path d="M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2"></path><path d="M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2"></path><path d="M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3"></path><path d="M4 22h16"></path><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path><path d="M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3"></path></svg><span>Achievements</span></a></nav><div class="student-portal-personal-links"><small>Quick access</small><a href="/study-hall/shsat/materials#recent"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-3" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6h4"></path></svg><span>Recently viewed</span></a><a href="/study-hall/shsat/materials#saved"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-bookmark lucide-book-marked" aria-hidden="true"><path d="M10 2v7.751a.25.25 0 00.407.195l2.28-1.834a.5.5 0 01.627 0l2.28 1.834A.25.25 0 0016 9.751V2"></path><path d="M4 19.5v-15A2.5 2.5 0 016.5 2H19a1 1 0 011 1v18a1 1 0 01-1 1H6.5a1 1 0 010-5H20"></path></svg><span>Saved items</span></a></div><button class="student-portal-collapse" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-close lucide-sidebar-close" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path><path d="m16 15-3-3 3-3"></path></svg><span>Collapse navigation</span></button></aside><section class="student-portal-main"><div class="student-course-home"><header class="student-course-heading"><div><h1>Make today count.</h1><span>Welcome back, QA. Pick up your assignments, then explore something new.</span></div><a href="/study-hall/shsat/assignments">All assignments <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fi'... 59060 more characters
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\study-hall-view.test.cjs:14:60)
+      at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '<main class="student-portal-shell "><header class="student-portal-topbar"><button aria-label="Open navigation" class="student-portal-mobile-menu" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu" aria-hidden="true"><path d="M4 5h16"></path><path d="M4 12h16"></path><path d="M4 19h16"></path></svg></button><a href="/study-hall/shsat" class="student-portal-brand"><strong>The Learning Room</strong><small>Student portal</small></a><form class="student-portal-global-search"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search" aria-hidden="true"><path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle></svg><label class="sr-only" for="student-portal-search">Search assignments and Study Hall</label><input id="student-portal-search" placeholder="Search assignments and Study Hall" type="search" value=""/></form><div class="student-portal-profile-menu"><button aria-expanded="false" aria-haspopup="menu" aria-label="Account menu for QA Student" class="student-portal-profile-trigger" type="button"><span>QS</span><strong>QA Student</strong><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button></div></header><aside class="student-portal-sidebar "><button aria-label="Close navigation" class="student-portal-mobile-close" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></button><div class="student-portal-course-context"><small>Current course</small><strong>SHSAT Prep</strong><span>Fall intensive</span></div><nav aria-label="Student portal navigation"><a href="/study-hall/shsat" class="is-active"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-house lucide-home" aria-hidden="true"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"></path><path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg><span>Home</span></a><a href="/study-hall/shsat/assignments"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span>Assignments</span><em>3</em></a><a href="/study-hall/shsat/boards"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout-dashboard" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"></rect><rect width="7" height="5" x="14" y="3" rx="1"></rect><rect width="7" height="9" x="14" y="12" rx="1"></rect><rect width="7" height="5" x="3" y="16" rx="1"></rect></svg><span>Boards</span></a><a href="/study-hall/shsat#coming-up"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar-days" aria-hidden="true"><path d="M8 2v3"></path><path d="M16 2v3"></path><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path><path d="M8 13h.01"></path><path d="M12 13h.01"></path><path d="M16 13h.01"></path><path d="M8 17h.01"></path><path d="M12 17h.01"></path><path d="M16 17h.01"></path></svg><span>Calendar</span></a><button aria-expanded="false" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-bookmark lucide-book-marked" aria-hidden="true"><path d="M10 2v7.751a.25.25 0 00.407.195l2.28-1.834a.5.5 0 01.627 0l2.28 1.834A.25.25 0 0016 9.751V2"></path><path d="M4 19.5v-15A2.5 2.5 0 016.5 2H19a1 1 0 011 1v18a1 1 0 01-1 1H6.5a1 1 0 010-5H20"></path></svg><span>Study Hall</span><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-right" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button><a href="/study-hall/shsat/answer-sheets"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard-list" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><path d="M12 11h4"></path><path d="M12 16h4"></path><path d="M8 11h.01"></path><path d="M8 16h.01"></path></svg><span>Answer sheets</span></a><a href="/study-hall/shsat/assessments"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-library" aria-hidden="true"><path d="m16 6 4 14"></path><path d="M12 6v14"></path><path d="M8 8v12"></path><path d="M4 4v16"></path></svg><span>Assessments</span></a><a href="/study-hall/shsat/results"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chart-column lucide-bar-chart-3" aria-hidden="true"><path d="M3 3v16a2 2 0 0 0 2 2h16"></path><path d="M18 17V9"></path><path d="M13 17V5"></path><path d="M8 17v-3"></path></svg><span>Results</span></a><a href="/study-hall/shsat/games"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gamepad-2" aria-hidden="true"><line x1="6" x2="10" y1="11" y2="11"></line><line x1="8" x2="8" y1="9" y2="13"></line><line x1="15" x2="15.01" y1="12" y2="12"></line><line x1="18" x2="18.01" y1="10" y2="10"></line><path d="M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z"></path></svg><span>Game rooms</span></a><a href="/study-hall/shsat/achievements"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-trophy" aria-hidden="true"><path d="M10 14.66V17a1 1 0 0 1-1 1 2 2 0 0 0-2 2v2"></path><path d="M14 14.66V17a1 1 0 0 0 1 1 2 2 0 0 1 2 2v2"></path><path d="M17.916 10H19.5A2.5 2.5 0 0 0 22 7.5V5a1 1 0 0 0-1-1h-3"></path><path d="M4 22h16"></path><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path><path d="M6.084 10H4.5A2.5 2.5 0 0 1 2 7.5V5a1 1 0 0 1 1-1h3"></path></svg><span>Achievements</span></a></nav><div class="student-portal-personal-links"><small>Quick access</small><a href="/study-hall/shsat/materials#recent"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-3" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6h4"></path></svg><span>Recently viewed</span></a><a href="/study-hall/shsat/materials#saved"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-bookmark lucide-book-marked" aria-hidden="true"><path d="M10 2v7.751a.25.25 0 00.407.195l2.28-1.834a.5.5 0 01.627 0l2.28 1.834A.25.25 0 0016 9.751V2"></path><path d="M4 19.5v-15A2.5 2.5 0 016.5 2H19a1 1 0 011 1v18a1 1 0 01-1 1H6.5a1 1 0 010-5H20"></path></svg><span>Saved items</span></a></div><button class="student-portal-collapse" type="button"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-panel-left-close lucide-sidebar-close" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"></rect><path d="M9 3v18"></path><path d="m16 15-3-3 3-3"></path></svg><span>Collapse navigation</span></button></aside><section class="student-portal-main"><div class="student-course-home"><header class="student-course-heading"><div><h1>Make today count.</h1><span>Welcome back, QA. Pick up your assignments, then explore something new.</span></div><a href="/study-hall/shsat/assignments">All assignments <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fi'... 59060 more characters,
+    expected: /Start Foundation Building/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tools\symbolic-fraction-division.test.cjs:68:1
+✖ source example, all seed offsets, repeat cycle, determinism, and safe indices (151.6914ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal 0. What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?'
+  - 'Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal \\(0\\). What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?'
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\symbolic-fraction-division.test.cjs:71:48)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal 0. What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?',
+    expected: 'Suppose \\(M=\\frac{w}{x}\\), \\(N=\\frac{y}{z}\\), and \\(w\\), \\(x\\), \\(y\\), and \\(z\\) do not equal \\(0\\). What is \\(\\frac{M}{N}\\) in terms of \\(w\\), \\(x\\), \\(y\\), and \\(z\\)?',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tools\word-problem-practice.test.cjs:26:1
+✖ every remaining-reading stem asks for additional time and has one exact hours answer (269.0413ms)
+  AssertionError [ERR_ASSERTION]: Includes the source stem: 2021-2022-form-a-q95
+      at verifyCycle (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:16:9)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:28:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:385:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\word-problem-practice.test.cjs:38:1
+✖ every mixture stem uses all ratio parts and all projects with one correct choice (1521.6137ms)
+  AssertionError [ERR_ASSERTION]: Includes the source stem: 2021-2022-form-a-q114
+      at verifyCycle (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:16:9)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:40:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tools\word-problem-practice.test.cjs:59:1
+✖ batch registration preserves teacher resources and snapshots all three generators in their own topics (22.4869ms)
+  Error: Individual modules can only be contained in Foundation Building or General Practice in the same topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:174:57)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:256:97)
+      at addBuiltinPractice (C:\Users\Nathan Im\Desktop\my-app-main\tools\register-practice-generator.cjs:68:3)
+      at Array.reduce (<anonymous>)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\word-problem-practice.test.cjs:65:60)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12) {
+    status: 400
+  }

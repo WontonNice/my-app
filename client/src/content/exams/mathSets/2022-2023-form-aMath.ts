@@ -231,7 +231,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "In the parallelogram above, what is the value of \\(x\\)?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q68-43f1dddf0dac144a.png\" alt=\"Math diagram\" width=\"220\">In the parallelogram above, what is the value of \\(x\\)?",
     "topic": "Geometry",
-    "subtopic": "Triangles & Polygons",
+    "subtopic": "Quadrilaterals & Polygons",
     "choices": [
       {
         "id": "A",
@@ -385,7 +385,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "A scale drawing of a new pool is shown above. All the corners are right angles. What is the perimeter of the actual pool?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q73-f36a69c56a7b9ceb.png\" alt=\"Math diagram\" width=\"220\">A scale drawing of a new pool is shown above. All the corners are right angles. What is the perimeter of the actual pool?",
     "topic": "Geometry",
-    "subtopic": "Similarity & Scale Drawings",
+    "subtopic": "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -472,7 +472,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "On parallelogram PQRS above, the length of \\(\\overline{QT}\\) is 18 centimeters. What is the area of the parallelogram?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q76-59198cc4912cff44.png\" alt=\"Math diagram\" width=\"250\">On parallelogram PQRS above, the length of \\(\\overline{QT}\\) is 18 centimeters. What is the area of the parallelogram?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -642,7 +642,7 @@ export const content20222023FormAMathSection: ExamMathSection = {
     "prompt": "What is the distance between the midpoints of \\(\\overline{MN}\\) and \\(\\overline{RS}\\)?",
     "promptHtml": "<img src=\"/exam-images/2022-2023-form-a-2022-2023-form-a-q82-07f5aef82cae8571.png\" alt=\"Math diagram\" width=\"360\">What is the distance between the midpoints of \\(\\overline{MN}\\) and \\(\\overline{RS}\\)?",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",

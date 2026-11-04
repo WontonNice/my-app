@@ -5,7 +5,21 @@ export type MathDifficulty = typeof mathDifficulties[number];
 export type MathRepresentation = "diagram" | "graph" | "table";
 export type MathReviewIssue = "missing_category" | "missing_subcategory" | "missing_difficulty" | "missing_source" | "missing_answer" | "missing_explanation" | "missing_diagram" | "invalid_formatting" | "invalid_answer" | "invalid_classification" | "possible_duplicate" | "teacher_review";
 export type MathStandardMapping = { code: string; verified: boolean; referenceUrl?: string; note?: string };
+export type MathClassification = {
+  source: "ai" | "teacher" | "unknown";
+  status: "needs_review" | "approved";
+  category: string;
+  subcategory: string;
+  at: string;
+  actor?: string;
+  approvedAt?: string;
+  approvedBy?: string;
+  reason?: string;
+};
+export type MathClassificationFilter = "ai" | "teacher" | "approved" | "unverified";
+export type MathMetadataPatch = Omit<MathQuestionMetadata, "classification"> & { approveClassification?: boolean };
 export type MathQuestionMetadata = {
+  classification?: MathClassification;
   skilled?: string;
   category?: string;
   subcategory?: string;
@@ -35,6 +49,7 @@ export type MathQuestionPerformance = {
 export type MathDuplicateKind = "exact" | "possible" | "template";
 export type MathDuplicateGroup = { id: string; kind: MathDuplicateKind; questionIds: string[]; score: number; reason: string };
 export type MathCatalogRow = {
+  classification?: MathClassification;
   personal?: import("./teacherLabels").TeacherQuestionNote;
   teacherLabelNames?: string[];
   id: string; prompt: string; type: string; category: string; subcategory: string;
@@ -46,6 +61,7 @@ export type MathCatalogRow = {
   duplicateKinds: MathDuplicateKind[]; performance: MathQuestionPerformance | null;
 };
 export type MathCatalogFilters = {
+  classification?: MathClassificationFilter;
   skilled?: string[];
   search?: string;
   teacherLabelIds?: string[]; favoritesOnly?: boolean;

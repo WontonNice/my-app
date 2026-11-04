@@ -1,0 +1,465 @@
+{
+  "taxonomy": [
+    {
+      "label": "Algebra",
+      "topics": [
+        "Algebraic Expressions",
+        "Equations & Systems",
+        "Inequalities",
+        "Functions & Graphs",
+        "Patterns & Sequences"
+      ]
+    },
+    {
+      "label": "Geometry",
+      "topics": [
+        "Lines & Angles",
+        "Triangles",
+        "Quadrilaterals & Polygons",
+        "Circles",
+        "Perimeter, Area & Composite Figures",
+        "Surface Area & Volume",
+        "Coordinate Geometry & Transformations",
+        "Similarity, Scale & Proportional Geometry"
+      ]
+    },
+    {
+      "label": "Statistics and Probability",
+      "topics": [
+        "Data Displays & Sampling",
+        "Averages & Spread",
+        "Counting & Sets",
+        "Probability"
+      ]
+    },
+    {
+      "label": "Ratios and Proportional Relationships",
+      "topics": [
+        "Ratios & Proportions",
+        "Rates & Unit Rates",
+        "Percentages"
+      ]
+    },
+    {
+      "label": "Arithmetic & Number Sense",
+      "topics": [
+        "Number Types & Properties",
+        "Integers & Absolute Value",
+        "Fractions & Decimals",
+        "Order of Operations",
+        "Exponents, Roots & Scientific Notation",
+        "Units & Conversions"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "2020-2021-form-b-q58",
+      "category": "Algebra",
+      "subcategory": "Algebraic Expressions",
+      "question": {
+        "id": "2020-2021-form-b-q58",
+        "instructions": "Enter your answer in the space provided. Enter only your answer.",
+        "instructionsHtml": "Enter your answer in the space provided. Enter only your answer.",
+        "points": 1,
+        "prompt": "\\[\\frac{3}{5}(2x+5)-2x\\]\n\nAfter the expression above is simplified, what is the coefficient of \\(x\\) expressed as a decimal?",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "correctTextAnswers": [
+          "-0.8"
+        ],
+        "entryLayout": "x_equals",
+        "type": "numeric_entry",
+        "skilled": "TBD"
+      },
+      "sources": [
+        {
+          "assessmentId": "2020-2021-form-b",
+          "title": "2020-2021 Form B",
+          "number": 1,
+          "year": "2020-2021",
+          "form": "B",
+          "source": "2020-2021 Form B"
+        }
+      ]
+    },
+    {
+      "id": "2020-2021-form-b-q88",
+      "category": "Algebra",
+      "subcategory": "Algebraic Expressions",
+      "question": {
+        "id": "2020-2021-form-b-q88",
+        "explanation": "",
+        "points": 1,
+        "prompt": "If \\(y=4x\\), what is the value of \\(3y+2(3y+5)-x\\) in terms of \\(x\\)?",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "choices": [
+          {
+            "id": "A",
+            "math": "8x+10",
+            "text": "8x plus 10"
+          },
+          {
+            "id": "B",
+            "math": "32x+10",
+            "text": "32x plus 10"
+          },
+          {
+            "id": "C",
+            "math": "35x+10",
+            "text": "35x plus 10"
+          },
+          {
+            "id": "D",
+            "math": "36x+10",
+            "text": "36x plus 10"
+          }
+        ],
+        "correctChoiceId": "C",
+        "type": "multiple_choice",
+        "skilled": "TBD"
+      },
+      "sources": [
+        {
+          "assessmentId": "2020-2021-form-b",
+          "title": "2020-2021 Form B",
+          "number": 31,
+          "year": "2020-2021",
+          "form": "B",
+          "source": "2020-2021 Form B"
+        }
+      ]
+    },
+    {
+      "id": "2020-2021-form-b-q101",
+      "category": "Algebra",
+      "subcategory": "Inequalities",
+      "question": {
+        "id": "2020-2021-form-b-q101",
+        "explanation": "",
+        "points": 1,
+        "prompt": "Which inequality is equivalent to \\(6x-20<5x-2(5-3x)\\)?",
+        "topic": "Algebra",
+        "subtopic": "Inequalities",
+        "choices": [
+          {
+            "id": "A",
+            "math": "x<16",
+            "text": "x is less than 16"
+          },
+          {
+            "id": "B",
+            "math": "x<\\frac{5}{2}",
+            "text": "x is less than five-halves"
+          },
+          {
+            "id": "C",
+            "math": "x<-2",
+            "text": "x is less than negative 2"
+          },
+          {
+            "id": "D",
+            "math": "x>-2",
+            "text": "x is greater than negative 2"
+          }
+        ],
+        "correctChoiceId": "D",
+        "type": "multiple_choice",
+        "skilled": "TBD"
+      },
+      "sources": [
+        {
+          "assessmentId": "2020-2021-form-b",
+          "title": "2020-2021 Form B",
+          "number": 44,
+          "year": "2020-2021",
+          "form": "B",
+          "source": "2020-2021 Form B"
+        }
+      ]
+    },
+    {
+      "id": "2020-2021-form-b-q110",
+      "category": "Algebra",
+      "subcategory": "Inequalities",
+      "question": {
+        "id": "2020-2021-form-b-q110",
+        "explanation": "",
+        "points": 1,
+        "prompt": "Which graph represents the solution to \\(|x+1|\\geq 2\\)?",
+        "topic": "Algebra",
+        "subtopic": "Inequalities",
+        "choices": [
+          {
+            "id": "A",
+            "html": "<img src=\"/exam-images/2020-2021-form-b-2020-2021-form-b-q110-0bcaedd677265b57.png\" alt=\"Math diagram\" width=\"250\">",
+            "text": ""
+          },
+          {
+            "id": "B",
+            "html": "<img src=\"/exam-images/2020-2021-form-b-2020-2021-form-b-q110-2b5a0fc68b80cdb1.png\" alt=\"Math diagram\" width=\"250\">",
+            "text": ""
+          },
+          {
+            "id": "C",
+            "html": "<img src=\"/exam-images/2020-2021-form-b-2020-2021-form-b-q110-8430194facda1976.png\" alt=\"Math diagram\" width=\"250\">",
+            "text": ""
+          },
+          {
+            "id": "D",
+            "html": "<img src=\"/exam-images/2020-2021-form-b-2020-2021-form-b-q110-844b58d9f11432b6.png\" alt=\"Math diagram\" width=\"250\">",
+            "text": ""
+          }
+        ],
+        "correctChoiceId": "A",
+        "type": "multiple_choice",
+        "skilled": "TBD"
+      },
+      "sources": [
+        {
+          "assessmentId": "2020-2021-form-b",
+          "title": "2020-2021 Form B",
+          "number": 53,
+          "year": "2020-2021",
+          "form": "B",
+          "source": "2020-2021 Form B"
+        }
+      ]
+    },
+    {
+      "id": "2021-2022-form-a-q64",
+      "category": "Algebra",
+      "subcategory": "Algebraic Expressions",
+      "question": {
+        "id": "2021-2022-form-a-q64",
+        "source": {
+          "sourceFamily": "official_shsat",
+          "sourceFormat": "pdf",
+          "playerProfile": "testnav",
+          "sourceId": "official-shsat-2021-2022-form-a",
+          "label": "2021-2022 Form A",
+          "year": "2021-2022",
+          "form": "A",
+          "sourceQuestion": "64",
+          "pages": [
+            40
+          ]
+        },
+        "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q064-explanation-1.png\" alt=\"Official explanation for source question 64; original printed answer labels retained.\" width=\"234\"></p>",
+        "skilled": "TBD",
+        "explanation": "(E) 7+3n+6-4n-8=\n(7 #6- 8) + (3n 7 4n) =\nS_n",
+        "points": 1,
+        "prompt": "\\(7+(3n+6)-(4n+8)=\\)",
+        "promptHtml": "<p>\\(7+(3n+6)-(4n+8)=\\)</p>",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "choices": [
+          {
+            "id": "A",
+            "math": "5-n",
+            "text": "5-n"
+          },
+          {
+            "id": "B",
+            "math": "5+n",
+            "text": "5+n"
+          },
+          {
+            "id": "C",
+            "math": "21-n",
+            "text": "21-n"
+          },
+          {
+            "id": "D",
+            "math": "21+n",
+            "text": "21+n"
+          }
+        ],
+        "correctChoiceId": "A",
+        "type": "multiple_choice"
+      },
+      "sources": [
+        {
+          "assessmentId": "2021-2022-form-a",
+          "title": "2021-2022 Form A",
+          "number": 7,
+          "year": "2021-2022",
+          "form": "A",
+          "source": "2021-2022 Form A"
+        }
+      ]
+    },
+    {
+      "id": "2021-2022-form-a-q71",
+      "category": "Algebra",
+      "subcategory": "Inequalities",
+      "question": {
+        "id": "2021-2022-form-a-q71",
+        "source": {
+          "sourceFamily": "official_shsat",
+          "sourceFormat": "pdf",
+          "playerProfile": "testnav",
+          "sourceId": "official-shsat-2021-2022-form-a",
+          "label": "2021-2022 Form A",
+          "year": "2021-2022",
+          "form": "A",
+          "sourceQuestion": "71",
+          "pages": [
+            42
+          ]
+        },
+        "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q071-explanation-1.png\" alt=\"Official explanation for source question 71; original printed answer labels retained.\" width=\"328\"></p>",
+        "skilled": "TBD",
+        "explanation": "(D) Multiply each term by 2 to eliminate\nthe fraction, and isolate x :\n~4(2) < (sJe < 2(2)\n“8<x<4\nTherefore, x must be between -8 and 4.",
+        "points": 1,
+        "prompt": "Which number line below shows the solution to the inequality \\(-4<\\frac{x}{2}<2\\)?",
+        "promptHtml": "<p>Which number line below shows the solution to the inequality \\(-4&lt;\\frac{x}{2}&lt;2\\)?</p>",
+        "topic": "Algebra",
+        "subtopic": "Inequalities",
+        "choices": [
+          {
+            "id": "A",
+            "html": "<p><img src=\"/exam-images/pdf-2021-2022-a-q071-choice-A.png\" alt=\"Source diagram for question 71\" width=\"250\"></p>",
+            "text": ""
+          },
+          {
+            "id": "B",
+            "html": "<p><img src=\"/exam-images/pdf-2021-2022-a-q071-choice-B.png\" alt=\"Source diagram for question 71\" width=\"250\"></p>",
+            "text": ""
+          },
+          {
+            "id": "C",
+            "html": "<p><img src=\"/exam-images/pdf-2021-2022-a-q071-choice-C.png\" alt=\"Source diagram for question 71\" width=\"250\"></p>",
+            "text": ""
+          },
+          {
+            "id": "D",
+            "html": "<p><img src=\"/exam-images/pdf-2021-2022-a-q071-choice-D.png\" alt=\"Source diagram for question 71\" width=\"250\"></p>",
+            "text": ""
+          }
+        ],
+        "correctChoiceId": "D",
+        "type": "multiple_choice"
+      },
+      "sources": [
+        {
+          "assessmentId": "2021-2022-form-a",
+          "title": "2021-2022 Form A",
+          "number": 14,
+          "year": "2021-2022",
+          "form": "A",
+          "source": "2021-2022 Form A"
+        }
+      ]
+    },
+    {
+      "id": "2025-2026-form-a-math-2",
+      "category": "Algebra",
+      "subcategory": "Algebraic Expressions",
+      "question": {
+        "id": "2025-2026-form-a-math-2",
+        "skilled": "TBD",
+        "points": 1,
+        "prompt": "Three expressions are given:\n\n\\[-2(2.5n + 4)\\]\n\\[5 - n\\]\n\\[3(2n + 7)\\]\n\nWhich of these are equivalent to the sum of these three expressions?\n\nSelect the **two** correct answers.",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "choices": [
+          {
+            "id": "A",
+            "math": "5 - n + 6n + 21 - 5n - 8",
+            "text": "5 - n + 6n + 21 - 5n - 8"
+          },
+          {
+            "id": "B",
+            "math": "5 - n + 6n + 21 - 5n + 8",
+            "text": "5 - n + 6n + 21 - 5n + 8"
+          },
+          {
+            "id": "C",
+            "math": "5 - n + 5n + 21 - 5n - 8",
+            "text": "5 - n + 5n + 21 - 5n - 8"
+          },
+          {
+            "id": "D",
+            "math": "18 - n",
+            "text": "18 - n"
+          },
+          {
+            "id": "E",
+            "math": "18",
+            "text": "18"
+          },
+          {
+            "id": "F",
+            "math": "34",
+            "text": "34"
+          }
+        ],
+        "correctChoiceIds": [
+          "A",
+          "E"
+        ],
+        "requiredSelections": 2,
+        "type": "multi_select"
+      },
+      "sources": [
+        {
+          "assessmentId": "2025-2026-form-a",
+          "title": "2025-2026 Form A",
+          "number": 11,
+          "year": "2025-2026",
+          "form": "A",
+          "source": "2025-2026 Form A"
+        }
+      ]
+    },
+    {
+      "id": "average-of-consecutive-integers",
+      "category": "Algebra",
+      "subcategory": "Algebraic Expressions",
+      "question": {
+        "id": "average-of-consecutive-integers",
+        "skilled": "TBD",
+        "points": 1,
+        "prompt": "The least of 5 consecutive integers is \\(l\\), and the greatest is \\(g\\). What is the value of \\(\\frac{l+g}{2}\\) in terms of \\(l\\)?",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "choices": [
+          {
+            "id": "A",
+            "math": "2l",
+            "text": "2l"
+          },
+          {
+            "id": "B",
+            "math": "3l",
+            "text": "3l"
+          },
+          {
+            "id": "C",
+            "math": "l+2",
+            "text": "l plus 2"
+          },
+          {
+            "id": "D",
+            "math": "l+5",
+            "text": "l plus 5"
+          }
+        ],
+        "correctChoiceId": "C",
+        "type": "multiple_choice"
+      },
+      "sources": [
+        {
+          "assessmentId": "2025-2026-form-a",
+          "title": "2025-2026 Form A",
+          "number": 28,
+          "year": "2025-2026",
+          "form": "A",
+          "source": "2025-2026 Form A"
+        }
+      ]
+    }
+  ]
+}

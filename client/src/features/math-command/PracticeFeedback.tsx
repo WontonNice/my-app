@@ -10,12 +10,12 @@ function ResultIndicator({ correct }: { correct: boolean }) {
   return <><Icon size={18} aria-hidden="true"/>{correct ? 'Correct' : 'Incorrect'}</>;
 }
 
-export function PracticeStats({ state, correct, personalBest = state.longestStreak }: { state: PracticeState; correct?: boolean; personalBest?: number }) {
+export function PracticeStats({ state, correct, personalBest = state.longestStreak, showStars = true }: { state: PracticeState; correct?: boolean; personalBest?: number; showStars?:boolean }) {
   return <div className="mc-practice-stats" role="status" aria-label="Session statistics">
     <span>Streak <strong>{state.streak}</strong></span>
     <span>Longest streak <strong>{personalBest}</strong></span>
     <span>Accuracy <strong>{practiceAccuracy(state)}</strong> <small>({state.correct}/{state.checked})</small></span>
-    <PracticeStars longestStreak={personalBest} compact/>
+    {showStars&&<PracticeStars longestStreak={personalBest} step={state.practiceMode==='focused'?5:10} compact/>}
     {correct !== undefined && <span className={`mc-practice-result ${correct ? 'is-correct' : 'is-incorrect'}`}><ResultIndicator correct={correct}/></span>}
   </div>;
 }

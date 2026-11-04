@@ -11,7 +11,7 @@ import { reviewQuestions, type CorrectionSubmission } from "../server/src/shared
 import "../client/src/styles/global.css";
 import "../client/src/styles/examCorrections.css";
 
-const english = { id: "ela-1", type: "multiple_choice", topic: "Inference", prompt: "Which statement explains why the narrator changes her mind?", choices: [{ id: "A", text: "She decides the trip is too difficult." }, { id: "B", text: "She sees evidence that challenges her first impression." }, { id: "C", text: "She wants to follow her friends." }, { id: "D", text: "She forgets her original plan." }], correctChoiceId: "B" };
+const english = { explanationHtml: "<p><strong>Choice B is correct.</strong> Maya notices tracks and hears birds, evidence that changes her first impression of the trail.</p>", id: "ela-1", type: "multiple_choice", topic: "Inference", prompt: "Which statement explains why the narrator changes her mind?", choices: [{ id: "A", text: "She decides the trip is too difficult." }, { id: "B", text: "She sees evidence that challenges her first impression." }, { id: "C", text: "She wants to follow her friends." }, { id: "D", text: "She forgets her original plan." }], correctChoiceId: "B" };
 const math = { id: "math-1", type: "numeric_entry", topic: "Algebra", subtopic: "Equations & Systems", prompt: "Solve for x: \\(2x + 3 = 13\\)", correctTextAnswers: ["5"] };
 const content = { assessmentId: "2025-2026-form-b", title: "Fall practice · Fictional QA", passageSets: [{ id: "passage-1", passage: { id: "passage-1", title: "A new perspective", lines: [{ text: "At first, Maya thought the trail would be empty. Then she noticed small tracks in the mud and heard birds in the trees. She stopped to look more closely." }] }, questions: [english, { ...english, id: "ela-2", prompt: "Which detail supports the narrator’s new perspective?" }] }], mathSection: { questions: Array.from({ length: 12 }, (_, index) => ({ ...math, id: `math-${index + 1}` })) } };
 const result = createExamResult(content as never, { "ela-1": "A", "ela-2": "B", "math-1": "4" });
@@ -22,6 +22,7 @@ const students = [{ id: "sample-student", fullName: "Maya Chen · QA", classes: 
 window.fetch = async (input, init) => {
   const url = String(input), body = init?.body ? JSON.parse(String(init.body)) : {};
   if (url.includes("/access")) return Response.json({ assessment: { ...assessment, correctionsOpen: body.open } });
+  if (url.includes("/api/infinite-practice/catalog")) return Response.json({ catalog: { modules: [], generators: [] }, taxonomy: [{label: "Algebra", topics: ["Equations & Systems"]}, {label: "Statistics and Probability", topics: ["Probability"]}] });
   if (url.includes("/submissions")) return Response.json({ submissions: [submission] });
   if (url.includes("/api/assessments/teacher")) return Response.json({ assessments: [assessment] });
   if (url.includes("/api/progress/students")) return Response.json({ students });

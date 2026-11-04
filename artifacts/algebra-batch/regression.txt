@@ -1,0 +1,1273 @@
+
+> nathantutors@0.0.0 test:practice-studio
+> node --test tools/foundation-customization.test.cjs tools/prob-2.test.cjs tools/probability-batch.test.cjs tools/today-generator-batch.test.cjs server/tests/generator-planner.test.cjs tools/math-subcategory-migration.test.cjs server/tests/generator-template.test.cjs server/tests/math-classification-skills.test.cjs tools/practice-organization.test.cjs server/tests/practice-catalog.test.cjs tools/topic-practice-defaults.test.cjs tools/inequality-practice.test.cjs tools/writing-inequalities.test.cjs tools/overlapping-groups.test.cjs tools/word-problem-practice.test.cjs tools/symbolic-fraction-division.test.cjs tools/student-practice-updates.test.cjs tools/probability-practice.test.cjs tools/practice-player.test.cjs tools/math-study-hall.test.cjs tools/study-hall-view.test.cjs tools/algebra-planner.test.cjs
+
+
+<--- Last few GCs --->
+
+[27500:000002A330DCD000]      611 ms: Scavenge 44.1 (53.3) -> 39.5 (56.0) MB, pooled: 0 MB, 5.37 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[27500:000002A330DCD000]      632 ms: Mark-Compact 40.9 (57.8) -> 29.3 (66.3) MB, pooled: 0 MB, 5.69 / 0.00 ms  (+ 0.2 ms in 20 steps since start of marking, biggest step 0.1 ms, walltime since start of marking 19 ms) (average mu = 0.991, current mu = 0.9
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF79B3D0CCF 
+ 2: 00007FF79C01F697 
+ 3: 00007FF79B999576 
+ 4: 00007FF79CF0B512 
+ 5: 00007FF79CF0B380 
+ 6: 00007FF79CA415CA 
+ 7: 00007FF79CA1AA50 
+ 8: 00007FF79CA1794F 
+ 9: 00007FF79CA1729D 
+10: 00007FF79BF9335F 
+11: 00007FF79BF583ED 
+12: 00007FF79BF580E5 
+13: 00007FF79C80519F 
+14: 00007FF79B32081E 
+15: 00007FF79C0746D6 
+16: 00007FF79D2DA033 
+17: 00007FFFC0E17374 BaseThreadInitThunk+20
+18: 00007FFFC2C7CC91 RtlUserThreadStart+33
+✖ server\tests\generator-planner.test.cjs (919.2738ms)
+
+<--- Last few GCs --->
+
+[15160:000001A1A8A68000]      648 ms: Scavenge 44.3 (53.3) -> 41.3 (71.6) MB, pooled: 0 MB, 5.17 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[15160:000001A1A8A68000]      685 ms: Mark-Compact 43.2 (71.6) -> 29.6 (64.6) MB, pooled: 0 MB, 9.94 / 0.00 ms  (+ 0.3 ms in 19 steps since start of marking, biggest step 0.1 ms, walltime since start of marking 25 ms) (average mu = 0.985, current mu = 0.9
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+
+<--- Last few GCs --->
+
+[15160:000001A1A8A68000]      648 ms: Scavenge 44.3 (53.3) -> 41.3 (71.6) MB, pooled: 0 MB, 5.17 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[15160:000001A1A8A68000]      685 ms: Mark-Compact 43.2 (71.6) -> 29.6 (64.6) MB, pooled: 0 MB, 9.94 / 0.00 ms  (+ 0.3 ms in 19 steps since start of marking, biggest step 0.1 ms, walltime since start of marking 25 ms) (average mu = 0.985, current mu = 0.9
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF79B3D0CCF 
+ 2: 00007FF79C01F697 
+ 3: 00007FF79B999576 
+ 4: 00007FF79B55D144 
+ 5: 00007FF79CD3CB65 
+ 6: 00007FF79CD3C8AB 
+ 7: 00007FF79CD3C5F5 
+ 8: 00007FF79CD3C33B 
+ 9: 00007FF79CD4F1C6 
+10: 00007FF79CD78AD6 
+11: 00007FF79CD787E2 
+12: 00007FF79CD380B0 
+13: 00007FF79CD34AC7 
+14: 00007FF79CD34639 
+15: 00007FF79CD340F4 
+16: 00007FF79CD3354F 
+17: 00007FF79CD331CE 
+18: 00007FF79CA20CB6 
+19: 00007FF79CA17E68 
+20: 00007FF79CA17370 
+21: 00007FF79BF9335F 
+22: 00007FF79BF583ED 
+23: 00007FF79BF580E5 
+24: 00007FF79C80519F 
+25: 00007FF79B32081E 
+26: 00007FF79C0746D6 
+27: 00007FF79D2DA033 
+28: 00007FFFC0E17374 
+29: 00007FFFC2C7CC91 
+✖ server\tests\generator-template.test.cjs (886.2584ms)
+✔ the shared Skilled registry starts empty and existing questions are TBD without inferred assignments (21.7631ms)
+✖ question classifications can change without renaming teacher-assigned module skills (58.5877ms)
+✔ delete resets native and metadata assignments to TBD and cannot silently reattach a reused ID (48.7795ms)
+✔ scopes, reserved names, duplicates, malformed definitions, and stale saves are rejected (23.931ms)
+✔ subcategory renames move Skilled definitions while preserving their IDs and question assignments (27.3213ms)
+✔ Q70 is published under Inequalities, snapshots its generator, and registers safely in saved catalogs (33.7266ms)
+✖ moving a module makes it a Foundation child and settings exclude its generators from a session (2.2776ms)
+✖ deleting either built-in generator cleans references and preserves sessions already running (5.5869ms)
+✖ General Practice includes all enabled generators in its own topic and snapshots student choices (1.7866ms)
+✖ teachers can add a two-step generator, mix it into Foundation Building, and preserve order and placement (1.5454ms)
+✔ generated one-step and two-step keys solve the displayed inequality, including negative coefficients and inclusive endpoints (51.2336ms)
+✔ invalid generators and empty published modules cannot be saved (5.3743ms)
+✖ YouTube references accept video links only and normalize safe hosts (1.636ms)
+✖ optional video details persist and reject invalid durations, counts and dates (2.1419ms)
+✖ catalog permissions, durable saves, conflicts and student publication filtering (101.1841ms)
+✖ renaming a subcategory keeps studio GET, saves, student reads and generated tags consistent (5.8604ms)
+✖ unmapped stale taxonomy returns a repairable conflict instead of an unexpected server error (0.4422ms)
+✖ deleting individual modules keeps generators, other resources and running snapshots (2.3056ms)
+✖ Overlapping Groups is one module using both generators and legacy split modules merge without losing settings (2.1696ms)
+
+<--- Last few GCs --->
+
+[6556:00000152850AA000]      263 ms: Scavenge 16.2 (20.1) -> 15.6 (24.1) MB, pooled: 0 MB, 1.03 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[6556:00000152850AA000]      349 ms: Scavenge 32.5 (37.3) -> 30.6 (46.3) MB, pooled: 0 MB, 2.00 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[6556:00000152850AA000]      608 ms: Scavenge 40.8 (50.3) -> 37.6 (52.1) MB, pooled: 0 MB, 5.99 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+
+<--- Last few GCs --->
+
+[6556:00000152850AA000]      349 ms: Scavenge 32.5 (37.3) -> 30.6 (46.3) MB, pooled: 0 MB, 2.00 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[6556:00000152850AA000]      608 ms: Scavenge 40.8 (50.3) -> 37.6 (52.1) MB, pooled: 0 MB, 5.99 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[6556:00000152850AA000]      741 ms: Scavenge 43.6 (53.3) -> 39.0 (55.6) MB, pooled: 0 MB, 7.05 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF79B3D0CCF node::OnFatalError+1343
+ 2: 00007FF79C01F697 v8::Function::NewInstance+423
+ 3: 00007FF79B999576 v8::SnapshotCreator::GetIsolate+56566
+ 4: 00007FF79B55AC8A X509_get0_tbs_sigalg+9818
+ 5: 00007FF79B55ABE3 X509_get0_tbs_sigalg+9651
+ 6: 00007FF79CD8688C v8::platform::DelayedTaskQueue::Terminate+3216844
+ 7: 00007FF79CD86192 v8::platform::DelayedTaskQueue::Terminate+3215058
+ 8: 00007FF79CD857CD v8::platform::DelayedTaskQueue::Terminate+3212557
+ 9: 00007FF79CD82DA4 v8::platform::DelayedTaskQueue::Terminate+3201764
+10: 00007FF79CD8202F v8::platform::DelayedTaskQueue::Terminate+3198319
+11: 00007FF79CD81E2E v8::platform::DelayedTaskQueue::Terminate+3197806
+12: 00007FF79CA20DF6 v8::base::DiyFp::Multiply+420934
+13: 00007FF79CA17F0B v8::base::DiyFp::Multiply+384347
+14: 00007FF79CA17370 v8::base::DiyFp::Multiply+381376
+15: 00007FF79BF9335F EVP_MD_CTX_set_update_fn+200559
+16: 00007FF79BF583ED v8::internal::OptimizingCompileInputQueue::Prioritize+1773
+17: 00007FF79BF580E5 v8::internal::OptimizingCompileInputQueue::Prioritize+997
+18: 00007FF79C80519F v8::platform::DefaultJobHandle::UpdatePriority+591
+19: 00007FF79B32081E node::GetNodeReport+90430
+20: 00007FF79C0746D6 uv_thread_detach+150
+21: 00007FF79D2DA033 v8::base::UnsignedDivisionByConstant<unsigned __int64>+2907267
+22: 00007FFFC0E17374 BaseThreadInitThunk+20
+23: 00007FFFC2C7CC91 RtlUserThreadStart+33
+✖ tools\algebra-planner.test.cjs (865.0871ms)
+
+<--- Last few GCs --->
+
+[15140:00000249475E2000]      270 ms: Scavenge 32.5 (37.3) -> 30.6 (46.3) MB, pooled: 0 MB, 1.85 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[15140:00000249475E2000]      529 ms: Scavenge 40.6 (50.1) -> 37.2 (51.6) MB, pooled: 0 MB, 1.92 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[15140:00000249475E2000]      668 ms: Scavenge 43.7 (53.3) -> 39.1 (56.1) MB, pooled: 0 MB, 3.94 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+
+<--- Last few GCs --->
+
+[15140:00000249475E2000]      270 ms: Scavenge 32.5 (37.3) -> 30.6 (46.3) MB, pooled: 0 MB, 1.85 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[15140:00000249475E2000]      529 ms: Scavenge 40.6 (50.1) -> 37.2 (51.6) MB, pooled: 0 MB, 1.92 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[15140:00000249475E2000]      668 ms: Scavenge 43.7 (53.3) -> 39.1 (56.1) MB, pooled: 0 MB, 3.94 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+✖ tools\foundation-customization.test.cjs (1063.9299ms)
+
+<--- Last few GCs --->
+
+[24636:0000025ACDE88000]      132 ms: Scavenge 6.0 (7.9) -> 5.6 (10.2) MB, pooled: 0 MB, 2.43 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[24636:0000025ACDE88000]      248 ms: Scavenge 16.1 (20.1) -> 15.5 (24.4) MB, pooled: 0 MB, 1.03 / 0.01 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[24636:0000025ACDE88000]      393 ms: Scavenge 32.5 (37.3) -> 30.7 (46.3) MB, pooled: 0 MB, 2.15 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+
+<--- Last few GCs --->
+
+[24636:0000025ACDE88000]      132 ms: Scavenge 6.0 (7.9) -> 5.6 (10.2) MB, pooled: 0 MB, 2.43 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[24636:0000025ACDE88000]      248 ms: Scavenge 16.1 (20.1) -> 15.5 (24.4) MB, pooled: 0 MB, 1.03 / 0.01 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[24636:0000025ACDE88000]      393 ms: Scavenge 32.5 (37.3) -> 30.7 (46.3) MB, pooled: 0 MB, 2.15 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+----- Native stack trace -----
+
+
+<--- Last few GCs --->
+
+[24636:0000025ACDE88000]      132 ms: Scavenge 6.0 (7.9) -> 5.6 (10.2) MB, pooled: 0 MB, 2.43 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[24636:0000025ACDE88000]      248 ms: Scavenge 16.1 (20.1) -> 15.5 (24.4) MB, pooled: 0 MB, 1.03 / 0.01 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[24636:0000025ACDE88000]      393 ms: Scavenge 32.5 (37.3) -> 30.7 (46.3) MB, pooled: 0 MB, 2.15 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+
+<--- Last few GCs --->
+
+[24636:0000025ACDE88000]      132 ms: Scavenge 6.0 (7.9) -> 5.6 (10.2) MB, pooled: 0 MB, 2.43 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[24636:0000025ACDE88000]      248 ms: Scavenge 16.1 (20.1) -> 15.5 (24.4) MB, pooled: 0 MB, 1.03 / 0.01 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[24636:0000025ACDE88000]      393 ms: Scavenge 32.5 (37.3) -> 30.7 (46.3) MB, pooled: 0 MB, 2.15 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF79B3D0CCF 
+ 2: 00007FF79C01F697 
+ 3: 00007FF79B999576 
+ 4: 00007FF79C9C3F60 
+ 5: 00007FF79C7DD419 
+ 6: 00007FF79B891736 
+ 7: 00007FF79B86F02F 
+ 8: 00007FF79BF9B9E3 
+ 9: 00007FF79BF9DABA 
+10: 00007FF79BA1FAF1 
+11: 00007FF79BA1DBEF 
+12: 0000025A9FE775FA 
+✖ tools\inequality-practice.test.cjs (804.7253ms)
+✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections (136.701ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:66:
+      2 │ ...rom 'react'; import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\components\\MathStudyHall.tsx"
+
+    <stdin>:3:32:
+      3 │ ...Hall} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\lib\\mathStudyHall.ts"
+
+    <stdin>:4:32:
+      4 │ ...Href} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:7:165:
+      7 │ ...'}};return renderToStaticMarkup(<MathStudyHall query={query} pre...
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:65:
+      2 │ ...from 'react';import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeModuleList.tsx"
+
+    <stdin>:3:37:
+      3 │ ...List} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\server\\src\\shared\\practiceCatalog.ts"
+
+    <stdin>:4:60:
+      4 │ ...dule} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\server\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:7:37:
+      7 │ ...onsole.log(renderToStaticMarkup(<PracticeModuleList catalog={cat...
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ student practice lists show parent modules while nested modules remain part of their generation set (6.078ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:65:
+      2 │ ...from 'react';import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeVideoList.tsx"
+
+    <stdin>:3:108:
+      3 │ ...abel} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:5:58:
+      5 │ ...gify({full:renderToStaticMarkup(<PracticeVideoList videos={[{......
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ YouTube references render in-site play buttons with thumbnails and optional metadata (7.5232ms)
+
+<--- Last few GCs --->
+
+[38112:000001ADE3C37000]      180 ms: Scavenge 16.2 (20.1) -> 15.5 (24.6) MB, pooled: 0 MB, 0.78 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[38112:000001ADE3C37000]      300 ms: Scavenge 32.5 (37.3) -> 30.5 (45.8) MB, pooled: 0 MB, 3.18 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[38112:000001ADE3C37000]      576 ms: Scavenge 40.6 (49.8) -> 37.0 (51.6) MB, pooled: 0 MB, 2.46 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+
+<--- Last few GCs --->
+
+[38112:000001ADE3C37000]      180 ms: Scavenge 16.2 (20.1) -> 15.5 (24.6) MB, pooled: 0 MB, 0.78 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[38112:000001ADE3C37000]      300 ms: Scavenge 32.5 (37.3) -> 30.5 (45.8) MB, pooled: 0 MB, 3.18 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[38112:000001ADE3C37000]      576 ms: Scavenge 40.6 (49.8) -> 37.0 (51.6) MB, pooled: 0 MB, 2.46 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+
+<--- Last few GCs --->
+
+[38112:000001ADE3C37000]      180 ms: Scavenge 16.2 (20.1) -> 15.5 (24.6) MB, pooled: 0 MB, 0.78 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[38112:000001ADE3C37000]      300 ms: Scavenge 32.5 (37.3) -> 30.5 (45.8) MB, pooled: 0 MB, 3.18 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[38112:000001ADE3C37000]      576 ms: Scavenge 40.6 (49.8) -> 37.0 (51.6) MB, pooled: 0 MB, 2.46 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF79B3D0CCF 
+ 2: 00007FF79C01F697 
+ 3: 00007FF79B999576 
+ 4: 00007FF79C9C3F60 
+ 5: 00007FF79C7DD419 
+ 6: 00007FF79B891736 
+ 7: 00007FF79B86F02F 
+ 8: 00007FF79BF9B9E3 
+ 9: 00007FF79BF9DABA 
+10: 00007FF79BA1FAF1 
+11: 00007FF79BA1DBEF 
+12: 000001AD9FE775FA 
+✖ tools\math-subcategory-migration.test.cjs (711.2992ms)
+
+<--- Last few GCs --->
+
+[13948:000001B8B349F000]      720 ms: Scavenge (interleaved) 45.4 (64.4) -> 29.8 (64.4) MB, pooled: 0 MB, 1.12 / 0.00 ms  (average mu = 0.984, current mu = 0.984) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF79B3D0CCF 
+ 2: 00007FF79C01F697 
+ 3: 00007FF79B999576 
+ 4: 00007FF79B558362 
+ 5: 00007FF79D0128CE 
+ 6: 00007FF79D00D6CD 
+ 7: 00007FF79D00DC5E 
+ 8: 00007FF79CD81F80 
+ 9: 00007FF79CD81E2E 
+10: 00007FF79CA20DF6 
+11: 00007FF79CA17F0B 
+12: 00007FF79CA17370 
+13: 00007FF79BF9335F 
+14: 00007FF79BF583ED 
+15: 00007FF79BF580E5 
+16: 00007FF79C80519F 
+17: 00007FF79B32081E 
+18: 00007FF79C0746D6 
+19: 00007FF79D2DA033 
+20: 00007FFFC0E17374 
+21: 00007FFFC2C7CC91 
+✖ tools\overlapping-groups.test.cjs (819.9896ms)
+✖ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (9.2593ms)
+✔ customized broad modules, hidden state, disabled generators, and reviewed metadata survive migration (3.7345ms)
+✖ registration restores a generator to its skill even when migration reused legacy module IDs (16.4039ms)
+✖ metadata is validated and survives saves and session snapshots without changing the generated questions (1.8355ms)
+✔ search, facets, focused usage, and bulk changes work across a 1000-generator library (12.941ms)
+✖ bulk disabling the last generators hides empty focused modules and remains saveable (4.3142ms)
+✔ generation set filters combine inclusion, category, subcategory, and search without changing selections (3.1755ms)
+✔ included-only respects automatic groups, inherited selections, hidden children, and disabled generators (1.7542ms)
+✔ module preview snapshots the complete effective draft mix and allows unpublished modules without publishing edits (9.3345ms)
+✖ Skill is the module name; legacy classifications never replace it on reads or saves (2.1441ms)
+✔ library Skill filtering uses module membership, including hidden modules and disabled generators (1.9657ms)
+✖ choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions (2.1944ms)
+✖ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (56.982ms)
+✖ five streak stars unlock at exact ten-answer thresholds with accessible locked and earned labels (1.6361ms)
+✖ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (0.2505ms)
+✖ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (0.2532ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:2:67:
+      2 │ ...from 'react';import {renderToStaticMarkup} from 'react-dom/server';
+        ╵                                                    ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "./client/src/features/math-command/PracticeFeedback"
+
+    <stdin>:3:51:
+      3 │ ...edback} from './client/src/features/math-command/PracticeFeedback';
+        ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/PracticeStars"
+
+    <stdin>:4:34:
+      4 │ ...ticeStars} from './client/src/features/math-command/PracticeStars';
+        ╵                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/InequalityPractice"
+
+    <stdin>:6:39:
+      6 │ ...tice} from './client/src/features/math-command/InequalityPractice';
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/generatorPreview"
+
+    <stdin>:7:44:
+      7 │ ...atalog} from './client/src/features/math-command/generatorPreview';
+        ╵                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/components/ExamMathQuestion"
+
+    <stdin>:8:37:
+      8 │ ...{ExamMathQuestion} from './client/src/components/ExamMathQuestion';
+        ╵                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./server/src/shared/inequalityPractice"
+
+    <stdin>:9:39:
+      9 │ ...{generateInequality} from './server/src/shared/inequalityPractice';
+        ╵                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./server/src/shared/practiceCatalog"
+
+    <stdin>:10:43:
+      10 │ ...efaultPracticeCatalog} from './server/src/shared/practiceCatalog';
+         ╵                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "./client/src/features/math-command/inequalitySession"
+
+    <stdin>:11:81:
+      11 │ ...tion} from './client/src/features/math-command/inequalitySession';
+         ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:5:70:
+      5 │ ...) { return renderToStaticMarkup(<PracticeStars longestStreak={be...
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ mini preview retains the exam controls in a bounded nonmodal region (0.2411ms)
+
+<--- Last few GCs --->
+
+[37344:00000122C2FE8000]      114 ms: Scavenge 6.0 (7.9) -> 5.7 (10.2) MB, pooled: 0 MB, 1.16 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[37344:00000122C2FE8000]      198 ms: Scavenge 16.2 (19.9) -> 15.6 (24.4) MB, pooled: 0 MB, 0.94 / 0.01 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[37344:00000122C2FE8000]      345 ms: Scavenge 32.5 (37.3) -> 30.7 (46.3) MB, pooled: 0 MB, 1.96 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF79B3D0CCF node::OnFatalError+1343
+ 2: 00007FF79C01F697 v8::Function::NewInstance+423
+ 3: 00007FF79B999576 v8::SnapshotCreator::GetIsolate+56566
+ 4: 00007FF79B7C3216 SSL_CTX_get_client_CA_list+10198
+ 5: 00007FF79B7C31E8 SSL_CTX_get_client_CA_list+10152
+ 6: 00007FF79B7C37D3 SSL_CTX_get_client_CA_list+11667
+ 7: 00007FF79B7C3581 SSL_CTX_get_client_CA_list+11073
+ 8: 00007FF79B7BDA74 v8::internal::OptimizingCompileInputQueue::OptimizingCompileInputQueue+196644
+ 9: 00007FF79B7C5B2E SSL_CTX_get_client_CA_list+20718
+10: 00007FF79B7C58A3 SSL_CTX_get_client_CA_list+20067
+11: 00007FF79B828DF4 SSL_CTX_get_client_CA_list+426932
+12: 00007FF79B828A27 SSL_CTX_get_client_CA_list+425959
+13: 00007FF79B8277A7 SSL_CTX_get_client_CA_list+421223
+14: 00007FF79B824C83 SSL_CTX_get_client_CA_list+410179
+15: 00007FF79B7FA80B SSL_CTX_get_client_CA_list+237003
+16: 00007FF79B872866 SSL_CTX_get_client_CA_list+728614
+17: 00007FF79B871580 SSL_CTX_get_client_CA_list+723776
+18: 00007FF79B86F37A SSL_CTX_get_client_CA_list+715066
+19: 00007FF79BF9335F EVP_MD_CTX_set_update_fn+200559
+20: 00007FF79B870E5B SSL_CTX_get_client_CA_list+721947
+21: 00007FF79C80519F v8::platform::DefaultJobHandle::UpdatePriority+591
+22: 00007FF79B32081E node::GetNodeReport+90430
+23: 00007FF79C0746D6 uv_thread_detach+150
+24: 00007FF79D2DA033 v8::base::UnsignedDivisionByConstant<unsigned __int64>+2907267
+25: 00007FFFC0E17374 BaseThreadInitThunk+20
+26: 00007FFFC2C7CC91 RtlUserThreadStart+33
+✖ tools\prob-2.test.cjs (881.6445ms)
+
+<--- Last few GCs --->
+
+[36744:000001FD65A48000]      117 ms: Scavenge 6.0 (8.4) -> 5.6 (10.7) MB, pooled: 0 MB, 1.63 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[36744:000001FD65A48000]      206 ms: Scavenge 16.2 (20.1) -> 15.5 (24.4) MB, pooled: 0 MB, 3.75 / 0.01 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[36744:000001FD65A48000]      336 ms: Scavenge 32.5 (37.6) -> 30.5 (46.1) MB, pooled: 0 MB, 5.05 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+
+<--- Last few GCs --->
+
+[36744:000001FD65A48000]      117 ms: Scavenge 6.0 (8.4) -> 5.6 (10.7) MB, pooled: 0 MB, 1.63 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[36744:000001FD65A48000]      206 ms: Scavenge 16.2 (20.1) -> 15.5 (24.4) MB, pooled: 0 MB, 3.75 / 0.01 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[36744:000001FD65A48000]      336 ms: Scavenge 32.5 (37.6) -> 30.5 (46.1) MB, pooled: 0 MB, 5.05 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+----- Native stack trace -----
+
+ 1: 00007FF79B3D0CCF 
+ 1: 00007FF79B3D0CCF 
+ 2: 00007FF79C01F697 
+ 2: 00007FF79C01F697 
+ 3: 00007FF79B999576 
+ 3: 00007FF79B999576 
+ 4: 00007FF79B7C3216 
+ 4: 00007FF79C9C3F60 
+ 5: 00007FF79B7C37D3 
+ 5: 00007FF79C7DD419 
+ 6: 00007FF79B7C3581 
+ 6: 00007FF79B891736 
+ 7: 00007FF79B7BDA74 
+ 7: 00007FF79B86F02F 
+ 8: 00007FF79B7C5B2E 
+ 8: 00007FF79BF9B9E3 
+ 9: 00007FF79B7C58A3 
+ 9: 00007FF79BF9DABA 
+10: 00007FF79B828DF4 
+10: 00007FF79BA1FAF1 
+11: 00007FF79B828A27 
+11: 00007FF79BA1DBEF 
+12: 00007FF79B8276CE 
+12: 000001FD1FE775FA 
+13: 00007FF79B825003 
+14: 00007FF79B7FA80B 
+15: 00007FF79B872866 
+16: 00007FF79B871580 
+17: 00007FF79B86F37A 
+18: 00007FF79BF9335F 
+19: 00007FF79B870E5B 
+20: 00007FF79C80519F 
+21: 00007FF79B32081E 
+22: 00007FF79C0746D6 
+23: 00007FF79D2DA033 
+24: 00007FFFC0E17374 
+25: 00007FFFC2C7CC91 
+✖ tools\probability-batch.test.cjs (771.6258ms)
+✔ Probability: Number-cube Sum Counts: every stem is valid, unique, and includes its source example (11.0833ms)
+✔ Probability: Ratio Counts After Removal: every stem is valid, unique, and includes its source example (116.3533ms)
+✔ Probability: Ordered Draws Without Replacement: every stem is valid, unique, and includes its source example (173.4326ms)
+✔ Probability: Complementary Color Draws: every stem is valid, unique, and includes its source example (10.184ms)
+✔ Probability: Repeated Draws With Replacement: every stem is valid, unique, and includes its source example (23.1206ms)
+✔ Probability: Spinner Products: every stem is valid, unique, and includes its source example (6.8945ms)
+✔ Probability: Unordered Sample Spaces: every stem is valid, unique, and includes its source example (40.1906ms)
+✔ Probability: One Specific Conditional Outcome: every stem is valid, unique, and includes its source example (72.4003ms)
+✔ all eight probability sequences reproduce, complete explicit cycles and validate safe indices (2.8994ms)
+✔ Probability uses five focused Foundation Building children with eight generators, preserving other topics and snapshots (77.9083ms)
+✔ every numeric scenario varies the requested color or ordered color pair (189.4397ms)
+✔ saved v1/v2 questions retain their exact stems, choices and explanations; next question opts into color variation (36.6929ms)
+✔ generator streaks reset independently, checking twice is inert, and hiding needs no milestone (8.7387ms)
+✔ hiding is available after a miss without a streak; unfinished current questions cannot be hidden (0.6778ms)
+✔ saved sessions survive reopening with answers, streaks and snapshots; accounts and modules are isolated (3.5573ms)
+✔ module records retain all five milestones after mistakes, finishing and starting again, without crossing accounts (3.1459ms)
+✔ passage scores retain zero, ignore invalid/missing scores, and choose latest scored evidence (4.3126ms)
+✔ editor links resolve exact stable question IDs, prefer assessment context, and do not guess missing questions (0.3541ms)
+X [ERROR] Cannot read directory "../..": Access is denied.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\pages\\StudentDashboardPage.tsx"
+
+    <stdin>:1:35:
+      1 │ ...Page} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\content\\advancedPractice\\index.ts"
+
+    <stdin>:1:165:
+      1 │ ...ages} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react"
+
+    <stdin>:1:278:
+      1 │ ...\index.ts";import React from 'react';import {renderToStaticMarku...
+        ╵                                 ~~~~~~~
+
+  You can mark the path "react" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "react-dom/server"
+
+    <stdin>:1:321:
+      1 │ ...erToStaticMarkup} from 'react-dom/server';import {StudentMateria...
+        ╵                           ~~~~~~~~~~~~~~~~~~
+
+  You can mark the path "react-dom/server" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+X [ERROR] Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\pages\\StudentMaterialsPage.tsx"
+
+    <stdin>:1:375:
+      1 │ ...Page} from "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\...
+        ╵               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+X [ERROR] Could not resolve "react/jsx-runtime"
+
+    <stdin>:1:902:
+      1 │ ...onsole.log(renderToStaticMarkup(<StudentMaterialsPage/>));consol...
+        ╵                                    ^
+
+  You can mark the path "react/jsx-runtime" as external to exclude it from the bundle, which will remove this error and leave the unresolved path in the bundle.
+
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (45.0577ms)
+
+<--- Last few GCs --->
+
+[15208:000002103A4C6000]     1149 ms: Scavenge (interleaved) 55.0 (71.7) -> 46.6 (108.2) MB, pooled: 0 MB, 4.93 / 0.00 ms  (average mu = 0.992, current mu = 0.992) allocation failure; 
+[15208:000002103A4C6000]     1357 ms: Scavenge (interleaved) 76.1 (109.5) -> 54.2 (113.5) MB, pooled: 0 MB, 5.97 / 0.01 ms  (average mu = 0.992, current mu = 0.992) allocation failure; 
+
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF79B3D0CCF 
+ 2: 00007FF79C01F697 
+ 3: 00007FF79B999576 
+ 4: 00007FF79B862777 
+ 5: 00007FF79B80EF52 
+ 6: 00007FF79B80EDF3 
+ 7: 00007FF79B7E3C05 
+ 8: 00007FF79B7FF352 
+ 9: 00007FF79B810A16 
+10: 00007FF79B811817 
+11: 00007FF79B825BEA 
+12: 00007FF79B823CB3 
+13: 00007FF79B823A9B 
+14: 00007FF79B7FA898 
+15: 00007FF79B872866 
+16: 00007FF79B871580 
+17: 00007FF79B86F37A 
+18: 00007FF79BF9335F 
+19: 00007FF79B870E5B 
+20: 00007FF79C80519F 
+21: 00007FF79B32081E 
+22: 00007FF79C0746D6 
+23: 00007FF79D2DA033 
+24: 00007FFFC0E17374 
+25: 00007FFFC2C7CC91 
+✖ tools\symbolic-fraction-division.test.cjs (1456.9468ms)
+✔ all decimal stems: independent long division, primitive blocks, exact cycles, distinct choices and grading (1572.1486ms)
+✔ short practice sessions mix fractions and denominators, including across the cycle boundary (50.6423ms)
+✔ legacy questions keep their exact content and grading; advancing adopts the mixed sequence (8.6431ms)
+✔ all area stems: derive the change from displayed dimensions, validate explanations, units and distractors (121.8008ms)
+✔ original keyed examples, deterministic seed permutations, repeat cycles and invalid indices (80.3614ms)
+✔ batch registration respects both exact groups, keeps every existing resource and is idempotent (17.8797ms)
+✔ explicit activation includes both generators while preserving review, modules, unrelated resources and saved sessions (3.9803ms)
+✔ draft preview grading and saved sessions remain independent of later catalog edits (3.7813ms)
+
+<--- Last few GCs --->
+
+[30560:0000029455875000]     1071 ms: Scavenge 43.6 (53.1) -> 39.0 (55.8) MB, pooled: 0 MB, 7.24 / 0.00 ms  (average mu = 1.000, current mu = 1.000) allocation failure; 
+[30560:0000029455875000]     1124 ms: Mark-Compact 42.2 (58.0) -> 30.7 (65.6) MB, pooled: 0 MB, 10.64 / 0.00 ms  (+ 1.4 ms in 22 steps since start of marking, biggest step 0.9 ms, walltime since start of marking 40 ms) (average mu = 0.989, current mu = 0.
+FATAL ERROR: Zone Allocation failed - process out of memory
+----- Native stack trace -----
+
+ 1: 00007FF79B3D0CCF 
+ 2: 00007FF79C01F697 
+ 3: 00007FF79B999576 
+ 4: 00007FF79CD82B2E 
+ 5: 00007FF79CD82673 
+ 6: 00007FF79CD824C0 
+ 7: 00007FF79CD82083 
+ 8: 00007FF79CD81DB6 
+ 9: 00007FF79CA20DF6 
+10: 00007FF79CA17F0B 
+11: 00007FF79CA17370 
+12: 00007FF79BF9335F 
+13: 00007FF79BF583ED 
+14: 00007FF79BF580E5 
+15: 00007FF79C80519F 
+16: 00007FF79B32081E 
+17: 00007FF79C0746D6 
+18: 00007FF79D2DA033 
+19: 00007FFFC0E17374 
+20: 00007FFFC2C7CC91 
+✖ tools\topic-practice-defaults.test.cjs (1418.812ms)
+✖ tools\word-problem-practice.test.cjs (815.2422ms)
+✔ Writing Inequalities visits every stem and includes the original Form D item 26 (1334.4203ms)
+✔ typed budgets accept both orientations, term orders and notation, and reject modelling errors (531.5954ms)
+✔ Writing Inequalities sequences are reproducible, cycle explicitly, and validate indices (1.6875ms)
+✔ Writing Inequalities registers in saved catalogs without changing nesting or existing resources (370.5053ms)
+ℹ tests 82
+ℹ suites 0
+ℹ pass 43
+ℹ fail 39
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3658.2251
+
+✖ failing tests:
+
+test at server\tests\generator-planner.test.cjs:1:1
+✖ server\tests\generator-planner.test.cjs (919.2738ms)
+  'test failed'
+
+test at server\tests\generator-template.test.cjs:1:1
+✖ server\tests\generator-template.test.cjs (886.2584ms)
+  'test failed'
+
+test at server\tests\math-classification-skills.test.cjs:26:1
+✖ question classifications can change without renaming teacher-assigned module skills (58.5877ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\math-classification-skills.test.cjs:33:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:29:1
+✖ moving a module makes it a Foundation child and settings exclude its generators from a session (2.2776ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:30:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:39:1
+✖ deleting either built-in generator cleans references and preserves sessions already running (5.5869ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Choose an existing math category and topic."
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:44:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Choose an existing math category and topic.
+        at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+        at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+        at Array.map (<anonymous>)
+        at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:44:26
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:44:9)
+        at Test.runInAsyncScope (node:async_hooks:227:14),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at server\tests\practice-catalog.test.cjs:46:1
+✖ General Practice includes all enabled generators in its own topic and snapshots student choices (1.7866ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:49:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:56:1
+✖ teachers can add a two-step generator, mix it into Foundation Building, and preserve order and placement (1.5454ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:59:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:82:1
+✖ YouTube references accept video links only and normalize safe hosts (1.636ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:85:191)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:88:1
+✖ optional video details persist and reject invalid durations, counts and dates (2.1419ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:91:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:107:1
+✖ catalog permissions, durable saves, conflicts and student publication filtering (101.1841ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  400 !== 200
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:110:64)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 400,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server\tests\practice-catalog.test.cjs:117:1
+✖ renaming a subcategory keeps studio GET, saves, student reads and generated tags consistent (5.8604ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  409 !== 200
+  
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:122:55)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.run (node:internal/test_runner/test:1313:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 409,
+    expected: 200,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at server\tests\practice-catalog.test.cjs:137:1
+✖ unmapped stale taxonomy returns a repairable conflict instead of an unexpected server error (0.4422ms)
+  TypeError: Cannot read properties of null (reading 'catalog')
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:139:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7)
+
+test at server\tests\practice-catalog.test.cjs:144:1
+✖ deleting individual modules keeps generators, other resources and running snapshots (2.3056ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:149:13)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    status: 400
+  }
+
+test at server\tests\practice-catalog.test.cjs:155:1
+✖ Overlapping Groups is one module using both generators and legacy split modules merge without losing settings (2.1696ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Choose an existing math category and topic."
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:167:9)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at processTicksAndRejections (node:internal/process/task_queues:104:5)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Choose an existing math category and topic.
+        at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+        at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+        at Array.map (<anonymous>)
+        at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:167:26
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\server\tests\practice-catalog.test.cjs:167:9)
+        at Test.runInAsyncScope (node:async_hooks:227:14),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tools\algebra-planner.test.cjs:1:1
+✖ tools\algebra-planner.test.cjs (865.0871ms)
+  'test failed'
+
+test at tools\foundation-customization.test.cjs:1:1
+✖ tools\foundation-customization.test.cjs (1063.9299ms)
+  'test failed'
+
+test at tools\inequality-practice.test.cjs:1:1
+✖ tools\inequality-practice.test.cjs (804.7253ms)
+  'test failed'
+
+test at tools\math-study-hall.test.cjs:8:1
+✖ Math Study Hall follows the managed hierarchy and reserves topic resource sections (136.701ms)
+  Error: Build failed with 5 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:66: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:32: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\components\\MathStudyHall.tsx"
+  <stdin>:4:32: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\lib\\mathStudyHall.ts"
+  <stdin>:7:165: ERROR: Could not resolve "react/jsx-runtime"
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\components\\\\MathStudyHall.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\lib\\\\mathStudyHall.ts"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\math-study-hall.test.cjs:70:1
+✖ student practice lists show parent modules while nested modules remain part of their generation set (6.078ms)
+  Error: Build failed with 5 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:65: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:37: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeModuleList.tsx"
+  <stdin>:4:60: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\server\\src\\shared\\practiceCatalog.ts"
+  <stdin>:7:37: ERROR: Could not resolve "react/jsx-runtime"
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1163:52
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\features\\\\math-command\\\\PracticeModuleList.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\server\\\\src\\\\shared\\\\practiceCatalog.ts"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\math-study-hall.test.cjs:88:1
+✖ YouTube references render in-site play buttons with thumbnails and optional metadata (7.5232ms)
+  Error: Build failed with 4 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:65: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:108: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\features\\math-command\\PracticeVideoList.tsx"
+  <stdin>:5:58: ERROR: Could not resolve "react/jsx-runtime"
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1163:52
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\features\\\\math-command\\\\PracticeVideoList.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\math-subcategory-migration.test.cjs:1:1
+✖ tools\math-subcategory-migration.test.cjs (711.2992ms)
+  'test failed'
+
+test at tools\overlapping-groups.test.cjs:1:1
+✖ tools\overlapping-groups.test.cjs (819.9896ms)
+  'test failed'
+
+test at tools\practice-organization.test.cjs:23:1
+✖ organization reuses an existing skill module, splits the mixed collection, and preserves snapshots and teacher data (9.2593ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:28:14)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.start (node:internal/test_runner/test:1177:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:385:17) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:61:1
+✖ registration restores a generator to its skill even when migration reused legacy module IDs (16.4039ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:66:17)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:72:1
+✖ metadata is validated and survives saves and session snapshots without changing the generated questions (1.8355ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:75:15)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:95:1
+✖ bulk disabling the last generators hides empty focused modules and remains saveable (4.3142ms)
+  AssertionError [ERR_ASSERTION]: Got unwanted exception.
+  Actual message: "Choose an existing math category and topic."
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19)
+      at Test.run (node:internal/test_runner/test:1372:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:897:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: Error: Choose an existing math category and topic.
+        at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+        at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+        at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+        at Array.map (<anonymous>)
+        at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+        at C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:27
+        at getActual (node:assert:611:5)
+        at strict.doesNotThrow (node:assert:779:32)
+        at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:97:10)
+        at Test.runInAsyncScope (node:async_hooks:227:14),
+    expected: undefined,
+    operator: 'doesNotThrow',
+    diff: 'simple'
+  }
+
+test at tools\practice-organization.test.cjs:142:1
+✖ Skill is the module name; legacy classifications never replace it on reads or saves (2.1441ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:148:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-organization.test.cjs:171:1
+✖ choosing a shared skill binds its name while keeping module IDs, generators, placement and running sessions (2.1944ms)
+  Error: Choose an existing math category and topic.
+      at fail (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:178:57)
+      at location (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:244:225)
+      at C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:246:164
+      at Array.map (<anonymous>)
+      at validatePracticeCatalog (C:\Users\Nathan Im\Desktop\my-app-main\server\src\shared\practiceCatalog.ts:245:43)
+      at TestContext.<anonymous> (C:\Users\Nathan Im\Desktop\my-app-main\tools\practice-organization.test.cjs:181:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1306:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:897:18)
+      at Test.postRun (node:internal/test_runner/test:1447:19) {
+    status: 400
+  }
+
+test at tools\practice-player.test.cjs:46:1
+✖ answer feedback distinguishes correct/incorrect results and retains best streak after a miss (56.982ms)
+  Error: Build failed with 11 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:34: ERROR: Could not resolve "./client/src/features/math-command/PracticeStars"
+  <stdin>:5:70: ERROR: Could not resolve "react/jsx-runtime"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeStars"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:55:1
+✖ five streak stars unlock at exact ten-answer thresholds with accessible locked and earned labels (1.6361ms)
+  Error: Build failed with 11 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:34: ERROR: Could not resolve "./client/src/features/math-command/PracticeStars"
+  <stdin>:5:70: ERROR: Could not resolve "react/jsx-runtime"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeStars"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:66:1
+✖ checked choices identify the correct answer and a wrong selection without coloring an unanswered question (0.2505ms)
+  Error: Build failed with 11 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:34: ERROR: Could not resolve "./client/src/features/math-command/PracticeStars"
+  <stdin>:5:70: ERROR: Could not resolve "react/jsx-runtime"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeStars"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:73:1
+✖ generator preview renders the existing exam toolbar, question, drawing tool and streak statistics (0.2532ms)
+  Error: Build failed with 11 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:34: ERROR: Could not resolve "./client/src/features/math-command/PracticeStars"
+  <stdin>:5:70: ERROR: Could not resolve "react/jsx-runtime"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeStars"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' } ],
+    warnings: []
+  }
+
+test at tools\practice-player.test.cjs:80:1
+✖ mini preview retains the exam controls in a bounded nonmodal region (0.2411ms)
+  Error: Build failed with 11 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:2:67: ERROR: Could not resolve "react-dom/server"
+  <stdin>:3:51: ERROR: Could not resolve "./client/src/features/math-command/PracticeFeedback"
+  <stdin>:4:34: ERROR: Could not resolve "./client/src/features/math-command/PracticeStars"
+  <stdin>:5:70: ERROR: Could not resolve "react/jsx-runtime"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeFeedback"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/PracticeStars"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/InequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/generatorPreview"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/components/ExamMathQuestion"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/inequalityPractice"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./server/src/shared/practiceCatalog"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "./client/src/features/math-command/inequalitySession"' } ],
+    warnings: []
+  }
+
+test at tools\prob-2.test.cjs:1:1
+✖ tools\prob-2.test.cjs (881.6445ms)
+  'test failed'
+
+test at tools\probability-batch.test.cjs:1:1
+✖ tools\probability-batch.test.cjs (771.6258ms)
+  'test failed'
+
+test at tools\study-hall-view.test.cjs:6:1
+✖ English Study Hall renders eight reading topics, separate editing topics, and grouped library books with library-local filters (45.0577ms)
+  Error: Build failed with 7 errors:
+  error: Cannot read directory "../..": Access is denied.
+  <stdin>:1:35: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\pages\\StudentDashboardPage.tsx"
+  <stdin>:1:165: ERROR: Could not resolve "C:\\Users\\Nathan Im\\Desktop\\my-app-main\\client\\src\\content\\advancedPractice\\index.ts"
+  <stdin>:1:278: ERROR: Could not resolve "react"
+  <stdin>:1:321: ERROR: Could not resolve "react-dom/server"
+  ...
+      at failureErrorWithLog (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1752:15)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1211:25
+      at runOnEndCallbacks (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1592:45)
+      at buildResponseToResult (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1209:7)
+      at C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:1236:16
+      at responseCallbacks.<computed> (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:886:9)
+      at handleIncomingPacket (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:941:12)
+      at Socket.readFromStdout (C:\Users\Nathan Im\Desktop\my-app-main\node_modules\esbuild\lib\main.js:864:7)
+      at Socket.emit (node:events:509:28)
+      at addChunk (node:internal/streams/readable:563:12) {
+    errors: [ { detail: undefined, id: '', location: null, notes: [], pluginName: '', text: 'Cannot read directory "../..": Access is denied.' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\pages\\\\StudentDashboardPage.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\content\\\\advancedPractice\\\\index.ts"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react-dom/server"' }, { detail: undefined, id: '', location: [Object], notes: [], pluginName: '', text: 'Could not resolve "C:\\\\Users\\\\Nathan Im\\\\Desktop\\\\my-app-main\\\\client\\\\src\\\\pages\\\\StudentMaterialsPage.tsx"' }, { detail: undefined, id: '', location: [Object], notes: [Array], pluginName: '', text: 'Could not resolve "react/jsx-runtime"' } ],
+    warnings: []
+  }
+
+test at tools\symbolic-fraction-division.test.cjs:1:1
+✖ tools\symbolic-fraction-division.test.cjs (1456.9468ms)
+  'test failed'
+
+test at tools\topic-practice-defaults.test.cjs:1:1
+✖ tools\topic-practice-defaults.test.cjs (1418.812ms)
+  'test failed'
+
+test at tools\word-problem-practice.test.cjs:1:1
+✖ tools\word-problem-practice.test.cjs (815.2422ms)
+  'test failed'

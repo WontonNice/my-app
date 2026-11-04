@@ -6,9 +6,11 @@ import type { ExamContent, ExamQuestion } from "../shared/examTypes";
 import type { QuestionBank } from "../shared/questionBank";
 import { validateMathCatalogFilters } from "../shared/mathCommandCatalog";
 import { validMathRules } from "../shared/mathCommandAnalytics";
-import type { MathCatalogFilters, MathDiagnosticSkill, MathInventoryTargets, MathQuestionMetadata, MathQuestionRecord, MathTaxonomy } from "../shared/mathCommandTypes";
+import type { MathCatalogFilters, MathDiagnosticSkill, MathInventoryTargets, MathMetadataPatch, MathQuestionMetadata, MathQuestionRecord, MathTaxonomy } from "../shared/mathCommandTypes";
+import { teacherMathClassification, mathClassificationLabel } from "../shared/mathClassificationReview";
 import { defaultMathDiagnosticSkills } from "../shared/mathCommandTaxonomy";
-import { resolveSkilled, skilledTbd } from '../shared/mathClassificationSkills';
+import { resolveSkilled, skilledTbd, universalClassificationSkills } from '../shared/mathClassificationSkills';
+import { practiceSkillSnapshot } from './practiceSkillContext';
 
 export type MathManagementState = {
   classificationSkills?: import('../shared/mathClassificationSkills').MathClassificationSkill[];
@@ -41,12 +43,23 @@ const read = <T>(file: string, fallback: T): T => { try { return JSON.parse(fs.r
 const statePath = (root: string) => path.join(root, "server/data/math-command.json");
 
 export function readMathCommandState(root = mathCommandRoot): MathManagementState {
+  const project=(state:MathManagementState)=>{
+    const practice=practiceSkillSnapshot(root);if(!practice)return state;
+    // A taxonomy edit can happen after this request captured the module list.
+    const modules=practice.modules.map(module=>{
+      if(!state.taxonomy||state.taxonomy.categories.some(c=>c.label===module.category&&c.topics.includes(module.topic)))return module;
+      let location={category:module.category,topic:module.topic};
+      for(const rename of state.taxonomyTopicRenames??[])if(rename.category===location.category&&rename.from===location.topic)location={category:rename.toCategory??location.category,topic:rename.to};
+      return {...module,...location};
+    });
+    return {...state,classificationSkills:universalClassificationSkills(state.classificationSkills??[],modules)};
+  };
   const context=currentMathCommandStateContext(root);
-  if(context)return structuredClone(context.state);
+  if(context)return project(structuredClone(context.state));
   const saved = read<Partial<MathManagementState>>(statePath(root), {});
   const state = { metadata: {}, savedViews: [], collections: [], targets: { defaultPerDifficulty: 10 }, skills: structuredClone(defaultMathDiagnosticSkills),
     rules: { targetAccuracy: 70, minAttempts: 5, minUniqueQuestions: 3, minAssessments: 2, recentDays: 90, recentMinAttempts: 3, trendMinAttempts: 3, trendDifference: 10 }, pacePerWeek: 20, history: [], ...saved };
-  return { ...state, revision: saved.revision || hash(state) } as MathManagementState;
+  return project({ ...state, revision: saved.revision || hash(state) } as MathManagementState);
 }
 
 export function readMathCommandTaxonomy(root = mathCommandRoot): MathTaxonomy {
@@ -98,12 +111,23 @@ export function mathClassificationRevision(root = mathCommandRoot) {
   return hash({metadata: state.metadata, taxonomy: state.taxonomy, classificationSkills:state.classificationSkills});
 }
 
-export function syncMathNativeClassifications(root:string,questions:ExamQuestion[],expectedRevision?:string) {
+export function syncMathNativeClassifications(root:string,questions:ExamQuestion[],expectedRevision?:string, edit?:{previousQuestions:ExamQuestion[];actor:string}) {
   const state=readMathCommandState(root);let changed=false;
   // A source save can yield between its initial guard and this synchronization.
   // Preserve newer overlays; they remain effective until the editor is refreshed.
   if(expectedRevision!==undefined&&state.revision!==expectedRevision&&mathClassificationRevision(root)!==expectedRevision)return;
-  for(const question of questions){const metadata=state.metadata[question.id];if(!metadata)continue;
+  const previous = new Map(edit?.previousQuestions.map(question => [question.id, question]));
+  const taxonomy = readMathCommandTaxonomy(root);
+  for(const question of questions){
+    const prior = previous.get(question.id);
+    if(edit && prior && (prior.topic !== question.topic || prior.subtopic !== question.subtopic)) {
+      const metadata = state.metadata[question.id] ??= {};
+      if(question.topic && question.subtopic && taxonomy.categories.find(category => category.label === question.topic)?.topics.includes(question.subtopic)) {
+        metadata.classification = teacherMathClassification(metadata, {category:prior.topic,subcategory:prior.subtopic}, {category:question.topic,subcategory:question.subtopic}, edit.actor);
+      } else delete metadata.classification;
+      changed = true;
+    }
+    const metadata=state.metadata[question.id];if(!metadata)continue;
     // Legacy callers without a revision may only retire already-persisted values.
     if(expectedRevision===undefined&&((metadata.category!==undefined&&metadata.category!==question.topic)||(metadata.subcategory!==undefined&&metadata.subcategory!==question.subtopic)||(metadata.skilled!==undefined&&metadata.skilled!==question.skilled)))continue;
     if(metadata.category!==undefined||metadata.subcategory!==undefined||metadata.skilled!==undefined){delete metadata.category;delete metadata.subcategory;delete metadata.skilled;changed=true;}
@@ -146,15 +170,16 @@ const cleanList = (value: unknown, label: string, limit = 50): string[] => {
   if (!Array.isArray(value) || value.length > limit) throw fail(`${label} must be a list with at most ${limit} entries.`);
   return [...new Set(value.map(item => cleanString(item, label)).filter(Boolean))];
 };
-const metadataFields = new Set(["category", "subcategory", "skilled", "diagnosticSkill", "secondarySkills", "difficulty", "source", "sourceQuestionId", "standards", "representations", "requiresDiagram", "reviewStatus", "importedAt", "context", "notes"]);
-export function validateMathMetadataPatch(input: unknown, taxonomy: MathTaxonomy): MathQuestionMetadata & {category?: string; subcategory?: string} {
+const metadataFields = new Set(["approveClassification", "category", "subcategory", "skilled", "diagnosticSkill", "secondarySkills", "difficulty", "source", "sourceQuestionId", "standards", "representations", "requiresDiagram", "reviewStatus", "importedAt", "context", "notes"]);
+export function validateMathMetadataPatch(input: unknown, taxonomy: MathTaxonomy): MathMetadataPatch {
   if (!plain(input) || !Object.keys(input).length || Object.keys(input).some(key => !metadataFields.has(key))) throw fail("Choose supported metadata fields to change. Question wording and answer keys cannot be edited in bulk.");
   const result: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(input)) {
     if (key === "secondarySkills" || key === "representations") {
       result[key] = cleanList(value, key);
       if (key === "representations" && (result[key] as string[]).some(value => !["diagram", "graph", "table"].includes(value))) throw fail("Choose diagram, graph, or table.");
-    } else if (key === "requiresDiagram") { if (typeof value !== "boolean") throw fail("Requires diagram must be true or false."); result[key] = value; }
+    } else if (key === "approveClassification") { if (value !== true) throw fail("Classification approval must be explicit."); result[key] = true; }
+    else if (key === "requiresDiagram") { if (typeof value !== "boolean") throw fail("Requires diagram must be true or false."); result[key] = value; }
     else if (key === "standards") {
       if (!Array.isArray(value) || value.length > 30) throw fail("Choose at most 30 standard mappings.");
       result[key] = value.map(mapping => {
@@ -189,13 +214,14 @@ export function previewMathMetadata(root: string, input: {questionIds?: unknown;
   const changes = ids.map(id => {
     const record = records.get(id); if (!record) throw fail(`Question ${id} no longer exists.`, 409);
     const category = patch.category ?? record.question.topic, subcategory = patch.subcategory ?? record.question.subtopic;
+    if (patch.approveClassification && (!category || !subcategory || !taxonomy.categories.find(item => item.label === category)?.topics.includes(subcategory))) throw fail(`Choose a valid category and specific topic before approving ${id}.`);
     if (("category" in patch || "subcategory" in patch) && subcategory && !taxonomy.categories.find(item => item.label === category)?.topics.includes(subcategory)) throw fail(`Select a subcategory under ${category} for ${id}.`);
     const assignedSkilled=patch.skilled??record.metadata?.skilled??skilledTbd;
     if(assignedSkilled!==skilledTbd&&resolveSkilled(assignedSkilled,category,subcategory,taxonomy.classificationSkills)!==assignedSkilled)throw fail(`Choose a Skilled definition under ${category} / ${subcategory}, or choose TBD.`);
     const diagnostic = patch.diagnosticSkill ?? record.metadata?.diagnosticSkill;
     const skill = taxonomy.skills?.find(skill => skill.id === diagnostic);
     if (skill && (skill.category !== category || skill.subcategory !== subcategory)) throw fail(`Diagnostic skill ${skill.label} does not belong to ${category} / ${subcategory}. Clear or change the skill with the classification.`);
-    return { id, fields: Object.entries(patch).map(([field, after]) => ({ field, before: field === "category" ? record.question.topic : field === "subcategory" ? record.question.subtopic || "" : (record.metadata as Record<string, unknown> | undefined)?.[field] ?? "", after })) };
+    return { id, fields: Object.entries(patch).map(([field, after]) => ({ field, before: field === "approveClassification" ? mathClassificationLabel(record.metadata?.classification) : field === "category" ? record.question.topic : field === "subcategory" ? record.question.subtopic || "" : (record.metadata as Record<string, unknown> | undefined)?.[field] ?? "", after: field === "approveClassification" ? "Teacher approved" : after })) };
   });
   for (const [token, preview] of previews) if (preview.expires < Date.now()) previews.delete(token);
   if (previews.size > 100) previews.delete(previews.keys().next().value!);
@@ -212,7 +238,20 @@ export function applyMathMetadata(root: string, token: string, actor: string) {
   const records = new Map(readMathCommandCatalog(root).map(record => [record.id, record]));
   if (hash(preview.ids.map(id => records.get(id))) !== preview.sourceRevision) throw fail("Question content changed after this preview. Preview again.", 409);
   const before: MathManagementState["metadata"] = {}, after: MathManagementState["metadata"] = {};
-  for (const id of preview.ids) { before[id] = state.metadata[id] ?? {}; after[id] = { ...before[id], ...preview.patch }; state.metadata[id] = after[id]; }
+  const { approveClassification, ...patch } = preview.patch;
+  const taxonomy = readMathCommandTaxonomy(root);
+  for (const id of preview.ids) {
+    const record = records.get(id)!;
+    before[id] = state.metadata[id] ?? {};
+    after[id] = { ...before[id], ...patch };
+    if (approveClassification || "category" in patch || "subcategory" in patch) {
+      const category = patch.category ?? record.question.topic ?? "", subcategory = patch.subcategory ?? record.question.subtopic ?? "";
+      if (taxonomy.categories.find(item => item.label === category)?.topics.includes(subcategory)) {
+        after[id].classification = teacherMathClassification(before[id], { category: record.question.topic, subcategory: record.question.subtopic }, { category, subcategory }, actor);
+      } else delete after[id].classification;
+    }
+    state.metadata[id] = after[id];
+  }
   const undoToken = randomUUID();
   state.history = [...state.history.slice(-39), {id: undoToken, revision: state.revision, at: new Date().toISOString(), actor, before, after}];
   const saved = commitMathCommandState(root, state.revision, state); previews.delete(token);

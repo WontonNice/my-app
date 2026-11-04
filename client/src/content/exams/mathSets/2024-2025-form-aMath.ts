@@ -339,7 +339,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A museum has a room in the shape of a rectangle. The area of the floor is 960 square feet. In a scale drawing of the museum, 1 inch = 20 feet. If the length of the room is 2 inches in the scale drawing, what is the width of this room in the scale drawing?",
     "topic": "Geometry",
-    "subtopic": "Similarity & Scale Drawings",
+    "subtopic": "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -552,7 +552,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "What is the area, in square units, of the shaded region shown in the figure above?",
     "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q78-760d3a078450c895.png\" alt=\"Math diagram\" width=\"200\">What is the area, in square units, of the shaded region shown in the figure above?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -673,7 +673,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, N is the midpoint of \\(\\overline{MQ}\\). Which segment has length \\(2x-y\\) centimeters?",
     "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q82-72e7a9312c5129ed.png\" alt=\"Math diagram\" width=\"320\">In the figure above, N is the midpoint of \\(\\overline{MQ}\\). Which segment has length \\(2x-y\\) centimeters?",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -707,7 +707,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "What is the area of the parallelogram shown above?",
     "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q83-3abac7950499027d.png\" alt=\"Math diagram\" width=\"260\">What is the area of the parallelogram shown above?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -901,7 +901,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Nura made a square poster with a side length of 13 inches. Latrice made a square poster with a side length of 15 inches. What is the difference, in square inches, between the area of Latrice’s poster and the area of Nura’s poster?",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -1086,7 +1086,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, the distance between X and Y is 1 unit, and the distance between Y and Z is 2 units. What is the distance, in units, between Y and the midpoint of X and Z?",
     "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q94-e7e9a4316c6fd542.png\" alt=\"Math diagram\" width=\"300\">On the number line above, the distance between X and Y is 1 unit, and the distance between Y and Z is 2 units. What is the distance, in units, between Y and the midpoint of X and Z?",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1661,7 +1661,7 @@ export const content20242025FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, what is the distance, in units, between the midpoint of \\(\\overline{PQ}\\) and the midpoint of \\(\\overline{QR}\\)?",
     "promptHtml": "<img src=\"/exam-images/2024-2025-form-a-2024-2025-form-a-q113-b2c1a1fd34c48c4d.png\" alt=\"Math diagram\" width=\"360\">On the number line above, what is the distance, in units, between the midpoint of \\(\\overline{PQ}\\) and the midpoint of \\(\\overline{QR}\\)?",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",

@@ -1,0 +1,274 @@
+{
+  "mode": "read-only-preview",
+  "changed": true,
+  "saved": false,
+  "revision": 39,
+  "resources": [
+    {
+      "requestId": "73016a97-d9d6-41ab-91b6-787443886026",
+      "generator": "probability-raffle-card-expression-v1",
+      "module": "probability-foundation",
+      "category": "Statistics and Probability",
+      "topic": "Probability",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "probability-foundation",
+        "title": "Compound Probability",
+        "description": "Compound Probability.",
+        "category": "Statistics and Probability",
+        "topic": "Probability",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "probability-ordered-draws-v1",
+          "probability-with-replacement-v1",
+          "probability-same-color-no-replacement-v1",
+          "probability-specific-conditional-outcome-v1",
+          "probability-raffle-card-expression-v1",
+          "probability-complement-candy-draws-v1"
+        ],
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "titleMode": "custom",
+        "skillId": "probability-after-removal",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Raffle and Specific Card"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2026-2027-form-d-math-item-5"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "foundation",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "probability-raffle-card-expression-v1",
+        "title": "Raffle and Specific Card",
+        "description": "Multiply the chance of winning by the chance of a specified card; enter a product or equivalent probability.",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "topic": "Probability",
+        "kind": "builtin",
+        "builtinId": "probability-raffle-card-expression-v1"
+      }
+    },
+    {
+      "requestId": "2827a75e-31d7-4283-abba-23f31ec302b9",
+      "generator": "probability-complement-candy-draws-v1",
+      "module": "probability-foundation",
+      "category": "Statistics and Probability",
+      "topic": "Probability",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "probability-foundation",
+        "title": "Compound Probability",
+        "description": "Compound Probability.",
+        "category": "Statistics and Probability",
+        "topic": "Probability",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "probability-ordered-draws-v1",
+          "probability-with-replacement-v1",
+          "probability-same-color-no-replacement-v1",
+          "probability-specific-conditional-outcome-v1",
+          "probability-raffle-card-expression-v1",
+          "probability-complement-candy-draws-v1"
+        ],
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "titleMode": "custom",
+        "skillId": "probability-after-removal",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Two Candies Excluding a Flavor"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2021-2022-form-a-q99"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "foundation",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "probability-complement-candy-draws-v1",
+        "title": "Two Candies Excluding a Flavor",
+        "description": "Combine two favorable flavors, then reduce favorable and total counts after the first draw.",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "topic": "Probability",
+        "kind": "builtin",
+        "builtinId": "probability-complement-candy-draws-v1"
+      }
+    },
+    {
+      "requestId": "b52428e8-11e6-4e11-ac89-ea20045bdfb5",
+      "generator": "counting-distinct-paint-arrangements-v1",
+      "module": "combinatorics-0b340ac9",
+      "category": "Statistics and Probability",
+      "topic": "Counting & Sets",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "combinatorics-0b340ac9",
+        "title": "Combinatorics",
+        "description": "Combinatorics",
+        "category": "Statistics and Probability",
+        "topic": "Counting & Sets",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "counting-distinct-paint-arrangements-v1",
+          "counting-unordered-cookie-pairs-v1"
+        ],
+        "parentId": "general-statistics-and-probability-overlapping-groups-e6op6z",
+        "titleMode": "custom",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Paint Arrangements Without Repeats"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2020-2021-form-b-q104"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "counting-distinct-paint-arrangements-v1",
+        "title": "Paint Arrangements Without Repeats",
+        "description": "Count assignments of distinct colors to different house parts; order matters.",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "topic": "Counting & Sets",
+        "kind": "builtin",
+        "builtinId": "counting-distinct-paint-arrangements-v1"
+      }
+    },
+    {
+      "requestId": "ce69c192-bbc2-4964-be83-11e577430de4",
+      "generator": "probability-decimal-set-threshold-v1",
+      "module": "6416a55e-4152-4dec-833a-a405288cf40a",
+      "category": "Statistics and Probability",
+      "topic": "Probability",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "6416a55e-4152-4dec-833a-a405288cf40a",
+        "title": "Simple Probability",
+        "description": "Simple Probability",
+        "category": "Statistics and Probability",
+        "topic": "Probability",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "probability-ratio-removal-v1",
+          "probability-decimal-set-threshold-v1"
+        ],
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "titleMode": "custom",
+        "skillId": "probability-after-removal",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Probability from a Decimal Set"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "2019-2020-form-a-q80"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "foundation",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "probability-decimal-set-threshold-v1",
+        "title": "Probability from a Decimal Set",
+        "description": "Compare decimal place values and count outcomes strictly below a threshold.",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "topic": "Probability",
+        "kind": "builtin",
+        "builtinId": "probability-decimal-set-threshold-v1"
+      }
+    },
+    {
+      "requestId": "3a167138-a2b3-408a-8333-416edf20a507",
+      "generator": "counting-unordered-cookie-pairs-v1",
+      "module": "combinatorics-0b340ac9",
+      "category": "Statistics and Probability",
+      "topic": "Counting & Sets",
+      "enabled": true,
+      "published": true,
+      "parentPublished": true,
+      "reviewStatus": "unreviewed",
+      "destination": {
+        "id": "combinatorics-0b340ac9",
+        "title": "Combinatorics",
+        "description": "Combinatorics",
+        "category": "Statistics and Probability",
+        "topic": "Counting & Sets",
+        "published": true,
+        "includeAll": false,
+        "generatorIds": [
+          "counting-distinct-paint-arrangements-v1",
+          "counting-unordered-cookie-pairs-v1"
+        ],
+        "parentId": "general-statistics-and-probability-overlapping-groups-e6op6z",
+        "titleMode": "custom",
+        "skilled": "TBD"
+      },
+      "definition": {
+        "skills": [
+          "Choosing Unordered Pairs"
+        ],
+        "prerequisites": [],
+        "sourceQuestionIds": [
+          "choose-pairs-of-cookies"
+        ],
+        "programs": [
+          "SHSAT"
+        ],
+        "subject": "Math",
+        "difficulty": "standard",
+        "reviewStatus": "unreviewed",
+        "skilled": "TBD",
+        "id": "counting-unordered-cookie-pairs-v1",
+        "title": "Choosing Unordered Pairs",
+        "description": "Count pairs of distinct cookies, counting each pair once.",
+        "enabled": true,
+        "category": "Statistics and Probability",
+        "topic": "Counting & Sets",
+        "kind": "builtin",
+        "builtinId": "counting-unordered-cookie-pairs-v1"
+      }
+    }
+  ]
+}

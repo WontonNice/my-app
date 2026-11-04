@@ -13,3 +13,7 @@ body[data-workspace="math-command"] main{padding:0!important;max-width:none!impo
 .studio-inspector-actions{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .studio-inspector-actions a{color:#176259}
 @media(max-width:1000px){.studio-inspector-fields{grid-template-columns:repeat(2,minmax(140px,1fr))}}
+
+.studio-classification-review { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 12px 16px; border: 1px solid #cfc6ad; border-radius: 8px; background: #fff8e8; color: #57431c; font-size: 13px; }
+.studio-classification-review [role="status"] { flex-basis: 100%; }
+.studio-classification-review [role="status"]:empty { display: none; }

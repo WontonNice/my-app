@@ -37,7 +37,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "How many \\(5\\)-digit numbers can be created using the digits \\(2,3,5,7,\\) and \\(8\\) without repeating any digits within that \\(5\\)-digit number?",
     "promptHtml": "<p>How many \\(5\\)-digit numbers can be created using the digits \\(2,3,5,7,\\) and \\(8\\) without repeating any digits within that \\(5\\)-digit number?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Counting & Sets",
     "correctTextAnswers": [
       "120"
     ],
@@ -65,7 +65,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(\\frac{147-x}{12}=12\\)\n\nWhat is the value of \\(x\\) in the equation shown above?",
     "promptHtml": "<p>\\(\\frac{147-x}{12}=12\\)</p><p>What is the value of \\(x\\) in the equation shown above?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "correctTextAnswers": [
       "3"
     ],
@@ -93,7 +93,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(\\left|(-6)-(-5)+4.2\\right|-\\left|3-9.6\\right|=\\)",
     "promptHtml": "<p>\\(\\left|(-6)-(-5)+4.2\\right|-\\left|3-9.6\\right|=\\)</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Integers & Absolute Value",
     "correctTextAnswers": [
       "-3.4"
     ],
@@ -121,7 +121,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Tyler has completed \\(60\\) pages in his French workbook. This is \\(20\\%\\) of the total number of pages in the workbook. How many pages are in the workbook?",
     "promptHtml": "<p>Tyler has completed \\(60\\) pages in his French workbook. This is \\(20\\%\\) of the total number of pages in the workbook. How many pages are in the workbook?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "correctTextAnswers": [
       "300"
     ],
@@ -149,7 +149,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Four straight lines intersect at point \\(\\mathrm{P}\\) as shown above. What is the value of \\(y\\)?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-q062-figure-1.png\" alt=\"Source diagram for question 62\" width=\"266\"></p><p>Four straight lines intersect at point \\(\\mathrm{P}\\) as shown above. What is the value of \\(y\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Lines & Angles",
     "correctTextAnswers": [
       "65"
     ],
@@ -177,7 +177,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(x=9\\) and \\(y=-7\\), what is the value of \\(x(x-2y)\\)?",
     "promptHtml": "<p>If \\(x=9\\) and \\(y=-7\\), what is the value of \\(x(x-2y)\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -225,7 +225,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In the figure above, \\(\\mathrm{PQRS}\\) is a parallelogram. The measure of \\(\\angle\\mathrm{PQT}\\) is \\(50^\\circ\\), and the measure of \\(\\angle\\mathrm{PTQ}\\) is \\(70^\\circ\\). What is the measure of \\(\\angle\\mathrm{QRS}\\)?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-q064-figure-1.png\" alt=\"Source diagram for question 64\" width=\"267\"></p><p>In the figure above, \\(\\mathrm{PQRS}\\) is a parallelogram. The measure of \\(\\angle\\mathrm{PQT}\\) is \\(50^\\circ\\), and the measure of \\(\\angle\\mathrm{PTQ}\\) is \\(70^\\circ\\). What is the measure of \\(\\angle\\mathrm{QRS}\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Quadrilaterals & Polygons",
     "choices": [
       {
         "id": "A",
@@ -273,7 +273,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(M=3N=\\frac{P}{4}=Q+5=\\frac{R}{7}>0\\)\n\nBased on the statement above, which variable has the greatest value?",
     "promptHtml": "<p>\\(M=3N=\\frac{P}{4}=Q+5=\\frac{R}{7}>0\\)</p><p>Based on the statement above, which variable has the <strong>greatest</strong> value?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -321,7 +321,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A roofing contractor uses shingles at a rate of \\(3\\) bundles for every \\(96\\) square feet of roof covered. At this rate, how many bundles of shingles will he need in order to cover a roof that is \\(416\\) square feet?",
     "promptHtml": "<p>A roofing contractor uses shingles at a rate of \\(3\\) bundles for every \\(96\\) square feet of roof covered. At this rate, how many bundles of shingles will he need in order to cover a roof that is \\(416\\) square feet?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -369,7 +369,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "To make party invitations, Macie could buy a package of paper for \\(\\$10.50\\), or she could buy \\(x\\) individual sheets of the same paper for \\(\\$0.15\\) each. What is the largest value of \\(x\\) that would make buying the individual sheets less expensive than buying the package?",
     "promptHtml": "<p>To make party invitations, Macie could buy a package of paper for \\(\\$10.50\\), or she could buy \\(x\\) individual sheets of the same paper for \\(\\$0.15\\) each. What is the largest value of \\(x\\) that would make buying the individual sheets <strong>less</strong> expensive than buying the package?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -417,7 +417,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At \\(1{:}00\\) p.m. one day, the temperature was \\(8\\) degrees above zero. During the rest of the day, the temperature fell \\(3\\) degrees per hour. What was the temperature at \\(7{:}00\\) p.m. that day?",
     "promptHtml": "<p>At \\(1{:}00\\) p.m. one day, the temperature was \\(8\\) degrees above zero. During the rest of the day, the temperature fell \\(3\\) degrees per hour. What was the temperature at \\(7{:}00\\) p.m. that day?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Integers & Absolute Value",
     "choices": [
       {
         "id": "A",
@@ -465,7 +465,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A bag contains \\(75\\) marbles that are red, blue, or green. The ratio of red to blue marbles is \\(15{:}7\\), and the ratio of blue to green marbles is \\(7{:}3\\). If \\(2\\) blue marbles are removed and replaced with \\(2\\) green marbles, what will be the new ratio of red to green marbles?",
     "promptHtml": "<p>A bag contains \\(75\\) marbles that are red, blue, or green. The ratio of red to blue marbles is \\(15{:}7\\), and the ratio of blue to green marbles is \\(7{:}3\\). If \\(2\\) blue marbles are removed and replaced with \\(2\\) green marbles, what will be the new ratio of red to green marbles?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -513,7 +513,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "DESSERT CHOICES\n\nDessertNumber of Times OrderedCookies\\(42\\)Pie\\(23\\)Cake\\(47\\)Ice Cream\\(48\\)The table above shows the number of times that different desserts were ordered at a restaurant. Based on this information, what is the probability of a customer ordering ice cream as a dessert?",
     "promptHtml": "<p>DESSERT CHOICES</p><table><thead><tr><th>Dessert</th><th>Number of Times Ordered</th></tr></thead><tbody><tr><td>Cookies</td><td>\\(42\\)</td></tr><tr><td>Pie</td><td>\\(23\\)</td></tr><tr><td>Cake</td><td>\\(47\\)</td></tr><tr><td>Ice Cream</td><td>\\(48\\)</td></tr></tbody></table><p>The table above shows the number of times that different desserts were ordered at a restaurant. Based on this information, what is the probability of a customer ordering ice cream as a dessert?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -561,7 +561,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the least common multiple of \\(24,6,\\) and \\(18\\)?",
     "promptHtml": "<p>What is the least common multiple of \\(24,6,\\) and \\(18\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -609,7 +609,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "One day, the Early Bird Restaurant used \\(15\\) dozen eggs for \\(200\\) breakfast customers. At this rate, approximately how many dozen eggs are needed for \\(300\\) breakfast customers?",
     "promptHtml": "<p>One day, the Early Bird Restaurant used \\(15\\) dozen eggs for \\(200\\) breakfast customers. At this rate, approximately how many dozen eggs are needed for \\(300\\) breakfast customers?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -657,7 +657,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A cooler contains three types of beverages: \\(5\\) bottles of apple juice, \\(3\\) bottles of grape juice, and \\(6\\) bottles of fruit punch. What is the probability that a bottle chosen at random from this cooler is not apple juice?",
     "promptHtml": "<p>A cooler contains three types of beverages: \\(5\\) bottles of apple juice, \\(3\\) bottles of grape juice, and \\(6\\) bottles of fruit punch. What is the probability that a bottle chosen at random from this cooler is <strong>not</strong> apple juice?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -705,7 +705,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A large circular dinner plate has a radius of \\(20\\) centimeters. A smaller circular plate with a circumference of \\(20\\pi\\) centimeters is placed in the center of the larger dinner plate. What is the area of the part of the larger dinner plate that is not covered by the smaller plate?",
     "promptHtml": "<p>A large circular dinner plate has a radius of \\(20\\) centimeters. A smaller circular plate with a circumference of \\(20\\pi\\) centimeters is placed in the center of the larger dinner plate. What is the area of the part of the larger dinner plate that is <strong>not</strong> covered by the smaller plate?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Circles",
     "choices": [
       {
         "id": "A",
@@ -753,7 +753,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "PRICES FOR AD SPACE\n\nSpacePrice\\(\\frac14\\) page\\(\\$200\\)\\(\\frac12\\) page\\(\\$350\\)full page\\(\\$600\\)The table above shows prices for newspaper advertising. A store purchased \\(\\frac14\\) pages, \\(\\frac12\\) pages, and full pages of page space in equal numbers for a total of \\(\\$11{,}500\\). What is the total amount of page space the store purchased?",
     "promptHtml": "<p>PRICES FOR AD SPACE</p><table><thead><tr><th>Space</th><th>Price</th></tr></thead><tbody><tr><td>\\(\\frac14\\) page</td><td>\\(\\$200\\)</td></tr><tr><td>\\(\\frac12\\) page</td><td>\\(\\$350\\)</td></tr><tr><td>full page</td><td>\\(\\$600\\)</td></tr></tbody></table><p>The table above shows prices for newspaper advertising. A store purchased \\(\\frac14\\) pages, \\(\\frac12\\) pages, and full pages of page space in equal numbers for a total of \\(\\$11{,}500\\). What is the total amount of page space the store purchased?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -802,7 +802,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "prompt": "For which point on the graph above is the value of the \\(y\\)-coordinate greater than the value of the \\(x\\)-coordinate?",
     "promptHtml": "<p><img src=\"/exam-images/2017-2018-b-q076-coordinate-graph-passage.png\" alt=\"2017 2018 b q076 coordinate graph\" width=\"167\"></p><p>For which point on the graph above is the value of the \\(y\\)-coordinate greater than the value of the \\(x\\)-coordinate?</p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -850,7 +850,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(\\frac{36}{y}=4x\\), what is the value of \\(x\\) when \\(y=3\\)?",
     "promptHtml": "<p>If \\(\\frac{36}{y}=4x\\), what is the value of \\(x\\) when \\(y=3\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -898,7 +898,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Points \\(\\mathrm{X},\\mathrm{Y},\\) and \\(\\mathrm{Z}\\) are on a straight line, and \\(\\mathrm{Y}\\) is between \\(\\mathrm{X}\\) and \\(\\mathrm{Z}\\). Length \\(\\overline{\\mathrm{YZ}}=\\frac35\\overline{\\mathrm{XY}}\\), and length \\(\\overline{\\mathrm{XY}}=20\\) centimeters. What is the length of \\(\\overline{\\mathrm{XZ}}\\)?",
     "promptHtml": "<p>Points \\(\\mathrm{X},\\mathrm{Y},\\) and \\(\\mathrm{Z}\\) are on a straight line, and \\(\\mathrm{Y}\\) is between \\(\\mathrm{X}\\) and \\(\\mathrm{Z}\\). Length \\(\\overline{\\mathrm{YZ}}=\\frac35\\overline{\\mathrm{XY}}\\), and length \\(\\overline{\\mathrm{XY}}=20\\) centimeters. What is the length of \\(\\overline{\\mathrm{XZ}}\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -946,7 +946,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Bryana bought \\(1\\frac34\\) yards of cloth at \\(\\$8.00\\) per yard. If there was an \\(8\\%\\) sales tax, what was the total cost of the cloth?",
     "promptHtml": "<p>Bryana bought \\(1\\frac34\\) yards of cloth at \\(\\$8.00\\) per yard. If there was an \\(8\\%\\) sales tax, what was the total cost of the cloth?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -994,7 +994,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On the number line above, \\(\\mathrm{MN}=5\\frac56\\). What is the position of point \\(\\mathrm{M}\\)?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-q080-figure-1.png\" alt=\"Source diagram for question 80\" width=\"266\"></p><p>On the number line above, \\(\\mathrm{MN}=5\\frac56\\). What is the position of point \\(\\mathrm{M}\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1042,7 +1042,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A United States presidential coin is made from an alloy of four metals—copper, zinc, manganese, and nickel—with weights in the ratio of \\(177{:}12{:}7{:}4\\), respectively. The coin weighs a total of \\(8\\) grams. What is the weight of the zinc in this coin?",
     "promptHtml": "<p>A United States presidential coin is made from an alloy of four metals—copper, zinc, manganese, and nickel—with weights in the ratio of \\(177{:}12{:}7{:}4\\), respectively. The coin weighs a total of \\(8\\) grams. What is the weight of the zinc in this coin?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1090,7 +1090,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Jack scored an average of \\(15\\) points per game in his first \\(3\\) basketball games. In his \\(4\\)th game, he scored \\(27\\) points. What is his average score for the first \\(4\\) games?",
     "promptHtml": "<p>Jack scored an average of \\(15\\) points per game in his first \\(3\\) basketball games. In his \\(4\\)th game, he scored \\(27\\) points. What is his average score for the first \\(4\\) games?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Averages & Spread",
     "choices": [
       {
         "id": "A",
@@ -1138,7 +1138,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A cylindrical oil drum can hold \\(4{,}320\\) liters when it is completely full. Currently, the drum is \\(\\frac13\\) full of oil. How many kiloliters of oil need to be added in order to fill the drum completely?",
     "promptHtml": "<p>A cylindrical oil drum can hold \\(4{,}320\\) liters when it is completely full. Currently, the drum is \\(\\frac13\\) full of oil. How many <strong>kiloliters</strong> of oil need to be added in order to fill the drum completely?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Units & Conversions",
     "choices": [
       {
         "id": "A",
@@ -1186,7 +1186,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Nicole’s age now is three times Carmen’s age. If Carmen will be \\(17\\) in two years, how old was Nicole \\(5\\) years ago?",
     "promptHtml": "<p>Nicole’s age now is three times Carmen’s age. If Carmen will be \\(17\\) in two years, how old was Nicole \\(5\\) years ago?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -1234,7 +1234,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A chemical decays in such a way that the amount left at the end of each week is \\(20\\%\\) less than the amount at the beginning of that same week. What percent of the original amount is left after two weeks?",
     "promptHtml": "<p>A chemical decays in such a way that the amount left at the end of each week is \\(20\\%\\) less than the amount at the beginning of that same week. What <strong>percent</strong> of the original amount is left after two weeks?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1282,7 +1282,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "If \\(w-1\\) is an odd integer, which one of the following must be an even integer?",
     "promptHtml": "<p>If \\(w-1\\) is an odd integer, which one of the following <strong>must</strong> be an even integer?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1330,7 +1330,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Three students stand at the starting line of a running track and begin running laps at the same time. Ann completes \\(1\\) lap every \\(2\\) minutes, Jack completes \\(1\\) lap every \\(3\\) minutes, and Lee completes \\(1\\) lap every \\(4\\) minutes. How many laps does Ann complete before all three runners are once again at the starting line at the same time?",
     "promptHtml": "<p>Three students stand at the starting line of a running track and begin running laps at the same time. Ann completes \\(1\\) lap every \\(2\\) minutes, Jack completes \\(1\\) lap every \\(3\\) minutes, and Lee completes \\(1\\) lap every \\(4\\) minutes. How many laps does Ann complete before all three runners are once again at the starting line at the same time?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Number Types & Properties",
     "choices": [
       {
         "id": "A",
@@ -1378,7 +1378,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Simplify this expression:\n\n\\(4(7-3x)-(5-x)\\)",
     "promptHtml": "<p>Simplify this expression:</p><p>\\(4(7-3x)-(5-x)\\)</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Algebraic Expressions",
     "choices": [
       {
         "id": "A",
@@ -1426,7 +1426,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "PET SURVEY\n\nNumber of PetsNumber of Students\\(0\\)\\(12\\)\\(1\\)\\(16\\)\\(2\\)\\(7\\)\\(3\\) or more\\(5\\)Amy surveyed students at her school about the number of pets they have. What is the probability that a student who participated in the survey has at least \\(2\\) pets?",
     "promptHtml": "<p>PET SURVEY</p><table><thead><tr><th>Number of Pets</th><th>Number of Students</th></tr></thead><tbody><tr><td>\\(0\\)</td><td>\\(12\\)</td></tr><tr><td>\\(1\\)</td><td>\\(16\\)</td></tr><tr><td>\\(2\\)</td><td>\\(7\\)</td></tr><tr><td>\\(3\\) or more</td><td>\\(5\\)</td></tr></tbody></table><p>Amy surveyed students at her school about the number of pets they have. What is the probability that a student who participated in the survey has at least \\(2\\) pets?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -1474,7 +1474,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A large container is partially filled with \\(n\\) liters of water. Ito adds \\(10\\) liters of water to the container, making it \\(60\\%\\) full. If Ito adds \\(6\\) more liters of water, the container will be \\(75\\%\\) full. What is the value of \\(n\\)?",
     "promptHtml": "<p>A large container is partially filled with \\(n\\) liters of water. Ito adds \\(10\\) liters of water to the container, making it \\(60\\%\\) full. If Ito adds \\(6\\) more liters of water, the container will be \\(75\\%\\) full. What is the value of \\(n\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -1522,7 +1522,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(5x^3+3x+9+\\frac1{x^2}\\)\n\nIf \\(x=10\\), what is the value of the expression above?",
     "promptHtml": "<p>\\(5x^3+3x+9+\\frac1{x^2}\\)</p><p>If \\(x=10\\), what is the value of the expression above?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -1570,7 +1570,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(\\mathrm{R},\\mathrm{S},\\) and \\(\\mathrm{T}\\) are midpoints of the sides of square \\(\\mathrm{MNPQ}\\), as shown above. What is the sum of the areas of the shaded triangles?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-q092-figure-1.png\" alt=\"Source diagram for question 92\" width=\"262\"></p><p>\\(\\mathrm{R},\\mathrm{S},\\) and \\(\\mathrm{T}\\) are midpoints of the sides of square \\(\\mathrm{MNPQ}\\), as shown above. What is the sum of the areas of the shaded triangles?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -1618,7 +1618,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The Chens spend \\(\\$5\\) of every \\(\\$8\\) they earn on planned expenses. If the family earns \\(\\$29{,}600\\) in one year, how much will they spend on planned expenses that year?",
     "promptHtml": "<p>The Chens spend \\(\\$5\\) of every \\(\\$8\\) they earn on planned expenses. If the family earns \\(\\$29{,}600\\) in one year, how much will they spend on planned expenses that year?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -1666,7 +1666,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A pizza shop offers a choice of \\(3\\) sizes (small, medium, and large) and \\(7\\) different toppings. Different pizzas can be created by changing the size and/or the choice of toppings. If Cody wants to order a pizza with exactly \\(2\\) different toppings, how many different pizzas can he create?",
     "promptHtml": "<p>A pizza shop offers a choice of \\(3\\) sizes (small, medium, and large) and \\(7\\) different toppings. Different pizzas can be created by changing the size and/or the choice of toppings. If Cody wants to order a pizza with exactly \\(2\\) different toppings, how many different pizzas can he create?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -1714,7 +1714,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "SURVEY OF CATS PER FAMILY\n\nNumber of CatsNumber of Families\\(0\\)\\(15\\)\\(1\\)\\(42\\)\\(2\\)\\(35\\)\\(3\\) or more\\(8\\)The table above shows the number of cats per family in \\(100\\) households in the Blaine neighborhood. By what percentage is the number of families with \\(1\\) cat greater than the number of families with \\(2\\) cats?",
     "promptHtml": "<p>SURVEY OF CATS PER FAMILY</p><table><thead><tr><th>Number of Cats</th><th>Number of Families</th></tr></thead><tbody><tr><td>\\(0\\)</td><td>\\(15\\)</td></tr><tr><td>\\(1\\)</td><td>\\(42\\)</td></tr><tr><td>\\(2\\)</td><td>\\(35\\)</td></tr><tr><td>\\(3\\) or more</td><td>\\(8\\)</td></tr></tbody></table><p>The table above shows the number of cats per family in \\(100\\) households in the Blaine neighborhood. By what <strong>percentage</strong> is the number of families with \\(1\\) cat greater than the number of families with \\(2\\) cats?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Percentages",
     "choices": [
       {
         "id": "A",
@@ -1762,7 +1762,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A wooden box has a square base. The height of this box is \\(3\\) times the length of one side of the base. If one side of the base is \\(3\\) feet long, what is the volume of this box?",
     "promptHtml": "<p>A wooden box has a square base. The height of this box is \\(3\\) times the length of one side of the base. If one side of the base is \\(3\\) feet long, what is the volume of this box?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Surface Area & Volume",
     "choices": [
       {
         "id": "A",
@@ -1810,7 +1810,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "On a bike trip, Rajiv traveled \\(65\\) kilometers in \\(5\\) hours, while Shaina traveled \\(72\\) kilometers in \\(4\\) hours. How much less was Rajiv’s mean speed, in kilometers per hour (kph), than Shaina’s?",
     "promptHtml": "<p>On a bike trip, Rajiv traveled \\(65\\) kilometers in \\(5\\) hours, while Shaina traveled \\(72\\) kilometers in \\(4\\) hours. How much <strong>less</strong> was Rajiv’s mean speed, in kilometers per hour (kph), than Shaina’s?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Rates & Unit Rates",
     "choices": [
       {
         "id": "A",
@@ -1858,7 +1858,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Points \\(\\mathrm{P},\\mathrm{Q},\\mathrm{R},\\) and \\(\\mathrm{S}\\) represent \\(-3,-1,0,\\) and \\(2\\), respectively, on a number line. How many units is the midpoint of \\(\\overline{\\mathrm{PQ}}\\) from the midpoint of \\(\\overline{\\mathrm{RS}}\\)?",
     "promptHtml": "<p>Points \\(\\mathrm{P},\\mathrm{Q},\\mathrm{R},\\) and \\(\\mathrm{S}\\) represent \\(-3,-1,0,\\) and \\(2\\), respectively, on a number line. How many units is the midpoint of \\(\\overline{\\mathrm{PQ}}\\) from the midpoint of \\(\\overline{\\mathrm{RS}}\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1906,7 +1906,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "There are \\(1{,}000\\) cubic centimeters in \\(1\\) liter, and \\(1{,}000\\) cubic millimeters in \\(1\\) milliliter. How many cubic millimeters are there in \\(1{,}000\\) cubic centimeters?",
     "promptHtml": "<p>There are \\(1{,}000\\) cubic centimeters in \\(1\\) liter, and \\(1{,}000\\) cubic millimeters in \\(1\\) milliliter. How many cubic millimeters are there in \\(1{,}000\\) cubic centimeters?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Units & Conversions",
     "choices": [
       {
         "id": "A",
@@ -1954,7 +1954,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In the quarter circle above, what is \\(y\\) in terms of \\(x\\)?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-q100-figure-1.png\" alt=\"Source diagram for question 100\" width=\"259\"></p><p>In the quarter circle above, what is \\(y\\) in terms of \\(x\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Circles",
     "choices": [
       {
         "id": "A",
@@ -2002,7 +2002,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The hash marks on the number line above are evenly spaced. What is the coordinate of point \\(\\mathrm{R}\\)?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-q101-figure-1.png\" alt=\"Source diagram for question 101\" width=\"310\"></p><p>The hash marks on the number line above are evenly spaced. What is the coordinate of point \\(\\mathrm{R}\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -2050,7 +2050,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Phan chose an Internet service that charges \\(\\$18.00\\) per month plus \\(\\$0.024\\) per minute. Deion chose an Internet service that charges \\(\\$30.00\\) per month for unlimited usage. At the end of the month, Phan’s and Deion’s charges were identical. For how many minutes did Phan use the Internet service that month?",
     "promptHtml": "<p>Phan chose an Internet service that charges \\(\\$18.00\\) per month plus \\(\\$0.024\\) per minute. Deion chose an Internet service that charges \\(\\$30.00\\) per month for unlimited usage. At the end of the month, Phan’s and Deion’s charges were identical. For how many minutes did Phan use the Internet service that month?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -2098,7 +2098,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "In a sample of \\(50\\) cars at a local dealership, there are \\(12\\) red cars and \\(10\\) cars with backup cameras. Of the \\(12\\) red cars, \\(4\\) have backup cameras. If a car is selected at random from the given sample, what is the probability that both of the following are true: the car is not red and does not have a backup camera?",
     "promptHtml": "<p>In a sample of \\(50\\) cars at a local dealership, there are \\(12\\) red cars and \\(10\\) cars with backup cameras. Of the \\(12\\) red cars, \\(4\\) have backup cameras. If a car is selected at random from the given sample, what is the probability that <strong>both</strong> of the following are true: the car is <strong>not</strong> red and does <strong>not</strong> have a backup camera?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -2146,7 +2146,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "The decimal \\(0.06\\) can be written as the fraction \\(\\frac{x}{50}\\). What is the value of \\(x\\)?",
     "promptHtml": "<p>The decimal \\(0.06\\) can be written as the fraction \\(\\frac{x}{50}\\). What is the value of \\(x\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Fractions & Decimals",
     "choices": [
       {
         "id": "A",
@@ -2194,7 +2194,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "What is the area of the shaded triangle shown above?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2018-2019-b-q105-figure-1.png\" alt=\"Source diagram for question 103\" width=\"272\"></p><p>What is the area of the shaded triangle shown above?</p>",
-    "topic": "Uncategorized",
+    "topic": "Geometry", subtopic: "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -2242,7 +2242,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "ANIMAL CARDS\n\nNumber of CardsPicture on Card\\(8\\)cat\\(6\\)dog\\(5\\)bird\\(4\\)fish\\(1\\)horseThe cards in the table above are mixed in a box. Which animal pictured on a card has exactly a \\(1\\) in \\(4\\) chance of being picked at random from the box?",
     "promptHtml": "<p>ANIMAL CARDS</p><table><thead><tr><th>Number of Cards</th><th>Picture on Card</th></tr></thead><tbody><tr><td>\\(8\\)</td><td>cat</td></tr><tr><td>\\(6\\)</td><td>dog</td></tr><tr><td>\\(5\\)</td><td>bird</td></tr><tr><td>\\(4\\)</td><td>fish</td></tr><tr><td>\\(1\\)</td><td>horse</td></tr></tbody></table><p>The cards in the table above are mixed in a box. Which animal pictured on a card has exactly a \\(1\\) in \\(4\\) chance of being picked at random from the box?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -2290,7 +2290,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Which number line below shows the solution set for \\(2x-2\\le y\\le4x+10\\) when \\(y=1\\)?",
     "promptHtml": "<p>Which number line below shows the solution set for \\(2x-2\\le y\\le4x+10\\) when \\(y=1\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -2338,7 +2338,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(\\frac{14}{21}=\\frac{p}{7}\\)\n\nIn the equation above, what is the value of \\(p\\)?",
     "promptHtml": "<p>\\(\\frac{14}{21}=\\frac{p}{7}\\)</p><p>In the equation above, what is the value of \\(p\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Ratios and Proportional Relationships", subtopic: "Ratios & Proportions",
     "choices": [
       {
         "id": "A",
@@ -2386,7 +2386,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "A ball is selected at random from a box that contains \\(7\\) black balls, \\(14\\) green balls, and \\(21\\) red balls. What is the probability that the ball selected is black?",
     "promptHtml": "<p>A ball is selected at random from a box that contains \\(7\\) black balls, \\(14\\) green balls, and \\(21\\) red balls. What is the probability that the ball selected is black?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",
@@ -2434,7 +2434,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "At North High School, a survey asked two questions, Question A and Question B. For each question, students could answer either “yes” or “no.” Of the \\(800\\) students who responded to the survey, \\(720\\) answered “yes” to Question A, and \\(640\\) answered “yes” to Question B. What is the least possible number of these students who could have answered “yes” to both questions?",
     "promptHtml": "<p>At North High School, a survey asked two questions, Question A and Question B. For each question, students could answer either “yes” or “no.” Of the \\(800\\) students who responded to the survey, \\(720\\) answered “yes” to Question A, and \\(640\\) answered “yes” to Question B. What is the <strong>least</strong> possible number of these students who could have answered “yes” to <strong>both</strong> questions?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Counting & Sets",
     "choices": [
       {
         "id": "A",
@@ -2482,7 +2482,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Raoul is at least \\(3\\) years older than Vahn. Which of the following inequalities gives the relationship between Raoul’s age \\((r)\\) and Vahn’s age \\((v)\\)?",
     "promptHtml": "<p>Raoul is at least \\(3\\) years older than Vahn. Which of the following inequalities gives the relationship between Raoul’s age \\((r)\\) and Vahn’s age \\((v)\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Inequalities",
     "choices": [
       {
         "id": "A",
@@ -2530,7 +2530,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "\\(1\\text{ sind}=5.6\\text{ ricks}\\)\n\n\\(1\\text{ sind}=12.88\\text{ dalts}\\)\n\nUsing the conversion above, how many dalts are equal to \\(1\\) rick?",
     "promptHtml": "<p>\\(1\\text{ sind}=5.6\\text{ ricks}\\)</p><p>\\(1\\text{ sind}=12.88\\text{ dalts}\\)</p><p>Using the conversion above, how many dalts are equal to \\(1\\) rick?</p>",
-    "topic": "Uncategorized",
+    "topic": "Arithmetic & Number Sense", subtopic: "Units & Conversions",
     "choices": [
       {
         "id": "A",
@@ -2578,7 +2578,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "There are now \\(x\\) cans stacked on a shelf that holds \\(36\\) cans when full. If \\(4\\) of these cans were removed, the shelf would be half full. What is the value of \\(x\\)?",
     "promptHtml": "<p>There are now \\(x\\) cans stacked on a shelf that holds \\(36\\) cans when full. If \\(4\\) of these cans were removed, the shelf would be half full. What is the value of \\(x\\)?</p>",
-    "topic": "Uncategorized",
+    "topic": "Algebra", subtopic: "Equations & Systems",
     "choices": [
       {
         "id": "A",
@@ -2626,7 +2626,7 @@ export const content20172018FormBMathSection: ExamMathSection = {
     "points": 1,
     "prompt": "Carlos tossed a paper cup in the air \\(50\\) times and found that the probability of it landing on its side was \\(72\\%\\). If he tosses the cup in the air \\(150\\) more times, what is the total number of times he can expect the cup to land on its side?",
     "promptHtml": "<p>Carlos tossed a paper cup in the air \\(50\\) times and found that the probability of it landing on its side was \\(72\\%\\). If he tosses the cup in the air \\(150\\) <strong>more</strong> times, what is the total number of times he can expect the cup to land on its side?</p>",
-    "topic": "Uncategorized",
+    "topic": "Statistics and Probability", subtopic: "Probability",
     "choices": [
       {
         "id": "A",

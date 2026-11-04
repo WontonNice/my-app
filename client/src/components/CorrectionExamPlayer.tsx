@@ -17,9 +17,10 @@ export function CorrectionExamPlayer({ item, title, studentName, showAnswers, re
   const original: SelectedAnswers = item.submittedAnswer === undefined ? {} : { [item.question.id]: item.submittedAnswer };
   const [answers, setAnswers] = useState<SelectedAnswers>(original);
   const session = gameExamContent(`correction:${item.question.id}`, title, [{ question: item.question, passage: item.passage, subject: item.section }]);
+  if (session.content.passageSets[0]) session.content.passageSets[0].section = item.passageSection ?? "reading";
   return <div className="correction-exam-player">
     <div className="correction-player-help">
-      <span>{readOnly ? "Submitted question · Read-only preview" : "Try the question again using your exam tools. Your original answer and grade stay saved."}</span>
+      <span>{readOnly ? "Submitted question · Read-only preview" : "Try again with your exam tools. Open Exhibits for the imported answer explanation."}</span>
       {!readOnly && <button type="button" onClick={() => setAnswers(original)}>Restore submitted answer</button>}
     </div>
     <fieldset className="correction-player-surface" disabled={readOnly} aria-label="Exam question player">
@@ -28,7 +29,7 @@ export function CorrectionExamPlayer({ item, title, studentName, showAnswers, re
         studentName, answers, onAnswersChange: readOnly ? () => undefined : setAnswers,
         onSubmit: async () => false, timerText: "", hideTimer: true,
         subjectPosition: { current: item.number, total: item.number },
-        correctionReview: { number: item.number, ...navigation },
+        correctionReview: { question: item.question, number: item.number, ...navigation },
       }} />
     </fieldset>
     <div className="exam-review-answer-comparison correction-player-answers">

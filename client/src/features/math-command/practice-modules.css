@@ -5,6 +5,17 @@
 .math-study-modules .practice-module-settings-toggle { padding:6px 0; margin-top:9px; border:0; background:transparent; font-size:.7rem; }
 .practice-module-settings { margin:10px 0 12px; padding:15px; border:1px solid var(--student-line,#ddd6ca); background:var(--account-tint,#e8efea); border-radius:8px; }
 .practice-module-settings h5 { margin:0 0 9px; font-size:.8rem; }
+.practice-module-settings summary { cursor:pointer; font-size:.85rem; font-weight:600; }
+.practice-module-settings summary:focus-visible { outline:3px solid #548f77; outline-offset:4px; }
+.practice-module-settings p { font-size:.8rem; line-height:1.55; }
+.practice-module-settings fieldset { border:0; padding:0; margin:14px 0; min-width:0; }
+.practice-module-settings legend { font-size:.8rem; font-weight:600; }
+.practice-module-choice { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:7px 0; }
+.practice-module-choice > label { flex:1; min-width:0; }
+.practice-module-choice .practice-stars { flex:none; }
+.mc-module-records { display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
+.mc-module-record { display:flex; gap:12px; align-items:center; font-size:.75rem; }
+@media (max-width:480px) { .practice-module-choice { flex-wrap:wrap; gap:4px; } .practice-module-choice > label { flex-basis:100%; } .practice-module-choice .practice-stars { padding-left:24px; } }
 .practice-module-settings label { display:flex; align-items:start; gap:9px; margin:11px 0; font-size:.75rem; line-height:1.5; }
 .practice-module-settings input { accent-color:var(--student-green-2,#2e7257); margin-top:3px; flex:none; }
 .practice-module-settings small { display:block; margin-top:12px; }

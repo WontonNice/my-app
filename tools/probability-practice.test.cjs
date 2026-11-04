@@ -14,10 +14,10 @@ function verifyProbability(q,expected){
 }
 const sources=[
  {match:p=>p.firstStart===1&&p.secondStart===1&&p.target===6,answer:[5,1]},
- {match:p=>p.parts.join(':')==='2:5:3'&&p.total===30&&p.removed===1,answer:[8,27]},
- {match:p=>p.name==='Chris'&&p.red===1&&p.white===2&&p.black===3,answer:[1,10]},
- {match:p=>p.red===4&&p.blue===6,answer:[2,15]},
- {match:p=>p.name==='Sarah'&&p.red===4&&p.blue===11,answer:[16,225]},
+ {match:p=>p.parts.join(':')==='2:5:3'&&p.total===30&&p.removed===1&&p.targetColor==='blue',answer:[8,27]},
+ {match:p=>p.name==='Chris'&&p.red===1&&p.white===2&&p.black===3&&p.firstColor==='black'&&p.secondColor==='red',answer:[1,10]},
+ {match:p=>p.red===4&&p.blue===6&&p.excludedColor==='blue',answer:[2,15]},
+ {match:p=>p.name==='Sarah'&&p.red===4&&p.blue===11&&p.targetColor==='red',answer:[16,225]},
  {match:p=>p.name==='Karl'&&p.sections===4&&p.product===4,answer:[3,16]},
  {match:p=>p.name==='Melissa'&&p.counts.join(',')==='3,3,2'&&p.letters.join('')==='RGW',answer:'RR, RG, RW, GG, GW, WW'},
  {match:p=>p.people===20&&p.viruses===200&&p.virus===144,answer:[1,4000]},
@@ -31,15 +31,16 @@ const verify=[
  q=>{
   const [total,r,w,b]=q.prompt.match(/\d+/g).map(Number),removed=q.prompt.includes('one paper clip')?1:+q.prompt.match(/(\d+) paper clips of each/)[1];
   const counts=[r,w,b].map(part=>part*total/(r+w+b));assert.ok(counts.every(c=>Number.isInteger(c)&&c>removed));
-  verifyProbability(q,[counts[2]-removed,total-3*removed]);
+  const target=q.prompt.match(/will be (red|white|blue)\?/)[1];
+  verifyProbability(q,[counts[['red','white','blue'].indexOf(target)]-removed,total-3*removed]);assert.ok(q.explanation.includes('Remaining '+target+':'));
  },
  q=>{
-  const [red,white,black]=q.prompt.match(/\d+/g).map(Number),items=[...Array(red).fill('R'),...Array(white).fill('W'),...Array(black).fill('B')];let favorable=0;
-  for(let first=0;first<items.length;first++)for(let second=0;second<items.length;second++)if(first!==second&&items[first]==='B'&&items[second]==='R')favorable++;
+  const [red,white,black]=q.prompt.match(/\d+/g).map(Number),items=[...Array(red).fill('red'),...Array(white).fill('white'),...Array(black).fill('black')];const [,firstColor,secondColor]=q.prompt.match(/first shirt is (\w+) and the second shirt is (\w+)/);let favorable=0;
+  for(let first=0;first<items.length;first++)for(let second=0;second<items.length;second++)if(first!==second&&items[first]===firstColor&&items[second]===secondColor)favorable++;
   verifyProbability(q,[favorable,items.length*(items.length-1)]);
  },
- q=>{const [total,red,blue]=q.prompt.match(/\d+/g).map(Number);assert.equal(total,red+blue);verifyProbability(q,[red*(red-1)/2,total*(total-1)/2]);},
- q=>{const [total,blue,red]=q.prompt.match(/\d+/g).map(Number);assert.equal(total,blue+red);assert.match(q.prompt,/returns it to the bag/);verifyProbability(q,[red**2,total**2]);},
+ q=>{const [total,red,blue]=q.prompt.match(/\d+/g).map(Number);assert.equal(total,red+blue);const target=q.prompt.includes('not blue')?red:blue;verifyProbability(q,[target*(target-1)/2,total*(total-1)/2]);},
+ q=>{const [total,blue,red]=q.prompt.match(/\d+/g).map(Number);assert.equal(total,blue+red);assert.match(q.prompt,/returns it to the bag/);const target=q.prompt.includes('a red marble both')?red:blue;verifyProbability(q,[target**2,total**2]);},
  q=>{
   const [sections,,last,product]=q.prompt.match(/\d+/g).map(Number);assert.equal(sections,last);let favorable=0;
   for(let red=1;red<=sections;red++)for(let blue=1;blue<=sections;blue++)if(red*blue===product)favorable++;
@@ -90,7 +91,7 @@ test('Probability uses five focused Foundation Building children with eight gene
  const {addBuiltinPractice}=require('./register-practice-generator.cjs');
  const {createPracticeState,parsePracticeState}=require('../client/src/features/math-command/inequalitySession.ts');
  const taxonomy=require('./math-topics.json'),fresh=defaultPracticeCatalog(taxonomy),ids=probabilityPractice.map(t=>t.id);
- let old={...fresh,modules:fresh.modules.filter(m=>m.topic!=='Probability'||practiceModuleKind(m)),generators:fresh.generators.filter(g=>!ids.includes(g.id))};
+ let old={...fresh,modules:fresh.modules.filter(m=>practiceModuleKind(m)||!m.generatorIds.some(id=>ids.includes(id))),generators:fresh.generators.filter(g=>!ids.includes(g.id))};
  old.modules[0].title='Keep curated foundation';old.videos.push({id:'keep-video',title:'Keep lesson',description:'',category:'Algebra',topic:'Inequalities',published:false,url:''});
  const before=structuredClone(old),next=validatePracticeCatalog(probabilityPractice.reduce(addBuiltinPractice,old),taxonomy);
  assert.deepEqual(old,before);assert.deepEqual(next.generators.slice(0,before.generators.length),before.generators);assert.deepEqual(next.videos,before.videos);
@@ -99,9 +100,45 @@ test('Probability uses five focused Foundation Building children with eight gene
  assert.equal(module.title,'Listing Outcomes');assert.equal(practiceModuleKind(parent),'foundation');assert.equal(parent.topic,'Probability');
  assert.deepEqual(new Set(managedGeneratorIds(parent,next)),new Set(ids));
  assert.deepEqual(managedGeneratorIds(parent,next,{childModuleIds:[]}),[]);
- assert.equal(next.modules.filter(m=>!practiceModuleKind(m)&&m.topic==='Probability').length,5);
+ assert.equal(next.modules.filter(m=>!practiceModuleKind(m)&&m.generatorIds.some(id=>ids.includes(id))).length,5);
  assert.ok(!managedGeneratorIds(next.modules.find(m=>m.id==='foundation'),next).some(id=>ids.includes(id)));
  const state=createPracticeState(parent.id,'foundation',next);assert.deepEqual(state.generatorIds,ids);assert.deepEqual(parsePracticeState(JSON.stringify(state)),state);
- for(const definition of state.generatorDefinitions){const q=generateCatalogQuestion(definition,0,state.seed);assert.equal(q.subtopic,'Probability');assert.equal(isExamQuestionCorrect(q,q.correctChoiceId??q.correctTextAnswers[0]),true);}
+ for(const definition of state.generatorDefinitions){const q=generateCatalogQuestion(definition,0,state.seed);assert.equal(q.subtopic,definition.topic);assert.equal(isExamQuestionCorrect(q,q.correctChoiceId??q.correctTextAnswers[0]),true);}
  assert.deepEqual(next.modules.filter(m=>m.topic!=='Probability'),before.modules.filter(m=>m.topic!=='Probability'));
+});
+
+
+test('every numeric scenario varies the requested color or ordered color pair',()=>{
+ for(const [at,expected] of [[1,3],[2,6],[3,2],[4,2]]){
+  const t=probabilityPractice[at],scenarios=new Map(),positions=new Map();
+  for(let index=0;index<t.distinctCount;index++){
+   const item=t.generate(index,'color-coverage'),q=item.question;
+   const inventory=q.prompt.split(at===1?' What is the probability':at===2?' What is the probability':at===3?' If 2 cards':' What is the probability')[0];
+   const event=at===2?item.firstColor+'-'+item.secondColor:at===3?item.excludedColor:item.targetColor;
+   const letters=positions.get(event)??new Set();letters.add(q.correctChoiceId);positions.set(event,letters);
+   const events=scenarios.get(inventory)??new Set();events.add(event);scenarios.set(inventory,events);
+   assert.ok(q.explanation.includes(at===2?'probability of '+item.firstColor:at===3?'not '+item.excludedColor:item.targetColor));
+  }
+  for(const events of scenarios.values())assert.equal(events.size,expected);
+  for(const letters of positions.values())assert.equal(letters.size,4);
+ }
+});
+
+test('saved v1/v2 questions retain their exact stems, choices and explanations; next question opts into color variation',()=>{
+ const {createHash}=require('node:crypto'),{generateCatalogQuestion}=require('../server/src/shared/practiceCatalog.ts');
+ const {practiceQuestion}=require('../client/src/features/math-command/practicePreview.ts');
+ const {createPracticeState,nextPracticeQuestion,parsePracticeState}=require('../client/src/features/math-command/inequalitySession.ts');
+ for(const sample of require('./probability-legacy-snapshots.json')){
+  const template=probabilityPractice.find(t=>t.id===sample.id),question=template.generate(sample.index,sample.seed,false).question;
+  assert.equal(createHash('sha256').update(JSON.stringify(question)).digest('hex'),sample.hash);
+  for(const generationVersion of [undefined,1,2]){
+   const state={...createPracticeState(probabilityModule.id,sample.seed),generatorIds:[sample.id],index:sample.index,checked:sample.index,generationVersion};
+   assert.deepEqual(practiceQuestion(state),question);
+   assert.ok(parsePracticeState(JSON.stringify(state)));
+   const definition={id:sample.id,kind:'builtin',builtinId:sample.id};
+   const managed=generateCatalogQuestion(definition,sample.index,sample.seed,generationVersion??1);
+   const {skilled,...withoutSkilled}=managed;assert.deepEqual(withoutSkilled,question);
+   assert.equal(nextPracticeQuestion({...state,submitted:true,answer:question.correctChoiceId}).generationVersion,3);
+  }
+ }
 });

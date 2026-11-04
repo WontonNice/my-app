@@ -27,7 +27,7 @@ export const formA2025_2026Content: ExamContent = {
   "dothemnoharm": "reading",
   "spirit-of-the-herd": "reading",
   "massachusetts": "reading",
-  "indoor-plants": "revising_editing_a"
+  "ela-passage-set-3": "revising_editing_a"
 },
   passageSets: [
     SnowyMountainsPassageSet,

@@ -4,7 +4,7 @@
 export const mathSubcategoryMoves = [
   { category: 'Geometry', from: 'Shapes & Angles', to: 'Lines & Angles' },
   { category: 'Geometry', from: 'Coordinate Geometry', to: 'Coordinates & Segment Relationships' },
-  { category: 'Geometry', from: 'Pythagorean Theorem', to: 'Triangles & Polygons' },
+  { category: 'Geometry', from: 'Pythagorean Theorem', to: 'Triangles' },
   { category: 'Geometry', from: 'Scale & Transformations', to: 'Similarity & Scale Drawings' },
   { category: 'Statistics and Probability', from: 'Overlapping Groups', to: 'Set Relationships' },
   { category: 'Statistics and Probability', from: 'Probability', to: 'Basic Probability' },
@@ -17,6 +17,10 @@ export const mathSubcategoryMoves = [
 ];
 
 export const mathSubcategoryConsolidations = [
+  { category: 'Geometry', from: 'Triangles & Polygons', to: 'Quadrilaterals & Polygons' },
+  { category: 'Geometry', from: 'Area & Perimeter', to: 'Perimeter, Area & Composite Figures' },
+  { category: 'Geometry', from: 'Coordinates & Segment Relationships', to: 'Coordinate Geometry & Transformations' },
+  { category: 'Geometry', from: 'Similarity & Scale Drawings', to: 'Similarity, Scale & Proportional Geometry' },
   {
     "category": "Algebra",
     "from": "Formulas & Rearranging Equations",
@@ -91,6 +95,8 @@ export function migratedMathLocation(category: string, topic: string) {
 
 /** Rehome existing definitions only; do not add, rename, or assign any skills. */
 export function migratedMathSkillLocation(skill: { id: string; category: string; subcategory: string }) {
+  const geometrySkills: Record<string,string> = { 'pythagorean-theorem': 'Triangles', 'circles': 'Circles', 'transformations': 'Coordinate Geometry & Transformations' };
+  if (skill.category === 'Geometry' && geometrySkills[skill.id]) return {category: skill.category, subcategory: geometrySkills[skill.id]};
   const destination = migratedMathLocation(skill.category, skill.subcategory);
   const splitTopics: Record<string, { from: string; to: string }> = {
     'order-of-operations': { from: 'Number Operations', to: 'Order of Operations' },

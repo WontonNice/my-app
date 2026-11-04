@@ -34,4 +34,8 @@ async function handlePracticeCatalogRequest({method,body,root},injected){
     return {catalog,revision:stored.data?.revision??0,taxonomy:taxonomy.categories,classificationSkills:taxonomy.classificationSkills??[]};
   });
 }
-module.exports={handlePracticeCatalogRequest};
+async function withSharedMathContext(root,operation){
+  const r=loadRuntime(root);
+  return r.withMathCommandPersistence(root,async()=>{const result=await operation();await r.persistMathCommandContext(root);return result;});
+}
+module.exports={handlePracticeCatalogRequest,withSharedMathContext};

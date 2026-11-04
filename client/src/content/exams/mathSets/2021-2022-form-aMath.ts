@@ -37,7 +37,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "In the figure above, \\(\\mathrm{PQRS}\\) is a parallelogram. What is the value of \\(x\\)?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q058-figure.png\" alt=\"Source diagram for question 58\" width=\"275\"></p><p>In the figure above, \\(\\mathrm{PQRS}\\) is a parallelogram. What is the value of \\(x\\)?</p>",
     "topic": "Geometry",
-    "subtopic": "Triangles & Polygons",
+    "subtopic": "Quadrilaterals & Polygons",
     "correctTextAnswers": [
       "162"
     ],
@@ -515,7 +515,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "The perimeter of a rectangle is \\(510\\) centimeters. The ratio of the length to the width is \\(3{:}2\\). What are the dimensions of this rectangle?",
     "promptHtml": "<p>The perimeter of a rectangle is \\(510\\) centimeters. The ratio of the length to the width is \\(3{:}2\\). What are the dimensions of this rectangle?</p>",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -755,7 +755,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "What is the area of the shaded region in the graph above?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q075-figure.png\" alt=\"Source diagram for question 75\" width=\"208\"></p><p>What is the area of the shaded region in the graph above?</p>",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -1139,7 +1139,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "In a scale drawing of a triangular banner, one side measures \\(16\\) centimeters and the other two sides each measure \\(12\\) centimeters. On the actual banner, these two sides each measure \\(36\\) feet. What is the length of the remaining side of the actual banner?",
     "promptHtml": "<p>In a scale drawing of a triangular banner, one side measures \\(16\\) centimeters and the other two sides each measure \\(12\\) centimeters. On the actual banner, these two sides each measure \\(36\\) feet. What is the length of the remaining side of the actual banner?</p>",
     "topic": "Geometry",
-    "subtopic": "Similarity & Scale Drawings",
+    "subtopic": "Similarity, Scale & Proportional Geometry",
     "choices": [
       {
         "id": "A",
@@ -2243,7 +2243,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "A car travels at \\(4{,}400\\) feet per minute. The radius of each tire on the car is \\(1\\) foot. How many revolutions does one of these tires make in \\(1\\) minute?\n\n(Use the approximation \\(\\frac{22}{7}\\) for \\(\\pi\\).)",
     "promptHtml": "<p>A car travels at \\(4{,}400\\) feet per minute. The radius of each tire on the car is \\(1\\) foot. How many revolutions does one of these tires make in \\(1\\) minute?</p><p>(Use the approximation \\(\\frac{22}{7}\\) for \\(\\pi\\).)</p>",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -2483,7 +2483,7 @@ export const content20212022FormAMathSection: ExamMathSection = {
     "prompt": "On the number line above, \\(\\mathrm{JK}=3\\frac{1}{2}\\), \\(\\mathrm{JM}=9\\frac{3}{4}\\), and \\(\\mathrm{LM}=1\\frac{1}{8}\\). What is the position of point \\(\\mathrm{L}\\)?",
     "promptHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q111-figure.png\" alt=\"Source diagram for question 111\" width=\"266\"></p><p>On the number line above, \\(\\mathrm{JK}=3\\frac{1}{2}\\), \\(\\mathrm{JM}=9\\frac{3}{4}\\), and \\(\\mathrm{LM}=1\\frac{1}{8}\\). What is the position of point \\(\\mathrm{L}\\)?</p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",

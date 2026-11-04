@@ -1,0 +1,542 @@
+{
+  "format": "nathan-tutors-generator-batch",
+  "version": 1,
+  "batchId": "f764fde9-11e7-4232-9204-d5033921d821",
+  "name": "prob 2",
+  "requirements": "",
+  "requests": [
+    {
+      "requestId": "74f48973-c295-4f83-b22d-054d37c52015",
+      "sourceQuestionId": "2020-2021-form-b-q74",
+      "destination": {
+        "category": "Statistics and Probability",
+        "subcategory": "Probability",
+        "moduleId": "6416a55e-4152-4dec-833a-a405288cf40a",
+        "moduleTitle": "Simple Probability",
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "groupType": "foundation",
+        "skilled": "TBD"
+      },
+      "requirements": "",
+      "status": "available",
+      "publishAfterValidation": true,
+      "relatedGenerators": [
+        {
+          "id": "probability-specific-conditional-outcome-v1",
+          "title": "Conditional Probability",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-ordered-draws-v1",
+          "title": "Ordered Draws Without Replacement",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-decimal-set-threshold-v1",
+          "title": "Probability from a Decimal Set",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-raffle-card-expression-v1",
+          "title": "Raffle and Specific Card",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-ratio-removal-v1",
+          "title": "Ratio Counts After Removal",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-with-replacement-v1",
+          "title": "Repeated Draws With Replacement",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-same-color-no-replacement-v1",
+          "title": "Same-color Draws Without Replacement",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-complement-candy-draws-v1",
+          "title": "Two Candies Excluding a Flavor",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        }
+      ],
+      "source": {
+        "id": "2020-2021-form-b-q74",
+        "question": {
+          "id": "2020-2021-form-b-q74",
+          "points": 1,
+          "prompt": "A bowl contains 12 green candies, 4 yellow candies, and some red candies. The probability of choosing a green candy at random is twice as great as the probability of choosing a red candy at random. What is the probability of choosing a yellow candy at random?",
+          "topic": "Statistics and Probability",
+          "subtopic": "Probability",
+          "choices": [
+            {
+              "id": "A",
+              "math": "\\frac{2}{11}",
+              "text": "two elevenths"
+            },
+            {
+              "id": "B",
+              "math": "\\frac{2}{9}",
+              "text": "two ninths"
+            },
+            {
+              "id": "C",
+              "math": "\\frac{1}{4}",
+              "text": "one fourth"
+            },
+            {
+              "id": "D",
+              "math": "\\frac{3}{11}",
+              "text": "three elevenths"
+            }
+          ],
+          "correctChoiceId": "A",
+          "type": "multiple_choice",
+          "skilled": "TBD"
+        },
+        "sources": [
+          {
+            "assessmentId": "2020-2021-form-b",
+            "title": "2020-2021 Form B",
+            "number": 17,
+            "year": "2020-2021",
+            "form": "B",
+            "source": "2020-2021 Form B"
+          }
+        ],
+        "category": "Statistics and Probability",
+        "subcategory": "Probability",
+        "skilled": "TBD"
+      }
+    },
+    {
+      "requestId": "17ad6f7d-c938-44e7-aa33-3a6f92cf1df8",
+      "sourceQuestionId": "2020-2021-form-b-q86",
+      "destination": {
+        "category": "Statistics and Probability",
+        "subcategory": "Probability",
+        "moduleId": "6416a55e-4152-4dec-833a-a405288cf40a",
+        "moduleTitle": "Simple Probability",
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "groupType": "foundation",
+        "skilled": "TBD"
+      },
+      "requirements": "",
+      "status": "available",
+      "publishAfterValidation": true,
+      "relatedGenerators": [
+        {
+          "id": "probability-specific-conditional-outcome-v1",
+          "title": "Conditional Probability",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-ordered-draws-v1",
+          "title": "Ordered Draws Without Replacement",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-decimal-set-threshold-v1",
+          "title": "Probability from a Decimal Set",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-raffle-card-expression-v1",
+          "title": "Raffle and Specific Card",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-ratio-removal-v1",
+          "title": "Ratio Counts After Removal",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-with-replacement-v1",
+          "title": "Repeated Draws With Replacement",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-same-color-no-replacement-v1",
+          "title": "Same-color Draws Without Replacement",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        },
+        {
+          "id": "probability-complement-candy-draws-v1",
+          "title": "Two Candies Excluding a Flavor",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        }
+      ],
+      "source": {
+        "id": "2020-2021-form-b-q86",
+        "question": {
+          "id": "2020-2021-form-b-q86",
+          "explanation": "",
+          "points": 1,
+          "prompt": "Jar Q contains 12 balls, and Jar R contains 8 balls. The probability of drawing a yellow ball at random from Jar Q is \\(\\frac{1}{3}\\). The probability of drawing a yellow ball at random from Jar R is \\(\\frac{3}{4}\\). All the balls are poured into an empty jar, Jar S. What is the probability of drawing a yellow ball at random from Jar S?",
+          "topic": "Statistics and Probability",
+          "subtopic": "Probability",
+          "choices": [
+            {
+              "id": "A",
+              "math": "\\frac{1}{4}",
+              "text": "one-fourth"
+            },
+            {
+              "id": "B",
+              "math": "\\frac{1}{3}",
+              "text": "one-third"
+            },
+            {
+              "id": "C",
+              "math": "\\frac{1}{2}",
+              "text": "one-half"
+            },
+            {
+              "id": "D",
+              "math": "\\frac{4}{7}",
+              "text": "four-sevenths"
+            }
+          ],
+          "correctChoiceId": "C",
+          "type": "multiple_choice",
+          "skilled": "TBD"
+        },
+        "sources": [
+          {
+            "assessmentId": "2020-2021-form-b",
+            "title": "2020-2021 Form B",
+            "number": 29,
+            "year": "2020-2021",
+            "form": "B",
+            "source": "2020-2021 Form B"
+          }
+        ],
+        "category": "Statistics and Probability",
+        "subcategory": "Probability",
+        "skilled": "TBD"
+      }
+    },
+    {
+      "requestId": "66b8fa00-511a-4014-bc78-74d31eb0f8e2",
+      "sourceQuestionId": "2020-2021-form-b-q84",
+      "destination": {
+        "category": "Algebra",
+        "subcategory": "Algebraic Expressions",
+        "moduleId": "general-algebra-algebraic-expressions-rj42ee",
+        "moduleTitle": "General Practice",
+        "parentId": null,
+        "groupType": "general",
+        "skilled": "TBD"
+      },
+      "requirements": "Perserve the distribution of the negative sign. Students should learn how to distrubute negatives and when to.",
+      "status": "available",
+      "publishAfterValidation": true,
+      "relatedGenerators": [
+        {
+          "id": "symbolic-fraction-division-v1",
+          "title": "Dividing Symbolic Fractions",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "approved"
+        }
+      ],
+      "source": {
+        "id": "2020-2021-form-b-q84",
+        "question": {
+          "id": "2020-2021-form-b-q84",
+          "explanation": "",
+          "points": 1,
+          "prompt": "Simplify:\n\n\\[8x-(7+2.5x)+2\\]",
+          "topic": "Algebra",
+          "subtopic": "Algebraic Expressions",
+          "choices": [
+            {
+              "id": "A",
+              "math": "5.5x-9",
+              "text": "5.5x minus 9"
+            },
+            {
+              "id": "B",
+              "math": "5.5x-5",
+              "text": "5.5x minus 5"
+            },
+            {
+              "id": "C",
+              "math": "10.5x-9",
+              "text": "10.5x minus 9"
+            },
+            {
+              "id": "D",
+              "math": "10.5x-5",
+              "text": "10.5x minus 5"
+            }
+          ],
+          "correctChoiceId": "B",
+          "type": "multiple_choice",
+          "skilled": "TBD"
+        },
+        "sources": [
+          {
+            "assessmentId": "2020-2021-form-b",
+            "title": "2020-2021 Form B",
+            "number": 27,
+            "year": "2020-2021",
+            "form": "B",
+            "source": "2020-2021 Form B"
+          }
+        ],
+        "category": "Algebra",
+        "subcategory": "Algebraic Expressions",
+        "skilled": "TBD"
+      }
+    },
+    {
+      "requestId": "491a6fe8-089b-4cb2-9a92-c089caf7453e",
+      "sourceQuestionId": "2020-2021-form-b-q95",
+      "destination": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Number Types & Properties",
+        "moduleId": null,
+        "moduleTitle": "Rates",
+        "parentId": "general-arithmetic-number-sense-number-properties-1j4ekza",
+        "groupType": "general",
+        "skilled": "TBD"
+      },
+      "requirements": "",
+      "status": "available",
+      "publishAfterValidation": true,
+      "relatedGenerators": [
+        {
+          "id": "remaining-reading-time-v1",
+          "title": "Rates: Remaining Reading Time",
+          "match": "related-topic-unverified",
+          "enabled": true,
+          "reviewStatus": "unreviewed"
+        }
+      ],
+      "source": {
+        "id": "2020-2021-form-b-q95",
+        "question": {
+          "id": "2020-2021-form-b-q95",
+          "explanation": "",
+          "points": 1,
+          "prompt": "Michael received a check for $213 for working 20 hours at his part-time job. The amount on the check was his total pay after $32 in taxes was deducted. What was Michael’s hourly pay rate before taxes were deducted?",
+          "topic": "Ratios and Proportional Relationships",
+          "subtopic": "Rates & Unit Rates",
+          "choices": [
+            {
+              "id": "A",
+              "text": "$9.05"
+            },
+            {
+              "id": "B",
+              "text": "$10.65"
+            },
+            {
+              "id": "C",
+              "text": "$12.25"
+            },
+            {
+              "id": "D",
+              "text": "$21.35"
+            }
+          ],
+          "correctChoiceId": "C",
+          "type": "multiple_choice",
+          "skilled": "TBD"
+        },
+        "sources": [
+          {
+            "assessmentId": "2020-2021-form-b",
+            "title": "2020-2021 Form B",
+            "number": 38,
+            "year": "2020-2021",
+            "form": "B",
+            "source": "2020-2021 Form B"
+          }
+        ],
+        "category": "Ratios and Proportional Relationships",
+        "subcategory": "Rates & Unit Rates",
+        "skilled": "TBD"
+      }
+    },
+    {
+      "requestId": "c8cf1faa-ea9a-45bd-85e6-39e9c19659bf",
+      "sourceQuestionId": "2020-2021-form-b-q93",
+      "destination": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Number Types & Properties",
+        "moduleId": null,
+        "moduleTitle": "Factors & Multiples",
+        "parentId": "general-arithmetic-number-sense-number-properties-1j4ekza",
+        "groupType": "general",
+        "skilled": "TBD"
+      },
+      "requirements": "",
+      "status": "available",
+      "publishAfterValidation": true,
+      "relatedGenerators": [],
+      "source": {
+        "id": "2020-2021-form-b-q93",
+        "question": {
+          "id": "2020-2021-form-b-q93",
+          "explanation": "",
+          "points": 1,
+          "prompt": "The integers \\((n-1)\\), \\(n\\), and \\((n+1)\\) are factors of 168. What is the greatest possible value of \\(n\\)?",
+          "promptHtml": "The integers \\((n-1)\\), \\(n\\), and \\((n+1)\\) are factors of 168. What is the <strong>greatest</strong> possible value of \\(n\\)?",
+          "topic": "Arithmetic & Number Sense",
+          "subtopic": "Number Types & Properties",
+          "choices": [
+            {
+              "id": "A",
+              "text": "3"
+            },
+            {
+              "id": "B",
+              "text": "7"
+            },
+            {
+              "id": "C",
+              "text": "14"
+            },
+            {
+              "id": "D",
+              "text": "84"
+            }
+          ],
+          "correctChoiceId": "B",
+          "type": "multiple_choice",
+          "skilled": "TBD"
+        },
+        "sources": [
+          {
+            "assessmentId": "2020-2021-form-b",
+            "title": "2020-2021 Form B",
+            "number": 36,
+            "year": "2020-2021",
+            "form": "B",
+            "source": "2020-2021 Form B"
+          }
+        ],
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Number Types & Properties",
+        "skilled": "TBD"
+      }
+    },
+    {
+      "requestId": "974457c3-c1b7-467f-9bc7-3883c86f35d5",
+      "sourceQuestionId": "2021-2022-form-a-q82",
+      "destination": {
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Number Types & Properties",
+        "moduleId": null,
+        "moduleTitle": "Factors & Multiples",
+        "parentId": "general-arithmetic-number-sense-number-properties-1j4ekza",
+        "groupType": "general",
+        "skilled": "TBD"
+      },
+      "requirements": "",
+      "status": "available",
+      "publishAfterValidation": true,
+      "relatedGenerators": [],
+      "source": {
+        "id": "2021-2022-form-a-q82",
+        "question": {
+          "id": "2021-2022-form-a-q82",
+          "source": {
+            "sourceFamily": "official_shsat",
+            "sourceFormat": "pdf",
+            "playerProfile": "testnav",
+            "sourceId": "official-shsat-2021-2022-form-a",
+            "label": "2021-2022 Form A",
+            "year": "2021-2022",
+            "form": "A",
+            "sourceQuestion": "82",
+            "pages": [
+              45
+            ]
+          },
+          "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q082-explanation-1.png\" alt=\"Official explanation for source question 82; original printed answer labels retained.\" width=\"327\"></p>",
+          "skilled": "TBD",
+          "explanation": "(F) To find the smallest factor of 91, list\nthe factors: 1, 7, 13, and 91.\nThe smallest factor (other than 1) is 7.\nOf the options listed (30, 35, 39, and 44),\nonly 35 is a multiple of 7.",
+          "points": 1,
+          "prompt": "Which of the following numbers has factors that include the smallest factor (other than \\(1\\)) of \\(91\\)?",
+          "promptHtml": "<p>Which of the following numbers has factors that include the smallest factor (other than \\(1\\)) of \\(91\\)?</p>",
+          "topic": "Arithmetic & Number Sense",
+          "subtopic": "Number Types & Properties",
+          "choices": [
+            {
+              "id": "A",
+              "math": "30",
+              "text": "30"
+            },
+            {
+              "id": "B",
+              "math": "35",
+              "text": "35"
+            },
+            {
+              "id": "C",
+              "math": "39",
+              "text": "39"
+            },
+            {
+              "id": "D",
+              "math": "44",
+              "text": "44"
+            }
+          ],
+          "correctChoiceId": "B",
+          "type": "multiple_choice"
+        },
+        "sources": [
+          {
+            "assessmentId": "2021-2022-form-a",
+            "title": "2021-2022 Form A",
+            "number": 25,
+            "year": "2021-2022",
+            "form": "A",
+            "source": "2021-2022 Form A"
+          }
+        ],
+        "category": "Arithmetic & Number Sense",
+        "subcategory": "Number Types & Properties",
+        "skilled": "TBD"
+      }
+    }
+  ]
+}

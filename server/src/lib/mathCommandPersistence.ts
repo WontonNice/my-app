@@ -1,3 +1,6 @@
+import { practiceSkillSnapshot, withPracticeSkillSnapshot } from './practiceSkillContext';
+import { defaultPracticeCatalog, reconcilePracticeTaxonomy } from '../shared/practiceCatalog';
+import { readMathCommandTaxonomy } from './mathCommandCatalogStore';
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
 import { currentMathCommandStateContext, mathCommandRoot, readMathCommandState, runMathCommandStateContext, type MathManagementState } from "./mathCommandCatalogStore";
@@ -8,9 +11,9 @@ const fail=(message:string,status=503)=>Object.assign(new Error(message),{status
 function storageError(error:unknown):never {
   const code=(error as {code?:string}|null)?.code;
   if(["42P01","PGRST205","42703"].includes(code||""))throw fail(`Math Command Center durable storage is not installed. Apply ${mathCommandMigration} before using the hosted workspace. No local fallback was used.`);
-  throw fail("Math Command Center durable metadata could not be loaded or saved. Retry; no local fallback was used.");
+  throw fail("Math Command Center durable metadata storage could not be loaded or saved. Retry; no local fallback was used.");
 }
-export function usesRemoteMathCommandStorage(){return process.env.NODE_ENV==="production"||process.env.MATH_COMMAND_STORAGE==="supabase";}
+export function usesRemoteMathCommandStorage(){return process.env.NODE_ENV==="production"||process.env.MATH_COMMAND_STORAGE!=="file";}
 
 /** A request-scoped adapter: canonical questions stay in their existing stores. */
 export function createMathCommandPersistence(client:SupabaseClient) {
@@ -50,6 +53,24 @@ export function createMathCommandPersistence(client:SupabaseClient) {
   };
 }
 const persistence=createMathCommandPersistence(supabase);
-export async function withMathCommandPersistence<T>(root:string,operation:()=>T|Promise<T>):Promise<T>{return usesRemoteMathCommandStorage()?persistence.run(root,operation):operation();}
-export async function persistMathCommandContext(root=mathCommandRoot){await persistence.persist(root);}
+export async function withMathCommandPersistence<T>(root:string,operation:()=>T|Promise<T>):Promise<T>{
+  if(currentMathCommandStateContext(root)&&practiceSkillSnapshot(root))return operation();
+  const run=async()=>{
+    const stored=await supabase.from('infinite_practice_catalog').select('catalog,revision').eq('id','main').maybeSingle();
+    if(stored.error)throw fail('The shared skill/module catalog could not be loaded. Retry; no partial skill list was used.');
+    const taxonomy=readMathCommandTaxonomy(root);
+    const catalog=reconcilePracticeTaxonomy(stored.data?.catalog??defaultPracticeCatalog(),taxonomy,readMathCommandState(root).taxonomyTopicRenames);
+    return withPracticeSkillSnapshot(root,catalog.modules,stored.data?.revision??0,operation);
+  };
+  return usesRemoteMathCommandStorage()?persistence.run(root,run):operation();
+}
+export async function persistMathCommandContext(root=mathCommandRoot){
+  const snapshot=practiceSkillSnapshot(root);
+  if(snapshot&&currentMathCommandStateContext(root)?.dirty){
+    const current=await supabase.from('infinite_practice_catalog').select('revision').eq('id','main').maybeSingle();
+    if(current.error)throw fail('The skill/module catalog could not be checked before saving. Retry.');
+    if((current.data?.revision??0)!==snapshot.revision)throw fail('Practice modules changed while saving skills. Reload and review the latest list.',409);
+  }
+  await persistence.persist(root);
+}
 export const seedMathCommandMetadata=(root=mathCommandRoot,apply=false)=>persistence.seed(root,apply);

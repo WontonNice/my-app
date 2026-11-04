@@ -1,0 +1,304 @@
+{
+  "taxonomy": [
+    {
+      "label": "Algebra",
+      "topics": [
+        "Algebraic Expressions",
+        "Equations & Systems",
+        "Inequalities",
+        "Functions & Graphs",
+        "Patterns & Sequences"
+      ]
+    },
+    {
+      "label": "Geometry",
+      "topics": [
+        "Lines & Angles",
+        "Triangles",
+        "Quadrilaterals & Polygons",
+        "Circles",
+        "Perimeter, Area & Composite Figures",
+        "Surface Area & Volume",
+        "Coordinate Geometry & Transformations",
+        "Similarity, Scale & Proportional Geometry"
+      ]
+    },
+    {
+      "label": "Statistics and Probability",
+      "topics": [
+        "Data Displays & Sampling",
+        "Averages & Spread",
+        "Counting & Sets",
+        "Probability"
+      ]
+    },
+    {
+      "label": "Ratios and Proportional Relationships",
+      "topics": [
+        "Ratios & Proportions",
+        "Rates & Unit Rates",
+        "Percentages"
+      ]
+    },
+    {
+      "label": "Arithmetic & Number Sense",
+      "topics": [
+        "Number Types & Properties",
+        "Integers & Absolute Value",
+        "Fractions & Decimals",
+        "Order of Operations",
+        "Exponents, Roots & Scientific Notation",
+        "Units & Conversions"
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "2026-2027-form-d-math-item-5",
+      "category": "Statistics and Probability",
+      "subcategory": "Probability",
+      "question": {
+        "id": "2026-2027-form-d-math-item-5",
+        "points": 1,
+        "topic": "Statistics and Probability",
+        "prompt": "In a school raffle, 1 out of every 25 students wins a prize. Each prize includes a randomly selected trading card from a set of 100 different cards, labeled C1 through C100, with each card equally likely to be chosen. If one student is selected at random, what is the probability that the student both wins a prize and receives Card C17?\nWrite an expression that represents the probability that a student wins the prize and receives Card C17.\nEnter your answer in the space provided. Enter only your answer.",
+        "promptHtml": "<p><span>In a school raffle, 1 out of every 25 students wins a prize. Each prize includes a randomly selected trading card from a set of 100 different cards, labeled C1 through C100, with each card equally likely to be chosen. If one student is selected at random, what is the probability that the student both wins a prize and receives <span>Card C17?</span></span></p><p><span>Write an expression that represents the probability that a student wins the prize and receives <span>Card C17.</span></span></p> <p><span>Enter your answer in the space provided. Enter only your answer.</span></p>",
+        "explanation": "",
+        "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-d-bb2f9823436623e6fafe.png\" alt=\"Official explanation for question 55\">",
+        "source": {
+          "sourceFamily": "official_shsat",
+          "sourceFormat": "testnav",
+          "playerProfile": "testnav",
+          "year": "2026",
+          "form": "D",
+          "section": "Math",
+          "sourceQuestion": "55"
+        },
+        "type": "expression_entry",
+        "correctTextAnswers": [
+          "1/25*1/100",
+          "(1/25)*(1/100)",
+          "\\frac{1}{25}\\cdot\\frac{1}{100}",
+          "1/2500",
+          "0.0004"
+        ],
+        "entryLayout": "plain",
+        "subtopic": "Probability",
+        "skilled": "03a21542-bc74-4216-af87-a403aee66a60",
+        "entryControl": "expression"
+      },
+      "sources": [
+        {
+          "assessmentId": "2026-2027-form-d",
+          "title": "2026-2027 Form D",
+          "number": 5,
+          "year": "2026-2027",
+          "form": "D",
+          "source": "2026-2027 Form D"
+        }
+      ]
+    },
+    {
+      "id": "2021-2022-form-a-q99",
+      "category": "Statistics and Probability",
+      "subcategory": "Probability",
+      "question": {
+        "id": "2021-2022-form-a-q99",
+        "source": {
+          "sourceFamily": "official_shsat",
+          "sourceFormat": "pdf",
+          "playerProfile": "testnav",
+          "sourceId": "official-shsat-2021-2022-form-a",
+          "label": "2021-2022 Form A",
+          "year": "2021-2022",
+          "form": "A",
+          "sourceQuestion": "99",
+          "pages": [
+            49
+          ]
+        },
+        "explanationHtml": "<p><img src=\"/exam-images/pdf-2021-2022-a-q099-explanation-1.png\" alt=\"Official explanation for source question 99; original printed answer labels retained.\" width=\"332\"></p>",
+        "skilled": "TBD",
+        "explanation": "(C) The total number of candies in the\nbox is 5+3+2-=10. The number of\ncandies that are not banana is 5+ 2 = 7.\nThe probability of the first candy not being\nbanana is 2, Now, out of 9 candies,\n10\nthere are 6 candies left that are not\nbanana. The probability of the second\n6\ncandy not being banana is —. Multiply\na 9 ;\nthese two probabilities to get the solution:\n7,6 4 _7\n10° 9 90 15",
+        "points": 1,
+        "prompt": "A box contains \\(5\\) strawberry candies, \\(3\\) banana candies, and \\(2\\) orange candies. If Braden selects \\(2\\) candies at random from this box, without replacement, what is the probability that both candies are not banana?",
+        "promptHtml": "<p>A box contains \\(5\\) strawberry candies, \\(3\\) banana candies, and \\(2\\) orange candies. If Braden selects \\(2\\) candies at random from this box, without replacement, what is the probability that both candies are <strong>not</strong> banana?</p>",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "choices": [
+          {
+            "id": "A",
+            "math": "\\frac{1}{15}",
+            "text": "\\frac{1}{15}"
+          },
+          {
+            "id": "B",
+            "math": "\\frac{9}{100}",
+            "text": "\\frac{9}{100}"
+          },
+          {
+            "id": "C",
+            "math": "\\frac{7}{15}",
+            "text": "\\frac{7}{15}"
+          },
+          {
+            "id": "D",
+            "math": "\\frac{49}{100}",
+            "text": "\\frac{49}{100}"
+          }
+        ],
+        "correctChoiceId": "C",
+        "type": "multiple_choice"
+      },
+      "sources": [
+        {
+          "assessmentId": "2021-2022-form-a",
+          "title": "2021-2022 Form A",
+          "number": 42,
+          "year": "2021-2022",
+          "form": "A",
+          "source": "2021-2022 Form A"
+        }
+      ]
+    },
+    {
+      "id": "2020-2021-form-b-q104",
+      "category": "Statistics and Probability",
+      "subcategory": "Counting & Sets",
+      "question": {
+        "id": "2020-2021-form-b-q104",
+        "explanation": "",
+        "points": 1,
+        "prompt": "Three different colors of paint are available to paint the window frame, the door, and the wall of a house. If no two parts of the house may be painted the same color, how many different ways are there to paint the three parts of the house?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Counting & Sets",
+        "choices": [
+          {
+            "id": "A",
+            "text": "3"
+          },
+          {
+            "id": "B",
+            "text": "6"
+          },
+          {
+            "id": "C",
+            "text": "9"
+          },
+          {
+            "id": "D",
+            "text": "27"
+          }
+        ],
+        "correctChoiceId": "B",
+        "type": "multiple_choice",
+        "skilled": "TBD"
+      },
+      "sources": [
+        {
+          "assessmentId": "2020-2021-form-b",
+          "title": "2020-2021 Form B",
+          "number": 47,
+          "year": "2020-2021",
+          "form": "B",
+          "source": "2020-2021 Form B"
+        }
+      ]
+    },
+    {
+      "id": "2019-2020-form-a-q80",
+      "category": "Statistics and Probability",
+      "subcategory": "Probability",
+      "question": {
+        "id": "2019-2020-form-a-q80",
+        "explanation": "The values below 0.005 are 0.001, 0.0001, and 0.00001. Three of the five equally likely choices qualify, giving a probability of \\(\\frac35\\).",
+        "points": 1,
+        "prompt": "\\[\\{0.1,0.01,0.001,0.0001,0.00001\\}\\]\nIf a person chooses a number at random from the set above, what is the probability that the number is less than 0.005?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "choices": [
+          {
+            "id": "A",
+            "math": "\\frac15",
+            "text": "one-fifth"
+          },
+          {
+            "id": "B",
+            "math": "\\frac25",
+            "text": "two-fifths"
+          },
+          {
+            "id": "C",
+            "math": "\\frac35",
+            "text": "three-fifths"
+          },
+          {
+            "id": "D",
+            "math": "\\frac23",
+            "text": "two-thirds"
+          }
+        ],
+        "correctChoiceId": "C",
+        "type": "multiple_choice",
+        "skilled": "TBD"
+      },
+      "sources": [
+        {
+          "assessmentId": "2019-2020-form-a",
+          "title": "2019-2020 Form A",
+          "number": 23,
+          "year": "2019-2020",
+          "form": "A",
+          "source": "2019-2020 Form A"
+        }
+      ]
+    },
+    {
+      "id": "choose-pairs-of-cookies",
+      "category": "Statistics and Probability",
+      "subcategory": "Counting & Sets",
+      "question": {
+        "id": "choose-pairs-of-cookies",
+        "skilled": "TBD",
+        "points": 1,
+        "prompt": "There are 6 different cookies on a plate. Aiden will choose 2 of these cookies to pack in his lunch. How many different pairs of 2 cookies can he choose from the 6?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Counting & Sets",
+        "choices": [
+          {
+            "id": "A",
+            "math": "12",
+            "text": "12"
+          },
+          {
+            "id": "B",
+            "math": "15",
+            "text": "15"
+          },
+          {
+            "id": "C",
+            "math": "30",
+            "text": "30"
+          },
+          {
+            "id": "D",
+            "math": "36",
+            "text": "36"
+          }
+        ],
+        "correctChoiceId": "B",
+        "type": "multiple_choice"
+      },
+      "sources": [
+        {
+          "assessmentId": "2025-2026-form-a",
+          "title": "2025-2026 Form A",
+          "number": 34,
+          "year": "2025-2026",
+          "form": "A",
+          "source": "2025-2026 Form A"
+        }
+      ]
+    }
+  ]
+}

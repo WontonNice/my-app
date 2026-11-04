@@ -82,10 +82,10 @@ test('legacy questions keep their exact content and grading; advancing adopts th
   const restored=parsePracticeState(JSON.stringify(old));assert.deepEqual(restored,old);
   assert.deepEqual(generateCatalogQuestion(definition,0,old.seed),original);
   const checked=checkPracticeAnswer(restored,isExamQuestionCorrect(original,restored.answer));assert.equal(checked.correct,1);assert.equal(checked.generationVersion,undefined);
-  const next=nextPracticeQuestion(checked);assert.equal(next.generationVersion,2);assert.equal(next.answer,'');assert.equal(next.correct,1);
+  const next=nextPracticeQuestion(checked);assert.equal(next.generationVersion,3);assert.equal(next.answer,'');assert.equal(next.correct,1);
   const mixed=generateCatalogQuestion(definition,next.index,next.seed,next.generationVersion);assert.deepEqual(mixed,decimal(next.index,next.seed).question);
   const resumed=parsePracticeState(JSON.stringify(next));assert.deepEqual(generateCatalogQuestion(definition,resumed.index,resumed.seed,resumed.generationVersion),mixed);
-  for(const generationVersion of [0,3,'2',null])assert.equal(parsePracticeState(JSON.stringify({...next,generationVersion})),null);
+  for(const generationVersion of [0,4,'2',null])assert.equal(parsePracticeState(JSON.stringify({...next,generationVersion})),null);
 });
 
 test('all area stems: derive the change from displayed dimensions, validate explanations, units and distractors',()=>{
@@ -139,7 +139,7 @@ test('batch registration respects both exact groups, keeps every existing resour
     assert.throws(()=>addBuiltinPractice(before,{...template,groupType:template.groupType==='general'?'foundation':'general'}),/requested practice group/);
   }
   assert.deepEqual(templates.reduce((current,t)=>addBuiltinPractice(current,t),next),next);
-  const curated=structuredClone(before);curated.modules.find(m=>m.id===templates[0].moduleId).includeAll=false;assert.throws(()=>addBuiltinPractice(curated,templates[0]),/curated selection/);
+  const curated=structuredClone(before);curated.modules.find(m=>m.id===templates[0].moduleId).includeAll=false;assert.deepEqual(addBuiltinPractice(curated,templates[0]).modules,curated.modules,'legacy group flags do not restrict the shared library');
   const moved=structuredClone(before);moved.modules.find(m=>m.id===templates[1].moduleId).topic='Rates & Unit Rates';assert.throws(()=>addBuiltinPractice(moved,templates[1]),/current category and topic/);
   const approved=structuredClone(next);Object.assign(approved.generators.at(-1),{enabled:true,reviewStatus:'approved',title:'Teacher edit'});assert.deepEqual(addBuiltinPractice(approved,templates[1]),approved);
 });
@@ -162,7 +162,9 @@ test('explicit activation includes both generators while preserving review, modu
   assert.deepEqual(parsePracticeState(saved),legacy);
   assert.throws(()=>enableBuiltinPractices({...catalog,generators:catalog.generators.filter(g=>g.id!==templates[0].id)},templates),/missing generator/);
   const curated=structuredClone(catalog);curated.modules.find(m=>m.id===templates[0].moduleId).includeAll=false;
-  assert.throws(()=>enableBuiltinPractices(curated,templates),/destination does not include/);
+  const activated=enableBuiltinPractices(curated,templates);
+  assert.deepEqual(activated.modules,curated.modules,'legacy curation is preserved without restricting the shared topic library');
+  assert.ok(managedGeneratorIds(activated.modules.find(m=>m.id===templates[0].moduleId),activated).includes(templates[0].id));
 });
 
 test('draft preview grading and saved sessions remain independent of later catalog edits',()=>{

@@ -27,7 +27,7 @@ export function defaultPracticeCatalog(topics?:PracticeTaxonomy):PracticeCatalog
   const organized = organizePracticeCatalog(catalog);
   return topics ? ensureTopicPracticeModules(reconcilePracticeTaxonomy(organized, topics), topics) : organized;
 }
-export type PracticeSelection = { childModuleIds?:string[]; topics?:string[] };
+export type PracticeSelection = { childModuleIds?:string[]; topics?:string[]; includeUnassigned?:boolean };
 export const generatorTopicKey=(generator:PracticeGeneratorDefinition)=>`${generator.category??'Algebra'} / ${generator.topic??'Inequalities'}`;
 export type PracticeTaxonomy = {categories:{label:string;topics:string[]}[];classificationSkills?:MathClassificationSkill[]};
 export type PracticeTopicRename = {category:string;from:string;to:string;toCategory?:string};
@@ -60,14 +60,11 @@ export function reconcilePracticeTaxonomy(catalog:PracticeCatalog,taxonomy:Pract
   const next={...catalog,modules,generators,videos:catalog.videos.map(location)};
   const moved=modules.some((module,index)=>!sameTopic(module,catalog.modules[index]));
   if(!moved)return next;
-  // Preserve Foundation/General placement when a focused collection changes topic.
+  // Focused modules belong to Foundation Building; General Practice includes them automatically.
   const ensured=ensureTopicPracticeModules(next);
   for(const module of ensured.modules){
     if(practiceModuleKind(module))continue;
-    const previous=catalog.modules.find(item=>item.id===module.id);
-    const parent=catalog.modules.find(item=>item.id===previous?.parentId);
-    const kind=parent&&practiceModuleKind(parent);
-    if(kind)module.parentId=ensured.modules.find(item=>practiceModuleKind(item)===kind&&sameTopic(item,module))!.id;
+    module.parentId=ensured.modules.find(item=>practiceModuleKind(item)==='foundation'&&sameTopic(item,module))!.id;
   }
   // Consolidated topics share one default parent of each kind. Keep former IDs
   // as selection aliases, and carry every child and curated generator forward.
@@ -92,9 +89,10 @@ export function practiceModuleKind(module:ManagedPracticeModule) {
 export function reconcilePracticeSkilled(catalog:PracticeCatalog,skills:MathClassificationSkill[]):PracticeCatalog {
   return {...catalog,generators:catalog.generators.map(generator=>({...generator,skilled:resolveSkilled(generator.skilled,generator.category??'Algebra',generator.topic??'Inequalities',skills)})),
     modules:catalog.modules.map(module=>{
-      const skilled=resolveSkilled(module.skilled,module.category,module.topic,skills);
+      const linked=skills.find(skill=>skill.moduleIds?.includes(module.id)&&skill.category===module.category&&skill.subcategory===module.topic);
+      const skilled=linked?.id??resolveSkilled(module.skilled,module.category,module.topic,skills);
       const definition=skills.find(skill=>skill.id===skilled);
-      return {...module,skilled,...(module.titleMode==='skill'&&definition&&!practiceModuleKind(module)?{title:definition.label}:{})};
+      return {...module,skilled,...(definition&&!practiceModuleKind(module)?{title:definition.label,titleMode:'skill' as const}:{})};
     })};
 }
 /** Assign a shared skill without replacing the module, its generators, or its history. */
@@ -103,10 +101,8 @@ export function assignPracticeModuleSkill(catalog:PracticeCatalog,moduleId:strin
   if(!module||practiceModuleKind(module))throw new Error('Choose an individual module to assign a skill.');
   if((module.includeAll||module.generatorIds.length>0)&&(module.category!==skill.category||module.topic!==skill.subcategory))throw new Error('Choose a skill in this module’s Category and Subcategory so its existing generators stay in the same practice group.');
   const next=ensureTopicPracticeModules(catalog,{categories:[{label:skill.category,topics:[skill.subcategory]}]});
-  const currentParent=next.modules.find(item=>item.id===module.parentId);
-  const kind=currentParent?practiceModuleKind(currentParent)??'general':'general';
-  const parent=next.modules.find(item=>practiceModuleKind(item)===kind&&item.category===skill.category&&item.topic===skill.subcategory)!;
-  return {...next,modules:next.modules.map(item=>item.id===moduleId?{...item,...(item.titleMode==='custom'?{}:{title:skill.label,titleMode:'skill' as const}),skilled:skill.id,category:skill.category,topic:skill.subcategory,parentId:parent.id}:item)};
+  const parent=next.modules.find(item=>practiceModuleKind(item)==='foundation'&&item.category===skill.category&&item.topic===skill.subcategory)!;
+  return {...next,modules:next.modules.map(item=>item.id===moduleId?{...item,title:skill.label,titleMode:'skill' as const,skilled:skill.id,category:skill.category,topic:skill.subcategory,parentId:parent.id}:item)};
 }
 const sameTopic=(first:{category?:string;topic?:string},second:{category?:string;topic?:string})=>(first.category??'Algebra')===(second.category??'Algebra')&&(first.topic??'Inequalities')===(second.topic??'Inequalities');
 export function topicPracticeModuleId(category:string,topic:string,kind:'foundation'|'general') {
@@ -127,32 +123,41 @@ export function ensureTopicPracticeModules(catalog:PracticeCatalog,topics?:Pract
   for(const location of locations.values())for(const kind of ['foundation','general'] as const){
     if(modules.some(module=>practiceModuleKind(module)===kind&&sameTopic(module,location)))continue;
     modules.push({id:topicPracticeModuleId(location.category,location.topic,kind),title:kind==='foundation'?'Foundation Building':'General Practice',
-      description:kind==='foundation'?'Build confidence with a focused selection of question types.':'Practice every available question type in this topic.',
+      description:kind==='foundation'?'Practice this topic with your choice of modules.':'Practice every available question type in this topic.',
       ...location,defaultType:kind,published:true,includeAll:true,generatorIds:[],parentId:null});
   }
   for(const module of modules){
     if(practiceModuleKind(module))continue;
     const parent=modules.find(item=>item.id===module.parentId);
-    if(parent&&practiceModuleKind(parent)&&sameTopic(module,parent))continue;
-    module.parentId=modules.find(item=>practiceModuleKind(item)==='general'&&sameTopic(module,item))!.id;
+    if(parent&&practiceModuleKind(parent)==='foundation'&&sameTopic(module,parent))continue;
+    module.parentId=modules.find(item=>practiceModuleKind(item)==='foundation'&&sameTopic(module,item))!.id;
   }
   return {...catalog,modules};
 }
-export function managedGeneratorIds(module:ManagedPracticeModule,catalog:Pick<PracticeCatalog,'generators'>&Partial<Pick<PracticeCatalog,'modules'>>,selection:PracticeSelection={}) {
-  const excludedChildren=catalog.modules?.filter(child=>child.parentId===module.id&&(!child.published||selection.childModuleIds&&!selection.childModuleIds.includes(child.id)))??[];
-  const children=catalog.modules?.filter(child=>child.parentId===module.id&&child.published&&(!selection.childModuleIds||selection.childModuleIds.includes(child.id)))??[];
-  const ids=new Set([...module.generatorIds,...children.flatMap(child=>child.generatorIds)]);
+export function managedGeneratorIds(module:ManagedPracticeModule,catalog:Pick<PracticeCatalog,'generators'>&Partial<Pick<PracticeCatalog,'modules'>>,selection:PracticeSelection={}):string[] {
   const kind=practiceModuleKind(module);
-  const available=(generator:PracticeGeneratorDefinition)=>!kind||sameTopic(module,generator);
-  return catalog.generators.filter(generator=>generator.enabled&&available(generator)&&(!excludedChildren.some(child=>child.includeAll||child.generatorIds.includes(generator.id))||ids.has(generator.id)||children.some(child=>child.includeAll))&&(kind==='general'||module.includeAll||ids.has(generator.id)||children.some(child=>child.includeAll))&&(!selection.topics||selection.topics.includes(generatorTopicKey(generator)))).map(generator=>generator.id);
+  if(kind){
+    // The two modes share a topic library. Legacy parent placement is organizational only.
+    const focused=catalog.modules?.filter(child=>!practiceModuleKind(child)&&sameTopic(child,module))??[];
+    const members=focused.map(child=>({module:child,ids:managedGeneratorIds(child,catalog)}));
+    const grouped=new Set(members.flatMap(child=>child.ids));
+    const published=new Set(members.filter(child=>child.module.published).flatMap(child=>child.ids));
+    const selected=new Set(members.filter(child=>child.module.published&&(!selection.childModuleIds||selection.childModuleIds.includes(child.module.id))).flatMap(child=>child.ids));
+    return catalog.generators.filter(generator=>generator.enabled&&sameTopic(module,generator)
+      &&(!grouped.has(generator.id)||published.has(generator.id))
+      &&(kind==='general'||(grouped.has(generator.id)?selected.has(generator.id):selection.includeUnassigned!==false))
+      &&(!selection.topics||selection.topics.includes(generatorTopicKey(generator)))).map(generator=>generator.id);
+  }
+  return catalog.generators.filter(generator=>generator.enabled&&(module.includeAll||module.generatorIds.includes(generator.id))&&(!selection.topics||selection.topics.includes(generatorTopicKey(generator)))).map(generator=>generator.id);
 }
 export function movePracticeModule(catalog:PracticeCatalog,moduleId:string,parentId:string|null):PracticeCatalog {
   const module=catalog.modules.find(item=>item.id===moduleId);
   if(!module||practiceModuleKind(module))throw new Error('Only individual modules can be moved between practice groups.');
-  const parent=catalog.modules.find(item=>parentId?item.id===parentId:practiceModuleKind(item)==='general'&&sameTopic(module,item));
-  if(!parent||!practiceModuleKind(parent)||!sameTopic(module,parent))throw new Error('Choose Foundation Building or General Practice in the same category and subcategory.');
-  const inherited=new Set(managedGeneratorIds(module,catalog));
-  return {...catalog,modules:catalog.modules.map(item=>item.id===moduleId?{...item,parentId:parent.id}:item.id===parent.id&&practiceModuleKind(parent)==='foundation'?{...item,includeAll:false,generatorIds:managedGeneratorIds(item,catalog).filter(id=>!inherited.has(id))}:item)};
+  const requested=parentId?catalog.modules.find(item=>item.id===parentId):undefined;
+  if(parentId&&(!requested||!practiceModuleKind(requested)||!sameTopic(module,requested)))throw new Error('Choose a practice group in the same category and subcategory.');
+  const next=ensureTopicPracticeModules(catalog);
+  const parent=next.modules.find(item=>practiceModuleKind(item)==='foundation'&&sameTopic(module,item))!;
+  return {...next,modules:next.modules.map(item=>item.id===moduleId?{...item,parentId:parent.id}:item)};
 }
 export function removePracticeGenerator(catalog:PracticeCatalog,generatorId:string):PracticeCatalog {
   const next={...catalog,generators:catalog.generators.filter(item=>item.id!==generatorId),modules:catalog.modules.map(module=>({...module,generatorIds:module.generatorIds.filter(id=>id!==generatorId)}))};
@@ -246,10 +251,6 @@ export function validatePracticeCatalog(value:unknown,topics?:PracticeTaxonomy):
     if(row.skilled!==undefined)module.skilled=row.skilled===skilledTbd?skilledTbd:id(row.skilled);
     return module;
   });
-  for(const foundation of modules.filter(module=>practiceModuleKind(module)==='foundation')){
-    const contained=modules.filter(module=>module.parentId===foundation.id);
-    if(contained.length){foundation.includeAll=false;const inherited=new Set(contained.flatMap(module=>managedGeneratorIds(module,{generators,modules})));foundation.generatorIds=foundation.generatorIds.filter(id=>!inherited.has(id));}
-  }
   const presets=new Set<string>();
   for(const module of modules){
     const kind=practiceModuleKind(module),parent=modules.find(item=>item.id===module.parentId);
@@ -266,18 +267,21 @@ export function validatePracticeCatalog(value:unknown,topics?:PracticeTaxonomy):
     for(const module of modules)if(module.skilled!==undefined){
       module.skilled=resolveSkilled(module.skilled,module.category,module.topic,topics.classificationSkills);
       const skill=topics.classificationSkills.find(skill=>skill.id===module.skilled);
-      if(module.titleMode==='skill'&&skill&&!practiceModuleKind(module))module.title=skill.label;
+      if(skill&&!practiceModuleKind(module)){module.title=skill.label;module.titleMode='skill';}
     }
   }
   return ensureTopicPracticeModules({modules,generators,videos},topics);
 }
 export function studentPracticeCatalog(catalog:PracticeCatalog):PracticeCatalog {
-  return {...catalog,modules:catalog.modules.filter(module=>module.published),generators:catalog.generators.filter(generator=>generator.enabled),videos:catalog.videos.filter(video=>video.published)};
+  const modules=catalog.modules.filter(module=>module.published);
+  // Remove hidden-only content before omitting its module; it must not reappear as unassigned.
+  const available=new Set(modules.flatMap(module=>managedGeneratorIds(module,catalog)));
+  return {...catalog,modules,generators:catalog.generators.filter(generator=>generator.enabled&&available.has(generator.id)),videos:catalog.videos.filter(video=>video.published)};
 }
-export function generateCatalogQuestion(generator:PracticeGeneratorDefinition,index:number,seed:string,generationVersion:1|2=1):ExamQuestion {
+export function generateCatalogQuestion(generator:PracticeGeneratorDefinition,index:number,seed:string,generationVersion:1|2|3=1):ExamQuestion {
   if(generator.kind==='template')return {...generateTemplateQuestion(generator.template!,index,seed,generator.id,generator.category??'Algebra',generator.topic??'Inequalities'),skilled:generator.skilled??skilledTbd};
   if(generator.kind==='builtin'){
-    const question=generationVersion===2&&generator.builtinId===repeatingDecimalDigitsTemplate.id?generateRepeatingDecimalDigit(index,seed,2).question:generatePracticeQuestion([generator.builtinId!],index,seed);
+    const question=generationVersion>=2&&generator.builtinId===repeatingDecimalDigitsTemplate.id?generateRepeatingDecimalDigit(index,seed,2).question:generatePracticeQuestion([generator.builtinId!],index,seed,generationVersion);
     return {...question,topic:generator.category??question.topic,subtopic:generator.topic??question.subtopic,skilled:generator.skilled??skilledTbd};
   }
   if(!Number.isSafeInteger(index)||index<0)throw new Error('Invalid practice sequence.');

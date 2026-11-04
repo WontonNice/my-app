@@ -75,9 +75,9 @@ test('missing migration and storage failures fail closed without modifying files
   assert.deepEqual(fs.readFileSync(f.file),before);assert.equal(db.writes,0);
 });
 
-test('production always selects durable storage; local dev opts in explicitly',()=>{
+test('shared storage is the default; isolated file mode is explicit and production stays durable',()=>{
   const previous={node:process.env.NODE_ENV,storage:process.env.MATH_COMMAND_STORAGE};
-  try{delete process.env.NODE_ENV;delete process.env.MATH_COMMAND_STORAGE;assert.equal(persistence.usesRemoteMathCommandStorage(),false);process.env.MATH_COMMAND_STORAGE='supabase';assert.equal(persistence.usesRemoteMathCommandStorage(),true);process.env.MATH_COMMAND_STORAGE='file';process.env.NODE_ENV='production';assert.equal(persistence.usesRemoteMathCommandStorage(),true);}
+  try{delete process.env.NODE_ENV;delete process.env.MATH_COMMAND_STORAGE;assert.equal(persistence.usesRemoteMathCommandStorage(),true);process.env.MATH_COMMAND_STORAGE='supabase';assert.equal(persistence.usesRemoteMathCommandStorage(),true);process.env.MATH_COMMAND_STORAGE='file';process.env.NODE_ENV='production';assert.equal(persistence.usesRemoteMathCommandStorage(),true);}
   finally{for(const [key,value]of [['NODE_ENV',previous.node],['MATH_COMMAND_STORAGE',previous.storage]])if(value===undefined)delete process.env[key];else process.env[key]=value;}
 });
 

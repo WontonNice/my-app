@@ -242,7 +242,7 @@ export const content20262027FormBMathSection: ExamMathSection = {
     "prompt": "In the figure above, \\(\\text{PQRS}\\) is a parallelogram. The measure of \\(∠\\text{PQT}\\) is \\(50^{\\circ}\\), and the measure of \\(∠\\text{PTQ}\\) is \\(70^{\\circ}\\). What is the measure of \\(∠\\text{QRS?}\\)",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-b-0d93a18b5e1eb74e6801.svg\" alt=\"Figure PQRS is a parallelogram. Point T is between Point P and Point S. A straight line connects point T at the bottom of the parallelogram to point Q at the top.  \" width=\"270\"></p><p><span>In the <span>figure</span> above, </span><span>\\(\\text{PQRS}\\)</span><span> is a <span>parallelogram</span>. The <span>measure</span> of </span><span>\\(∠\\text{PQT}\\)</span><span> is </span><span>\\(50^{\\circ}\\)</span><span>,</span><span> and the measure of </span><span>\\(∠\\text{PTQ}\\)</span><span> is </span><span>\\(70^{\\circ}\\)</span><span>.</span><span> What is the measure of </span><span>\\(∠\\text{QRS?}\\)</span></p>",
     "topic": "Geometry",
-    "subtopic": "Triangles & Polygons",
+    "subtopic": "Quadrilaterals & Polygons",
     "choices": [
       {
         "id": "A",
@@ -879,7 +879,7 @@ export const content20262027FormBMathSection: ExamMathSection = {
     "prompt": "Points \\(\\text{X, Y,}\\) and \\(\\text{Z}\\) are on a straight line, and \\(\\text{Y}\\) is between \\(\\text{X}\\) and \\(\\text{Z.}\\) Length \\(\\overline{\\text{YZ}}=\\frac{3}{5}\\overline{\\text{XY}}\\text{,}\\) and length \\(\\overline{\\text{XY}}=20\\text{ centimeters.}\\) What is the length of \\(\\overline{\\text{XZ}}\\text{?}\\)",
     "promptHtml": "<p><span><span>Points</span> </span><span>\\(\\text{X, Y,}\\)</span><span> and </span><span>\\(\\text{Z}\\)</span><span> are on a <span>straight</span> <span>line</span>, and </span><span>\\(\\text{Y}\\)</span><span> is <span>between</span> </span><span>\\(\\text{X}\\)</span><span> and </span><span>\\(\\text{Z.}\\)</span> <span><span>Length</span> </span><span>\\(\\overline{\\text{YZ}}=\\frac{3}{5}\\overline{\\text{XY}}\\text{,}\\)</span><span> and length </span><span>\\(\\overline{\\text{XY}}=20\\text{ centimeters.}\\)</span><span> What is the length of </span><span>\\(\\overline{\\text{XZ}}\\text{?}\\)</span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -967,7 +967,7 @@ export const content20262027FormBMathSection: ExamMathSection = {
     "prompt": "On the number line above, \\(\\text{MN}=5\\frac{5}{6}.\\) What is the position of point \\(\\text{M?}\\)",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-b-bab546ed2741f772acea.svg\" alt=\"A number line with points M and N. N is marked as 1 and 1 third \" width=\"264\"></p><p><span>On the <span>number line</span> above, </span><span>\\(\\text{MN}=5\\frac{5}{6}.\\)</span><span> What is the position of </span><span><span><span>point</span> </span><span>\\(\\text{M?}\\)</span></span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1300,7 +1300,7 @@ export const content20262027FormBMathSection: ExamMathSection = {
     "prompt": "R, S, and T are midpoints of the sides of square MNPQ, as shown above. What is the sum of the areas of the shaded triangles?",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-b-29a5f7b2b40f7b94afef.svg\" alt=\"The figure is a square labeled MNPQ. Point R is between N and M. Point S is between N and P. Point T is between M and Q. A straight line connects S at the top to T at the bottom. Side PQ equals 6 centimeters. There are two shaded triangles marked in the upper left corner and the lower left corner.\" width=\"259\"></p><p><span>R, S, and T are <span>midpoints</span> of the <span>sides</span> of </span><span><span><span>square</span> MNPQ,</span></span><span> as shown above. What is the <span>sum</span> of the <span>areas</span> of the <span>shaded</span> <span>triangles</span>?</span></p>",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",
@@ -1564,7 +1564,7 @@ export const content20262027FormBMathSection: ExamMathSection = {
     "prompt": "Points P, Q, R, and S represent \\(-3\\text{, }-1\\text{, }0\\text{,}\\) and \\(2,\\) respectively, on a number line. How many units is the midpoint of \\(\\overline{\\text{PQ}}\\) from the midpoint of \\(\\overline{\\text{RS}}?\\)",
     "promptHtml": "<p><span><span>Points</span> P, Q, R, and S represent </span><span>\\(-3\\text{, }-1\\text{, }0\\text{,}\\)</span><span>&nbsp;and </span><span>\\(2,\\)</span><span> respectively, on a <span>number line</span>. How many <span>units</span> is the <span>midpoint</span> of </span><span>\\(\\overline{\\text{PQ}}\\)</span><span> from the midpoint of </span><span>\\(\\overline{\\text{RS}}?\\)</span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1652,7 +1652,7 @@ export const content20262027FormBMathSection: ExamMathSection = {
     "prompt": "The hash marks on the number line above are evenly spaced. What is the coordinate of point R?",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-b-d57c98b8b29f72eddce1.svg\" alt=\"A number line with points labeled M, R, T.  At the left, point M is marked negative one fourth, and at the right, point T is labeled five eighths. Point R is in between Points M and T.\" width=\"304\"></p><p><span>The hash marks on the <span>number line</span> above are evenly spaced. What is the <span>coordinate</span> of </span><span><span><span>point</span> R?</span></span></p>",
     "topic": "Geometry",
-    "subtopic": "Coordinates & Segment Relationships",
+    "subtopic": "Coordinate Geometry & Transformations",
     "choices": [
       {
         "id": "A",
@@ -1808,7 +1808,7 @@ export const content20262027FormBMathSection: ExamMathSection = {
     "prompt": "What is the area of the shaded triangle shown above?",
     "promptHtml": "<p data-align=\"center\"><img src=\"/exam-images/official-shsat-2026-b-767d5c65a7739db2a103.svg\" alt=\"A triangle is drawn along the x axis of a coordinate plane.  The left corner of the base is labeled M and the right corner of the base is labeled N. A dotted line runs along the tip of the triangle at 4 on the y axis.\" width=\"272\"></p><p><span>What is the <span>area</span> of the <span>shaded</span> <span>triangle</span> shown above?</span></p>",
     "topic": "Geometry",
-    "subtopic": "Area & Perimeter",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",

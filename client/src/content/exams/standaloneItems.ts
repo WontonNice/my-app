@@ -1476,7 +1476,8 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "dragDropSlots": [
       {
         "correctItemId": "item-3",
-        "id": "slot-1"
+        "id": "slot-1",
+        "width": 475
       }
     ],
     "items": [

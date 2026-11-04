@@ -1,0 +1,138 @@
+{
+  "batchId": "0b340ac9-b499-4ce8-8805-c66297658d92",
+  "name": "Probability",
+  "date": "2026-11-04",
+  "catalogRevision": 40,
+  "implementation": "complete",
+  "registration": "saved",
+  "studentAvailability": "Enabled and published in saved catalog; verified local Study Hall start",
+  "deployment": "Not deployed; hosted code must include these definitions to run them",
+  "tests": {
+    "focused": 8,
+    "fullDomainStems": 10397,
+    "typechecks": "client and server passed",
+    "studio": {
+      "passed": 98,
+      "failed": 29,
+      "baselineFailures": 29,
+      "additionalFailures": 0
+    }
+  },
+  "requests": [
+    {
+      "requestId": "73016a97-d9d6-41ab-91b6-787443886026",
+      "sourceQuestionId": "2026-2027-form-d-math-item-5",
+      "generatorIds": [
+        "probability-raffle-card-expression-v1"
+      ],
+      "title": "Raffle and Specific Card",
+      "destination": {
+        "moduleId": "probability-foundation",
+        "title": "Compound Probability",
+        "category": "Statistics and Probability",
+        "subcategory": "Probability",
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "parentTitle": "Foundation Building"
+      },
+      "distinctStemCount": 8800,
+      "enabled": true,
+      "reviewStatus": "unreviewed",
+      "published": true,
+      "parentPublished": true,
+      "validation": "Full-domain independent answers and grading; determinism/cycles; preserved sessions; rendered preview passed",
+      "unfinishedWork": []
+    },
+    {
+      "requestId": "2827a75e-31d7-4283-abba-23f31ec302b9",
+      "sourceQuestionId": "2021-2022-form-a-q99",
+      "generatorIds": [
+        "probability-complement-candy-draws-v1"
+      ],
+      "title": "Two Candies Excluding a Flavor",
+      "destination": {
+        "moduleId": "probability-foundation",
+        "title": "Compound Probability",
+        "category": "Statistics and Probability",
+        "subcategory": "Probability",
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "parentTitle": "Foundation Building"
+      },
+      "distinctStemCount": 1536,
+      "enabled": true,
+      "reviewStatus": "unreviewed",
+      "published": true,
+      "parentPublished": true,
+      "validation": "Full-domain independent answers and grading; determinism/cycles; preserved sessions; rendered preview passed",
+      "unfinishedWork": []
+    },
+    {
+      "requestId": "b52428e8-11e6-4e11-ac89-ea20045bdfb5",
+      "sourceQuestionId": "2020-2021-form-b-q104",
+      "generatorIds": [
+        "counting-distinct-paint-arrangements-v1"
+      ],
+      "title": "Paint Arrangements Without Repeats",
+      "destination": {
+        "moduleId": "combinatorics-0b340ac9",
+        "title": "Combinatorics",
+        "category": "Statistics and Probability",
+        "subcategory": "Counting & Sets",
+        "parentId": "general-statistics-and-probability-overlapping-groups-e6op6z",
+        "parentTitle": "General Practice"
+      },
+      "distinctStemCount": 13,
+      "enabled": true,
+      "reviewStatus": "unreviewed",
+      "published": true,
+      "parentPublished": true,
+      "validation": "Full-domain independent answers and grading; determinism/cycles; preserved sessions; rendered preview passed",
+      "unfinishedWork": []
+    },
+    {
+      "requestId": "ce69c192-bbc2-4964-be83-11e577430de4",
+      "sourceQuestionId": "2019-2020-form-a-q80",
+      "generatorIds": [
+        "probability-decimal-set-threshold-v1"
+      ],
+      "title": "Probability from a Decimal Set",
+      "destination": {
+        "moduleId": "6416a55e-4152-4dec-833a-a405288cf40a",
+        "title": "Simple Probability",
+        "category": "Statistics and Probability",
+        "subcategory": "Probability",
+        "parentId": "foundation-statistics-and-probability-probability-mzsbkv",
+        "parentTitle": "Foundation Building"
+      },
+      "distinctStemCount": 36,
+      "enabled": true,
+      "reviewStatus": "unreviewed",
+      "published": true,
+      "parentPublished": true,
+      "validation": "Full-domain independent answers and grading; determinism/cycles; preserved sessions; rendered preview passed",
+      "unfinishedWork": []
+    },
+    {
+      "requestId": "3a167138-a2b3-408a-8333-416edf20a507",
+      "sourceQuestionId": "choose-pairs-of-cookies",
+      "generatorIds": [
+        "counting-unordered-cookie-pairs-v1"
+      ],
+      "title": "Choosing Unordered Pairs",
+      "destination": {
+        "moduleId": "combinatorics-0b340ac9",
+        "title": "Combinatorics",
+        "category": "Statistics and Probability",
+        "subcategory": "Counting & Sets",
+        "parentId": "general-statistics-and-probability-overlapping-groups-e6op6z",
+        "parentTitle": "General Practice"
+      },
+      "distinctStemCount": 12,
+      "enabled": true,
+      "reviewStatus": "unreviewed",
+      "published": true,
+      "parentPublished": true,
+      "validation": "Full-domain independent answers and grading; determinism/cycles; preserved sessions; rendered preview passed",
+      "unfinishedWork": []
+    }
+  ]
+}

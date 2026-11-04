@@ -11,7 +11,7 @@ function enableBuiltinPractices(catalog, templates) {
   for (const id of requested) if (!catalog.generators.some(generator => generator.id === id)) throw new Error(`Cannot enable missing generator ${id}.`);
   const next = {...catalog, generators:catalog.generators.map(generator => requested.has(generator.id) ? {...generator, enabled:true} : generator)};
   for (const template of templates) {
-    const destination = template.existingModuleOnly
+    const destination = template.destination || template.existingModuleOnly
       ? next.modules.find(module => module.id === template.moduleId)
       : next.modules.find(module => !practiceModuleKind(module) && module.generatorIds.includes(template.id));
     if (!destination || !managedGeneratorIds(destination, next).includes(template.id)) throw new Error(`The destination does not include ${template.id}. Review its placement without replacing existing selections.`);
@@ -22,13 +22,33 @@ function enableBuiltinPractices(catalog, templates) {
 function addBuiltinPractice(catalog, template, resolveCatalog) {
   const defaults = typeof resolveCatalog==='function'?resolveCatalog(defaultPracticeCatalog()):defaultPracticeCatalog(), next = structuredClone(catalog);
   const generator = defaults.generators.find(item => item.id === template.id);
+  if (template.destination) {
+    const target = template.destination;
+    const parent = next.modules.find(module => module.id === target.parentId);
+    const isTopicGroup = target.parentId === null;
+    if (!generator || (!isTopicGroup && (!parent || practiceModuleKind(parent) !== target.groupType || parent.category !== template.category || parent.topic !== template.topic))) throw new Error(`Stale destination parent for ${template.requestId}: reload the plan.`);
+    let destination = next.modules.find(module => module.id === target.moduleId);
+    if (!destination) {
+      if (!target.create || isTopicGroup) throw new Error(`Missing exact destination ${target.moduleId}; no replacement was created.`);
+      // A stable batch ID is used for new modules. Never reuse a teacher's similarly named module by inference.
+      if (next.modules.some(module => module.parentId === parent.id && module.title === target.moduleTitle)) throw new Error(`A module named ${target.moduleTitle} already exists under this parent. Resolve its exact ID before registration.`);
+      destination = {id:target.moduleId,title:target.moduleTitle,titleMode:'custom',description:target.moduleTitle,category:template.category,topic:template.topic,skilled:template.skilled??'TBD',parentId:parent.id,published:false,includeAll:false,generatorIds:[]};
+      next.modules.push(destination);
+    }
+    if ((isTopicGroup ? practiceModuleKind(destination) !== target.groupType || destination.parentId != null : practiceModuleKind(destination) || destination.parentId !== parent.id) || destination.category !== template.category || destination.topic !== template.topic) throw new Error(`Stale exact destination ${target.moduleId}; its classification or parent changed.`);
+    const existing = next.generators.find(item => item.id === generator.id);
+    if (existing && (existing.builtinId !== generator.id || existing.category !== template.category || existing.topic !== template.topic)) throw new Error(`Generator ID ${generator.id} is already used by a different definition.`);
+    if (!existing) next.generators.push({...generator,category:template.category,topic:template.topic,enabled:false,reviewStatus:'unreviewed',difficulty:template.difficulty??'unassigned',skilled:template.skilled??'TBD',sourceQuestionIds:[template.sourceId]});
+    if (!destination.generatorIds.includes(generator.id)) destination.generatorIds.push(generator.id);
+    validatePracticeCatalog(next);
+    return next;
+  }
   // Exact existing destinations must never create a replacement or edit curated selections.
   // Automatic topic groups include enabled generators without editing selections.
   if (template.existingModuleOnly) {
     const destination = next.modules.find(item => item.id === template.moduleId);
     if (!generator || !destination) throw new Error(`Missing generator or exact existing module ${template.moduleId}. Reload the destination; no replacement was created.`);
     if (destination.category !== generator.category || destination.topic !== generator.topic || practiceModuleKind(destination) !== template.groupType || !['general','foundation'].includes(template.groupType)) throw new Error('The exact destination must match the requested practice group in the generator’s current category and topic.');
-    if (template.groupType === 'foundation' && !destination.includeAll) throw new Error('The exact Foundation Building destination now has a curated selection. Reload and review its placement before registration; no selections were changed.');
     if (!next.generators.some(item => item.id === generator.id)) next.generators.push({...generator, enabled:false, reviewStatus:'unreviewed', skilled:'TBD'});
     validatePracticeCatalog(next);
     return next;
@@ -52,6 +72,19 @@ function addBuiltinPractice(catalog, template, resolveCatalog) {
 async function registerBuiltinPractice(template) {
   return registerBuiltinPractices([template]);
 }
+// Only explicit, validated batch requests authorize module publication.
+function publishBuiltinDestinations(catalog, templates) {
+  const next=structuredClone(catalog);
+  for (const template of templates.filter(item=>item.publishAfterValidation)) {
+    const destination=next.modules.find(module=>module.id===template.moduleId);
+    const generator=next.generators.find(item=>item.id===template.id);
+    if (!template.destination || !destination || !generator?.enabled || !managedGeneratorIds(destination,next).includes(template.id)) throw new Error(`Cannot publish an unavailable requested generator ${template.id}.`);
+    const parent=next.modules.find(module=>module.id===destination.parentId);
+    if (!parent && !(template.destination.parentId === null && practiceModuleKind(destination) === template.destination.groupType && destination.parentId == null)) throw new Error(`Missing discovery parent for ${destination.id}.`);
+    destination.published=true;if(parent)parent.published=true;
+  }
+  return next;
+}
 async function registerBuiltinPractices(templates) {
   serverRequire('dotenv').config({ path: [path.resolve(__dirname, '../server/.env'), path.resolve(__dirname, '../.env')], quiet: true });
   const { supabase } = require('../server/src/lib/supabase.ts');
@@ -65,7 +98,19 @@ async function registerBuiltinPractices(templates) {
   const resolveCatalog=catalog=>reconcilePracticeTaxonomy(catalog,taxonomy,renames);
   const enable = process.argv.includes('--enable');
   const registered = previous ? templates.reduce((current,template)=>addBuiltinPractice(current,template,resolveCatalog),resolveCatalog(previous)) : resolveCatalog(defaultPracticeCatalog());
-  const catalog = validatePracticeCatalog(enable ? enableBuiltinPractices(registered,templates) : registered,taxonomy);
+  const enabled = enable ? enableBuiltinPractices(registered,templates) : registered;
+  const catalog = validatePracticeCatalog(process.argv.includes('--publish-validated') ? publishBuiltinDestinations(enabled,templates) : enabled,taxonomy);
+  if (templates.some(template=>template.destination)) {
+    if (!previous) throw new Error('Exact batch destinations require a saved catalog.');
+    const requested=new Set(templates.map(template=>template.id));
+    const published=new Set(process.argv.includes('--publish-validated')?templates.filter(t=>t.publishAfterValidation).flatMap(t=>[t.moduleId,t.destination.parentId]):[]);
+    const expectedModules=previous.modules.map(module=>{
+      const additions=templates.filter(t=>t.moduleId===module.id).map(t=>t.id);
+      return {...module,...(published.has(module.id)?{published:true}:{}),generatorIds:[...new Set([...module.generatorIds,...additions])]};
+    });
+    const expectedGenerators=previous.generators.map(generator=>enable&&requested.has(generator.id)?{...generator,enabled:true}:generator);
+    if (!isDeepStrictEqual(expectedModules,catalog.modules.filter(module=>previous.modules.some(old=>old.id===module.id))) || !isDeepStrictEqual(expectedGenerators,catalog.generators.filter(generator=>previous.generators.some(old=>old.id===generator.id))) || !isDeepStrictEqual(previous.videos,catalog.videos)) throw new Error('Batch registration would change unrelated saved resources. Inspect the catalog before applying.');
+  }
   if (templates.some(template=>template.existingModuleOnly)) {
     if (!previous) throw new Error('Exact existing-module registration requires a saved catalog.');
     const requested=new Set(templates.map(template=>template.id));
@@ -82,9 +127,9 @@ async function registerBuiltinPractices(templates) {
       : await supabase.from('infinite_practice_catalog').update(row).eq('id', 'main').eq('revision', revision).select('revision').maybeSingle();
     if (saved.error || !saved.data) throw new Error(saved.error?.message ?? 'Another window saved changes. Run this command again to use the latest revision.');
   }
-  const resources=templates.map(template=>{const module=template.existingModuleOnly?catalog.modules.find(module=>module.id===template.moduleId):catalog.modules.find(module=>!practiceModuleKind(module)&&module.generatorIds.includes(template.id));const generator=catalog.generators.find(item=>item.id===template.id);return{generator:template.id,module:module?.id,category:module?.category,topic:module?.topic,enabled:generator?.enabled,reviewStatus:generator?.reviewStatus,...(template.existingModuleOnly?{destination:module,definition:generator,existingResourcesUnchanged:true}:{})};});
+  const resources=templates.map(template=>{const module=template.destination||template.existingModuleOnly?catalog.modules.find(module=>module.id===template.moduleId):catalog.modules.find(module=>!practiceModuleKind(module)&&module.generatorIds.includes(template.id));const generator=catalog.generators.find(item=>item.id===template.id);return{requestId:template.requestId,generator:template.id,module:module?.id,category:module?.category,topic:module?.topic,enabled:generator?.enabled,published:module?.published,parentPublished:catalog.modules.find(item=>item.id===module?.parentId)?.published,reviewStatus:generator?.reviewStatus,...(template.destination||template.existingModuleOnly?{destination:module,definition:generator}:{})};});
   console.log(JSON.stringify({ mode: apply ? 'apply' : 'read-only-preview', changed, saved: apply && changed, revision: revision + Number(apply && changed), ...(resources.length===1?resources[0]:{resources}) }, null, 2));
   });
 }
 
-module.exports = { addBuiltinPractice, enableBuiltinPractices, registerBuiltinPractice, registerBuiltinPractices };
+module.exports = { addBuiltinPractice, enableBuiltinPractices, publishBuiltinDestinations, registerBuiltinPractice, registerBuiltinPractices };
