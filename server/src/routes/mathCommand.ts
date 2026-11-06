@@ -10,7 +10,7 @@ import { withMathCommandPersistence } from "../lib/mathCommandPersistence";
 import { queryMathCommandCatalog, validateMathCatalogFilters } from "../shared/mathCommandCatalog";
 import { mathCatalogSnapshot } from "../lib/mathCommandCatalogService";
 import { createMathCommandCatalogRouter } from "./mathCommandCatalog";
-import { assignmentMathIds, invalidateMathPerformance, loadMathStudent, mathCommandFail as fail, mathCommandStudent, mathCommandStudents, mathPerformance, mathStudentInsights } from "../lib/mathCommandAnalytics";
+import { selectedExamRates, assignmentMathIds, invalidateMathPerformance, loadMathStudent, mathCommandFail as fail, mathCommandStudent, mathCommandStudents, mathPerformance, mathStudentInsights } from "../lib/mathCommandAnalytics";
 import { mathQuestionMetrics, selectMathAssignment, type MathAssignmentPreview, type MathAssignmentRules, type MathPracticeView } from "../shared/mathCommandAnalytics";
 import { createExamResult, type ExamResult, type SelectedAnswers } from "../shared/examGrading";
 import type { ExamContent, ExamQuestion } from "../shared/examTypes";
@@ -31,6 +31,9 @@ mathCommandRouter.use((request,response,next)=>{if(request.path.startsWith("/stu
 mathCommandRouter.use(async(_request,_response,next)=>{try{await withMathCommandPersistence(mathCommandRoot,()=>next());}catch(error){next(error);}});
 // Catalog has its own staff guard, and deliberately passes unknown paths onward.
 mathCommandRouter.use(createMathCommandCatalogRouter(async()=> (await mathPerformance()).metrics));
+mathCommandRouter.get("/exam-question-rates",async(request,response)=>{
+  response.json(await selectedExamRates(String(request.query.exam)));
+});
 mathCommandRouter.get("/students",async(_request,response)=>{response.json({students:(await mathCommandStudents()).map(user=>({id:user.id,fullName:user.user_metadata?.full_name||user.email?.split("@")[0]||"Student",insightsHref:`/teacher/students/${user.id}`}))});});
 mathCommandRouter.get("/students/:studentId/insights",async(request,response)=>{const student=await mathCommandStudent(request.params.studentId);response.json(mathStudentInsights(student,await loadMathStudent(student)));});
 mathCommandRouter.get("/students/:studentId/evidence",async(request,response)=>{
@@ -39,14 +42,14 @@ mathCommandRouter.get("/students/:studentId/evidence",async(request,response)=>{
   if(query.category)rows=rows.filter(row=>row.category===query.category);
   if(query.subcategory)rows=rows.filter(row=>row.subcategory===query.subcategory);
   if(query.skillId||query.diagnosticSkill)rows=rows.filter(row=>row.diagnosticSkill===(query.skillId||query.diagnosticSkill));
-  if(query.questionId)rows=rows.filter(row=>row.questionId===query.questionId);
+  if(query.questionId){const id=mathCatalogSnapshot().index.canonical.get(String(query.questionId))??query.questionId;rows=rows.filter(row=>row.questionId===id);}
   if(["correct","incorrect","unanswered","pending"].includes(String(query.status)))rows=rows.filter(row=>row.status===query.status);
   if(query.recent==="1"){const days=readMathCommandState().rules.recentDays??90;rows=rows.filter(row=>row.at&&Date.parse(row.at)>=Date.now()-days*86400000);}
   if(query.repeat==="1")rows=rows.filter(row=>row.previouslyAttempted);
   rows.sort((a,b)=>(b.at??"").localeCompare(a.at??""));const page=Math.max(0,Math.min(100000,Math.floor(Number(query.page)||0))),pageSize=50;
   response.json({items:rows.slice(page*pageSize,(page+1)*pageSize),total:rows.length,page,pageSize});
 });
-mathCommandRouter.get("/questions/:questionId/performance",async(request,response)=>{const stats=await mathPerformance();response.json({...stats.details[request.params.questionId]??mathQuestionMetrics([]),assignmentCount:stats.metrics[request.params.questionId]?.assignmentCount??0,lastAssignedAt:stats.metrics[request.params.questionId]?.lastAssignedAt??null,sampleMinimum:10});});
+mathCommandRouter.get("/questions/:questionId/performance",async(request,response)=>{const id=mathCatalogSnapshot().index.canonical.get(request.params.questionId)??request.params.questionId,stats=await mathPerformance();response.json({...stats.details[id]??mathQuestionMetrics([]),assignmentCount:stats.metrics[id]?.assignmentCount??0,lastAssignedAt:stats.metrics[id]?.lastAssignedAt??null,sampleMinimum:10});});
 async function selectionContext(data:Awaited<ReturnType<typeof loadMathStudent>>,rules:MathAssignmentRules,actor: string){
   if(!rules||typeof rules!=="object"||Array.isArray(rules))throw fail("Choose assignment selection rules.");
   const filters=validateMathCatalogFilters(rules.catalogFilters),needsPerformance=filters.status==="never_assigned"||filters.status==="previously_assigned";
@@ -60,11 +63,11 @@ async function selectionContext(data:Awaited<ReturnType<typeof loadMathStudent>>
     if(group.questionIds.some(id=>seen.has(id)))group.questionIds.forEach(id=>seen.add(id));
     if(group.questionIds.some(id=>assigned.has(id)))group.questionIds.forEach(id=>assigned.add(id));
   }
-  return {pool:data.catalog.filter(row=>eligible.has(row.id)),seen,assigned,excluded};
+  return {pool:data.catalog.filter(row=>eligible.has(row.id)),seen,assigned,excluded,duplicateGroups:snapshot.catalog.duplicates};
 }
 mathCommandRouter.post("/students/:studentId/assignment-preview",async(request,response)=>{
   const student=await mathCommandStudent(request.params.studentId),data=await loadMathStudent(student),rules=request.body as MathAssignmentRules;
-  const {pool,seen,assigned,excluded}=await selectionContext(data,rules,response.locals.user.id),selection=selectMathAssignment(pool,seen,assigned,rules);
+  const {pool,seen,assigned,excluded,duplicateGroups}=await selectionContext(data,rules,response.locals.user.id),selection=selectMathAssignment(pool,seen,assigned,rules,duplicateGroups);
   const previewToken=randomUUID(),expiresAt=new Date(Date.now()+15*60000).toISOString();
   const preview:MathAssignmentPreview={previewToken,studentId:student.id,questionIds:selection.selected.map(row=>row.id),questions:selection.selected.map(row=>({id:row.id,prompt:row.question.prompt,category:row.question.topic,subcategory:row.question.subtopic||"",diagnosticSkill:row.metadata?.diagnosticSkill||"",difficulty:row.metadata?.difficulty??null,previouslySeen:seen.has(row.id)||assigned.has(row.id),source:row.sources.map(source=>source.title).join("; ")})),requested:selection.requested,selected:selection.selected.length,shortfall:selection.shortfall,warnings:[...selection.warnings,...(Object.keys(excluded).length ? [`Source readiness exclusions (a question can have several): ${Object.entries(excluded).map(([issue,count])=>`${count} ${issue.replaceAll("_", " ")}`).join("; ")}. Review these questions in the bank, or choose an infinite module.`] : [])],rules,expiresAt};
   for(const [id,record]of previews)if(Date.parse(record.preview.expiresAt)<Date.now())previews.delete(id);
@@ -81,11 +84,11 @@ mathCommandRouter.post("/students/:studentId/assignments",async(request,response
   const ids=record.preview.questionIds;
   if(!ids.length)throw fail("No questions are available for this assignment.");
   if(!Array.isArray(body.questionIds)||hash(body.questionIds)!==hash(ids))throw fail("The question selection changed. Preview it again before assigning.",409);
-  const catalog=readMathCommandCatalog(),selection=ids.map(id=>catalog.find(row=>row.id===id));
+  const catalog=mathCatalogSnapshot().merged,selection=ids.map(id=>catalog.find(row=>row.id===id));
   if(selection.some(row=>!row)||hash(selection)!==record.signature)throw fail("Question content or classification changed. Preview again before assigning.",409);
   const latest=await selectionContext(await loadMathStudent(student),record.preview.rules,actor.id);
   if(record.preview.rules.excludeSeen!==false&&record.preview.questions.some(row=>!row.previouslySeen&&(latest.seen.has(row.id)||latest.assigned.has(row.id))))throw fail("Student history or assignments changed after this preview. Preview again to select unseen questions.",409);
-  try{selectMathAssignment(latest.pool,latest.seen,latest.assigned,{...record.preview.rules,questionIds:ids});}catch(error){throw fail(`The preview is no longer eligible: ${(error as Error).message}`,409);}
+  try{selectMathAssignment(latest.pool,latest.seen,latest.assigned,{...record.preview.rules,questionIds:ids},latest.duplicateGroups);}catch(error){throw fail(`The preview is no longer eligible: ${(error as Error).message}`,409);}
   const title=String(body.title??`${ids.length}-question math practice`).trim();if(!title||title.length>300)throw fail("Use an assignment title of 1–300 characters.");
   const dueDate=body.dueDate||null;if(dueDate&&!validDate(dueDate))throw fail("Choose a valid due date.");
   const at=new Date().toISOString(),task:PlanAssignment={id,studentId:student.id,kind:"practice",contentId:`math-command:${id}`,title,instructions:typeof body.instructions==="string"?body.instructions.slice(0,10000):"Complete the selected mathematics questions.",url:`/math-practice/${id}`,status:"assigned",assignedAt:at,dueDate,plannedDate:null,completedAt:null,estimatedMinutes:null,questionTarget:ids.length,practiceBaseline:null,createdAt:at,createdBy:actor.id,updatedAt:at,revision:1,completion:null,events:[{at,actor:actor.id,action:"Assigned mathematics questions from existing content",changes:{mathCommand:{questionIds:ids,signature:record.signature}}}]};

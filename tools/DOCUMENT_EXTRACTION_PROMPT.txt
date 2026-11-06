@@ -167,6 +167,7 @@ EXACT CONTRACT
     "selectionHtml": "For selectable source words or phrases: preserve the full paragraph and wrap each selectable phrase in span data-choice-id=\"A\" (matching choices). Use multiple_choice or multi_select and retain keyed IDs. Do not flatten these into detached answer options.",
     "dragDropContentHtml": "Optional faithful HTML around {{slot-id}} placeholders, including source tables, emphasis and inline mathematics. Keep dragDropContent as the readable copy and dragDropSlots as the response contract.",
     "dropdownContentHtml": "Optional faithful HTML around {{dropdown-id}} placeholders. Retain source tables and sentence placement, plus dropdownContent and dropdowns with their original option order.",
+    "hotSpot": "Math Hot Spot: set hotSpot=true with multiple_choice or multi_select. Preserve individual targets as choices with their uploaded images and accessible descriptions. For regions on one diagram use question.image and a hotSpotRegion {x,y,width,height} in percentages on every choice. Retain the source key in correctChoiceId or correctChoiceIds.",
     "matrixStyle": "matrix_choice: use evidence for Passage/Table Evidence with bold centered statement rows, square checkboxes and Passage only / Table only / Both passage and table columns. evidence_matrix is accepted as an alias for this question type.",
     "promptParts": {
       "introduction": "Exact Read these sentences/lines instruction",
@@ -178,6 +179,7 @@ EXACT CONTRACT
   },
   "sentenceBlanks": {
     "type": "transition_drop",
+    "dragDropStyle": "outlined — reuse the existing TestNav answer bank and rectangular inline boxes; do not create a new presentation for imports",
     "choices": "Shared ordered word bank: {id,text,html?}[]",
     "dragDropContent": [
       "Sentence text with {{blank-1}} and {{blank-2}}."
@@ -435,12 +437,13 @@ TOPIC TAXONOMY (exact values)
     ],
     "Geometry": [
       "Lines & Angles",
-      "Triangles & Polygons",
+      "Triangles",
+      "Quadrilaterals & Polygons",
       "Circles",
-      "Area & Perimeter",
+      "Perimeter, Area & Composite Figures",
       "Surface Area & Volume",
-      "Coordinates & Segment Relationships",
-      "Similarity & Scale Drawings"
+      "Coordinate Geometry & Transformations",
+      "Similarity, Scale & Proportional Geometry"
     ],
     "Statistics and Probability": [
       "Data Displays & Sampling",

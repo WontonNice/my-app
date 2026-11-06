@@ -9,6 +9,7 @@ import { spawn } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { gunzipSync, gzipSync } from "node:zlib";
 import ts from "typescript";
+import { load as parseHtml } from "cheerio";
 import documentImport from "./document-import.cjs";
 import passageExamAssignment from "./passage-exam-assignment.cjs";
 import passageVersions from "./passage-versions.cjs";
@@ -32,7 +33,7 @@ import partBBank from './part-b-bank.cjs';
 import mathCommand from './math-command-service.cjs';
 import practiceCatalogService from './practice-catalog-service.cjs';
 import { mathCommandAsset } from './math-command-bundle.mjs';
-import { openTeacherWorkspace } from './teacher-workspace.mjs';
+import { openTeacherWorkspace, runningTeacherWorkspace } from './teacher-workspace.mjs';
 import { projectExamPresentation } from './exam-presentation-projection.mjs';
 import { reconcileExamQuestionOrder, selectionOrderChanged } from './exam-order-reconcile.mjs';
 import { examVerificationStore } from './exam-verification.mjs';
@@ -75,7 +76,10 @@ const katexDistRoot = join(workspaceRoot, "node_modules", "katex", "dist");
 const mathliveRoot = join(workspaceRoot, "node_modules", "mathlive");
 const assessmentsPath = join(workspaceRoot, "server", "data", "assessments.json");
 const examLabelsPath = join(workspaceRoot, "tools", "exam-labels.json");
-const examVerification = examVerificationStore(join(workspaceRoot, "tools", ".content-drafts", "exam-verification.json"));
+const examVerification = examVerificationStore(join(workspaceRoot, "tools", "exam-verifications"), {
+  backup: join(homedir(), ".nathan-tutors", "content-editor", "exam-verifications"),
+  legacy: join(workspaceRoot, "tools", ".content-drafts", "exam-verification.json"),
+});
 const editorHtmlPath = join(workspaceRoot, "tools", "content-studio.html");
 const appStylesPath = join(workspaceRoot, "client", "src", "styles", "global.css");
 const isCodespaces = process.env.CODESPACES === "true";
@@ -825,6 +829,14 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
       );
     }
     const choices = question.choices.map((choice, choiceIndex) => normalizeChoice(choice, choiceIndex, { allowIncomplete }));
+    if (baseQuestion.selectionHtml && !allowIncomplete) {
+      const $ = parseHtml(baseQuestion.selectionHtml, null, false);
+      const phrases = $('[data-choice-id]').toArray();
+      if (phrases.length !== choices.length || choices.some(choice => {
+        const targets = phrases.filter(node => $(node).attr('data-choice-id') === choice.id);
+        return targets.length !== 1 || !$(targets[0]).text().trim();
+      })) throw new EditorError(400, "Mark each Hot Text phrase exactly once in the excerpt.");
+    }
     if (new Set(choices.map(c => c.id)).size !== choices.length) throw new EditorError(400, "Choice IDs must be unique.");
     if (question.type === 'transition_drop' && (question.dragDropContent || question.dragDropSlots)) {
       const content = Array.isArray(question.dragDropContent) ? question.dragDropContent.map(String) : [];
@@ -834,7 +846,7 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
       if (slots.some(slot => (!allowIncomplete || slot.correctItemId) && !choices.some(choice => choice.id === slot.correctItemId))) throw new EditorError(400, `Question ${index + 1}: choose the correct word for every blank.`);
       const keys = slots.map(slot => slot.correctItemId).filter(Boolean);
       if (question.allowReuse !== true && new Set(keys).size !== keys.length) throw new EditorError(400, `Question ${index + 1}: enable word reuse or choose a different word for each blank.`);
-      return { ...baseQuestion, type: 'transition_drop', choices, dragDropContent: content, dragDropSlots: slots, allowReuse: question.allowReuse === true, ...(question.transitionSentenceNumber ? { transitionSentenceNumber: String(question.transitionSentenceNumber) } : {}), instructions: question.instructions || 'Move a word into each blank.' };
+      return { ...baseQuestion, type: 'transition_drop', dragDropStyle: question.dragDropStyle === 'compact' ? 'compact' : 'outlined', choices, dragDropContent: content, dragDropSlots: slots, allowReuse: question.allowReuse === true, ...(question.transitionSentenceNumber ? { transitionSentenceNumber: String(question.transitionSentenceNumber) } : {}), instructions: question.instructions || 'Move a word into each blank.' };
     }
     if (question.type === "multiple_choice" || question.type === "transition_drop") {
       const correctChoiceId = allowIncomplete ? String(question.correctChoiceId || "") : requiredText(question.correctChoiceId, `Question ${index + 1} correct answer`);
@@ -2021,6 +2033,19 @@ function normalizeMathQuestion(question, assessmentId, index, { allowIncomplete 
       throw new EditorError(400, `Math question ${questionNumber} answer IDs must be unique.`);
     }
     const availableChoiceIds = new Set(choices.map((choice) => choice.id));
+    if (question.hotSpot) {
+      Object.assign(baseQuestion, {hotSpot:true});
+      const usesRegions = sourceChoices.some(choice => choice.hotSpotRegion);
+      if (usesRegions && !allowIncomplete && !baseQuestion.image) throw new EditorError(400, 'Upload the Hot Spot diagram before saving.');
+      for (const [i, choice] of sourceChoices.entries()) {
+        if (!usesRegions) continue;
+        const region = choice.hotSpotRegion;
+        if (!region || !['x','y','width','height'].every(key => Number.isFinite(region[key])) ||
+            region.x < 0 || region.y < 0 || region.width <= 0 || region.height <= 0 ||
+            region.x + region.width > 100 || region.y + region.height > 100) throw new EditorError(400, 'Each Hot Spot region must fit inside the diagram.');
+        choices[i].hotSpotRegion = {x:region.x, y:region.y, width:region.width, height:region.height};
+      }
+    }
     if (type === "multiple_choice") {
       const correctChoiceId = (allowIncomplete ? String(question.correctChoiceId || "") : requiredText(
         question.correctChoiceId,
@@ -2684,8 +2709,8 @@ async function importMathIntoTest(input) {
     try { source = satCrashCourse.decode(input.source); } catch { /* handled by the draft importer */ }
     if (satCrashCourse.isReader(source)) {
       try {
-        const originalPackageId=await retainSourcePackage(workspaceRoot,input.source,{sourceFamily:'sat_crash_course'});
         const converted=await satCrashCourse.math(source, importSatCrashCourseImage);
+        const originalPackageId=await retainSourcePackage(workspaceRoot,input.source,{sourceFamily:'sat_crash_course'});
         converted.source={...converted.source,originalPackageId};
         input = { ...input, source: converted };
       }
@@ -2698,7 +2723,7 @@ async function importMathIntoTest(input) {
       ? await documentDrafts.import(input.source, undefined, [], "exam", { batch: input.batch, captureFailures: true, directImport: true })
       : await documentDrafts.read();
   } catch (error) { throw new EditorError(400, error.message); }
-  const result = { assessmentId: input.assessmentId, added: [], existing: [], errors: [] };
+  const result = { assessmentId: input.assessmentId, added: [], existing: [], errors: [], retainedDrafts: Boolean(input.entryId || drafts.lastImport?.entryIds?.length) };
   if (input.source !== undefined && drafts.lastImport?.error) {
     result.errors.push(drafts.lastImport.error);
     return result;
@@ -2910,8 +2935,8 @@ function normalizeStandaloneItem(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Part B question data is invalid.");
   }
-  if (documentImport.sourceMetadata(input.source)) {
-    return {...normalizeQuestion(input,'passage',0,{allowIncomplete:true}),versionLabels:partBBank.labels(input),...(partBBank.labels(input)[0] ? {versionLabel:partBBank.labels(input)[0]} : {})};
+  if (documentImport.sourceMetadata(input.source) || input.selectionHtml) {
+    return {...normalizeQuestion(input,'passage',0,{allowIncomplete:Boolean(documentImport.sourceMetadata(input.source))}),versionLabels:partBBank.labels(input),...(partBBank.labels(input)[0] ? {versionLabel:partBBank.labels(input)[0]} : {})};
   }
   const id = slugify(requiredText(input.id, "Question ID"));
   if (!id) throw new EditorError(400, "Question ID must contain letters or numbers.");
@@ -3631,6 +3656,25 @@ async function handleRequest(request, response) {
       const result = await practiceCatalogService.handlePracticeCatalogRequest({method:request.method,body:request.method==='GET'?undefined:await readJson(request),root:workspaceRoot});
       sendJson(response,200,result);return;
     }
+    // Old bookmarks and editor links share one handoff to the signed-in dashboard.
+    if (['GET','POST'].includes(request.method) && ['/math-command','/math-command/'].includes(url.pathname)) {
+      const query = url.searchParams.toString();
+      let destination;
+      if (request.method === 'POST') {
+        verifyEditRequest(request);
+        destination = (await openTeacherWorkspace(query)).url;
+      } else {
+        destination = await runningTeacherWorkspace(query);
+      }
+      if (destination) {
+        response.writeHead(303, { Location: destination, 'Cache-Control': 'no-store' });
+        response.end();
+      } else {
+        response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' });
+        response.end('<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Open dashboard Math Center</title><main style="max-width:34rem;margin:12vh auto;padding:1rem;font:1rem/1.6 system-ui"><h1>Dashboard Math Center</h1><p>Start the local teacher dashboard to open Math Center.</p><form method="post"><button>Start teacher dashboard</button></form></main>');
+      }
+      return;
+    }
     if (request.method === 'GET' && url.pathname.startsWith('/math-command/')) {
       const asset = await mathCommandAsset(workspaceRoot, url.pathname);
       if (!asset) throw new EditorError(404, 'Command Center asset not found.');
@@ -3638,6 +3682,10 @@ async function handleRequest(request, response) {
     }
     if (url.pathname.startsWith('/api/math-command/')) {
       if (request.method !== 'GET') verifyEditRequest(request);
+      if (request.method === 'GET' && url.pathname === '/api/math-command/exam-question-rates') {
+        const result = await practiceCatalogService.withSharedMathContext(workspaceRoot,()=>practiceCatalogService.examQuestionRates(workspaceRoot,url.searchParams.get('exam')));
+        sendJson(response,200,result); return;
+      }
       if (url.pathname === '/api/math-command/generator-planner') {
         throw new EditorError(409, 'Personal batches now use your signed-in teacher account. Refresh Content Studio and open My generator planner to see the same batches as Student Progress.');
       }
@@ -3704,7 +3752,7 @@ async function handleRequest(request, response) {
       response.end(html);
       return;
     }
-    if (request.method === "GET" && ["/content-studio-question-link.js", "/content-studio-command.js", "/content-studio-command.css", "/content-studio-compare.js", "/content-studio-compare.css", "/math-import-batch.cjs", "/content-studio-batches.js", "/content-studio-batches.css", "/document-import.cjs", "/content-studio-documents.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-images.js", "/content-studio-glossary.js", "/poem-layout.js", "/passage-exam-assignment.cjs"].includes(url.pathname)) {
+    if (request.method === "GET" && ["/content-studio-question-link.js", "/content-studio-command.js", "/content-studio-command.css", "/content-studio-compare.js", "/content-studio-compare.css", "/math-import-batch.cjs", "/content-studio-batches.js", "/content-studio-batches.css", "/document-import.cjs", "/content-studio-documents.js", "/content-studio-hot-text.js", "/content-studio-hot-spot.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-images.js", "/content-studio-glossary.js", "/poem-layout.js", "/passage-exam-assignment.cjs"].includes(url.pathname)) {
       const asset = await readFile(join(workspaceRoot, "tools", url.pathname.slice(1)), "utf8");
       response.writeHead(200, {
         "Cache-Control": "no-store",

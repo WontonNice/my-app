@@ -21,16 +21,21 @@ test('source definitions and emphasis survive passage, prompt, answer and explan
   assert.equal(q.correctChoiceId,'A');
 });
 
-function popupFixture({missing=false,alreadyOpen=false}={}){
+function popupFixture({missing=false,alreadyOpen=false,selectionOnly=false}={}){
   const root=parse('<div class="testSHSATPreview"><mark class="testSHSATPreview__definitionMark">term</mark><div id="definitionDrag" class="testSHSATPreview__popup--hidden"><span class="testSHSATPreview__popupHeaderCloseBig"></span><div class="testSHSATPreview__popupDefinition"></div></div></div>');
   const preview=root.children[0],mark=preview.querySelector('mark'),popup=preview.querySelector('#definitionDrag'),body=preview.querySelector('.testSHSATPreview__popupDefinition');
   let clock=0,clicks=0;class Clock extends Date{static now(){return clock;}}
-  mark.click=()=>{clicks++;if(!missing){popup.attributes.class='testSHSATPreview__popup';body.childNodes=[{nodeType:3,textContent:'Exact source definition.'}];}};
+  const open=()=>{clicks++;if(!missing){popup.attributes.class='testSHSATPreview__popup';body.childNodes=[{nodeType:3,textContent:'Exact source definition.'}];}};
+  const prior={startContainer:{isConnected:true},cloneRange(){return this;}};
+  let selected=prior;
+  const selection={get rangeCount(){return selected?1:0;},getRangeAt:()=>selected,removeAllRanges(){selected=null;},addRange(range){selected=range;}};
+  mark.click=()=>{if(!selectionOnly)open();};
+  mark.dispatchEvent=event=>{if(selectionOnly&&event.type==='mouseup'&&selected?.node===mark.childNodes[0])open();};
   preview.querySelector('.testSHSATPreview__popupHeaderCloseBig').dispatchEvent=()=>{popup.attributes.class='testSHSATPreview__popup--hidden';};
   if(alreadyOpen){popup.attributes.class='testSHSATPreview__popup';body.childNodes=[{nodeType:3,textContent:'Previous definition'}];}
-  const context={module:{exports:{}},document:{querySelector:s=>root.querySelector(s)},HTMLElement:Element,NathanSatRichText:rich,Date:Clock,MouseEvent:class{},getComputedStyle:()=>({display:'block',visibility:'visible'}),setTimeout:fn=>{clock+=100;queueMicrotask(fn);},chrome:{runtime:{onMessage:{addListener(){}}}}};
+  const context={module:{exports:{}},document:{querySelector:s=>root.querySelector(s),getSelection:()=>selection,createTreeWalker:el=>({nextNode:()=>el.childNodes[0]}),createRange:()=>({setStart(node){this.node=node;},collapse(){}})},HTMLElement:Element,NathanSatRichText:rich,Date:Clock,MouseEvent:class{constructor(type){this.type=type}},getComputedStyle:()=>({display:'block',visibility:'visible'}),setTimeout:fn=>{clock+=100;queueMicrotask(fn);},chrome:{runtime:{onMessage:{addListener(){}}}}};
   vm.runInNewContext(fs.readFileSync(require.resolve('./content.js'),'utf8'),context);
-  return {capture:context.module.exports.captureDefinitions,mark,popup,clicks:()=>clicks};
+  return {capture:context.module.exports.captureDefinitions,mark,popup,restored:()=>selected===prior,clicks:()=>clicks};
 }
 test('popup capture reads the source text and restores a closed panel',async()=>{
   const f=popupFixture(),warnings=[];await f.capture(warnings,1);
@@ -56,4 +61,12 @@ test('question capture uses the annotated definition layer and retains styling i
   assert.doesNotMatch(q.passage.html,/Plain copy/);
   assert.match(q.promptHtml,/<strong>best<\/strong>/);
   assert.match(q.choices[0].html,/<u>Underlined<\/u>/);
+});
+
+test('selection-driven source popups bind the exact word on mouseup and restore the previous selection',async()=>{
+  const f=popupFixture({selectionOnly:true}),warnings=[];
+  const glossary=await f.capture(warnings,8);
+  assert.deepEqual(warnings,[]);
+  assert.deepEqual(JSON.parse(JSON.stringify(glossary)),[{term:'term',definition:'Exact source definition.',occurrence:0}]);
+  assert.ok(f.restored());assert.match(f.popup.className,/--hidden/);
 });

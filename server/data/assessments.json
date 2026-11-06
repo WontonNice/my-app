@@ -35873,7 +35873,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-10-26T05:46:42.376Z",
-    "updatedAt": "2026-10-30T01:15:33.232Z",
+    "updatedAt": "2026-11-06T01:20:35.249Z",
     "passages": [
       {
         "id": "excerpt-from-the-past-and-the-future-of-the-earth-s-oldest-trees-2026-2027-form-b",
@@ -36674,20 +36674,20 @@
         "points": 1,
         "prompt": "The decimal 0.06 can be written as the fraction \\(\\frac{x}{50}\\). What is the value of \\(x?\\)",
         "topic": "Arithmetic & Number Sense",
-        "type": "multiple_choice",
-        "subtopic": "Fractions & Decimals"
+        "subtopic": "Fractions & Decimals",
+        "type": "multiple_choice"
       },
       {
         "answer": "",
         "choices": [],
         "id": "official-shsat-2026-b-52",
-        "skilled": "TBD",
+        "skilled": "module-2021-2022-form-a-q76-k47s5x",
         "imageUrl": "",
         "points": 1,
         "prompt": "The list shows the results of a survey. A survey was taken to see whether students like basketball, soccer, both, or neither. These were the results:\n25 students like basketball.\n19 students like soccer.\n7 students like both basketball and soccer.\n10 students don’t like either basketball or soccer.\nUse the information provided to determine how many students were surveyed and how many like only soccer.\nMove the correct answer to each box.",
         "topic": "Statistics and Probability",
-        "type": "math_drag_drop",
-        "subtopic": "Counting & Sets"
+        "subtopic": "Counting & Sets",
+        "type": "math_drag_drop"
       },
       {
         "answer": "A,C,D",
@@ -36704,8 +36704,8 @@
         "points": 1,
         "prompt": "At a diner, 18 dozen buns were used yesterday for 150 lunch customers. Today, there were 250 lunch customers. Assuming that the bun usage rate is the same for both days, which proportions can be used to determine how many dozen buns are needed for 250 lunch customers?\nSelect the three correct answers.",
         "topic": "Ratios and Proportional Relationships",
-        "type": "multi_select",
-        "subtopic": "Ratios & Proportions"
+        "subtopic": "Ratios & Proportions",
+        "type": "multi_select"
       },
       {
         "answer": "116",
@@ -36716,8 +36716,8 @@
         "points": 1,
         "prompt": "Maria is playing a game in which players earn points called minks, zogs, and barts.\n\\(1\\) mink \\(=3\\) zogs\n\\(1\\) mink \\(=\\frac{1}{4}\\) bart\nMaria has \\(60\\) zogs and \\(24\\) barts. She wants to exchange her zogs and barts for minks.\nHow many minks will Maria receive from the exchange?\nEnter your answer in the space.",
         "topic": "Arithmetic & Number Sense",
-        "type": "short_response",
-        "subtopic": "Units & Conversions"
+        "subtopic": "Units & Conversions",
+        "type": "short_response"
       },
       {
         "answer": "120",
@@ -36728,8 +36728,8 @@
         "points": 1,
         "prompt": "How many 5-digit numbers can be created using the digits 2, 3, 5, 7, and 8 without repeating any digits within that 5-digit number?\nEnter your answer in the space.",
         "topic": "Statistics and Probability",
-        "type": "short_response",
-        "subtopic": "Counting & Sets"
+        "subtopic": "Counting & Sets",
+        "type": "short_response"
       },
       {
         "answer": "A",
@@ -36745,8 +36745,8 @@
         "points": 1,
         "prompt": "In the figure above, \\(\\text{PQRS}\\) is a parallelogram. The measure of \\(∠\\text{PQT}\\) is \\(50^{\\circ}\\), and the measure of \\(∠\\text{PTQ}\\) is \\(70^{\\circ}\\). What is the measure of \\(∠\\text{QRS?}\\)",
         "topic": "Geometry",
-        "type": "multiple_choice",
-        "subtopic": "Quadrilaterals & Polygons"
+        "subtopic": "Quadrilaterals & Polygons",
+        "type": "multiple_choice"
       },
       {
         "answer": "D",
@@ -36762,8 +36762,8 @@
         "points": 1,
         "prompt": "\\(M=3N=\\frac{P}{4}=Q+5=\\frac{R}{7}>0\\)\nBased on the statement above, which variable has the greatest value?",
         "topic": "Algebra",
-        "type": "multiple_choice",
-        "subtopic": "Equations & Systems"
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -36779,8 +36779,8 @@
         "points": 1,
         "prompt": "A roofing contractor uses shingles at a rate of 3 bundles for every 96 square feet of roof covered. At this rate, how many bundles of shingles will he need in order to cover a roof that is 416 square feet?",
         "topic": "Ratios and Proportional Relationships",
-        "type": "multiple_choice",
-        "subtopic": "Rates & Unit Rates"
+        "subtopic": "Rates & Unit Rates",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -36796,8 +36796,8 @@
         "points": 1,
         "prompt": "To make party invitations, Macie could buy a package of paper for $10.50, or she could buy \\(x\\) individual sheets of the same paper for $0.15 each. What is the largest value of \\(x\\) that would make buying the individual sheets less expensive than buying the package?",
         "topic": "Algebra",
-        "type": "multiple_choice",
-        "subtopic": "Inequalities"
+        "subtopic": "Inequalities",
+        "type": "multiple_choice"
       },
       {
         "answer": "B",
@@ -36813,8 +36813,8 @@
         "points": 1,
         "prompt": "At 1:00 p.m. one day, the temperature was 8 degrees above zero. During the rest of the day, the temperature fell 3 degrees per hour. What was the temperature at 7:00 p.m. that day?",
         "topic": "Arithmetic & Number Sense",
-        "type": "multiple_choice",
-        "subtopic": "Integers & Absolute Value"
+        "subtopic": "Integers & Absolute Value",
+        "type": "multiple_choice"
       },
       {
         "answer": "D",
@@ -36830,8 +36830,8 @@
         "points": 1,
         "prompt": "A bag contains 75 marbles that are red, blue, or green. The ratio of red to blue marbles is 15:7, and the ratio of blue to green marbles is 7:3. If 2 blue marbles are removed and replaced with 2 green marbles, what will be the new ratio of red to green marbles?",
         "topic": "Ratios and Proportional Relationships",
-        "type": "multiple_choice",
-        "subtopic": "Ratios & Proportions"
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
       },
       {
         "answer": "B",
@@ -36847,8 +36847,8 @@
         "points": 1,
         "prompt": "DESSERT CHOICESDessert Number of Times Ordered\nCookies 42\nPie 23\nCake 47\nIce Cream 48\n\nThe table above shows the number of times that different desserts were ordered at a restaurant. Based on this information, what is the probability of a customer ordering ice cream as a dessert?",
         "topic": "Statistics and Probability",
-        "type": "multiple_choice",
-        "subtopic": "Probability"
+        "subtopic": "Probability",
+        "type": "multiple_choice"
       },
       {
         "answer": "",
@@ -36859,8 +36859,8 @@
         "points": 1,
         "prompt": "A basket contains 3 apples, 4 oranges, 5 bananas, and 8 pears.\nIf one piece of fruit is randomly pulled from the basket, what is the probability that it will be a pear?\nSelect the place on the number line to plot the point.",
         "topic": "Statistics and Probability",
-        "type": "graph_point_select",
-        "subtopic": "Probability"
+        "subtopic": "Probability",
+        "type": "graph_point_select"
       },
       {
         "answer": "C",
@@ -36876,8 +36876,8 @@
         "points": 1,
         "prompt": "A cooler contains three types of beverages: 5 bottles of apple juice, 3 bottles of grape juice, and 6 bottles of orange juice. What is the probability that a bottle chosen at random from this cooler is not apple juice?",
         "topic": "Statistics and Probability",
-        "type": "multiple_choice",
-        "subtopic": "Probability"
+        "subtopic": "Probability",
+        "type": "multiple_choice"
       },
       {
         "answer": "D",
@@ -36893,8 +36893,8 @@
         "points": 1,
         "prompt": "A large circular dinner plate has a radius of 20 centimeters. A smaller circular plate with a circumference of \\(20\\pi \\) centimeters is placed in the center of the larger dinner plate. What is the area of the part of the larger dinner plate that is not covered by the smaller plate?",
         "topic": "Geometry",
-        "type": "multiple_choice",
-        "subtopic": "Circles"
+        "subtopic": "Circles",
+        "type": "multiple_choice"
       },
       {
         "answer": "A,C",
@@ -36911,8 +36911,8 @@
         "points": 1,
         "prompt": "Which tables represent a proportional relationship between the number of books purchased and the total cost?\nSelect the two correct answers.",
         "topic": "Ratios and Proportional Relationships",
-        "type": "multi_select",
-        "subtopic": "Ratios & Proportions"
+        "subtopic": "Ratios & Proportions",
+        "type": "multi_select"
       },
       {
         "answer": "15",
@@ -36923,8 +36923,8 @@
         "points": 1,
         "prompt": "How many positive integers satisfy the inequality \\(x+7<23\\text{?}\\)\nEnter your answer in the space.",
         "topic": "Algebra",
-        "type": "short_response",
-        "subtopic": "Inequalities"
+        "subtopic": "Inequalities",
+        "type": "short_response"
       },
       {
         "answer": "A",
@@ -36940,8 +36940,8 @@
         "points": 1,
         "prompt": "If \\(\\frac{36}{y}=4x,\\) what is the value of \\(x\\) when \\(y=3?\\)",
         "topic": "Algebra",
-        "type": "multiple_choice",
-        "subtopic": "Equations & Systems"
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
       },
       {
         "answer": "D",
@@ -36957,8 +36957,8 @@
         "points": 1,
         "prompt": "Points \\(\\text{X, Y,}\\) and \\(\\text{Z}\\) are on a straight line, and \\(\\text{Y}\\) is between \\(\\text{X}\\) and \\(\\text{Z.}\\) Length \\(\\overline{\\text{YZ}}=\\frac{3}{5}\\overline{\\text{XY}}\\text{,}\\) and length \\(\\overline{\\text{XY}}=20\\text{ centimeters.}\\) What is the length of \\(\\overline{\\text{XZ}}\\text{?}\\)",
         "topic": "Geometry",
-        "type": "multiple_choice",
-        "subtopic": "Coordinate Geometry & Transformations"
+        "subtopic": "Coordinate Geometry & Transformations",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -36974,8 +36974,8 @@
         "points": 1,
         "prompt": "Bryana bought \\(1\\frac{3}{4}\\) yards of cloth at $8.00 per yard. If there was an 8% sales tax, what was the total cost of the cloth?",
         "topic": "Ratios and Proportional Relationships",
-        "type": "multiple_choice",
-        "subtopic": "Percentages"
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
       },
       {
         "answer": "B",
@@ -36991,8 +36991,8 @@
         "points": 1,
         "prompt": "On the number line above, \\(\\text{MN}=5\\frac{5}{6}.\\) What is the position of point \\(\\text{M?}\\)",
         "topic": "Geometry",
-        "type": "multiple_choice",
-        "subtopic": "Coordinate Geometry & Transformations"
+        "subtopic": "Coordinate Geometry & Transformations",
+        "type": "multiple_choice"
       },
       {
         "answer": "B",
@@ -37008,8 +37008,8 @@
         "points": 1,
         "prompt": "A United States presidential coin is made from an alloy of four metals—copper, zinc, manganese, and nickel—with weights in the ratio of 177:12:7:4, respectively. The coin weighs a total of 8 grams. What is the weight of the zinc in this coin?",
         "topic": "Ratios and Proportional Relationships",
-        "type": "multiple_choice",
-        "subtopic": "Ratios & Proportions"
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
       },
       {
         "answer": "B",
@@ -37025,8 +37025,8 @@
         "points": 1,
         "prompt": "Nicole’s age now is three times Carmen’s age. If Carmen will be 17 in 2 years, how old was Nicole 5 years ago?",
         "topic": "Algebra",
-        "type": "multiple_choice",
-        "subtopic": "Equations & Systems"
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -37042,8 +37042,8 @@
         "points": 1,
         "prompt": "A chemical decays in such a way that the amount left at the end of each week is 20% less than the amount at the beginning of that same week. What percentage of the original amount is left after two weeks?",
         "topic": "Ratios and Proportional Relationships",
-        "type": "multiple_choice",
-        "subtopic": "Percentages"
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -37059,8 +37059,8 @@
         "points": 1,
         "prompt": "If \\(w-1\\) is an odd integer, which one of the following must be an even integer?",
         "topic": "Arithmetic & Number Sense",
-        "type": "multiple_choice",
-        "subtopic": "Number Types & Properties"
+        "subtopic": "Number Types & Properties",
+        "type": "multiple_choice"
       },
       {
         "answer": "B",
@@ -37076,8 +37076,8 @@
         "points": 1,
         "prompt": "Simplify this expression:\n\\(4\\left(7-3x\\right)-\\left(5-x\\right)\\)",
         "topic": "Algebra",
-        "type": "multiple_choice",
-        "subtopic": "Algebraic Expressions"
+        "subtopic": "Algebraic Expressions",
+        "type": "multiple_choice"
       },
       {
         "answer": "D",
@@ -37093,8 +37093,8 @@
         "points": 1,
         "prompt": "PET SURVEY\nNumber of Pets Number of Students\n0 12\n1 16\n2 7\n3 or more 5\n\nAmy surveyed students at her school about the number of pets they have. What is the probability that a student who participated in the survey has at least 2 pets?",
         "topic": "Statistics and Probability",
-        "type": "multiple_choice",
-        "subtopic": "Probability"
+        "subtopic": "Probability",
+        "type": "multiple_choice"
       },
       {
         "answer": "25pi",
@@ -37105,8 +37105,8 @@
         "points": 1,
         "prompt": "A circle has a radius of 5 inches. What is the area of the circle in terms of \\(\\pi \\)?\nUse \\(\\pi \\) to express your answer.\nEnter your answer in the space provided. Enter only your answer.",
         "topic": "Geometry",
-        "type": "expression_entry",
-        "subtopic": "Circles"
+        "subtopic": "Circles",
+        "type": "expression_entry"
       },
       {
         "answer": "A",
@@ -37122,8 +37122,8 @@
         "points": 1,
         "prompt": "R, S, and T are midpoints of the sides of square MNPQ, as shown above. What is the sum of the areas of the shaded triangles?",
         "topic": "Geometry",
-        "type": "multiple_choice",
-        "subtopic": "Perimeter, Area & Composite Figures"
+        "subtopic": "Perimeter, Area & Composite Figures",
+        "type": "multiple_choice"
       },
       {
         "answer": "D",
@@ -37139,8 +37139,8 @@
         "points": 1,
         "prompt": "The Chens spend $5 of every $8 they earn on planned expenses. If the family earns $29,600 in one year, how much will they spend on planned expenses that year?",
         "topic": "Ratios and Proportional Relationships",
-        "type": "multiple_choice",
-        "subtopic": "Ratios & Proportions"
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -37156,8 +37156,8 @@
         "points": 1,
         "prompt": "A pizza shop offers a choice of 3 sizes (small, medium, and large) and 7 different toppings. Different pizzas can be created by changing the size and the choice of toppings. If Cody wants to order a pizza with exactly 2 different toppings, how many different pizzas can he create?",
         "topic": "Statistics and Probability",
-        "type": "multiple_choice",
-        "subtopic": "Counting & Sets"
+        "subtopic": "Counting & Sets",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -37173,8 +37173,8 @@
         "points": 1,
         "prompt": "At North High School, a survey asked two questions, Question A and Question B. For each question, students could answer either “yes” or “no.” Of the 800 students who responded to the survey, 720 answered “yes” to Question A, and 640 answered “yes” to Question B. What is the least possible number of these students who could have answered “yes” to both questions?",
         "topic": "Statistics and Probability",
-        "type": "multiple_choice",
-        "subtopic": "Counting & Sets"
+        "subtopic": "Counting & Sets",
+        "type": "multiple_choice"
       },
       {
         "answer": "D",
@@ -37190,8 +37190,8 @@
         "points": 1,
         "prompt": "A wooden box has a square base. The height of this box is 3 times the length of one side of the base. If one side of the base is 3 feet long, what is the volume of this box?",
         "topic": "Geometry",
-        "type": "multiple_choice",
-        "subtopic": "Surface Area & Volume"
+        "subtopic": "Surface Area & Volume",
+        "type": "multiple_choice"
       },
       {
         "answer": "B",
@@ -37207,8 +37207,8 @@
         "points": 1,
         "prompt": "On a bike trip, Rajiv traveled 65 kilometers in 5 hours, while Shaina traveled 72 kilometers in 4 hours. How much less was Rajiv’s mean speed, in kilometers per hour (kph), than Shaina’s?",
         "topic": "Ratios and Proportional Relationships",
-        "type": "multiple_choice",
-        "subtopic": "Rates & Unit Rates"
+        "subtopic": "Rates & Unit Rates",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -37224,8 +37224,8 @@
         "points": 1,
         "prompt": "Points P, Q, R, and S represent \\(-3\\text{, }-1\\text{, }0\\text{,}\\) and \\(2,\\) respectively, on a number line. How many units is the midpoint of \\(\\overline{\\text{PQ}}\\) from the midpoint of \\(\\overline{\\text{RS}}?\\)",
         "topic": "Geometry",
-        "type": "multiple_choice",
-        "subtopic": "Coordinate Geometry & Transformations"
+        "subtopic": "Coordinate Geometry & Transformations",
+        "type": "multiple_choice"
       },
       {
         "answer": "A",
@@ -37241,8 +37241,8 @@
         "points": 1,
         "prompt": "In the quarter circle above, what is \\(y\\) in terms of \\(x?\\)",
         "topic": "Geometry",
-        "type": "multiple_choice",
-        "subtopic": "Circles"
+        "subtopic": "Circles",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -37258,8 +37258,8 @@
         "points": 1,
         "prompt": "The hash marks on the number line above are evenly spaced. What is the coordinate of point R?",
         "topic": "Geometry",
-        "type": "multiple_choice",
-        "subtopic": "Coordinate Geometry & Transformations"
+        "subtopic": "Coordinate Geometry & Transformations",
+        "type": "multiple_choice"
       },
       {
         "answer": "D",
@@ -37275,8 +37275,8 @@
         "points": 1,
         "prompt": "Phan chose an Internet service that charges $18.00 per month plus $0.024 per minute. Deion chose an Internet service that charges $30.00 per month for unlimited usage. At the end of the month, Phan’s and Deion’s charges were identical. For how many minutes did Phan use the Internet service that month?",
         "topic": "Algebra",
-        "type": "multiple_choice",
-        "subtopic": "Equations & Systems"
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
       },
       {
         "answer": "B",
@@ -37292,8 +37292,8 @@
         "points": 1,
         "prompt": "In a sample of 50 cars at a local dealership, there are 12 red cars and 10 cars with backup cameras. Of the 12 red cars, 4 have backup cameras. If a car is selected at random from the given sample, what is the probability that both of the following are true: the car is not red and does not have a backup camera?",
         "topic": "Statistics and Probability",
-        "type": "multiple_choice",
-        "subtopic": "Probability"
+        "subtopic": "Probability",
+        "type": "multiple_choice"
       },
       {
         "answer": "3",
@@ -37304,8 +37304,8 @@
         "points": 1,
         "prompt": "\\(\\frac{147-x}{12}=12\\)\nWhat is the value of \\(x\\) in the equation shown above?\nEnter your answer in the space.",
         "topic": "Algebra",
-        "type": "short_response",
-        "subtopic": "Equations & Systems"
+        "subtopic": "Equations & Systems",
+        "type": "short_response"
       },
       {
         "answer": "C",
@@ -37321,8 +37321,8 @@
         "points": 1,
         "prompt": "What is the area of the shaded triangle shown above?",
         "topic": "Geometry",
-        "type": "multiple_choice",
-        "subtopic": "Perimeter, Area & Composite Figures"
+        "subtopic": "Perimeter, Area & Composite Figures",
+        "type": "multiple_choice"
       },
       {
         "answer": "B",
@@ -37338,8 +37338,8 @@
         "points": 1,
         "prompt": "ANIMAL CARDSNumber of Cards Picture on Card\n8 Cat\n6 Dog\n5 Bird\n4 Fish\n1 Horse\n\nThe cards in the table above are mixed in a box. Which animal pictured on a card has exactly a 1 in 4 chance of being picked at random from the box?",
         "topic": "Statistics and Probability",
-        "type": "multiple_choice",
-        "subtopic": "Probability"
+        "subtopic": "Probability",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -37355,8 +37355,8 @@
         "points": 1,
         "prompt": "Which number line below shows the solution set for \\(2x-2\\le y\\le 4x+10\\) when \\(y=1?\\)",
         "topic": "Algebra",
-        "type": "multiple_choice",
-        "subtopic": "Inequalities"
+        "subtopic": "Inequalities",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -37372,8 +37372,8 @@
         "points": 1,
         "prompt": "\\(\\frac{14}{21}=\\frac{p}{7}\\)\nIn the equation above, what is the value of \\(p?\\)",
         "topic": "Ratios and Proportional Relationships",
-        "type": "multiple_choice",
-        "subtopic": "Ratios & Proportions"
+        "subtopic": "Ratios & Proportions",
+        "type": "multiple_choice"
       },
       {
         "answer": "A",
@@ -37389,8 +37389,8 @@
         "points": 1,
         "prompt": "A ball is selected at random from a box that contains 7 black balls, 14 green balls, and 21 red balls. What is the probability that the ball selected is black?",
         "topic": "Statistics and Probability",
-        "type": "multiple_choice",
-        "subtopic": "Probability"
+        "subtopic": "Probability",
+        "type": "multiple_choice"
       },
       {
         "answer": "y=20x+50",
@@ -37401,8 +37401,8 @@
         "points": 1,
         "prompt": "Amiya subscribes to an online streaming service. She pays a onetime setup fee of \\(\\$50\\text{,}\\) plus \\(\\$20\\) per month for service.\nWrite an equation that can be used to determine the total amount Amiya will pay, \\(y\\text{,}\\) for \\(x\\) months of service.\nEnter your equation in the space provided. Enter only the equation.",
         "topic": "Algebra",
-        "type": "expression_entry",
-        "subtopic": "Functions & Graphs"
+        "subtopic": "Functions & Graphs",
+        "type": "expression_entry"
       },
       {
         "answer": "A",
@@ -37418,8 +37418,8 @@
         "points": 1,
         "prompt": "Raoul is at least 3 years older than Vahn. Which of the following inequalities gives the relationship between Raoul’s age \\((r)\\) and Vahn’s age \\((v)?\\)",
         "topic": "Algebra",
-        "type": "multiple_choice",
-        "subtopic": "Inequalities"
+        "subtopic": "Inequalities",
+        "type": "multiple_choice"
       },
       {
         "answer": "D",
@@ -37435,8 +37435,8 @@
         "points": 1,
         "prompt": "There are now \\(x\\) cans stacked on a shelf that holds 36 cans when full. If 4 of these cans were removed, the shelf would be half full. What is the value of \\(x?\\)",
         "topic": "Algebra",
-        "type": "multiple_choice",
-        "subtopic": "Equations & Systems"
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
       },
       {
         "answer": "C",
@@ -37452,8 +37452,8 @@
         "points": 1,
         "prompt": "Carlos tossed a paper cup in the air 50 times and found that the probability of it landing on its side was 72%. If he tosses the cup in the air 150 more times, what is the total number of times he can expect the cup to land on its side?",
         "topic": "Statistics and Probability",
-        "type": "multiple_choice",
-        "subtopic": "Probability"
+        "subtopic": "Probability",
+        "type": "multiple_choice"
       },
       {
         "answer": "7/5",
@@ -37464,8 +37464,8 @@
         "points": 1,
         "prompt": "Let \\(b=3\\text{,} c=4\\text{,}\\) and \\(d=5\\text{.}\\) Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\text{.}\\)\nEnter your fractional answer in the space provided. Enter only your fraction.",
         "topic": "Algebra",
-        "type": "expression_entry",
-        "subtopic": "Algebraic Expressions"
+        "subtopic": "Algebraic Expressions",
+        "type": "expression_entry"
       }
     ],
     "forms": [],
@@ -45814,6 +45814,1529 @@
         "prompt": "\\(0.44=\\frac{x}{25}\\)\nWhat is the value of x in the equation?",
         "topic": "Uncategorized",
         "type": "short_response"
+      }
+    ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-10-hard",
+    "title": "Digital SHSAT Practice Test Adaptive 10 (Hard)",
+    "examLabel": "Prestige",
+    "classId": "shsat",
+    "description": "",
+    "durationMinutes": 180,
+    "createdAt": "2026-11-05T20:44:28.576Z",
+    "updatedAt": "2026-11-05T23:14:31.785Z",
+    "passages": [
+      {
+        "id": "excerpt-from-the-adventures-of-tom-sawyer-digital-shsat-practice-test-adaptive-10",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Adventures of Tom Sawyer\"",
+        "versionLabel": "Digital SHSAT Practice Test Adaptive 10"
+      },
+      {
+        "id": "from-a-small-shelf-to-a-giant-collection-the-library-of-congress-digital-shsat-practice-test-adaptive-10",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "From a Small Shelf to a Giant Collection: The Library of Congress",
+        "versionLabel": "Digital SHSAT Practice Test Adaptive 10"
+      },
+      {
+        "id": "where-jazz-began-the-music-of-early-new-orleans-digital-shsat-practice-test-adaptive-10",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Where Jazz Began: The Music of Early New Orleans",
+        "versionLabel": "Digital SHSAT Practice Test Adaptive 10"
+      },
+      {
+        "id": "a-bird-came-down-the-walk-digital-shsat-practice-test-adaptive-10",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "\"A Bird came down the Walk\"",
+        "versionLabel": "Digital SHSAT Practice Test Adaptive 10"
+      },
+      {
+        "id": "excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"The Huddle and the Cold\"",
+        "versionLabel": "Digital SHSAT Practice Test Adaptive 10"
+      },
+      {
+        "id": "the-weary-blues-digital-shsat-practice-test-adaptive-10",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "\"The Weary Blues\"",
+        "versionLabel": "Digital SHSAT Practice Test Adaptive 10"
+      },
+      {
+        "id": "excerpt-from-getting-kite-making-right-digital-shsat-practice-test-adaptive-10",
+        "imageUrl": "",
+        "text": "The complete passage is provided by the registered exam content.",
+        "title": "Excerpt from \"Getting Kite-Making Right\"",
+        "versionLabel": "Digital SHSAT Practice Test Adaptive 10"
+      }
+    ],
+    "questions": [
+      {
+        "answer": "C",
+        "choices": [
+          "\"Ben stared a moment and then said: 'Hi-Yi! You're up a stump, ain't you!'\" (paragraph 8)",
+          "\"Oh come, now, you don't mean to let on that you like it?\" (paragraph 19)",
+          "\"That put the thing in a new light.\" (paragraph 22)",
+          "\"Say, Tom, let me whitewash a little.\" (paragraph 23)"
+        ],
+        "id": "excerpt-from-the-adventures-of-tom-sawyer-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage best marks the moment when Ben begins to see whitewashing differently?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "give readers the technical background they need to understand how Mississippi steamboats were steered, and to explain why the boys in town admire the men who steer them.",
+          "show that Ben is mocking Tom from the start, since each command is aimed at the boy stuck working.",
+          "present Ben's game as hard, self-chosen labor, which contrasts with how Ben views the chore Tom is stuck doing.",
+          "slow the story's pace so that Tom has time to think of the plan he announces in paragraph 1."
+        ],
+        "id": "excerpt-from-the-adventures-of-tom-sawyer-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Twain most likely includes Ben's long string of steamboat commands in paragraphs 3–7 in order to",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "excerpt-from-the-adventures-of-tom-sawyer-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "For each phrase from the excerpt, select the effect that its language primarily creates. An effect may be used more than once or not at all. Select one box in each row.",
+        "topic": "Central Idea & Theme",
+        "type": "matrix_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "reverses the trade he first considered, so that the boys pay him for the chance to work.",
+          "lets him spend his small supply of toys and marbles on half an hour of freedom.",
+          "convinces Aunt Polly that the other boys can whitewash the fence as carefully as Tom.",
+          "persuades the boys who came to jeer that Tom's skill as a painter deserves their respect."
+        ],
+        "id": "excerpt-from-the-adventures-of-tom-sawyer-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Taken together, the details in paragraph 1 and paragraph 31 suggest that Tom's plan succeeds mainly because it",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Grand labels such as \"the late steamer Big Missouri\" and \"the retired artist\" make Tom's trick sound like a heroic victory, creating an amused, ironic tone.",
+          "The phrase \"the slaughter of more innocents\" makes the tone grimly disapproving, inviting readers to judge Tom's treatment of the boys harshly.",
+          "Phrases such as \"worked and sweated in the sun\" and \"fagged out\" create sympathy for Ben, shifting the reader's admiration away from Tom.",
+          "The repetition in \"and so on, and so on, hour after hour\" creates a weary tone, suggesting that Tom grows bored with his own success."
+        ],
+        "id": "excerpt-from-the-adventures-of-tom-sawyer-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the word choice in paragraph 31 shape the tone of the passage's conclusion?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "showing that Tom has started to enjoy whitewashing and no longer minds missing a day of play.",
+          "showing Tom acting so absorbed in his brushwork that Ben must come to him, which lets Tom seem uninterested in Ben's fun.",
+          "showing Ben's mockery wounding Tom so deeply that Tom decides to give up the plan from paragraph 1.",
+          "showing Tom ignoring Ben because he is still angry about being teased by the other boys earlier in the day, a mood that returns whenever the other boys come into view."
+        ],
+        "id": "excerpt-from-the-adventures-of-tom-sawyer-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Paragraphs 8–12 contribute to the development of the plot mainly by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "How much people want something can depend less on what it is than on how it is presented to them.",
+          "A person who avoids honest work will eventually lose the trust of the friends he has fooled.",
+          "Children take their games more seriously than adults take their jobs, which makes play more rewarding than work.",
+          "A clever plan succeeds only when the people it targets are careless and easily distracted."
+        ],
+        "id": "excerpt-from-the-adventures-of-tom-sawyer-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement best describes a theme developed in the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It conveys the author's disapproval of an early Congress that funded the Library too sparingly.",
+          "It creates an ironic, mocking tone toward lawmakers who placed little value on books.",
+          "It establishes doubt about the purchase that the setbacks in paragraphs 2 and 3 confirm.",
+          "It hints that the purchase mattered more than its size suggested, a contrast paragraph 10 completes."
+        ],
+        "id": "from-a-small-shelf-to-a-giant-collection-the-library-of-congress-digital-shsat-practice-test-adaptive-10-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 1: \n\"The sum seemed modest, yet that purchase marked the beginning of the Library of Congress.\" \nHow does the word \"seemed\" affect the tone of the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "a belief about what a national library should collect, first stated in the early 1800s, is reflected in the Library's present-day holdings and services.",
+          "the Library's collection became complete only after it added materials that are not books, such as manuscripts and maps, which the early Library had resisted gathering for decades.",
+          "the books Jefferson sold to Congress after the 1814 fire remain the center of the Library's modern collection.",
+          "the Library has shifted its main purpose from collecting materials to answering requests from Congress and the public."
+        ],
+        "id": "from-a-small-shelf-to-a-giant-collection-the-library-of-congress-digital-shsat-practice-test-adaptive-10-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A central idea that the author develops across paragraph 3 and paragraphs 7–10 is that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "to argue that manuscripts deserve more of the Library's funding than the other collections receive",
+          "to give readers a scale for judging the large totals in paragraph 8, which together are still smaller than the manuscripts",
+          "to suggest that the totals in paragraph 8 are estimates, while the manuscript total is an exact count",
+          "to show that the Library values handwritten documents more than the books counted earlier in paragraph 7, since it spends more to acquire them each year"
+        ],
+        "id": "from-a-small-shelf-to-a-giant-collection-the-library-of-congress-digital-shsat-practice-test-adaptive-10-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Why does the author end paragraph 7 by comparing the manuscript collection with \"the seven other types of material named in the next paragraph\"?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "The image suggests distance and time, and the next sentence adds that fires, wars, and shortages slowed the journey without stopping it.",
+          "The image suggests a smooth, steady climb, and the next sentence confirms that the collection grew at the same rate in every period, without any slowdown.",
+          "The image suggests travel between places, and the next sentence explains how the Library spread to sites in Maryland and Virginia.",
+          "The image suggests that the journey has ended, and the next sentence explains that the Library no longer faces any difficulties."
+        ],
+        "id": "from-a-small-shelf-to-a-giant-collection-the-library-of-congress-digital-shsat-practice-test-adaptive-10-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In paragraph 10, how does the description of the Library's history as \"a long road\" work together with the sentence that follows it?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\"For several decades, the Library mainly served Congress, and it often struggled with fires and a lack of space.\" (paragraph 2)",
+          "\"It also had no yearly appropriation, so its leaders could never be sure how much money would be available to buy new books.\" (paragraph 2)",
+          "\"Jefferson then offered to sell his personal library of 6,487 books to help Congress start over, and Congress accepted.\" (paragraph 3)",
+          "\"During the same period, the staff grew from 1,600 to 4,500 people, and the yearly appropriation rose from \\(\\$\\)9.5 million to \\(\\$\\)116 million.\" (paragraph 5)"
+        ],
+        "id": "from-a-small-shelf-to-a-giant-collection-the-library-of-congress-digital-shsat-practice-test-adaptive-10-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage best supports the idea that the Library's early leaders could not build the collection according to a steady plan?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A,C",
+        "choices": [
+          "Changes in national law, and not only the work of individual Librarians, helped the collection grow.",
+          "The Jefferson Building was built mainly to replace the space the Library lost in the 1814 fire.",
+          "By the twentieth century, the Library was trusted to hold and protect some of the nation's most important founding documents.",
+          "The Library's collection grew without serious interruption from 1800 to the present day.",
+          "The Library now serves the general public more than it serves members of Congress.",
+          "Spofford was the first Librarian who did not also work as a clerk for Congress."
+        ],
+        "id": "from-a-small-shelf-to-a-giant-collection-the-library-of-congress-digital-shsat-practice-test-adaptive-10-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Select TWO inferences that are supported by details in the passage.",
+        "topic": "Central Idea & Theme",
+        "type": "multi_select"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It continues the account of the twentieth century by explaining that Mumford's growing staff required new buildings, a need that paragraph 6 then addresses.",
+          "It interrupts the discussion of the collections to argue that the Library's buildings matter more than its holdings.",
+          "It returns to the space problems of paragraph 2 to show that the Library still lacks room for its collection.",
+          "It ends the historical account and turns to the present, describing where the Library works today before the current figures in paragraphs 7–9."
+        ],
+        "id": "from-a-small-shelf-to-a-giant-collection-the-library-of-congress-digital-shsat-practice-test-adaptive-10-7",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does paragraph 6 fit into the overall structure of the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Creole musicians gave up their formal training once they began performing alongside uptown Black musicians.",
+          "Laws meant to separate people helped produce jazz, even as the music later challenged that separation.",
+          "The first racially integrated recording session quickly brought an end to segregation among Chicago jazz musicians.",
+          "Jazz spread beyond New Orleans mainly because segregation laws pushed musicians to leave the city."
+        ],
+        "id": "where-jazz-began-the-music-of-early-new-orleans-digital-shsat-practice-test-adaptive-10-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which conclusion about segregation and the birth of jazz do the details in the passage best support?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\"In February 1917, that group made 'Livery Stable Blues,' widely described as the first commercial jazz recording.\" (paragraph 7)",
+          "\"It sold more than one million copies in six months.\" (paragraph 7)",
+          "\"The timing was lucky, since record production in the United States had climbed from about 25 million records in 1914 to about 100 million in 1921.\" (paragraph 7)",
+          "\"Recordings mattered a great deal, because they allowed listeners far from the city to hear jazz for the first time.\" (paragraph 6)"
+        ],
+        "id": "where-jazz-began-the-music-of-early-new-orleans-digital-shsat-practice-test-adaptive-10-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence from the passage best supports the idea that the early success of jazz records was helped by a larger change in the music business?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "where-jazz-began-the-music-of-early-new-orleans-digital-shsat-practice-test-adaptive-10-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The author includes details from different parts of the passage to serve different purposes. Drag each detail into the box that identifies the purpose it mainly serves in the passage.",
+        "topic": "Central Idea & Theme",
+        "type": "category_sort"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Paragraph 1 admits that researchers disagree about where and when jazz began, and paragraph 10 turns that uncertainty into the point that jazz belongs to many people rather than one inventor.",
+          "Paragraph 1 raises a question about who invented jazz, and paragraph 10 answers it by naming the National Park Service as the music's most reliable historian, an honor the agency earned by saving early recordings.",
+          "Paragraph 1 claims that jazz began in a single year, and paragraph 10 corrects that claim by showing that the music developed over several decades.",
+          "Paragraph 1 describes New Orleans as an ideal place for invention, and paragraph 10 suggests that the city lost its importance once jazz spread elsewhere."
+        ],
+        "id": "where-jazz-began-the-music-of-early-new-orleans-digital-shsat-practice-test-adaptive-10-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How do paragraphs 1 and 10 together contribute to the development of a central idea of the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It continues a strict time order by describing events that happened after Ory made his 1921 record.",
+          "It suggests that Ory's 1921 record had no effect at all on how widely jazz came to be heard.",
+          "It shows that touring had carried jazz to other cities years before the first Black New Orleans bandleader made a record.",
+          "It reveals that the musicians who toured did so because they had been unable to make records of their own, which explains why Ory recorded so late."
+        ],
+        "id": "where-jazz-began-the-music-of-early-new-orleans-digital-shsat-practice-test-adaptive-10-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What effect does the shift in time at the start of paragraph 7 have on the passage's account of how jazz spread?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Individual genius matters more than tradition, since each great player broke completely with the musicians before him.",
+          "Success in music depends on leaving one's home city, because new audiences reward players who travel.",
+          "Musical styles spread fastest when their founders are able to record their work before their careers end.",
+          "A tradition lasts when each generation inherits it and reshapes it, learning from others and then moving beyond them."
+        ],
+        "id": "where-jazz-began-the-music-of-early-new-orleans-digital-shsat-practice-test-adaptive-10-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement best expresses a theme developed across the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "the bird's departure right after the speaker's kind offer, which shows that even gentle human contact cannot erase a wild creature's caution.",
+          "the speaker's detailed record of the bird's habits, which shows that close study allows a person to understand a wild creature fully and to predict what it will do next.",
+          "the speaker's refusal to approach the bird, which shows that respecting nature means never interfering with it in any way.",
+          "the bird's acceptance of the crumb, which shows that patience and kindness eventually win the trust of wild animals."
+        ],
+        "id": "a-bird-came-down-the-walk-digital-shsat-practice-test-adaptive-10-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The poem develops a theme about the relationship between the human and natural worlds mainly through",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\"I offered him a Crumb\" (line 14)",
+          "\"He bit an Angleworm in halves / And ate the fellow, raw,\" (lines 3–4)",
+          "\"He stirred his Velvet Head\" (line 12)",
+          "\"And then hopped sidewise to the Wall / To let a Beetle pass—\" (lines 7–8)"
+        ],
+        "id": "a-bird-came-down-the-walk-digital-shsat-practice-test-adaptive-10-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which lines from the poem best support the idea that the bird can act with courtesy toward other creatures?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Blunt words like \"bit\" and \"raw\" create a tone of horror that the rest of the poem never softens.",
+          "Plain words like \"bit\" and \"raw,\" mixed with playful touches like \"the fellow\" and \"a convenient Grass,\" create a calm, wryly amused tone.",
+          "Formal words like \"Angleworm\" and \"Dew\" create a scientific tone that keeps the speaker at a distance from what the bird does, as if the scene were a laboratory specimen.",
+          "Gentle words like \"drank\" and \"Grass\" create a tender tone that hides the violence of the bird's meal."
+        ],
+        "id": "a-bird-came-down-the-walk-digital-shsat-practice-test-adaptive-10-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the diction in lines 3–6 shape the tone of the poem's opening?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "It shows that the speaker fears the bird might attack, so the speaker offers the crumb only to stay safe from harm, as the bird's quick glances seem to warn.",
+          "It marks a complete break between the bird's actions and the speaker's, so that the two never share a moment.",
+          "It lets the line describe both the wary bird and the careful speaker, linking the two at the moment the speaker reaches out.",
+          "It reveals that a predator has appeared nearby, which explains why the bird suddenly flies away from the walk."
+        ],
+        "id": "a-bird-came-down-the-walk-digital-shsat-practice-test-adaptive-10-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Line 13, \"Like one in danger, Cautious,\" begins the fourth stanza, right after the third stanza's description of the bird. How does the placement of this line contribute to the poem?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "possessive affection, since the speaker wants the bird to accept the crumb and remain nearby",
+          "careful, respectful attention that treats even the bird's ordinary actions as worth noticing",
+          "cool detachment, since the speaker records the bird's behavior like a scientist taking notes",
+          "amused superiority, since the speaker finds the bird's nervous glances foolish"
+        ],
+        "id": "a-bird-came-down-the-walk-digital-shsat-practice-test-adaptive-10-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which choice best describes the speaker's attitude toward the bird throughout the poem?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "contrasting the bird's earlier abrupt, earthbound movements with a flight so smooth it leaves no trace behind.",
+          "suggesting that the speaker's offered crumb finally calms the bird's fear and draws it toward the speaker for a moment.",
+          "showing that the bird, like a rower, moves with deliberate effort and a clear sense of direction.",
+          "echoing the earlier image of \"frightened Beads\" to show the bird remains anxious even after escaping."
+        ],
+        "id": "a-bird-came-down-the-walk-digital-shsat-practice-test-adaptive-10-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The comparisons in lines 16–20, which describe the bird's flight as softer than \"Oars\" dividing the \"Ocean\" and as butterflies leaping \"plashless,\" contribute to the development of ideas in the poem by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "He loses mass faster as the fast continues, so his fat runs out before the egg hatches.",
+          "He loses about half of his starting mass by the end of the fast, so his fat reserves are nearly exhausted at hatching, as Figure 1 shows.",
+          "He loses about two-fifths of his starting mass by the end of the fast, which fits the statement that he lives on stored fat.",
+          "He loses most of his mass in the first twenty days and almost none after that."
+        ],
+        "id": "excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-27",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which conclusion about the male emperor penguin is best supported by combining Figure 1 with the information in paragraph 5?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "the penguins in a huddle give up their own comfort so that a few birds at the center survive the coldest nights.",
+          "the huddle depends on a few experienced birds that direct how the rest of the group moves.",
+          "the huddle acts as one coordinated body even though it emerges only from individual birds' responses.",
+          "the huddle holds every bird at one steady temperature, the way a healthy body regulates itself."
+        ],
+        "id": "excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-28",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Considered alongside paragraphs 3 and 4, the comparison of a group of penguins to \"a single organism\" in paragraph 1 suggests that",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "It pauses the account of incubation to explain why winter breeding helps the chick, an adaptation the conclusion names.",
+          "It raises a counterargument suggesting that winter breeding is a mistake the species has not yet corrected.",
+          "It interrupts the chronological account of the breeding cycle with background that the conclusion does not use.",
+          "It describes the chick's growth after hatching, preparing readers for the account of crèches in paragraph 8."
+        ],
+        "id": "excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-29",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What role does paragraph 6 play in the passage's explanation of the breeding cycle?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Breeding during the summer would spare males the long fast and give chicks a better chance of surviving.",
+          "A male's fat reserves would carry him through incubation even if he never joined a huddle.",
+          "A male unable to join a huddle would more likely abandon his chick before the female returns.",
+          "The chick's survival depends mainly on the male, since it can wait for food until the female returns."
+        ],
+        "id": "excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-30",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which prediction about the penguins is most consistent with the information in the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Words like \"designed\" and \"sustain\" create a scientific tone, suggesting that researchers have measured exactly how deadly the winter is for the whole colony.",
+          "Words like \"depths\" and \"end life\" create a hopeless tone, suggesting that few emperor penguins manage to survive the winter.",
+          "Words like \"seems\" and \"rather than\" create an uncertain tone, suggesting that the author doubts the winter is truly dangerous.",
+          "Words like \"designed\" and \"end life\" make the cold seem almost deliberately hostile, creating a dramatic tone that makes survival seem remarkable."
+        ],
+        "id": "excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-31",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 1: \n\"Antarctica in the depths of winter is a place that seems designed to end life rather than sustain it.\" \nHow does the word choice in this sentence affect the tone of the passage's opening?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "After a period of shared care, the chicks become fully independent, relying on instinct rather than instruction to reach the sea.",
+          "Chicks depend on both parents until midsummer, which shows that emperor penguins learn their survival skills from the adults.",
+          "Crèches let chicks huddle like adults, which proves that huddling is the single most important adaptation of the species.",
+          "The change to waterproof feathers is the chief event of the chick's first year, because it decides when the parents stop feeding it."
+        ],
+        "id": "excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-32",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement best summarizes the central idea of paragraph 8?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "to show that huddling is a flaw in the penguins' behavior that scientists are still trying to explain",
+          "to give a surprising, concrete sign of how well the huddle works, since a group in deadly cold can grow too warm inside",
+          "to suggest that the penguins at the center are weaker than the birds that stand on the outer edge of the huddle in the wind",
+          "to explain why the female must leave the huddle to feed at sea during the long Antarctic winter"
+        ],
+        "id": "excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-33",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Why does the author end paragraph 3 with the detail that penguins at the core must sometimes move outward \"to avoid overheating\"?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "It corrects paragraph 2 by revealing that the penguins' fat and feathers actually work against them in extreme cold.",
+          "It marks the limit of the physical defenses described in paragraph 2, turning the passage toward a behavior that adds to them.",
+          "It ranks huddling above all of the penguins' other adaptations, a claim the rest of the passage then sets out to prove.",
+          "It shifts from describing adult penguins to describing chicks, whose feathers and fat have not yet developed enough to resist the cold."
+        ],
+        "id": "excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-34",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from paragraph 3: \n\"Feathers and fat take a penguin only so far, however.\" \nHow does this sentence contribute to the development of ideas in the passage?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The words create a bright, festive mood that contrasts with the sad song the musician plays.",
+          "The words create a tone of danger, suggesting that Lenox Avenue is unsafe at night.",
+          "The piled-up words for faded light (\"pale,\" \"dull,\" \"pallor,\" \"old\") create a dim, worn-out atmosphere that matches the tired music.",
+          "The words create a nostalgic tone, showing that the speaker longs for an earlier time when gas lights were common."
+        ],
+        "id": "the-weary-blues-digital-shsat-practice-test-adaptive-10-1",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read line 5 from the poem: \n\"By the pale dull pallor of an old gas light\" \nHow does the word choice in this line contribute to the tone of the first stanza?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "suggesting that the musician plays badly, so that the people listening laugh at him.",
+          "hinting that the speaker looks down on the musician for playing such a simple tune.",
+          "suggesting that the musician has had no formal training and cannot read written music.",
+          "showing the musician giving himself over to the music completely, without caring how he looks."
+        ],
+        "id": "the-weary-blues-digital-shsat-practice-test-adaptive-10-2",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read line 13 from the poem: \n\"He played that sad raggy tune like a musical fool.\" \nThe simile in this line affects the meaning of the poem mainly by",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Artistic performance provides a temporary but ultimately insufficient escape from the loneliness and sorrow that define a life.",
+          "Sorrow loses its power over a person once it has been turned into a song and shared aloud with a sympathetic audience that understands it well.",
+          "Loneliness is easier to bear at night, when music fills the silence of an empty city street.",
+          "Music is most powerful when it is played for a large and attentive crowd of listeners."
+        ],
+        "id": "the-weary-blues-digital-shsat-practice-test-adaptive-10-3",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which statement best expresses a theme developed in the poem?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "They reveal that the speaker is the musician, remembering a performance of his own.",
+          "They show that the speaker doubts what he saw and can trust only what he heard.",
+          "They make the speaker a listener whose knowledge of the musician comes mainly through the music itself.",
+          "They suggest that the speaker is a critic judging the quality of the musician's playing."
+        ],
+        "id": "the-weary-blues-digital-shsat-practice-test-adaptive-10-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The speaker says \"I heard a Negro play\" (line 3) and \"I heard that Negro sing\" (line 18). How do these lines shape the point of view of the poem?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Placing the despairing lyric second shows the singer moving past self-pity toward calm acceptance of his loneliness.",
+          "Placing the two excerpts side by side shows that the singer's feelings remain unchanged throughout his song.",
+          "Separating the excerpts with the foot-thumping line marks the shift from the speaker's voice to the singer's own.",
+          "Placing the resolve to \"quit ma frownin'\" first shows the singer's attempt at relief collapsing into deeper despair."
+        ],
+        "id": "the-weary-blues-digital-shsat-practice-test-adaptive-10-5",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How does the order of the two song excerpts in lines 19–22 and lines 25–30 contribute to the development of ideas in the poem?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "It is a skilled imitation of songs that the musician has learned from other players in the clubs along Lenox Avenue and elsewhere.",
+          "It is meant mainly to entertain the people who pass by on Lenox Avenue.",
+          "It is calmer and happier than the music described in the first stanza of the poem.",
+          "It comes out of the musician's own deep experience, expressing who he is rather than only what he can play."
+        ],
+        "id": "the-weary-blues-digital-shsat-practice-test-adaptive-10-6",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What does line 15, \"Coming from a black man's soul,\" most strongly suggest about the music the speaker hears?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "sealing the edge",
+          "a strong gust",
+          "the sail can rip",
+          "pressing gently",
+          "all three meet"
+        ],
+        "id": "excerpt-from-getting-kite-making-right-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-41",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read these sentences from the passage. Select the phrase that begins a second complete clause attached to an earlier complete clause by only a comma, creating a run-on sentence.",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Moving the tow point forward makes the kite climb more steeply, which can also cause it to lose stability.",
+          "A shorter line tilts one wing toward the wind, so that side catches more force and keeps turning the kite.",
+          "Waxed thread holds knots more firmly than plain thread, so the bridle lines are less likely to slip.",
+          "Ripstop nylon resists tearing better than paper, so it makes a stronger sail for a beginner's kite."
+        ],
+        "id": "excerpt-from-getting-kite-making-right-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-42",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence should be added after sentence 17 to best explain why unequal bridle lines make a kite spiral?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "When a builder adjusts the tow point, they should record the change so they can return it to its original position if the new angle performs worse.",
+          "When a builder adjusts the tow point, they should record the change so that it can be returned to its original position if the new angle performs worse.",
+          "When a builder adjusts the tow point, they should record the change so they can return the tow point to its original position if the new angle performs worse.",
+          "When a builder adjusts the tow point, they should record the change so they can return the setting to their original position if the new angle performs worse."
+        ],
+        "id": "excerpt-from-getting-kite-making-right-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-43",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence from the passage: \n\"When a builder adjusts the tow point, they should record the change so it can return the setting to its original position if the new angle performs worse.\" \nWhich revision best corrects the unclear pronoun reference in the sentence?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "The set of adjustments a builder make in the field usually requires two or three outings before everything feels right.",
+          "The set of adjustments builders make in the field usually require two or three outings before everything feels right.",
+          "The set of adjustments a builder makes in the field usually requires two or three outings before everything feel right.",
+          "The set of adjustments a builder makes in the field usually requires two or three outings before everything feels right."
+        ],
+        "id": "excerpt-from-getting-kite-making-right-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-44",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision of sentence 22 corrects the error in subject-verb agreement?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "A tail adds drag, but drag slows spinning and keeps the nose pointed upward.",
+          "A tail adds drag, the force that slows spinning and keeps the nose pointed upward.",
+          "A tail, which slows spinning and keeps the nose pointed upward, adds drag.",
+          "Because a tail slows spinning and keeps the nose pointed upward, it adds drag."
+        ],
+        "id": "excerpt-from-getting-kite-making-right-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-45",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the best way to combine sentences 19 and 20 to clarify the relationship between the ideas?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "Move sentence 8 so that it follows sentence 9.",
+          "Move sentence 11 so that it follows sentence 9.",
+          "Move sentence 6 so that it follows sentence 7.",
+          "Move sentence 11 so that it follows sentence 7."
+        ],
+        "id": "excerpt-from-getting-kite-making-right-digital-shsat-practice-test-adaptive-10-satcc-9cc827afe5f992f7af37-ela-46",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which change would most improve the organization of the second paragraph (sentences 5–11)?",
+        "topic": "Central Idea & Theme",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(36\\)",
+          "\\(18\\)",
+          "\\(72\\)",
+          "\\(48\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-1",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A shipping crate is a right rectangular prism with a volume of \\(1008\\) cubic inches and a height of \\(14\\) inches. A plane parallel to the top of the crate slices through it, and the cross section is a rectangle whose length is twice its width. What is the perimeter, in inches, of the cross section?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(n + p = 15\\) and \\(1.50n + 0.75p = 14\\)",
+          "\\(n + p = 15\\) and \\(0.75n + 1.50p = 14\\)",
+          "\\(n + p = 14\\) and \\(0.75n + 1.50p = 15.00\\)",
+          "\\(n + p = 14\\) and \\(1.50n + 0.75p = 15.00\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-2",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A school store sells notebooks for \\(\\$1.50\\) each and pens for \\(\\$0.75\\) each. Dario buys a total of \\(14\\) items and spends exactly \\(\\$15.00\\). Which system of equations can be used to find the number of notebooks, \\(n\\), and the number of pens, \\(p\\), that Dario buys?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(10\\)",
+          "\\(25\\)",
+          "\\(15\\)",
+          "\\(90\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-3",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A jar holds red and blue marbles in a ratio of \\(2\\) to \\(3\\). After \\(10\\) red marbles are added, the ratio of red to blue marbles becomes \\(4\\) to \\(5\\). How many blue marbles must then be added so that the ratio of red to blue marbles returns to \\(2\\) to \\(3\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(6\\)",
+          "\\(14\\)",
+          "\\(20\\)",
+          "\\(10\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-4",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Mixture A is made of juice and water in a ratio of \\(2\\) to \\(3\\). Mixture B is made of juice and water in a ratio of \\(1\\) to \\(4\\). Dana pours \\(10\\) liters of Mixture A into a pitcher and then adds some Mixture B. The final mixture has juice and water in a ratio of \\(3\\) to \\(7\\). How many liters of Mixture B did Dana add?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(2^{1}\\)",
+          "\\(2^{9}\\)",
+          "\\(2^{10}\\)",
+          "\\(2^{19}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-5",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following is equal to \\(2^{10} - 2^{9}\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(\\$630\\)",
+          "\\(\\$1,350\\)",
+          "\\(\\$900\\)",
+          "\\(\\$810\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-6",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Prize money of \\(\\$2,340\\) is divided among Ana, Ben, and Cy in the ratio \\(3 : 4 : 6\\). Cy then gives one-fourth of his share to Ana. How much money does Ana have now?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Figure A",
+          "Figure B",
+          "Figure C",
+          "Figure D"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-7",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which figure has the greatest area? Use \\(3.14\\) for \\(\\pi \\).",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(\\frac{9}{25}\\)",
+          "\\(\\frac{1}{2}\\)",
+          "\\(\\frac{12}{25}\\)",
+          "\\(\\frac{13}{25}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-8",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A spinner has \\(5\\) equal sections numbered \\(1\\), \\(2\\), \\(3\\), \\(4\\), and \\(5\\). Dev spins the spinner two times. What is the probability that the sum of the two numbers is even?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(8\\)",
+          "\\(4.5\\)",
+          "\\(3.5\\)",
+          "\\(6\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-9",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The dot plot shows the number of museums visited this year by each of \\(15\\) students in a club. Each dot represents one student. A \\(16\\)th student then joins the club. The mean number of museums visited by all \\(16\\) students is \\(0.5\\) greater than the median number visited by the original \\(15\\) students. How many museums did the \\(16\\)th student visit?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "32",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-10",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Jordan is \\(3\\) times as old as his sister. In \\(6\\) years, Jordan will be twice as old as his sister will be then. How old, in years, will Jordan be when his sister is \\(20\\) years old? Enter your answer as a whole number of years.",
+        "topic": "Uncategorized",
+        "type": "short_response"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(7\\)",
+          "\\(13\\)",
+          "\\(19\\)",
+          "\\(24\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-11",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The two shorter sides of a triangle measure \\(9\\) centimeters and \\(15\\) centimeters. The perimeter of the triangle is greater than \\(42\\) centimeters. Which of the following could be the length, in centimeters, of the third side?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(\\frac{5}{33}\\)",
+          "\\(\\frac{25}{72}\\)",
+          "\\(\\frac{19}{132}\\)",
+          "\\(\\frac{19}{66}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-12",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A bag holds \\(5\\) green counters, \\(4\\) white counters, and \\(3\\) black counters. Two counters are drawn at random, one at a time, without replacement. What is the probability that both counters are the same color?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A,C",
+        "choices": [
+          "Its area is \\(84\\) square meters.",
+          "Its perimeter is \\(34\\) meters.",
+          "Its perimeter is \\(40\\) meters.",
+          "Its area is \\(72\\) square meters.",
+          "Its perimeter is \\(46\\) meters.",
+          "Its area is greater than \\(90\\) square meters."
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-13",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A rectangular garden measures \\(12\\) meters by \\(8\\) meters. A \\(4\\)-meter by \\(3\\)-meter rectangle is removed from one corner of the garden for a shed, leaving an L-shaped garden. Which TWO statements about the L-shaped garden are true?",
+        "topic": "Uncategorized",
+        "type": "multi_select"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(26^{∘}\\)",
+          "\\(54^{∘}\\)",
+          "\\(78^{∘}\\)",
+          "\\(126^{∘}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-14",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Line \\(m\\) is parallel to line \\(n\\). Points \\(A\\) and \\(B\\) are on line \\(m\\), with \\(A\\) to the left of \\(B\\), and point \\(P\\) is on line \\(n\\), forming triangle \\(PAB\\). The angle between line \\(m\\) to the left of \\(A\\) and segment \\(AP\\) measures \\((5x - 4)^{∘}\\). The angle between line \\(n\\) to the right of \\(P\\) and segment \\(PB\\) measures \\((3x)^{∘}\\). Angle \\(APB\\) measures \\(48^{∘}\\). What is the measure of angle \\(PAB\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(3\\)",
+          "\\(6\\)",
+          "\\(7\\)",
+          "\\(10\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-15",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "On a number line, point \\(P\\) is located at a position \\(p\\) such that \\(∣2p - 3∣ = 11\\). Point \\(Q\\) is located at a position \\(q\\) such that \\(∣q + 4∣ = 7\\). If \\(p\\) is negative and \\(q\\) is positive, what is the value of \\(∣p - q∣\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(51\\)",
+          "\\(59\\)",
+          "\\(68\\)",
+          "\\(69\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-16",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A school club is making T-shirts. The club pays a one-time fee of \\(\\$180\\) for the design screen, and each shirt costs \\(\\$6.50\\) to make. The club will give away \\(10\\) of the shirts it makes for free and sell all of the others for \\(\\$15\\) each. What is the least number of shirts the club must make, including the free shirts, to earn a profit of at least \\(\\$250\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-17",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Choose the value that correctly completes the sentence about the cost per page Mia pays.",
+        "topic": "Uncategorized",
+        "type": "inline_dropdown"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(34\\)",
+          "\\(38\\)",
+          "\\(52\\)",
+          "\\(66\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-18",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Points \\(A\\), \\(B\\), and \\(C\\) are shown on the coordinate plane. The expression \\(2x^{2} - y + k\\) equals \\(0\\) when \\(x\\) and \\(y\\) are the coordinates of point \\(A\\). What is the value of the same expression at point \\(C\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(20\\)",
+          "\\(30\\)",
+          "\\(10\\)",
+          "\\(5\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-19",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The box plot shown summarizes the number of points scored by each of \\(40\\) players during a season. About how many more players scored \\(28\\) points or fewer than scored more than \\(36\\) points?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "200",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-20",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A theater sold adult tickets for \\(\\$14\\) each and student tickets for \\(\\$9\\) each. The number of student tickets sold was \\(20\\) more than \\(3\\) times the number of adult tickets sold. For every ticket sold, the theater paid a \\(\\$1\\) fee to a ticketing company. After paying the fees, the theater kept \\(\\$2,380\\) from ticket sales. How many student tickets did the theater sell? Enter your answer as a whole number of tickets.",
+        "topic": "Uncategorized",
+        "type": "short_response"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\$108.00\\)",
+          "\\(\\$115.00\\)",
+          "\\(\\$120.00\\)",
+          "\\(\\$135.00\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-21",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A bicycle shop prices every bike \\(50\\%\\) above its cost. During a sale, the price is reduced by \\(20\\%\\), and a coupon then takes an additional \\(10\\%\\) off the sale price. A bike's final price is \\(\\$129.60\\). What was the shop's cost for the bike?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B,C",
+        "choices": [
+          "Figure A",
+          "Figure B",
+          "Figure C",
+          "Figure D"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-22",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A garden bed must have an area, \\(A\\), in square feet, that satisfies BOTH inequalities \\(-3(A - 8) < A - 40\\) and \\(2A + 5 \\le  A + 35\\). Figure A is a rectangle \\(4\\) feet by \\(4\\) feet. Figure B is a parallelogram with a base of \\(6\\) feet and a height of \\(4\\) feet. Figure C is a rectangle \\(5\\) feet by \\(6\\) feet. Figure D is an isosceles triangle with base \\(10\\) feet and height \\(8\\) feet. Select the TWO figures whose areas satisfy both inequalities.",
+        "topic": "Uncategorized",
+        "type": "multi_select"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "On at least \\(20\\) of the \\(40\\) days, each driver delivered \\(33\\) or fewer packages.",
+          "The interquartile range for Driver X is smaller than the interquartile range for Driver Y.",
+          "The mean number of packages per day is greater for Driver Y than for Driver X.",
+          "Driver Y delivered more than \\(38\\) packages on more days than Driver X delivered more than \\(41\\) packages."
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-23",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Two delivery drivers each recorded the number of packages delivered per day for \\(40\\) days. Driver X: minimum \\(18\\), \\(Q_{1} = 26\\), median \\(33\\), \\(Q_{3} = 41\\), maximum \\(60\\). Driver Y: minimum \\(22\\), \\(Q_{1} = 30\\), median \\(33\\), \\(Q_{3} = 38\\), maximum \\(52\\). Which statement must be true?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-24",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A city planner made a scale drawing of a rectangular park using the scale \\(1\\) centimeter = \\(4\\) meters. On that drawing, the park has an area of \\(27\\) square centimeters and a length of \\(6\\) centimeters. The planner then makes a new drawing of the same park using the scale \\(1\\) centimeter = \\(6\\) meters. Drag a number into each blank to complete the sentence.",
+        "topic": "Uncategorized",
+        "type": "math_drag_drop"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(366\\)",
+          "\\(372\\)",
+          "\\(378\\)",
+          "\\(384\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-25",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A number pattern grows by the same multiplier at every step. Its second number is \\(12\\) and its fifth number is \\(96\\). What is the total of the first six numbers in the pattern?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(\\$32.40\\)",
+          "\\(\\$33.60\\)",
+          "\\(\\$33.76\\)",
+          "\\(\\$34.20\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-26",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Store A sells a \\(15\\)-ounce bag of trail mix for \\(\\$4.50\\) and a \\(24\\)-ounce bag for \\(\\$6.72\\). Store B sells a \\(20\\)-ounce bag of the same trail mix for \\(\\$5.80\\) and a \\(30\\)-ounce bag for \\(\\$8.10\\). A customer wants to buy exactly \\(120\\) ounces of trail mix at the lowest possible total cost. She may buy any combination of bag sizes from either store. What is the lowest possible total cost?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(12\\)",
+          "\\(18\\)",
+          "\\(24\\)",
+          "\\(36\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-27",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A fish tank shaped like a rectangular prism has a base that measures \\(60\\) centimeters by \\(30\\) centimeters. The tank is filled with water to \\(\\frac{5}{6}\\) of its height. After \\(12\\) liters of water are drained out, the water level is at exactly \\(\\frac{1}{2}\\) of the tank's height. How many more liters of water are needed to fill the tank completely? (\\(1\\) liter = \\(1,000\\) cubic centimeters)",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(170^{∘}\\)",
+          "\\(120^{∘}\\)",
+          "\\(72^{∘}\\)",
+          "\\(10^{∘}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-28",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A garden bed is shaped like a pentagon. Its interior angles measure \\(x^{∘}\\), \\(x^{∘}\\), \\(2x^{∘}\\), \\((2x + 10)^{∘}\\), and \\((3x - 10)^{∘}\\). The sum of the interior angles of a polygon with \\(n\\) sides is \\((n - 2) \\times  180^{∘}\\). An exterior angle is formed at each vertex by extending one side. What is the measure of the largest of these exterior angles?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(432\\)",
+          "\\(444\\)",
+          "\\(450\\)",
+          "\\(446\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-29",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "When the fraction \\(\\frac{5}{7}\\) is written as a decimal, the digits after the decimal point repeat in a pattern. What is the sum of the first \\(100\\) digits after the decimal point?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(16\\)",
+          "\\(25\\)",
+          "\\(9\\)",
+          "\\(31\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-30",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Maya builds designs out of toothpicks. Design \\(1\\) is a single square made of \\(4\\) toothpicks. Each new design is a row with one more square than the design before it, and squares next to each other share a side. Maya has \\(100\\) toothpicks. She builds Design \\(1\\), then Design \\(2\\), then Design \\(3\\), and so on, keeping each design separate. She stops when she does not have enough toothpicks left to build the next design. How many toothpicks does Maya have left over?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(36\\)",
+          "\\(27\\)",
+          "\\(86\\)",
+          "\\(45\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-31",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A drone flies at a constant speed. The graph shows the proportional relationship between the number of hours, \\(x\\), the drone has flown and the distance, \\(y\\), in miles, that it has traveled. The point \\((3, 54)\\) is on the graph. A second drone flies at a constant speed that is \\(25\\%\\) faster than the speed of the first drone. How many miles does the second drone travel in \\(2\\) hours?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "13/18",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-32",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A jar contains \\(3\\) red chips, \\(4\\) blue chips, and \\(2\\) yellow chips. Sasha draws two chips one at a time without replacement. What is the probability that at least one of the two chips is blue? Enter your answer as a fraction in lowest terms.",
+        "topic": "Uncategorized",
+        "type": "expression_entry"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(14\\)",
+          "\\(15\\)",
+          "\\(16\\)",
+          "\\(17\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-33",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Five positive integers have a mean of \\(9\\), a median of \\(8\\), and exactly one mode, which is \\(6\\). What is the greatest possible value of the largest of the five integers?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(0.65\\)",
+          "\\(2.50\\)",
+          "\\(2.65\\)",
+          "\\(5.20\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-34",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The table shows prices at a deli. Maya has \\(\\$20.00\\). She buys \\(0.75\\) pound of turkey and \\(1.25\\) pounds of cheese, then spends all of her remaining money on ham. What is the total weight, in pounds, of the turkey, cheese, and ham that Maya buys?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "18",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-35",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The expression \\(3(2x - 5) - 4(x - 2) + k(x + 1)\\), where \\(k\\) is a constant, is equivalent to the expression \\(px + 9\\) for all values of \\(x\\). What is the value of \\(p\\)? Enter your answer as a whole number.",
+        "topic": "Uncategorized",
+        "type": "short_response"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(16\\)",
+          "\\(28\\)",
+          "\\(40\\)",
+          "\\(52\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-36",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(p = 2q - 3\\) and \\(q = 5 - r\\), what is the value of \\(4p + 8r\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(40\\)",
+          "\\(48\\)",
+          "\\(60\\)",
+          "\\(72\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-37",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Rena spent \\(\\frac{1}{4}\\) of her money on a jacket. She then spent \\(\\frac{1}{3}\\) of the money she had left on shoes. Finally, she spent \\(\\$10\\) on a hat and had \\(\\$20\\) remaining. How much money, in dollars, did Rena have at the start?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(21\\)",
+          "\\(20\\)",
+          "\\(10.5\\)",
+          "\\(42\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-38",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Quadrilateral \\(ABCD\\) is graphed on a coordinate plane. Its vertices are \\(A(1, 2)\\), \\(B(8, 2)\\), \\(C(6, 6)\\), and \\(D(3, 6)\\). A rectangle has the same area as quadrilateral \\(ABCD\\) and a length of \\(8\\) units. What is the perimeter, in units, of the rectangle?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(12\\)",
+          "\\(11\\)",
+          "\\(6\\)",
+          "\\(4\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-39",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Gym A charges a \\(\\$45\\) sign-up fee plus \\(\\$28\\) per month. Gym B charges a \\(\\$12\\) sign-up fee plus \\(\\$34\\) per month, but the first month at Gym B is free. What is the least whole number of months for which the total cost at Gym A is less than the total cost at Gym B?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(10 : 10\\) a.m.",
+          "\\(10 : 17\\) a.m.",
+          "\\(10 : 26\\) a.m.",
+          "\\(10 : 25\\) a.m."
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-40",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Printer A prints \\(45\\) pages every \\(3\\) minutes. Printer B prints \\(3\\) pages every \\(15\\) seconds. At \\(9 : 50\\) a.m., both printers begin working together on a \\(540\\)-page job. At \\(9 : 58\\) a.m., Printer A jams, and Printer B finishes the job alone. At what time is the job finished?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(\\frac{3}{10}\\)",
+          "\\(\\frac{7}{10}\\)",
+          "\\(\\frac{9}{10}\\)",
+          "\\(\\frac{4}{5}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-41",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A spinner is divided into \\(10\\) equal sections: \\(4\\) labeled \\(A\\), \\(3\\) labeled \\(B\\), \\(2\\) labeled \\(C\\), and \\(1\\) labeled \\(D\\). The spinner is spun twice. What is the probability that the two spins land on different letters?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(126\\)",
+          "\\(135\\)",
+          "\\(144\\)",
+          "\\(162\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-42",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Three identical cubes have a total volume of \\(81\\) cubic centimeters. The cubes are glued face to face in a single straight row to form a rectangular prism. What is the surface area, in square centimeters, of the prism?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "Both the mean and the median increase.",
+          "The mean increases, but the median stays the same.",
+          "The mean increases, and the median increases by \\(5\\).",
+          "The mean stays the same, but the median increases."
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-43",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A teacher recorded scores for \\(7\\) students on a quiz: \\(62\\), \\(75\\), \\(75\\), \\(80\\), \\(88\\), \\(90\\), and \\(90\\). After grading, she discovered one score was entered incorrectly and must be changed from \\(62\\) to \\(83\\). Which of the following correctly describes the effect of this correction on the mean and median of the data set?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(8\\)",
+          "\\(12\\)",
+          "\\(24\\)",
+          "\\(40\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-44",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The graph shown gives the proportional relationship between the number of pounds of cashews, \\(x\\), and the cost in dollars, \\(y\\), at Store A and at Store B. Store A then puts cashews on sale for \\(20\\%\\) off its regular price, while Store B keeps its regular price. For how many pounds of cashews would the sale cost at Store A be \\(\\$12\\) less than the cost at Store B?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(2\\)",
+          "\\(5\\)",
+          "\\(7\\)",
+          "\\(9\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-45",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The stem-and-leaf plot shows the finishing times, in seconds, of \\(15\\) swimmers in a race. In the plot, \\(6 ∣ 1\\) represents a time of \\(61\\) seconds. The two slowest times are removed, and then two new times of \\(50\\) seconds are added. By how many seconds does the median time decrease?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(36 \\div  (3 \\times  2) - 4^{2} \\div  2 + 1\\)",
+          "\\(36 \\div  3 \\times  2 - (4^{2} \\div  2 + 1)\\)",
+          "\\((36 \\div  3 \\times  2 - 4^{2}) \\div  2 + 1\\)",
+          "\\(36 \\div  3 \\times  (2 - 4^{2}) \\div  2 + 1\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-46",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Lena wants to insert exactly one pair of parentheses into the expression \\(36 \\div  3 \\times  2 - 4^{2} \\div  2 + 1\\) so that the value of the expression becomes \\(5\\). Which placement of the parentheses gives a value of \\(5\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(92\\)",
+          "\\(98\\)",
+          "\\(83\\)",
+          "\\(174\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-47",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The mean of \\(8\\) test scores is \\(80\\). When a ninth score is added, the mean of all \\(9\\) scores is \\(82\\). When a tenth score is added, the mean of all \\(10\\) scores is \\(83\\). What is the tenth score?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "Figure \\(4\\)",
+          "Figure \\(5\\)",
+          "Figure \\(6\\)",
+          "Figure \\(7\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-48",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A pattern of figures is built with unit squares. Figure \\(1\\) has \\(6\\) squares, Figure \\(2\\) has \\(10\\) squares, Figure \\(3\\) has \\(14\\) squares, and each figure after that has \\(4\\) more squares than the one before it. A second pattern is built with unit triangles. Figure \\(1\\) has \\(2\\) triangles, Figure \\(2\\) has \\(7\\) triangles, Figure \\(3\\) has \\(12\\) triangles, and each figure after that has \\(5\\) more triangles than the one before it. For which figure number do both patterns first have the same count?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(7\\)",
+          "\\(12\\)",
+          "\\(17\\)",
+          "\\(9\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-49",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "If \\(4^{5} + 4^{5} + 4^{5} + 4^{5} = 2^{n} ⋅ 8\\), what is the value of \\(n\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-10-hard-satcc-9cc827afe5f992f7af37-math-50",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Lena builds square tile designs in a pattern. Figure \\(1\\) is \\(1\\) shaded tile surrounded by a border of \\(8\\) unshaded tiles. Figure \\(2\\) is a \\(2\\)-by-\\(2\\) square of \\(4\\) shaded tiles surrounded by a border of \\(12\\) unshaded tiles. Figure \\(3\\) is a \\(3\\)-by-\\(3\\) square of \\(9\\) shaded tiles surrounded by a border of \\(16\\) unshaded tiles. The pattern continues in the same way. One figure in the pattern uses exactly \\(144\\) tiles in all. Drag a number into each box to complete the sentence.",
+        "topic": "Uncategorized",
+        "type": "math_drag_drop"
       }
     ],
     "forms": [],

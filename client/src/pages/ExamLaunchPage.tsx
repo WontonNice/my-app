@@ -221,7 +221,7 @@ export function ExamLaunchPage() {
                 </div>
               ) : <form className="exam-launch-form" onSubmit={handleStartExam}>
                 <h2>{isComplete ? "Reopen submitted exam" : "Enter your name:"}</h2>
-                {assessment.reentry ? <p>Your teacher reopened {assessment.reentry.remainingSections.map(section => section === "math" ? "Math" : "English").join(" and ")}. Your saved answers and remaining exam time will load{assessment.reentry.additionalMinutes ? `, with ${assessment.reentry.additionalMinutes} extra minutes` : ""}. Submit each reopened section when finished.</p> : isComplete ? <p>Your saved answers will load. You can edit and resubmit open sections while your teacher keeps this exam open.</p> : null}
+                {assessment.reentry?.resetAnswers ? <p>Your teacher reset {assessment.reentry.remainingSections.map(section=>section==="english"?"English":"Math").join(" and ")}. Start with blank answers or resume your work since the reset.</p> : assessment.reentry ? <p>Your teacher reopened {assessment.reentry.remainingSections.map(section => section === "math" ? "Math" : "English").join(" and ")}. Your saved answers and remaining exam time will load{assessment.reentry.additionalMinutes ? `, with ${assessment.reentry.additionalMinutes} extra minutes` : ""}. Submit each reopened section when finished.</p> : isComplete ? <p>Your saved answers will load. You can edit and resubmit open sections while your teacher keeps this exam open.</p> : null}
                 <label>
                   Name:
                   <input

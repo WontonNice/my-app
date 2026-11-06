@@ -37,10 +37,13 @@ export function saveLocalExamSession(
   status: ExamSessionProgress["status"] = "in_progress",
   questionTimes?: Record<string, number>,
   navigation?: ExamNavigation,
+  resetGrantId?: string,
 ) {
   const savedAt = new Date().toISOString();
-  const existing = loadLocalExamSession(userId, assessmentId);
+  const stored = loadLocalExamSession(userId, assessmentId);
+  const existing = resetGrantId && stored?.resetGrantId !== resetGrantId ? null : stored;
   const progress: ExamSessionProgress = {
+    ...(resetGrantId ? {resetGrantId} : {}),
     ...((navigation ?? existing?.navigation) ? { navigation: navigation ?? existing?.navigation } : {}),
     answers: { ...(existing?.answers ?? {}), ...answers },
     completedSections: [...new Set(completedSections)],

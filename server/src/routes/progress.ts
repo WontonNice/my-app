@@ -13,7 +13,7 @@ import { supabase } from "../lib/supabase";
 import { loadStudentProgressRows, type ProgressRows } from "../lib/studentProgressRows";
 import { recordPlanCompletion, recordPracticePlanCompletion } from "../lib/learningPlanStore";
 import { readExamReentries, withExamWriteLock } from "../lib/examReentry";
-import { examAttemptId } from "../shared/examReentry";
+import { examAttemptId, omitExamQuestions } from "../shared/examReentry";
 import { normalizeExamNavigation, type ExamNavigation } from "../shared/examNavigation";
 import { findAssessmentForStudent as configuredFindAssessmentForStudent, listTeacherAssessments as configuredListTeacherAssessments } from "../config/assessments";
 import { hasAssignedContent } from "../lib/learningPlanStore";
@@ -348,7 +348,9 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
     const status: "in_progress" | "submitted" =
         request.body?.status === "submitted" ? "submitted" : "in_progress";
     const { grants, records } = await readExamReentries(user.id);
-    const openExam = configuredAssessment.status === "open";
+    const individual = grants[assessmentId];
+    const resetRequest = individual?.resetAnswers && (individual.remainingSections.length > 0 || Boolean(request.body?.reentryGrantId));
+    const openExam = configuredAssessment.status === "open" && !resetRequest;
     const reentry = openExam ? undefined : grants[request.params.assessmentId];
     const suppliedGrantId = openExam ? undefined : request.body?.reentryGrantId;
     if (suppliedGrantId && (!reentry || reentry.id !== suppliedGrantId || reentry.revokedAt)) {
@@ -379,14 +381,17 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
         ...(protectedSections.includes("english") ? [...snapshot.passageSets.flatMap(set => set.questions), ...(snapshot.standaloneSection?.questions ?? [])].map(question => question.id) : []),
         ...(protectedSections.includes("math") ? (snapshot.mathSection?.questions ?? []).map(question => question.id) : []),
     ] : [];
+    const resetIds = reentry?.resetAnswers ? editableIds : null;
+    const olderDraft = existingSession && reentry && Date.parse(existingSession.updatedAt) < Date.parse(reentry.grantedAt);
     const mergedAnswers = {
-        ...(submitted?.answers as JsonRecord ?? {}),
-        ...(existingSession?.answers ?? {}),
+        ...(resetIds ? omitExamQuestions(submitted?.answers as JsonRecord, resetIds) : submitted?.answers as JsonRecord ?? {}),
+        ...(resetIds && olderDraft ? omitExamQuestions(existingSession?.answers, resetIds) : existingSession?.answers ?? {}),
         ...(editableIds ? Object.fromEntries(Object.entries(answers as JsonRecord).filter(([id]) => editableIds.has(id))) : answers as JsonRecord),
         ...Object.fromEntries(protectedIds.filter(id => submitted?.answers && Object.hasOwn(submitted.answers as object, id)).map(id => [id, (submitted!.answers as JsonRecord)[id]])),
     };
     const updatedAt = new Date().toISOString();
-    const nextNavigation = navigation ? { ...existingSession?.navigation, ...navigation } : existingSession?.navigation;
+    const priorNavigation = resetIds && olderDraft && existingSession?.navigation ? { ...existingSession.navigation, [reentry!.sections[0]]: undefined } : existingSession?.navigation;
+    const nextNavigation = navigation ? { ...priorNavigation, ...navigation } : priorNavigation;
     const session: ExamSessionProgress = {
         ...(nextNavigation ? { navigation: nextNavigation } : {}),
         answers: mergedAnswers,
@@ -618,7 +623,9 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
     return withExamWriteLock(user.id, assessmentId, async () => {
     const { grants, records } = await readExamReentries(user.id);
     const configuredAssessment = (await listTeacherAssessments()).find(item => item.id === assessmentId)!;
-    const openExam = configuredAssessment.status === "open";
+    const individual = grants[assessmentId];
+    const resetRequest = individual?.resetAnswers && (individual.remainingSections.length > 0 || Boolean(result.reentryGrantId));
+    const openExam = configuredAssessment.status === "open" && !resetRequest;
     const grant = openExam ? undefined : grants[assessmentId];
     const existing = records.get(assessmentId);
     const suppliedGrantId = openExam ? undefined : result.reentryGrantId;
@@ -667,8 +674,11 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
             ...(grant.remainingSections.includes("english") ? [...content.passageSets.flatMap(set => set.questions), ...(content.standaloneSection?.questions ?? [])].map(question => question.id) : []),
             ...(grant.remainingSections.includes("math") ? (content.mathSection?.questions ?? []).map(question => question.id) : []),
         ]);
-        const revisedAnswers = { ...(existing.answers as SelectedAnswers), ...Object.fromEntries(Object.entries(result.answers ?? {}).filter(([id]) => editableIds.has(id))) } as SelectedAnswers;
-        const revised = createExamResult(content, revisedAnswers, completed, result.questionTimes ?? existing.questionTimes ?? {});
+        const revisedAnswers = { ...(grant.resetAnswers ? omitExamQuestions(existing.answers as SelectedAnswers, editableIds) : existing.answers as SelectedAnswers), ...Object.fromEntries(Object.entries(result.answers ?? {}).filter(([id]) => editableIds.has(id))) } as SelectedAnswers;
+        const revisedTimes = grant.resetAnswers
+            ? { ...omitExamQuestions(existing.questionTimes as Record<string,number>, editableIds), ...Object.fromEntries(Object.entries(result.questionTimes ?? {}).filter(([id]) => editableIds.has(id))) }
+            : result.questionTimes ?? existing.questionTimes ?? {};
+        const revised = createExamResult(content, revisedAnswers, completed, revisedTimes);
         result = { ...revised, attemptId: grant.attemptId, reentryGrantId: grant.id, reentrySubmittedSections: [...new Set([...previouslyRevised, ...submittedNow])], sectionCompletedAt: { ...(existing.sectionCompletedAt as object ?? {}), ...Object.fromEntries(submittedNow.map(section => [section, revised.completedAt])) }, timerState: result.timerState ?? grant.timerState };
     }
     // Preserve a previous genuine attempt before a new attempt replaces the current result.

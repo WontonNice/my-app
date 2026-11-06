@@ -19,6 +19,19 @@ function orderBatch(entry) {
   if(entry.batch.inventoryConfirmed)entry.batch.nextScope=entry.batch.unresolvedQuestions.join(', ');
 }
 
+function sameReceivedQuestion(first, second) {
+  if (!first || !second) return false;
+  if (first === second) return true;
+  // A new Reader download has its own immutable archive (including capture
+  // time). Compare the original received questions without that receipt ID.
+  if (!first.startsWith('{') || !second.startsWith('{')) return false;
+  const left = JSON.parse(first), right = JSON.parse(second);
+  if (left.source?.sourceFamily !== 'sat_crash_course' || right.source?.sourceFamily !== 'sat_crash_course') return false;
+  delete left.source.originalPackageId;
+  delete right.source.originalPackageId;
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
 function mergeMathBatch(state, incoming, sanitize, publishedMath=[], { replaceUnpublished = false } = {}) {
   const meta = incoming.batch;
   const key = meta.sourceId ? JSON.stringify([meta.sourceId,meta.section,meta.jobId]) : `anonymous:${digest(meta.items.map(i=>i.raw))}`;
@@ -49,7 +62,7 @@ function mergeMathBatch(state, incoming, sanitize, publishedMath=[], { replaceUn
       if (!current.batch.receipts.some(r=>r.id===id)) current.batch.receipts.push({id,chunkId:chunk.id,sourceQuestion:incomingItem.sourceQuestion,outcome});
     };
     if (item) {
-      if (item.receivedFingerprint && item.receivedFingerprint === incomingItem.receivedFingerprint || item.error && JSON.stringify(item.raw)===JSON.stringify(incomingItem.raw)) { receipt('duplicate'); continue; }
+      if (sameReceivedQuestion(item.receivedFingerprint, incomingItem.receivedFingerprint) || item.error && JSON.stringify(item.raw)===JSON.stringify(incomingItem.raw)) { receipt('duplicate'); continue; }
       // A corrected retry can repair an unusable record directly. Questions
       // already inserted into any test always keep their authored content.
       if (replaceUnpublished && !Object.keys(item.publications || {}).length && (item.error || Object.keys(item.publicationErrors || {}).length) && q && !incomingItem.error && !current.content.questions.some(old => old.id === q.id && old.id !== item.questionId)) {
@@ -331,6 +344,8 @@ export function publicationContent(entry, { allowUnresolved = false } = {}) {
   }
   delete p.review; delete p.visuals; delete p.importDraftId; delete p.teacherSource;
   p.questions = p.questions.map(({ review, visuals, ...q }) => ({ ...q,
+    ...(entry.kind === "math" && q.source?.sourceFamily === "sat_crash_course" && Number.isInteger(q.sourceRecord?.number) && Number.isInteger(q.sourceRecord?.sourceNumber)
+      ? {source:{...q.source,moduleQuestion:String(q.sourceRecord.number),sourceQuestion:String(q.sourceRecord.sourceNumber)}} : {}),
     ...(entry.kind === 'passage' && !q.id.startsWith(p.id + '-') ? { id: `${p.id}-${q.id}` } : {}) }));
   p.preserveSourceLayout = true;
   return p;

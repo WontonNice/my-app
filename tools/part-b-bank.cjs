@@ -47,7 +47,10 @@ var PartBBank = (() => {
     return mapped.some(pair => pair.includes(-1)) ? '' : JSON.stringify(mapped.sort((a, b) => a[0] - b[0]));
   }
   function match(a, b) {
-    const stimulusA = rich(a, 'stimulus'), stimulusB = rich(b, 'stimulus');
+    // Identical options can be embedded in different sentences or mark a
+    // different occurrence of the same word. These are distinct questions.
+    if ((a.selectionHtml || '') !== (b.selectionHtml || '')) return null;
+    const stimulusA = rich(a, 'stimulus') || text(a.selectionHtml), stimulusB = rich(b, 'stimulus') || text(b.selectionHtml);
     if (!stimulusA || !stimulusB || !rich(a, 'prompt') || !rich(b, 'prompt')) return null;
     const same = contentKey(a) && contentKey(a) === contentKey(b);
     const keyA = answerKey(a), keyB = answerKey(b);

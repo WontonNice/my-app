@@ -6,6 +6,14 @@
       "output_tokens": null,
       "files": 529,
       "token_usage_status": "Unavailable from host agent API; totals exclude this unmetered semantic run."
+    },
+    {
+      "date": "2026-11-05T05:54:02.288121+00:00",
+      "scope": "whole project",
+      "input_tokens": null,
+      "output_tokens": null,
+      "usage_available": false,
+      "files": 5971
     }
   ],
   "total_input_tokens": 0,

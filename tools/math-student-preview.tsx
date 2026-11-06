@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type ComponentProps } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ExamToolbar } from '../client/src/pages/ExamSessionPage';
 import { ExamMathQuestion } from '../client/src/components/ExamMathQuestion';
+import { EXAM_PLAYER_PROFILE } from '../client/src/content/exams/playerPresentation';
 import { StandaloneStudentPreview } from './standalone-student-preview';
 import type { ExamQuestion } from '../server/src/shared/examTypes';
 import type { SelectedAnswer } from '../server/src/shared/examGrading';
@@ -34,7 +35,7 @@ function StudentPreview() {
     return () => window.removeEventListener('message', receive);
   }, []);
   if (!preview) return <p role="status">Loading student player…</p>;
-  return <main className={`exam-session-shell${preview.subject === 'english' ? '' : ' is-math-session'}`} data-player-profile={preview.question.source?.playerProfile || 'testnav'}>
+  return <main className={`exam-session-shell${preview.subject === 'english' ? '' : ' is-math-session'}`} data-player-profile={EXAM_PLAYER_PROFILE}>
     <ExamToolbar assessmentLabel={preview.title} breadcrumbMiddle={preview.subject === 'english' ? 'ELA - STAND ALONE ITEMS' : 'MATH'} breadcrumbCurrent={`${preview.index + 1} OF ${preview.count}`} studentName="Preview"
       showReviewTools={false} showExhibits activeTool={tool} canEliminate={preview.subject !== 'english' && ['multiple_choice','multi_select','graph_point_select'].includes(preview.question.type)} isPreviousActive={preview.index > 0} isNextActive={preview.index + 1 < preview.count}
       onPrevious={() => parent.postMessage({ type: 'studio:math-preview-navigate', delta: -1 }, editorOrigin)}

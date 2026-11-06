@@ -855,6 +855,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
   const [selectionWarning, setSelectionWarning] = useState(false);
   const Panel = responseOnly ? "div" : "form";
   const choices = question.choices || [], selectedIds = Array.isArray(answer) ? answer : typeof answer === 'string' && answer ? [answer] : [];
+  const spotDiagram = question.hotSpot && choices.some(choice => choice.hotSpotRegion) ? question.image : undefined;
   const textAnswer = typeof answer === 'string' ? answer : '';
   const maxChoices = question.requiredSelections ?? question.correctPointIds?.length ?? question.correctChoiceIds?.length ?? 2;
   const toggle = (id: string) => onChange(selectedIds.includes(id) ? selectedIds.filter(value => value !== id) : [...selectedIds, id]);
@@ -880,7 +881,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
           <Panel key={question.id} className="exam-standalone-panel exam-math-panel" onSubmit={event => event.preventDefault()}>
             {children}
             {!responseOnly && <>
-            {question.image ? (
+            {question.image && !spotDiagram ? (
               <figure className="exam-question-image">
                 <img alt={question.image.alt} src={question.image.src} />
                 {question.image.caption ? (
@@ -986,9 +987,11 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
             ) : question.type === 'matrix_choice' && question.items && question.categories ? (
               <div className={`exam-matrix-choice-wrap${question.matrixStyle === "compact" ? " is-compact-matrix" : ""}`}><table className="exam-matrix-choice-table"><thead><tr><th>{question.tableHeaders?.row || ''}</th>{question.categories.map(category=><th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(item=><tr key={item.id}><th scope="row">{renderInteractionMath(item.text,item.id)}</th>{question.categories!.map(category=><td key={category.id}><label><input type="radio" name={question.id+'-'+item.id} aria-label={item.text+': '+category.title} checked={placements(answer)[item.id]===category.id} onChange={()=>onChange({...placements(answer),[item.id]:category.id})}/></label></td>)}</tr>)}</tbody></table></div>
             ) : choices.length > 0 ? (
-              <div className={`exam-choice-list exam-standalone-choice-list${question.choiceColumns === 2 ? ' is-two-column' : ''}${question.hideChoiceLabels ? ' is-unlettered' : ''}`}>
+              <div className={`exam-choice-list exam-standalone-choice-list${question.hotSpot ? " exam-hot-spots" : ""}${spotDiagram ? " is-spot-diagram" : ""}${question.choiceColumns === 2 ? ' is-two-column' : ''}${question.hideChoiceLabels ? ' is-unlettered' : ''}`}>
+                {spotDiagram && <img className="exam-spot-diagram-image" src={spotDiagram.src} alt={spotDiagram.alt} />}
                 {choices.map((choice) => (
                   <label
+                    style={spotDiagram && choice.hotSpotRegion ? {position:'absolute',left:choice.hotSpotRegion.x+'%',top:choice.hotSpotRegion.y+'%',width:choice.hotSpotRegion.width+'%',height:choice.hotSpotRegion.height+'%'} : undefined}
                     className={`exam-choice ${
                       eliminatedIds.includes(choice.id) ? "is-eliminated" : ""
                     } ${answerFeedback ? choice.id === question.correctChoiceId || question.correctChoiceIds?.includes(choice.id) ? 'is-answer-correct' : selectedIds.includes(choice.id) ? 'is-answer-incorrect' : '' : ''}`}
@@ -1002,10 +1005,11 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
                           : answer === choice.id
                       }
                       name={question.id}
+                      aria-label={question.hotSpot ? choice.text || choice.image?.alt || 'Target '+choice.id : undefined}
                       onChange={() => select(choice.id, onSelectChoice)}
                       type={question.type === "multi_select" ? "checkbox" : "radio"}
                     />
-                    {!question.hideChoiceLabels && <span>{choice.id}.</span>}
+                    {!question.hotSpot && !question.hideChoiceLabels && <span>{choice.id}.</span>}
                     <span
                       aria-label={choice.math ? choice.text : undefined}
                       className={

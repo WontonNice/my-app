@@ -260,7 +260,7 @@ test('concurrent scan is rejected', async () => {
   assert.equal((await running).ok, true);
 });
 
-function popupFixture(data, storage = {}, { failWrites = false, failReads = false } = {}) {
+function popupFixture(data, storage = {}, { failWrites = false, failReads = false, tabUrl = 'https://tutor.thesatcrashcourse.com/tests/digital-shsat/example' } = {}) {
   const elements = new Map();
   let sent;
   const context = vm.createContext({
@@ -277,7 +277,7 @@ function popupFixture(data, storage = {}, { failWrites = false, failReads = fals
       get: async () => { if (failReads) throw new Error('Storage unavailable'); return structuredClone(storage); },
       set: async values => { if (failWrites) throw new Error('Quota exceeded'); Object.assign(storage, structuredClone(values)); },
     } }, tabs: {
-      query: async () => [{ id: 1, url: 'https://tutor.thesatcrashcourse.com/tests/example' }],
+      query: async () => [{ id: 1, url: tabUrl }],
       sendMessage: async (_id, message) => { sent = message; return { ok: true, data }; },
     } },
   });
@@ -359,6 +359,10 @@ test('popup retains compatible legacy batch exports but does not claim all-ELA s
   const popup = popupFixture(data);
   popup.elements.get('#capture-mode').value = 'math-all';
   await vm.runInContext('scanPage()', popup.context);
+  assert.equal(popup.elements.get('#results').hidden, true, 'An English response cannot become a Math download');
+  data.testPreview.module = 'Mathematics';
+  data.testPreview.capture.mode = 'math-all';
+  await vm.runInContext('scanPage()', popup.context);
   assert.equal(popup.elements.get('#results').hidden, false);
   assert.equal(popup.elements.get('#question-count').textContent, '7');
   assert.equal(vm.runInContext('state.data', popup.context), data);
@@ -382,6 +386,20 @@ test('closing and reopening restores the complete scan and CSV without contactin
   assert.equal(reopened.elements.get('#preview').textContent, JSON.stringify(data, null, 2));
   assert.equal(vm.runInContext('toCsv(state.data)', reopened.context), originalCsv);
   assert.match(reopened.elements.get('#status').textContent, /Restored saved scan/);
+});
+
+test('selecting Math or reopening on a different test cannot offer a saved English export', async () => {
+  const data = (await fixture().scan()).data;
+  const storage = {satReaderCapture:{data, options:{captureMode:'ela-all'}}, satReaderPreferences:{captureMode:'math-all'}};
+  let popup = popupFixture(data, storage);
+  await vm.runInContext('ready', popup.context);
+  assert.equal(vm.runInContext('state.data',popup.context),null);
+  assert.match(popup.elements.get('#status').textContent,/Choose Read/);
+  storage.satReaderPreferences.captureMode='passage';
+  popup=popupFixture(data,storage,{tabUrl:'https://tutor.thesatcrashcourse.com/tests/different'});
+  await vm.runInContext('ready',popup.context);
+  assert.equal(vm.runInContext('state.data',popup.context),null);
+  assert.equal(storage.satReaderCapture.data,data);
 });
 
 test('capture mode, question range, unchecked settings, and expanded preview survive reopening', async () => {

@@ -8,6 +8,46 @@ const source={url:'https://tutor.thesatcrashcourse.com/tests/fixture',label:'Fix
 const q=(number,extra={})=>({number,total:50,sourceNumber:number,prompt:'Choose the answer.',promptHtml:'Choose the <strong>answer</strong>.',choices:[{label:'A',text:'One',html:'One',isCorrect:true},{label:'B',text:'Two',html:'Two'}],correctAnswer:{label:'A',text:'One'},explanation:'Source explanation.',explanationHtml:'Source <em>explanation</em>.',...extra});
 const reader=questions=>({source,testPreview:{testTitle:'Fixture source',module:'English Language Arts',questions,capture:{mode:'ela-all',warnings:[]}}});
 
+test('math TEI names map to existing gradable response types and calculator modes',()=>{
+  const contract=require('./document-import.cjs');
+  const decode=(type,extra={})=>contract.normalizeChoiceLabels({type,...extra});
+  assert.equal(decode('Fill In The Blank').type,'short_response');
+  assert.equal(decode('Multiple Response').type,'multi_select');
+  assert.equal(decode('Inline Choice').type,'inline_dropdown');
+  assert.equal(decode('Equation Editor').type,'numeric_entry');
+  assert.equal(decode('Equation Editor',{equationMode:'advanced'}).type,'expression_entry');
+  assert.equal(decode('Hot Spot',{correctChoiceId:'A'}).hotSpot,true);
+  assert.equal(decode('Hot Spot',{correctChoiceIds:['A','C']}).type,'multi_select');
+});
+
+test('Hot Text retains inline hit targets, paragraph boundaries and answer IDs in passage and Part B imports', async () => {
+  const {load} = require('cheerio');
+  const {partB} = require('./sat-crash-course-import.cjs');
+  const options = ['sealing the edge','a strong gust','the sail can rip','pressing gently','all three meet'].map((text, i) => ({
+    id: 'word-' + (i + 1), text, html: '<p><strong><span>' + text + '</span></strong></p>', isCorrect: i === 2,
+  }));
+  const contentHtml = '<p>Start ' + options.map(word => '<span data-source-option="' + word.id + '">' + word.html + '</span>').join(' then ') + '.</p><p>Next paragraph.</p>';
+  const item = q(41, {passage:{id:'kite', title:'Kite', blurb:'Numbered sentences are referenced in the questions.', formattedBlocks:[{text:'(1) Cut the sail. (2) Tie the frame.'}], text:'(1) Cut the sail. (2) Tie the frame.'}, interaction:{type:'hot_text', contentHtml, options}, choices:[]});
+  const data = reader([item]);
+  const passage = (await ela(data)).passages[0];
+  assert.equal(passage.format, 'sentence_prose');
+  const passageItem = passage.questions[0];
+  data.testPreview.capture.mode = 'part-b';
+  options[0].isCorrect = true;
+  const independentItem = partB(data).questions[0];
+  for (const question of [passageItem, independentItem]) {
+    const $ = load(question.selectionHtml, null, false);
+    assert.equal($('p').length, 2);
+    assert.equal($('p').first().text(), 'Start ' + options.map(word => word.text).join(' then ') + '.');
+    assert.deepEqual($('p > [data-choice-id]').toArray().map(el => [$(el).attr('data-choice-id'), $(el).find('strong').text()]),
+      question.choices.map(choice => [choice.id, choice.text]));
+    assert.ok(question.choices.every(choice => !choice.html.includes('<p>')));
+  }
+  assert.equal(passageItem.correctChoiceId, 'C');
+  assert.deepEqual(independentItem.correctChoiceIds, ['A', 'C']);
+  assert.equal(independentItem.requiredSelections, 2);
+});
+
 test('digital SHSAT standalone section and legacy exports create standalone drafts with their individual stimuli',async()=>{
   const shared={id:'shared',title:'Shared reading',text:'Reading body.',html:'<p>Reading body.</p>'};
   const data=reader([q(41,{passage:shared}),...Array.from({length:4},(_,i)=>q(47+i,{passage:{id:`stimulus-${i}`,text:`Supporting text ${i}.`,html:`<p>Supporting <strong>text ${i}</strong>.</p>`}}))]);
@@ -60,7 +100,7 @@ test('ELA keeps independent stimuli separate, table/category controls and verifi
   assert.equal(result.passages[0].title,passage.title);assert.equal(result.passages[0].byline,passage.byline);assert.equal(result.passages[0].blurb,passage.blurb);
   const independent=result.englishQuestions[0];assert.equal(independent.stimulusHtml,data.testPreview.questions[1].passage.html);assert.equal(independent.type,'category_sort');assert.deepEqual(independent.correctPlacements,{r1:'yes'});assert.equal(independent.promptHtml,'Choose the <strong>answer</strong>.');
   const matrix=result.passages[0].questions[0];assert.equal(matrix.type,'matrix_choice');assert.equal(matrix.items[0].html,'<u>First</u> row');assert.equal(matrix.requiredPlacements,1);
-  const blank=require('./document-import.cjs').normalizeChoiceLabels(result.passages[0].questions[1]);assert.deepEqual(blank.choices.map(c=>c.id),['A','B']);assert.equal(blank.dragDropSlots[0].correctItemId,'B');assert.match(blank.dragDropContentHtml,/<strong>Keep<\/strong>/);
+  const blank=require('./document-import.cjs').normalizeChoiceLabels(result.passages[0].questions[1]);assert.equal(blank.dragDropStyle,'outlined');assert.deepEqual(blank.choices.map(c=>c.id),['A','B']);assert.equal(blank.dragDropSlots[0].correctItemId,'B');assert.match(blank.dragDropContentHtml,/<strong>Keep<\/strong>/);
   assert.deepEqual(result.questionOrder,[1,2,3].map(n=>`${result.source.sourceId}-ela-${n}`));
 });
 

@@ -10,7 +10,10 @@ export type GeneratorSettings = { minCoefficient:number; maxCoefficient:number; 
 export type PracticeGeneratorDefinition = GeneratorOrganization & { skilled?:string; id:string; title:string; description:string; enabled:boolean; kind:'builtin'|'one-step'|'two-step'|'template'; builtinId?:string; settings?:GeneratorSettings; template?:GeneratorTemplate; category?:string; topic?:string };
 export type ManagedPracticeModule = { titleMode?:'custom'|'skill'; skilled?:string; id:string; title:string; description:string; category:string; topic:string; published:boolean; includeAll:boolean; generatorIds:string[]; parentId?:string|null; defaultType?:'foundation'|'general'; selectionAliases?:string[]; skillId?:string };
 export type PracticeVideo = { id:string; title:string; description:string; category:string; topic:string; published:boolean; url:string; channelTitle?:string; duration?:string; viewCount?:number; publishedAt?:string };
-export type PracticeCatalog = { modules:ManagedPracticeModule[]; generators:PracticeGeneratorDefinition[]; videos:PracticeVideo[] };
+export const recommendedSectionTitle = "Nathan Teacher's Recommended";
+export type RecommendedModule = { id:string; title:string; generatorIds:string[]; published:boolean };
+export type RecommendedCategory = { id:string; title:string; modules:RecommendedModule[] };
+export type PracticeCatalog = { recommended?:RecommendedCategory[]; recommendedGenerators?:PracticeGeneratorDefinition[]; modules:ManagedPracticeModule[]; generators:PracticeGeneratorDefinition[]; videos:PracticeVideo[] };
 export type PracticeCatalogResponse = { revision:number; catalog:PracticeCatalog };
 export const defaultGeneratorSettings:GeneratorSettings = {minCoefficient:2,maxCoefficient:9,minBoundary:-10,maxBoundary:10,minOffset:1,maxOffset:12,negativeCoefficients:true,inclusive:false};
 export function defaultPracticeCatalog(topics?:PracticeTaxonomy):PracticeCatalog {
@@ -180,7 +183,11 @@ export function movePracticeModule(catalog:PracticeCatalog,moduleId:string,paren
   return {...next,modules:next.modules.map(item=>item.id===moduleId?{...item,parentId:parent.id}:item)};
 }
 export function removePracticeGenerator(catalog:PracticeCatalog,generatorId:string):PracticeCatalog {
-  const next={...catalog,generators:catalog.generators.filter(item=>item.id!==generatorId),modules:catalog.modules.map(module=>({...module,generatorIds:module.generatorIds.filter(id=>id!==generatorId)}))};
+  const recommended=catalog.recommended?.map(category=>({...category,modules:category.modules.map(module=>{
+    const generatorIds=module.generatorIds.filter(id=>id!==generatorId);
+    return {...module,generatorIds,published:module.published && generatorIds.some(id=>catalog.generators.some(g=>g.id===id&&g.enabled))};
+  })}));
+  const next={...catalog,...(recommended?{recommended}:{}),generators:catalog.generators.filter(item=>item.id!==generatorId),modules:catalog.modules.map(module=>({...module,generatorIds:module.generatorIds.filter(id=>id!==generatorId)}))};
   return {...next,modules:next.modules.map(module=>({...module,published:module.published&&(Boolean(practiceModuleKind(module))||managedGeneratorIds(module,next).length>0)}))};
 }
 export function removePracticeModule(catalog:PracticeCatalog,moduleId:string):PracticeCatalog {
@@ -290,13 +297,43 @@ export function validatePracticeCatalog(value:unknown,topics?:PracticeTaxonomy):
       if(skill&&!practiceModuleKind(module)){module.title=skill.label;module.titleMode='skill';}
     }
   }
-  return ensureTopicPracticeModules({modules,generators,videos},topics);
+  const usedIds=new Set(modules.map(module=>module.id));
+  const uniqueId=(value:unknown)=>{
+    const key=id(value);
+    if(usedIds.has(key))fail('Recommended categories and modules need unique IDs.');
+    usedIds.add(key);
+    return key;
+  };
+  const recommended=input.recommended===undefined?undefined:array(input.recommended,100).map(value=>{
+    const category=record(value);
+    return {id:uniqueId(category.id),title:text(category.title,'Recommended category name',120),modules:array(category.modules,100).map(value=>{
+      const row=record(value),generatorIds=array(row.generatorIds,1000).map(id);
+      if(new Set(generatorIds).size!==generatorIds.length || generatorIds.some(key=>!known.has(key)))fail('Choose existing templates once per recommended module.');
+      const published=bool(row.published);
+      if(published&&!generatorIds.length)fail('Select a template before publishing a recommended module.');
+      return {id:uniqueId(row.id),title:text(row.title,'Recommended module name',120),published:published && generators.some(g=>g.enabled&&generatorIds.includes(g.id)),generatorIds};
+    })};
+  });
+  return ensureTopicPracticeModules({modules,generators,videos,...(recommended?{recommended}:{})},topics);
 }
 export function studentPracticeCatalog(catalog:PracticeCatalog):PracticeCatalog {
   const modules=catalog.modules.filter(module=>module.published);
   // Remove hidden-only content before omitting its module; it must not reappear as unassigned.
   const available=new Set(modules.flatMap(module=>managedGeneratorIds(module,catalog)));
-  return {...catalog,modules,generators:catalog.generators.filter(generator=>generator.enabled&&available.has(generator.id)),videos:catalog.videos.filter(video=>video.published)};
+  const enabled=new Set(catalog.generators.filter(g=>g.enabled).map(g=>g.id));
+  const recommended=catalog.recommended?.map(category=>({...category,modules:category.modules.filter(m=>m.published).map(m=>({...m,generatorIds:m.generatorIds.filter(id=>enabled.has(id))})).filter(m=>m.generatorIds.length)})).filter(category=>category.modules.length);
+  const picked=new Set(recommended?.flatMap(category=>category.modules.flatMap(m=>m.generatorIds)));
+  return {...catalog,modules,generators:catalog.generators.filter(generator=>generator.enabled&&available.has(generator.id)),videos:catalog.videos.filter(video=>video.published),
+    ...(recommended?{recommended,recommendedGenerators:catalog.generators.filter(g=>picked.has(g.id)&&!available.has(g.id))}:{})};
+}
+/** Build a player view over the original templates without registering a new math topic. */
+export function recommendedPracticeCatalog(catalog:PracticeCatalog,moduleId:string):PracticeCatalog|undefined {
+  const category=catalog.recommended?.find(c=>c.modules.some(m=>m.id===moduleId&&m.published));
+  const module=category?.modules.find(m=>m.id===moduleId);
+  if(!module||!category)return;
+  const generators=[...catalog.generators,...(catalog.recommendedGenerators??[])].filter(g=>g.enabled&&module.generatorIds.includes(g.id));
+  if(!generators.length)return;
+  return {modules:[{...module,description:'',includeAll:false,category:recommendedSectionTitle,topic:category.title}],generators,videos:[]};
 }
 export function generateCatalogQuestion(generator:PracticeGeneratorDefinition,index:number,seed:string,generationVersion:1|2|3=1):ExamQuestion {
   if(generator.kind==='template')return {...generateTemplateQuestion(generator.template!,index,seed,generator.id,generator.category??'Algebra',generator.topic??'Inequalities'),skilled:generator.skilled??skilledTbd};

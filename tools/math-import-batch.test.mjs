@@ -10,7 +10,13 @@ import batches from './math-import-batch.cjs';
 import contract from './document-import.cjs';
 import {documentDraftStore,publicationContent} from './document-drafts.mjs';
 
-const toolsRoot=dirname(fileURLToPath(import.meta.url)),root=resolve(toolsRoot,'..'),fixtureRoot=join(toolsRoot,'.content-drafts');
+// These disposable HTTP fixtures exercise file-backed authoring only.
+process.env.NODE_ENV = 'test';
+process.env.MATH_COMMAND_STORAGE = 'file';
+process.env.SUPABASE_URL = 'http://127.0.0.1:1';
+process.env.SUPABASE_SERVICE_ROLE = 'unused-fixture-key';
+
+const toolsRoot=dirname(fileURLToPath(import.meta.url)),root=resolve(toolsRoot,'..'),fixtureRoot = join(root, 'server', 'node_modules', '.cache', 'content-studio-tests');
 const taxonomy={math:['Algebra'],mathSpecificTopics:{Algebra:['Equations & Systems']}};
 const question=(n,extra={})=>({id:`batch-qa-${n}`,type:'short_response',topic:'Algebra',subtopic:'Equations & Systems',prompt:`Source question ${n}: evaluate \\(2^${n}\\).`,correctTextAnswers:[String(2**n)],explanation:'',review:{sourceFile:'synthetic.pdf',sourcePages:[1],sourceQuestion:String(n)},...extra});
 const payload=(questions,extra={})=>({format:contract.format,batch:{sourceId:'synthetic-v1-form-a',jobId:'math',sourceLabel:'Synthetic full section',requestedScope:'Questions 1–4',expectedQuestions:['1','2','3','4'],expectedTotal:4,inventoryConfirmed:true,...extra},review:{expectedQuestionCount:questions.length},mathQuestions:questions});
@@ -71,6 +77,19 @@ test('single-question imports assign stable missing IDs and exact retries preser
   const other={...q,prompt:'A different source question.'};
   state=await store.import(other,state.revision);
   assert.equal(state.entries.length,2);assert.notEqual(state.entries[1].content.questions[0].id,id);
+}));
+
+test('identical SAT questions from separate Reader downloads reuse the item while a changed key needs review',()=>isolated(async path=>{
+  const store = documentDraftStore(path);
+  const scan = (archive, answer) => payload([question(1, {
+    source:{sourceFamily:'sat_crash_course',originalPackageId:archive},correctTextAnswers:[answer],
+  })]);
+  await store.import(scan('first','2'));
+  const replay = await store.import(scan('next','2'));
+  assert.equal(replay.entries[0].batch.items.length,1);
+  assert.equal(replay.entries[0].batch.items[0].conflicts?.length || 0,0);
+  const changed = await store.import(scan('third','3'));
+  assert.equal(changed.entries[0].batch.items[0].conflicts.length,1);
 }));
 
 test('overlap and different chunk boundaries preserve edited work and record changed keys as conflicts',()=>isolated(async path=>{
@@ -163,7 +182,7 @@ test('the reusable example is accepted with blank explanations and an unresolved
 });
 
 test('HTTP selected publication preserves good neighbors, recovers a missing ledger, and rejects changed published content',()=>isolated(async path=>{
-  for(const name of ['client/src/content','server/src/shared'])await cp(join(root,name),join(path,name),{recursive:true});
+  for(const name of ['client/src/content','server/src'])await cp(join(root,name),join(path,name),{recursive:true});
   await mkdir(join(path,'tools'),{recursive:true});await mkdir(join(path,'server/data'),{recursive:true});
   for(const name of ['client/src/lib/studentMaterials.ts','server/data/assessments.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/poem-layout.js']){
     await mkdir(dirname(join(path,name)),{recursive:true});await cp(join(root,name),join(path,name));
@@ -202,7 +221,7 @@ test('HTTP selected publication preserves good neighbors, recovers a missing led
 }));
 
 test('direct Math import inserts incomplete red questions into the chosen test, preserves edits on retries and clears labels on finish',t=>isolated(async path=>{
-  for(const name of ['client/src/content','server/src/shared'])await cp(join(root,name),join(path,name),{recursive:true});
+  for(const name of ['client/src/content','server/src'])await cp(join(root,name),join(path,name),{recursive:true});
   await mkdir(join(path,'tools'),{recursive:true});await mkdir(join(path,'server/data'),{recursive:true});
   for(const name of ['client/src/lib/studentMaterials.ts','server/data/assessments.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/poem-layout.js']){
     await mkdir(dirname(join(path,name)),{recursive:true});await cp(join(root,name),join(path,name));

@@ -1,11 +1,11 @@
+import { examQuestionRates } from "../shared/examInventory";
 import { readCachedJson } from "./cachedJson";
 import path from "node:path";
 import type { User } from "@supabase/supabase-js";
 import { supabase } from "./supabase";
 import { getEnrolledClassIds, getUserRole, isStudentArchived } from "./auth";
 import { fromAssignmentRow, checkStorage } from "./learningPlanStore";
-import { mathCommandRoot, readMathCommandCatalog, readMathCommandState, readMathCommandTaxonomy } from "./mathCommandCatalogStore";
-import { buildMathCommandCatalog } from "../shared/mathCommandCatalog";
+import { mathCommandRoot, readMathCommandState } from "./mathCommandCatalogStore";
 import { mathCatalogSnapshot } from "./mathCommandCatalogService";
 import { defaultMathWeaknessRules, mathEvidenceFromResults, mathQuestionMetrics, mathSkillMetrics, validMathRules, type MathAttemptEvidence, type MathStudentInsights, type MathQuestionSource, type MathRemainingCounts } from "../shared/mathCommandAnalytics";
 import type { ExamContent } from "../shared/examTypes";
@@ -40,7 +40,7 @@ async function incrementalMathResultRows():Promise<ResultRow[]> {
   const versions:ResultVersion[]=[];
   for(let offset=0;;offset+=500){
     const result=await supabase.from("student_exam_results").select("user_id,assessment_id,updated_at,completed_at").order("user_id").order("assessment_id").range(offset,offset+499);checked(result.error);
-    versions.push(...(result.data??[]).filter(row=>!row.assessment_id.startsWith("__")||row.assessment_id.startsWith("__exam_history__:")));
+    versions.push(...(result.data??[]).filter(row=>!row.assessment_id.startsWith("__")||row.assessment_id.startsWith("__exam_history__:")||row.assessment_id.startsWith("__exam_revision__:")));
     if((result.data?.length??0)<500)break;
   }
   const changed=versions.filter(row=>resultPayloadCache.get(resultKey(row))?.version!==resultVersion(row));
@@ -69,19 +69,19 @@ export function assignmentMathIds(task:PlanAssignment,catalog:MathQuestionSource
   if(Array.isArray(definition?.questionIds))return definition.questionIds;
   return task.kind==="exam"?catalog.filter(row=>row.sources.some(source=>source.assessmentId===task.contentId)).map(row=>row.id):[];
 }
-export function mathQuestionStates(catalog:MathQuestionSource[],evidence:MathAttemptEvidence[],tasks:PlanAssignment[]) {
+export function mathQuestionStates(catalog:MathQuestionSource[],evidence:MathAttemptEvidence[],tasks:PlanAssignment[],canonical=new Map<string,string>()) {
   const states:MathStudentInsights["questionStates"]={};
   const state=(id:string)=>states[id]??=( {seen:false,correct:false,incorrect:false,unanswered:false,assigned:false,planned:false,completed:false});
   for(const row of evidence){const value=state(row.questionId);value.seen=true;if(row.status!=="pending")value[row.status]=true;}
-  for(const task of tasks)if(!["cancelled","skipped"].includes(task.status))for(const id of assignmentMathIds(task,catalog)){const value=state(id);if(task.status==="planned")value.planned=true;else if(task.status==="completed")value.completed=true;else if(task.assignedAt)value.assigned=true;}
+  for(const task of tasks)if(!["cancelled","skipped"].includes(task.status))for(const id of assignmentMathIds(task,catalog)){const value=state(canonical.get(id)??id);if(task.status==="planned")value.planned=true;else if(task.status==="completed")value.completed=true;else if(task.assignedAt)value.assigned=true;}
   return states;
 }
 export async function loadMathStudent(student:User) {
   const [rows,tasks]=await Promise.all([mathResultRows(student.id),mathAssignments(student.id)]);
-  const catalog=readMathCommandCatalog(),examContents=contents();
+  const snapshot=mathCatalogSnapshot(),catalog=snapshot.merged,examContents=contents();
   const results=includeLegacyResults(rows.map(row=>({...row.result,assessmentId:row.result.assessmentId??row.assessment_id})),student);
-  const evidence=mathEvidenceFromResults(student.id,results,catalog,id=>examContents[id]??null);
-  const questionStates=mathQuestionStates(catalog,evidence,tasks);
+  const evidence=mathEvidenceFromResults(student.id,results,snapshot.records,id=>examContents[id]??null,snapshot.index.canonical);
+  const questionStates=mathQuestionStates(catalog,evidence,tasks,snapshot.index.canonical);
   return {catalog,evidence,tasks,questionStates};
 }
 export function mathStudentInsights(student:User,data:Awaited<ReturnType<typeof loadMathStudent>>):MathStudentInsights {
@@ -93,7 +93,7 @@ export function mathStudentInsights(student:User,data:Awaited<ReturnType<typeof 
   const inventory=new Map<string,MathStudentInsights["remaining"][number]>();
   const difficulty=new Map<string,MathRemainingCounts & {label:string}>(),source=new Map<string,MathRemainingCounts & {label:string}>();
   const counts=():MathRemainingCounts=>({total:0,ready:0,seen:0,assigned:0,planned:0,completed:0,remaining:0,unready:0});
-  const readyIds=new Set(buildMathCommandCatalog(catalog,readMathCommandTaxonomy()).rows.filter(row=>row.ready).map(row=>row.id));
+  const readyIds=new Set(mathCatalogSnapshot().catalog.rows.filter(row=>row.ready).map(row=>row.id));
   for(const row of catalog){
     const category=row.question.topic||"Uncategorized",subcategory=row.question.subtopic||"Uncategorized",key=`${category}:${subcategory}`;
     const summary=inventory.get(key)??{category,subcategory,...counts()},state=questionStates[row.id],ready=readyIds.has(row.id);
@@ -109,26 +109,46 @@ export function mathStudentInsights(student:User,data:Awaited<ReturnType<typeof 
   const classification = { responses: unclassified.length, questionIds: [...new Set(unclassified.map(row => row.questionId))], diagnosticQuestionIds: [...new Set(evidence.filter(row => !row.diagnosticSkill).map(row => row.questionId))] };
   return {classification,student:{id:student.id,fullName:student.user_metadata?.full_name||student.email?.split("@")[0]||"Student",insightsHref:`/teacher/students?student=${encodeURIComponent(student.id)}`},rules,summary:mathQuestionMetrics(evidence),skills,assessments,remaining:[...inventory.values()],remainingBreakdowns:{difficulty:[...difficulty.values()],source:[...source.values()]},questionStates,availableEvidence:evidence.length,warnings:["Accuracy includes unanswered scored questions; pending grading is excluded. Repeated attempts are retained but distinct questions and assessment IDs control weakness rules.","Inventory counts use this precedence: assigned but incomplete, planned, previously seen, completed without question evidence, unused ready, then unready. Question history filters retain all matching history flags.",...(evidence.some(row=>row.gradingBasis==="current_key")?["Some legacy responses have no saved question snapshot. Those rows are evaluated against the current key and marked current_key; their original grading cannot be reconstructed."]:[]),...(!evidence.length?["No saved question-level math evidence is available yet. Aggregate-only historical results cannot establish exact answers or question accuracy."]:[])]};
 }
-type PerformanceSnapshot={at:number;revision:string;metrics:Record<string,MathQuestionPerformance>;details:Record<string,ReturnType<typeof mathQuestionMetrics>>};
+type PerformanceSnapshot={examRates:ReturnType<typeof examQuestionRates>;at:number;revision:string;metrics:Record<string,MathQuestionPerformance>;details:Record<string,ReturnType<typeof mathQuestionMetrics>>};
 let performanceCache:PerformanceSnapshot|null=null;
-let pendingPerformance:Promise<PerformanceSnapshot>|null=null;
+const pendingPerformance=new Map<string,Promise<PerformanceSnapshot>>();
 export function invalidateMathPerformance(){performanceCache=null;}
 export async function mathPerformance() {
   const revision=mathCatalogSnapshot().signature;
   if(performanceCache&&performanceCache.revision===revision&&Date.now()-performanceCache.at<60000)return performanceCache;
-  if(pendingPerformance)return pendingPerformance;
-  pendingPerformance=computeMathPerformance(revision).finally(()=>{pendingPerformance=null;});return pendingPerformance;
+  const existing=pendingPerformance.get(revision);
+  if(existing)return existing;
+  const pending=computeMathPerformance(revision).finally(()=>pendingPerformance.delete(revision));
+  pendingPerformance.set(revision,pending);
+  return pending;
+}
+export async function selectedExamRates(examId:string){
+  const exam=contents()[examId];
+  if(!exam || exam.assessmentId!==examId)throw mathCommandFail('Exam not found.',404);
+  const {index}=mathCatalogSnapshot(),{examRates}=await mathPerformance();
+  const rates:Record<string,{correct:number;total:number}>=Object.create(null);
+  for(const section of ['english','math'] as const){
+    const questions=section==='math'?exam.mathSection?.questions??[]:[...exam.passageSets.flatMap(s=>s.questions),...(exam.standaloneSection?.questions??[])];
+    for(const q of questions){
+      const rate=examRates[JSON.stringify([section,section==='math'?index.canonical.get(q.id)??q.id:q.id])];
+      if(rate)rates[q.id]=rate;
+    }
+  }
+  return {rates};
 }
 async function computeMathPerformance(revision:string):Promise<PerformanceSnapshot> {
   const [rows,tasks,students]=await Promise.all([incrementalMathResultRows(),mathAssignments(),mathCommandStudents()]);
-  const allowed=new Set(students.map(student=>student.id)),catalog=readMathCommandCatalog(),examContents=contents();
+  const allowed=new Set(students.map(student=>student.id)),snapshot=mathCatalogSnapshot(),catalog=snapshot.merged,examContents=contents();
   const byStudent=new Map<string,Partial<ExamResult>[]>();
-  for(const row of rows)if(allowed.has(row.user_id))byStudent.set(row.user_id,[...(byStudent.get(row.user_id)??[]),{...row.result,assessmentId:row.result.assessmentId??row.assessment_id}]);
+  for(const row of rows)if(allowed.has(row.user_id)&&!row.assessment_id.startsWith("__exam_revision__:"))byStudent.set(row.user_id,[...(byStudent.get(row.user_id)??[]),{...row.result,assessmentId:row.result.assessmentId??row.assessment_id}]);
   for(const student of students)byStudent.set(student.id,includeLegacyResults(byStudent.get(student.id)??[],student));
   const byQuestion=new Map<string,MathAttemptEvidence[]>();
-  for(const [id,results]of byStudent)for(const row of mathEvidenceFromResults(id,results,catalog,id=>examContents[id]??null))byQuestion.set(row.questionId,[...(byQuestion.get(row.questionId)??[]),row]);
+  for(const [id,results]of byStudent)for(const row of mathEvidenceFromResults(id,results,snapshot.records,id=>examContents[id]??null,snapshot.index.canonical))byQuestion.set(row.questionId,[...(byQuestion.get(row.questionId)??[]),row]);
   const details=Object.fromEntries([...byQuestion].map(([id,evidence])=>[id,mathQuestionMetrics(evidence)])),metrics:Record<string,MathQuestionPerformance>={};
   for(const row of catalog){const stats=details[row.id]??mathQuestionMetrics([]);metrics[row.id]={attempts:stats.attempts,uniqueStudents:stats.uniqueStudents,correct:stats.correct,incorrect:stats.incorrect,unanswered:stats.unanswered,accuracy:stats.accuracy,firstAttemptAccuracy:stats.firstAttemptAccuracy,lastAttemptedAt:stats.lastAttemptedAt??undefined,assignmentCount:0};}
-  for(const task of tasks)if(allowed.has(task.studentId)&&task.assignedAt)for(const id of assignmentMathIds(task,catalog)){const metric=metrics[id];if(metric){metric.assignmentCount=(metric.assignmentCount??0)+1;metric.lastAssignedAt=[metric.lastAssignedAt??"",task.assignedAt].sort().at(-1);}}
-  performanceCache={at:Date.now(),revision,metrics,details};return performanceCache;
+  for(const task of tasks)if(allowed.has(task.studentId)&&task.assignedAt)for(const id of assignmentMathIds(task,catalog)){const metric=metrics[snapshot.index.canonical.get(id)??id];if(metric){metric.assignmentCount=(metric.assignmentCount??0)+1;metric.lastAssignedAt=[metric.lastAssignedAt??"",task.assignedAt].sort().at(-1);}}
+  // A section re-entry can replace the current grade. Its archived original still
+  // establishes the first encounter, but is not an additional completed attempt.
+  for(const row of rows)if(allowed.has(row.user_id)&&row.assessment_id.startsWith('__exam_revision__:'))byStudent.get(row.user_id)?.push(row.result);
+  performanceCache={at:Date.now(),revision,metrics,details,examRates:examQuestionRates(byStudent,examContents,snapshot.index.canonical)};return performanceCache;
 }

@@ -19,3 +19,7 @@
 .teacher-exam-reentry .exam-reentry-active { padding:8px 10px; border-radius:6px; background:#e7f4eb; }
 @media(max-width:1000px) { .teacher-exam-reentry .exam-reentry-fields { grid-template-columns:1fr 1fr; } }
 @media(max-width:550px) { .teacher-exam-reentry .exam-reentry-fields { grid-template-columns:1fr; } }
+
+.teacher-exam-reentry > fieldset { margin: 20px 0 0; padding: 12px 0 0; border: 0; border-top: 1px solid #cfddd5; }
+.teacher-exam-reentry > fieldset legend { padding: 0 8px 0 0; font-weight: 650; }
+.teacher-exam-reentry > fieldset small { display: block; margin-top: 6px; }

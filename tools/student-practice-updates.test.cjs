@@ -78,3 +78,55 @@ test('editor links resolve exact stable question IDs, prefer assessment context,
  assert.deepEqual(resolveMathQuestionLink(exams,section,'shared','b'),{assessmentId:'b',questionId:'shared'});
  assert.equal(resolveMathQuestionLink(exams,section,'missing','a'),null);
 });
+
+test('a fresh browser restores account records and a delayed checkpoint cannot rewind a run or remove stars',()=>{
+ const {localPracticeModules,localCheckpoint,restoreCheckpoint}=require('../client/src/features/math-command/practiceSessionStorage.ts');
+ const {mergePracticeCheckpoint}=require('../server/src/shared/practiceCheckpoint.ts');
+ const browser=()=>{const data=new Map();return {get length(){return data.size;},key:i=>[...data.keys()][i],getItem:k=>data.get(k)??null,setItem:(k,v)=>data.set(k,v)};};
+ const original=browser(),fresh=browser();
+ let legacy=createPracticeState('inequalities','old-device');
+ delete legacy.startedAt;
+ for(let i=0;i<10;i++)legacy=answer(nextPracticeQuestion(legacy),true);
+ original.setItem('infinite-practice:session:v3:alice:inequalities',JSON.stringify(legacy));
+ original.setItem('infinite-practice:best:v1:alice:foundation','25');
+ original.setItem('infinite-practice:best:v1:bob:all','50');
+ assert.deepEqual([...localPracticeModules(original,'alice')].sort(),['foundation','inequalities']);
+ for(const id of localPracticeModules(original,'alice'))restoreCheckpoint(fresh,'alice',localCheckpoint(original,'alice',id));
+ assert.equal(readSavedPractice(fresh,'alice','inequalities').streak,10);
+ assert.equal(readPracticeProgress(fresh,'alice','foundation').longestStreak,25);
+ assert.equal(readPracticeProgress(fresh,'alice','all').longestStreak,0);
+ const newer=answer({...nextPracticeQuestion(legacy),answer:'A'},false);
+ savePractice(fresh,'alice',newer);
+ const stale=localCheckpoint(original,'alice','inequalities');
+ restoreCheckpoint(fresh,'alice',stale);
+ assert.equal(readSavedPractice(fresh,'alice','inequalities').streak,0);
+ assert.equal(readPracticeProgress(fresh,'alice','inequalities').longestStreak,10);
+ const restarted=createPracticeState('inequalities','new-device');
+ savePractice(fresh,'alice',restarted);
+ const merged=mergePracticeCheckpoint(localCheckpoint(fresh,'alice','inequalities'),stale);
+ assert.equal(merged.session.seed,'new-device');
+ assert.equal(merged.best,10);
+ assert.deepEqual(mergePracticeCheckpoint(merged,merged),merged);
+});
+
+test('recommended modules round-trip independently of native topics and play only their selected templates',()=>{
+ const {validatePracticeCatalog,studentPracticeCatalog,recommendedPracticeCatalog,removePracticeGenerator}=require('../server/src/shared/practiceCatalog.ts');
+ const source=defaultPracticeCatalog(),a=source.generators.find(g=>g.enabled),b=source.generators.find(g=>g.enabled&&g.topic!==a.topic);
+ const before=structuredClone(source);
+ const draft={id:'draft-rec',title:'Private draft',generatorIds:[b.id],published:false};
+ const module={id:'weekly-mix',title:'Weekly mix',generatorIds:[a.id,b.id],published:true};
+ const recommended=[{id:'warmups',title:'Warmups',modules:[draft,module]}];
+ const saved=validatePracticeCatalog({...source,recommended});
+ assert.deepEqual(saved.recommended,recommended);
+ assert.deepEqual(source,before);
+ const published=studentPracticeCatalog(saved);
+ assert.deepEqual(published.recommended[0].modules,[module]);
+ const player=recommendedPracticeCatalog(published,module.id);
+ const state=createPracticeState(module.id,'student',player);
+ assert.deepEqual(new Set(state.generatorIds),new Set(module.generatorIds));
+ assert.deepEqual(state.generatorDefinitions.map(g=>[g.id,g.category,g.topic]),[a,b].map(g=>[g.id,g.category,g.topic]));
+ assert.equal(recommendedPracticeCatalog(published,draft.id),undefined);
+ assert.deepEqual(removePracticeGenerator(saved,a.id).recommended[0].modules[1].generatorIds,[b.id]);
+ assert.throws(()=>validatePracticeCatalog({...saved,recommended:[{...recommended[0],modules:[{...module,generatorIds:['missing']}]}]}),/existing templates/);
+ assert.equal(validatePracticeCatalog(source).recommended,undefined);
+});

@@ -16,3 +16,13 @@
 .mc-classification-badge.is-unverified { color: #60665f; background: #f4f3ef; }
 
 .mc-question-table .mc-classification-badge { display: flex; max-width: 100%; white-space: normal; }
+.mc-inventory-filters { display:flex; flex-wrap:wrap; gap:12px; }
+.mc-inventory-filters label { display:grid; gap:4px; min-width:0; }
+.mc-inventory-filters select { max-width:100%; }
+.mc-inventory-scroll { overflow-x:auto; }
+.mc-inventory-scroll table { width:100%; border-collapse:collapse; text-align:left; }
+.mc-inventory-scroll th,.mc-inventory-scroll td { padding:10px; border-bottom:1px solid #d4ded9; vertical-align:top; }
+.mc-inventory-scroll th[scope=row] { min-width:16rem; font-weight:400; }
+.mc-inventory-scroll th small { display:block; font-weight:650; }
+.mc-duplicate-sides { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:18px; margin:16px 0; }
+.mc-duplicate-sides article { min-width:0; overflow-wrap:anywhere; }

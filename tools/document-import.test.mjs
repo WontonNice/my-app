@@ -211,14 +211,19 @@ test('draft deletion is versioned, survives reload, allows reimport and protects
 });
 
 test('real Content Studio endpoints: import/edit/save/reload/publish/student formatter, metadata privacy, visual gate and Math reuse', async () => {
-  const fixtureRoot = join(toolsRoot, '.content-drafts');
+  // Keep the disposable editor fixture disconnected from hosted data.
+  process.env.NODE_ENV = 'test';
+  process.env.MATH_COMMAND_STORAGE = 'file';
+  process.env.SUPABASE_URL = 'http://127.0.0.1:1';
+  process.env.SUPABASE_SERVICE_ROLE = 'unused-fixture-key';
+  const fixtureRoot = join(root, 'server', 'node_modules', '.cache', 'content-studio-tests');
   await mkdir(fixtureRoot, { recursive: true });
   const dir = await mkdtemp(join(fixtureRoot, 'document-roundtrip-'));
   const modulePath = join(toolsRoot, `.document-roundtrip-${Date.now()}.mjs`);
   let server;
   try {
     for (const path of ['client/src', 'client/src/lib', 'server/data', 'tools']) await mkdir(join(dir, path), { recursive: true });
-    for (const path of ['client/src/content', 'server/src/shared']) await cp(join(root, path), join(dir, path), { recursive: true });
+    for (const path of ['client/src/content', 'server/src']) await cp(join(root, path), join(dir, path), { recursive: true });
     for (const path of ['client/src/lib/studentMaterials.ts', 'server/data/assessments.json', 'tools/content-topics.json', 'tools/math-topics.json', 'tools/practice-topics.json', 'tools/content-studio-glossary.js','tools/poem-layout.js']) await cp(join(root, path), join(dir, path));
     await writeFile(join(dir, 'server/data/question-bank.json'), '{"revision":0,"questions":[],"sets":[]}');
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8')).replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(dir)};`).split('if (process.argv.includes("--validate"))')[0] + '\nexport {handleRequest, getState, savePassage};';

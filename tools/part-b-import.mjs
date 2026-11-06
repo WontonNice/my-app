@@ -54,23 +54,26 @@ export function createPartBImports({ workspaceRoot, sanitizeRichText, sanitizeIn
     const q = { ...raw, id, prompt: text(raw.prompt), stimulus: text(raw.stimulus), explanation: text(raw.explanation), instructions: text(raw.instructions), topic: text(raw.topic), versionLabel: text(raw.versionLabel), points: Number(raw.points) || 1 };
     Object.assign(q, partBBank.withLabels(q, partBBank.labels(raw)));
     delete q.importDraftId; delete q.importVersion; delete q.duplicateOf;
-    const unsupported = Boolean(q.type && !['multiple_choice', 'category_sort'].includes(q.type));
+    const hotText = Boolean(q.selectionHtml && ['multiple_choice', 'multi_select'].includes(q.type));
+    if (hotText) q.selectionHtml = sanitizeRichText(q.selectionHtml);
+    const unsupported = Boolean(q.type && !hotText && !['multiple_choice', 'category_sort'].includes(q.type));
     const notes = (Array.isArray(raw.notes) ? raw.notes : []).map(String);
     for (const field of ['promptHtml', 'explanationHtml']) q[field] = sanitizeInlineRichText(raw[field]);
     q.stimulusHtml = sanitizeRichText(raw.stimulusHtml);
-    if (!['multiple_choice', 'category_sort'].includes(q.type)) {
+    if (!hotText && !['multiple_choice', 'category_sort'].includes(q.type)) {
       if (q.type) notes.push(`Source interaction ${q.type} needs manual setup. Original JSON is retained.`);
       q.type = 'multiple_choice'; q.correctChoiceId = '';
     }
-    if (q.type === 'multiple_choice') {
+    if (hotText || q.type === 'multiple_choice') {
       q.choices = (Array.isArray(raw.choices) ? raw.choices : []).map((choice, index) => ({ ...choice, id: text(choice?.id) || String.fromCharCode(65 + index), text: typeof choice === 'string' ? choice : text(choice?.text), html: sanitizeInlineRichText(choice?.html) }));
       q.correctChoiceId = unsupported ? '' : text(raw.correctChoiceId);
       try { Object.assign(q, normalizeChoiceLabels(q)); }
       catch { q.choices = q.choices.map((choice, i) => ({ ...choice, id: String.fromCharCode(65 + i) })); q.correctChoiceId = ''; notes.push('Duplicate source choice labels: verify the answer key manually.'); }
       if (!q.choices.some(choice => choice.id === q.correctChoiceId)) q.correctChoiceId = '';
-      if (q.choices.length !== 4) notes.push(`Source has ${q.choices.length} choices. Edit the question to have four before saving to the bank.`);
-      while (q.choices.length < 4) q.choices.push({ id: String.fromCharCode(65 + q.choices.length), text: '' });
-      if (!q.correctChoiceId) notes.push('Correct answer was not provided.');
+      if (!hotText && q.choices.length !== 4) notes.push(`Source has ${q.choices.length} choices. Edit the question to have four before saving to the bank.`);
+      while (!hotText && q.choices.length < 4) q.choices.push({ id: String.fromCharCode(65 + q.choices.length), text: '' });
+      if (q.type === 'multi_select') delete q.correctChoiceId;
+      if (!q.correctChoiceId && !q.correctChoiceIds?.length) notes.push('Correct answer was not provided.');
     } else {
       q.items = (Array.isArray(raw.items) ? raw.items : []).map((item, i) => ({ id: text(item?.id) || `sentence-${i + 1}`, text: text(item?.text), html: sanitizeInlineRichText(item?.html) }));
       q.categories = (Array.isArray(raw.categories) && raw.categories.length ? raw.categories : [{ id: 'answer-box', title: '' }]).map((category, i) => ({ id: text(category?.id) || `answer-box-${i + 1}`, title: text(category?.title) }));
@@ -80,7 +83,7 @@ export function createPartBImports({ workspaceRoot, sanitizeRichText, sanitizeIn
       if (!Object.keys(q.correctPlacements).length) notes.push('Correct answer card was not provided.');
     }
     if (!q.topic || !getTopics().includes(q.topic)) notes.push('Choose a Revising/Editing topic.');
-    if (!q.prompt || !q.stimulus) notes.push('Question or paragraph text is missing.');
+    if (!q.prompt || (!q.stimulus && !q.selectionHtml)) notes.push('Question or paragraph text is missing.');
     return { question: q, notes: [...new Set(notes)] };
   }
   function parse(source) {

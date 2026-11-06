@@ -3,12 +3,12 @@ import type { ExamQuestion } from "./types";
 export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLabels?: string[]; duplicateOf?: string })[] = [
   {
     "id": "standalone-vague-pronoun-1",
-    "topic": "Pronouns",
-    "type": "multiple_choice",
-    "prompt": "Which sentence of the paragraph should be revised to correct a vague pronoun?",
-    "stimulus": "(1) Eliza and Brianna have been singing in their school chorus since they were in fourth grade.  (2) The girls always sing a duet at the school talent show, and they take turns singing the national anthem before school sporting events.  (3) Outside of school, she also sings in a choir made up of young and old members of her community.  (4) Both girls hope that they will be able to continue singing for many more years.",
-    "correctChoiceId": "C",
     "points": 1,
+    "prompt": "Temporary shared editor QA prompt.",
+    "promptHtml": "Temporary shared editor QA prompt.",
+    "stimulus": "(1) Eliza and Brianna have been singing in their school chorus since they were in fourth grade.  (2) The girls always sing a duet at the school talent show, and they take turns singing the national anthem before school sporting events.  (3) Outside of school, she also sings in a choir made up of young and old members of her community.  (4) Both girls hope that they will be able to continue singing for many more years.",
+    "topic": "Pronouns",
+    "versionLabels": [],
     "choices": [
       {
         "id": "A",
@@ -26,7 +26,9 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
         "id": "D",
         "text": "sentence 4"
       }
-    ]
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
   },
   {
     "choices": [

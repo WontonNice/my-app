@@ -1,3 +1,4 @@
+import { canonicalRecords, duplicateIndex } from "../shared/mathDuplicateReview";
 import { randomUUID } from 'node:crypto';
 import { commitMathCommandState, readMathCommandCatalog, readMathCommandState } from './mathCommandCatalogStore';
 import { emptyGeneratorPlanner, plannerStatuses, type GeneratorPlannerState, type PlannerDestination, type PlannerStatus, type PlannerContext } from '../shared/generatorPlanner';
@@ -47,10 +48,12 @@ export function saveGeneratorPlanner(root: string, actor: string, value: unknown
       if (!Array.isArray(input.questionIds) || !input.questionIds.length || input.questionIds.length > 100) throw fail('Add between 1 and 100 questions at a time.');
       const ids = [...new Set(input.questionIds.map(id => text(id, 500, true)))];
       const records = readMathCommandCatalog(root);
-      const sources = ids.map(id => { const source = records.find(row => row.id === id); if (!source) throw fail(`Source question ${id} is unavailable. Open the current question before adding it.`, 404); return source; });
-      const contexts = input.contexts === undefined ? {} : record(input.contexts);
+      const {canonical}=duplicateIndex(records,state.duplicateDecisions??[]);
+      const bank=canonicalRecords(records,canonical);
+      const sources = ids.map(id => { const source = bank.find(row => row.id === (canonical.get(id)??id)); if (!source) throw fail(`Source question ${id} is unavailable. Open the current question before adding it.`, 404); return source; });
+      const contexts = Object.fromEntries(Object.entries(input.contexts === undefined ? {} : record(input.contexts)).map(([id,value])=>[canonical.get(id)??id,value]));
       for (const source of sources) {
-        const existing = batch.entries.find(entry => entry.source.id === source.id);
+        const existing = batch.entries.find(entry => (canonical.get(entry.source.id)??entry.source.id) === source.id);
         if (existing) { if (!existing.context && contexts[source.id]) existing.context = context(contexts[source.id]); continue; }
         const category = source.question.topic ?? '', topic = source.question.subtopic ?? '';
         batch.entries.push({ id: randomUUID(), source: { id: source.id, question: structuredClone(source.question), sources: source.sources, category, subcategory: topic, skilled: source.question.skilled ?? 'TBD' },

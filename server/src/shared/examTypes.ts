@@ -148,6 +148,7 @@ export type ExamCoordinateResponse = {
 };
 
 export type ExamChoice = {
+  hotSpotRegion?: {x:number; y:number; width:number; height:number};
   html?: string;
   id: string;
   image?: ExamQuestionImage;
@@ -215,6 +216,8 @@ export type ExamQuestion = {
   dragDropImage?: ExamQuestionImage & { width: number; height: number };
   coordinateResponse?: ExamCoordinateResponse;
   hideChoiceLabels?: boolean;
+  /** Selectable figures or defined areas of the question image. */
+  hotSpot?: boolean;
   dropdownContent?: string[];
   dropdownContentHtml?: string;
   dropdowns?: ExamInlineDropdown[];

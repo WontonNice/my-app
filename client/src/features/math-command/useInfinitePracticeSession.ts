@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { addPracticeTime, createPracticeState, withPracticeModuleTracking, type PracticeState } from './inequalitySession';
 import type { PracticeCatalog, PracticeSelection } from '../../../../server/src/shared/practiceCatalog';
-import {readSavedPractice,savePractice,readPracticeProgress} from './practiceSessionStorage';
+import { comparePracticeSessions } from '../../../../server/src/shared/practiceCheckpoint';
+import {practiceRestoreEvent,readSavedPractice,savePractice,readPracticeProgress} from './practiceSessionStorage';
 
 function restore(owner:string,moduleId?:string,catalog?:PracticeCatalog) { try { const state=readSavedPractice(localStorage,owner,moduleId);return state?withPracticeModuleTracking(state,catalog):null; } catch { return null; } }
 
@@ -23,17 +24,28 @@ export function useInfinitePracticeSession(initialModuleId?: string,catalog?:Pra
   }, [persistSession,persist]);
   useEffect(() => {
     lastTick.current = current.current && !current.current.finished && document.visibilityState === 'visible' ? Date.now() : null;
+    const restored = (event: Event) => {
+      const record = (event as CustomEvent<{owner:string;session:PracticeState}>).detail;
+      const previous = current.current;
+      if (!persistSession || record.owner !== owner || record.session.moduleId !== previous?.moduleId ||
+          comparePracticeSessions(record.session, previous) <= 0) return;
+      current.current = record.session;
+      lastTick.current = !record.session.finished && document.visibilityState === 'visible' ? Date.now() : null;
+      setSession(record.session);
+    };
+    window.addEventListener(practiceRestoreEvent, restored);
     const tick = () => update(state => state);
     const hide = () => { tick(); lastTick.current = null; };
     const timer = window.setInterval(tick, 1000);
     document.addEventListener('visibilitychange', tick);
     window.addEventListener('pagehide', hide);
     return () => {
+      window.removeEventListener(practiceRestoreEvent, restored);
       window.clearInterval(timer); document.removeEventListener('visibilitychange', tick); window.removeEventListener('pagehide', hide);
       if (persistSession && current.current && lastTick.current !== null) persist(addPracticeTime(current.current, Math.max(0, Date.now() - lastTick.current)));
       lastTick.current = null;
     };
-  }, [update, persistSession,persist]);
+  }, [update, persistSession,persist,owner]);
   const save=()=>{const now=Date.now();const timed=current.current&&lastTick.current!==null?addPracticeTime(current.current,Math.max(0,now-lastTick.current)):current.current;current.current=timed;lastTick.current=now;return persist(timed);};
   const resume=(moduleId:string)=>restore(owner,moduleId,catalog);
   let personalBest=session?.longestStreak??0;

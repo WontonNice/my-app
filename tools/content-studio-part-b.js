@@ -1,5 +1,153 @@
-/* Part B imports stay in the existing editor; incomplete questions are durable teacher drafts. */
+/* Part B uses the same authoring surface as Reading and Part A. Only storage differs. */
+const PartBWorkspace = {
+  mount() {
+    const question = app.standaloneDraft;
+    if (!question) return;
+    const editor = document.getElementById('passage-editor');
+    if (!this.previous) {
+      this.previous = { parent: editor.parentNode, next: editor.nextSibling, draft: app.passageDraft, id: app.selectedPassageId, dirty: app.passageDirty, mode: app.passageMode, library: app.passageLibrary };
+    }
+    if (!app.passageDraft?.partBEditor || app.passageDraft.questions[0] !== question) {
+      app.passageDraft = { ...defaultPassage(), id: `part-b-editor-${question.id}`, title: '', format: 'prose', preserveSourceLayout: true, text: question.stimulus || '', richText: question.stimulusHtml || '', questions: [question], section: 'revising_editing_a', partBEditor: true };
+      app.selectedPassageId = app.passageDraft.id;
+      app.passageMode = 'exam'; app.passageDirty = app.standaloneDirty;
+      studioUI.passageContext = '';
+    }
+    const host = document.getElementById('standalone-editor');
+    if (editor.parentNode !== host) { host.replaceChildren(editor); }
+    renderPassageEditor();
+    editor.querySelector('.editor-head h1').textContent = 'Part B question';
+    const destination = editor.querySelector('.studio-publish-exam');
+    if (destination) destination.hidden = true;
+    editor.querySelector('#save-passage').textContent = question.documentDraftId || question.importDraftId ? 'Save draft' : 'Save Part B question';
+    editor.querySelector('#open-student-preview').onclick = openStandaloneStudentPreview;
+    for (const id of ['create-passage-version', 'delete-passage', 'add-question']) editor.querySelector('#' + id)?.setAttribute('hidden', '');
+    editor.querySelectorAll('.studio-direct-question button').forEach(button => { if (button.textContent === '+ Question') button.hidden = true; });
+    if (question.importDraftId) {
+      const finish = studioUI.element('button', 'secondary', 'Finish & save to bank');
+      finish.type = 'button'; finish.onclick = () => { this.sync(); PartBImport.saveCurrent(true); };
+      editor.querySelector('.studio-item-actions').append(finish);
+    }
+    if (question.documentDraftId && destination) {
+      destination.hidden = false;
+      destination.querySelector('option').textContent = 'Choose an exam';
+      const count = PartBImport.documentBase.entry.content.questions.length;
+      const publish = studioUI.element('button', 'secondary', `Publish ${count} reviewed questions`);
+      publish.type = 'button';
+      publish.onclick = async () => {
+        const assessmentId = destination.querySelector('select').value;
+        if (!assessmentId) { setStatus('Choose a destination exam before publishing.', 'error'); return; }
+        if (!await this.save()) return;
+        app.saving = true;
+        try {
+          await api('/api/document-publish-english', { method: 'POST', body: JSON.stringify({ entryId: question.documentDraftId, assessmentId, revision: PartBImport.documentBase.revision }) });
+          await reloadState(); renderStandaloneEditor(); setStatus('Reviewed Part B questions published.', 'success');
+        } catch (error) { setStatus(error.message, 'error'); }
+        finally { app.saving = false; studioUI.syncSaveState(); }
+      };
+      editor.querySelector('.studio-item-actions').append(publish);
+    }
+  },
+  sync() {
+    if (!app.passageDraft?.partBEditor) return;
+    const question = app.passageDraft.questions[0];
+    question.stimulus = app.passageDraft.text;
+    question.stimulusHtml = app.passageDraft.richText;
+    app.standaloneDraft = question;
+  },
+  leave() {
+    if (!this.previous) return;
+    this.sync();
+    const old = this.previous;
+    old.parent.insertBefore(document.getElementById('passage-editor'), old.next?.parentNode === old.parent ? old.next : null);
+    Object.assign(app, { passageDraft: old.draft, selectedPassageId: old.id, passageDirty: old.dirty, passageMode: old.mode, passageLibrary: old.library });
+    this.previous = null; studioUI.passageContext = '';
+    renderPassageEditor();
+  },
+  async save() {
+    if (app.saving) return;
+    this.sync();
+    const question = app.standaloneDraft;
+    if (question.documentDraftId) {
+      app.saving = true;
+      try {
+        const base = PartBImport.documentBase;
+        if (base?.entry.id !== question.documentDraftId) throw new Error('Reopen the Part B draft before saving. Your edits are retained.');
+        const entry = clone(base.entry), saved = clone(question);
+        delete saved.documentDraftId;
+        const index = entry.content.questions.findIndex(q => q.id === saved.id);
+        if (index < 0) throw new Error('The saved question could not be found. Your edits are retained.');
+        entry.content.questions[index] = saved;
+        const state = await api('/api/document-drafts', { method: 'POST', body: JSON.stringify({ revision: base.revision, entry }) });
+        PartBImport.documentBase = { revision: state.revision, entry: clone(state.entries.find(e => e.id === entry.id)) };
+        app.standaloneDirty = false; app.passageDirty = false;
+        PartBImport.setDocumentState(state);
+        renderStandaloneList(); renderStandaloneEditor();
+        setStatus('Part B draft saved.', 'success');
+        return true;
+      } catch (error) { setStatus(error.message, 'error'); return false; }
+      finally { app.saving = false; studioUI.syncSaveState(); }
+    } else if (question.importDraftId) await PartBImport.saveCurrent();
+    else {
+      // The ordinary bank save also needs a button for its busy state.
+      document.getElementById('save-passage').id = 'save-standalone';
+      try { await saveStandaloneItem(); } finally { const button = document.getElementById('save-standalone'); if (button) button.id = 'save-passage'; }
+    }
+  },
+};
 const PartBImport = {
+  documentState: { revision: 0, entries: [] },
+  documentError: '',
+  async refreshDocuments() {
+    try { this.setDocumentState(await api('/api/document-drafts')); this.documentError = ''; }
+    catch (error) { this.documentError = `Imported Part B drafts could not be loaded: ${error.message}`; }
+  },
+  setDocumentState(state) {
+    this.documentState = state;
+    const current = app.standaloneDraft;
+    if (!current?.documentDraftId || app.standaloneDirty) return;
+    const entry = state.entries.find(entry => entry.id === current.documentDraftId && entry.status !== 'published');
+    const question = entry?.content.questions.find(question => question.id === current.id);
+    if (question) app.standaloneDraft = { ...clone(question), documentDraftId: entry.id };
+    else {
+      const saved = app.state.standaloneItems.find(question => question.id === current.id);
+      app.selectedStandaloneItemId = saved?.id || '';
+      app.standaloneDraft = saved ? clone(saved) : null;
+    }
+  },
+  documentRecords() {
+    return this.documentState.entries.filter(entry => entry.kind === 'standalone' && entry.status !== 'published')
+      .flatMap(entry => entry.content.questions.map(question => ({
+        ...question, documentDraftId: entry.id,
+        versionLabels: PartBBank.labels({ versionLabels: [...PartBBank.labels(question), ...PartBBank.labels(entry.content), question.source?.label || entry.content.source?.label || ''].filter(Boolean) }),
+        source: { ...entry.content.source, ...question.source },
+      })));
+  },
+  sourceLabels(question) {
+    const labels = PartBBank.labels(question);
+    if (question.source?.label && !labels.includes(question.source.label)) labels.push(question.source.label);
+    const titleKey = title => String(title || '').replace(/\s*\((?:hard|medium|easy)\)\s*$/i, '').trim().toLowerCase();
+    const exams = (app.state.assessments || []).filter(exam => labels.some(label => titleKey(label) === titleKey(exam.title)));
+    return [...new Set([...labels, ...exams.map(exam => exam.examLabel).filter(Boolean), ...(question.source?.sourceFamily === 'sat_crash_course' ? ['SAT Crash Course'] : [])])];
+  },
+  async selectDocument(entryId, questionId) {
+    if (app.saving || !confirmStandaloneDiscard()) return;
+    try {
+      // Load the revision with the selected content, so another editor's changes
+      // cannot be overwritten by the library's older snapshot.
+      const state = await api('/api/document-drafts');
+      this.setDocumentState(state);
+      const entry = state.entries.find(entry => entry.id === entryId && entry.kind === 'standalone' && entry.status !== 'published');
+      const question = entry?.content.questions.find(question => question.id === questionId);
+      if (!question) throw new Error('This imported draft has changed or was published. Refresh the Part B library.');
+      app.selectedStandaloneItemId = '';
+      app.standaloneDraft = { ...clone(question), documentDraftId: entry.id };
+      app.standaloneDirty = false;
+      this.documentBase = { revision: state.revision, entry: clone(entry) };
+      renderStandaloneList(); renderStandaloneEditor();
+      setStatus('Editing saved Part B draft. Use Save draft to keep your changes.');
+    } catch (error) { setStatus(error.message, 'error'); }
+  },
   async open() {
     let dialog = document.getElementById('part-b-import-dialog');
     if (!dialog) { dialog = document.createElement('dialog'); dialog.id = 'part-b-import-dialog'; dialog.className = 'studio-import-dialog'; document.body.append(dialog); }
@@ -69,11 +217,11 @@ const PartBImport = {
     setStatus('Imported Part B draft ready to edit. Missing answers have not been guessed.');
   },
   decorate() {
-    const root = document.querySelector('.studio-part-b-workspace'); if (!root) return;
+    const root = document.querySelector('.studio-part-b-workspace, .studio-hot-standalone'); if (!root) return;
     const importButton = studioUI.element('button', 'secondary', 'Import Part B'); importButton.type = 'button'; importButton.onclick = () => this.open();
     root.querySelector('.standalone-item-actions').prepend(importButton);
     const draft = app.standaloneDraft;
-    if (draft.type === 'multiple_choice' && draft.choices.length > 4) {
+    if (!draft.selectionHtml && draft.type === 'multiple_choice' && draft.choices.length > 4) {
       const extra = studioUI.element('section', 'studio-part-b-extra-choices', '<strong>Extra source choices</strong><p>Remove extra choices to leave four. Editing never guesses a replacement key.</p>');
       draft.choices.forEach((choice, index) => {
         const button = studioUI.element('button', 'secondary'); button.type = 'button'; button.textContent = `Remove ${choice.id}: ${choice.text.slice(0, 90)}`;

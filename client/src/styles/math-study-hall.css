@@ -74,3 +74,21 @@
 .math-study-empty a { display: inline-flex; align-items: center; gap: 8px; color: var(--student-green-2); }
 .math-study-hall a:focus-visible { outline: 3px solid #548f77; outline-offset: 4px; }
 @media (max-width: 700px) { .math-study-resources { grid-template-columns: minmax(0,1fr); } .math-study-category { padding: 20px; } .math-study-breadcrumbs { font-size: .7rem; } }
+
+.math-study-topic-stars b { margin-inline-end: 3px; font-variant-numeric: tabular-nums; }
+.math-recommended { margin-top: 28px; }
+.math-recommended header, .math-recommended button { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.math-recommended header { justify-content: space-between; }
+.math-recommended details { border-bottom: 1px solid #ddd8cd; }
+.math-recommended summary { padding: 14px 0; cursor: pointer; font-weight: 650; }
+.math-recommended small { color: #53655d; font-weight: 400; }
+.math-recommended button { width: 100%; padding: 12px 16px; background: var(--student-paper,#fffdf8); border: 0; border-top: 1px solid #e8e4db; text-align: left; cursor: pointer; font: inherit; color: inherit; }
+.math-recommended button:hover { background: #edf4ef; }
+.math-recommended button span { flex: 1; }
+
+.math-recommended button, .math-study-topic { color: var(--student-ink,#24382f); }
+@media (max-width: 550px) {
+  .math-study-topic { gap: 8px; padding: 14px 10px; }
+  .math-study-topic strong { min-width: 0; overflow-wrap: anywhere; }
+  .math-study-topic > .math-study-topic-stars { gap: 1px; }
+}

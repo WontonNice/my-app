@@ -45,13 +45,12 @@ const MathCommandStudio = {
           <label>Standard reference URL<input data-inspector="standardUrl" type="url" value="${escapeHtml(metadata.standards?.[0]?.referenceUrl||'')}" placeholder="https://www.nysed.gov/…"></label>
           <label class="studio-inspector-check"><input type="checkbox" data-inspector="verified" ${metadata.standards?.length&&metadata.standards.every(s=>s.verified)?'checked':''}>I verified these question mappings</label>
           <label class="studio-inspector-check"><input type="checkbox" data-inspector="requiresDiagram" ${metadata.requiresDiagram?'checked':''}>Requires a diagram</label>
-          </div><div class="studio-inspector-review" role="status"></div><div class="studio-inspector-actions"><button type="button" class="secondary" data-preview>Preview metadata changes</button><a href="http://localhost:5173/teacher/math-command?questionId=${encodeURIComponent(question.id)}" target="_blank" rel="noreferrer">Question performance & usage ↗</a><button type="button" class="secondary" data-command>Open Math Command Center</button></div>`;
+          </div><div class="studio-inspector-review" role="status"></div><div class="studio-inspector-actions"><button type="button" class="secondary" data-preview>Preview metadata changes</button><a href="/math-command/?tab=bank&amp;questionId=${encodeURIComponent(question.id)}" target="_blank" rel="noopener noreferrer">View question in dashboard Math Center ↗</a></div>`;
         const status=body.querySelector('[role="status"]'),save=body.querySelector('[data-preview]');
         const value=key=>body.querySelector(`[data-inspector="${key}"]`).value;
         const readForm=()=>({difficulty:value('difficulty'),diagnosticSkill:value('diagnosticSkill'),secondarySkills:value('secondarySkills').split(',').map(s=>s.trim()).filter(Boolean),source:value('source'),sourceQuestionId:value('sourceQuestionId'),reviewStatus:value('reviewStatus'),requiresDiagram:body.querySelector('[data-inspector="requiresDiagram"]').checked,standards:value('standardCodes').split(',').map(code=>code.trim()).filter(Boolean).map(code=>({code,verified:body.querySelector('[data-inspector="verified"]').checked,referenceUrl:value('standardUrl')}))});
         let savedForm=readForm();
         body.addEventListener('input',()=>{token='';save.textContent='Preview metadata changes';status.textContent='';});
-        body.querySelector('[data-command]').onclick=()=>switchTab('math-command');
         save.onclick=async()=>{save.disabled=true;try{
           if(!token){
             const patch=Object.fromEntries(Object.entries(readForm()).filter(([key,entry])=>JSON.stringify(entry)!==JSON.stringify(savedForm[key])));

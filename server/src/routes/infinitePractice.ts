@@ -1,3 +1,4 @@
+import { practiceProgressRouter } from './practiceProgress';
 import { Router } from 'express';
 import { supabase } from '../lib/supabase';
 import { getAuthenticatedUser, getEnrolledClassIds } from '../lib/auth';
@@ -12,8 +13,12 @@ infinitePracticeRouter.use(async(request,response,next)=>{
   if(!user){response.status(401).json({message:error});return;}
   const teacher=['teacher','admin'].includes(String(user.app_metadata.role));
   if(!teacher&&!getEnrolledClassIds(user.app_metadata).includes('shsat')){response.status(403).json({message:'Active SHSAT enrollment is required.'});return;}
-  if((request.method!=='GET'||request.query.manage==='1')&&!teacher){response.status(403).json({message:'Teacher access is required.'});return;}
   response.locals.teacher=teacher;response.locals.user=user;response.setHeader('Cache-Control','no-store');next();
+});
+infinitePracticeRouter.use('/progress', practiceProgressRouter);
+infinitePracticeRouter.use((request,response,next)=>{
+  if((request.method!=='GET'||request.query.manage==='1')&&!response.locals.teacher){response.status(403).json({message:'Teacher access is required.'});return;}
+  next();
 });
 infinitePracticeRouter.get('/catalog',async(request,response)=>withMathCommandPersistence(mathCommandRoot,async()=>{
   const stored=await supabase.from('infinite_practice_catalog').select('catalog,revision').eq('id','main').maybeSingle();

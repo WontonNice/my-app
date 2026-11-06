@@ -47,3 +47,29 @@ test('structured passages retain tables, inline image position, links, and real 
   const result=await importer.ela(data([question(1,{id:'table',html,formattedBlocks:[block('Before after')]})]),async()=>({src:'/exam-images/a.png'}));
   assert.equal(result.passages[0].richText,html.replace('https://example.com/a.png','/exam-images/a.png'));
 });
+
+test('a credited title needs no byline, and isolated currency imports as ordinary prose',async()=>{
+  const blocks=['<em>Adapted from two collection histories</em>','From a Small Shelf to a Giant Collection: The Library of Congress',String.raw`Congress approved \(\$\)5,000; compare \(5x + 2\).`].map(block);
+  const source={id:'library',formattedBlocks:blocks,html:blocks.map(b=>'<p>'+b.html+'</p>').join('')};
+  const [p]=(await importer.ela(data([question(1,source)]))).passages;
+  assert.equal(p.title,blocks[1].text);assert.equal(p.byline,'');assert.equal(p.blurb,blocks[0].text);
+  assert.equal(p.richText,String.raw`<p>Congress approved $5,000; compare \(5x + 2\).</p>`);
+});
+
+test('a poem title without an Excerpt prefix is separated without losing its stanzas',async()=>{
+  const blocks=['<em>A poet’s introduction.</em>','&quot;A Bird came down the Walk&quot;','by Emily Dickinson','Opening line','<br>','Second stanza'].map(block);
+  const [p]=(await importer.ela(data([question(1,{id:'poem',format:'poem',formattedBlocks:blocks})]))).passages;
+  assert.equal(p.title,'"A Bird came down the Walk"');assert.equal(p.author,'Emily Dickinson');assert.equal(p.text,'Opening line\n\nSecond stanza');
+});
+
+test('multiple source annotation layers target exact occurrences and import idempotently',async()=>{
+  const rich=require('./rich-text.js');
+  const p={id:'jazz',formattedBlocks:[block('a syncopated rhythm'),block('a second syncopated rhythm and <em>scat</em>')],html:'<p>a syncopated rhythm</p><p>a second syncopated rhythm and <em>scat</em></p>',glossaryTerms:['syncopated','scat']};
+  const glossary=[{term:'syncopated',definition:'Rhythm definition',occurrence:1},{term:'scat',definition:'Singing definition',occurrence:0}];
+  const enriched=rich.applyGlossary(p,glossary);
+  const result=(await importer.ela(data([question(1,enriched)]))).passages[0];
+  assert.ok(result.richText.startsWith('<p>a syncopated rhythm</p>'));
+  assert.equal((result.richText.match(/data-glossary-definition=/g)||[]).length,2);
+  assert.match(result.richText,/<em><span data-glossary-definition="Singing definition"/);
+  assert.deepEqual(result.review.warnings,[]);
+});

@@ -8,7 +8,7 @@ function loadRuntime(root){
   serverRequire('dotenv').config({path:[path.join(root,'server/.env'),path.join(root,'.env')],quiet:true});
   const previous=require.extensions['.ts'];
   require.extensions['.ts']=(module,filename)=>module._compile(ts.transpileModule(fs.readFileSync(filename,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText,filename);
-  try{runtime={...require(path.join(root,'server/src/shared/practiceCatalog.ts')),...require(path.join(root,'server/src/lib/mathCommandCatalogStore.ts')),...require(path.join(root,'server/src/lib/mathCommandPersistence.ts')),...require(path.join(root,'server/src/lib/supabase.ts'))};}
+  try{runtime={...require(path.join(root,'server/src/shared/practiceCatalog.ts')),...require(path.join(root,'server/src/lib/mathCommandCatalogStore.ts')),...require(path.join(root,'server/src/lib/mathCommandPersistence.ts')),...require(path.join(root,'server/src/lib/supabase.ts')),...require(path.join(root,'server/src/lib/mathCommandAnalytics.ts'))};}
   finally{if(previous)require.extensions['.ts']=previous;else delete require.extensions['.ts'];}
   return runtime;
 }
@@ -38,4 +38,5 @@ async function withSharedMathContext(root,operation){
   const r=loadRuntime(root);
   return r.withMathCommandPersistence(root,async()=>{const result=await operation();await r.persistMathCommandContext(root);return result;});
 }
-module.exports={handlePracticeCatalogRequest,withSharedMathContext};
+async function examQuestionRates(root,exam){return loadRuntime(root).selectedExamRates(exam);}
+module.exports={handlePracticeCatalogRequest,withSharedMathContext,examQuestionRates};

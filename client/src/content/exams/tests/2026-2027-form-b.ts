@@ -1,3 +1,4 @@
+import { content20262027FormBMathSection } from "../mathSets/2026-2027-form-bMath";
 import { excerptFromThePastAndTheFutureOfTheEarthSOldestTrees20262027FormBPassageSet } from "../passageSets/excerpt-from-the-past-and-the-future-of-the-earth-s-oldest-trees-2026-2027-form-b";
 import { aMiracleMile20262027FormBPassageSet } from "../passageSets/a-miracle-mile-2026-2027-form-b";
 import { excerptFromInSearchOfTheUnknown20262027FormBPassageSet } from "../passageSets/excerpt-from-in-search-of-the-unknown-2026-2027-form-b";
@@ -5,7 +6,6 @@ import { lookingForTheSmallestSparkOfEverything20262027FormBPassageSet } from ".
 import { usingFireToKeepAPrairieHealthy20262027FormBPassageSet } from "../passageSets/using-fire-to-keep-a-prairie-healthy-2026-2027-form-b";
 import { letterFromBrooklyn20262027FormBPassageSet } from "../passageSets/letter-from-brooklyn-2026-2027-form-b";
 import { theEndOfAnEra20262027FormBPassageSet } from "../passageSets/the-end-of-an-era-2026-2027-form-b";
-import { content20262027FormBMathSection } from "../mathSets/2026-2027-form-bMath";
 import { getStandaloneItemsById } from "../standaloneItems";
 import type { ExamContent } from "../types";
 

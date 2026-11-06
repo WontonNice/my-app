@@ -11,13 +11,26 @@
   // unwrap that exact form: mixed expressions must remain mathematical.
   function proseHtml(html) {
     return String(html || '').replace(/\\\(([\s\S]*?)\\\)/g, (original, tex) => {
+      if (tex.trim() === '\\$') return '$';
       const match = tex.match(/^\\text\{((?:\\[\\$%&#_{}]|[^\\{}])*)\}$/);
       return match ? match[1].replace(/\\([\\$%&#_{}])/g, '$1') : original;
     });
   }
   function expressionAnswer(content) {
-    // Only flat rendered expressions can be read as text without losing position
-    // (e.g. turning a fraction or exponent into concatenated digits).
+    // MathLive stores the denominator first in DOM order. For a single integer
+    // fraction, recover the two operands by their position above/below the bar.
+    const clean = value => (value || '').replace(/[\u200b\u2060\s]/g, '').replace(/−/g, '-');
+    const fraction = content?.querySelector('.ML__mfrac');
+    if (fraction && clean(content.textContent) === clean(fraction.textContent)) {
+      const children = [...(fraction.querySelector('.ML__vlist')?.children || [])];
+      const rows = children.map(node => ({top:parseFloat(node.style?.top), value:clean(node.textContent), bar:!!node.querySelector('.ML__frac-line')}));
+      if (rows.length === 3 && rows.every(row => Number.isFinite(row.top)) && !fraction.querySelector('.ML__mfrac, .ML__supsub, .ML__sqrt, .ML__array')) {
+        rows.sort((a,b) => a.top-b.top);
+        if (rows[1].bar && rows[0].top < rows[1].top && rows[1].top < rows[2].top &&
+            /^-?\d+$/.test(rows[0].value) && /^\d+$/.test(rows[2].value) && Number(rows[2].value) !== 0) return rows[0].value + '/' + rows[2].value;
+      }
+    }
+    // More complex positioned expressions require review.
     if (!content || content.querySelector('.ML__vlist, .ML__frac, .ML__sqrt, .ML__supsub, .ML__array')) return '';
     return (content.textContent || '').replace(/[\u200b\u2060]/g, '').trim();
   }
@@ -85,6 +98,7 @@
             const encoded = escape(`\\(${math}\\)`);
             // Traverse text-only rendered nodes to retain bold/italic styles.
             const renderedEncoded = rendered && escape(`\\(${renderedMath(rendered)}\\)`);
+            if (math.trim() === '\\$') return '$';
             if (proseHtml(encoded) !== encoded || renderedEncoded && proseHtml(renderedEncoded) !== renderedEncoded) return rendered ? visit(rendered) : proseHtml(encoded);
             if (rendered && rendered.querySelector('.newline') && !math.trim()) return '<br>';
             return encoded;
@@ -158,7 +172,62 @@
     }
     return { formattedBlocks: blocks(element, style) };
   }
-  const api = { fromElement, blocks, passage, renderedMath, plain, expressionAnswer, proseHtml, definitionFor, rememberDefinition };
+  // Source previews can render a full overlay per term. Rejoin them by occurrence
+  // in the passage, keeping existing inline markup and genuine math intact.
+  function applyGlossary(passage, glossary) {
+    if (!passage || !Array.isArray(glossary) || !glossary.length) return passage;
+    function enrich(fragments) {
+      let result = fragments;
+      for (const {term, definition, occurrence} of glossary) {
+        if (!term || typeof definition !== 'string' || !definition.trim() || !Number.isSafeInteger(occurrence) || occurrence < 0) continue;
+        const word = escape(term);
+        let seen = 0;
+        result = result.map(fragment => fragment.split(/(<span\b[^>]*\bdata-glossary-definition="[^"]*"[^>]*>[\s\S]*?<\/span>|<[^>]+>)/gi).map(part => {
+          if (part.startsWith('<')) {
+            if (/^<span\b[^>]*data-glossary-definition=/i.test(part)) seen += plain(part).split(term).length - 1;
+            return part;
+          }
+          const pieces = part.split(word);
+          return pieces.reduce((html, piece, i) => html + (i === 0 ? '' : seen++ === occurrence
+            ? '<span data-glossary-definition="' + escape(definition) + '" role="link" tabindex="0">' + word + '</span>' : word) + piece, '');
+        }).join(''));
+      }
+      return result;
+    }
+    const blocks = passage.formattedBlocks || [];
+    const formatted = enrich(blocks.map(block => block.html || escape(block.text)));
+    return {...passage, glossary, html:enrich([passage.html || ''])[0],
+      formattedBlocks:blocks.map((block,i)=>({...block,html:formatted[i]}))};
+  }
+
+  function passageHeading(passage) {
+    const blocks = passage?.formattedBlocks || [];
+    const html = index => proseHtml(blocks[index]?.html || escape(blocks[index]?.text));
+    const line = index => plain(html(index)).trim();
+    for (let i=0; i<Math.min(3,blocks.length-1); i++) {
+      const title = line(i), byline = /^by\s+\S/i.test(line(i+1));
+      if (!title || title.length>200 || /^(?:by\s|\(\d+\)\s)/i.test(title)) continue;
+      const sourceCredit = i>0 && /^(?:adapted|excerpted|reprinted)\s+from\b/i.test(line(i-1));
+      if (!(byline || title === passage.title || sourceCredit && !/[.!?]$/.test(title))) continue;
+      const end = i + (byline?2:1);
+      if (!blocks.slice(end).some(b=>plain(b.html || b.text || '').trim())) continue;
+      return {end, metadata:{
+        title, titleHtml:html(i), ...(byline?{byline:line(i+1),bylineHtml:html(i+1),author:line(i+1).replace(/^by\s+/i,'')}:{}),
+        blurb:blocks.slice(0,i).map((_,n)=>line(n)).join('\n'),
+        blurbHtml:blocks.slice(0,i).map((_,n)=>'<p>'+html(n)+'</p>').join(''),
+      }};
+    }
+    return {end:0,metadata:{}};
+  }
+
+  // A response target sits inside a sentence. Source widgets may render their
+  // label as one or more paragraphs, which would close the outer paragraph.
+  function inlinePhrase(html) {
+    return String(html || '').replace(/<\/(?:p|div)>\s*<(?:p|div)\b[^>]*>/gi, ' ')
+      .replace(/<\/?(?:p|div)\b[^>]*>/gi, '');
+  }
+
+  const api = { applyGlossary, passageHeading, fromElement, blocks, passage, renderedMath, plain, expressionAnswer, proseHtml, definitionFor, rememberDefinition, inlinePhrase };
   if (typeof module !== 'undefined') module.exports = api;
   else root.NathanSatRichText = api;
 })(typeof globalThis !== 'undefined' ? globalThis : this);

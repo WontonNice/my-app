@@ -13,7 +13,7 @@ import { SharedToolNotes } from "../features/games/SharedToolNotes";
 import { SentenceDragDrop } from '../components/SentenceDragDrop';
 import { ExamSectionSubmission } from "../components/ExamSectionSubmission";
 import { ExamTimeExpiredDialog } from "../components/ExamTimeExpiredDialog";
-import { restoredReentryTimer } from "../../../server/src/shared/examReentry";
+import { omitExamQuestions, restoredReentryTimer } from "../../../server/src/shared/examReentry";
 import { normalizeExamNavigation, type ExamNavigation } from "../../../server/src/shared/examNavigation";
 import { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction, type DragEvent, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
@@ -1255,7 +1255,9 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
       try {
         const nextAssessment = await getStudentAssessment(data.session.access_token, assessmentId);
         let nextStartingSubject = storedStartingSubject;
-        const localProgress = isTeacherPreview ? null : loadLocalExamSession(data.session.user.id, assessmentId);
+        const storedProgress = isTeacherPreview ? null : loadLocalExamSession(data.session.user.id, assessmentId);
+        const reset = nextAssessment.reentry?.resetAnswers ? nextAssessment.reentry : undefined;
+        const localProgress = reset && storedProgress?.resetGrantId !== reset.id ? null : storedProgress;
         let progress = localProgress;
         let savedResult = isTeacherPreview ? null : getExamResult(data.session.user.id, assessmentId);
         if (isTeacherPreview && previewContext.studentId) {
@@ -1291,7 +1293,17 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
         }
         setHasSubmittedAttempt(Boolean(savedResult));
         const reentry = !isTeacherPreview ? nextAssessment.reentry : undefined;
-        if (reentry && progress && Date.parse(progress.updatedAt) < Date.parse(reentry.draftsFrom ?? reentry.grantedAt)) progress = null;
+        if (reset && savedResult) {
+          // An older local draft may be the only copy of the other section.
+          if (!progress && storedProgress) progress = storedProgress;
+          const sectionIds = getExamSectionQuestionIds(savedResult.analysisContent ?? resolveExamContent(nextAssessment));
+          const ids = new Set(reset.remainingSections.flatMap(section => sectionIds[section]));
+          savedResult = { ...savedResult, answers: omitExamQuestions(savedResult.answers, ids), questionTimes: omitExamQuestions(savedResult.questionTimes, ids) };
+          if (progress && ((progress === storedProgress && progress.resetGrantId !== reset.id) || Date.parse(progress.updatedAt) < Date.parse(reset.grantedAt))) {
+            progress = { ...progress, answers: omitExamQuestions(progress.answers, ids), questionTimes: omitExamQuestions(progress.questionTimes, ids), navigation: progress.navigation ? { ...progress.navigation, [reset.sections[0]]: undefined } : undefined };
+          }
+        }
+        if (reentry && !reset && progress && Date.parse(progress.updatedAt) < Date.parse(reentry.draftsFrom ?? reentry.grantedAt)) progress = null;
         if (savedResult && progress && !isTeacherPreview) {
           const submittedIds = getExamSectionQuestionIds(savedResult.analysisContent ?? resolveExamContent(nextAssessment));
           const savedSections = (savedResult.completedSections ?? []).filter(section => !reentry?.remainingSections.includes(section) && (!nextAssessment.canEditSubmittedSections || !nextAssessment.sectionAccess[section]));
@@ -1401,7 +1413,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
       ...(sessionScreen.startsWith("standalone") ? { questionId: content.standaloneSection?.questions[activeStandaloneQuestionIndex]?.id } : {}),
     } });
     if (position?.[subject]) navigationRef.current = { ...navigationRef.current, ...position };
-    saveLocalExamSession(studentId, assessment.id, selectedAnswers, completedSections, "in_progress", getQuestionTimesSnapshot(), navigationRef.current);
+    saveLocalExamSession(studentId, assessment.id, selectedAnswers, completedSections, "in_progress", getQuestionTimesSnapshot(), navigationRef.current, assessment.reentry?.resetAnswers ? assessment.reentry.id : undefined);
   }, [isStudioPreview, isGameSession, assessment, attemptContent, activePassageSetIndex, activeQuestionIndex, activeStandaloneQuestionIndex, activeMathQuestionIndex, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, selectedAnswers, sessionScreen, studentId]);
 
   useEffect(() => {
@@ -1412,7 +1424,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
       const answers = latestAnswersRef.current;
       if (autosaveInFlightRef.current || finalSubmissionRef.current) return;
       const navigation = navigationRef.current;
-      if (studentId) saveLocalExamSession(studentId, assessmentId, answers, completedSections, "in_progress", getQuestionTimesSnapshot(), navigation);
+      if (studentId) saveLocalExamSession(studentId, assessmentId, answers, completedSections, "in_progress", getQuestionTimesSnapshot(), navigation, assessment?.reentry?.resetAnswers ? assessment.reentry.id : undefined);
       const signature = JSON.stringify({ answers, completedSections, navigation });
       if (signature === lastAutosaveSignatureRef.current) return;
       autosaveInFlightRef.current = true;
@@ -1564,6 +1576,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     (activeQuestion?.instructions?.length ?? 0) > 160 ||
     activeQuestionChoices.some((choice) => choice.text.length > 130) ||
     (activeQuestion?.items ?? []).some((item) => item.text.length > 90);
+  const usesSelectionOnlyLayout = Boolean(activeQuestion?.selectionHtml && activeQuestion.source?.sourceFormat === "testnav");
   const isExpandedQuestionLayout =
     activeQuestion?.type === "category_sort" ||
     activeQuestion?.type === "matrix_choice" ||
@@ -1810,7 +1823,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
       if (!isTeacherPreviewSession) {
         if (accessToken) await saveCloudExamResult(accessToken, currentAssessmentId, result as unknown as Record<string, unknown>);
         saveExamResult(studentId, result);
-        saveLocalExamSession(studentId, currentAssessmentId, submission.answers, submission.completedSections, result.completionStatus === "complete" ? "submitted" : "in_progress", getQuestionTimesSnapshot());
+        saveLocalExamSession(studentId, currentAssessmentId, submission.answers, submission.completedSections, result.completionStatus === "complete" ? "submitted" : "in_progress", getQuestionTimesSnapshot(), undefined, assessment?.reentry?.resetAnswers ? assessment.reentry.id : undefined);
         if (accessToken) {
           try { await saveExamSessionProgress(accessToken, currentAssessmentId, { reentryGrantId: assessment?.reentry?.id, answers: submission.answers, completedSections: submission.completedSections, navigation: navigationRef.current, status: result.completionStatus === "complete" ? "submitted" : "in_progress" }); }
           catch { /* The durable result also preserves answers and completed sections. */ }
@@ -3613,11 +3626,11 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
         />
 
         <section
-          className={`exam-question-document ${activeQuestion.selectionHtml ? "is-passage-selection-layout" : isExpandedQuestionLayout ? "is-expanded-layout" : ""}`}
+          className={`exam-question-document ${usesSelectionOnlyLayout ? "is-passage-selection-layout" : !activeQuestion.selectionHtml && isExpandedQuestionLayout ? "is-expanded-layout" : ""}`}
           aria-labelledby={activeQuestionTitleId}
           onMouseUp={handleExamTextSelection}
         >
-          {!activeQuestion.selectionHtml && <div className="exam-question-passage">
+          {!usesSelectionOnlyLayout && <div className="exam-question-passage">
             <div
               className={`exam-question-passage-scroll ${
                 isSentenceProsePassage ? "is-sentence-prose" : isProsePassage ? "is-prose" : "is-poem"
@@ -3969,7 +3982,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
                 </div>
               </div>
             ) : activeQuestion.selectionHtml ? (
-              <InlineTextSelection scrollable question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({...current,[activeQuestion.id]:answer}))} />
+              <InlineTextSelection scrollable={usesSelectionOnlyLayout} question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({...current,[activeQuestion.id]:answer}))} />
             ) : activeQuestion.type === "transition_drop" && activeQuestionChoices.length > 0 ? (
               <SentenceDragDrop key={activeQuestion.id} question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeQuestion.id]: answer }))} />
             ) : (

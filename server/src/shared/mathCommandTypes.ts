@@ -36,7 +36,7 @@ export type MathQuestionMetadata = {
   context?: string;
   notes?: string;
 };
-export type MathQuestionSource = { assessmentId: string; title: string; number: number; year?: string; form?: string; source?: string };
+export type MathQuestionSource = { questionId?:string; assessmentId: string; title: string; number: number; year?: string; form?: string; source?: string };
 export type MathQuestionRecord = { id: string; question: ExamQuestion; sources: MathQuestionSource[]; metadata?: MathQuestionMetadata };
 export type MathTaxonomy = { categories: { label: string; topics: string[] }[]; skills?: MathDiagnosticSkill[]; classificationSkills?: import('./mathClassificationSkills').MathClassificationSkill[] };
 export type MathDiagnosticSkill = { id: string; label: string; category: string; subcategory: string; prerequisiteIds?: string[]; standardReferences?: string[] };

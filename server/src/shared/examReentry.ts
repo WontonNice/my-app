@@ -8,10 +8,15 @@ export type ExamReentryGrant = {
   additionalMinutes: number;
   grantedAt: string;
   draftsFrom?: string;
+  resetAnswers?: boolean;
   grantedBy: string;
   revokedAt?: string;
   timerState: { startedAt: number; pausedAt: number | null; totalPausedMs: number };
 };
+
+export function omitExamQuestions<T>(values: Record<string,T> | undefined, ids: ReadonlySet<string>): Record<string,T> {
+  return Object.fromEntries(Object.entries(values ?? {}).filter(([id]) => !ids.has(id)));
+}
 
 export function examAttemptId(result: Record<string, unknown>, assessmentId: string) {
   return typeof result.attemptId === "string" ? result.attemptId : `legacy:${assessmentId}:${result.completedAt}`;

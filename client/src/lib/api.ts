@@ -707,6 +707,7 @@ export async function registerStudent(input: RegisterStudentInput) {
 }
 
 export type ExamSessionProgress = {
+  resetGrantId?: string;
     navigation?: ExamNavigation;
     answers: Record<string, unknown>;
     completedSections: ("english" | "math")[];
@@ -1074,7 +1075,7 @@ export type TeacherExamReentryStatus = {
 export async function getTeacherExamReentry(accessToken: string, assessmentId: string, studentId: string) {
   return requestApi<TeacherExamReentryStatus>(`/api/assessments/teacher/${encodeURIComponent(assessmentId)}/reentry/${encodeURIComponent(studentId)}`, { headers: createAuthHeaders(accessToken) });
 }
-export async function setTeacherExamReentry(accessToken: string, assessmentId: string, studentId: string, input: { sections: AssessmentSection[]; additionalMinutes: number } | null) {
+export async function setTeacherExamReentry(accessToken: string, assessmentId: string, studentId: string, input: { sections: AssessmentSection[]; additionalMinutes: number; resetAnswers?: boolean } | null) {
   return requestApi<{ grant: TeacherExamReentryStatus["grant"] }>(`/api/assessments/teacher/${encodeURIComponent(assessmentId)}/reentry/${encodeURIComponent(studentId)}`, { headers: createAuthHeaders(accessToken), method: input ? "PUT" : "DELETE", ...(input ? { body: JSON.stringify(input) } : {}) });
 }
 

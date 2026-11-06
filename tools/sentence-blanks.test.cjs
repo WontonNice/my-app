@@ -13,6 +13,18 @@ const question=()=>({id:'two-blanks',type:'transition_drop',topic:'Tone & Mood',
 const escapeHtml=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('"','&quot;');
 function studio(){const app={state:{assessments:[],examLabels:['Prestige']}};return {app,ui:vm.runInNewContext(fs.readFileSync(path.join(__dirname,'content-studio-workspace.js'),'utf8')+'\nstudioUI;',{app,escapeHtml})};}
 
+test('sentence blanks use the established outlined control and retain rich sentence formatting',()=>{
+  const ui=vm.runInNewContext(fs.readFileSync(path.join(__dirname,'content-studio-workspace.js'),'utf8')+'\nstudioUI;',{escapeHtml,DocumentImport:contract});
+  const q={...question(),dragDropContentHtml:'<p>(3) Keep <em>this</em>{{blank-1}} and {{blank-2}}.</p>'};
+  const html=ui.transitionSentenceMarkup(q);
+  assert.match(html,/exam-rich-response-template/);assert.match(html,/<em>this<\/em>/);
+  assert.equal((html.match(/class="exam-math-drag-slot"/g)||[]).length,2);
+  assert.doesNotMatch(html,/exam-transition-blank|exam-transition-help/);
+  ui.setTransitionSentence(q,'Changed [blank] and [blank].');
+  assert.equal(q.dragDropContentHtml,undefined,'An edited layout must not render stale imported HTML');
+  assert.equal(q.dragDropSlots[0].correctItemId,'A');
+});
+
 test('every sentence blank is independently graded and partial, swapped, duplicate, and extra answers fail',()=>{
   const q=question(),correct={'blank-1':'A','blank-2':'B'};
   assert.equal(isExamQuestionCorrect(q,correct),true);

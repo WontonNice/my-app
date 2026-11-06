@@ -1,6 +1,6 @@
 # Infinite Practice Studio
 
-Open **Math Center → Infinite Practice Studio** in the teacher app or local Content Studio. The same workspace is also available from **Teacher Study Hall → Practice & video studio**, **Manage practice & videos** on a math topic, and `/teacher/practice-studio`.
+Open **Math Center → Infinite Practice Studio** on the teacher dashboard. In Content Studio, **Dashboard Math Center ↗** opens that dashboard in another tab. The same workspace is also available from **Teacher Study Hall → Practice & video studio**, **Manage practice & videos** on a math topic, and `/teacher/practice-studio`.
 
 ## Personal generator planner
 

@@ -1,9 +1,10 @@
+import { usePracticeAccount } from '../features/math-command/usePracticeAccount';
 import { lazy, Suspense, useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, FileText, Infinity as InfinityIcon, Layers3, Play, Star } from "lucide-react";
 import { AppLink } from "./AppLink";
 import { mathStudyHref } from "../lib/mathStudyHall";
 import { appendStudentPreview, type StudentPreviewContext } from "../lib/studentPreview";
-import { managedGeneratorIds, practiceModuleKind, type PracticeSelection } from "../../../server/src/shared/practiceCatalog";
+import { recommendedSectionTitle, recommendedPracticeCatalog, type PracticeCatalog, managedGeneratorIds, practiceModuleKind, type PracticeSelection } from "../../../server/src/shared/practiceCatalog";
 import { PracticeModuleList } from "../features/math-command/PracticeModuleList";
 import { PracticeVideoList } from "../features/math-command/PracticeVideoList";
 import { usePracticeCatalog } from "../features/math-command/usePracticeCatalog";
@@ -14,10 +15,11 @@ const PracticePlayer = lazy(() => import("../features/math-command/InequalityPra
 
 export function MathStudyHall({ query, previewContext }: { query: string; previewContext: StudentPreviewContext }) {
   const [search, setSearch] = useState(() => window.location.search);
-  const [selectedModule, setSelectedModule] = useState<{id:string;selection:PracticeSelection;startNew?:boolean} | null>(null);
+  const [selectedModule, setSelectedModule] = useState<{id:string;selection:PracticeSelection;startNew?:boolean;catalog?:PracticeCatalog} | null>(null);
   const {catalog,taxonomy,error,loading,reload}=usePracticeCatalog();
   const {profile}=useAccountProfile();
   const owner=previewContext.isPreview?'preview:'+previewContext.mode+':'+(previewContext.studentId||'teacher'):profile?.id;
+  usePracticeAccount(previewContext.isPreview?undefined:owner);
   const [,refreshProgress]=useState(0);
   const mathStudyCategories=taxonomy??[];
   useEffect(() => {
@@ -41,7 +43,7 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
   function generalPracticeStars(topicName:string) {
     const general=catalog?.modules.find(module=>module.published&&!module.parentId&&practiceModuleKind(module)==='general'&&module.category===category?.label&&module.topic===topicName);
     try {
-      return owner&&general?Math.min(5,Math.floor(readPracticeProgress(localStorage,owner,general.id).longestStreak/10)):0;
+      return owner&&general?Math.min(5,Math.floor(Math.max(...[general.id,...(general.selectionAliases??[])].map(id=>readPracticeProgress(localStorage,owner,id).longestStreak))/10)):0;
     } catch { return 0; }
   }
   const modules=catalog?.modules.filter(module=>module.published&&module.category===category?.label&&module.topic===topic)??[];
@@ -50,6 +52,12 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
     const next=await reload();
     if(next?.modules.some(module=>module.id===id&&module.published&&managedGeneratorIds(module,next,selection).length>0))setSelectedModule({id,selection,startNew});
   }
+  async function startRecommended(id:string) {
+    const fresh=await reload();
+    const playerCatalog=fresh&&recommendedPracticeCatalog(fresh,id);
+    if(playerCatalog)setSelectedModule({id,selection:{},catalog:playerCatalog});
+  }
+  const recommended=(catalog?.recommended??[]).map(c=>({...c,modules:c.modules.filter(m=>m.published&&matches(c.title+' '+m.title))})).filter(c=>c.modules.length);
   const resourceStatus=loading?<p className="math-study-resource-status" role="status">Loading resources…</p>:error?<div className="math-study-resource-status" role="alert"><p>{error}</p><button type="button" onClick={()=>void reload()}>Try again</button></div>:null;
 
   if(!taxonomy)return <section className="math-study-hall" aria-labelledby="math-study-title"><h2 id="math-study-title">Math categories</h2>{error?<div className="math-study-resource-status" role="alert"><p>{error}</p><button type="button" onClick={()=>void reload()}>Try again</button></div>:<p role="status">Loading math categories…</p>}</section>;
@@ -87,7 +95,7 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
       {category ? <div className="math-study-topic-list">
         {category.topics.filter(name => matches(`${category.label} ${name}`)).map((name, index) => {
           const stars=generalPracticeStars(name);
-          return <AppLink className="math-study-topic" href={href(category.label, name)} key={name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{name}</strong><span className="math-study-topic-stars" role="img" aria-label={`General Practice stars: ${stars} of 5`} title="Stars earned in General Practice">{[1,2,3,4,5].map(star=><Star key={star} size={18} className={star<=stars?'is-earned':undefined} aria-hidden="true"/>)}</span><ArrowRight size={18} aria-hidden="true" /></AppLink>;
+          return <AppLink className="math-study-topic" href={href(category.label, name)} key={name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{name}</strong><span className="math-study-topic-stars" role="img" aria-label={`General Practice stars: ${stars} of 5`} title="Stars earned in General Practice"><b>{stars}/5</b>{[1,2,3,4,5].map(star=><Star key={star} size={18} className={star<=stars?'is-earned':undefined} aria-hidden="true"/>)}</span><ArrowRight size={18} aria-hidden="true" /></AppLink>;
         })}
         {!category.topics.some(name => matches(`${category.label} ${name}`)) && <p className="math-study-empty">No subcategories match your search.</p>}
       </div> : <div className="math-study-category-grid">
@@ -95,6 +103,14 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
         {!mathStudyCategories.some(item => matches(`${item.label} ${item.topics.join(" ")}`)) && <p className="math-study-empty">No math categories match your search.</p>}
       </div>}
     </>}
-    {selectedModule && catalog && <Suspense fallback={<p role="status">Opening practice…</p>}><PracticePlayer key={selectedModule.id} initialModuleId={selectedModule.id} initialSelection={selectedModule.selection} initialStartNew={selectedModule.startNew} catalog={catalog} onClose={() => setSelectedModule(null)} /></Suspense>}
+    {!categoryName&&!topicName&&<section className="math-recommended" aria-labelledby="recommended-heading">
+      <header><h2 id="recommended-heading">{recommendedSectionTitle}</h2>{previewContext.isPreview&&<AppLink href="/teacher/practice-studio#recommended">Manage recommendations</AppLink>}</header>
+      {recommended.map(c=><details key={c.id}><summary>{c.title} <small>{c.modules.length} {c.modules.length===1?'module':'modules'}</small></summary>
+        {c.modules.map(m=><button key={m.id} type="button" onClick={()=>void startRecommended(m.id)}><span>{m.title}</span><small>{m.generatorIds.length} {m.generatorIds.length===1?'template':'templates'}</small><Play size={16} aria-hidden="true"/></button>)}
+      </details>)}
+      {!recommended.length&&<p>{query?'No recommended modules match your search.':'No recommended modules published yet.'}</p>}
+      {error&&<p role="alert">{error}</p>}
+    </section>}
+    {selectedModule && catalog && <Suspense fallback={<p role="status">Opening practice…</p>}><PracticePlayer key={selectedModule.id} initialModuleId={selectedModule.id} initialSelection={selectedModule.selection} initialStartNew={selectedModule.startNew} catalog={selectedModule.catalog??catalog} onClose={() => setSelectedModule(null)} /></Suspense>}
   </section>;
 }

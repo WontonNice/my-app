@@ -1,7 +1,7 @@
 const state = {
   data: null,
 };
-const READER_VERSION = "0.8.5";
+const READER_VERSION = "0.8.8";
 
 const elements = {
   scan: document.querySelector("#scan"),
@@ -58,6 +58,12 @@ async function restoreState() {
     }
     updateCaptureMode();
     if (capture?.data && Array.isArray(capture.data.tests) && Array.isArray(capture.data.tables) && Array.isArray(capture.data.links)) {
+      const savedUrl = capture.data.source?.url;
+      const tab = await currentTab();
+      if ((savedUrl && tab?.url && tab.url.split(/[?#]/)[0] !== savedUrl.split(/[?#]/)[0]) || !captureMatchesMode(capture.data, capture.options)) {
+        setStatus("Choose Read to capture the selected section. The saved scan belongs to another page or capture mode.");
+        return;
+      }
       renderCapture(capture.data, capture.options ?? {});
       setStatus(`Restored saved scan from ${capture.data.source?.title || capture.data.source?.path || "the previous page"}. ${elements.status.textContent}`, elements.status.className.includes("error") ? "error" : "success");
     }
@@ -169,8 +175,18 @@ async function currentTab() {
   return tab;
 }
 
+function captureMatchesMode(data, options) {
+  const mode = elements.captureMode.value || 'passage', preview = data.testPreview;
+  if (mode === 'math-all' && !/math/i.test(preview?.module || '')) return false;
+  if (['ela-all','part-b'].includes(mode) && !/english/i.test(preview?.module || '')) return false;
+  const savedMode = preview?.capture?.mode || options?.captureMode;
+  if (['current-question','passage-all'].includes(savedMode)) return mode === 'passage';
+  return !savedMode || savedMode === mode;
+}
+
 function renderCapture(data, options) {
   state.data = data;
+  state.captureOptions = options;
   elements.testCount.textContent = String(state.data.tests.length);
   const questions = state.data.testPreview?.questions ||
     (state.data.testPreview?.question ? [state.data.testPreview.question] : []);
@@ -197,7 +213,7 @@ function renderCapture(data, options) {
     const batch = state.data.testPreview.capture;
     const countNote = batch.expectedNumbers ? `${questions.length}/${batch.expectedNumbers.length} requested questions. ${batch.complete ? 'Complete.' : 'PARTIAL EXPORT.'} ` : '';
     setStatus(
-      `${countNote}Captured ${range} of ${question.total || "?"}${answerNote}.${explanationNote} ${warnings.join(" ") || "Starting question restored."}`,
+      `${state.data.testPreview.module || "Test preview"} · ${countNote}Captured ${range} of ${question.total || "?"}${answerNote}.${explanationNote} ${warnings.join(" ") || "Starting question restored."}`,
       warnings.length ? "error" : "success",
     );
   } else if (state.data.testPreview?.capture?.warnings.length) {
@@ -210,6 +226,7 @@ function renderCapture(data, options) {
 async function scanPage() {
   await ready;
   elements.scan.disabled = true;
+  elements.captureMode.disabled = true;
   state.data = null;
   elements.results.hidden = true;
   setStatus(elements.captureMode.value !== 'passage' ? 'Reading the requested questions… Keep this popup open and avoid navigating. This may take several minutes.' : elements.includePassageQuestions.checked
@@ -238,6 +255,9 @@ async function scanPage() {
     if (response.data?.readerVersion !== READER_VERSION && !compatibleLegacyBatch) {
       throw new Error("This test tab is using an older reader script. Reload SAT Crash Course Reader in chrome://extensions, then refresh the test tab and scan again.");
     }
+    if (!captureMatchesMode(response.data, options)) {
+      throw new Error("The returned section differs from the selected capture mode. Select the matching module on the test page and scan again.");
+    }
 
     let saved = true;
     try {
@@ -255,6 +275,7 @@ async function scanPage() {
     setStatus(message, "error");
   } finally {
     elements.scan.disabled = false;
+    elements.captureMode.disabled = false;
   }
 }
 
@@ -267,7 +288,14 @@ function updateCaptureMode() {
   elements.includePassageQuestions.closest('label').hidden = mode !== 'passage';
   elements.scan.textContent = mode === 'math-all' ? 'Read all 50 math questions' : mode === 'ela-all' ? 'Read all ELA questions' : mode === 'part-b' ? 'Read Part B questions' : 'Read current page';
 }
-elements.captureMode.addEventListener('change', updateCaptureMode);
+elements.captureMode.addEventListener('change', () => {
+  updateCaptureMode();
+  if (state.data && !captureMatchesMode(state.data, state.captureOptions)) {
+    elements.results.hidden = true;
+    state.data = null;
+    setStatus("Choose Read to scan the selected section before copying or downloading.");
+  }
+});
 
 elements.copy.addEventListener("click", async () => {
   if (!state.data) return;
@@ -278,14 +306,14 @@ elements.copy.addEventListener("click", async () => {
 elements.json.addEventListener("click", () => {
   if (!state.data) return;
   const name = safeFilename(state.data.source.path || "page") || "page";
-  downloadFile(`${name}-${Date.now()}.json`, JSON.stringify(state.data, null, 2), "application/json");
+  downloadFile(`${safeFilename(state.data.testPreview?.module || "page")}-${name}-${Date.now()}.json`, JSON.stringify(state.data, null, 2), "application/json");
   setStatus("JSON download started.", "success");
 });
 
 elements.csv.addEventListener("click", () => {
   if (!state.data) return;
   const name = safeFilename(state.data.source.path || "page") || "page";
-  downloadFile(`${name}-${Date.now()}.csv`, toCsv(state.data), "text/csv;charset=utf-8");
+  downloadFile(`${safeFilename(state.data.testPreview?.module || "page")}-${name}-${Date.now()}.csv`, toCsv(state.data), "text/csv;charset=utf-8");
   setStatus("CSV download started.", "success");
 });
 

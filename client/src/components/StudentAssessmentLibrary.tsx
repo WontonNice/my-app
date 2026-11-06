@@ -59,7 +59,7 @@ export function StudentAssessmentLibrary({ assessments, previewContext, loading 
                   const href = appendStudentPreview("/exam/" + assessment.id, previewContext);
                   const metadata = examLibraryMetadata(assessment);
                   return <tr key={assessment.id} className={open ? "is-available" : "is-locked"}>
-                    <th scope="row" className="student-exams-name">{open ? <AppLink href={href}>{assessment.title}</AppLink> : <span>{assessment.title}</span>}<small>{metadata.category}</small>{reopened && <small className="is-reopened">Reopened · Continue with your saved answers</small>}</th>
+                    <th scope="row" className="student-exams-name">{open ? <AppLink href={href}>{assessment.title}</AppLink> : <span>{assessment.title}</span>}<small>{metadata.category}</small>{reopened && <small className="is-reopened">{reopened.resetAnswers ? 'Section reset · Ready for a fresh attempt' : 'Reopened · Continue with your saved answers'}</small>}</th>
                     <td className="student-exams-year">{metadata.year || "—"}<small>{metadata.form ? "Form " + metadata.form : "No form"}</small></td>
                     <td className="student-exams-sections"><div>{(["english", "math"] as const).map(section => {
                       const available = open && assessment.sectionAccess[section], name = section === "english" ? "English" : "Math";

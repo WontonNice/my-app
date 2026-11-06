@@ -71,7 +71,7 @@ export const content20262027FormBMathSection: ExamMathSection = {
       "sourceQuestion": "52"
     },
     "explanationHtml": "<img src=\"/exam-images/official-shsat-2026-b-d452ded5b0e2a7d48724.png\" alt=\"Official explanation for question 52\">",
-    "skilled": "TBD",
+    "skilled": "module-2021-2022-form-a-q76-k47s5x",
     "explanation": "",
     "points": 1,
     "prompt": "The list shows the results of a survey. A survey was taken to see whether students like basketball, soccer, both, or neither. These were the results:\n25 students like basketball.\n19 students like soccer.\n7 students like both basketball and soccer.\n10 students don’t like either basketball or soccer.\nUse the information provided to determine how many students were surveyed and how many like only soccer.\nMove the correct answer to each box.",

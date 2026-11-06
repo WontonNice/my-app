@@ -1,3 +1,4 @@
+import { usePracticeAccount } from './usePracticeAccount';
 import { useEffect, useState } from 'react';
 import { ArrowRight, Trophy } from 'lucide-react';
 import { managedGeneratorIds, practiceModuleKind, type PracticeCatalog, type PracticeSelection } from '../../../../server/src/shared/practiceCatalog';
@@ -13,7 +14,9 @@ export function PracticeModuleList(props:Props) {
   const {profile}=useAccountProfile();
   const {previewContext}=props;
   const owner=previewContext.isPreview?'preview:'+previewContext.mode+':'+(previewContext.studentId||'teacher'):profile?.id;
-  return <ModuleList key={owner??'loading'} {...props} owner={owner}/>;
+  const sync=usePracticeAccount(previewContext.isPreview?undefined:owner);
+  if(!previewContext.isPreview && (!owner || sync==='loading'))return <p role="status">Loading saved practice…</p>;
+  return <>{!previewContext.isPreview&&(sync==='offline'||sync==='unavailable')&&<p role="status">Showing progress saved on this device. Account sync will retry.</p>}<ModuleList key={owner??'loading'} {...props} owner={owner}/></>;
 }
 function ModuleList({catalog,onStart,category,topic,owner}:Props&{owner?:string}) {
   const [,refresh]=useState(0);
@@ -55,7 +58,7 @@ function ModuleList({catalog,onStart,category,topic,owner}:Props&{owner?:string}
           {!options.modules.length&&!options.unassigned.length&&<p>No practice content is available in this topic yet.</p>}
         </fieldset>
         <small>Each module earns stars at 5, 10, 15, 20, and 25 correct in a row. A wrong answer resets that module’s streak; earned stars stay.</small>
-        {(saveErrors[module.id]||loadFailed)?<p role="alert" className="practice-module-warning">{saveErrors[module.id]||'Saved settings could not be read. Try again with browser storage available.'}</p>:<small>Choices and module stars are saved for your account on this device.</small>}
+        {(saveErrors[module.id]||loadFailed)?<p role="alert" className="practice-module-warning">{saveErrors[module.id]||'Saved settings could not be read. Try again with browser storage available.'}</p>:<small>Your module choices are saved on this device.</small>}
         {!count&&<p role="status">Select at least one module or question type to start a new session.</p>}
         {progress?.resumable&&<><p>Resume keeps your current question set. Start a new session to use these settings; your personal best is kept.</p><button type="button" disabled={!count} onClick={()=>onStart(module.id,selection,true)}>Start new with these settings</button></>}
       </details>}
@@ -63,7 +66,7 @@ function ModuleList({catalog,onStart,category,topic,owner}:Props&{owner?:string}
         <dl><div className="practice-module-record"><dt><Trophy size={14} aria-hidden="true"/>Longest streak</dt><dd>{best}<span> in a row</span></dd></div><div><dt>Accuracy</dt><dd>{checked?`${Math.round(100*(progress?.correct??0)/checked)}%`:'—'}</dd></div><div><dt>Questions checked</dt><dd>{checked}</dd></div></dl>
         {!customizable&&<PracticeStars longestStreak={best}/>}
       </div>
-      <small className="practice-module-save-note">{checked||best?'Accuracy and questions from your latest session. Records saved on this device.':'Start practicing to build your streak and earn stars.'}</small>
+      <small className="practice-module-save-note">{checked||best?'Accuracy and questions from your latest session.':'Start practicing to build your streak and earn stars.'}</small>
     </article>;
   }
   return <div className="math-study-modules practice-module-list" role="region" aria-label="Infinite practice modules">

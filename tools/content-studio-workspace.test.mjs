@@ -18,15 +18,24 @@ const editorFunction = name => {
   return editorHtml.slice(start, next < 0 ? undefined : start + 1 + next);
 };
 
-test('Math Center opens its document when the restored frame is still about:blank', () => {
-  const location = { href: 'about:blank', reload() {} };
-  const frame = { get src() { return '/math-command/'; }, set src(value) { location.href = value; }, contentWindow: { location } };
-  const switchTab = vm.runInNewContext(`${editorFunction('switchTab')}\nswitchTab;`, {
-    app: { state: {}, saving: false }, $$: () => [], document: { getElementById: () => frame },
-    studioUI: { activateWorkspace() {} },
-  });
-  switchTab('math-command');
-  assert.equal(location.href, '/math-command/');
+test('Content Studio links to dashboard Math Center and keeps question context', async () => {
+  assert.doesNotMatch(editorHtml, /math-command-frame|data-tab="math-command"/);
+  assert.match(editorHtml, /href="\/math-command\/" target="_blank" rel="noopener noreferrer"/);
+  const inspector = await readFile(new URL('./content-studio-command.js', import.meta.url), 'utf8');
+  assert.match(inspector, /href="\/math-command\/\?tab=bank&amp;questionId=\$\{encodeURIComponent\(question.id\)\}/);
+  const { runningTeacherWorkspace } = await import('./teacher-workspace.mjs');
+  const previous = process.env.CONTENT_STUDIO_TEACHER_URL;
+  try {
+    process.env.CONTENT_STUDIO_TEACHER_URL = 'https://teacher.example.test';
+    const query = new URLSearchParams([['tab','planner'],['plannerQuestionId','a/b'],['plannerQuestionId','b c']]);
+    const target = new URL(await runningTeacherWorkspace(query.toString()));
+    assert.equal(target.origin, 'https://teacher.example.test');
+    assert.equal(target.pathname, '/teacher/math-command');
+    assert.deepEqual([...target.searchParams], [...query]);
+  } finally {
+    if (previous === undefined) delete process.env.CONTENT_STUDIO_TEACHER_URL;
+    else process.env.CONTENT_STUDIO_TEACHER_URL = previous;
+  }
 });
 
 test('Part B uses its own student document in authoring and Student view without reading content or keys leaking', () => {
@@ -62,7 +71,18 @@ test('Part B uses its own student document in authoring and Student view without
   assert.doesNotMatch(frame.srcdoc, /class="exam-category-card"/);
 });
 
-test('Form D multi-select and inline drag-and-drop, and selectable-text items open the interactive ELA player', async () => {
+test('shared Part B canvas keeps printed sentence numbers without inventing a passage title or paragraph numbers', () => {
+  const render = vm.runInNewContext(`${editorFunction('studentPassageMarkup')}\nstudentPassageMarkup;`, {
+    escapeHtml: value => String(value || ''), location: { origin: 'http://localhost' },
+    richBlocksFromPassage: () => [{ text: '(1) First sentence. (2) Second sentence.', html: '(1) First sentence. (2) Second sentence.' }],
+  });
+  const html = render({ partBEditor: true, preserveSourceLayout: true, format: 'prose', text: '(1) First sentence. (2) Second sentence.', title: '' }, true);
+  assert.match(html, /\(1\) First sentence\. \(2\) Second sentence\./);
+  assert.match(html, /data-author-block="0"/);
+  assert.doesNotMatch(html, /is-title|exam-paragraph-number/);
+});
+
+test('Part B TEIs use the shared authoring workspace and retain the interactive ELA student preview', async () => {
   const source = await readFile(new URL('../client/src/content/exams/standaloneItems.ts', import.meta.url), 'utf8');
   const items = JSON.parse(source.slice(source.indexOf('= [') + 2, source.indexOf('\n];') + 2));
   for (const id of ['official-shsat-2026-d-48', 'official-shsat-2026-d-49', 'official-shsat-2026-b-47']) {
@@ -76,14 +96,14 @@ test('Form D multi-select and inline drag-and-drop, and selectable-text items op
     const context = {
       app, $: selector => selector === '#standalone-editor' ? editor : button,
       studioUI: { captureStandalonePosition() {} }, escapeHtml: String,
+      PartBWorkspace: { mount() { boots++; } },
       openStandaloneStudentPreview() {}, startMathPreviewFrames() { boots++; },
       location: { origin: 'http://localhost:4326' }, clone: structuredClone, window: { addEventListener() {} },
     };
     const actions = vm.runInNewContext(`${editorFunction('renderStandaloneEditor')}\n${editorFunction('sendMathPreview')}\n({renderStandaloneEditor,sendMathPreview});`, context);
     actions.renderStandaloneEditor(); actions.sendMathPreview(frame);
     assert.equal(boots, 1);
-    assert.match(editor.innerHTML, /Interactive Part B student preview/);
-    assert.doesNotMatch(editor.innerHTML, /unsupported|friendly creator/);
+    assert.equal(editor.innerHTML, undefined, 'Part B must delegate instead of constructing a separate editor');
     assert.equal(message.value.preview.subject, 'english');
     assert.equal(message.value.preview.question.id, id);
     assert.equal(message.value.preview.count, 1);

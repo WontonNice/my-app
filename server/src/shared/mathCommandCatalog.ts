@@ -172,8 +172,8 @@ export function reviewMathQuestion(record: MathQuestionRecord,taxonomy:MathTaxon
   return unique(issues);
 }
 
-export function buildMathCommandCatalog(records:MathQuestionRecord[],taxonomy:MathTaxonomy,options:{performance?:Record<string,MathQuestionPerformance>;includeDuplicates?:boolean}={}):MathCatalog {
-  const duplicateResult=options.includeDuplicates===false?{groups:[] as MathDuplicateGroup[],search:{comparedPairs:0,blockedLargeGroups:0,description:"Duplicate scan omitted."}}:findMathDuplicates(records);
+export function buildMathCommandCatalog(records:MathQuestionRecord[],taxonomy:MathTaxonomy,options:{performance?:Record<string,MathQuestionPerformance>;includeDuplicates?:boolean;duplicateResult?:ReturnType<typeof findMathDuplicates>}={}):MathCatalog {
+  const duplicateResult=options.duplicateResult??(options.includeDuplicates===false?{groups:[] as MathDuplicateGroup[],search:{comparedPairs:0,blockedLargeGroups:0,description:"Duplicate scan omitted."}}:findMathDuplicates(records));
   const kinds=new Map<string,MathDuplicateKind[]>();
   for(const group of duplicateResult.groups)for(const id of group.questionIds)kinds.set(id,unique([...(kinds.get(id)||[]),group.kind]));
   const rows=records.map(record=>{
@@ -189,11 +189,12 @@ export function queryMathCommandCatalog(catalog:MathCatalog,filters:MathCatalogF
   const ids=filters.collectionQuestionIds?new Set(filters.collectionQuestionIds):null,exclude=new Set(filters.excludeQuestionIds||[]);
   const terms=words(filters.search).toLowerCase().split(/\s+/).filter(Boolean);
   const rows=catalog.rows.filter(row=>{
-    if(ids&&!ids.has(row.id)||exclude.has(row.id))return false;
+    const appearanceMatches=(set:Set<string>)=>set.has(row.id)||row.sources.some(s=>s.questionId&&set.has(s.questionId));
+    if(ids&&!appearanceMatches(ids)||exclude.size&&appearanceMatches(exclude))return false;
     if(filters.favoritesOnly && !row.personal?.favorite) return false;
     if(filters.teacherLabelIds?.length && !filters.teacherLabelIds.every(id => row.personal?.labelIds.includes(id))) return false;
     if(!matches(filters.skilled,row.skilled??'TBD')||!matches(filters.category,row.category)||!matches(filters.subcategory,row.subcategory)||!matches(filters.diagnosticSkill,row.diagnosticSkill)||!matches(filters.secondarySkill,row.secondarySkills)||!matches(filters.standard,row.standards.filter(s=>s.verified).map(s=>s.code))||!matches(filters.difficulty,row.difficulty||"unclassified")||!matches(filters.responseType,row.type)||!matches(filters.source,[row.source,...row.sources.map(s=>s.source||s.title)])||!matches(filters.year,row.years)||!matches(filters.form,row.forms)||!matches(filters.assessmentId,row.sources.map(s=>s.assessmentId)))return false;
-    if(terms.length){const haystack=[row.id,row.prompt,row.category,row.subcategory,row.skilledLabel??'TBD',row.diagnosticSkill,...row.secondarySkills,row.source,row.context,row.personal?.note ?? "",...(row.teacherLabelNames ?? []),...row.sources.map(s=>s.title)].join(" ").toLowerCase();if(!terms.every(term=>haystack.includes(term)))return false;}
+    if(terms.length){const haystack=[row.id,row.prompt,row.category,row.subcategory,row.skilledLabel??'TBD',row.diagnosticSkill,...row.secondarySkills,row.source,row.context,row.personal?.note ?? "",...(row.teacherLabelNames ?? []),...row.sources.flatMap(s=>[s.title,s.questionId??""])].join(" ").toLowerCase();if(!terms.every(term=>haystack.includes(term)))return false;}
     if(filters.classification === "ai" && !(row.classification?.source === "ai" && row.classification.status !== "approved"))return false;
     if(filters.classification === "teacher" && row.classification?.source !== "teacher")return false;
     if(filters.classification === "approved" && row.classification?.status !== "approved")return false;

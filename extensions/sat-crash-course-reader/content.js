@@ -2,7 +2,7 @@
   const MAX_PAGE_TEXT_LENGTH = 250_000;
   const MAX_ITEM_TEXT_LENGTH = 10_000;
   const MAX_PASSAGE_QUESTIONS = 50;
-  const READER_VERSION = "0.8.5";
+  const READER_VERSION = "0.8.8";
   let scanInProgress = false;
 
   function cleanText(value) {
@@ -261,6 +261,13 @@
       };
     });
 
+    const spotContainer = preview.querySelector('.testSHSATPreview__questionContainerHotSpot');
+    const spotFigures = spotContainer ? [...spotContainer.children].filter(node => node.querySelector('.testSHSATPreview__questionChoiceFigure')) : [];
+    for (const [index, figure] of spotFigures.entries()) {
+      const label = String.fromCharCode(65 + index);
+      choices.push({ label, text: `Figure ${label}`, html: '', media: readMedia(figure),
+        isCorrect: Boolean(previewButton('Hide answer') && figure.classList.contains('testSHSATPreview__choiceContainerHotSpot--correct')) });
+    }
     const selectedChoice = choices.find((choice) => choice.isCorrect);
     const passageId = (passage?.id || "").replace(/^(?:passage|definition)\s+/i, "");
     const richPassage = passage ? NathanSatRichText.passage(passage, getComputedStyle) : null;
@@ -289,7 +296,20 @@
       const selected = [...row.querySelectorAll('input[type="checkbox"]')].map((input, j) => input.checked ? j : -1).filter(j => j >= 0);
       if (selected.length === 1 && matrixCategories[selected[0]]) matrixKeys[matrixItems[i].id] = matrixCategories[selected[0]].id;
     });
-    const interaction = matrixItems.length && matrixCategories.length > 1 ? {
+    const buckets = [...preview.querySelectorAll('.digitalSHSATPreview__bucket')];
+    const tiles = [...preview.querySelectorAll('.digitalSHSATPreview__bucketItem, .digitalSHSATPreview__bucketItem--correct')];
+    const bucketItems = tiles.map((node,i)=>({id:'item-'+(i+1),text:textOf(node),html:rich(node)}));
+    const bucketCategories = buckets.map((node,i)=>({id:'category-'+(i+1),title:textOf(node.querySelector('.digitalSHSATPreview__bucketName'))}));
+    const placements = {};
+    if (answerShown) buckets.forEach((bucket,i)=>{
+      for (const node of bucket.querySelectorAll('.digitalSHSATPreview__bucketItem--correct')) {
+        const item=bucketItems[tiles.indexOf(node)];
+        if (item) placements[item.id]=bucketCategories[i].id;
+      }
+    });
+    const interaction = buckets.length && tiles.length ? {
+      type:'category_sort',items:bucketItems,categories:bucketCategories,correctPlacements:placements,
+    } : matrixItems.length && matrixCategories.length > 1 ? {
       type:'matrix_choice',items:matrixItems,categories:matrixCategories,correctPlacements:matrixKeys,
     } : entries.length ? {
       type: 'short_response',
@@ -308,8 +328,8 @@
     } : hotWords.length ? {
       type: 'hot_text',
       text: textOf(preview.querySelector('.testSHSATPreview__questionHelperText')),
-      contentHtml: NathanSatRichText.fromElement(helper, getComputedStyle, null, node => hotWords.includes(node) ? `<span data-source-option="word-${hotWords.indexOf(node) + 1}">${rich(node)}</span>` : undefined),
-      options: hotWords.map((node, i) => ({ id: `word-${i + 1}`, text: textOf(node), html: rich(node), isCorrect: answerShown && node.classList.contains('correct') })),
+      contentHtml: NathanSatRichText.fromElement(helper, getComputedStyle, null, node => hotWords.includes(node) ? `<span data-source-option="word-${hotWords.indexOf(node) + 1}">${NathanSatRichText.inlinePhrase(rich(node))}</span>` : undefined),
+      options: hotWords.map((node, i) => ({ id: `word-${i + 1}`, text: textOf(node), html: NathanSatRichText.inlinePhrase(rich(node)), isCorrect: answerShown && node.classList.contains('correct') })),
     } : blankHelper ? {
       type: 'sentence_blank',
       contentHtml: NathanSatRichText.fromElement(blankHelper, getComputedStyle, null, node => blankBoxes.includes(node) ? `{{blank-${blankBoxes.indexOf(node) + 1}}}` : undefined),
@@ -323,6 +343,7 @@
       ...(/english/i.test(previewModule()) && (!passage || progress && Number(progress[2])===50 && Number(progress[1])>=47) ? {contentRole:'standalone'} : {}),
       sourceNumber: Number(textOf(preview.querySelector('.testSHSATPreview__questionNumber'))) || null,
       ...(interaction ? { interaction } : {}),
+      ...(spotFigures.length ? {hotSpot:true} : {}),
       ...(choices.length && (requiredSelections || /\b(?:select|choose)\s+all\b/i.test(promptText)) ? {responseType:'multi_select', requiredSelections} : {}),
       passage: passage
         ? {
@@ -454,7 +475,7 @@
       const unkeyed = question;
       if (options.includeAnswer) await setAnswerVisible(true);
       await waitForStableQuestion(question.number, module);
-      await captureDefinitions(definitionWarnings, question.number);
+      const glossary = await captureDefinitions(definitionWarnings, question.number);
       warnings.push(...definitionWarnings);
       let explanation = "";
       const requested = options.includeExplanations !== false;
@@ -464,6 +485,20 @@
       }
       const captured = readCurrentPreviewQuestion();
       if (captured.number !== question.number || previewModule() !== module) throw new Error('The question or module changed during capture.');
+      if (captured.passage) {
+        const enriched = NathanSatRichText.applyGlossary(captured.passage, glossary);
+        captured.passage = {...enriched, ...NathanSatRichText.passageHeading(enriched).metadata};
+      }
+      if (captured.interaction?.type === 'category_sort' && unkeyed.interaction?.type === 'category_sort') {
+        const keyed = captured.interaction;
+        const items = unkeyed.interaction.items;
+        const placements = {};
+        for (const item of items) {
+          const matches=keyed.items.filter(other=>other.text===item.text);
+          if (matches.length===1 && items.filter(other=>other.text===item.text).length===1 && keyed.correctPlacements[matches[0].id]) placements[item.id]=keyed.correctPlacements[matches[0].id];
+        }
+        captured.interaction = {...keyed,items,correctPlacements:placements};
+      }
       if (captured.interaction?.type === 'sentence_blank') {
         captured.interaction.options = unkeyed.interaction?.options || [];
         captured.interaction.contentHtml = unkeyed.interaction?.contentHtml || captured.interaction.contentHtml;
@@ -474,7 +509,7 @@
           : captured.interaction.type === 'inline_dropdown'
             ? captured.interaction.dropdowns.flatMap(menu => menu.options.filter(item => item.isCorrect).map(item => item.text))
             : captured.interaction.type === 'expression_entry' ? [captured.interaction.answer].filter(Boolean)
-            : captured.interaction.type === 'matrix_choice' ? Object.values(captured.interaction.correctPlacements)
+            : ['matrix_choice','category_sort'].includes(captured.interaction.type) ? Object.values(captured.interaction.correctPlacements)
             : (captured.interaction.slots || []).map(slot => slot.answer).filter(Boolean);
         captured.correctAnswer = answers.length ? { label: '', text: answers.join(' | ') } : null;
       }
@@ -497,32 +532,64 @@
     const marks = [...(preview?.querySelectorAll('.testSHSATPreview__definitionMark, [data-glossary-definition]') || [])];
     const popup = () => preview?.querySelector('#definitionDrag');
     const wasOpen = popup() && isVisible(popup()) && !popup().className.includes('--hidden');
-    // Do not change a glossary panel the user already has open.
+    const glossary = [];
+    const selection = document.getSelection?.();
+    const priorRanges = selection ? Array.from({length:selection.rangeCount}, (_,i)=>selection.getRangeAt(i).cloneRange()) : [];
+    let changedSelection = false;
+    const closePopup = () => {
+      if (!wasOpen && popup() && !popup().className.includes('--hidden')) {
+        popup().querySelector('.testSHSATPreview__popupHeaderCloseBig')?.dispatchEvent(new MouseEvent('click', {bubbles:true}));
+      }
+    };
     try {
-      for (const mark of marks) {
-        if (NathanSatRichText.definitionFor(mark)) continue;
-        if (!wasOpen) {
-          const before = textOf(preview.querySelector('.testSHSATPreview__popupDefinition'));
+      for (const [index, original] of marks.entries()) {
+        const term = textOf(original);
+        // React can replace the annotation layers when the popup opens or closes.
+        const ordinal = marks.slice(0,index).filter(node=>textOf(node)===term).length;
+        const mark = original.isConnected !== false ? original : [...preview.querySelectorAll('.testSHSATPreview__definitionMark, [data-glossary-definition]')].filter(node=>textOf(node)===term)[ordinal];
+        if (!mark) { warnings.push(`Question ${number}: Could not locate the glossary term "${term}" after the passage changed.`); continue; }
+        const layer = mark.closest?.('.testSHSATPreview__Definition') || mark.closest?.('.testSHSATPreview__passageText');
+        let occurrence = 0;
+        if (layer && term) {
+          const before = document.createRange();
+          before.selectNodeContents(layer); before.setEndBefore(mark);
+          occurrence = before.toString().split(term).length - 1;
+        }
+        let definition = NathanSatRichText.definitionFor(mark);
+        if (!definition && !wasOpen) {
+          // The source uses the range endpoints (text nodes) on mouseup to identify the glossary entry.
+          const textNode = document.createTreeWalker?.(mark, 4).nextNode();
+          if (textNode && selection) {
+            const range = document.createRange();
+            range.setStart(textNode, Math.min(1,textNode.length)); range.collapse(true);
+            selection.removeAllRanges(); selection.addRange(range); changedSelection = true;
+            mark.dispatchEvent(new MouseEvent('mouseup', {bubbles:true}));
+          }
           mark.click?.();
-          if (typeof MouseEvent !== 'undefined') mark.dispatchEvent?.(new MouseEvent('mouseover', { bubbles: true }));
-          const deadline = Date.now() + 600;
+          const deadline = Date.now() + 1200;
           while (Date.now() < deadline) {
             await nextPaint();
-            const panel = popup(), body = preview.querySelector('.testSHSATPreview__popupDefinition');
-            const value = textOf(body);
-            if (panel && !panel.className.includes('--hidden') && isVisible(panel) && value && value !== before) {
+            const panel = popup(), value = textOf(panel?.querySelector('.testSHSATPreview__popupDefinition'));
+            if (panel && !panel.className.includes('--hidden') && isVisible(panel) && value) {
+              definition = value;
               NathanSatRichText.rememberDefinition(mark, value);
               break;
             }
           }
-          const close = popup()?.querySelector('.testSHSATPreview__popupHeaderCloseBig');
-          if (popup() && !popup().className.includes('--hidden')) close?.dispatchEvent?.(new MouseEvent('click', { bubbles: true }));
+          closePopup();
+          await nextPaint();
         }
-        if (!NathanSatRichText.definitionFor(mark)) warnings.push(`Question ${number}: Definition for "${textOf(mark)}" was unavailable. Recapture its exact source definition before publishing.`);
+        if (definition && term) glossary.push({term,definition,occurrence});
+        else warnings.push(`Question ${number}: Definition for "${term}" was unavailable. Recapture its exact source definition before publishing.`);
       }
     } finally {
-      if (!wasOpen && popup() && !popup().className.includes('--hidden') && typeof MouseEvent !== 'undefined') popup().querySelector('.testSHSATPreview__popupHeaderCloseBig')?.dispatchEvent?.(new MouseEvent('click', { bubbles: true }));
+      closePopup();
+      if (changedSelection) {
+        selection.removeAllRanges();
+        for (const range of priorRanges) if (range.startContainer.isConnected) selection.addRange(range);
+      }
     }
+    return glossary;
   }
 
   async function waitForStableQuestion(number, module) {

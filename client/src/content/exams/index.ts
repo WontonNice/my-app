@@ -1,4 +1,5 @@
 import { createPlainTextPassage } from "./formatters";
+import { digitalShsatPracticeTestAdaptive10HardContent } from "./tests/digital-shsat-practice-test-adaptive-10-hard";
 import { grade9MiniFormContent } from "./tests/grade-9-mini-form";
 import { testnavPartADirections, testnavPartBDirections, testnavMathDirections } from "./testnavDirections";
 import { applyExamPresentation } from '../../../../server/src/shared/examPresentation';
@@ -40,6 +41,7 @@ import type {
 } from "./types";
 
 const examContentByAssessmentId: Record<string, ExamContent> = {
+  [digitalShsatPracticeTestAdaptive10HardContent.assessmentId]: digitalShsatPracticeTestAdaptive10HardContent,
   [grade9MiniFormContent.assessmentId]: grade9MiniFormContent,
   [digitalShsatPracticeTest6Content.assessmentId]: digitalShsatPracticeTest6Content,
   [digitalShsatPracticeTest5Content.assessmentId]: digitalShsatPracticeTest5Content,

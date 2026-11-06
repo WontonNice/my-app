@@ -248,3 +248,27 @@ test('published question edits replace saved wording while new questions are det
   assert.equal(createExamResult(resumed,{e:'A','replacement-math':'5'}).total,2);
   assert.equal(content.mathSection.questions[0].id,'m','Neither input is mutated');
 });
+
+test('an individual English reset starts blank, archives the submission, and leaves math intact on an open exam', async () => {
+  assessment.status='open'; assessment.sectionAccess={english:true,math:true};
+  try {
+    const original=structuredClone(latest());
+    tables.student_exam_sessions.push({user_id:'student',assessment_id:'exam',answers:{e:'A',m:'0'},completed_sections:['english','math'],updated_at:'2025-01-01T00:00:00Z'});
+    const {data:{grant},status}=await call(permissionPath,'teacher','PUT',{sections:['english'],resetAnswers:true});
+    assert.equal(status,200);
+    const detail=(await call('/assessments/student/exam','student')).data.assessment;
+    assert.equal(detail.reentry.id,grant.id);
+    assert.deepEqual(detail.sectionAccess,{english:true,math:false});
+    assert.deepEqual(latest(),original);
+    const draft=answers=>call('/progress/exam-sessions/exam','student','PUT',{answers,completedSections:['math'],reentryGrantId:grant.id});
+    assert.equal((await call('/progress/exam-sessions/exam','student','PUT',{answers:{e:'A'},completedSections:[]})).status,409);
+    assert.deepEqual((await draft({m:'5'})).data.session.answers,{m:'0'});
+    assert.deepEqual((await draft({e:'B'})).data.session.answers,{e:'B',m:'0'});
+    const finished=await call('/progress/exam-results/exam','student','PUT',{result:revision(grant,{m:'5'},['english'])});
+    assert.equal(finished.status,200);
+    assert.equal(latest().answers.m,original.answers.m);
+    assert.ok(!latest().answers.e);
+    assert.deepEqual(latest().subjects.find(v=>v.subject==='Math'),original.subjects.find(v=>v.subject==='Math'));
+    assert.deepEqual(tables.student_exam_results.find(row=>row.assessment_id.includes('__exam_revision__')).result,original);
+  } finally {assessment.status='locked';assessment.sectionAccess={english:false,math:false};}
+});

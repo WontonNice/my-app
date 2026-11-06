@@ -97,6 +97,26 @@ test('positioned MathLive answers remain blank instead of flattening a fraction 
   assert.equal(rich.expressionAnswer(parse('<span class="ML__vlist">21</span>')),'');
   assert.equal(rich.expressionAnswer(parse('<span>30x+45,45+30x</span>')),'30x+45,45+30x');
 });
+test('a revealed numeric fraction uses the numerator above the MathLive fraction bar',()=>{
+  const markup='<span class="ML__mfrac"><span class="ML__vlist"><span style="top:-2.31em">18</span><span style="top:-3.23em"><span class="ML__frac-line"></span></span><span style="top:-3.5em">13</span></span></span>';
+  assert.equal(rich.expressionAnswer(parse(markup)),'13/18');
+  assert.equal(rich.expressionAnswer(parse('2'+markup)),'');
+});
+test('Hot Spot capture keeps figures in order and takes the key only from Show answer',async()=>{
+  const render=(_n,shown)=>h('testSHSATPreview__questionQuestion','Select the correct figure.')+
+    h('testSHSATPreview__questionContainerHotSpot',['A','B'].map(label=>
+      h('testSHSATPreview__choiceContainerHotSpot'+(shown && label==='B'?'--correct':''),
+        '<img class="testSHSATPreview__questionChoiceFigure" src="https://thesatcrashcourse.s3.amazonaws.com/media/'+label+'.png">','div')).join(''),'div');
+  const scan=includeAnswer=>fixture({start:7,render}).scan({includeAnswer,includePassageQuestions:false});
+  const original=(await scan(false)).data.testPreview.question;
+  assert.equal(original.correctAnswer,null);
+  const data=(await scan(true)).data, q=data.testPreview.question;
+  assert.equal(q.hotSpot,true);assert.equal(q.sourceNumber,57);assert.equal(q.correctAnswer.label,'B');
+  const item=(await importer.math(data,async url=>({src:'/exam-images/'+url.split('/').pop()}))).mathQuestions[0];
+  assert.equal(item.hotSpot,true);assert.equal(item.correctChoiceId,'B');
+  assert.deepEqual(Array.from(item.choices,c=>c.image.src),['/exam-images/A.png','/exam-images/B.png']);
+  assert.doesNotMatch(item.promptHtml,/<img/);
+});
 module.exports={fixture};
 
 test('source matrix tables retain every row, column and revealed key; attempted checks are never imported as keys',async()=>{
@@ -115,4 +135,14 @@ test('source matrix tables retain every row, column and revealed key; attempted 
   assert.deepEqual(imported.mathQuestions[0].correctPlacements,JSON.parse(JSON.stringify(q.interaction.correctPlacements)));
   const unkeyed=await fixture({render}).scan({includeAnswer:false,includeExplanations:false,includePassageQuestions:false});
   assert.deepEqual(Object.keys(unkeyed.data.testPreview.question.interaction.correctPlacements),[]);
+});
+
+test('bucket sort uses the original tile order and only explicit revealed bucket placements',async()=>{
+ const render=(_n,shown)=>h('testSHSATPreview__questionQuestion','Sort the details.','span')+
+   (shown?'':h('digitalSHSATPreview__bucketItems',['a','b','c'].map(t=>h('digitalSHSATPreview__bucketItem',t,'div')).join(''),'div'))+
+   ['First','Second'].map((name,i)=>h('digitalSHSATPreview__bucket',h('digitalSHSATPreview__bucketName',name,'h4')+(shown?(i?['a','c']:['b']).map(t=>h('digitalSHSATPreview__bucketItem--correct',t,'div')).join(''):''),'div')).join('');
+ const out=await fixture({render}).scan({includeAnswer:true,includeExplanations:false,includePassageQuestions:false});
+ const interaction=out.data.testPreview.questions[0].interaction;
+ assert.deepEqual(Array.from(interaction.items,i=>i.text),['a','b','c']);
+ assert.deepEqual({...interaction.correctPlacements},{'item-1':'category-2','item-2':'category-1','item-3':'category-2'});
 });

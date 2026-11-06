@@ -150,3 +150,43 @@ test('ordinary management operations perform no network or AI requests and requi
     assert.equal(calls,0);
   }finally{global.fetch=fetch;}
 });
+
+test('manual duplicate decisions combine the bank, preserve exam versions, and honor independent first responses',t=>{
+  const {root,content,contentPath,questions}=fixture(t,1);
+  const original=questions[0],copy={...original,id:'other-version',correctChoiceId:'B'};
+  const second={...content['fixture-exam'],assessmentId:'second',title:'Second exam',mathSection:{questions:[copy]}};
+  const english={...original,id:'reading',prompt:'Choose a theme.',topic:'Theme',skilled:undefined};
+  second.standaloneSection={questions:[english]};
+  content.second=second;
+  const before=JSON.stringify(content);
+  fs.writeFileSync(contentPath,before);
+  const queue=()=>request(root,'GET','/duplicate-review');
+  const decide=(decision,q=queue())=>request(root,'POST','/duplicate-review',{...q.pairs[0],decision,revision:q.revision,signature:q.signature});
+  const initial=queue();
+  assert.equal(initial.pairs.length,1);
+  decide('separate');assert.equal(queue().pairs.length,0);
+  assert.equal(request(root,'GET','/catalog').total,2);
+  decide('undo');decide('link');
+  assert.throws(()=>decide('link',initial),/changed/);
+  const page=request(root,'GET','/catalog');
+  assert.equal(page.total,1);
+  assert.deepEqual(page.items[0].sources.map(s=>[s.assessmentId,s.questionId]),[['fixture-exam','q-1'],['second','other-version']]);
+  assert.equal(request(root,'GET','/catalog',undefined,{filters:JSON.stringify({assessmentId:['second'],search:'q-1'})}).total,1);
+  const inventory=request(root,'GET','/exam-inventory',undefined,{exam:'second'}).rows;
+  assert.deepEqual(inventory.map(r=>[r.subject,r.id,r.tei]),[['English','reading',false],['Math','other-version',false]]);
+  assert.equal(fs.readFileSync(contentPath,'utf8'),before);
+  const {examQuestionRates}=require('../src/shared/examInventory.ts');
+  const {mathEvidenceFromResults}=require('../src/shared/mathCommandAnalytics.ts');
+  const result=(id,date,answers)=>({assessmentId:id,attemptId:date,completedAt:date,completedSections:['math','english'],answers,analysisContent:content[id]});
+  const early=result('fixture-exam','2024-01-01',{'q-1':'B'}),later=result('second','2025-01-01',{'other-version':'B',reading:'A'});
+  const byStudent=new Map([['one',[later,early]],['two',[later]],['blank',[result('second','2025-01-02',{})]]]);
+  const snapshot=mathCatalogSnapshot(root);
+  const rates=examQuestionRates(byStudent,content,snapshot.index.canonical);
+  assert.deepEqual(rates[JSON.stringify(['math',page.items[0].id])],{correct:1,total:2});
+  assert.deepEqual(rates[JSON.stringify(['english','reading'])],{correct:2,total:2});
+  const evidence=mathEvidenceFromResults('one',[later,early],snapshot.records,id=>content[id],snapshot.index.canonical);
+  assert.deepEqual(evidence.map(r=>[r.questionId,r.question.id,r.status,r.previouslyAttempted]),[
+    [page.items[0].id,'q-1','incorrect',false],[page.items[0].id,'other-version','correct',true]
+  ]);
+  decide('undo');assert.equal(request(root,'GET','/catalog').total,2);
+});

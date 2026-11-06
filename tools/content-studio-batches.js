@@ -16,7 +16,7 @@ const MathBatchStudio = {
         <label>Destination test<select id="batch-assessment">${app.state.assessments.map(assessment => `<option value="${escapeHtml(assessment.id)}" ${assessment.id === app.selectedMathAssessmentId ? 'selected' : ''}>${escapeHtml(assessment.title)}</option>`).join('')}</select></label>
         <label>Import format<select id="batch-format"><option value="document">Math question / batch JSON</option><option value="satcc">SAT Crash Course Reader · All 50 math questions</option></select></label>
         </div>
-        <p id="batch-sat-help" hidden>On the source test page, select Mathematics. In SAT Crash Course Reader select All 50 math questions, then copy or download JSON and import it here. Short answers, expression entry, multiple selections, dropdowns, and drag blanks stay editable in their matching question types. Formulas and available source diagrams are preserved. Missing keys, unsupported interactions, and partial captures are flagged for review.</p>
+        <p id="batch-sat-help" hidden>On the source test page, select Mathematics. In SAT Crash Course Reader select All 50 math questions, then copy or download JSON and import it here. Hot Spot, Fill In The Blank, Equation Editor, Multiple Response, and Inline Choice questions keep their response formats. Formulas and available source diagrams are preserved. Missing keys, unsupported interactions, and partial captures are flagged for review.</p>
         ${entryId ? '<p>Your saved import will be added to the test you choose. Previously added questions are kept.</p>' : ''}
         <label>Paste Math JSON<textarea id="batch-source" rows="6" spellcheck="false" aria-describedby="batch-json-help batch-message" placeholder="Paste the complete JSON returned by ChatGPT here.">${escapeHtml(previousSource)}</textarea></label>
         <small id="batch-json-help">Accepts one question or a batch. Select a destination test above, then use Import into Math test below.</small>
@@ -54,10 +54,12 @@ const MathBatchStudio = {
           // Keep existing unsaved authoring work before replacing the editor's section.
           if (app.mathDirty) { await saveMath(); if (app.mathDirty) throw new Error('Save your current Math edits before importing. Your edits are still in the editor.'); }
           const added = [], existing = [], errors = [];
+          let retainedRecords = false;
           for (const body of [...(entryId ? [{entryId}] : []), ...sources.map(source => ({source}))]) {
             try {
               const result = await api('/api/math/import', {method:'POST', body:JSON.stringify({...body, assessmentId})});
               added.push(...result.added); existing.push(...result.existing); errors.push(...result.errors);
+              if (result.errors.length && result.retainedDrafts) retainedRecords = true;
             } catch (error) { errors.push(error.message); }
           }
           const openEditor = async () => {
@@ -70,7 +72,8 @@ const MathBatchStudio = {
             setStatus(`${added.length} ${added.length === 1 ? 'question' : 'questions'} added to the Math test and marked red.${existing.length ? ` ${existing.length} already in this test; existing edits kept.` : ''}${errors.length ? ` ${errors.length} records could not be imported; their input was retained.` : ''}`, errors.length ? 'error' : 'success');
           };
           if (errors.length) {
-            message.textContent = `${added.length} ${added.length === 1 ? 'question' : 'questions'} added and marked red. ${existing.length} already in the test.\n${errors.join('\n')}\nYour JSON remains here for retry. Unusable source records are also retained in Saved import drafts; correct their JSON or edit the existing question in the Content Editor.`;
+            const counts = added.length || existing.length ? `${added.length} added. ${existing.length} already in the test.\n` : '';
+            message.textContent = counts + errors.join('\n') + (retainedRecords ? '\nReview the retained records in Saved import drafts.' : '');
             const openButton = dialog.querySelector('#batch-open-editor'); openButton.hidden = !(added.length || existing.length); openButton.onclick = openEditor;
             if (added.length || existing.length) dialog.querySelector('#batch-close').onclick = openEditor;
           } else { await openEditor(); }

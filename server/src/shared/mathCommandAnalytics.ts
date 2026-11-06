@@ -53,7 +53,7 @@ const percent = (correct: number, total: number) => total ? Math.round(correct /
 const chronological = (a: MathAttemptEvidence, b: MathAttemptEvidence) => (a.at ?? "9999").localeCompare(b.at ?? "9999") || a.id.localeCompare(b.id);
 
 /** Historical question snapshots retain the key actually used, even after content edits. */
-export function mathEvidenceFromResults(studentId: string, results: Partial<ExamResult>[], catalog: MathQuestionSource[], contentFor: (id: string) => ExamContent | null): MathAttemptEvidence[] {
+export function mathEvidenceFromResults(studentId: string, results: Partial<ExamResult>[], catalog: MathQuestionSource[], contentFor: (id: string) => ExamContent | null, canonical = new Map<string,string>()): MathAttemptEvidence[] {
   const byId = new Map(catalog.map(row => [row.id, row]));
   const deduplicated = new Map<string, Partial<ExamResult>>();
   for (const result of results) {
@@ -78,7 +78,7 @@ export function mathEvidenceFromResults(studentId: string, results: Partial<Exam
       const mappedItem = sheet?.mapping?.items.find(item => item.questionId === question.id);
       const releasedStatus = mappedItem && sheet?.grade?.items.find(item => item.itemId === mappedItem.itemId)?.status;
       const status: MathEvidenceStatus = releasedStatus || (correctAnswer === null || !mathAnswerStatus(question).valid ? "pending" : !mathAnswerPresent(answer) ? "unanswered" : isExamQuestionCorrect(question, answer ?? undefined) ? "correct" : "incorrect");
-      evidence.push({id:`${studentId}:${result.assessmentId}:${attemptId}:${question.id}`,studentId,questionId:question.id,assessmentId:result.assessmentId!,assessmentTitle:result.title || content.title,questionNumber:index+1,attemptId,at,timeSeconds: typeof result.questionTimes?.[question.id] === "number" && Number.isFinite(result.questionTimes[question.id]) && result.questionTimes[question.id] > 0 ? result.questionTimes[question.id] : null,answer,correctAnswer,status,category:current?.question.topic || question.topic || "",subcategory:current?.question.subtopic || question.subtopic || "",diagnosticSkill:String(current?.metadata?.diagnosticSkill || ""),prompt:question.prompt,question,previouslyAttempted:false,source:result.source || "digital",gradingBasis:releasedStatus?"released_grade":result.analysisContent||sheet?.analysisContent?"saved_snapshot":"current_key"});
+      evidence.push({id:`${studentId}:${result.assessmentId}:${attemptId}:${question.id}`,studentId,questionId:canonical.get(question.id)??question.id,assessmentId:result.assessmentId!,assessmentTitle:result.title || content.title,questionNumber:index+1,attemptId,at,timeSeconds: typeof result.questionTimes?.[question.id] === "number" && Number.isFinite(result.questionTimes[question.id]) && result.questionTimes[question.id] > 0 ? result.questionTimes[question.id] : null,answer,correctAnswer,status,category:current?.question.topic || question.topic || "",subcategory:current?.question.subtopic || question.subtopic || "",diagnosticSkill:String(current?.metadata?.diagnosticSkill || ""),prompt:question.prompt,question,previouslyAttempted:false,source:result.source || "digital",gradingBasis:releasedStatus?"released_grade":result.analysisContent||sheet?.analysisContent?"saved_snapshot":"current_key"});
     });
   }
   const seen = new Set<string>();
@@ -129,14 +129,14 @@ export function mathSkillMetrics(rows: MathAttemptEvidence[], rules: MathWeaknes
   }).sort((a,b)=>Number(b.needsAttention)-Number(a.needsAttention)||(a.accuracy??101)-(b.accuracy??101)||a.label.localeCompare(b.label));
 }
 
-export function selectMathAssignment(catalog: MathQuestionSource[], seenIds: Set<string>, assignedIds: Set<string>, rules: MathAssignmentRules) {
+export function selectMathAssignment(catalog: MathQuestionSource[], seenIds: Set<string>, assignedIds: Set<string>, rules: MathAssignmentRules, duplicateGroups=findMathDuplicates(catalog).groups) {
   if(!rules||typeof rules!=="object"||Array.isArray(rules))throw new Error("Choose assignment selection rules.");
   const count=rules.count??10;if(!Number.isInteger(count)||count<1||count>100)throw new Error("Choose 1–100 questions.");
   if(rules.questionIds&&(!Array.isArray(rules.questionIds)||rules.questionIds.length>100||rules.questionIds.some(id=>typeof id!=="string")))throw new Error("Choose at most 100 existing question IDs.");
   const reviewCount=rules.reviewCount??0;if(!Number.isInteger(reviewCount)||reviewCount<0||reviewCount>count)throw new Error("Review count must be between zero and the requested count.");
   const families=new Map<string,string>();
   // Numeric templates and merely similar questions remain distinct; exact copies do not.
-  for(const group of findMathDuplicates(catalog).groups.filter(group=>group.kind==="exact"))for(const id of group.questionIds)families.set(id,group.id);
+  for(const group of duplicateGroups.filter(group=>group.kind==="exact"))for(const id of group.questionIds)families.set(id,group.id);
   const family=(id:string)=>families.get(id)??id;
   const seenFamilies=new Set([...seenIds,...assignedIds].map(family));
   const alreadySeen=(id:string)=>seenFamilies.has(family(id));

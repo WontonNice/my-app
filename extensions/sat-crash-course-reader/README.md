@@ -1,5 +1,19 @@
 # SAT Crash Course Reader
 
+## Version 0.8.8 — Math section exports
+
+The Reader labels downloads with the captured module and shows saved results only for the matching page and capture mode. Hot Spot figures retain their original order, image files, and revealed answers. Simple numeric fractions in Equation Editor answers retain their numerator and denominator.
+
+## Version 0.8.7 — Hot Text
+
+Selectable phrases stay inside the surrounding sentence, including when the source wraps a phrase in its own paragraph. Reload the unpacked extension and refresh the test page to use this version.
+
+## Version 0.8.6 — ELA passage imports
+
+The reader captures source glossary selections from each annotation layer and records which occurrence was marked. The importer separates source credits, titles and bylines from passage paragraphs and poem stanzas. A standalone TeX dollar sign in prose becomes a literal dollar sign. Bucket-sort questions keep their original tiles and the placements shown by the source answer key.
+
+Reload the unpacked extension and refresh the test preview before capturing again.
+
 ## Version 0.8.5 — standalone English routing
 
 The digital 50-question English profile marks questions 47–50 as standalone, including

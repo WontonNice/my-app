@@ -182,6 +182,13 @@ import { massachusettsLowellNationalHistoricalPark20192020FormBPassageSet } from
 import { martialArtsForTheMindAndBody20192020FormBPassageSet } from "./passageSets/martial-arts-for-the-mind-and-body-2019-2020-form-b";
 import { findTimeToVolunteer20202021FormAPassageSet } from "./passageSets/find-time-to-volunteer-2020-2021-form-a";
 import { theFreeCollegeDebate20202021FormBPassageSet } from "./passageSets/the-free-college-debate-2020-2021-form-b";
+import { excerptFromTheAdventuresOfTomSawyerDigitalShsatPracticeTestAdaptive10PassageSet } from "./passageSets/excerpt-from-the-adventures-of-tom-sawyer-digital-shsat-practice-test-adaptive-10";
+import { fromASmallShelfToAGiantCollectionTheLibraryOfCongressDigitalShsatPracticeTestAdaptive10PassageSet } from "./passageSets/from-a-small-shelf-to-a-giant-collection-the-library-of-congress-digital-shsat-practice-test-adaptive-10";
+import { whereJazzBeganTheMusicOfEarlyNewOrleansDigitalShsatPracticeTestAdaptive10PassageSet } from "./passageSets/where-jazz-began-the-music-of-early-new-orleans-digital-shsat-practice-test-adaptive-10";
+import { aBirdCameDownTheWalkDigitalShsatPracticeTestAdaptive10PassageSet } from "./passageSets/a-bird-came-down-the-walk-digital-shsat-practice-test-adaptive-10";
+import { excerptFromTheHuddleAndTheColdDigitalShsatPracticeTestAdaptive10PassageSet } from "./passageSets/excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10";
+import { theWearyBluesDigitalShsatPracticeTestAdaptive10PassageSet } from "./passageSets/the-weary-blues-digital-shsat-practice-test-adaptive-10";
+import { excerptFromGettingKiteMakingRightDigitalShsatPracticeTestAdaptive10PassageSet } from "./passageSets/excerpt-from-getting-kite-making-right-digital-shsat-practice-test-adaptive-10";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -365,6 +372,13 @@ export const examPassageLibrary: ExamPassageSet[] = [
   martialArtsForTheMindAndBody20192020FormBPassageSet,
   findTimeToVolunteer20202021FormAPassageSet,
   theFreeCollegeDebate20202021FormBPassageSet,
+  excerptFromTheAdventuresOfTomSawyerDigitalShsatPracticeTestAdaptive10PassageSet,
+  fromASmallShelfToAGiantCollectionTheLibraryOfCongressDigitalShsatPracticeTestAdaptive10PassageSet,
+  whereJazzBeganTheMusicOfEarlyNewOrleansDigitalShsatPracticeTestAdaptive10PassageSet,
+  aBirdCameDownTheWalkDigitalShsatPracticeTestAdaptive10PassageSet,
+  excerptFromTheHuddleAndTheColdDigitalShsatPracticeTestAdaptive10PassageSet,
+  theWearyBluesDigitalShsatPracticeTestAdaptive10PassageSet,
+  excerptFromGettingKiteMakingRightDigitalShsatPracticeTestAdaptive10PassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);

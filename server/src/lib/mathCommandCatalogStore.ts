@@ -1,3 +1,4 @@
+import { orderByQuestionIds } from '../shared/examQuestionOrder';
 import fs from "node:fs";
 import path from "node:path";
 import { createHash, randomUUID } from "node:crypto";
@@ -15,6 +16,7 @@ import { practiceSkillSnapshot } from './practiceSkillContext';
 export type MathManagementState = {
   classificationSkills?: import('../shared/mathClassificationSkills').MathClassificationSkill[];
   retiredClassificationSkillIds?: string[];
+  duplicateDecisions?: import("../shared/mathDuplicateReview").DuplicateDecision[];
   revision: string;
   taxonomyTopicRenames?: {category:string;from:string;to:string;toCategory?:string}[];
   teacherLabels?: Record<string, import("../shared/teacherLabels").TeacherLabels>;
@@ -79,7 +81,7 @@ export function readMathCommandCatalog(root = mathCommandRoot): MathQuestionReco
   for(const [id,flags]of localFlags){if(flags.some(Boolean))draftIds.add(id);else draftIds.delete(id);}
   const records = new Map<string, MathQuestionRecord>();
   for (const exam of Object.values(content)) {
-    for (const [index, question] of (exam.mathSection?.questions ?? []).entries()) {
+    for (const [index, question] of orderByQuestionIds(exam.mathSection?.questions ?? [],exam.questionOrder).entries()) {
       const previous = records.get(question.id);
       const year = exam.title.match(/\b(20\d{2}(?:[-–]20\d{2})?)\b/)?.[1];
       const form = exam.title.match(/\bform\s+([a-z0-9]+)/i)?.[1]?.toUpperCase();

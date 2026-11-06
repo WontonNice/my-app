@@ -34,9 +34,11 @@ async function findLocalApp() {
   }));
   return matches.find(Boolean);
 }
+export async function runningTeacherWorkspace(query = '') {
+  const origin = await configuredOrigin() || await findLocalApp();
+  return origin ? teacherDestination(origin, query) : null;
+}
 async function startLocalApp() {
-  const existing = await findLocalApp();
-  if (existing) return existing;
   await mkdir(join(root, 'tools/.content-drafts'), { recursive: true });
   const log = await open(join(root, 'tools/.content-drafts/teacher-workspace.log'), 'a');
   const child = process.platform === 'win32'
@@ -55,8 +57,8 @@ async function startLocalApp() {
   throw new Error('The teacher app could not start. Run npm run dev in the project folder, then retry. Startup details: tools/.content-drafts/teacher-workspace.log.');
 }
 export async function openTeacherWorkspace(query = '') {
-  const configured = await configuredOrigin();
-  if (configured) return { url: teacherDestination(configured, query) };
+  const existing = await runningTeacherWorkspace(query);
+  if (existing) return { url: existing };
   starting ||= startLocalApp().finally(() => { starting = undefined; });
   return { url: teacherDestination(await starting, query) };
 }

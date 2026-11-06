@@ -446,6 +446,19 @@ const studioUI = {
     this.selectedQuestionId = previous?.question || "";
     this.selectedQuestionIndex = previous?.index || 0;
   },
+  inlineChoiceEditor(q) {
+    return `<section class="wide"><label class="field"><span>Sentence with answer menus</span><textarea data-english-dropdown-layout>${escapeHtml((q.dropdownContent || []).join('\n'))}</textarea><small>Keep {{menu-id}} where each menu belongs.</small></label>${(q.dropdowns || []).map((menu, i) => `<fieldset><legend>Menu ${i + 1}</legend>${menu.options.map((option, j) => `<label class="field"><span>Option ${j + 1}</span><input data-english-dropdown-option="${i}:${j}" value="${escapeHtml(option.text)}"></label>`).join('')}<label class="field"><span>Correct answer</span><select data-english-dropdown-key="${i}"><option value="">Choose an answer</option>${menu.options.map(option => `<option value="${escapeHtml(option.id)}" ${menu.correctChoiceId === option.id ? 'selected' : ''}>${escapeHtml(option.text)}</option>`).join('')}</select></label></fieldset>`).join('')}</section>`;
+  },
+  bindInlineChoice(root, q) {
+    root.querySelector('[data-english-dropdown-layout]')?.addEventListener('input', event => { q.dropdownContent = event.target.value.split('\n'); delete q.dropdownContentHtml; markDirty(); });
+    root.querySelectorAll('[data-english-dropdown-option]').forEach(input => input.oninput = () => {
+      const [i,j] = input.dataset.englishDropdownOption.split(':').map(Number), option = q.dropdowns[i].options[j];
+      option.text = input.value; delete option.html;
+      root.querySelectorAll(`[data-english-dropdown-key="${i}"] option`)[j + 1].textContent = input.value;
+      markDirty();
+    });
+    root.querySelectorAll('[data-english-dropdown-key]').forEach(select => select.onchange = () => { q.dropdowns[Number(select.dataset.englishDropdownKey)].correctChoiceId = select.value; markDirty(); });
+  },
 
   initialize() {
     const header = document.querySelector(".app-header");
@@ -481,7 +494,7 @@ const studioUI = {
       // Preserve dialog-specific save flows and the practice validation gate.
       if (document.querySelector("dialog[open]") || !document.getElementById("student-preview-modal").hidden) return;
       event.preventDefault();
-      const save = document.querySelector('.view.is-active #save-document-draft') || document.querySelector(".view.is-active #save-passage, .view.is-active #save-standalone, .view.is-active #save-test, .view.is-active #save-math, .view.is-active #practice-write-button");
+      const save = document.querySelector('.view.is-active #standalone-document-editor #doc-save, .view.is-active #save-document-draft') || document.querySelector(".view.is-active #save-passage, .view.is-active #save-standalone, .view.is-active #save-test, .view.is-active #save-math, .view.is-active #practice-write-button");
       if (save && !save.disabled) save.click();
       else if (document.querySelector("#practice-view.is-active")) document.getElementById("practice-preview-button").click();
     });
@@ -575,7 +588,6 @@ const studioUI = {
       tests: "Exam builder · arrange Reading, Part A, and Part B.",
       math: app.mathDirty ? "Unsaved math changes." : "Exam math · questions, answer keys, and student preview.",
       compare: "Compare tests · find repeated questions and passages in saved content.",
-      'math-command': "Math Command Center · inventory, classification, coverage, and student practice.",
       practice: "Practice drafts save on this device. Preview to validate before publishing.",
     };
     setStatus(messages[tab] || "Ready.");
@@ -608,7 +620,7 @@ const studioUI = {
   },
 
   getLibrarySlice(items, key, signature, type = "", sort = "source") {
-    const filtered = items.filter((item) => !type || (key === "passages" ? item.format : item.type) === type);
+    const filtered = items.filter((item) => !type || (key === "passages" ? item.format : item.selectionHtml ? "hot_text" : item.type) === type);
     if (sort !== "source") filtered.sort((a, b) => {
       const categoryLabel = passage => app.state?.passageCategories?.find(category => category.value === (passage.passageCategory || "miscellaneous"))?.label || passage.passageCategory || "miscellaneous";
       const difference = sort.startsWith("category") ? categoryLabel(a).localeCompare(categoryLabel(b)) * (sort === "category-desc" ? -1 : 1) : sort.startsWith("questions") ? (a.questions.length - b.questions.length) * (sort === "questions" ? -1 : 1) : (a.title || a.prompt || a.id).localeCompare(b.title || b.prompt || b.id) * (sort === "za" ? -1 : 1);
@@ -630,7 +642,7 @@ const studioUI = {
       controls = this.element("div", "studio-library-filters", `
         <select aria-label="${isPassage ? "Filter passage format" : "Filter question type"}">
           <option value="">${isPassage ? "All formats" : "All types"}</option>
-          ${isPassage ? '<option value="prose">Prose</option><option value="poem">Poem</option><option value="sentence_prose">Sentence numbered</option>' : '<option value="multiple_choice">Multiple choice</option><option value="category_sort">Drag and drop</option>'}
+          ${isPassage ? '<option value="prose">Prose</option><option value="poem">Poem</option><option value="sentence_prose">Sentence numbered</option>' : '<option value="multiple_choice">Multiple choice</option><option value="hot_text">Hot Text</option><option value="category_sort">Drag and drop</option>'}
         </select>
         <select aria-label="Sort library"><option value="source">Source order</option><option value="az">Title A–Z</option><option value="za">Title Z–A</option>${isPassage ? '<option value="category">Category A–Z</option><option value="category-desc">Category Z–A</option><option value="questions">Most questions</option><option value="questions-asc">Fewest questions</option>' : ''}</select>`);
       controls.id = `${key}-filters`;
@@ -681,15 +693,16 @@ const studioUI = {
     const slots = [];
     const content = sentence.replace(/\[blank\]/gi, () => { const id = `blank-${++index}`; slots.push({ id, correctItemId: sameCount ? previous[index - 1]?.correctItemId || '' : '' }); return `{{${id}}}`; });
     question.dragDropContent = content.split('\n'); question.dragDropSlots = slots;
+    delete question.dragDropContentHtml;
     if (slots.length > 1 && question.instructions === 'Move the correct answer to the box.') question.instructions = 'Move a word into each blank.';
     delete question.correctChoiceId; delete question.transitionBlankBefore; delete question.transitionBlankAfter;
   },
   transitionSentenceMarkup(question) {
     const layout = this.transitionLayout(question);
-    return layout.content.map(line => `<p class="exam-transition-sentence">${line.split(/(\{\{[\w-]+\}\})/g).map(part => {
-      const id = /^\{\{([\w-]+)\}\}$/.exec(part)?.[1];
-      return id ? `<button aria-label="Blank ${layout.slots.findIndex(slot => slot.id === id) + 1}" class="exam-transition-blank" data-preview-transition-target="${escapeHtml(id)}" type="button"></button>` : escapeHtml(part);
-    }).join('')}</p>`).join('');
+    const html = question.dragDropContentHtml ? DocumentImport.sanitizeRichText(question.dragDropContentHtml)
+      : layout.content.map(line => `<p>${escapeHtml(line)}</p>`).join('');
+    return `<div class="exam-rich-response-template">${html.replace(/\{\{([\w-]+)\}\}/g, (token, id) =>
+      layout.slots.some(slot => slot.id === id) ? `<button aria-label="Blank ${layout.slots.findIndex(slot => slot.id === id) + 1}" class="exam-math-drag-slot" data-preview-transition-target="${escapeHtml(id)}" type="button">&nbsp;</button>` : token)}</div>`;
   },
   transitionKeyFields(question) {
     const slots = this.transitionLayout(question).slots;
@@ -902,7 +915,7 @@ const studioUI = {
     const draft = app.passageDraft;
     if (!draft) return;
     const heading = document.querySelector("#passage-editor .editor-head h1");
-    if (heading) heading.textContent = draft.title || "Untitled passage";
+    if (heading) heading.textContent = draft.partBEditor ? 'Part B question' : draft.title || "Untitled passage";
     const summary = document.querySelector(".studio-record-summary");
     if (summary) summary.textContent = `${draft.questions.length} question${draft.questions.length === 1 ? "" : "s"} · ${draft.text.trim() ? draft.text.trim().split(/\s+/).length : 0} words`;
     this.syncSaveState?.();
@@ -1015,7 +1028,8 @@ const studioUI = {
         card.querySelectorAll(".choices > .choice").forEach(choice => choice.classList.toggle("is-correct", Boolean(choice.querySelector("[data-correct-choice]:checked"))));
         card.querySelectorAll(".studio-choice-key span").forEach(label => label.textContent = label.parentElement.querySelector("input").checked ? "✓ Correct answer" : "Set as correct");
       };
-      updateKey(); card.querySelectorAll("[data-correct-choice]").forEach(input => input.addEventListener("change", updateKey));
+      updateKey(); card.querySelector('[data-hot-editor]')?.addEventListener('hot-text-change', updateKey);
+      card.querySelectorAll("[data-correct-choice]").forEach(input => input.addEventListener("change", updateKey));
       const explanation = this.element("section", "studio-inline-explanation");
       explanation.innerHTML = `<h3>Answer explanation</h3><div class="rich-editor-shell">${richToolbarHtml("Explanation formatting")}<div class="rich-editor-content is-compact" role="textbox" aria-label="Explanation for question ${index + 1}" contenteditable="true" data-rich-kind="explanation" data-question-index="${index}" data-placeholder="Explain why the answer is correct.">${inlineRichValue(question.explanationHtml, question.explanation)}</div></div>`;
       card.append(explanation); bindRichEditors(explanation);
@@ -1438,8 +1452,8 @@ const studioUI = {
         questionNav.querySelectorAll("[data-math-question-index]").forEach((button) => {
           const item = app.mathDraft.questions[Number(button.dataset.mathQuestionIndex)];
           const searchMatch = /^\d+$/.test(query)
-            ? query !== String(Number(button.dataset.mathQuestionIndex) + 1)
-            : !`${item.prompt} ${item.type} ${item.topic} ${item.subtopic || 'unclassified'} ${(app.state.mathManagement?.classificationSkills||[]).find(skill=>skill.id===item.skilled)?.label||'TBD'} ${this.teacherSearchText(item.id)}`.toLowerCase().includes(query);
+            ? query !== String(Number(button.dataset.mathQuestionIndex) + 1) && query !== item.source?.sourceQuestion
+            : !`${item.prompt} ${item.type} ${DocumentImport.mathTypeLabel(item)} ${item.topic} ${item.subtopic || 'unclassified'} ${(app.state.mathManagement?.classificationSkills||[]).find(skill=>skill.id===item.skilled)?.label||'TBD'} ${this.teacherSearchText(item.id)}`.toLowerCase().includes(query);
           button.hidden = Boolean(skilledFilter.value&&(item.skilled||'TBD')!==skilledFilter.value) || searchMatch || needsEditing.checked && !item.importNeedsEditing || Boolean(category.value && item.topic !== category.value) || Boolean(specific.value && (specific.value === '__unclassified__' ? item.subtopic && item.subtopic !== 'Unclassified' : item.subtopic !== specific.value));
         });
         let empty = questionNav.querySelector(".studio-search-empty");
@@ -2210,7 +2224,7 @@ Object.assign(studioUI, {
     card.querySelector('.studio-answer-summary')?.remove();
     card.querySelector('header strong').textContent = `Question ${this.selectedQuestionIndex + 1}`;
     const hint = this.element('p', 'field-note', 'Edit the prompt and answer choices in the preview. Open Answer summary to change the key.');
-    if (!['multiple_choice', 'multi_select'].includes(q.type)) hint.textContent = 'Edit the prompt in the preview. Configure the answer interaction and key below.';
+    if (q.selectionHtml || !['multiple_choice', 'multi_select'].includes(q.type)) hint.textContent = 'Edit the prompt in the preview. Configure the answer interaction and key below.';
     panel.append(hint, card);
     if (q.review?.warnings?.length) {
       const notes = this.element('details', 'math-import-warnings', `<summary>Import notes · Source Question ${escapeHtml(q.review.sourceQuestion || this.selectedQuestionIndex + 1)}</summary><ul>${q.review.warnings.map(note => `<li>${escapeHtml(note.message)}</li>`).join('')}</ul>`);
@@ -2331,7 +2345,7 @@ Object.assign(studioUI, {
   updateCanvasAnswerKey() {
     const q = app.passageDraft?.questions[this.selectedQuestionIndex];
     const summary = document.getElementById('studio-preview-answer-key');
-    if (summary) { const answer = q?.type === 'multi_select' ? q.correctChoiceIds?.join(', ') : q?.correctChoiceId; const placement = q?.dragDropSlots ? `${q.dragDropSlots.filter(slot => slot.correctItemId).length} of ${q.dragDropSlots.length} blanks keyed` : q?.items ? `${q.items.filter(item => q.correctPlacements?.[item.id]).length} of ${q.items.length} assigned` : ''; summary.textContent = `Answer summary · ${answer || placement || 'Not set'}`; summary.title = 'View all question answers and deliberately edit a key.'; }
+    if (summary) { const answer = q?.type === 'multi_select' ? q.correctChoiceIds?.join(', ') : q?.correctChoiceId; const placement = q?.dropdowns ? `${q.dropdowns.filter(menu => menu.correctChoiceId).length} of ${q.dropdowns.length} menus keyed` : q?.dragDropSlots ? `${q.dragDropSlots.filter(slot => slot.correctItemId).length} of ${q.dragDropSlots.length} blanks keyed` : q?.items ? `${q.items.filter(item => q.correctPlacements?.[item.id]).length} of ${q.items.length} assigned` : ''; summary.textContent = `Answer summary · ${answer || placement || 'Not set'}`; summary.title = 'View all question answers and deliberately edit a key.'; }
     const doc = document.getElementById('studio-exam-canvas')?.contentDocument;
     doc?.querySelectorAll('.exam-choice').forEach(row => {
       row.classList.toggle('studio-key-correct', Boolean(row.querySelector('input:checked')));
@@ -2406,10 +2420,14 @@ Object.assign(studioUI, {
     const nav = document.querySelector('.tabbar');
     const picker = this.element('label', 'studio-section-switcher', '<span>Workspace</span><select id="studio-section-picker" aria-label="Content section"></select>');
     picker.querySelector('select').innerHTML = [...nav.querySelectorAll('[data-tab]')].map(button => `<option value="${button.dataset.tab}">${button.textContent}</option>`).join('');
-    picker.querySelector('select').insertAdjacentHTML('beforeend', '<option value="answer-sheets">Digital answer sheets ↗</option>');
+    picker.querySelector('select').insertAdjacentHTML('beforeend', '<option value="dashboard-math">Dashboard Math Center ↗</option><option value="answer-sheets">Digital answer sheets ↗</option>');
     picker.querySelector('select').onchange = event => {
       const requested = event.target.value;
-      if (requested === "answer-sheets") { window.open(document.querySelector(".content-studio-answer-sheets").href, "_blank", "noopener"); event.target.value = document.body.dataset.workspace; return; }
+      if (requested === "dashboard-math" || requested === "answer-sheets") {
+        nav.querySelector(requested === "dashboard-math" ? 'a[href="/math-command/"]' : '.content-studio-answer-sheets').click();
+        event.target.value = document.body.dataset.workspace;
+        return;
+      }
       switchTab(requested);
       event.target.value = document.body.dataset.workspace;
     };
@@ -2417,7 +2435,7 @@ Object.assign(studioUI, {
     header.append(document.getElementById('open-document-drafts'));
     nav.hidden = false;
     nav.classList.add('studio-universal-nav');
-    const names = { passages: 'Reading', 'part-a': 'Part A', standalone: 'Part B', tests: 'Exam builder', math: 'Math', 'math-command': 'Math Center', compare: 'Compare tests', advanced: 'SAT', practice: 'Practice', 'question-bank': 'Question bank' };
+    const names = { passages: 'Reading', 'part-a': 'Part A', standalone: 'Part B', tests: 'Exam builder', math: 'Math', compare: 'Compare tests', advanced: 'SAT', practice: 'Practice', 'question-bank': 'Question bank' };
     nav.querySelectorAll('[data-tab]').forEach(button => { button.title = button.textContent; button.setAttribute('aria-label', button.textContent); button.textContent = names[button.dataset.tab]; });
     picker.after(nav);
     header.append(document.getElementById('open-document-drafts'));

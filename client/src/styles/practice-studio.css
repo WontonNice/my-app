@@ -173,3 +173,13 @@
 @media(max-width:600px) { .ps-usage-row { align-items:start; flex-direction:column; } .practice-studio .ps-bulk label { max-width:none; } }
 @media(max-width:900px) { .ps-workspace { grid-template-columns:1fr; } .ps-items { max-height:250px; } .ps-heading { align-items:start; } .ps-heading > button { margin-top:25px; } }
 @media(max-width:600px) { .ps-heading { display:block; } .ps-heading > button { margin-top:18px; } .ps-fields { grid-template-columns:1fr; } .ps-editor { padding:20px; } .ps-savebar { align-items:start; } .ps-savebar span { max-width:55%; } }
+
+.ps-recommended { margin: 16px 0; border-block: 1px solid #cddbd3; }
+.ps-recommended > summary { padding: 16px 0; font-weight: 700; cursor: pointer; }
+.ps-recommended > fieldset { display: grid; gap: 14px; max-width: 52rem; border: 0; margin: 0; padding: 0 0 18px; }
+.ps-recommended-row { display: flex; flex-wrap: wrap; align-items: end; gap: 10px; }
+.ps-recommended-row > label { flex: 1 1 18rem; }
+.ps-recommended label:not(.ps-check) { display: grid; gap: 4px; }
+.ps-recommended-templates { max-height: 18rem; overflow: auto; border: 1px solid #cddbd3; padding: 12px; }
+.ps-recommended .ps-recommended-templates label { display: flex; gap: 10px; align-items: center; padding: 6px; }
+.ps-recommended-templates small { display: block; color: #52655c; }

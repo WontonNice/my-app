@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
@@ -9,7 +9,7 @@ import { examVerificationStore } from './exam-verification.mjs';
 test('manual verification survives reopening and independent concurrent updates; unchecking persists', async () => {
   const dir = await mkdtemp(join(tmpdir(), 'exam-verification-'));
   try {
-    const path = join(dir, 'metadata.json'), store = examVerificationStore(path);
+    const path = join(dir, 'marks'), store = examVerificationStore(path);
     assert.deepEqual(await store.read(), {});
     await Promise.all([store.set('form-a', true), store.set('form-b', true)]);
     const reopened = examVerificationStore(path);
@@ -21,6 +21,23 @@ test('manual verification survives reopening and independent concurrent updates;
     assert.equal(saved['form-a'].verified, false);
     assert.equal(saved['form-b'].verified, true);
   } finally { await rm(dir, { recursive: true, force: true }); }
+});
+
+test('legacy marks and explicit unchecks recover in a replacement checkout', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'exam-verification-'));
+  try {
+    const legacy = join(root, 'old.json'), backup = join(root, 'personal');
+    const older = { verified: true, updatedAt: '2026-10-01T00:00:00.000Z' };
+    await writeFile(legacy, JSON.stringify({ a: older, b: older }));
+    const original = examVerificationStore(join(root, 'first'), { legacy, backup });
+    assert.deepEqual(await original.read(), { a: older, b: older });
+    await original.set('b', false);
+    const fresh = examVerificationStore(join(root, 'replacement'), { legacy, backup });
+    const records = await fresh.read();
+    assert.equal(records.a.verified, true);
+    assert.equal(records.b.verified, false);
+    assert.deepEqual(await examVerificationStore(join(root, 'replacement')).read(), records);
+  } finally { await rm(root, { recursive: true, force: true }); }
 });
 
 const source = await readFile(new URL('./content-studio-workspace.js', import.meta.url), 'utf8');

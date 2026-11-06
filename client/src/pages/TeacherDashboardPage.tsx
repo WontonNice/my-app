@@ -995,7 +995,7 @@ export function StudentDetail({
           return <><SectionScoreBreakdown assessment={assessment} result={exam.result} /><details className="sa-individual-details"><summary>View individual analytics</summary><IndividualExamAnalytics evidence={exam.evidence} result={exam.result} /></details></>;
         }} />
       <details className="sa-retained-section"><summary>Data coverage & source notes</summary><p>{evidenceStatus}</p></details>
-      {accessToken && <details className="sa-retained-section"><summary>Reopen an accidentally submitted exam</summary><TeacherExamReentry key={student.id} accessToken={accessToken} assessments={assessments} students={[student]} initialStudentId={student.id} /></details>}
+      {accessToken && <details className="sa-retained-section"><summary>Reopen or reset an exam section</summary><TeacherExamReentry key={student.id} accessToken={accessToken} assessments={assessments} students={[student]} initialStudentId={student.id} /></details>}
       <details className="sa-retained-section"><summary>Score entry & source tools</summary>
 
       <details className="teacher-paper-score-entry">
@@ -1706,7 +1706,7 @@ export function TeacherDashboardPage() {
 
       {activeWorkspace === "assessments" && !insightAssessmentId ? (
       <section className="teacher-assessments-hub" id="assessments">
-        {accessToken && <details className="assessment-reentry-tool"><summary><RotateCcw size={15} /> Reopen an exam for an individual student</summary><TeacherExamReentry accessToken={accessToken} assessments={assessments} students={shsatStudents} /></details>}
+        {accessToken && <details className="assessment-reentry-tool"><summary><RotateCcw size={15} /> Reopen or reset a student’s exam section</summary><TeacherExamReentry accessToken={accessToken} assessments={assessments} students={shsatStudents} /></details>}
         <div className="assessment-library-summary">
           <div><span><strong>{assessments.length}</strong> assessments</span><span><strong>{assessments.filter(assessment => assessment.sectionAccess.english || assessment.sectionAccess.math).length}</strong> open</span><span><strong>{classAssessmentInsights.reduce((sum, insight) => sum + insight.fullSubmissions, 0)}</strong> full exams submitted</span><span><strong>{shsatStudents.length}</strong> students</span></div>
           <AppLink className="assessment-button" href="/teacher/answer-sheets"><ClipboardList size={15} /> Digital answer sheets <ArrowUpRight size={13} /></AppLink>

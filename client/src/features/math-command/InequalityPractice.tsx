@@ -1,3 +1,4 @@
+import { flushPracticeAccount, usePracticeAccount } from './usePracticeAccount';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useAccountProfile } from '../account/account';
 import { X } from 'lucide-react';
@@ -16,16 +17,24 @@ import { managedGeneratorIds, practiceModuleKind, type PracticeCatalog, type Man
 import { PracticeModuleList } from './PracticeModuleList';
 import { PracticeFeedback, PracticeStats } from './PracticeFeedback';
 import { PracticeStars } from './PracticeStars';
-import { readPracticeProgress } from './practiceSessionStorage';
+import { readPracticeProgress, readSavedPractice } from './practiceSessionStorage';
 
 type PracticeProps = { onClose?: () => void; renderOverview?: (overview: ReactNode) => ReactNode; initialModuleId?: string; catalog?:PracticeCatalog; initialSelection?:PracticeSelection; initialStartNew?:boolean; previewOnly?:boolean; presentation?:'fullscreen'|'mini' };
 export function InequalityPractice(props:PracticeProps) {
   const {profile,error}=useAccountProfile(),context=getStudentPreviewContext();
   const owner=props.previewOnly?'generator-preview':context.isPreview?'preview:'+context.mode+':'+(context.studentId||'teacher'):profile?.id;
+  const accountOwner = props.previewOnly || context.isPreview ? undefined : owner;
+  const sync = usePracticeAccount(accountOwner);
+  if(accountOwner && sync==='loading')return <p role="status">Loading saved streaks…</p>;
+  if(accountOwner && sync==='unavailable' && props.initialModuleId && !props.initialStartNew) {
+    let cached;
+    try { cached=readSavedPractice(localStorage,accountOwner,props.initialModuleId); } catch { /* Account sync will retry. */ }
+    if(!cached)return <div role="status"><p>Reconnect to check your saved streak before starting this module.</p>{props.onClose&&<button onClick={props.onClose}>Back to practice</button>}</div>;
+  }
   if(!owner)return <p role="status">{error||'Loading your practice session…'}</p>;
-  return <PracticeContent key={owner} {...props} owner={owner}/>;
+  return <PracticeContent key={owner} {...props} owner={owner} sync={accountOwner ? sync : undefined}/>;
 }
-function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, initialSelection, initialStartNew=false, previewOnly=false, presentation='fullscreen',owner }: PracticeProps & {owner:string}) {
+function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, initialSelection, initialStartNew=false, previewOnly=false, presentation='fullscreen',owner,sync }: PracticeProps & {owner:string;sync?:ReturnType<typeof usePracticeAccount>}) {
   const mini=previewOnly&&presentation==='mini',previewRef=useRef<HTMLElement>(null);
   const { session: state, update, save, saveError, resume, personalBest } = useInfinitePracticeSession(initialModuleId,catalog,initialSelection,!previewOnly,owner,initialStartNew);
   const [previewMode, setPreviewMode] = useState<'browse'|'streak'>('browse');
@@ -34,7 +43,11 @@ function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, in
   useEffect(() => { if (!onClose||mini) return; const before = document.body.style.overflow; document.body.style.overflow = 'hidden'; return () => { document.body.style.overflow = before; }; }, [onClose,mini]);
   useEffect(()=>{if(mini)previewRef.current?.focus({preventScroll:true});},[mini]);
   const leave = () => onClose ? onClose() : window.location.assign(appendStudentPreview('/study-hall/shsat/materials?subject=math'));
-  const saveAndExit = () => { if(save())leave(); };
+  const saveAndExit = async () => {
+    if(!save())return;
+    if(sync && state)await flushPracticeAccount(owner,state.moduleId);
+    leave();
+  };
   const end = () => update(previous => previous ? { ...previous, finished: true } : previous);
   const start = (id: string,selection:PracticeSelection={},startNew=false) => { update(() => (!previewOnly&&!startNew?resume(id):null)??createPracticeState(id, crypto.randomUUID().slice(0, 8),catalog,selection)); setChoosing(false); };
   const modules=catalog?catalog.modules.filter(module=>module.published):practiceModules;
@@ -74,7 +87,7 @@ function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, in
         feedback: correct===undefined?null:<PracticeFeedback question={question} correct={correct}/>,
         controls: (!previewOnly||previewMode==='streak')&&<section className="mc-session-options" aria-label="Session progress">
           {foundation?moduleRecords(true):<p>This question type: {state.generatorStreaks?.[currentPracticeGeneratorId(state)]??0} correct in a row</p>}
-          {previewOnly?<p>Preview session · progress is not saved</p>:<p title="Your streaks and hidden question types are saved on this device.">Saved on this device</p>}
+          {previewOnly?<p>Preview session · progress is not saved</p>:<p role="status">{(sync==='offline'||sync==='unavailable')?'Saved on this device. Account sync will retry.':sync==='saving'?'Saving streaks to your account…':sync==='saved'?'Streaks saved to your account':'Saved on this device'}</p>}
           <button className="mc-session-finish" type="button" onClick={end}>Finish session</button>
           {saveError&&<p role="alert">{saveError}</p>}
         </section>,

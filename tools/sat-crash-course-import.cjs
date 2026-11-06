@@ -1,6 +1,6 @@
 /* Convert Reader exports into existing authoring contracts; never infer an answer. */
 const { createHash } = require('node:crypto');
-const { proseHtml } = require('../extensions/sat-crash-course-reader/rich-text.js');
+const { proseHtml, passageHeading, applyGlossary, inlinePhrase } = require('../extensions/sat-crash-course-reader/rich-text.js');
 const text = value => typeof value === 'string' ? value : '';
 const escape = value => text(value).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const plain = html => text(html).replace(/<br\s*\/?>|<\/p>/gi, '\n').replace(/<[^>]+>/g, '').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&amp;/g, '&').trim();
@@ -39,21 +39,17 @@ function passageHtml(passage) {
 }
 function passagePresentation(passage) {
   const blocks = passage?.formattedBlocks || [];
-  const titleIndex = blocks.findIndex((block, i) => i < 3 && /^Excerpt from\s/.test(plain(proseHtml(block.html || escape(block.text)))));
-  const byline = blocks[titleIndex + 1];
-  if (titleIndex < 0 || !/^by\s+/i.test(plain(proseHtml(byline?.html || escape(byline?.text))))) return { passage, metadata: {} };
-  const metadata = {
-    title: plain(proseHtml(blocks[titleIndex].html || escape(blocks[titleIndex].text))),
-    titleHtml: proseHtml(blocks[titleIndex].html || escape(blocks[titleIndex].text)),
-    byline: plain(proseHtml(byline.html || escape(byline.text))),
-    bylineHtml: proseHtml(byline.html || escape(byline.text)),
-    blurb: blocks.slice(0, titleIndex).map(b => plain(proseHtml(b.html || escape(b.text)))).join('\n'),
-    blurbHtml: blocks.slice(0, titleIndex).map(b => `<p>${proseHtml(b.html || escape(b.text))}</p>`).join(''),
-  };
-  metadata.author = metadata.byline.replace(/^by\s+/i, '');
+  const {end,metadata} = passageHeading(passage);
+  if (!end) return {passage,metadata};
   let html = text(passage.html);
-  for (const block of blocks.slice(0, titleIndex + 2)) html = html.replace(block.html, '');
-  return { metadata, passage: { ...passage, html, formattedBlocks: blocks.slice(titleIndex + 2) } };
+  for (const block of blocks.slice(0, end)) html = html.replace(block.html, '');
+  return { metadata, passage: { ...passage, html, formattedBlocks: blocks.slice(end) } };
+}
+function passageFormat(passage, presentation) {
+  const blurb = passage?.blurb || presentation.metadata.blurb || '';
+  const firstParagraph = presentation.passage?.formattedBlocks?.[0]?.text || '';
+  if (passage?.format !== 'poem' && /numbered sentences/i.test(blurb) && /^\s*\(1\)\s[\s\S]*\(2\)\s/.test(firstParagraph)) return 'sentence_prose';
+  return passage?.format || 'prose';
 }
 function sourceMetadata(data) {
   return { ...data.source, sourceFamily:'sat_crash_course', sourceFormat:'web', playerProfile:'sat_crash_course', sourceId:text(data.source?.sourceId) || `satcc-${hash(text(data.source?.url).split(/[?#]/)[0])}`, label:text(data.source?.label) || text(data.testPreview?.testTitle) };
@@ -63,7 +59,10 @@ function isReader(data) { return Boolean(data?.testPreview && data?.source); }
 function preview(data, kind) {
   const p = data.testPreview;
   if (!p || !Array.isArray(p.questions) || !p.questions.length || p.questions.length > 50) throw new Error('The reader export needs 1–50 captured questions.');
-  if (kind === 'math' ? !/math/i.test(p.module || '') : !/english/i.test(p.module || '')) throw new Error(`Use a ${kind === 'math' ? 'Mathematics' : 'Part B / English Language Arts'} reader export here.`);
+  if (kind === 'math' && !/math/i.test(p.module || '')) {
+    throw new Error(`This file contains ${p.questions.length} questions from ${p.module || 'an unidentified section'}. Open Mathematics on the source test, choose “All 50 math questions” in the Reader, select Read, and download the new Mathematics JSON.`);
+  }
+  if (kind !== 'math' && !/english/i.test(p.module || '')) throw new Error('Use a Part B / English Language Arts reader export here.');
   if (kind === 'part-b' && p.capture?.mode !== 'part-b') throw new Error('Choose Revising/Editing Part B in SAT Crash Course Reader and export the requested question range.');
   const numbers = p.questions.map(q => q.number);
   if (numbers.some(n => !Number.isInteger(n) || n < 1 || n > 50) || new Set(numbers).size !== numbers.length) throw new Error('Reader question numbers are missing, duplicated, or outside 1–50.');
@@ -131,6 +130,39 @@ function mathResponse(q, options, warnings) {
   return q.responseType === 'multi_select' || selected.length > 1 ? {type:'multi_select', choices:options, correctChoiceIds:selected, ...(q.requiredSelections || selected.length ? {requiredSelections:q.requiredSelections || selected.length} : {})}
     : {type:'multiple_choice', choices:options, correctChoiceId:key(q, options)};
 }
+function hotTextResponse(interaction, warn) {
+  const words = interaction.options || [];
+  const choices = words.map((word, i) => ({
+    id: String.fromCharCode(65 + i), text: text(word.text), html: inlinePhrase(proseHtml(word.html)),
+  }));
+  const correct = choices.filter((_, i) => words[i].isCorrect).map(choice => choice.id);
+  const ids = new Map(words.map((word, i) => [word.id, choices[i].id]));
+  const found = new Set();
+  let depth = 0, phrase = '', selectionHtml = '';
+  // Repair older captures before an HTML parser closes the surrounding
+  // paragraph. Only flatten blocks within a marked phrase.
+  for (const token of proseHtml(interaction.contentHtml).split(/(<\/?span\b[^>]*>)/i)) {
+    const marker = /^<span\b[^>]*\bdata-source-option=["']([^"']+)["']/i.exec(token);
+    if (!depth && marker && ids.has(marker[1])) {
+      found.add(marker[1]);
+      selectionHtml += `<span data-choice-id="${ids.get(marker[1])}">`;
+      depth = 1;
+    } else if (depth) {
+      if (/^<span\b/i.test(token)) depth++;
+      if (/^<\/span>/i.test(token)) depth--;
+      if (depth) phrase += token;
+      else { selectionHtml += inlinePhrase(phrase) + '</span>'; phrase = ''; }
+    } else selectionHtml += token;
+  }
+  if (depth) selectionHtml += inlinePhrase(phrase) + '</span>';
+  if (depth || !choices.length || found.size !== words.length) {
+    warn('Source Hot Text is missing selectable phrase markup. Review the source and mark the phrases before publishing.');
+    selectionHtml = selectionHtml || escape(interaction.text);
+  }
+  return {type: correct.length > 1 ? 'multi_select' : 'multiple_choice', choices, selectionHtml,
+    ...(correct.length > 1 ? {correctChoiceIds:correct, requiredSelections:correct.length} : {correctChoiceId:correct[0] || ''})};
+}
+
 function partB(data) {
   const p = preview(data, 'part-b');
   return { format: 'nathan-tutors-part-b-v1', source:sourceMetadata(data), questions: p.questions.map(q => {
@@ -140,9 +172,7 @@ function partB(data) {
     const base = { sourceQuestion: String(q.sourceNumber || q.number), prompt: plain(q.promptHtml) || text(q.prompt), promptHtml: text(q.promptHtml), stimulus: text(q.passage?.text) || plain(stimulusHtml), stimulusHtml,
       explanation: plain(q.explanationHtml) || text(q.explanation), explanationHtml: text(q.explanationHtml), topic: '', points: 1, versionLabels: [text(p.testTitle)].filter(Boolean), notes };
     if (q.interaction?.type === 'hot_text') {
-      const words = q.interaction.options || [], correct = words.filter(item => item.isCorrect);
-      notes.push('Source hot-text selection imported as multiple choice. The selectable words remain in source order; the original interaction is retained below.');
-      return { ...base, type: 'multiple_choice', choices: words.map((w, i) => ({ id: String.fromCharCode(65 + i), text: text(w.text), html: text(w.html) })), correctChoiceId: correct.length === 1 ? String.fromCharCode(65 + words.indexOf(correct[0])) : '', sourceInteraction: q.interaction };
+      return { ...base, ...hotTextResponse(q.interaction, message => notes.push(message)), sourceInteraction: q.interaction };
     }
     if (q.interaction?.type === 'sentence_blank' && q.interaction.slots?.length === 1) {
       const interaction = q.interaction, items = interaction.options.map((item, i) => ({ id: `card-${i + 1}`, text: text(item.text), html: text(item.html) }));
@@ -179,6 +209,10 @@ async function math(data, resolveImage) {
       for (const item of media) {
         const asset = await image(item, options[i].id);
         if (asset) {
+          if (q.hotSpot && media.length === 1) {
+            options[i].image = {...asset, alt: options[i].text};
+            continue;
+          }
           const original=`src="${escape(item.url)}"`;
           options[i].html = options[i].html.includes(original) ? options[i].html.split(original).join(`src="${escape(asset.src)}"`) : options[i].html + `<br><img src="${escape(asset.src)}" alt="${escape(asset.alt)}">`;
         }
@@ -199,7 +233,7 @@ async function math(data, resolveImage) {
       if(asset) explanationHtml=explanationHtml.split(`src="${escape(media.url)}"`).join(`src="${escape(asset.src)}"`);
     }
     const response = mathResponse(q, options, warnings);
-    mathQuestions.push({ id, ...response, prompt: plain(q.promptHtml) || text(q.prompt), promptHtml,
+    mathQuestions.push({ id, ...response, ...(q.hotSpot && options.length ? {hotSpot:true} : {}), prompt: plain(q.promptHtml) || text(q.prompt), promptHtml,
       explanation: plain(q.explanationHtml) || text(q.explanation), explanationHtml, topic:'', subtopic:'', points:1, visuals,
       source:{...sourceMetadata(data),section:'math',questionNumber:q.number,sourceQuestionNumber:q.sourceNumber || q.number},
       review: { sourceFile: text(p.testTitle), sourceQuestion: String(q.number), printedPages: `Site question ${q.sourceNumber || q.number}`, warnings },
@@ -239,7 +273,7 @@ async function ela(data, resolveImage = async () => {throw Error('No source asse
       }
       return result;
     }
-    const sp=group.sourcePassage, presentation=passagePresentation(sp), richText=await localize(passageHtml(presentation.passage),sp?.media);
+    const sp=applyGlossary(group.sourcePassage,group.sourcePassage?.glossary), presentation=passagePresentation(sp), richText=await localize(passageHtml(presentation.passage),sp?.media);
     const definedTerms=new Set([...richText.matchAll(/<span\b[^>]*\bdata-glossary-definition="([^"]+)"[^>]*>([\s\S]*?)<\/span>/g)].filter(match=>plain(match[1])).map(match=>plain(match[2])));
     const missingTerms=(sp?.glossaryTerms || []).filter(term=>!definedTerms.has(term));
     if(missingTerms.length)warnings.push({code:'POSSIBLE_FORMATTING_LOSS',message:`Source has glossary popups for ${missingTerms.join(', ')}, but this export contains only the terms. Capture their exact source definitions before claiming glossary fidelity.`,state:'unresolved'});
@@ -250,21 +284,17 @@ async function ela(data, resolveImage = async () => {throw Error('No source asse
       for(let i=0;i<options.length;i++)options[i].html=await localize(options[i].html,q.choices[i].media,id);
       let response;
       if(q.interaction?.type==='hot_text') {
-        const words=q.interaction.options || [], selected=words.filter(w=>w.isCorrect).map(w=>String.fromCharCode(65+words.indexOf(w)));
-        let selectionHtml=proseHtml(q.interaction.contentHtml);
-        words.forEach((w,i)=>{selectionHtml=selectionHtml.split(`data-source-option="${w.id}"`).join(`data-choice-id="${String.fromCharCode(65+i)}"`);});
-        if(!selectionHtml) {selectionHtml=escape(q.interaction.text);qw.push({code:'POSSIBLE_FORMATTING_LOSS',message:'Legacy hot-text export lacks selectable source markup; recapture with Reader 0.8.0.',state:'unresolved'});}
-        response={type:selected.length>1?'multi_select':'multiple_choice',choices:words.map((w,i)=>({id:String.fromCharCode(65+i),text:w.text,html:proseHtml(w.html)})),selectionHtml,...(selected.length>1?{correctChoiceIds:selected,requiredSelections:selected.length}:{correctChoiceId:selected[0]||''})};
+        response=hotTextResponse(q.interaction, message => qw.push({code:'POSSIBLE_FORMATTING_LOSS',message,state:'unresolved'}));
       } else if(q.interaction?.type==='sentence_blank') {
         const interaction=q.interaction;
-        response={type:'transition_drop',choices:interaction.options.map(item=>({id:item.id,text:item.text,html:proseHtml(item.html)})),dragDropContent:[plain(proseHtml(interaction.contentHtml))],dragDropContentHtml:proseHtml(interaction.contentHtml),dragDropSlots:interaction.slots.map(slot=>{const matches=interaction.options.filter(item=>item.text===slot.answer);return {id:slot.id,correctItemId:matches.length===1?matches[0].id:''};}),allowReuse:false};
+        response={type:'transition_drop',dragDropStyle:'outlined',choices:interaction.options.map(item=>({id:item.id,text:item.text,html:proseHtml(item.html)})),dragDropContent:[plain(proseHtml(interaction.contentHtml))],dragDropContentHtml:proseHtml(interaction.contentHtml),dragDropSlots:interaction.slots.map(slot=>{const matches=interaction.options.filter(item=>item.text===slot.answer);return {id:slot.id,correctItemId:matches.length===1?matches[0].id:''};}),allowReuse:false};
       } else response=mathResponse(q,options,qw);
       const choiceUrls=new Set((q.choices||[]).flatMap(c=>(c.media||[]).map(m=>m.url)));
       questions.push({id,...response,prompt:plain(proseHtml(q.promptHtml))||text(q.prompt),promptHtml:await localize(q.promptHtml||escape(q.prompt),(q.media||[]).filter(m=>!choiceUrls.has(m.url)),id),explanation:plain(proseHtml(q.explanationHtml))||text(q.explanation),explanationHtml:await localize(q.explanationHtml,q.explanationMedia,id),points:1,topic:'',source:{...source,section:'ela',questionNumber:q.number,sourceQuestionNumber:q.sourceNumber||q.number},sourceInteraction:q.interaction||null,sourceRecord:q,review:{sourceFile:p.testTitle,sourceQuestion:String(q.sourceNumber||q.number),warnings:qw}});
     }
     if(group.standalone) {
       englishQuestions.push(...questions.map(q=>({...q,stimulus:passageText(richText,sp?.format)||text(sp?.text),stimulusHtml:richText,versionLabels:[p.testTitle].filter(Boolean),source:{...q.source,section:'revising_editing_a'},review:{...q.review,warnings:[...q.review.warnings,...warnings]},visuals})));
-    } else passages.push({id:`${source.sourceId}-${groupKey}`.toLowerCase().replace(/[^a-z0-9-]/g,'-'),...presentation.metadata,title:text(sp?.title)||presentation.metadata.title||'',author:text(sp?.author)||presentation.metadata.author||'',byline:text(sp?.byline)||presentation.metadata.byline||'',blurb:text(sp?.blurb)||presentation.metadata.blurb||'',sourceNote:text(sp?.sourceNote),label:text(sp?.label)||text(sp?.title),versionLabel:p.testTitle,source,sourceRecord:sp||null,format:sp?.format||'prose',passageType:sp?.format==='poem'?'poem':'long_reading',passageCategory:'prestige',section:sp?.section||'reading',text:passageText(richText,sp?.format)||text(sp?.text),richText,questions,review:{sourceFile:p.testTitle,expectedQuestionCount:questions.length,warnings},visuals});
+    } else passages.push({id:`${source.sourceId}-${groupKey}`.toLowerCase().replace(/[^a-z0-9-]/g,'-'),...presentation.metadata,title:text(sp?.title)||presentation.metadata.title||'',author:text(sp?.author)||presentation.metadata.author||'',byline:text(sp?.byline)||presentation.metadata.byline||'',blurb:text(sp?.blurb)||presentation.metadata.blurb||'',sourceNote:text(sp?.sourceNote),label:text(sp?.label)||text(sp?.title)||presentation.metadata.title||'',versionLabel:p.testTitle,source,sourceRecord:sp||null,format:passageFormat(sp,presentation),passageType:sp?.format==='poem'?'poem':'long_reading',passageCategory:'prestige',section:sp?.section||'reading',text:passageText(richText,sp?.format)||text(sp?.text),richText,questions,review:{sourceFile:p.testTitle,expectedQuestionCount:questions.length,warnings},visuals});
   }
   return {format:'nathan-tutors-official-passage-v1',source,passages,...(englishQuestions.length?{englishQuestions}:{}),questionOrder:p.questions.map(q=>`${source.sourceId}-ela-${q.number}`),reviewNotes:p.capture?.warnings||[]};
 }
