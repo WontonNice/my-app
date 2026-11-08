@@ -1,268 +1,139 @@
-import { useMemo, useState } from "react";
-import { ArrowLeft, ArrowRight, BookMarked, BookOpen, FileText, Filter, KeyRound, Library, Search } from "lucide-react";
-import { AppLink } from "../components/AppLink";
-import { StudentPortalShell } from "../components/StudentPortalShell";
-import { MathStudyHall } from "../components/MathStudyHall";
-import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
-import { signOutCurrentAccount } from "../lib/accountSwitching";
-import {
-  studentMaterials,
-  readingPracticeMaterials,
-  editingPracticeMaterials,
-  revisingEditingMaterial,
-  studentLibraryBooks,
-  advancedPassageMaterials,
-  type MaterialSubject,
-  type ReadingFormat,
-  type StudentMaterial,
-} from "../lib/studentMaterials";
-import { appendStudentPreview, type StudentPreviewContext } from "../lib/studentPreview";
-import { PASSAGE_CATEGORIES, passageCategory, passageCategoryLabel } from "../../../server/src/shared/passageCategories";
-import "../styles/learning-plan.css";
-import "../styles/study-hall-navigation.css";
-
-type PassageFilter = Exclude<ReadingFormat, "Long reading"> | "All passage types";
-
-const passageFilters: PassageFilter[] = ["All passage types", "Poem", "Literary", "Informational"];
-
-function getInitialSubject(): MaterialSubject {
-  return new URLSearchParams(window.location.search).get("subject") === "math" ? "Math" : "English";
-}
-
-function getInitialQuery() {
-  return new URLSearchParams(window.location.search).get("q") ?? "";
-}
-
-function materialMatchesQuery(material: StudentMaterial, query: string) {
-  if (!query) return true;
-  return [
-    material.title,
-    material.author,
-    material.description,
-    material.category,
-    material.questionType,
-    material.libraryCollection,
-    material.readingFormat,
-  ].join(" ").toLowerCase().includes(query);
-}
+import {learningCategories,categoryFor} from '../../../server/src/shared/learningTaxonomy';
+import { getLibraryBookSettings } from '../lib/api';
+import { getExamLibraryPassage } from '../content/exams/passageLibrary';
+import { libraryBookNeedsReview, type LibraryBookSettings } from '../../../server/src/shared/libraryBooks';
+import '../styles/library-book-settings.css';
+import { useEffect, useState } from 'react';
+import { ArrowLeft, ArrowRight, BookOpen, Search, X } from 'lucide-react';
+import { AppLink } from '../components/AppLink';
+import { StudentPortalShell } from '../components/StudentPortalShell';
+import { MathStudyHall } from '../components/MathStudyHall';
+import { StudyHallWorksheetLinks } from '../components/StudyHallWorksheetLinks';
+import { useStudentPortalAccess } from '../hooks/useStudentPortalAccess';
+import { signOutCurrentAccount } from '../lib/accountSwitching';
+import { readingPracticeMaterials, editingPracticeMaterials, studentLibraryBooks, advancedPassageMaterials, materialMatchesQuery, type StudentMaterial } from '../lib/studentMaterials';
+import { appendStudentPreview, type StudentPreviewContext } from '../lib/studentPreview';
+import { studyHallEntries, studyHallSections, studyHallLocation, studyHallHref } from '../lib/studyHallNavigation';
+import { PASSAGE_CATEGORIES, passageCategory, passageCategoryLabel } from '../../../server/src/shared/passageCategories';
+import '../styles/learning-plan.css';
+import '../styles/study-hall-navigation.css';
+import '../styles/study-hall-catalog.css';
 
 export function StudentMaterialsPage({ teacherWorkspace = false }: { teacherWorkspace?: boolean }) {
-  const { isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess(teacherWorkspace);
-  const [activeSubject, setActiveSubject] = useState<MaterialSubject>(getInitialSubject);
-  const [activePassageType, setActivePassageType] = useState<PassageFilter>("All passage types");
-  const [isFiltersOpen, setIsFiltersOpen] = useState(true);
-  const [query, setQuery] = useState(getInitialQuery);
-  const [sourceCategory, setSourceCategory] = useState("");
-  const [passageSort, setPassageSort] = useState("title");
-  const [advancedGenre, setAdvancedGenre] = useState("");
-  const [advancedSort, setAdvancedSort] = useState("title");
-  const normalizedQuery = query.trim().toLowerCase();
-
-  const topicMaterials = useMemo(
-    () => (activeSubject === "English" ? readingPracticeMaterials : studentMaterials).filter((material) => (
-      material.subject === activeSubject &&
-      material.kind !== "Passage practice" &&
-      material.kind !== "Long reading" &&
-      materialMatchesQuery(material, normalizedQuery)
-    )),
-    [activeSubject, normalizedQuery],
-  );
-
-  const passageMaterials = useMemo(
-    () => studentLibraryBooks.filter((material) => {
-      if (material.subject !== "English" || material.kind !== "Passage practice" || material.libraryCollection === "Advanced Reading") return false;
-      if (activePassageType !== "All passage types" && material.readingFormat !== activePassageType) return false;
-      if (sourceCategory && !(material.passageCategories ?? [passageCategory(material.passageCategory)]).includes(passageCategory(sourceCategory))) return false;
-      return materialMatchesQuery(material, normalizedQuery);
-    }).sort((a, b) => passageSort === "category" ? passageCategoryLabel(a.passageCategory).localeCompare(passageCategoryLabel(b.passageCategory)) || a.title.localeCompare(b.title) : (passageSort === "title-desc" ? -1 : 1) * a.title.localeCompare(b.title)),
-    [activePassageType, normalizedQuery, sourceCategory, passageSort],
-  );
-
-  const longReadingMaterials = useMemo(
-    () => studentLibraryBooks.filter((material) => (
-      material.subject === "English" &&
-      material.kind === "Long reading" &&
-      (!sourceCategory || passageCategory(material.passageCategory) === sourceCategory) &&
-      materialMatchesQuery(material, normalizedQuery)
-    )),
-    [normalizedQuery, sourceCategory],
-  );
-
-  const advancedMaterials = useMemo(() => advancedPassageMaterials
-    .filter(material => (!advancedGenre || material.questionType === advancedGenre) && materialMatchesQuery(material, normalizedQuery))
-    .sort((a, b) => (advancedSort === "title-desc" ? -1 : 1) * a.title.localeCompare(b.title)),
-  [advancedGenre, advancedSort, normalizedQuery]);
-
-  async function handleSignOut() {
-    if (isSupabaseConfigured) await signOutCurrentAccount();
-    window.location.assign("/");
+  const { accessToken, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess(teacherWorkspace);
+  const [bookSettings, setBookSettings] = useState<Record<string, LibraryBookSettings>>({});
+  const [settingsError, setSettingsError] = useState('');
+  useEffect(() => { if (!accessToken) return; let current = true; getLibraryBookSettings(accessToken).then(result => { if (current) setBookSettings(result.settings); }).catch(() => { if (current) setSettingsError('Book selections could not be loaded. Open Book settings to check the saved selection.'); }); return () => { current = false; }; }, [accessToken]);
+  const [search, setSearch] = useState(() => window.location.search);
+  useEffect(() => {
+    const update = () => setSearch(window.location.search);
+    window.addEventListener('popstate', update);
+    return () => window.removeEventListener('popstate', update);
+  }, []);
+  const params = new URLSearchParams(search);
+  const { entry, section } = studyHallLocation(search);
+  const current = studyHallEntries.find(item => item.id === entry)!;
+  const query = params.get('q') || '';
+  const type = params.get('type') === 'Long reading' ? '' : params.get('type') || '';
+  const source = params.get('source') || '';
+  const skill = params.get('skill') || '';
+  const sort = params.get('sort') || 'title';
+  const genre = params.get('genre') || '';
+  function updateFilters(values: Record<string, string>) {
+    const next = new URLSearchParams(window.location.search);
+    for (const [key, value] of Object.entries(values)) { if (value) next.set(key, value); else next.delete(key); }
+    window.history.replaceState({}, '', window.location.pathname + '?' + next.toString());
+    setSearch(window.location.search);
   }
-
-  if (isCheckingSession) return <main className="loading-shell">Loading Study Hall...</main>;
+  const clearFilters = () => updateFilters({ q: '', type: '', source: '', skill: '', sort: '', genre: '' });
+  const href = (target: typeof entry, tab?: string) => appendStudentPreview(studyHallHref(target, tab), previewContext);
+  const library = studentLibraryBooks.filter(item => item.libraryCollection !== 'Advanced Reading');
+  const passages = library.filter(item => (!type || item.readingFormat === type)
+    && (!source || (item.passageCategories ?? [passageCategory(item.passageCategory)]).includes(passageCategory(source)))
+    && (!skill || item.skills?.includes(skill)) && materialMatchesQuery(item, query))
+    .sort((a, b) => sort === 'questions' ? a.questionCount - b.questionCount || a.title.localeCompare(b.title) : (sort === 'title-desc' ? -1 : 1) * a.title.localeCompare(b.title));
+  const advanced = advancedPassageMaterials.filter(item => (!genre || item.questionType === genre) && materialMatchesQuery(item, query))
+    .sort((a, b) => (sort === 'title-desc' ? -1 : 1) * a.title.localeCompare(b.title));
+  const educationalArea=entry==='editing'?'revising_editing_a':entry==='standalone'?'revising_editing_b':'reading';
+  const existingTopics=entry==='reading'?readingPracticeMaterials:editingPracticeMaterials;
+  const topics:StudentMaterial[]=learningCategories.filter(category=>category.active&&category.area===educationalArea).map<StudentMaterial>(category=>{
+    const existing=existingTopics.find(item=>categoryFor(educationalArea,item.title)?.id===category.id);
+    return existing?{...existing,title:category.label,href:existing.href+'?categoryId='+encodeURIComponent(category.id)}:{id:category.id,title:category.label,subject:'English',category:category.label,kind:'Practice set',description:'Focused worksheets in this category.',questionCount:0,questionType:category.label,href:'/study-hall/shsat/worksheets?'+new URLSearchParams({subject:'english',area:educationalArea,category:category.label,scope:'focused'})};
+  }).filter(item=>materialMatchesQuery(item,query));
+  async function handleSignOut() { if (isSupabaseConfigured) await signOutCurrentAccount(); window.location.assign('/'); }
+  if (isCheckingSession) return <main className="loading-shell">Loading Study Hall…</main>;
   if (!isSupabaseConfigured) return <main className="loading-shell">Supabase auth is not configured. Add your Vite Supabase env vars, then log in.</main>;
 
-  function selectSubject(subject: MaterialSubject) {
-    setActiveSubject(subject);
-    setActivePassageType("All passage types");
-  }
-
-  const activeFilterCount = Number(activePassageType !== "All passage types") + Number(Boolean(sourceCategory));
-
-  return (
-    <StudentPortalShell activeId="materials" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
-      <div className="student-materials-page study-hall-catalog-page">
-        {previewContext.mode === "teacher" && <nav className="study-hall-teacher-tools" aria-label="Teacher Study Hall tools"><AppLink href="/teacher"><ArrowLeft size={15} /> Teacher dashboard</AppLink><span>Teacher view</span><AppLink href="/teacher/practice-studio">Practice &amp; video studio</AppLink><AppLink href="/teacher/library">Manage English library</AppLink><AppLink href="/teacher/math-command">Math Command Center</AppLink></nav>}
-        <header className="student-materials-heading">
-          <p>Study Hall / {activeSubject}</p>
-          <h1>{activeSubject} Study Hall</h1>
-          <span>{activeSubject === "English" ? "Practice individual skills, then explore passages and books from your teacher's library." : "Explore math categories and skills, with worksheets and practice organized by topic."}</span>
-        </header>
-
-        <div className="student-materials-tools">
-          <label>
-            <Search aria-hidden="true" size={18} />
-            <span className="sr-only">Search the {activeSubject} Study Hall</span>
-            <input onChange={(event) => setQuery(event.target.value)} placeholder={`Search ${activeSubject} topics and resources`} type="search" value={query} />
-          </label>
-        </div>
-
-        <div className="student-subject-switcher" aria-label="Choose a subject">
-          {(["English", "Math"] as MaterialSubject[]).map((subject) => <button aria-pressed={activeSubject === subject} key={subject} onClick={() => selectSubject(subject)} type="button">{subject}</button>)}
-        </div>
-
-
-        {activeSubject === "English" && <nav className="student-topic-jump-nav" aria-label="English Study Hall sections">
-          <a href="#study-hall-topic-title"><BookOpen size={16} />Reading skills</a>
-          <a href="#editing-topic-title"><FileText size={16} />Revising &amp; Editing</a>
-          <a href="#advanced-readings"><BookMarked size={16} />Advanced readings</a>
-          <a href="#study-hall-library-title"><Library size={16} />Library</a>
-        </nav>}
-
-        {activeSubject === "Math" ? <MathStudyHall query={normalizedQuery} previewContext={previewContext} /> : <TopicCatalog materials={topicMaterials} previewContext={previewContext} subject={activeSubject} />}
-
-        {activeSubject === "English" && <section aria-label="Revising & Editing"><TopicCatalog materials={editingPracticeMaterials.filter(material => materialMatchesQuery(material, normalizedQuery))} previewContext={previewContext} subject="English" title="Revising & Editing" headingId="editing-topic-title" description="Practice grammar, sentence structure, usage, and organization by topic." /><AppLink className="study-hall-editing-assessment" href={appendStudentPreview(revisingEditingMaterial.href, previewContext)}><FileText size={18} /><span><strong>{revisingEditingMaterial.title}</strong><small>Open assigned assessments for revising and editing practice.</small></span><ArrowRight size={18} /></AppLink></section>}
-        {activeSubject === "English" && <section className="study-hall-library study-hall-advanced-readings" id="advanced-readings" aria-labelledby="advanced-readings-title">
-          <header className="study-hall-section-heading"><div><p>SAT passages</p><h2 id="advanced-readings-title">Advanced readings</h2><span>Explore more challenging passages and complete question sets selected by your teacher.</span></div><strong>{advancedMaterials.length} {advancedMaterials.length === 1 ? "passage" : "passages"}</strong></header>
-          <div className="study-hall-library-toolbar">
-            <label>Reading genre<select value={advancedGenre} onChange={event => setAdvancedGenre(event.target.value)}><option value="">All genres</option>{[...new Set(advancedPassageMaterials.map(material => material.questionType))].sort().map(genre => <option key={genre}>{genre}</option>)}</select></label>
-            <label>Sort advanced readings<select value={advancedSort} onChange={event => setAdvancedSort(event.target.value)}><option value="title">Title A–Z</option><option value="title-desc">Title Z–A</option></select></label>
-            <button onClick={() => { setAdvancedGenre(""); setAdvancedSort("title"); }} type="button">Clear filters</button>
-          </div>
-          {advancedMaterials.length ? <div className="study-hall-book-scroll">{advancedMaterials.map(material => <LibraryBook key={material.id} material={material} previewContext={previewContext} />)}</div> : <EmptyState label={normalizedQuery ? "No advanced readings match that search" : advancedGenre ? "No advanced readings match that genre" : "Your teacher's SAT passages will appear here"} />}
-        </section>}
-        {activeSubject === "English" ? (
-          <EnglishLibrary
-            activePassageType={activePassageType}
-            isFiltersOpen={isFiltersOpen}
-            longReadingMaterials={longReadingMaterials}
-            materials={passageMaterials}
-            onPassageTypeChange={setActivePassageType}
-            previewContext={previewContext}
-            query={normalizedQuery}
-            sourceCategory={sourceCategory}
-            passageSort={passageSort}
-            onCategoryChange={setSourceCategory}
-            onSortChange={setPassageSort}
-            onClearFilters={() => { setSourceCategory(""); setActivePassageType("All passage types"); setPassageSort("title"); }}
-            activeFilterCount={activeFilterCount}
-            onToggleFilters={() => setIsFiltersOpen(current => !current)}
-          />
-        ) : null}
+  return <StudentPortalShell activeId="materials" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
+    <div className="study-hall-catalog">
+      {previewContext.mode === 'teacher' && <details className="study-hall-management"><summary>Teacher tools</summary><nav aria-label="Teacher Study Hall tools"><AppLink href="/teacher"><ArrowLeft size={15} /> Teacher dashboard</AppLink><AppLink href="/teacher/practice-studio">Practice &amp; video studio</AppLink><AppLink href="/teacher/library">Manage English library</AppLink><AppLink href="/teacher/math-command">Math Command Center</AppLink></nav></details>}
+      <header className="study-hall-heading"><h1>Study Hall</h1><p>{current.description}</p></header>
+      <nav className="study-hall-entries" aria-label="Study Hall entries">
+        {studyHallEntries.map(item => <AppLink key={item.id} href={href(item.id)} aria-current={entry === item.id ? 'page' : undefined}>{item.title}<ArrowRight size={17} aria-hidden="true" /></AppLink>)}
+      </nav>
+      <h2 className="sr-only">{current.title}</h2>
+      <nav className="study-hall-sections" aria-label={`${current.title} sections`}>
+        {studyHallSections[entry].map(item => <AppLink key={item.id} href={href(entry, item.id)} aria-current={section === item.id ? 'page' : undefined}>{item.title}</AppLink>)}
+      </nav>
+      <div className="study-hall-find">
+        <label className="study-hall-search"><Search size={19} aria-hidden="true" /><span className="sr-only">Search {section === 'library' ? 'passages' : current.title}</span><input type="search" value={query} onChange={event => updateFilters({ q: event.target.value })} placeholder={section === 'library' ? 'Search title, author, exam, skill, or passage text…' : 'Search categories and resources…'} /></label>
+        {(query || type || source || skill || genre || sort !== 'title') && <button className="study-hall-clear" type="button" onClick={clearFilters}><X size={15} />Clear search &amp; filters</button>}
       </div>
-    </StudentPortalShell>
-  );
-}
 
-function TopicCatalog({ materials, previewContext, subject, title, headingId = "study-hall-topic-title", description }: { materials: StudentMaterial[]; previewContext: StudentPreviewContext; subject: MaterialSubject; title?: string; headingId?: string; description?: string }) {
-  return (
-    <section className="study-hall-topic-catalog" aria-labelledby={headingId}>
-      <header className="study-hall-section-heading">
-        <div><p>Topic catalog</p><h2 id={headingId}>{title || (subject === "English" ? "Build a reading skill" : "Choose a math topic")}</h2><span>{description || (subject === "English" ? "Short, focused practice organized by the exact skill you want to strengthen." : "Open a topic to practice the question types collected there.")}</span></div>
-        <strong>{materials.length} {materials.length === 1 ? "topic" : "topics"}</strong>
-      </header>
-      {materials.length ? (
-        <div className={`study-hall-topic-grid${subject === "Math" ? " is-math" : ""}`}>
-          {materials.map((material, index) => <TopicCard index={index} key={material.id} material={material} previewContext={previewContext} />)}
+      {entry === 'math' ? <MathStudyHall key={section} view={section === 'recommended' ? 'recommended' : 'categories'} query={query} previewContext={previewContext} /> : section === 'categories' ? <section aria-labelledby="study-hall-categories">
+        <SectionHeading id="study-hall-categories" title={entry === 'reading' ? 'Reading Categories' : current.title+' categories'} description="Choose a focused topic or practice several topics together in General / Mixed Review." count={`${topics.length} categories`} />
+        <section className="study-hall-mixed-review"><h3>General / Mixed Review</h3><p>Worksheets that intentionally bring several topics together.</p><StudyHallWorksheetLinks subject="english" area={entry} scope="mixed" query={query} previewContext={previewContext}/></section>
+        <EnglishTopicGroups topics={topics} area={entry} previewContext={previewContext}/>
+        {!topics.length && <EmptyState onClear={clearFilters} />}
+      </section> : section === 'worksheets' ? <WorksheetSection area={entry} query={query} previewContext={previewContext} /> : section === 'advanced' ? <section aria-labelledby="advanced-readings-title">
+        <SectionHeading id="advanced-readings-title" title="Advanced Readings" description="Challenging passages and worksheets selected by your teacher." count={`${advanced.length} ${advanced.length === 1 ? 'passage' : 'passages'}`} />
+        <div className="study-hall-filters"><label>Reading genre<select value={genre} onChange={event => updateFilters({ genre: event.target.value })}><option value="">All genres</option>{[...new Set(advancedPassageMaterials.map(item => item.questionType))].sort().map(value => <option key={value}>{value}</option>)}</select></label><SortSelect value={sort} onChange={value => updateFilters({ sort: value })} /></div>
+        <PassageList materials={advanced} previewContext={previewContext} onClear={clearFilters} />
+        <WorksheetSection area="advanced" query={query} previewContext={previewContext} />
+      </section> : <section aria-labelledby="study-hall-library-title">
+        <SectionHeading id="study-hall-library-title" title="Library" description="Find a passage by title, author, source, exam, or reading skill. Versions stay together." count={`${passages.length} of ${library.length} readings`} />
+        <div className="study-hall-filters">
+          <label>Source<select value={source} onChange={event => updateFilters({ source: event.target.value })}><option value="">All sources</option>{PASSAGE_CATEGORIES.map(item => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label>
+          <label>Passage type<select value={type} onChange={event => updateFilters({ type: event.target.value })}><option value="">All types</option>{['Informational', 'Literary', 'Poem', 'Revising/Editing'].map(value => <option key={value}>{value}</option>)}</select></label>
+          <label>Reading skill<select value={skill} onChange={event => updateFilters({ skill: event.target.value })}><option value="">All skills</option>{[...new Set(library.flatMap(item => item.skills ?? []))].sort().map(value => <option key={value}>{value}</option>)}</select></label>
+          <SortSelect value={sort} onChange={value => updateFilters({ sort: value })} questions />
         </div>
-      ) : <EmptyState label="No topics match that search" />}
-    </section>
-  );
+        {settingsError && <p role="status">{settingsError}</p>}
+        <PassageList settings={bookSettings} materials={passages} previewContext={previewContext} onClear={clearFilters} />
+      </section>}
+    </div>
+  </StudentPortalShell>;
 }
 
-function TopicCard({ index, material, previewContext }: { index: number; material: StudentMaterial; previewContext: StudentPreviewContext }) {
-  const Icon = material.kind === "Practice set" ? BookOpen : FileText;
-  return (
-    <AppLink className="study-hall-topic-card" href={appendStudentPreview(material.href, previewContext)}>
-      <span className="study-hall-topic-number">{String(index + 1).padStart(2, "0")}</span>
-      <span className="study-hall-topic-icon"><Icon aria-hidden="true" size={18} /></span>
-      <small>{material.category}</small>
-      <strong>{material.title}</strong>
-      <em>{material.description}</em>
-      <span className="study-hall-topic-count">{material.questionCount} {material.questionCount === 1 ? "question" : "questions"}<ArrowRight size={16} /></span>
+function SectionHeading({ id, title, description, count }: { id: string; title: string; description: string; count?: string }) {
+  return <header className="study-hall-section-title"><div><h3 id={id}>{title}</h3><p>{description}</p></div>{count && <span role="status">{count}</span>}</header>;
+}
+function SortSelect({ value, onChange, questions = false }: { value: string; onChange: (value: string) => void; questions?: boolean }) {
+  return <label>Sort by<select value={value} onChange={event => onChange(event.target.value)}><option value="title">Title A–Z</option><option value="title-desc">Title Z–A</option>{questions && <option value="questions">Fewest questions</option>}</select></label>;
+}
+function WorksheetSection({ area, query, previewContext }: { area: 'reading' | 'editing' | 'standalone' | 'advanced'; query: string; previewContext: StudentPreviewContext }) {
+  return <section className="study-hall-worksheet-section" aria-label="Worksheets"><SectionHeading id={`${area}-worksheets`} title="Worksheets" description="Short, focused sets organized by category. Your saved work stays with each worksheet." /><StudyHallWorksheetLinks subject="english" area={area} query={query} previewContext={previewContext} /></section>;
+}
+function EnglishTopicGroups({topics,area,previewContext}:{topics:StudentMaterial[];area:'reading'|'editing'|'standalone';previewContext:StudentPreviewContext}){
+  const groups=area==='reading'?[{title:'Ideas & Evidence',matches:/central|point of view|evidence|inference/i},{title:'Language & Structure',matches:/./}]:[{title:'Sentence & Grammar',matches:/sentence|pronoun|verb|modifier|punctuation/i},{title:'Meaning & Organization',matches:/./}];
+  const used=new Set<string>();
+  return <div className="study-hall-topic-groups">{groups.map(group=>{const members=topics.filter(topic=>!used.has(topic.id)&&group.matches.test(topic.title));members.forEach(topic=>used.add(topic.id));return members.length?<section key={group.title}><h3>{group.title}</h3><div className="study-hall-topic-grid">{members.map(material=><AppLink key={material.id} href={appendStudentPreview(material.href+(area==='standalone'?(material.href.includes('?')?'&':'?')+'area=standalone':''),previewContext)}><strong>{material.title}</strong><span>View worksheets and practice</span><ArrowRight size={18} aria-hidden="true"/></AppLink>)}</div></section>:null;})}</div>;
+}
+function PassageList({ materials, previewContext, onClear, settings = {} }: { materials: StudentMaterial[]; previewContext: StudentPreviewContext; onClear: () => void; settings?: Record<string, LibraryBookSettings> }) {
+  if (!materials.length) return <EmptyState onClear={onClear} />;
+  return <ul className="study-hall-reading-list study-hall-cover-catalog">{materials.map(material => <li key={material.id}>
+    <AppLink className={`study-hall-catalog-cover is-${material.tone ?? 'emerald'}`} aria-label={`Read ${material.title}`} href={appendStudentPreview(material.href, previewContext)}>
+      {material.coverImage ? <img src={material.coverImage} alt={material.coverAlt || `${material.title} cover`} loading="lazy" /> : <span className="study-hall-title-cover"><BookOpen size={22} aria-hidden="true" /><strong>{material.title}</strong><span>{material.author && material.author !== 'SHSAT Library' ? material.author : 'SHSAT Library'}</span></span>}
     </AppLink>
-  );
+    <div className="study-hall-reading-body"><div className="study-hall-reading-meta"><span>{(material.passageCategories ?? [passageCategory(material.passageCategory)]).map(passageCategoryLabel).join(' / ')}</span><span>{material.readingFormat}</span></div>
+      <h4><AppLink href={appendStudentPreview(material.href, previewContext)}>{material.title}</AppLink></h4>
+      {material.author && !['SHSAT Library', 'Nathan Tutors Editorial'].includes(material.author) && <p className="study-hall-reading-author">{material.author}</p>}
+      {!!material.examLabels?.length && <details className="study-hall-appearances"><summary>Appears in {material.examLabels.length} {material.examLabels.length === 1 ? 'exam' : 'exams'}</summary><ul>{material.examLabels.map(label => <li key={label}>{label}</li>)}</ul></details>}
+    </div>
+    <div className="study-hall-reading-action"><span>{settings[material.href.split('/').at(-1) ?? '']?.questionIds.length ?? material.questionCount} {material.questionCount === 1 ? 'question' : 'questions'}{(material.versionCount ?? 0) > 1 && <small>{material.versionCount} versions combined</small>}</span><AppLink aria-label={`Open ${material.title}`} href={appendStudentPreview(material.href, previewContext)}>Open <ArrowRight size={16} aria-hidden="true" /></AppLink></div>
+    {previewContext.mode === 'teacher' && material.libraryCollection === 'SHSAT' && <div className="study-hall-book-settings-link"><AppLink href={`/teacher/library/${encodeURIComponent(material.href.split('/').at(-1) ?? '')}#book-settings`}>Book settings</AppLink>{(() => { const book = getExamLibraryPassage(material.href.split('/').at(-1) ?? ''); return book && libraryBookNeedsReview(book, settings[book.id]) ? <span className="library-review-badge">Versions need review</span> : null; })()}</div>}
+  </li>)}</ul>;
 }
-
-type EnglishLibraryProps = {
-  activePassageType: PassageFilter;
-  isFiltersOpen: boolean;
-  longReadingMaterials: StudentMaterial[];
-  materials: StudentMaterial[];
-  onPassageTypeChange: (format: PassageFilter) => void;
-  previewContext: StudentPreviewContext;
-  query: string;
-  sourceCategory: string; passageSort: string; activeFilterCount: number;
-  onCategoryChange: (value: string) => void; onSortChange: (value: string) => void;
-  onClearFilters: () => void; onToggleFilters: () => void;
-};
-
-function EnglishLibrary({ activePassageType, isFiltersOpen, longReadingMaterials, materials, onPassageTypeChange, previewContext, query, sourceCategory, passageSort, onCategoryChange, onSortChange, onClearFilters, activeFilterCount, onToggleFilters }: EnglishLibraryProps) {
-  return (
-    <section className="study-hall-library" aria-labelledby="study-hall-library-title">
-      <header className="study-hall-section-heading">
-        <div><p>SHSAT library</p><h2 id="study-hall-library-title">Library</h2><span>Browse teacher-selected SHSAT passages by category and reading type.</span></div>
-        <div className="study-hall-library-header-actions"><strong>{materials.length} {materials.length === 1 ? "passage" : "passages"}</strong><button aria-expanded={isFiltersOpen} aria-controls="library-passage-filters" onClick={onToggleFilters} type="button"><Filter size={16} /> Filters{activeFilterCount ? ` · ${activeFilterCount}` : ""}</button></div>
-      </header>
-
-      <div id="library-passage-filters" className={`study-hall-library-filters${isFiltersOpen ? " is-open" : ""}`}>
-        <fieldset><legend>Passage type</legend><div>{passageFilters.map((format) => <button aria-pressed={activePassageType === format} key={format} onClick={() => onPassageTypeChange(format)} type="button">{format}</button>)}</div></fieldset>
-        <div className="study-hall-library-toolbar"><label>Passage category<select value={sourceCategory} onChange={event => onCategoryChange(event.target.value)}><option value="">All categories</option>{PASSAGE_CATEGORIES.map(category => <option key={category.value} value={category.value}>{category.label}</option>)}</select></label><label>Sort passages<select value={passageSort} onChange={event => onSortChange(event.target.value)}><option value="title">Title A–Z</option><option value="title-desc">Title Z–A</option><option value="category">Passage category</option></select></label><button onClick={onClearFilters} type="button">Clear filters</button></div>
-      </div>
-
-      <div className="study-hall-shelf-heading"><div><BookOpen size={18} /><span><strong>Single passages</strong><small>Choose a cover to start reading</small></span></div><em>Scroll to explore →</em></div>
-      {materials.length ? (
-        <div className="study-hall-book-scroll">
-          {materials.map((material) => <LibraryBook key={material.id} material={material} previewContext={previewContext} />)}
-        </div>
-      ) : <EmptyState label={query ? "No library passages match that search" : "No passages match those filters"} />}
-
-      <div className="study-hall-long-reading" id="long-reading">
-        <div className="study-hall-shelf-heading"><div><BookMarked size={18} /><span><strong>Long reading</strong><small>Books, novellas, and extended works</small></span></div><em>{longReadingMaterials.length ? `${longReadingMaterials.length} available` : "Teacher curated"}</em></div>
-        {longReadingMaterials.length ? <div className="study-hall-book-scroll">{longReadingMaterials.map((material) => <LibraryBook key={material.id} material={material} previewContext={previewContext} />)}</div> : (
-          <div className="study-hall-long-reading-empty"><span><Library size={28} /></span><div><small>Long reading shelf</small><h3>Your next book will appear here</h3><p>Books and longer readings uploaded by your teacher will display with their cover, collection, and reading progress.</p></div></div>
-        )}
-      </div>
-    </section>
-  );
-}
-
-function LibraryBook({ material, previewContext }: { material: StudentMaterial; previewContext: StudentPreviewContext }) {
-  return (
-    <AppLink className="study-hall-book-card" href={appendStudentPreview(material.href, previewContext)}>
-      <span aria-label={material.coverAlt || `${material.title} book cover`} className={`study-hall-book-cover is-${material.tone ?? "emerald"}`} role="img">
-        {material.coverImage ? <img alt="" aria-hidden="true" src={material.coverImage} /> : null}
-        <span className="study-hall-generated-cover"><small>Nathan Tutors Library</small><strong>{material.title}</strong><em>{material.author || "Teacher selection"}</em></span>
-        <span className="study-hall-cover-shadow" />
-      </span>
-      <span className="study-hall-book-tags"><small>English · {(material.passageCategories ?? [passageCategory(material.passageCategory)]).map(passageCategoryLabel).join(" / ")}</small><small>{material.readingFormat}</small></span>
-      <strong className="study-hall-book-title">{material.title}</strong>
-      <span className="study-hall-book-author">{material.author || "Teacher selection"}</span>
-      <span className="study-hall-book-access"><KeyRound size={12} /> Teacher code required</span>
-      <span className="study-hall-book-meta">{material.questionCount} questions{(material.versionCount ?? 0) > 1 ? ` · ${material.versionCount} versions` : ""} <ArrowRight size={15} /></span>
-    </AppLink>
-  );
-}
-
-function EmptyState({ label }: { label: string }) {
-  return <div className="student-material-empty"><Search size={24} /><h3>{label}</h3></div>;
+function EmptyState({ onClear }: { onClear: () => void }) {
+  return <div className="study-hall-empty"><BookOpen size={26} aria-hidden="true" /><h3>No matching resources</h3><p>Try a shorter search or clear your filters to browse everything in this section.</p><button type="button" onClick={onClear}>Clear search &amp; filters</button></div>;
 }

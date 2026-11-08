@@ -1,8 +1,10 @@
 const {test,before,after}=require('node:test'),assert=require('node:assert/strict'),path=require('node:path');
 require('ts-node').register({transpileOnly:true,project:path.resolve(__dirname,'../tsconfig.json'),compilerOptions:{module:'CommonJS',moduleResolution:'Node'},moduleTypes:{'**':'cjs'}});
-const {defaultPracticeCatalog,defaultGeneratorSettings,validatePracticeCatalog,validateGenerator,managedGeneratorIds,movePracticeModule,removePracticeGenerator,removePracticeModule,mergePracticeModules,generatorTopicKey,generateCatalogQuestion,youtubeVideoId}=require('../src/shared/practiceCatalog.ts');
+const {defaultPracticeCatalog,studentPracticeCatalog,defaultGeneratorSettings,validatePracticeCatalog,validateGenerator,managedGeneratorIds,movePracticeModule,removePracticeGenerator,removePracticeModule,mergePracticeModules,generatorTopicKey,generateCatalogQuestion,youtubeVideoId}=require('../src/shared/practiceCatalog.ts');
 const {createPracticeState,parsePracticeState}=require('../../client/src/features/math-command/inequalitySession.ts');
 const taxonomy={categories:[{label:'Algebra',topics:['Inequalities','Equations','Algebraic Expressions','Patterns & Sequences']},{label:'Statistics and Probability',topics:['Overlapping Groups','Probability']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions','Percentages']}]};
+// Retain the historical taxonomy under test while including newer built-in locations.
+for(const resource of [...defaultPracticeCatalog().generators,...defaultPracticeCatalog().modules]){let category=taxonomy.categories.find(item=>item.label===resource.category);if(!category){category={label:resource.category,topics:[]};taxonomy.categories.push(category);}if(!category.topics.includes(resource.topic))category.topics.push(resource.topic);}
 const fresh=()=>structuredClone(defaultPracticeCatalog());
 const custom=(changes={})=>({id:'custom-two-step',title:'Two-step inequalities',description:'Teacher template',kind:'two-step',enabled:true,settings:{...defaultGeneratorSettings},...changes});
 
@@ -29,11 +31,11 @@ test('Q70 is published under Inequalities, snapshots its generator, and register
 test('moving a module makes it a Foundation child and settings exclude its generators from a session',()=>{
  const catalog=validatePracticeCatalog(movePracticeModule(fresh(),'inequalities','foundation'),taxonomy),foundation=catalog.modules.find(module=>module.id==='foundation');
  assert.equal(catalog.modules.find(module=>module.id==='inequalities').parentId,'foundation');
- assert.ok(!foundation.generatorIds.includes('one-step-inequalities-v1'));
+ assert.ok(foundation.generatorIds.includes('one-step-inequalities-v1'),'Moving a module preserves curated references');
  assert.ok(managedGeneratorIds(foundation,catalog).includes('one-step-inequalities-v1'));
  const filtered=createPracticeState('foundation','student-settings',catalog,{childModuleIds:[]});
- assert.deepEqual(filtered.generatorIds,foundation.generatorIds);assert.deepEqual(parsePracticeState(JSON.stringify(filtered)),filtered);
- assert.equal(movePracticeModule(catalog,'inequalities',null).modules.find(module=>module.id==='inequalities').parentId,'all');
+ assert.ok(!filtered.generatorIds.includes('one-step-inequalities-v1'),'Excluding focused modules removes their generators');assert.deepEqual(parsePracticeState(JSON.stringify(filtered)),filtered);
+ assert.equal(movePracticeModule(catalog,'inequalities',null).modules.find(module=>module.id==='inequalities').parentId,'foundation');
  assert.throws(()=>movePracticeModule(catalog,'foundation','foundation'));
 });
 test('deleting either built-in generator cleans references and preserves sessions already running',()=>{
@@ -47,7 +49,7 @@ test('General Practice includes all enabled generators in its own topic and snap
  const catalog=fresh();catalog.generators.push(custom({category:'Algebra',topic:'Equations'}));
  const all=catalog.modules.find(module=>module.id==='all');all.includeAll=false;all.generatorIds=[];
  const validated=validatePracticeCatalog(catalog,taxonomy);assert.equal(validated.modules.find(module=>module.id==='all').includeAll,true);
- assert.equal(managedGeneratorIds(all,catalog).length,catalog.generators.filter(generator=>generator.category==='Algebra'&&generator.topic==='Inequalities').length);
+ const focused=catalog.modules.filter(module=>!module.defaultType&&module.id!=='foundation'&&module.id!=='all'),groupedIds=new Set(focused.flatMap(module=>module.generatorIds)),visibleIds=new Set(focused.filter(module=>module.published).flatMap(module=>module.generatorIds));assert.deepEqual(new Set(managedGeneratorIds(all,catalog)),new Set(catalog.generators.filter(generator=>generator.enabled&&generator.category==='Algebra'&&generator.topic==='Inequalities'&&(!groupedIds.has(generator.id)||visibleIds.has(generator.id))).map(generator=>generator.id)));
  const general=validated.modules.find(module=>module.defaultType==='general'&&module.topic==='Equations');
  const state=createPracticeState(general.id,'filtered',validated,{topics:['Algebra / Equations']});assert.deepEqual(state.generatorIds,['custom-two-step']);
  assert.equal(generatorTopicKey(state.generatorDefinitions[0]),'Algebra / Equations');
@@ -109,7 +111,7 @@ test('catalog permissions, durable saves, conflicts and student publication filt
  const catalog=fresh();catalog.modules[2].published=false;catalog.videos=[{id:'draft-video',title:'Draft',description:'',url:'https://youtu.be/abcdefghijk',category:'Algebra',topic:'Inequalities',published:false}];
  const saved=await call('teacher',{catalog,revision:0});assert.equal(saved.status,200);assert.equal(saved.data.revision,1);
  assert.equal((await call('teacher',{catalog,revision:0})).status,409);assert.equal((await call('teacher',{catalog,revision:1})).status,200);assert.equal(stored.updated_by,'teacher');
- const student=await call('student');assert.equal(student.data.catalog.modules.length,saved.data.catalog.modules.filter(module=>module.published).length);assert.equal(student.data.catalog.videos.length,0);
+ const student=await call('student');assert.equal(student.data.catalog.modules.length,studentPracticeCatalog(saved.data.catalog).modules.length);assert.equal(student.data.catalog.videos.length,0);
  const teacher=await call('admin',null,true);assert.equal(teacher.data.catalog.videos.length,1);assert.equal(teacher.data.taxonomy.categories,undefined);assert.equal(teacher.data.taxonomy[0].label,'Algebra');
  storageFails=true;assert.equal((await call('teacher')).status,503);assert.equal((await call('teacher',{catalog,revision:2})).status,503);storageFails=false;
 });
@@ -118,7 +120,7 @@ test('renaming a subcategory keeps studio GET, saves, student reads and generate
  const backup=structuredClone(stored),category=taxonomy.categories.find(c=>c.label==='Statistics and Probability');
  const topics=[...category.topics];
  try{
-  category.topics=['Set Relationships','Probability'];taxonomyTopicRenames=[{category:category.label,from:'Overlapping Groups',to:'Set Relationships'}];
+  category.topics=category.topics.map(topic=>topic==='Overlapping Groups'?'Set Relationships':topic);taxonomyTopicRenames=[{category:category.label,from:'Overlapping Groups',to:'Set Relationships'}];
   const result=await call('teacher',null,true);assert.equal(result.status,200);
   const changed=result.data.catalog.modules.find(m=>m.id==='2021-2022-form-a-q76');
   assert.equal(changed.topic,'Set Relationships');assert.equal(changed.parentId,backup.catalog.modules.find(m=>m.id===changed.id).parentId);

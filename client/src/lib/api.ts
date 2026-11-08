@@ -86,6 +86,9 @@ export type QuestionType =
   | "essay";
 
 export type StudentAssessment = {
+  assembly?: { publishedReleaseId?: string };
+  studyHallWorksheet?: import("../../../server/src/shared/studyHallWorksheets").StudyHallWorksheet | null;
+  examLabel?: string;
   reentry?: import("../../../server/src/shared/examReentry").ExamReentryGrant;
   correctionsOpen?: boolean;
   allowCompletedAccess: boolean;
@@ -103,6 +106,9 @@ export type StudentAssessment = {
 };
 
 export type TeacherAssessment = {
+  assembly?: { publishedReleaseId?: string };
+  studyHallWorksheet?: import("../../../server/src/shared/studyHallWorksheets").StudyHallWorksheet | null;
+  examLabel?: string;
   canEditSubmittedSections?: boolean;
   resumeContent?: import("../../../server/src/shared/examTypes").ExamContent;
   reentry?: import("../../../server/src/shared/examReentry").ExamReentryGrant;
@@ -806,6 +812,19 @@ export async function getTeacherLibraryBook(accessToken: string, bookId: string)
   );
 }
 
+export async function getLibraryBookSettings(accessToken: string) {
+  return requestApi<{ settings: Record<string, import('../../../server/src/shared/libraryBooks').LibraryBookSettings> }>('/api/library/book-settings', { headers: createAuthHeaders(accessToken) });
+}
+export async function getLibraryBookContent(accessToken: string, bookId: string) {
+  return requestApi<{ book: import('../../../server/src/shared/libraryBooks').PassageBook; revision: string }>(`/api/library/books/${encodeURIComponent(bookId)}/content`, { headers: createAuthHeaders(accessToken) });
+}
+export async function saveLibraryBookSettings(accessToken: string, bookId: string, input: { fingerprint: string; questionIds: string[] }) {
+  return requestApi<{ settings: import('../../../server/src/shared/libraryBooks').LibraryBookSettings }>(`/api/library/teacher/books/${encodeURIComponent(bookId)}/settings`, { method: 'PUT', headers: createAuthHeaders(accessToken), body: JSON.stringify(input) });
+}
+export async function getLibraryProgress(accessToken: string, studentId?: string) {
+  return requestApi<{ attempts: (StudentLibraryAttempt & { title: string })[] }>(`/api/library/progress${studentId ? `?studentId=${encodeURIComponent(studentId)}` : ''}`, { headers: createAuthHeaders(accessToken) });
+}
+
 export async function getStudentLibraryBookAccess(accessToken: string, bookId: string) {
   return requestApi<{ unlocked: boolean; unlockedAt: string | null }>(
     `/api/library/books/${encodeURIComponent(bookId)}/access`,
@@ -848,6 +867,7 @@ export async function saveStudentLibraryAttempt(
   accessToken: string,
   bookId: string,
   input: {
+    bookRevision?: string;
     questions: {
       correctAnswerId: string;
       questionId: string;

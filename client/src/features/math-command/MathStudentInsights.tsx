@@ -20,15 +20,18 @@ export function MathStudentInsights({ request, studentId, studentName, overview,
   const [linkedQuestionId, setLinkedQuestionId] = useState(() => new URLSearchParams(window.location.search).get("questionId") || "");
   const [skillId, setSkillId] = useState(""); const [level, setLevel] = useState("subcategory"); const [sort, setSort] = useState("attention");
   const [status, setStatus] = useState("all"); const [recent, setRecent] = useState(false); const [repeat, setRepeat] = useState(false); const [page, setPage] = useState(0);
-  const [evidence, setEvidence] = useState<MathEvidencePage>(); const [error, setError] = useState(""); const [rules, setRules] = useState<MathWeaknessRules>(); const [busy, setBusy] = useState(false);
+  const [loadedEvidence, setEvidence] = useState<{ key: string; page: MathEvidencePage }>(); const [error, setError] = useState(""); const [rules, setRules] = useState<MathWeaknessRules>(); const [busy, setBusy] = useState(false);
   const selectedSkill = data?.skills.find(skill => skill.id === skillId);
   const scope = selectedSkill ? { ...(selectedSkill.category ? { category: selectedSkill.category } : {}), ...(selectedSkill.subcategory ? { subcategory: selectedSkill.subcategory } : {}), ...(selectedSkill.diagnosticSkill ? { skillId: selectedSkill.diagnosticSkill } : {}) } : {};
   const scopeKey = JSON.stringify({ ...scope, ...(linkedQuestionId ? { questionId: linkedQuestionId } : {}) });
+  const evidenceKey = JSON.stringify([studentId, scopeKey, status, recent, repeat, page]);
+  const evidence = loadedEvidence?.key === evidenceKey ? loadedEvidence.page : undefined;
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Clear prior request state when subscribing to a different evidence query.
     let active = true; setEvidence(undefined); setError("");
-    request<MathEvidencePage>(`/students/${encodeURIComponent(studentId)}/evidence?${new URLSearchParams({ ...JSON.parse(scopeKey), status, ...(recent ? { recent: "1" } : {}), ...(repeat ? { repeat: "1" } : {}), page: String(page) })}`).then(result => { if (active) { setEvidence(result); setError(""); if (linkedQuestionId) { const id = new URLSearchParams(window.location.search).get("evidenceId"); setSnapshot(result.items.find(row => row.id === id) ?? result.items[0]); } } }).catch(reason => { if (active) setError(reason instanceof Error ? reason.message : "Evidence unavailable."); });
+    request<MathEvidencePage>(`/students/${encodeURIComponent(studentId)}/evidence?${new URLSearchParams({ ...JSON.parse(scopeKey), status, ...(recent ? { recent: "1" } : {}), ...(repeat ? { repeat: "1" } : {}), page: String(page) })}`).then(result => { if (active) { setEvidence({ key: evidenceKey, page: result }); setError(""); if (linkedQuestionId) { const id = new URLSearchParams(window.location.search).get("evidenceId"); setSnapshot(result.items.find(row => row.id === id) ?? result.items[0]); } } }).catch(reason => { if (active) setError(reason instanceof Error ? reason.message : "Evidence unavailable."); });
     return () => { active = false; };
-  }, [request, studentId, scopeKey, status, recent, repeat, page, data]);
+  }, [request, studentId, scopeKey, status, recent, repeat, page, data, evidenceKey]);
   const filterFor = (skill: MathSkillMetrics): Partial<MathCatalogFilters> => ({ category: skill.category ? [skill.category] : [], subcategory: skill.subcategory ? [skill.subcategory] : [], diagnosticSkill: skill.diagnosticSkill ? [skill.diagnosticSkill] : [] });
   const showSkill = (id: string) => { setLinkedQuestionId(""); setSkillId(id); setPage(0); };
   const sufficient = (skill: MathSkillMetrics) => !!data && skill.total >= data.rules.minAttempts && skill.uniqueQuestions >= data.rules.minUniqueQuestions && skill.assessments >= data.rules.minAssessments && skill.recentTotal >= data.rules.recentMinAttempts;

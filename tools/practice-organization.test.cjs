@@ -1,6 +1,6 @@
 const {test}=require('node:test'),assert=require('node:assert/strict'),path=require('node:path');
 require(require.resolve('ts-node',{paths:[path.resolve(__dirname,'../server')]})).register({transpileOnly:true,project:path.resolve(__dirname,'../server/tsconfig.json'),compilerOptions:{module:'CommonJS',moduleResolution:'Node'},moduleTypes:{'**':'cjs'}});
-const {defaultPracticeCatalog,validatePracticeCatalog,validateGenerator,managedGeneratorIds,practiceModuleKind}=require('../server/src/shared/practiceCatalog.ts');
+const {defaultPracticeCatalog:allPracticeCatalog,validatePracticeCatalog,validateGenerator,managedGeneratorIds,practiceModuleKind}=require('../server/src/shared/practiceCatalog.ts');
 const {organizePracticeCatalog,probabilitySkillGroups}=require('../server/src/shared/practiceOrganization.ts');
 const {probabilityPractice}=require('../server/src/shared/probabilityPractice.ts');
 const {createPracticeState,parsePracticeState}=require('../client/src/features/math-command/inequalitySession.ts');
@@ -10,6 +10,8 @@ const {generationSetEntries}=require('../client/src/features/math-command/genera
 const {modulePreviewCatalog}=require('../client/src/features/math-command/generatorPreview.ts');
 // This suite exercises the earlier Probability collection migration.
 const taxonomy={categories:[{label:'Algebra',topics:['Inequalities','Algebraic Expressions','Patterns & Sequences']},{label:'Statistics and Probability',topics:['Probability','Overlapping Groups']},{label:'Ratios and Proportional Relationships',topics:['Rates & Unit Rates','Ratios & Proportions','Percentages']}]};
+// Freeze this migration fixture to the historical areas it exercises.
+function defaultPracticeCatalog(){const catalog=allPracticeCatalog(),valid=item=>taxonomy.categories.some(category=>category.label===item.category&&category.topics.includes(item.topic));const generators=catalog.generators.filter(valid),ids=new Set(generators.map(item=>item.id));return {...catalog,generators,modules:catalog.modules.filter(valid).map(item=>({...item,generatorIds:item.generatorIds.filter(id=>ids.has(id))})),videos:catalog.videos.filter(valid)};}
 const filters={status:'',difficulty:'',program:'',subject:''};
 function legacy(){
   const catalog=defaultPracticeCatalog(taxonomy),ids=probabilityPractice.map(item=>item.id);

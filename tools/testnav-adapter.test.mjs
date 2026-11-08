@@ -82,3 +82,24 @@ test('inline dropdown imports preserve source no-break groups and native control
  assert.match(q.dropdownContentHtml,/\{\{dropdown-1\}\}/);
  assert.doesNotMatch(q.dropdownContentHtml,/<select/);
 });
+
+test('TestNav prose and poetry retain passage types without a long-reading default', async t => {
+  const fs = await import('node:fs/promises');
+  const path = await import('node:path');
+  const os = await import('node:os');
+  const {convertPackage} = await import('./testnav-adapter.mjs');
+  const folder = await fs.mkdtemp(path.join(os.tmpdir(), 'study-hall-types-'));
+  t.after(async () => {
+    if (!path.resolve(folder).startsWith(path.resolve(os.tmpdir()) + path.sep) || !path.basename(folder).startsWith('study-hall-types-')) throw new Error('Unexpected fixture directory');
+    await fs.rm(folder, {recursive:true, force:true});
+  });
+  const items = Array.from({length:100}, (_, i) => ({number:i+1,itemId:i+1,id:'ER-'+i,question:true,file:i<50?'prose.json':'poem.json',section:'ELA - Passage Set',url:'https://example.test/item/'+i,sha256:'fixture'}));
+  const inv = {form:'A',sourceUrl:'https://example.test/official',assets:[],items,sections:[{title:'ELA - Passage Set 1',items:items.slice(0,50)},{title:'ELA - Passage Set 2',items:items.slice(50)}]};
+  await fs.writeFile(path.join(folder,'inventory.json'),JSON.stringify(inv));
+  for (const [name,body] of [['prose','<p>An ordinary exam excerpt.</p>'],['poem','<div class="poem_body">First line</div><div class="poem_body">Second line</div>']]) {
+    await fs.writeFile(path.join(folder,name+'.json'),JSON.stringify(data('CHOICEINTERACTION',`<div class="row"><div class="stimulus"><div class="passageContent"><p class="passage-title">${name}</p>${body}</div></div><div><p>Choose an answer.</p><ul class="int-choice-list"><li><span class="int-choice-desc">One</span></li><li><span class="int-choice-desc">Two</span></li></ul></div></div>`)));
+  }
+  const imported = await convertPackage(folder);
+  assert.deepEqual(imported.passages.map(p=>p.passageType), ['informational','poem']);
+  assert.equal(imported.passages.flatMap(p=>p.questions).length,100);
+});

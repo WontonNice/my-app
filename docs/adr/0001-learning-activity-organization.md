@@ -1,0 +1,33 @@
+# Separate learning activities over shared question banks
+
+Status: implemented locally, awaiting user acceptance testing.
+
+Context: Worksheet authoring, assessment authoring, and student evidence shared overlapping navigation and storage. Teachers need to reuse canonical questions while distinguishing focused practice, mixed review, and exams. Existing question IDs, student records, and access settings must survive the change.
+
+## Decisions
+
+1. Keep five banks: Reading Comprehension, Math, Revising/Editing A, Stand Alone Items, and SHSAT Lab Questions. A bank is different from a publisher. SHSAT Lab retains its bank identity while using the corresponding ELA area's categories.
+2. Store stable, area-scoped category and topic IDs in `server/src/shared/learning-taxonomy.json`. Renames retain aliases. `question-organization.json` stores explicit provenance and classification overrides. An authored-classification fingerprint allows subsequent native source edits to supersede stale classification overrides. Missing classifications remain visible review work.
+3. Persist worksheet definitions in `server/data/worksheets.json` and assessment definitions in `server/data/assessments.json`. `activityStore` provides a compatible combined read and journaled updates with optimistic revision checks. Existing routes and generated exam-content projections remain compatibility adapters for the shared player, access controls, assignments, and grader. Separate persistence and user-facing libraries do not require duplicating those systems.
+4. New activity drafts contain canonical question references. The assembler includes selected questions and necessary passage context, preserves order, and validates scope, provenance, classification, and answer keys. Publication requires review of the current preview hash. Released content is immutable in `activity-releases.json`; subsequent draft edits do not change the release.
+5. Keep published titles, descriptions, timing, and worksheet placement separate from draft metadata. A published activity cannot switch between worksheet and assessment. Create another activity from the same questions instead.
+6. Pin active assembly attempts to their release. The existing session navigation JSON carries `activityReleaseId`, including dedicated storage, result fallback, and metadata fallback. Assessment detail restores that edition, subsequent saves retain it, and the server grades new assembly submissions from the trusted release. Completed results retain their original analysis snapshots. Legacy assessments retain their existing re-entry behavior.
+7. Archive each new generated response as an immutable record in the existing `math_practice_checkpoints` table under a reserved response key. Ordinary checkpoint reads exclude those records. Store the exact question, response, seed, generator definition/version context, time, and source references; recompute grading on the server and reject conflicting repeated answers. Account-scoped evidence access is separate from checkpoint access. Acknowledged responses are removed from the pending browser queue. Historical summary-only practice remains summary-only.
+8. Newly created or materially changed generators require approval of the matching generation signature before publication. Saved legacy catalogs keep their existing availability. Empty focused modules cannot be published. Custom module titles survive classification edits; explicit shared-skill naming follows the shared definition.
+9. Student discovery uses four educational areas and separates focused topics from General / Mixed Review. Teacher and student results separate assessments, worksheets, and generated practice. Worksheet scores do not contribute to assessment-only averages.
+
+## Validation and limits
+
+The migration preserves 32 IDs, question memberships, and access settings: 29 assessments and 3 worksheets. The backup and invariant report are under `artifacts/shsat-redesign/`.
+
+Regression suites cover shared question reuse, publication review, immutable editions, cross-device active-version restoration, grading, taxonomy aliases, isolated accounts, retry conflicts, worksheet organization, and analytics. Browser review uses the existing student login, the signed-in teacher account for read-only navigation and the existing test-student record, and a clearly labeled isolated teacher fixture for generated-response examples. No production student records are created by the fixture.
+
+This delivery is local and is not a production deployment. Existing lint findings and bundle-size warnings are recorded in the implementation handoff. Publication checks do not replace teacher review of mathematical meaning, stimulus completeness, or visual assets. The review queue is an inventory of missing metadata, not permission to guess it.
+
+## Acceptance testing
+
+The user supplies acceptance tasks after implementation. During that session, use only the implemented UI as the user. Do not edit code, content, permissions, or configuration to make a task pass. Perform content changes only when they are the test task itself. Record navigation, clicks, waits, outcomes, and gaps in the acceptance log. Fix recorded gaps only after the user finishes testing.
+
+The user explicitly authorized Test 1 fixes before Test 2 on November 6, 2026. That authorization opens an implementation interval between the UI-only tests. Testing resumes without code changes when the next task begins.
+
+Test 1 decisions: planner workflow status and publication intent are separate. Legacy `available` requests retain their intent while displaying as draft requests; new requests default to draft and hidden-for-review intent. Intent never asserts catalog availability or bypasses approval of the current generation signature. Compact Codex prompts deduplicate destinations while retaining source question/player data; full JSON downloads retain complete snapshots. Private teaching context stays out of both exports. Optional source skills remain uncategorized, and module naming does not classify source questions. Cohort comparisons reuse account-checked evidence routes and distinguish response records, distinct source questions, pending grading, and students without evidence. Inventory counts distinguish authored records from confirmed duplicate merges.

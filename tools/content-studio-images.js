@@ -1,5 +1,54 @@
 /* Clipboard and cursor-position media reuse the existing passage and math image APIs. */
 const studioImages = {
+  async batch() {
+    if(app.saving)return;
+    const draft=app.mathDraft, assessmentId=app.selectedMathAssessmentId;
+    const dialog=document.createElement('dialog');dialog.className='studio-import-dialog studio-diagram-batch';
+    dialog.innerHTML=`<section class="panel"><header class="panel-head"><h2>Attach source diagrams</h2><button type="button" data-close>Close</button></header><div class="math-json-body"><p>Select source crops, then confirm each question, description and placement. No diagrams are generated. Your questions keep their IDs.</p><label>Source image files<input type="file" accept="image/png,image/jpeg,image/webp" multiple></label><div data-batch-paste role="textbox" tabindex="0" aria-label="Paste source image" contenteditable="true">Click here and paste a copied source image (Ctrl+V). You can add several images before saving.</div><div data-images></div><p role="status"></p><button type="button" data-attach disabled>Attach and save all diagrams</button></div></section>`;
+    document.body.append(dialog);dialog.showModal();let rows=[],running=false;
+    dialog.querySelector('[data-close]').onclick=()=>{if(!running){dialog.close();dialog.remove();}};
+    dialog.oncancel=event=>{if(running)event.preventDefault();else dialog.remove();};
+    const loadFiles=async(files,append=false)=>{
+      const input=dialog.querySelector('input[type=file]');input.disabled=true;dialog.querySelector('[data-attach]').disabled=true;
+      try {
+      const previous=append?rows.map((row,index)=>{const element=dialog.querySelector(`[data-row="${index}"]`);return {...row,questionId:element?.querySelector('select').value,alt:element?.querySelector('input').value,position:element?.querySelector('[data-position]').value};}):[];
+      rows=[...previous,...files.map(file=>({file}))];
+      if(rows.some(row=>!['image/png','image/jpeg','image/webp'].includes(row.file.type)||row.file.size>5_000_000))throw new Error('Choose PNG, JPEG or WebP source crops smaller than 5 MB each.');
+      dialog.querySelector('[data-images]').innerHTML=rows.map((row,index)=>{
+        const number=row.file.name.match(/(?:^|[-_])q(?:uestion)?[-_ ]?(\d+)(?:[-_.]|$)/i)?.[1];
+        const matches=draft.questions.filter(question=>(question.source?.sourceQuestion || question.id.match(/-q(\d+)$/)?.[1])===number);
+        return `<fieldset data-row="${index}"><legend>${escapeHtml(row.file.name)}</legend><label>Question<select><option value="">Choose question</option>${draft.questions.map((question,i)=>`<option value="${escapeHtml(question.id)}" ${(row.questionId===question.id||!row.questionId&&matches.length===1&&matches[0].id===question.id)?'selected':''}>${i+1} · ${escapeHtml(question.id)}</option>`).join('')}</select></label><label>Description<input type="text" maxlength="600" placeholder="Describe the source diagram" value="${escapeHtml(row.alt||'')}" required></label><label>Placement<select data-position><option value="before" ${row.position!=='after'?'selected':''}>Before question text</option><option value="after" ${row.position==='after'?'selected':''}>After question text</option></select></label><img alt="Source crop preview" style="max-width:240px;max-height:180px"></fieldset>`;
+      }).join('');
+      for(const [index,row] of rows.entries()){
+        row.dataUrl=await new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve(String(reader.result));reader.onerror=reject;reader.readAsDataURL(row.file);});
+        dialog.querySelector(`[data-row="${index}"] img`).src=row.dataUrl;
+      }
+      dialog.querySelector('[data-attach]').disabled=!rows.length;
+      } catch(error){dialog.querySelector('[role="status"]').textContent=error.message;}
+      finally{input.disabled=false;}
+    };
+    dialog.querySelector('input[type=file]').onchange=event=>loadFiles([...event.target.files]);
+    dialog.querySelector('[data-batch-paste]').onpaste=event=>{event.preventDefault();const file=this.fileFromPaste(event);if(file)loadFiles([file],true);else dialog.querySelector('[role=status]').textContent='Copy a source image, then paste it here.';};
+    dialog.querySelector('[data-attach]').onclick=async()=>{
+      const message=dialog.querySelector('[role="status"]');
+      try {
+        if(app.mathDraft!==draft||app.selectedMathAssessmentId!==assessmentId)throw new Error('The selected activity changed. Close this dialog and reopen it for the intended activity.');
+        const plan=rows.map((row,index)=>{const element=dialog.querySelector(`[data-row="${index}"]`);return {...row,questionId:element.querySelector('select').value,alt:element.querySelector('input').value.trim(),position:element.querySelector('[data-position]').value,width:Math.min(600,element.querySelector('img').naturalWidth||360)};});
+        if(plan.some(row=>!row.questionId||!row.alt))throw new Error('Choose a question and add a description for every crop.');
+        running=true;dialog.querySelectorAll('button,input,select').forEach(control=>control.disabled=true);
+        for(const [index,row] of plan.entries()){
+          message.textContent=`Uploading diagram ${index+1} of ${plan.length}…`;
+          if(!rows[index].uploaded||rows[index].uploadedQuestion!==row.questionId){rows[index].uploaded=(await api('/api/math-images',{method:'POST',body:JSON.stringify({assessmentId,questionId:row.questionId,dataUrl:row.dataUrl,fileName:row.file.name,mimeType:imageUploadMimeType(row.file),inline:true})})).image;rows[index].uploadedQuestion=row.questionId;}
+          row.image=rows[index].uploaded;
+        }
+        for(const row of plan){const question=draft.questions.find(item=>item.id===row.questionId);const image=`<p><img src="${escapeHtml(row.image.src)}" alt="${escapeHtml(row.alt)}" width="${row.width}"></p>`;const html=question.promptHtml||`<p>${escapeHtml(question.prompt)}</p>`;if(!html.includes(row.image.src))question.promptHtml=row.position==='before'?image+html:html+image;}
+        markMathDirty();message.textContent='Saving all diagram attachments…';await saveMath();
+        if(app.mathDirty)throw new Error('Attachments remain in the editor. Correct the save error and save the Math section; the uploaded images are retained.');
+        dialog.close();dialog.remove();setStatus(`${plan.length} source diagrams attached and saved. Review them in the student preview.`,'success');
+      }catch(error){message.textContent=error.message;}
+      finally{running=false;dialog.querySelectorAll('button,input,select').forEach(control=>control.disabled=false);}
+    };
+  },
   fileFromPaste(event) {
     return Array.from(event.clipboardData?.items || []).find(item => item.kind === 'file' && item.type.startsWith('image/'))?.getAsFile();
   },

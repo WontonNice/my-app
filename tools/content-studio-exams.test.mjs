@@ -5,8 +5,10 @@ import { createServer } from 'node:http';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import vm from 'node:vm';
+import { focusStudioFixture, isolateStudioPersistence } from './content-studio-test-context.mjs';
 
-test('new exams are locked, registered, editable, unique, and protected by editor authorization', async () => {
+test('new exams are locked, registered, editable, unique, and protected by editor authorization', async t => {
+  isolateStudioPersistence(t);
   const toolsRoot = dirname(fileURLToPath(import.meta.url));
   const root = resolve(toolsRoot, '..');
   // Keep generated copies out of watched content folders while the real editor
@@ -24,13 +26,16 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     await cp(join(root, 'server/src/shared'), join(fixture, 'server/src/shared'), { recursive: true });
     await mkdir(join(fixture, 'client/src/lib'), { recursive: true });
     await cp(join(root, 'client/src/lib/studentMaterials.ts'), join(fixture, 'client/src/lib/studentMaterials.ts'));
+    await cp(join(root, 'client/src/lib/studyHallNavigation.ts'), join(fixture, 'client/src/lib/studyHallNavigation.ts'));
     await cp(join(root, 'server/data/assessments.json'), join(fixture, 'server/data/assessments.json'));
     await writeFile(join(fixture, 'server/data/question-bank.json'), JSON.stringify({ revision: 0, questions: [], sets: [] }));
     await cp(join(toolsRoot, 'practice-topics.json'), join(fixture, 'tools/practice-topics.json'));
     await cp(join(toolsRoot, 'content-topics.json'), join(fixture, 'tools/content-topics.json'));
+    await cp(join(toolsRoot, 'content-topic-sections.json'), join(fixture, 'tools/content-topic-sections.json'));
     await cp(join(toolsRoot, 'math-topics.json'), join(fixture, 'tools/math-topics.json'));
     await cp(join(toolsRoot, 'content-studio-glossary.js'), join(fixture, 'tools/content-studio-glossary.js'));
     await cp(join(toolsRoot, 'poem-layout.js'), join(fixture, 'tools/poem-layout.js'));
+    await focusStudioFixture(fixture);
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8'))
       .replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(fixture)};`)
       .split('if (process.argv.includes("--validate"))')[0] + '\nexport { bulkPassageCategory, deletePassage, handleRequest, getState, previewPassageImport, savePassage, saveAdvancedPassage, saveStandaloneItem, saveTest };\n';
@@ -99,7 +104,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     const quickResponse = await postBank('/import-batch', quickBody); assert.equal(quickResponse.status, 201);
     const quickResult = await quickResponse.json(); assert.equal(quickResult.bank.revision, bulkResult.bank.revision + 1); assert.equal(quickResult.summary.published, 1); assert.equal(quickResult.summary.set.questionIds.length, 1); assert.equal(quickResult.summary.skipped.length, 1);
     assert.equal((await postBank('/import-batch', quickBody)).status, 400);
-    assert.deepEqual(state.passageCategories.map(category => category.value), ['official_handbook', 'prestige', 'miscellaneous']);
+    assert.deepEqual(state.passageCategories.map(category => category.value), ['official_handbook', 'prestige', 'kaplan', 'miscellaneous']);
     assert.ok(state.passages.every(passage => state.passageCategories.some(category => category.value === passage.passageCategory)));
     for (const passage of state.passages) {
       const authored = await readFile(join(fixture, 'client/src/content/exams/passageSets', passage.fileName), 'utf8');
@@ -129,10 +134,10 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     const exportedCatalog = JSON.parse(await readFile(join(fixture, 'server/data/learning-catalog.json'), 'utf8'));
     assert.equal(exportedCatalog.find(content => content.aliases.includes(advancedBefore.id)).passageCategory, 'prestige');
     await assert.rejects(studio.savePassage({ ...categoryTargets[0], passageCategory: 'poetry' }), /valid Passage Category/);
-    const originalPartBItem = state.standaloneItems[0];
+    const originalPartBItem = state.standaloneItems.find(item => !item.duplicateOf);
     const partBVersionLabel = `Part B Form ${Date.now()}`;
     const savedPartBItem = await studio.saveStandaloneItem({
-      item: { ...originalPartBItem, versionLabel: partBVersionLabel, explanation: 'The pronoun must identify its subject.', explanationHtml: 'The <strong>pronoun</strong> must identify its <em>subject</em>.', instructions: 'Choose one answer.' },
+      item: { ...originalPartBItem, versionLabel: partBVersionLabel, versionLabels: [partBVersionLabel], explanation: 'The pronoun must identify its subject.', explanationHtml: 'The <strong>pronoun</strong> must identify its <em>subject</em>.', instructions: 'Choose one answer.' },
       originalId: originalPartBItem.id,
       sourceHash: state.standaloneSourceHash,
     });
@@ -142,7 +147,8 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.equal(savedPartBItem.item.instructions, 'Choose one answer.');
     const reopenedPartB = (await studio.getState()).standaloneItems.find(item => item.id === originalPartBItem.id);
     assert.deepEqual(reopenedPartB, savedPartBItem.item);
-    const dragPartB = state.standaloneItems.find(item => item.type === 'category_sort');
+    const dragPartB = state.standaloneItems.find(item => item.type === 'category_sort' && !item.duplicateOf && item.categories.length === 1 && item.categoryCapacity === 1);
+    assert.ok(dragPartB, 'A single answer box with distractor cards must be editable.');
     const savedDragPartB = await studio.saveStandaloneItem({ item: { ...dragPartB, explanation: 'This sentence has an unclear pronoun.', explanationHtml: 'This sentence has an <u>unclear pronoun</u>.' }, originalId: dragPartB.id, sourceHash: savedPartBItem.sourceHash });
     const reopenedDragPartB = (await studio.getState()).standaloneItems.find(item => item.id === dragPartB.id);
     assert.equal(reopenedDragPartB.explanationHtml, savedDragPartB.item.explanationHtml);
@@ -287,7 +293,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.equal(keptDraft.status, 200, JSON.stringify(keptDraft.data));
     assert.equal(keptDraft.data.item.id, keepDraftEntry.question.id);
     assert.equal(keptDraft.data.item.points, 3, 'Verification includes current draft edits');
-    assert.deepEqual(keptDraft.data.item.versionLabels, ['New Form', 'Source left', 'Imported Form']);
+    assert.deepEqual(keptDraft.data.item.versionLabels, ['New Form', 'Imported Form']);
     assert.equal(keptDraft.data.items.find(item => item.id === copies[1].id).duplicateOf, keptDraft.data.item.id);
     assert.equal(keptDraft.data.items.find(item => item.id === copies[0].id).duplicateOf, keptDraft.data.item.id);
     assert.equal((await studio.getState()).standaloneImportDrafts.some(entry => entry.id === keepDraftEntry.id), false);
@@ -313,6 +319,18 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     const labeled = (await studio.getState()).assessments.find(item => item.id === payload.assessment.id);
     assert.equal(labeled.examLabel, 'Publisher collection'); assert.equal(labeled.status, 'locked');
     assert.deepEqual(labeled.questions, payload.assessment.questions);
+    const placeWorksheet = placement => fetch(labelUrl, { method:'PUT', headers:{'Content-Type':'application/json','x-editor-token':state.editToken}, body:JSON.stringify({examLabel:'Publisher collection',studyHallWorksheet:placement}) });
+    const placement = { subject:'math', category:'Algebra', topic:'Inequalities', collection:'Short practice' };
+    assert.equal((await placeWorksheet({subject:'math',category:''})).status,400);
+    assert.equal((await placeWorksheet(placement)).status,200);
+    const worksheet = (await studio.getState()).assessments.find(item=>item.id===payload.assessment.id);
+    assert.deepEqual(worksheet.studyHallWorksheet,{...placement,area:'math',scope:'focused',categoryId:'math:algebra',topicId:'math:algebra:inequalities'});
+    assert.deepEqual(worksheet.questions,payload.assessment.questions);
+    assert.equal(worksheet.status,'locked');
+    assert.equal((await relabel('Another source')).status,200);
+    assert.deepEqual((await studio.getState()).assessments.find(item=>item.id===payload.assessment.id).studyHallWorksheet,worksheet.studyHallWorksheet);
+    assert.equal((await placeWorksheet(null)).status,200);
+    assert.equal((await studio.getState()).assessments.find(item=>item.id===payload.assessment.id).studyHallWorksheet,null);
     const createLabel = (label, token = state.editToken) => fetch(new URL('/api/exam-labels', url), { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-editor-token': token }, body: JSON.stringify({ label }) });
     assert.equal((await createLabel('Weekly quizzes', 'invalid')).status, 403);
     assert.equal((await createLabel(' ')).status, 400);
@@ -362,7 +380,9 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     };
     const passageImport = await studio.previewPassageImport({ source: `\`\`\`json\n${JSON.stringify(passageImportDocument)}\n\`\`\`` });
     const workspaceCode = await readFile(join(toolsRoot, 'content-studio-workspace.js'), 'utf8');
-    const ui = vm.runInNewContext(`${workspaceCode}\nstudioUI;`, { URL });
+    const documentImportCode=await readFile(join(toolsRoot,'document-import.cjs'),'utf8');
+    const TeiFormats=JSON.parse(await readFile(join(toolsRoot,'../server/src/shared/teiFormats.json'),'utf8'));
+    const ui = vm.runInNewContext(`${documentImportCode}\n${workspaceCode}\nstudioUI;`, { URL, TeiFormats });
     const readerDocument = {
       schemaVersion: 3,
       source: { url: 'https://tutor.thesatcrashcourse.com/tests/digital-shsat/fixture' },
@@ -430,7 +450,7 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     const originalPassage = refreshed.passages.find(passage => passage.title === 'A Miracle Mile') || refreshed.passages[0];
     await assert.rejects(
       studio.savePassage({ ...originalPassage, passageType: '', section: 'reading' }),
-      /Library passage type/,
+      /library passage type/i,
     );
     await assert.rejects(
       studio.savePassage({ ...originalPassage, section: '' }),
@@ -565,7 +585,8 @@ test('new exams are locked, registered, editable, unique, and protected by edito
     assert.equal((await putTaxonomy(taxonomyDraft)).status, 409);
     const currentTaxonomy = await (await fetch(taxonomyUrl)).json();
     const renameDraft = { revision: currentTaxonomy.revision, categories: currentTaxonomy.categories.map(category => ({ ...category, original: category.label, topics: category.topics.map(topic => ({ ...topic, original: topic.label, label: topic.label === sourceTopic ? 'One-variable equations' : topic.label })) })) };
-    assert.equal((await putTaxonomy(renameDraft)).status, 200);
+    const renamedTaxonomy = await putTaxonomy(renameDraft);
+    assert.equal(renamedTaxonomy.status, 200, JSON.stringify(await renamedTaxonomy.json()));
     const renamedMath = await studio.getState();
     assert.equal(renamedMath.assessments.find(item => item.id === payload.assessment.id).questions.find(item => item.id === mathQuestion.id).subtopic, 'One-variable equations');
     { const post = async (path, body) => {

@@ -4,6 +4,7 @@ import { normalizePassageCategory, patchPassageCategory } from './passage-catego
 
 test('category defaults and validation are source-only, never guessed from genre', () => {
   assert.equal(normalizePassageCategory(undefined), 'miscellaneous');
+  assert.equal(normalizePassageCategory('kaplan'), 'kaplan');
   assert.throws(() => normalizePassageCategory('poem'), /valid Passage Category/);
 });
 test('bulk metadata patch retains poems, quotations, questions, comments and whitespace', () => {

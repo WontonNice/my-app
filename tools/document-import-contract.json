@@ -44,11 +44,12 @@
       "informational",
       "literary",
       "poem",
-      "long_reading"
+      "revising_editing"
     ],
     "passageCategory": [
       "official_handbook",
       "prestige",
+      "kaplan",
       "miscellaneous"
     ],
     "section": [
@@ -74,20 +75,19 @@
     "type": [
       "multiple_choice",
       "multi_select",
-      "numeric_entry",
-      "expression_entry",
-      "short_response",
-      "grid_in",
+      "category_sort",
+      "table_match",
+      "matrix_choice",
       "inline_dropdown",
       "math_drag_drop",
-      "graph_point_select",
-      "number_line_response",
-      "coordinate_response",
-      "matrix_choice",
-      "category_sort",
-      "matrix_choice",
-      "table_match",
       "transition_drop",
+      "graph_point_select",
+      "coordinate_response",
+      "number_line_response",
+      "short_response",
+      "numeric_entry",
+      "expression_entry",
+      "grid_in",
       "essay"
     ],
     "topic": "exact section topic; for math, the main sorting category; empty when uncertain",

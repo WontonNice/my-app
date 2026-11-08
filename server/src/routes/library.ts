@@ -14,6 +14,8 @@ import type { ExamContent, ExamQuestion } from "../shared/examTypes";
 import { canonicalLibraryBookId, getMergedLibraryBook, libraryBookAccessIds } from "../lib/libraryBooks";
 import { getLibraryAttemptBook } from "../lib/libraryBooks";
 import { gradeLibraryBook, verifiedLibraryVersions, type LibrarySnapshotStat } from "../shared/libraryBooks";
+import { curateLibraryBook, libraryBookFingerprint, type LibraryBookSettings } from '../shared/libraryBooks';
+import { bookSettingsPrefix, bookEditionPrefix, libraryBookEdition } from '../lib/libraryBookSettings';
 
 type QuestionStat = LibrarySnapshotStat & {
     correctAnswerId: string;
@@ -262,6 +264,50 @@ function activeLibraryStudent(user: Parameters<typeof getUserRole>[0]) {
 export const libraryRouter = Router();
 
 // One student-scoped batch, including compatibility storage; no per-question requests.
+libraryRouter.get('/book-settings', async (request, response) => {
+    const auth = await getAuthenticatedUser(request.headers.authorization);
+    if (!auth.user) { response.status(401).json({ message: 'Sign in to view the library.' }); return; }
+    const rows = await libraryRows<{ topic_slug: string; progress: LibraryBookSettings }>(offset => supabase.from('student_practice_progress').select('topic_slug,progress').like('topic_slug', `${bookSettingsPrefix}%`).order('updated_at').range(offset, offset + 999));
+    response.json({ settings: Object.fromEntries(rows.map(row => [row.topic_slug.slice(bookSettingsPrefix.length), row.progress])) });
+});
+libraryRouter.get('/books/:bookId/content', async (request, response) => {
+    const auth = await getAuthenticatedUser(request.headers.authorization);
+    if (!auth.user) { response.status(401).json({ message: 'Sign in to open this book.' }); return; }
+    const teacher = ['teacher', 'admin'].includes(getUserRole(auth.user));
+    if (!teacher && (!activeLibraryStudent(auth.user) || !(await completedBookAccess(auth.user.id, request.params.bookId)).unlocked)) { response.status(403).json({ message: 'Your teacher needs to enable this book for your account.' }); return; }
+    const edition = await libraryBookEdition(request.params.bookId);
+    if (!edition) { response.status(404).json({ message: 'Book not found.' }); return; }
+    response.json(edition);
+});
+libraryRouter.put('/teacher/books/:bookId/settings', async (request, response) => {
+    const auth = await requireTeacher(request.headers.authorization);
+    if (!auth.user) { response.status(403).json({ message: 'Teacher access is required.' }); return; }
+    const book = getLibraryAttemptBook(request.params.bookId);
+    if (!book) { response.status(404).json({ message: 'Book not found.' }); return; }
+    if (request.body?.fingerprint !== libraryBookFingerprint(book)) { response.status(409).json({ message: 'The source questions changed. Reload Book settings before saving.' }); return; }
+    if (!Array.isArray(request.body.questionIds) || !request.body.questionIds.every((id: unknown) => typeof id === 'string')) { response.status(400).json({ message: 'Select the questions for this book.' }); return; }
+    const settings = { bookId: book.id, fingerprint: libraryBookFingerprint(book), questionIds: request.body.questionIds as string[], reviewedAt: new Date().toISOString(), revision: randomUUID() };
+    try { curateLibraryBook(book, settings); } catch (error) { response.status(400).json({ message: (error as Error).message }); return; }
+    // Keep immutable selection editions so an in-flight attempt survives a later teacher edit.
+    for (const topic of [bookEditionPrefix + settings.revision, bookSettingsPrefix + book.id]) {
+        const saved = await supabase.from('student_practice_progress').upsert({ user_id: auth.user.id, topic_slug: topic, progress: settings, updated_at: settings.reviewedAt }, { onConflict: 'user_id,topic_slug' });
+        if (saved.error) { response.status(503).json({ message: 'Book settings could not be saved. Please retry.' }); return; }
+    }
+    response.json({ settings });
+});
+libraryRouter.get('/progress', async (request, response) => {
+    const auth = await getAuthenticatedUser(request.headers.authorization);
+    if (!auth.user) { response.status(401).json({ message: 'Sign in to view library progress.' }); return; }
+    const target = typeof request.query.studentId === 'string' ? request.query.studentId : auth.user.id;
+    if (target !== auth.user.id && !['teacher', 'admin'].includes(getUserRole(auth.user))) { response.status(403).json({ message: 'Teacher access is required.' }); return; }
+    const [rows, fallback] = await Promise.all([
+        libraryRows<LibraryAttemptRow>(offset => supabase.from('student_library_attempts').select('*').eq('user_id', target).order('id').range(offset, offset + 999), true),
+        libraryRows<{ topic_slug: string; progress: unknown }>(offset => supabase.from('student_practice_progress').select('topic_slug,progress').eq('user_id', target).like('topic_slug', 'english-library:%').order('topic_slug').range(offset, offset + 999)),
+    ]);
+    for (const row of fallback) rows.push(...readFallbackProgress(row.progress).attempts.map(attempt => ({ ...attempt, user_id: target })));
+    const unique = [...new Map(rows.filter(row => !row.book_id.startsWith('lab-set-')).map(row => [row.id, row])).values()];
+    response.json({ attempts: unique.sort((a, b) => b.completed_at.localeCompare(a.completed_at)).map(row => ({ ...studentAttempt(row), title: libraryMaterial(row.book_id)?.title ?? row.book_id })) });
+});
 libraryRouter.get("/teacher/analytics/:studentId", async (request, response) => {
     const auth = await requireTeacher(request.headers.authorization);
     if (!auth.user) { response.status(403).json({ message: "Teacher access is required." }); return; }
@@ -667,7 +713,9 @@ libraryRouter.post("/books/:bookId/attempts", async (request, response) => {
         response.status(400).json({ message: accessProgress.error.message });
         return;
     }
-    const mergedBook = getLibraryAttemptBook(request.params.bookId);
+    const mergedBook = request.body?.bookRevision
+        ? (await libraryBookEdition(request.params.bookId, String(request.body.bookRevision)))?.book
+        : getLibraryAttemptBook(request.params.bookId);
     if (!activeLibraryStudent(authenticated.user) || !(await completedBookAccess(authenticated.user.id, request.params.bookId)).unlocked) {
         response.status(403).json({ message: "Your teacher needs to enable this book for your account." }); return;
     }

@@ -2,15 +2,65 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import { test } from "node:test";
 import vm from "node:vm";
+import * as poemLayout from './poem-layout.js';
 import DocumentImport from "./document-import.cjs";
 
 const source = await readFile(new URL("./content-studio-workspace.js", import.meta.url), "utf8");
+const editorHtml = await readFile(new URL('./content-studio.html', import.meta.url), 'utf8');
 const setup = (questions = []) => {
   const app = { passageMode: "exam", selectedPassageId: "passage-a", passageDraft: { questions } };
   return { app, ui: vm.runInNewContext(`${source}\nstudioUI;`, { app, URL, DocumentImport }) };
 };
 
-const editorHtml = await readFile(new URL('./content-studio.html', import.meta.url), 'utf8');
+test('unpublished worksheets explicitly say Draft and Not visible even with access configured open', () => {
+  const {ui}=setup();
+  const status=ui.publicationStatus({status:'open',sectionAccess:{math:true},assembly:{draftQuestionIds:['q'],reviewed:true}});
+  assert.equal(status.label,'Draft');
+  assert.equal(status.summary,'Not visible to students');
+  assert.match(status.detail,/Saving only stores your draft/);
+});
+
+test('publication labels never infer student access from the authored access defaults', () => {
+  const {ui}=setup();
+  const worksheet={status:'locked',assembly:{publishedReleaseId:'same',reviewedContentHash:'same',reviewed:true}};
+  assert.equal(ui.publicationStatus(worksheet).label,'Published');
+  assert.equal(ui.publicationStatus(worksheet).summary,'Check student access in Study Hall');
+  worksheet.assembly.reviewed=false;
+  assert.equal(ui.publicationStatus(worksheet).label,'Published · draft needs review');
+});
+
+test('changed content and changed published metadata are identified as unpublished changes', () => {
+  const {ui}=setup();
+  const worksheet={title:'Sheet',durationMinutes:30,assembly:{publishedReleaseId:'old',reviewedContentHash:'new',reviewed:true}};
+  assert.equal(ui.publicationStatus(worksheet).label,'Unpublished changes');
+  worksheet.assembly.reviewedContentHash='old';
+  worksheet.assembly.publishedMetadata={title:'Sheet',durationMinutes:20};
+  assert.equal(ui.publicationStatus(worksheet).label,'Unpublished changes');
+  worksheet.durationMinutes=20;
+  assert.equal(ui.publicationStatus(worksheet).label,'Published');
+});
+
+test('authoring waits for shared response rendering, including a cached renderer, and ignores stale frames', () => {
+  const {ui} = setup();
+  const listeners = [];
+  const doc = {querySelector:()=>({}), documentElement:{dataset:{}}, addEventListener:(name, callback, options)=>{
+    assert.equal(name, 'exam-response-ready'); assert.equal(options.once, true); listeners.push(callback);
+  }};
+  const frame = {contentDocument:doc, isConnected:true};
+  let binds = 0;
+  assert.equal(ui.examResponseReady(frame, ()=>binds++), false);
+  doc.documentElement.dataset.responsePreviewReady = 'true'; listeners.shift()();
+  assert.equal(binds, 1);
+  assert.equal(ui.examResponseReady(frame, ()=>binds++), true);
+  assert.equal(listeners.length, 0);
+  delete doc.documentElement.dataset.responsePreviewReady;
+  assert.equal(ui.examResponseReady(frame, ()=>binds++), false);
+  frame.contentDocument = {}; listeners.shift()(); assert.equal(binds, 1);
+  assert.match(source, /bindExamCanvas\(frame\) \{\s*if \(!this\.examResponseReady/);
+  assert.match(source, /bindStandaloneCanvas\(frame\) \{\s*if \(!this\.examResponseReady/);
+  assert.match(editorHtml, /dataset\.responsePreviewReady = 'true';\s*document\.dispatchEvent\(new Event\('exam-response-ready'\)\)/);
+});
+
 const editorFunction = name => {
   const start = editorHtml.search(new RegExp(`^    (?:async )?function ${name}\\(`, 'm'));
   assert.notEqual(start, -1, name);
@@ -59,16 +109,15 @@ test('Part B uses its own student document in authoring and Student view without
   assert.match(frame.srcdoc, /<section class="exam-standalone-document">/);
   assert.match(frame.srcdoc, /html, body \{ min-width: 0; background: #f7f7f7; color: #111820; color-scheme: light;/);
   assert.match(frame.srcdoc, /\.exam-session-shell \{ min-height: 100vh; box-sizing: border-box;/);
-  assert.match(frame.srcdoc, /exam-choice-list exam-standalone-choice-list/);
-  assert.doesNotMatch(frame.srcdoc, /<script\b/);
+  assert.match(frame.srcdoc, /data-response-preview=/);
+  assert.match(frame.srcdoc, /question-response-preview.js/);
   assert.equal(JSON.stringify(app.passageDraft), reading);
   app.standaloneDraft = { type: 'category_sort', prompt: 'Pick a sentence.', stimulus: 'Paragraph text.', items: [{ id: 's1', text: 'Sentence 1' }, { id: 's2', text: 'Sentence 2' }], categories: [{ id: 'box', title: 'Answer box' }], categoryCapacity: 1, correctPlacements: { s2: 'box' } };
   render(frame);
-  assert.match(frame.srcdoc, /data-preview-category-item="s2"/);
-  assert.match(frame.srcdoc, /data-preview-category-capacity="1"/);
-  assert.match(frame.srcdoc, /class="exam-standalone-category-card"/);
-  assert.match(frame.srcdoc, /class="exam-standalone-category-target-items" data-preview-category-items/);
-  assert.doesNotMatch(frame.srcdoc, /class="exam-category-card"/);
+  assert.match(frame.srcdoc, /data-response-preview=/);
+  assert.match(frame.srcdoc, /categoryCapacity/);
+  assert.match(frame.srcdoc, /data-standalone="true"/);
+  assert.doesNotMatch(frame.srcdoc, /data-preview-category-item/);
 });
 
 test('shared Part B canvas keeps printed sentence numbers without inventing a passage title or paragraph numbers', () => {
@@ -130,6 +179,16 @@ test('standalone prompts containing their own boxed paragraph do not render an e
   delete app.standaloneDraft.source;
   render(frame);
   assert.match(frame.srcdoc, /<div class="exam-standalone-stimulus"><\/div>/, 'New handwritten questions still need an editable paragraph placeholder');
+});
+
+test('changing a Part B response type preserves its draft identity, source, tags and supporting text', () => {
+  const current={id:'part-b-draft',type:'multi_select',prompt:'Choose a revision.',documentDraftId:'doc-1',versionLabels:['Teacher tag'],source:{sourceFamily:'sat_crash_course'},stimulus:'Source paragraph.',stimulusHtml:'<p>Source paragraph.</p>',review:{sourceReviewed:true},choices:['A','B','C','D'].map(id=>({id,text:id})),correctChoiceIds:['B']};
+  const app={passageDraft:{id:'part-b-editor',partBEditor:true,questions:[current]}};
+  const change=vm.runInNewContext(`${editorFunction('choiceArrayFromQuestion')}\n${editorFunction('changeQuestionType')}\nchangeQuestionType;`,{app,clone:structuredClone,defaultQuestion:()=>({}),markDirty(){},renderQuestionsV2(){}});
+  change(0,'multiple_choice');
+  const next=app.passageDraft.questions[0];
+  for(const key of ['id','documentDraftId','versionLabels','source','stimulus','stimulusHtml','review']) assert.deepEqual(next[key],current[key],key);
+  assert.equal(next.correctChoiceId,'B');
 });
 
 test('direct Part B editing preserves rich text and paragraph boundaries without changing answer keys or other fields', () => {
@@ -235,7 +294,7 @@ test('passage draft deletion preserves unsaved content on cancel or failure and 
     const editor = {}; let requests = 0;
     const ui = vm.runInNewContext(`${documentSource}\nDocumentStudio;`, {
       app, document: { getElementById: () => editor, querySelector: () => null }, window: { confirm: () => scenario !== 'cancel' },
-      clone: structuredClone, setStatus() {}, studioUI: { syncSaveState() {} }, renderPassageList() {}, renderPassageEditor() {},
+      clone: structuredClone, setStatus() {}, studioUI: { syncSaveState() {}, passagesForLibrary: () => app.state.passages }, renderPassageList() {}, renderPassageEditor() {},
       api: async (path, options) => {
         requests++; assert.equal(path, '/api/document-drafts'); assert.equal(options.method, 'DELETE');
         assert.equal(JSON.parse(options.body).revision, 5); assert.equal(editor.inert, true);
@@ -277,10 +336,13 @@ test('reading startup mounts the editable preview after its workspace controls a
     const app = { state: { passages: [{ id: 'first', questions: [] }], assessments: [], advancedPassages: [], practice: { topics: [] } }, passageDraft: existing ? original : null, passageDirty: existing };
     let shellReady = false, canvas = false, documentsReady = false;
     const messages = [];
-    const initialize = vm.runInNewContext(`${html.slice(start, end)}\ninitialize;`, {
-      app, clone: structuredClone, document: { querySelector: () => canvas ? {} : null }, window: { location: { hash: '' } },
+    // Supply the actual module through the VM boundary instead of issuing a
+    // browser-only absolute dynamic import from Node's test runtime.
+    const initializeSource = html.slice(start, end).replace("await import('/poem-layout.js')", 'poemLayout');
+    const initialize = vm.runInNewContext(`${initializeSource}\ninitialize;`, {
+      app, poemLayout, URLSearchParams, clone: structuredClone, document: { querySelector: () => canvas ? {} : null }, window: { location: { hash: '', search: '' } },
       reloadState: async () => {}, updatePassageWorkspaceLabels() {}, renderPassageList() {},
-      studioUI: { readPreference: (_key, fallback) => fallback, restorePassageLibrary() {}, initialize() { shellReady = true; } },
+      studioUI: { readPreference: (_key, fallback) => fallback, passagesForLibrary: () => app.state.passages, restorePassageLibrary() {}, initialize() { shellReady = true; } },
       renderPassageEditor() { assert.equal(shellReady, true); canvas = true; },
       DocumentStudio: { initialize() { documentsReady = true; } },
       initializePracticeEditor() { throw new Error('Unrelated saved Practice settings'); },

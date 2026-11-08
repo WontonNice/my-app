@@ -22,7 +22,7 @@ const excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4
     "points": 1,
     "prompt": "In sentence (2), the pronoun they appears twice, and its second use could refer to either the parent group or the office staff. Which revision best fixes this unclear pronoun reference?",
     "promptHtml": "In sentence (2), the pronoun <em>they</em> appears twice, and its second use could refer to either the parent group or the office staff. Which revision <strong>best</strong> fixes this unclear pronoun reference?",
-    "topic": "Central Idea & Theme",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",
@@ -67,7 +67,7 @@ const excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4
     "prompt": "Sentences (7) and (8) can be combined into a single, smoother sentence. Click the word that best joins the two ideas without changing their meaning.",
     "promptHtml": "Sentences (7) and (8) can be combined into a single, smoother sentence. Click the word that <strong>best</strong> joins the two ideas without changing their meaning.",
     "selectionHtml": "<p>The rack would give students a sturdy metal frame to lock their bikes to, <span data-choice-id=\"A\"><p><strong>and</strong></p></span> <span data-choice-id=\"B\"><p><strong>but</strong></p></span> <span data-choice-id=\"C\"><p><strong>which</strong></p></span> <span data-choice-id=\"D\"><p><strong>so</strong></p></span> a simple roof would keep seats and gears dry during rainy mornings.</p>",
-    "topic": "Central Idea & Theme",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",
@@ -111,7 +111,7 @@ const excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4
     "points": 1,
     "prompt": "In sentence (9), which revision corrects the subject-verb agreement error in the phrase bike ridership there have nearly doubled?",
     "promptHtml": "In sentence (9), which revision corrects the subject-verb agreement error in the phrase <em>bike ridership there have nearly doubled</em>?",
-    "topic": "Central Idea & Theme",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",
@@ -155,7 +155,7 @@ const excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4
     "points": 1,
     "prompt": "Which revision best corrects the comma splice in sentence (14)?",
     "promptHtml": "Which revision <strong>best</strong> corrects the comma splice in sentence (14)?",
-    "topic": "Central Idea & Theme",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",
@@ -199,7 +199,7 @@ const excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4
     "points": 1,
     "prompt": "The sentence that should be deleted from paragraph 1 because it does not support the paragraph's focus on bike theft and damage is",
     "promptHtml": "The sentence that should be deleted from paragraph 1 because it does not support the paragraph's focus on bike theft and damage is",
-    "topic": "Central Idea & Theme",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",
@@ -243,7 +243,7 @@ const excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4
     "points": 1,
     "prompt": "Which transition, added to the beginning of sentence (10), would most clearly signal the shift from Riverbend Elementary's success to the concern raised in the sentences that follow?",
     "promptHtml": "Which transition, added to the beginning of sentence (10), would <strong>most clearly</strong> signal the shift from Riverbend Elementary's success to the concern raised in the sentences that follow?",
-    "topic": "Central Idea & Theme",
+    "topic": "Sentence Structure",
     "choices": [
       {
         "id": "A",
@@ -274,13 +274,13 @@ const excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4
 export const excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4PassageSet: ExamPassageSet = {
   id: "ela-excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4",
   versionLabels: ["Digital SHSAT Practice Test 4"],
-  section: "reading",
+  section: "revising_editing_a",
   questionCount: excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4Questions.length,
   directions: {
-  "body": "Read each text and answer the related questions. Base your answers only on the content within the text.",
-  "breadcrumbLabel": "ELA RDG COMP DIRECTIONS",
+  "body": "Read each text and answer the related questions. You will be asked to recognize and correct errors so that the text follows the conventions of standard written English.",
+  "breadcrumbLabel": "ELA REV/EDIT A DIRECTIONS",
   "subject": "English Language Arts",
-  "title": "READING COMPREHENSION"
+  "title": "REVISING/EDITING PART A"
 },
   passage: createSourcePassage({
     id: "excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4",
@@ -295,7 +295,7 @@ export const excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracti
     author: "Student Author",
     byline: "by Student Author",
     blurb: "The following is a draft essay written by a student for the school newspaper’s opinion column. Some sentences may contain errors.",
-    passageType: "long_reading",
+    passageType: "informational",
     passageCategory: "prestige",
     richText: "<p>(1) Every morning, dozens of students at Alder Hollow Middle School arrive on bicycles, and most of them end up leaning their bikes against the fence by the gym doors because there is nowhere else to put them. (2) When the parent group first raised the idea of a real bike rack two years ago, they spoke with the office staff about the fence, and they never got a clear answer about whether the request was even being considered. (3) The gym doors themselves are painted dark green to match the school's colors. (4) Last spring, three bikes were stolen from the fence in a single week. (5) Two more bikes were knocked over and damaged during a windstorm the same month.</p><p>(6) A covered bike rack near the main entrance would solve both problems at once. (7) The rack would give students a sturdy metal frame to lock their bikes to. (8) A simple roof would keep seats and gears dry during rainy mornings. (9) Riverbend Elementary, a school in our own district, installed a covered rack two years ago, and bike ridership there have nearly doubled since, according to a count the front office took each September.</p><p>(10) Some administrators worry that a bike rack is an expense the school cannot justify right now. (11) The district's own facilities office estimates the cost of a twenty-space covered rack at under two thousand dollars, less than the school spends on hallway floor wax in a single year. (12) That is a small price for a change that could get more students moving safely under their own power instead of adding to the carpool line outside the office every morning. (13) A parent-teacher group has even offered to cover part of the cost through a fall fundraiser if the school commits to the project this year.</p><p>(14) Other students point out that biking is not for everyone, students living far from school or on busy roads may reasonably prefer the bus or a ride from a parent. (15) No one is proposing that biking replace those options. (16) The goal is simply to make biking safe and practical for the students who already choose it, rather than leaving them to guess where an unwatched bike might still be standing at the end of the day. (17) A covered rack costs little, solves a problem families have raised for two years, and rewards students who are already doing exactly what the school claims to want: getting to school under their own power.</p>",
     text: excerptFromTheCaseForMoreBikeParkingAtAlderHollowDigitalShsatPracticeTest4PassageText,

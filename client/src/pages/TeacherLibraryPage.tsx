@@ -1,3 +1,6 @@
+import { getLibraryBookSettings } from '../lib/api';
+import { libraryBookNeedsReview, type LibraryBookSettings as BookSettings } from '../../../server/src/shared/libraryBooks';
+import { LibraryBookSettings } from '../components/LibraryBookSettings';
 import { teacherNavItems } from '../lib/teacherNavigation';
 import { useEffect, useMemo, useState } from "react";
 import {
@@ -87,6 +90,7 @@ export function TeacherLibraryPage() {
   const bookId = getEnglishLibraryMaterial(routeBookId) ? getLibraryBookId(getEnglishLibraryMaterial(routeBookId)!) : routeBookId;
   const selectedMaterial = bookId ? getEnglishLibraryMaterial(bookId) : undefined;
   const passageSet = bookId ? getPassageSet(bookId) : undefined;
+  const [bookSettings, setBookSettings] = useState<Record<string, BookSettings>>({});
   const [accessToken, setAccessToken] = useState(initialSession?.access_token ?? "");
   const [isCheckingSession, setIsCheckingSession] = useState(isSupabaseConfigured && !initialSession);
   const [isLoadingDetail, setIsLoadingDetail] = useState(Boolean(bookId));
@@ -149,6 +153,7 @@ export function TeacherLibraryPage() {
     return () => { isMounted = false; };
   }, [bookId]);
 
+  useEffect(() => { if (!accessToken) return; let current = true; getLibraryBookSettings(accessToken).then(result => { if (current) setBookSettings(result.settings); }).catch(() => { if (current) setMessage('Book review status could not be loaded. Open Book settings to retry.'); }); return () => { current = false; }; }, [accessToken]);
   const visibleMaterials = useMemo(() => englishLibraryMaterials.filter(material => (!sourceFilter || material.contentSource === sourceFilter) && (!categoryFilter || !material.contentSource && (material.passageCategories ?? [passageCategory(material.passageCategory)]).some(category => category === categoryFilter)) && (!genreFilter || material.readingFormat === genreFilter) && (!librarySearch.trim() || `${material.title} ${material.author ?? ""}`.toLowerCase().includes(librarySearch.trim().toLowerCase()))).sort((a, b) => ((librarySort === "category" ? passageCategoryLabel(a.passageCategory).localeCompare(passageCategoryLabel(b.passageCategory)) : librarySort === "questions" ? a.questionCount - b.questionCount : a.title.localeCompare(b.title)) * (libraryDirection === "asc" ? 1 : -1)) || a.id.localeCompare(b.id)), [sourceFilter, categoryFilter, genreFilter, librarySearch, librarySort, libraryDirection]);
   const selectedStudent = students.find((student) => student.id === selectedStudentId);
   const selectedAttempt = selectedStudent?.attempts.find((attempt) => attempt.id === selectedAttemptId) ?? selectedStudent?.attempts[0];
@@ -182,7 +187,7 @@ export function TeacherLibraryPage() {
       profileRole="Teacher account"
     >
       {bookId ? (
-        <TeacherLibraryBookDetail
+        <><details className="teacher-library-settings-panel" open={window.location.hash === "#book-settings"}><summary>Book settings · Questions &amp; cover</summary><LibraryBookSettings key={bookId} bookId={bookId} accessToken={accessToken} /></details><TeacherLibraryBookDetail
           key={bookId}
           attempt={selectedAttempt}
           isLoading={isLoadingDetail}
@@ -200,7 +205,7 @@ export function TeacherLibraryPage() {
           showAnswers={showAnswers}
           students={students}
           toggleAnswers={() => setShowAnswers((current) => !current)}
-        />
+        /></>
       ) : (
         <>
           <header className="teacher-library-heading">
@@ -226,7 +231,7 @@ export function TeacherLibraryPage() {
                   <AppLink className="teacher-library-cover-link" href={`/teacher/library/${encodeURIComponent(nextBookId)}`}>
                     <span aria-label={material.coverAlt || `${material.title} cover`} className={`study-hall-book-cover is-${material.tone ?? "emerald"}`} role="img">
                       {material.coverImage ? <img alt="" aria-hidden="true" src={material.coverImage} /> : null}
-                      <span className="study-hall-generated-cover"><small>The Learning Room</small><strong>{material.title}</strong><em>{material.author || "Teacher selection"}</em></span>
+                      {!material.coverImage && <span className="study-hall-generated-cover"><small>The Learning Room</small><strong>{material.title}</strong><em>{material.author || "Teacher selection"}</em></span>}
                       <span className="study-hall-cover-shadow" />
                     </span>
                   </AppLink>
@@ -234,6 +239,7 @@ export function TeacherLibraryPage() {
                     <span><small>English · {material.contentSource || passageCategoryLabel(material.passageCategory)}</small><small>{material.contentSource ? "ELA practice set" : material.readingFormat}</small></span>
                     <AppLink href={`/teacher/library/${encodeURIComponent(nextBookId)}`}><strong>{material.title}</strong><ArrowRight size={15} /></AppLink>
                     <p>{material.questionCount} questions{(material.versionCount ?? 1) > 1 ? ` · ${material.versionCount} versions combined` : ""}</p>
+                    <AppLink href={`/teacher/library/${encodeURIComponent(nextBookId)}#book-settings`}>Book settings{(() => { const book = getExamLibraryPassage(nextBookId); return book && libraryBookNeedsReview(book, bookSettings[nextBookId]) ? " · Versions need review" : ""; })()}</AppLink>
                     <AppLink className="teacher-library-manage-link" href={`/teacher/library/${encodeURIComponent(nextBookId)}`}><Users size={15} /> Manage student access</AppLink>
                   </div>
                 </article>
@@ -281,7 +287,7 @@ function TeacherLibraryBookDetail({ attempt, isLoading, material, message, onSet
       {message ? <p role="status" className="teacher-message corporate-message">{message}</p> : null}
       <div className="teacher-library-detail-layout">
         <section className="teacher-book-preview" aria-label="Student book preview">
-          <header><div><Eye size={18} /><span><small>Student preview</small><h2>Reading experience</h2></span></div><button aria-pressed={showAnswers} onClick={toggleAnswers} type="button">{showAnswers ? <EyeOff size={15} /> : <Eye size={15} />}{showAnswers ? "Hide answers" : "Show answers"}</button></header>
+          <header><div><Eye size={18} /><span><small>Passage reference</small><h2>Source versions</h2></span></div><button aria-pressed={showAnswers} onClick={toggleAnswers} type="button">{showAnswers ? <EyeOff size={15} /> : <Eye size={15} />}{showAnswers ? "Hide answers" : "Show answers"}</button></header>
           {versions.length > 1 && <label className="teacher-book-version-picker">Passage version<select value={previewVersion || versions[0].id} onChange={event => setPreviewVersion(event.target.value)}>{versions.map(version => <option key={version.id} value={version.id}>{version.label}</option>)}</select></label>}
           <article className="teacher-book-preview-passage">
             {previewPassage.lines.filter((line) => line.kind !== "image").map((line, index) => line.text ? <p className={line.kind ? `is-${line.kind}` : ""} key={`${line.lineNumber}-${index}`}>{line.text}</p> : null)}

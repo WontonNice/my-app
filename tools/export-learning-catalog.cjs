@@ -1,13 +1,13 @@
 // Export real browser content metadata for server-side reference validation.
 const fs = require('node:fs');
 const path = require('node:path');
-const ts = require('typescript');
+const { compileContentModule } = require('./content-transpile-cache.cjs');
 const { createHash } = require('node:crypto');
 const { writeExportFile } = require('./write-export-file.cjs');
 const defaultRoot = path.resolve(__dirname, '..');
 function exportLearningCatalog(root = defaultRoot, { catalogOnly = false } = {}) {
 const previous = require.extensions['.ts'];
-require.extensions['.ts'] = (module, filename) => module._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), { compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true } }).outputText, filename);
+require.extensions['.ts'] = compileContentModule;
 try {
   for (const filename of Object.keys(require.cache)) {
     if (filename.startsWith(path.join(root, 'client/src/content') + path.sep) || filename === path.join(root, 'client/src/lib/studentMaterials.ts')) delete require.cache[filename];

@@ -81,6 +81,29 @@ test('shared storage is the default; isolated file mode is explicit and producti
   finally{for(const [key,value]of [['NODE_ENV',previous.node],['MATH_COMMAND_STORAGE',previous.storage]])if(value===undefined)delete process.env[key];else process.env[key]=value;}
 });
 
+test('a transient metadata read is retried before entering the publication operation',async t=>{
+  const f=fixture(t),db=database(),original=db.from.bind(db);let reads=0,operations=0;
+  db.from=table=>{const query=original(table),read=query.maybeSingle;query.maybeSingle=async()=>++reads===1?{data:null,error:{message:'TypeError: fetch failed'},status:0}:read.call(query);return query;};
+  const adapter=persistence.createMathCommandPersistence(db);
+  await adapter.run(f.root,()=>{operations++;assert.equal(store.readMathCommandState(f.root).metadata['question-1'].difficulty,'easy');});
+  assert.equal(reads,2);assert.equal(operations,1);assert.equal(db.writes,0);
+});
+
+test('persistent connection failure preserves the draft and explains how to retry',async t=>{
+  const f=fixture(t),db=database(),before=fs.readFileSync(f.file);let operations=0;
+  db.error={message:'TypeError: fetch failed',details:'getaddrinfo ENOTFOUND private-host.example'};
+  await assert.rejects(persistence.createMathCommandPersistence(db).run(f.root,()=>operations++),error=>error.status===503&&/connection/i.test(error.message)&&/retry/i.test(error.message)&&!error.message.includes('private-host'));
+  assert.equal(operations,0);assert.deepEqual(fs.readFileSync(f.file),before);assert.equal(db.writes,0);
+});
+
+test('writes are never automatically repeated after an uncertain connection failure',async t=>{
+  const f=fixture(t),db=database(),adapter=persistence.createMathCommandPersistence(db);let updates=0;
+  await adapter.seed(f.root,true);const original=db.from.bind(db);
+  db.from=table=>{const query=original(table),update=query.update;query.update=function(row){updates++;db.error={message:'TypeError: fetch failed'};return update.call(this,row);};return query;};
+  await assert.rejects(adapter.run(f.root,async()=>{change(f.root,'hard');await adapter.persist(f.root);}),/confirm.*saved/i);
+  assert.equal(updates,1);assert.equal(db.row.state.metadata['question-1'].difficulty,'easy');
+});
+
 test('deployed import review manifest survives without private drafts; local explicit status has precedence',t=>{
   const f=fixture(t),manifest=path.join(f.root,'server/data/math-import-review.json');
   fs.writeFileSync(manifest,JSON.stringify({schemaVersion:1,needsEditingQuestionIds:['question-1']}));

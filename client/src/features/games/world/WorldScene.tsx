@@ -27,6 +27,7 @@ function thumbnail(character: WorldCharacterId) {
 
 export function AvatarPreview({ character }: { character: WorldCharacterId }) {
   const [url, setUrl] = useState<string>(() => thumbnails.get(character) ?? "");
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- The WebGL thumbnail is produced by an external renderer after mount.
   useEffect(() => { if (character === "le-sunshine") return; try { setUrl(thumbnail(character)); } catch { setUrl(""); } }, [character]);
   if (character === "le-sunshine") return <img className="world-avatar-preview" src="/world-characters/le-sunshine.png" alt="" aria-hidden="true" draggable={false} />;
   return url ? <img className="world-avatar-preview" src={url} alt="" aria-hidden="true" draggable={false} /> : <span className="world-avatar-fallback" aria-hidden="true">{{ astronaut: "🚀", frog: "🐸", mushroom: "🍄", alien: "👽", wizard: "🪄", duck: "🐤", "tung-tung": "🪵", "le-sunshine": "☀️", mike: "👁️", pepe: "🐸" }[character]}</span>;
@@ -37,7 +38,7 @@ export type WorldSceneProps = WorldSceneState & WorldSceneInteractions & { onMov
 export function WorldScene(props: WorldSceneProps) {
   const host = useRef<HTMLDivElement>(null), runtime = useRef<ReturnType<typeof createWorldScene> | null>(null), current = useRef(props);
   const [error, setError] = useState("");
-  current.current = props;
+  useLayoutEffect(() => { current.current = props; }, [props]);
   useImperativeHandle(props.controlsRef, () => ({ stop: () => runtime.current?.stop(), interactMonster: id => runtime.current?.interactMonster(id) }), []);
   useEffect(() => {
     if (!host.current) return;
@@ -50,6 +51,7 @@ export function WorldScene(props: WorldSceneProps) {
       });
       runtime.current.setState(current.current);
     } catch {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Report a synchronous failure from external WebGL initialization.
       setError("This device could not start the 3D view. Enable hardware acceleration or try an up-to-date browser with WebGL support.");
     }
     return () => { runtime.current?.dispose(); runtime.current = null; };

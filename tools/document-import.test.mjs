@@ -7,6 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import vm from 'node:vm';
 import contract from './document-import.cjs';
 import { documentDraftStore, publicationContent } from './document-drafts.mjs';
+import { focusStudioFixture, isolateStudioPersistence } from './content-studio-test-context.mjs';
 
 const toolsRoot = dirname(fileURLToPath(import.meta.url)), root = resolve(toolsRoot, '..');
 const fixture = JSON.parse(await readFile(new URL('./fixtures/document-import/expected-import.json', import.meta.url), 'utf8'));
@@ -210,13 +211,14 @@ test('draft deletion is versioned, survives reload, allows reimport and protects
   } finally { assert.equal(dirname(resolve(dir)), resolve(toolsRoot)); await rm(dir, { recursive: true, force: true }); }
 });
 
-test('real Content Studio endpoints: import/edit/save/reload/publish/student formatter, metadata privacy, visual gate and Math reuse', async () => {
+test('real Content Studio endpoints: import/edit/save/reload/publish/student formatter, metadata privacy, visual gate and Math reuse', async t => {
+  isolateStudioPersistence(t);
   // Keep the disposable editor fixture disconnected from hosted data.
   process.env.NODE_ENV = 'test';
   process.env.MATH_COMMAND_STORAGE = 'file';
   process.env.SUPABASE_URL = 'http://127.0.0.1:1';
   process.env.SUPABASE_SERVICE_ROLE = 'unused-fixture-key';
-  const fixtureRoot = join(root, 'server', 'node_modules', '.cache', 'content-studio-tests');
+  const fixtureRoot = join(toolsRoot, '.content-drafts');
   await mkdir(fixtureRoot, { recursive: true });
   const dir = await mkdtemp(join(fixtureRoot, 'document-roundtrip-'));
   const modulePath = join(toolsRoot, `.document-roundtrip-${Date.now()}.mjs`);
@@ -224,8 +226,9 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
   try {
     for (const path of ['client/src', 'client/src/lib', 'server/data', 'tools']) await mkdir(join(dir, path), { recursive: true });
     for (const path of ['client/src/content', 'server/src']) await cp(join(root, path), join(dir, path), { recursive: true });
-    for (const path of ['client/src/lib/studentMaterials.ts', 'server/data/assessments.json', 'tools/content-topics.json', 'tools/math-topics.json', 'tools/practice-topics.json', 'tools/content-studio-glossary.js','tools/poem-layout.js']) await cp(join(root, path), join(dir, path));
+    for (const path of ['client/src/lib/studentMaterials.ts', 'client/src/lib/studyHallNavigation.ts', 'server/data/assessments.json', 'tools/content-topics.json', 'tools/math-topics.json', 'tools/practice-topics.json', 'tools/content-studio-glossary.js','tools/poem-layout.js']) await cp(join(root, path), join(dir, path));
     await writeFile(join(dir, 'server/data/question-bank.json'), '{"revision":0,"questions":[],"sets":[]}');
+    await focusStudioFixture(dir);
     const source = (await readFile(join(toolsRoot, 'content-studio.mjs'), 'utf8')).replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");', `const workspaceRoot = ${JSON.stringify(dir)};`).split('if (process.argv.includes("--validate"))')[0] + '\nexport {handleRequest, getState, savePassage};';
     await writeFile(modulePath, source);
     const studio = await import(pathToFileURL(modulePath).href);
@@ -337,6 +340,7 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     const partACopy={...partAOriginal,id:'publish-part-a-fixture',title:'Publish Part A fixture',fileName:'publish-part-a-fixture.ts',exportName:'publishPartAFixture',passageSetId:'ela-publish-part-a-fixture',sourceHash:'',questions:partAOriginal.questions.map(q=>({...q,id:`publish-part-a-${q.id}`})),publishToExamId:destinationTest.assessmentId};
     const partAPublished=await call('/api/passages',partACopy);
     assert.equal(partAPublished.status,201,JSON.stringify(partAPublished.data));
+    assert.equal(partAPublished.data.passage.passageType,'revising_editing');
     assert.equal(partAPublished.data.examAssignment.error,undefined);
     const afterPartA=(await studio.getState()).tests.find(t=>t.assessmentId===destinationTest.assessmentId);
     assert.deepEqual(afterPartA.readingPassageIds,afterDirectPublish.readingPassageIds);
@@ -344,11 +348,12 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     assert.equal(await readFile(mathSourcePath,'utf8'),originalMathSource);
     const conflict={...directRetry.data.passage,id:'publish-conflict-fixture',title:'Publish conflict fixture',fileName:'publish-conflict-fixture.ts',exportName:'publishConflictFixture',passageSetId:'ela-publish-conflict-fixture',sourceHash:'',publishToExamId:destinationTest.assessmentId};
     const conflictResult=await call('/api/passages',conflict);
-    assert.equal(conflictResult.status,201);
-    assert.match(conflictResult.data.examAssignment.error,/share the ID/);
-    assert.ok(conflictResult.data.passage.sourceHash);
+    assert.equal(conflictResult.status,409,JSON.stringify(conflictResult.data));
+    assert.match(conflictResult.data.message,/must identify exactly one bank record/);
+    await assert.rejects(readFile(join(dir,'client/src/content/exams/passageSets',conflict.fileName)), {code:'ENOENT'});
     assert.equal((await studio.getState()).tests.find(t=>t.assessmentId===destinationTest.assessmentId).sourceHash,afterPartA.sourceHash);
-    const fixedRetry=await call('/api/passages',{...conflictResult.data.passage,questions:conflictResult.data.passage.questions.map(q=>({...q,id:`retry-${q.id}`})),publishToExamId:destinationTest.assessmentId});
+    const fixedRetry=await call('/api/passages',{...conflict,questions:conflict.questions.map(q=>({...q,id:`retry-${q.id}`})),publishToExamId:destinationTest.assessmentId});
+    assert.equal(fixedRetry.status,201,JSON.stringify(fixedRetry.data));
     assert.equal(fixedRetry.data.examAssignment.error,undefined);
     // The evidence matrix uses the same publication, source writer and student library pipeline.
     const evidenceQuestion = JSON.parse(await readFile(new URL('./fixtures/evidence-matrix-question.json', import.meta.url), 'utf8'));
@@ -395,7 +400,7 @@ test('real Content Studio endpoints: import/edit/save/reload/publish/student for
     // SAT Reader recoverable question errors survive the real preview/draft
     // endpoints, manual editing, and publication without leaking source metadata.
     {
-    const satUi = vm.runInNewContext((await readFile(join(toolsRoot, 'content-studio-workspace.js'), 'utf8')) + '\nstudioUI;', { URL });
+    const satUi = vm.runInNewContext((await readFile(join(toolsRoot, 'content-studio-workspace.js'), 'utf8')) + '\nstudioUI;', { URL, DocumentImport:contract });
     const satSource = satUi.convertSatCrashCourseImport(JSON.stringify({ source: { url: 'https://tutor.thesatcrashcourse.com/tests/fixture' }, testPreview: {
       testTitle: 'SAT manual repair fixture', capture: { mode: 'passage-all', warnings: [] },
       questions: [8, 9, 10].map(number => ({ number, passage: { id: 'sat-repair', title: 'SAT repair passage', text: 'The complete source passage remains here.', formattedBlocks: [{ text: 'The complete source passage remains here.', html: 'The <strong>complete</strong> source passage remains here.' }] }, prompt: `Captured source question ${number}`, promptHtml: `Captured <em>source</em> question ${number}`, choices: number === 9 ? [] : ['A', 'B', 'C', 'D'].map(label => ({ label, text: `Original ${label}`, html: `<strong>Original</strong> ${label}`, isCorrect: label === 'B' })), correctAnswer: number === 9 ? null : { label: 'B' } })),

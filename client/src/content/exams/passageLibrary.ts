@@ -189,6 +189,7 @@ import { aBirdCameDownTheWalkDigitalShsatPracticeTestAdaptive10PassageSet } from
 import { excerptFromTheHuddleAndTheColdDigitalShsatPracticeTestAdaptive10PassageSet } from "./passageSets/excerpt-from-the-huddle-and-the-cold-digital-shsat-practice-test-adaptive-10";
 import { theWearyBluesDigitalShsatPracticeTestAdaptive10PassageSet } from "./passageSets/the-weary-blues-digital-shsat-practice-test-adaptive-10";
 import { excerptFromGettingKiteMakingRightDigitalShsatPracticeTestAdaptive10PassageSet } from "./passageSets/excerpt-from-getting-kite-making-right-digital-shsat-practice-test-adaptive-10";
+import { archerfishPassageSet } from "./passageSets/archerfish";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -379,12 +380,13 @@ export const examPassageLibrary: ExamPassageSet[] = [
   excerptFromTheHuddleAndTheColdDigitalShsatPracticeTestAdaptive10PassageSet,
   theWearyBluesDigitalShsatPracticeTestAdaptive10PassageSet,
   excerptFromGettingKiteMakingRightDigitalShsatPracticeTestAdaptive10PassageSet,
+  archerfishPassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);
 export function getExamLibraryPassage(passageId: string) {
-  const book = examLibraryBooks.find(book => book.id === passageId && book.versions.length > 1);
-  if (book) return { ...book, isCombined: true };
+  const book = examLibraryBooks.find(book => book.id === passageId);
+  if (book) return { ...book, isCombined: book.versions.length > 1 };
   const passageSet = examPassageLibrary.find((entry) => entry.passage.id === passageId) ?? getBankSet(passageId);
   return passageSet ? { id: passageSet.passage.id, passageSet, isCombined: false, versions: [], questionPassages: {} as Record<string, ExamPassage> } : undefined;
 }

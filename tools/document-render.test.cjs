@@ -4,6 +4,11 @@ const { resolve } = require('node:path');
 const { build } = require('esbuild');
 const reactAliases = require('./react-build-aliases.cjs');
 const fixture = require('./fixtures/document-import/expected-import.json');
+const browserMathfieldStub = {name:'non-keypad-ssr',setup(build) {
+  // The keypad custom element mounts in a browser effect, not in SSR.
+  build.onResolve({filter:/^mathlive$/}, () => ({path:'mathlive',namespace:'non-keypad'}));
+  build.onLoad({filter:/.*/,namespace:'non-keypad'}, () => ({contents:'export class MathfieldElement {}'}));
+}};
 
 test('shared math renderer preserves emphasis, formulas, short answers and interaction state', async () => {
   const result = await build({ alias:reactAliases(resolve(__dirname,'..')), stdin: { contents: `
@@ -14,12 +19,7 @@ test('shared math renderer preserves emphasis, formulas, short answers and inter
     console.log(renderToStaticMarkup(<ExamMathQuestion question={{...base,type:'inline_dropdown',dropdownContent:['Choose {{a}} then {{b}}.'],dropdowns:[{id:'a',options:[{id:'one',text:'One'}]},{id:'b',options:[{id:'two',text:'Two'}]}]}} answer={{a:'one',b:'two'}} onChange={()=>{}}/>));
     console.log(renderToStaticMarkup(<ExamMathQuestion question={{...base,type:'number_line_response',numberLineResponse:{min:0,max:5,tickStep:0}}} onChange={()=>{}}/>));
     for (const entryVariable of ['w', 'W', 'θ', undefined, 'w=']) console.log(renderToStaticMarkup(<ExamMathQuestion question={{...base,type:'numeric_entry',entryLayout:'x_equals',entryVariable,correctTextAnswers:['-4']}} answer="-4" onChange={()=>{}}/>));
-  `, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic', loader: {'.css':'empty'}, plugins: [{name:'non-keypad-ssr',setup(build) {
-    // MathLive mounts its browser-only custom element in an effect. SSR verifies
-    // the real question/prefix rendering; interactive behavior is checked in Chrome.
-    build.onResolve({filter:/^mathlive$/}, () => ({path:'mathlive',namespace:'non-keypad'}));
-    build.onLoad({filter:/.*/,namespace:'non-keypad'}, () => ({contents:'export class MathfieldElement {}'}));
-  }}] });
+  `, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic', loader: {'.css':'empty'}, plugins: [browserMathfieldStub] });
   const output = [];
   require('node:vm').runInNewContext(result.outputFiles[0].text, { require, console: { log: text => output.push(text) }, process, TextEncoder, TextDecoder, Buffer, setTimeout, clearTimeout, queueMicrotask, setImmediate, clearImmediate, AbortController, ReadableStream, WritableStream, TransformStream });
   assert.match(output[0], /<strong>two<\/strong>/); assert.match(output[0], /<em>only<\/em>/);
@@ -59,7 +59,7 @@ test('actual student passage/answer components render source structure, every ch
     for (const p of fixtures) for (const q of p.questions) console.log(renderToStaticMarkup(<LibraryQuestionResponse question={contract.normalizeChoiceLabels(q)} value="" onChange={()=>{}}/>));
     const sentence = excerptFromLittleWomenDigitalShsatPracticeTest2PassageSet.questions.find(q => q.type === 'transition_drop');
     console.log(renderToStaticMarkup(<SentenceDragDrop question={sentence} answer={{'blank-1':'A','blank-2':'B'}} onChange={()=>{}}/>));
-    `, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic', loader: { '.css': 'empty' } });
+    `, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic', loader: { '.css': 'empty' }, plugins:[browserMathfieldStub] });
   const output = [];
   require('node:vm').runInNewContext(result.outputFiles[0].text, { require, console: { log: text => output.push(text) }, DOMParser: FixtureDOMParser, NodeFilter: { SHOW_TEXT: 4 }, process, TextEncoder, TextDecoder, Buffer, setTimeout, clearTimeout, queueMicrotask, setImmediate, clearImmediate, AbortController, ReadableStream, WritableStream, TransformStream });
   const html = output.join('\n');
@@ -74,7 +74,7 @@ test('actual student passage/answer components render source structure, every ch
   assert.match(html, /class="exam-paragraph-number">2<\/span><span class="exam-review-text">Second body\.<\/span>/);
   assert.doesNotMatch(html, /questions\.pdf|topicConfidence|sourceReviewed/);
   const sentence = output.at(-1);
-  assert.equal((sentence.match(/class="exam-transition-blank is-filled"/g) || []).length, 2);
-  assert.match(sentence, /Blank 1: frustrated/); assert.match(sentence, /Blank 2: restless/);
+  assert.equal((sentence.match(/data-answer-slot="blank-[12]"/g) || []).length, 2);
+  assert.match(sentence, /Answer box 1: frustrated/); assert.match(sentence, /Answer box 2: restless/);
   assert.doesNotMatch(sentence, /frusturated/);
 });

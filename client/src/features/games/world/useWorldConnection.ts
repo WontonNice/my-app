@@ -13,9 +13,11 @@ export function useWorldConnection(roomId: string, token: string, character: Wor
   const socketRef = useRef<WebSocket | null>(null), ready = useRef(false);
   const characterRef = useRef(character), poseRef = useRef<WorldPose>({ ...WORLD_SPAWN });
   const hasPose = useRef(false);
-  characterRef.current = character;
+  const [initialPose, setInitialPose] = useState<WorldPose>({ ...WORLD_SPAWN });
+  useEffect(() => { characterRef.current = character; }, [character]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- The local auth fallback synchronizes the supplied session when no auth service exists.
     if (!isSupabaseConfigured) { setSessionToken(token); setAuthReady(true); return; }
     let active = true;
     const auth = getSupabaseClient().auth;
@@ -38,6 +40,7 @@ export function useWorldConnection(roomId: string, token: string, character: Wor
   const stop = useCallback(() => { move({ ...poseRef.current, moving: false }); }, [move]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- WebSocket setup must clear disconnected peers and expose its initial connection status.
     if (!enabled) { setStatus("idle"); setPeers([]); if (testCharacter) hasPose.current = false; return; }
     if (!authReady) { setStatus("connecting"); return; }
     if (!sessionToken) { setStatus("unavailable"); setMessage("Sign in again to rejoin your classroom world."); setPeers([]); return; }
@@ -65,6 +68,7 @@ export function useWorldConnection(roomId: string, token: string, character: Wor
               ready.current = true; attempts = 0; setSelfId(data.selfId); setStatus("connected"); setMessage("");
               const ownPresence = Array.isArray(data.peers) ? data.peers.find((peer: WorldPresence) => peer.id === data.selfId) as WorldPresence | undefined : undefined;
               if (!hasPose.current && ownPresence) poseRef.current = ownPresence.pose;
+              setInitialPose({ ...poseRef.current });
               hasPose.current = true;
               current.send(JSON.stringify({ type: "move", pose: poseRef.current }));
               current.send(JSON.stringify({ type: "character", character: characterRef.current }));
@@ -92,5 +96,5 @@ export function useWorldConnection(roomId: string, token: string, character: Wor
     return () => { active = false; ready.current = false; window.clearTimeout(retry); window.clearTimeout(handshake); socket?.close(); socketRef.current = null; };
   }, [roomId, sessionToken, authReady, enabled, retryKey, testCharacter]);
   useEffect(() => { send({ type: "character", character }); }, [character, send]);
-  return { status, peers, selfId, message, send, move, stop, pose: poseRef.current, retry: () => setRetryKey(value => value + 1) };
+  return { status, peers, selfId, message, send, move, stop, pose: initialPose, retry: () => setRetryKey(value => value + 1) };
 }

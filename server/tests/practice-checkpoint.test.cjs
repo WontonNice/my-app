@@ -13,11 +13,12 @@ test('authenticated checkpoints survive stale writes, retry conflicts, and isola
     const filters = {};
     return {
       select() { return this; }, order() { return this; },
+      not() { filters.excludeEvidence=true; return this; },
       eq(key, value) { filters[key] = value; return this; },
       insert(row) { insert = row; return this; },
       update(row) { update = row; return this; },
       range(start, end) {
-        return { data: [...records.values()].filter(row => row.user_id === filters.user_id)
+        return { data: [...records.values()].filter(row => row.user_id === filters.user_id&&(!filters.excludeEvidence||!row.module_id.startsWith('__response__:')))
           .map(row => ({ ...row, moduleId: row.module_id })).slice(start, end + 1) };
       },
       maybeSingle() {
@@ -68,5 +69,15 @@ test('authenticated checkpoints survive stale writes, retry conflicts, and isola
   const [restored] = await (await call('alice', 'alice')).json();
   assert.equal(restored.session.streak, 1);
   assert.equal(restored.best, 25);
+  assert.equal(restored.session.evidenceThrough,0);
+  assert.deepEqual(restored.session.responses,[],'Acknowledged evidence leaves the resumable checkpoint compact.');
+  const evidence=[...records.values()].filter(row=>row.module_id.startsWith('__response__:'));
+  assert.equal(evidence.length,1);
+  assert.equal(evidence[0].session.question.prompt,scored.responses[0].question.prompt);
+  assert.equal(evidence[0].session.answer,'A');
+  assert.equal((await call('alice','alice',{...initial,session:scored})).status,200);
+  assert.equal([...records.values()].filter(row=>row.module_id.startsWith('__response__:')).length,1,'Retries cannot duplicate evidence.');
+  const conflicting=structuredClone(scored);conflicting.responses[0].answer='B';
+  assert.equal((await call('alice','alice',{...initial,session:conflicting})).status,409);
   assert.deepEqual(await (await call('bob', 'bob')).json(), []);
 });

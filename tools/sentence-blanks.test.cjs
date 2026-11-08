@@ -16,10 +16,8 @@ function studio(){const app={state:{assessments:[],examLabels:['Prestige']}};ret
 test('sentence blanks use the established outlined control and retain rich sentence formatting',()=>{
   const ui=vm.runInNewContext(fs.readFileSync(path.join(__dirname,'content-studio-workspace.js'),'utf8')+'\nstudioUI;',{escapeHtml,DocumentImport:contract});
   const q={...question(),dragDropContentHtml:'<p>(3) Keep <em>this</em>{{blank-1}} and {{blank-2}}.</p>'};
-  const html=ui.transitionSentenceMarkup(q);
-  assert.match(html,/exam-rich-response-template/);assert.match(html,/<em>this<\/em>/);
-  assert.equal((html.match(/class="exam-math-drag-slot"/g)||[]).length,2);
-  assert.doesNotMatch(html,/exam-transition-blank|exam-transition-help/);
+  assert.deepEqual(Array.from(ui.transitionLayout(q).slots, slot=>slot.id), ['blank-1','blank-2']);
+  assert.match(q.dragDropContentHtml, /<em>this<\/em>/);
   ui.setTransitionSentence(q,'Changed [blank] and [blank].');
   assert.equal(q.dragDropContentHtml,undefined,'An edited layout must not render stale imported HTML');
   assert.equal(q.dragDropSlots[0].correctItemId,'A');
@@ -31,9 +29,9 @@ test('every sentence blank is independently graded and partial, swapped, duplica
   assert.deepEqual(playtestAnswer(q,true),correct);
   for(const answer of ['A',{'blank-1':'A'},{'blank-1':'B','blank-2':'A'},{'blank-1':'A','blank-2':'A'},{...correct,extra:'C'}])assert.equal(isExamQuestionCorrect(q,answer),false);
   assert.equal(libraryQuestionAnswered(q,JSON.stringify({'blank-1':'A'})),false);
-  const result=gradeLibraryBook({passageSet:{questions:[q]}},[{questionId:q.id,selectedAnswerId:JSON.stringify(correct)}]);
+  const result=gradeLibraryBook({passageSet:{questions:[q]},questionPassages:{},versions:[]},[{questionId:q.id,selectedAnswerId:JSON.stringify(correct)}]);
   assert.equal(result[0].isCorrect,true);assert.deepEqual(JSON.parse(result[0].correctAnswerId),correct);
-  assert.throws(()=>gradeLibraryBook({passageSet:{questions:[q]}},[{questionId:q.id,selectedAnswerId:'{"blank-1":"A","blank-2":"A"}'}]),/included word/);
+  assert.throws(()=>gradeLibraryBook({passageSet:{questions:[q]},questionPassages:{},versions:[]},[{questionId:q.id,selectedAnswerId:'{"blank-1":"A","blank-2":"A"}'}]),/included word/);
   const reused={...q,allowReuse:true,dragDropSlots:q.dragDropSlots.map(slot=>({...slot,correctItemId:'A'}))};
   assert.equal(isExamQuestionCorrect(reused,{'blank-1':'A','blank-2':'A'}),true);
   assert.equal(isExamQuestionCorrect({type:'transition_drop',correctChoiceId:'B'},'B'),true);
@@ -54,7 +52,7 @@ test('sentence authoring migrates old single blanks and resets keys when blank p
   ui.setTransitionSentence(q,'Both [blank] and [blank].');assert.equal(q.dragDropSlots.length,2);assert.ok(q.dragDropSlots.every(slot=>!slot.correctItemId));
   q.dragDropSlots[0].correctItemId='A';q.dragDropSlots[1].correctItemId='B';
   ui.setTransitionSentence(q,'Still [blank] and [blank].');assert.equal(q.dragDropSlots[1].correctItemId,'B');
-  assert.equal((ui.transitionSentenceMarkup(q).match(/data-preview-transition-target=/g)||[]).length,2);
+  assert.equal(ui.transitionLayout(q).slots.length,2);
   assert.equal((ui.transitionKeyFields(q).match(/<select /g)||[]).length,2);
   assert.match(ui.exportCorrectAnswer(q),/Blank 1: A.*Blank 2: B/);
 });
@@ -74,7 +72,7 @@ test('the real question editor binds sentence controls once per card, excluding 
   const container=node();let dirty=0,canvasUpdates=0;
   Object.assign(ui,{ensureQuestionSelection(){},selectedQuestionId:q.id,mountQuestions(){},updateCanvasAnswerKey(){canvasUpdates++;}});
   const render=vm.runInNewContext(html.slice(start,end)+'\nrenderQuestionsV2;',{
-    app,studioUI:ui,escapeHtml,inlineRichValue:(_html,text)=>text||'',richToolbarHtml:()=>'',topicOptions:()=>'',currentPassageQuestionSection:()=> 'reading',
+    app,studioUI:ui,StudioHotText:{mount(){}},escapeHtml,inlineRichValue:(_html,text)=>text||'',richToolbarHtml:()=>'',topicOptions:()=>'',currentPassageQuestionSection:()=> 'reading',
     $:(selector,root)=>root?root.querySelector(selector):container,
     $$:(selector,root)=>{
       if(root===container&&selector==='[data-question-index]')return [card,...nestedWordFields];
@@ -105,18 +103,9 @@ test('exam lists sort official years newest first, forms alphabetically, and Pre
   assert.equal(JSON.stringify(exams),before);
 });
 
-test('student preview lets two cards fill separate blanks, move between blanks, and return to the bank',()=>{
+test('sentence previews use the student bridge, with no standalone drag script',()=>{
   const html=fs.readFileSync(path.join(__dirname,'content-studio.html'),'utf8');
-  const a=html.indexOf('            var transitionTargets ='),b=html.indexOf('          <\\/script>',a);
-  assert.ok(a>0&&b>a);
-  const node=dataset=>({dataset,hidden:false,innerHTML:'',textContent:'',handlers:{},classList:{add(){},remove(){}},setAttribute(){},addEventListener(type,fn){this.handlers[type]=fn;}});
-  const choices=['A','B','C','D'].map(id=>({...node({previewTransitionChoice:id}),innerHTML:id}));
-  const targets=[node({previewTransitionTarget:'blank-1'}),node({previewTransitionTarget:'blank-2'})],bank=node({});
-  const document={querySelectorAll:selector=>selector==='[data-preview-transition-target]'?targets:choices,querySelector:selector=>selector==='[data-preview-transition-bank]'?bank:{dataset:{transitionReuse:'false'}}};
-  vm.runInNewContext(html.slice(a,b),{document});
-  choices[0].handlers.click();targets[0].handlers.click();choices[1].handlers.click();targets[1].handlers.click();
-  assert.deepEqual(targets.map(target=>target.dataset.placedChoice),['A','B']);
-  const drop=id=>({preventDefault(){},dataTransfer:{getData:()=>id}});
-  targets[0].handlers.drop(drop('B'));assert.equal(targets[0].dataset.placedChoice,'B');assert.equal(targets[1].dataset.placedChoice,undefined);assert.equal(choices[0].hidden,false);
-  bank.handlers.drop(drop('B'));assert.equal(targets[0].dataset.placedChoice,undefined);assert.equal(choices[1].hidden,false);
+  assert.match(html,/question-response-preview.js/);
+  assert.doesNotMatch(html,/var transitionTargets|var selectedCategoryItem/);
+  // Pointer, keyboard and return-to-bank behavior are exercised in tei-browser-check.cjs.
 });

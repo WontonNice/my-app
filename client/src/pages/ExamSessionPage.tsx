@@ -1,23 +1,24 @@
+import type { ExamPassage } from '../content/exams/types';
+import { ExamResponse } from '../components/ExamResponse';
 import { coordinateAnswerComplete, correctCoordinateAnswer } from '../../../server/src/shared/coordinateResponse';
 import { ExamAnswer, ExamText } from "../components/ExamReviewQuestion";
 import { correctExamAnswer } from "../lib/examReviewAnswer";
 import { ExamGeneralDirections } from "../components/ExamGeneralDirections";
+import { sourceFacets } from '../../../server/src/shared/sourceFacets';
 import { InlineTextSelection } from "../components/InlineTextSelection";
-import { placeCategoryItem } from '../lib/categoryPlacement';
 import { EXAM_PLAYER_PROFILE } from "../content/exams/playerPresentation";
 import { testnavPartADirections, testnavPartBDirections, testnavMathDirections } from "../content/exams/testnavDirections";
 import { hasFullyAnsweredExam } from "../../../server/src/shared/examCorrectionAccess";
 import { examCorrectionsHref } from "../lib/correctionNavigation";
 import { toolSetter, mergeToolLists, type SharedExamTools } from "../features/games/useTeamTools";
 import { SharedToolNotes } from "../features/games/SharedToolNotes";
-import { SentenceDragDrop } from '../components/SentenceDragDrop';
 import { ExamSectionSubmission } from "../components/ExamSectionSubmission";
 import { ExamTimeExpiredDialog } from "../components/ExamTimeExpiredDialog";
 import { omitExamQuestions, restoredReentryTimer } from "../../../server/src/shared/examReentry";
 import { normalizeExamNavigation, type ExamNavigation } from "../../../server/src/shared/examNavigation";
-import { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction, type DragEvent, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { Fragment, memo, useCallback, useEffect, useMemo, useRef, useState, type Dispatch, type SetStateAction, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import { createPortal } from "react-dom";
-import { getBoldFormattedText, renderMathAuthoredText, ExamMathQuestion, renderMathRichText, renderInlineMathText, MatrixChoiceResponse, MathDragDropResponse } from "../components/ExamMathQuestion";
+import { getBoldFormattedText, renderMathAuthoredText, ExamMathQuestion, renderMathRichText, renderInlineMathText } from "../components/ExamMathQuestion";
 import { PassageGlossary } from "../components/PassageGlossary";
 import { isMathAnswerComplete } from "../../../server/src/shared/mathAnswer";
 import "katex/dist/katex.min.css";
@@ -414,6 +415,8 @@ function getStoredExamName(assessmentId: string, fallbackName: string) {
 }
 
 function getAssessmentDashboardHref() {
+  const worksheetReturn = new URLSearchParams(window.location.search).get("worksheetReturn");
+  if (worksheetReturn?.startsWith("/study-hall/shsat/worksheets?")) return appendStudentPreview(worksheetReturn);
   const previewContext = getStudentPreviewContext();
   return previewContext.mode === "teacher"
     ? previewContext.returnHref
@@ -778,6 +781,9 @@ export function ExamToolbar({
   studentName,
   sessionStats,
   exitLabel = "Pause timer",
+  onSaveExit,
+  savingExit = false,
+  saveExitError = "",
   onTimeExpiredSubmit,
 }: {
   assessmentLabel: string;
@@ -796,6 +802,9 @@ export function ExamToolbar({
   isTimerOvertime?: boolean;
   isTimerVisible?: boolean;
   isUserMenuOpen?: boolean;
+  onSaveExit?: () => void;
+  savingExit?: boolean;
+  saveExitError?: string;
   sectionSubmission?: { section: ExamSection; answered: number; total: number; disabled: boolean; finishesExam?: boolean; onSubmit: () => Promise<void> };
   onNext?: () => void;
   onPauseTimer?: () => void;
@@ -1023,6 +1032,8 @@ export function ExamToolbar({
 
           <div className="exam-session-user-tools">
             {sessionStats}
+            {onSaveExit && <button className="exam-worksheet-exit" type="button" disabled={savingExit} onClick={onSaveExit}>{savingExit ? "Saving…" : "Save & exit"}</button>}
+            {saveExitError && <span role="alert">{saveExitError}</span>}
             {sectionSubmission && <ExamSectionSubmission {...sectionSubmission} />}
             {canUseFastForward ? (
               <div className="exam-teacher-preview-tools">
@@ -1119,6 +1130,8 @@ export function ExamToolbar({
 }
 
 export type ExamGameSession = {
+  passageByQuestion?: Record<string, ExamPassage>;
+  onExit?: () => void;
   assessment: TeacherAssessment; content: ExamContent; studentName: string;
   screen: "mathQuestion" | "passage" | "standaloneQuestion";
   answers: SelectedAnswers; onAnswersChange: (answers: SelectedAnswers) => void;
@@ -1140,10 +1153,14 @@ export type ExamPreviewSession = {
   onExit: () => void;
 };
 
-export function ExamSessionPage({ gameSession, previewSession }: { gameSession?: ExamGameSession; previewSession?: ExamPreviewSession } = {}) {
+export function ExamSessionPage({ gameSession: suppliedGameSession, librarySession, previewSession }: { gameSession?: ExamGameSession; librarySession?: ExamGameSession; previewSession?: ExamPreviewSession } = {}) {
+  const gameSession = librarySession ?? suppliedGameSession;
   const isStudioPreview = Boolean(previewSession);
+  const worksheetPreviewPosition = previewSession?.assessment.studyHallWorksheet
+    ? getExamResumePosition(previewSession.content, previewSession.startingSubject, null, true) : undefined;
   const isGameSession = Boolean(gameSession);
-  const AnswerLock = gameSession ? "fieldset" : Fragment;
+  const hasAnswerLock = Boolean(suppliedGameSession);
+  const AnswerLock = hasAnswerLock ? "fieldset" : Fragment;
   const [pencilDrawings, setLocalPencilDrawings] = useState<PencilDrawings>({});
   const [pencilRedoStacks, setPencilRedoStacks] = useState<PencilDrawings>({});
   const sharedTools = gameSession?.sharedTools;
@@ -1153,11 +1170,11 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
   const [assessment, setAssessment] = useState<TeacherAssessment | null>(previewSession?.assessment ?? gameSession?.assessment ?? null);
   const [attemptContent, setAttemptContent] = useState<ExamContent | null>(previewSession?.content ?? gameSession?.content ?? null);
   const [activeTool, setActiveTool] = useState<ExamTool>("pointer");
-  const [activeMathQuestionIndex, setActiveMathQuestionIndex] = useState(0);
-  const [activePassageSetIndex, setActivePassageSetIndex] = useState(0);
-  const [localQuestionIndex, setActiveQuestionIndex] = useState(0);
+  const [activeMathQuestionIndex, setActiveMathQuestionIndex] = useState(worksheetPreviewPosition?.questionIndex ?? 0);
+  const [activePassageSetIndex, setActivePassageSetIndex] = useState(worksheetPreviewPosition?.passageIndex ?? 0);
+  const [localQuestionIndex, setActiveQuestionIndex] = useState(worksheetPreviewPosition?.questionIndex ?? 0);
   const activeQuestionIndex = gameSession?.teamNavigation ? Math.min(gameSession.teamNavigation.step, Math.max(0, (gameSession.content.passageSets[0]?.questions.length ?? 1) - 1)) : localQuestionIndex;
-  const [activeStandaloneQuestionIndex, setActiveStandaloneQuestionIndex] = useState(0);
+  const [activeStandaloneQuestionIndex, setActiveStandaloneQuestionIndex] = useState(worksheetPreviewPosition?.questionIndex ?? 0);
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<string[]>([]);
   const [choiceLimitWarnings, setChoiceLimitWarnings] = useState<ChoiceLimitWarning[]>([]);
   const [completedSections, setCompletedSections] = useState<ExamSection[]>([]);
@@ -1168,6 +1185,9 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
   const eliminatedChoices = sharedTools ? mergeToolLists(sharedTools.own.eliminated, sharedTools.peers.map(peer => peer.state.eliminated)) : localEliminatedChoices;
   const setEliminatedChoices = toolSetter(sharedTools, "eliminated", setLocalEliminatedChoices);
   const [errorMessage, setErrorMessage] = useState("");
+  const [savingExit, setSavingExit] = useState(false);
+  const [saveExitError, setSaveExitError] = useState("");
+  const savedExitRef = useRef(false);
   const [highlightToolbar, setHighlightToolbar] = useState<HighlightToolbarState | null>(null);
   const [isFastForwardEnabled, setIsFastForwardEnabled] = useState(isStudioPreview);
   const [isCheckingSession, setIsCheckingSession] = useState(!isStudioPreview && !isGameSession && isSupabaseConfigured);
@@ -1194,8 +1214,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     }
     else setExamAnswers(value);
   }, [gameSession]);
-  const [selectedCategoryItemId, setSelectedCategoryItemId] = useState("");
-  const [localSessionScreen, setSessionScreen] = useState<SessionScreen>(gameSession?.screen ?? "directions");
+  const [localSessionScreen, setSessionScreen] = useState<SessionScreen>(gameSession?.screen ?? worksheetPreviewPosition?.screen ?? "directions");
   const sessionScreen = gameSession?.teamNavigation
     ? gameSession.screen === "passage" && gameSession.teamNavigation.step >= (gameSession.content.passageSets[0]?.questions.length ?? 0) ? "passageEnd" : gameSession.screen
     : localSessionScreen;
@@ -1382,7 +1401,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
           }
         }
         navigationRef.current = normalizeExamNavigation(progress?.navigation);
-        const resume = getExamResumePosition(examContent, nextStartingSubject, progress);
+        const resume = getExamResumePosition(examContent, nextStartingSubject, progress, Boolean(nextAssessment.studyHallWorksheet));
         setActivePassageSetIndex(resume.passageIndex);
         setActiveQuestionIndex(resume.questionIndex);
         setActiveStandaloneQuestionIndex(resume.questionIndex);
@@ -1423,7 +1442,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     async function syncAnswers() {
       const answers = latestAnswersRef.current;
       if (autosaveInFlightRef.current || finalSubmissionRef.current) return;
-      const navigation = navigationRef.current;
+      const navigation = {subject:'english' as const,...navigationRef.current,activityReleaseId:attemptContent?.releaseId??assessment?.resumeContent?.releaseId??assessment?.assembly?.publishedReleaseId};
       if (studentId) saveLocalExamSession(studentId, assessmentId, answers, completedSections, "in_progress", getQuestionTimesSnapshot(), navigation, assessment?.reentry?.resetAnswers ? assessment.reentry.id : undefined);
       const signature = JSON.stringify({ answers, completedSections, navigation });
       if (signature === lastAutosaveSignatureRef.current) return;
@@ -1457,7 +1476,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
       window.clearInterval(saveInterval);
       document.removeEventListener("visibilitychange", saveWhenHidden);
     };
-  }, [isStudioPreview, isGameSession, accessToken, assessment, activePassageSetIndex, activeQuestionIndex, activeStandaloneQuestionIndex, activeMathQuestionIndex, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, sessionScreen, studentId]);
+  }, [isStudioPreview, isGameSession, accessToken, assessment, attemptContent, activePassageSetIndex, activeQuestionIndex, activeStandaloneQuestionIndex, activeMathQuestionIndex, completedSections, getQuestionTimesSnapshot, isCheckingSession, isTeacherPreviewSession, sessionScreen, studentId]);
 
   useEffect(() => {
     if (!timerState || timerState.pausedAt !== null) {
@@ -1474,6 +1493,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     }
 
     function confirmBeforeLeaving(event: BeforeUnloadEvent) {
+      if (savedExitRef.current) return;
       event.preventDefault();
       event.returnValue = "";
     }
@@ -1547,9 +1567,11 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     ? (eliminatedChoices[activeMathQuestion.id] ?? [])
     : [];
   const standaloneSection = examContent.standaloneSection;
-  const activePassageSet = examContent.passageSets.at(activePassageSetIndex) ?? examContent.passageSets.at(0);
+  const sourcePassageSet = examContent.passageSets.at(activePassageSetIndex) ?? examContent.passageSets.at(0);
+  const activeQuestion = sourcePassageSet?.questions.at(activeQuestionIndex) ?? sourcePassageSet?.questions.at(0);
+  const questionPassage = activeQuestion && gameSession?.passageByQuestion?.[activeQuestion.id];
+  const activePassageSet = questionPassage && sourcePassageSet ? { ...sourcePassageSet, passage: questionPassage } : sourcePassageSet;
   const passageHasExplicitVerse = activePassageSet?.passage.lines.some(line => line.poetryLine === true);
-  const activeQuestion = activePassageSet?.questions.at(activeQuestionIndex) ?? activePassageSet?.questions.at(0);
   const activeStandaloneQuestion =
     standaloneSection?.questions[activeStandaloneQuestionIndex] ?? standaloneSection?.questions[0];
   const playerProfile = EXAM_PLAYER_PROFILE;
@@ -1561,9 +1583,6 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
   const activePassageSegment = englishSegments.find(segment => segment.kind === "passage" && segment.questions.some(item => item.question.id === activeQuestion?.id));
   const activeStandaloneSegment = englishSegments.find(segment => segment.kind === "standalone" && segment.questions.some(item => item.question.id === activeStandaloneQuestion?.id));
   const activeStandaloneQuestionChoices = activeStandaloneQuestion?.choices ?? [];
-  const activeStandaloneQuestionCategoryPlacements = getCategoryPlacements(
-    activeStandaloneQuestion ? selectedAnswers[activeStandaloneQuestion.id] : undefined,
-  );
   const activeStandaloneQuestionEliminatedChoiceIds = activeStandaloneQuestion
     ? (eliminatedChoices[activeStandaloneQuestion.id] ?? [])
     : [];
@@ -1584,7 +1603,6 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     hasLongAnswerContent;
   const activePassageAnswer = activeQuestion ? selectedAnswers[activeQuestion.id] : undefined;
   const activeQuestionSelectedChoiceIds = getSelectedChoiceIds(activePassageAnswer);
-  const activeQuestionCategoryPlacements = getCategoryPlacements(activePassageAnswer);
   const activeQuestionEliminatedChoiceIds = activeQuestion ? eliminatedChoices[activeQuestion.id] ?? [] : [];
   const activeQuestionTitleId = activeQuestion ? `question-title-${activeQuestion.id}` : undefined;
   const passageQuestionCount = examContent.passageSets.reduce(
@@ -1608,7 +1626,9 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
   const shouldShowPassageDirections = Boolean(activePassageSet && (activePassageSetIndex === 0 || activePassageSet.showDirectionsBefore));
   const reviewItems: ReviewItem[] = [];
   const isTeacherTestView = isStudioPreview || (isTeacherPreviewSession && getStudentPreviewContext().mode === "teacher");
-  const canReviewStandaloneItems = isTeacherTestView || isFastForwardEnabled;
+  const isWorksheet = Boolean(assessment.studyHallWorksheet) && !isGameSession;
+  const canNavigateFreely = isWorksheet || isFastForwardEnabled;
+  const canReviewStandaloneItems = isWorksheet || isTeacherTestView || isFastForwardEnabled;
   const accessibleQuestions: ExamQuestion[] = [];
   const addReviewQuestion = (
     id: ReviewItemId,
@@ -1627,7 +1647,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     });
   };
 
-  if (isTeacherTestView) {
+  if (isTeacherTestView || isWorksheet) {
     let englishNumber = 0;
     englishSequence.forEach(({kind,passageIndex,questionIndex,question}) => {
       if(kind === "passage") addReviewQuestion(`review:passage:${passageIndex}:${questionIndex}`,question,
@@ -1787,7 +1807,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
             answers: answers as Record<string, unknown>,
             completedSections: ["english", "math"],
             status: "submitted",
-            navigation: navigationRef.current,
+            navigation: {subject:'english' as const,...navigationRef.current,activityReleaseId:examContent.releaseId},
           });
         } catch {
           // The submitted result itself also contains the permanent answer record.
@@ -1825,7 +1845,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
         saveExamResult(studentId, result);
         saveLocalExamSession(studentId, currentAssessmentId, submission.answers, submission.completedSections, result.completionStatus === "complete" ? "submitted" : "in_progress", getQuestionTimesSnapshot(), undefined, assessment?.reentry?.resetAnswers ? assessment.reentry.id : undefined);
         if (accessToken) {
-          try { await saveExamSessionProgress(accessToken, currentAssessmentId, { reentryGrantId: assessment?.reentry?.id, answers: submission.answers, completedSections: submission.completedSections, navigation: navigationRef.current, status: result.completionStatus === "complete" ? "submitted" : "in_progress" }); }
+          try { await saveExamSessionProgress(accessToken, currentAssessmentId, { reentryGrantId: assessment?.reentry?.id, answers: submission.answers, completedSections: submission.completedSections, navigation: {subject:'english' as const,...navigationRef.current,activityReleaseId:examContent.releaseId}, status: result.completionStatus === "complete" ? "submitted" : "in_progress" }); }
           catch { /* The durable result also preserves answers and completed sections. */ }
         }
       }
@@ -1842,7 +1862,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     const resume = getExamResumePosition(examContent, subject, {
       answers: selectedAnswers, completedSections, navigation: navigationRef.current,
       status: "in_progress", updatedAt: new Date().toISOString(),
-    });
+    }, isWorksheet);
     setActivePassageSetIndex(resume.passageIndex);
     setActiveQuestionIndex(resume.questionIndex);
     setActiveStandaloneQuestionIndex(resume.questionIndex);
@@ -1907,7 +1927,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
 
   function showEnglishLocation(location: EnglishQuestionLocation | undefined, introduction = true) {
     setActiveTool("pointer"); clearTransientExamUi(); setIsNotepadOpen(false);
-    setIsReviewOpen(false); setIsUnansweredModalOpen(false); setReviewFilter("all"); setSelectedCategoryItemId("");
+    setIsReviewOpen(false); setIsUnansweredModalOpen(false); setReviewFilter("all");
     if (!location) { setSessionScreen("endSection"); return; }
     if (location.kind === "passage") {
       setActivePassageSetIndex(location.passageIndex); setActiveQuestionIndex(location.questionIndex);
@@ -1925,7 +1945,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
 
   function handlePassageNext() {
     if (!activePassageSet || !activeQuestion) return;
-    if (!isFastForwardEnabled && !isQuestionAnswered(activeQuestion, selectedAnswers)) {
+    if (!canNavigateFreely && !isQuestionAnswered(activeQuestion, selectedAnswers)) {
       setIsUnansweredModalOpen(true);
       return;
     }
@@ -1943,7 +1963,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     }
 
     if (activeQuestionIndex < activePassageSet.questions.length - 1) {
-      setSelectedCategoryItemId("");
+
       clearTransientExamUi();
       setIsReviewOpen(false);
       setActiveQuestionIndex((currentIndex) => currentIndex + 1);
@@ -1956,7 +1976,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
       return;
     }
 
-    setSelectedCategoryItemId("");
+
     clearTransientExamUi();
     setIsReviewOpen(false);
     setReviewFilter("all");
@@ -1975,7 +1995,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
         setIsReviewOpen(false);
         setIsUnansweredModalOpen(false);
         setReviewFilter("all");
-        setSelectedCategoryItemId("");
+
         setSessionScreen("standaloneIntro");
       }
 
@@ -1990,7 +2010,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
     setReviewFilter("all");
-    setSelectedCategoryItemId("");
+
     setSessionScreen("passageIntro");
   }
 
@@ -2012,7 +2032,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     setIsUnansweredModalOpen(false);
 
     if (activeQuestionIndex > 0) {
-      setSelectedCategoryItemId("");
+
       setActiveQuestionIndex((currentIndex) => currentIndex - 1);
       return;
     }
@@ -2030,15 +2050,6 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     setSelectedAnswers((currentAnswers) => ({
       ...currentAnswers,
       [questionId]: choiceId,
-    }));
-  }
-
-
-
-  function handleChangeStructuredAnswer(questionId: string, value: CategoryPlacements) {
-    setSelectedAnswers((currentAnswers) => ({
-      ...currentAnswers,
-      [questionId]: value,
     }));
   }
 
@@ -2397,68 +2408,6 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     return html ? <AuthoredRichText html={html} highlights={textHighlights[highlightKey]} /> : renderHighlightedText(text, highlightKey);
   }
 
-  function handlePlaceCategoryItem(question: ExamQuestion, itemId: string, categoryId: string) {
-    const current = getCategoryPlacements(selectedAnswers[question.id]);
-    if (placeCategoryItem(question, current, itemId, categoryId) === current) {
-      if (question.requiredPlacements) showChoiceLimitWarning(question.requiredPlacements);
-      return;
-    }
-    setSelectedAnswers((currentAnswers) => {
-      const currentPlacements = getCategoryPlacements(currentAnswers[question.id]);
-      const nextPlacements = placeCategoryItem(question, currentPlacements, itemId, categoryId);
-      return {
-        ...currentAnswers,
-        [question.id]: nextPlacements,
-      };
-    });
-    setSelectedCategoryItemId("");
-  }
-
-  function handleReturnCategoryItem(question: ExamQuestion, itemId: string) {
-    setSelectedAnswers((currentAnswers) => {
-      const nextPlacements = { ...getCategoryPlacements(currentAnswers[question.id]) };
-      delete nextPlacements[itemId];
-
-      return {
-        ...currentAnswers,
-        [question.id]: nextPlacements,
-      };
-    });
-    setSelectedCategoryItemId("");
-  }
-
-  function handleCategoryDrop(question: ExamQuestion, categoryId: string, event: DragEvent<HTMLElement>) {
-    event.preventDefault();
-
-    const itemId = event.dataTransfer.getData("text/plain");
-
-    if (itemId) {
-      handlePlaceCategoryItem(question, itemId, categoryId);
-    }
-  }
-
-  function handleCategoryBankDrop(question: ExamQuestion, event: DragEvent<HTMLElement>) {
-    event.preventDefault();
-
-    const itemId = event.dataTransfer.getData("text/plain");
-
-    if (itemId) {
-      handleReturnCategoryItem(question, itemId);
-    }
-  }
-
-  function handleCategoryClick(question: ExamQuestion, categoryId: string) {
-    if (selectedCategoryItemId) {
-      handlePlaceCategoryItem(question, selectedCategoryItemId, categoryId);
-    }
-  }
-
-  function handleCategoryBankClick(question: ExamQuestion) {
-    if (selectedCategoryItemId) {
-      handleReturnCategoryItem(question, selectedCategoryItemId);
-    }
-  }
-
   function handleToggleBookmark() {
     if (!currentReviewItemId || !reviewItems.some((item) => item.id === currentReviewItemId && item.kind === "question")) return;
 
@@ -2483,7 +2432,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
     clearTransientExamUi();
-    setSelectedCategoryItemId("");
+
 
     if (item.kind === "directions") {
       if (sessionScreen === "directions") {
@@ -2528,7 +2477,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
       return;
     }
 
-    if (!isFastForwardEnabled && !isQuestionAnswered(activeStandaloneQuestion, selectedAnswers)) {
+    if (!canNavigateFreely && !isQuestionAnswered(activeStandaloneQuestion, selectedAnswers)) {
       setIsUnansweredModalOpen(true);
       return;
     }
@@ -2545,7 +2494,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     }
 
     if (activeStandaloneQuestionIndex < standaloneSection.questions.length - 1) {
-      setSelectedCategoryItemId("");
+
       clearTransientExamUi();
       setIsReviewOpen(false);
       setActiveStandaloneQuestionIndex((currentIndex) => currentIndex + 1);
@@ -2558,7 +2507,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
       return;
     }
 
-    setSelectedCategoryItemId("");
+
     clearTransientExamUi();
     setActiveTool("pointer");
     setIsNotepadOpen(false);
@@ -2581,7 +2530,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     setIsUnansweredModalOpen(false);
 
     if (activeStandaloneQuestionIndex > 0) {
-      setSelectedCategoryItemId("");
+
       setActiveStandaloneQuestionIndex((currentIndex) => currentIndex - 1);
       return;
     }
@@ -2618,7 +2567,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
     setReviewFilter("all");
-    setSelectedCategoryItemId("");
+
 
     if (mathQuestions.length === 0) {
       finishMathSection();
@@ -2635,13 +2584,13 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
       return;
     }
 
-    if (!isFastForwardEnabled && !isQuestionAnswered(activeMathQuestion, selectedAnswers)) {
+    if (!canNavigateFreely && !isQuestionAnswered(activeMathQuestion, selectedAnswers)) {
       setIsUnansweredModalOpen(true);
       return;
     }
 
     if (activeMathQuestionIndex < mathQuestions.length - 1) {
-      setSelectedCategoryItemId("");
+
       clearTransientExamUi();
       setIsReviewOpen(false);
       setActiveMathQuestionIndex((currentIndex) => currentIndex + 1);
@@ -2658,13 +2607,13 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
   }
 
   function handleMathPrevious() {
-    if (!isTeacherPreviewSession && !isFastForwardEnabled) return;
+    if (!isTeacherPreviewSession && !canNavigateFreely) return;
     clearTransientExamUi();
     setIsReviewOpen(false);
     setIsUnansweredModalOpen(false);
 
     if (activeMathQuestionIndex > 0) {
-      setSelectedCategoryItemId("");
+
       setActiveMathQuestionIndex((currentIndex) => currentIndex - 1);
       return;
     }
@@ -2677,14 +2626,32 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
     ? async () => { await saveCompletedExam(selectedAnswers); setSessionScreen("testOver"); }
     : undefined;
   const submissionQuestions = activeSubmissionSection === "math" ? mathQuestions : englishSequence.map(item=>item.question);
+  async function saveAndExitWorksheet() {
+    if (savingExit) return;
+    setSavingExit(true); setSaveExitError("");
+    try {
+      await autosavePromiseRef.current;
+      const navigation = { subject: startingSubject, ...navigationRef.current, activityReleaseId: attemptContent?.releaseId ?? assessment?.resumeContent?.releaseId ?? assessment?.assembly?.publishedReleaseId };
+      if (studentId) saveLocalExamSession(studentId, currentAssessmentId, selectedAnswers, completedSections, "in_progress", getQuestionTimesSnapshot(), navigation, assessment?.reentry?.resetAnswers ? assessment.reentry.id : undefined);
+      if (accessToken && !isTeacherPreviewSession && !isStudioPreview) await saveExamSessionProgress(accessToken, currentAssessmentId, { reentryGrantId: assessment?.reentry?.id, answers: selectedAnswers as Record<string, unknown>, completedSections, navigation, status: "in_progress" });
+      handlePauseTimer();
+      savedExitRef.current = true;
+      exitExam();
+    } catch (reason) {
+      setSaveExitError(reason instanceof Error ? reason.message : "Could not save. Please try again.");
+      setSavingExit(false);
+    }
+  }
   const timerToolbarProps = {
+    ...(isWorksheet && !isStudioPreview ? { onSaveExit: () => void saveAndExitWorksheet(), savingExit, saveExitError } : {}),
     showTimer: !gameSession?.hideTimer,
     onTimeExpiredSubmit,
     sectionSubmission: !isGameSession && !isTeacherPreviewSession && !completedSections.includes(activeSubmissionSection) && submissionQuestions.length ? { section: activeSubmissionSection, answered: submissionQuestions.filter(question => isQuestionAnswered(question, selectedAnswers)).length, total: submissionQuestions.length, disabled: isSubmittingSection, finishesExam: completedSections.includes(activeSubmissionSection === "math" ? "english" : "math"), onSubmit: () => submitExamSection(activeSubmissionSection) } : undefined,
     isTimerOvertime: timerDisplay.isOvertime,
     isTimerVisible,
     isUserMenuOpen,
-    onPauseTimer: isGameSession ? undefined : handlePauseTimer,
+    onPauseTimer: gameSession?.onExit ?? (isGameSession ? undefined : handlePauseTimer),
+    ...(librarySession ? { exitLabel: 'Return to library' } : {}),
     onToggleTimer: () => {
       setIsUserMenuOpen(false);
       setIsTimerVisible((currentValue) => !currentValue);
@@ -2753,7 +2720,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
   };
 
   const previewQuestion = sessionScreen === 'mathQuestion' ? activeMathQuestion : sessionScreen === 'standaloneQuestion' ? activeStandaloneQuestion : sessionScreen === 'passage' ? activeQuestion : undefined;
-  const previewControls = isStudioPreview ? <aside aria-label="Teacher preview controls" style={{position:'fixed',bottom:12,right:12,zIndex:1000,background:'#fff',color:'#172b3a',border:'1px solid #aebbc7',borderRadius:8,padding:12,boxShadow:'0 3px 16px #0003',maxWidth:'min(560px, calc(100vw - 24px))'}}>
+  const previewControls = isStudioPreview ? <aside aria-label="Teacher preview controls" className="exam-preview-controls">
     <div style={{display:'flex',gap:12,alignItems:'center',flexWrap:'wrap'}}>
       <strong>Teacher controls</strong>
       <label>Jump to question <select aria-label="Jump to question" value={currentReviewItemId ?? ''} onChange={event => { const item = reviewItems.find(item => item.id === event.target.value); if (item) handleReviewItemSelect(item.id); }} style={{maxWidth:280}}>
@@ -2858,8 +2825,8 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
           {...reviewToolbarProps}
           {...(gameSession?.practice ? { sessionStats: gameSession.practice.stats, showTimer: false, onPauseTimer: gameSession.practice.onExit, exitLabel: gameSession.practice.exitLabel ?? "End practice" } : {})}
           isNotepadOpen={isNotepadOpen}
-          isPreviousActive={isTeacherPreviewSession || isFastForwardEnabled}
-          showReviewTools={isTeacherPreviewSession || isFastForwardEnabled}
+          isPreviousActive={(isTeacherPreviewSession || canNavigateFreely) && (!isWorksheet || activeMathQuestionIndex > 0)}
+          showReviewTools={isTeacherPreviewSession || canNavigateFreely}
           onNext={handleMathNext}
           onPrevious={handleMathPrevious}
           onSelectTool={handleSelectTool}
@@ -3137,117 +3104,8 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
               </p>
             ) : null}
 
-            {activeStandaloneQuestion.selectionHtml ? null : activeStandaloneQuestion.type === 'math_drag_drop' ? (
-              <MathDragDropResponse
-                answer={activeStandaloneQuestionCategoryPlacements}
-                onChange={(answer) => handleChangeStructuredAnswer(activeStandaloneQuestion.id, answer)}
-                question={activeStandaloneQuestion}
-              />
-            ) : activeStandaloneQuestion.type === 'transition_drop' ? <SentenceDragDrop key={activeStandaloneQuestion.id} question={activeStandaloneQuestion} answer={selectedAnswers[activeStandaloneQuestion.id]} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeStandaloneQuestion.id]: answer }))} /> : activeStandaloneQuestion.type === "matrix_choice" &&
-            activeStandaloneQuestion.items &&
-            activeStandaloneQuestion.categories ? (
-              <MatrixChoiceResponse
-                answer={activeStandaloneQuestionCategoryPlacements}
-                onChange={(answer) => handleChangeStructuredAnswer(activeStandaloneQuestion.id, answer)}
-                question={activeStandaloneQuestion}
-              />
-            ) : activeStandaloneQuestion.type === "category_sort" &&
-            activeStandaloneQuestion.items &&
-            activeStandaloneQuestion.categories ? (
-              <div
-                className={`exam-standalone-category-sort ${
-                  activeStandaloneQuestion.categoryCapacity === 1 ? "is-single-capacity" : ""
-                } ${activeStandaloneQuestion.categories.length === 1 ? "is-single-category" : ""}`}
-              >
-                <div
-                  aria-label="Answer choice bank. Drop an answer here to undo a selection."
-                  className="exam-standalone-category-bank"
-                  role="group"
-                  tabIndex={0}
-                  onKeyDown={event => {
-                    if (event.target === event.currentTarget && (event.key === "Enter" || event.key === " ")) {
-                      event.preventDefault();
-                      handleCategoryBankClick(activeStandaloneQuestion);
-                    }
-                  }}
-                  onDragOver={(event) => event.preventDefault()}
-                  onDrop={(event) => handleCategoryBankDrop(activeStandaloneQuestion, event)}
-                >
-                  {activeStandaloneQuestion.items
-                    .filter((item) => !activeStandaloneQuestionCategoryPlacements[item.id])
-                    .map((item) => (
-                      <button
-                        className={`exam-standalone-category-card ${
-                          selectedCategoryItemId === item.id ? "is-selected" : ""
-                        }`}
-                        draggable
-                        key={item.id}
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          setSelectedCategoryItemId((currentItemId) =>
-                            currentItemId === item.id ? "" : item.id,
-                          );
-                        }}
-                        onDragStart={(event) => {
-                          event.dataTransfer.setData("text/plain", item.id);
-                          setSelectedCategoryItemId(item.id);
-                        }}
-                        type="button"
-                      >
-                        {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
-                      </button>
-                    ))}
-                </div>
-
-                <div className="exam-standalone-category-target-grid">
-                  {activeStandaloneQuestion.categories.map((category) => {
-                    const placedItems = activeStandaloneQuestion.items?.filter(
-                      (item) => activeStandaloneQuestionCategoryPlacements[item.id] === category.id,
-                    );
-
-                    return (
-                      <section
-                        className="exam-standalone-category-target"
-                        role="group"
-                        aria-label={`${category.title}. Select an answer, then press Enter here to place it.`}
-                        tabIndex={0}
-                        onKeyDown={event => {
-                          if (event.target === event.currentTarget && (event.key === "Enter" || event.key === " ")) {
-                            event.preventDefault();
-                            handleCategoryClick(activeStandaloneQuestion, category.id);
-                          }
-                        }}
-                        key={category.id}
-                        onClick={() => handleCategoryClick(activeStandaloneQuestion, category.id)}
-                        onDragOver={(event) => event.preventDefault()}
-                        onDrop={(event) => handleCategoryDrop(activeStandaloneQuestion, category.id, event)}
-                      >
-                        <h2>{category.title}</h2>
-                        <div className="exam-standalone-category-target-items">
-                          {placedItems?.map((item) => (
-                            <button
-                              className="exam-standalone-category-card is-placed"
-                              draggable
-                              key={item.id}
-                              onClick={(event) => {
-                                event.stopPropagation();
-                                setSelectedCategoryItemId(item.id);
-                              }}
-                              onDragStart={(event) => {
-                                event.dataTransfer.setData("text/plain", item.id);
-                                setSelectedCategoryItemId(item.id);
-                              }}
-                              type="button"
-                            >
-                              {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
-                            </button>
-                          ))}
-                        </div>
-                      </section>
-                    );
-                  })}
-                </div>
-              </div>
+            {activeStandaloneQuestion.selectionHtml ? null : !['multiple_choice','multi_select'].includes(activeStandaloneQuestion.type) || activeStandaloneQuestion.hotSpot ? (
+              <ExamResponse key={activeStandaloneQuestion.id} standalone question={activeStandaloneQuestion} answer={selectedAnswers[activeStandaloneQuestion.id]} onChange={answer => setSelectedAnswers(current => ({...current, [activeStandaloneQuestion.id]: answer}))} />
             ) : (
               <div className="exam-choice-list exam-standalone-choice-list">
                 {activeStandaloneQuestionChoices.map((choice) => (
@@ -3616,7 +3474,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
           assessmentLabel={assessmentLabel}
           breadcrumbCurrent={`${activeQuestionIndex + 1} OF ${activePassageSet.questions.length}`}
           breadcrumbMiddle={passageSetLabel}
-          isPreviousActive={activeQuestionIndex > 0 || shouldShowPassageDirections || isFastForwardEnabled}
+          isPreviousActive={activeQuestionIndex > 0 || !librarySession && (shouldShowPassageDirections || isFastForwardEnabled)}
           {...reviewToolbarProps}
           onNext={handlePassageNext}
           onPrevious={handlePassagePrevious}
@@ -3757,7 +3615,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
           </div>}
           <form key={activeQuestion.id} className="exam-question-panel" onSubmit={event => event.preventDefault()}>
             <PassageGlossary contextKey={activeQuestion.id}>
-            <AnswerLock {...(gameSession ? { className: "game-answer-lock", disabled: gameSession.lockedQuestionIds?.includes(activeQuestion.id) } : {})}>
+            <AnswerLock {...(hasAnswerLock ? { className: "game-answer-lock", disabled: gameSession?.lockedQuestionIds?.includes(activeQuestion.id) } : {})}>
             {gameSession?.lockedQuestionIds?.includes(activeQuestion.id) && <p className="game-locked-answer-note">Answer locked · Your result is shown above. You can still use tools and review the passage.</p>}
             <QuestionTimeTracker onElapsed={recordQuestionTime} questionId={activeQuestion.id} />
             <h1
@@ -3778,213 +3636,8 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
                 )}
               </p>
             ) : null}
-            {["math_drag_drop","inline_dropdown","coordinate_response","graph_point_select","number_line_response","numeric_entry","expression_entry","grid_in"].includes(activeQuestion.type) ? (
-              <ExamMathQuestion responseOnly question={activeQuestion} answer={activePassageAnswer} onChange={answer=>setSelectedAnswers(current=>({...current,[activeQuestion.id]:answer}))} />
-            ) : activeQuestion.type === "matrix_choice" && activeQuestion.items && activeQuestion.categories ? (
-              <MatrixChoiceResponse
-                answer={activeQuestionCategoryPlacements}
-                onChange={(answer) => handleChangeStructuredAnswer(activeQuestion.id, answer)}
-                question={activeQuestion}
-              />
-            ) : activeQuestion.type === "table_match" && activeQuestion.items && activeQuestion.categories ? (
-              <div className="exam-table-match">
-                <div
-                  aria-label="Answer choice bank. Drop an answer here to undo a table selection."
-                  className={`exam-table-match-bank ${
-                    selectedCategoryItemId && activeQuestionCategoryPlacements[selectedCategoryItemId]
-                      ? "is-return-target"
-                      : ""
-                  }`}
-                  onClick={() => handleCategoryBankClick(activeQuestion)}
-                  onDragOver={(event) => event.preventDefault()}
-                  onDrop={(event) => handleCategoryBankDrop(activeQuestion, event)}
-                >
-                  {activeQuestion.items
-                    .filter((item) => !activeQuestionCategoryPlacements[item.id])
-                    .map((item) => (
-                      <button
-                        className={`exam-table-match-card ${
-                          selectedCategoryItemId === item.id ? "is-selected" : ""
-                        }`}
-                        draggable
-                        key={item.id}
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          setSelectedCategoryItemId((currentItemId) =>
-                            currentItemId === item.id ? "" : item.id,
-                          );
-                        }}
-                        onDragStart={(event) => {
-                          event.dataTransfer.setData("text/plain", item.id);
-                          setSelectedCategoryItemId(item.id);
-                        }}
-                        type="button"
-                      >
-                        {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
-                      </button>
-                    ))}
-                </div>
-
-                <table className="exam-table-match-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">{activeQuestion.tableHeaders?.row ?? "Rows"}</th>
-                      <th scope="col">{activeQuestion.tableHeaders?.answer ?? "Answer"}</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {activeQuestion.categories.map((category) => {
-                      const placedItems = activeQuestion.items?.filter(
-                        (item) => activeQuestionCategoryPlacements[item.id] === category.id,
-                      );
-                      return (
-                        <tr key={category.id}>
-                          <th scope="row">{category.title}</th>
-                          <td
-                            className="exam-table-match-target"
-                            onClick={() => handleCategoryClick(activeQuestion, category.id)}
-                            onDragOver={(event) => event.preventDefault()}
-                            onDrop={(event) => handleCategoryDrop(activeQuestion, category.id, event)}
-                          >
-                            <div className="exam-table-match-slot">
-                              {placedItems?.map((item) => (
-                                <button
-                                  className={`exam-table-match-card is-placed ${
-                                    selectedCategoryItemId === item.id ? "is-selected" : ""
-                                  }`}
-                                  draggable
-                                  key={item.id}
-                                  onClick={(event) => {
-                                    event.stopPropagation();
-                                    setSelectedCategoryItemId((currentItemId) =>
-                                      currentItemId === item.id ? "" : item.id,
-                                    );
-                                  }}
-                                  onDragStart={(event) => {
-                                    event.dataTransfer.setData("text/plain", item.id);
-                                    setSelectedCategoryItemId(item.id);
-                                  }}
-                                  type="button"
-                                >
-                                  {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
-                                </button>
-                              ))}
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            ) : activeQuestion.type === "category_sort" && activeQuestion.items && activeQuestion.categories ? (
-              <div
-                className={`exam-category-sort ${
-                  activeQuestion.categoryCapacity === 1 ? "is-single-capacity" : ""
-                } ${activeQuestion.categories.length === 1 ? "is-single-category" : ""}`}
-              >
-                <div
-                  aria-label="Answer choice bank. Drop an answer here to undo a category selection."
-                  role="group"
-                  tabIndex={0}
-                  onKeyDown={event => {
-                    if (event.target === event.currentTarget && (event.key === "Enter" || event.key === " ")) {
-                      event.preventDefault();
-                      handleCategoryBankClick(activeQuestion);
-                    }
-                  }}
-                  className={`exam-category-bank ${
-                    selectedCategoryItemId && activeQuestionCategoryPlacements[selectedCategoryItemId]
-                      ? "is-return-target"
-                      : ""
-                  }`}
-                  onClick={() => handleCategoryBankClick(activeQuestion)}
-                  onDragOver={(event) => event.preventDefault()}
-                  onDrop={(event) => handleCategoryBankDrop(activeQuestion, event)}
-                >
-                  {activeQuestion.items
-                    .filter((item) => !activeQuestionCategoryPlacements[item.id])
-                    .map((item) => (
-                      <button
-                        className={`exam-category-card ${
-                          selectedCategoryItemId === item.id ? "is-selected" : ""
-                        }`}
-                        draggable
-                        key={item.id}
-                        onClick={(event) => {
-                          event.stopPropagation();
-                          setSelectedCategoryItemId((currentItemId) =>
-                            currentItemId === item.id ? "" : item.id,
-                          );
-                        }}
-                        onDragStart={(event) => {
-                          event.dataTransfer.setData("text/plain", item.id);
-                          setSelectedCategoryItemId(item.id);
-                        }}
-                        type="button"
-                      >
-                        {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
-                      </button>
-                    ))}
-                </div>
-
-                <div className="exam-category-target-grid">
-                  {activeQuestion.categories.map((category) => {
-                    const placedItems = activeQuestion.items?.filter(
-                      (item) => activeQuestionCategoryPlacements[item.id] === category.id,
-                    );
-
-                    return (
-                      <section
-                        className="exam-category-target"
-                        role="group"
-                        aria-label={`${category.title}. Select an answer, then press Enter here to place it.`}
-                        tabIndex={0}
-                        onKeyDown={event => {
-                          if (event.target === event.currentTarget && (event.key === "Enter" || event.key === " ")) {
-                            event.preventDefault();
-                            handleCategoryClick(activeQuestion, category.id);
-                          }
-                        }}
-                        key={category.id}
-                        onClick={() => handleCategoryClick(activeQuestion, category.id)}
-                        onDragOver={(event) => event.preventDefault()}
-                        onDrop={(event) => handleCategoryDrop(activeQuestion, category.id, event)}
-                      >
-                        <h2>{category.title}</h2>
-                        <div className="exam-category-target-items">
-                          {placedItems?.map((item) => (
-                            <button
-                              className={`exam-category-card is-placed ${
-                                selectedCategoryItemId === item.id ? "is-selected" : ""
-                              }`}
-                              draggable
-                              key={item.id}
-                              onClick={(event) => {
-                                event.stopPropagation();
-                                setSelectedCategoryItemId((currentItemId) =>
-                                  currentItemId === item.id ? "" : item.id,
-                                );
-                              }}
-                              onDragStart={(event) => {
-                                event.dataTransfer.setData("text/plain", item.id);
-                                setSelectedCategoryItemId(item.id);
-                              }}
-                              type="button"
-                            >
-                              {item.html ? <span dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}
-                            </button>
-                          ))}
-                        </div>
-                      </section>
-                    );
-                  })}
-                </div>
-              </div>
-            ) : activeQuestion.selectionHtml ? (
-              <InlineTextSelection scrollable={usesSelectionOnlyLayout} question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({...current,[activeQuestion.id]:answer}))} />
-            ) : activeQuestion.type === "transition_drop" && activeQuestionChoices.length > 0 ? (
-              <SentenceDragDrop key={activeQuestion.id} question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({ ...current, [activeQuestion.id]: answer }))} />
+            {!['multiple_choice','multi_select'].includes(activeQuestion.type) || activeQuestion.selectionHtml || activeQuestion.hotSpot ? (
+              <ExamResponse key={activeQuestion.id} question={activeQuestion} answer={activePassageAnswer} onChange={answer => setSelectedAnswers(current => ({...current, [activeQuestion.id]: answer}))} />
             ) : (
               <div className="exam-choice-list">
                 {activeQuestion.type === "multi_select" && activeQuestionChoices.length > 0 ? (
@@ -4228,7 +3881,7 @@ export function ExamSessionPage({ gameSession, previewSession }: { gameSession?:
         studentName={studentName}
       />
 
-      <ExamGeneralDirections english={englishQuestionCount} math={mathQuestionCount} total={totalExamQuestionCount} durationMinutes={assessment.durationMinutes} firstSubject={startingSubject} />
+      <ExamGeneralDirections english={englishQuestionCount} math={mathQuestionCount} total={totalExamQuestionCount} durationMinutes={assessment.durationMinutes} firstSubject={startingSubject} shsatLevel={sourceFacets(examContent.source || assessment.studyHallWorksheet?.source).shsatLevel} worksheet={Boolean(assessment.studyHallWorksheet)} />
 
     </main>
   );

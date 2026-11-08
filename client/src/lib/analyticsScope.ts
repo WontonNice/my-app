@@ -8,7 +8,7 @@ export const SKILL_AREAS = [
   { value: "unclassified", label: "Unclassified" },
 ] as const;
 export type SkillArea = typeof SKILL_AREAS[number]["value"];
-export type ContentSource = "official" | "prestige" | "other" | "unknown";
+export type ContentSource = "official" | "prestige" | "kaplan" | "shsat_lab" | "other" | "unknown";
 const editingTopics = new Set(["sentence structure", "pronouns", "verbs", "modifiers", "punctuation", "word choice & precision", "topic & transitions", "relevance & conclusion"]);
 const readingTopics = new Set(["central idea & theme", "author's point of view", "word & phrase meaning", "figurative language & imagery", "tone & mood", "text structure & purpose", "evidence & support", "inference", "supporting evidence", "vocabulary in context", "text structure"]);
 
@@ -26,6 +26,8 @@ export function metricArea(skill: SkillMetric): SkillArea {
   return areas.size === 1 ? [...areas][0] : topicArea(skill.section, skill.label);
 }
 function explicitSource(source?: ExamSource): ContentSource | undefined {
+  const publisher=source?.publisher?.toLowerCase();
+  if(publisher){if(/official|handbook/.test(publisher))return 'official';if(publisher.includes('prestige'))return 'prestige';if(publisher.includes('kaplan'))return 'kaplan';if(/shsat.?lab/.test(publisher))return 'shsat_lab';return 'other';}
   const family = source?.sourceFamily?.toLowerCase();
   return family === "official_shsat" ? "official" : family?.includes("prestige") ? "prestige" : undefined;
 }

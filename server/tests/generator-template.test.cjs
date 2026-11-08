@@ -53,7 +53,7 @@ test('numeric-equivalent choices and undefined fractions cannot pass validation'
  t.distractors[0]='total';assert.throws(()=>validateGeneratorTemplate(t),/collide/);
 });
 test('import adds source-linked drafts without changing existing resources; sessions retain their version',()=>{
- const before=validatePracticeCatalog(defaultPracticeCatalog(),taxonomy),snapshot=structuredClone(before),parent=before.modules.find(m=>m.category===identity.category&&m.topic===identity.topic&&m.defaultType==='general');
+ const before=validatePracticeCatalog(defaultPracticeCatalog(taxonomy),taxonomy),snapshot=structuredClone(before),parent=before.modules.find(m=>m.category===identity.category&&m.topic===identity.topic&&m.defaultType==='general');
  const next=stageTemplate(before,generator(),{id:'qa-module',title:'My chosen module name',category:identity.category,topic:identity.topic,parentId:parent.id});
  assert.deepEqual(before,snapshot);assert.deepEqual(next.generators.slice(0,-1),before.generators);assert.equal(next.modules.at(-1).published,false);
  assert.equal(validatePracticeCatalog(next,taxonomy).modules.find(m=>m.id==='qa-module').title,'My chosen module name');
@@ -64,20 +64,20 @@ test('import adds source-linked drafts without changing existing resources; sess
  assert.throws(()=>stageTemplate(next,generator(),{id:'qa-module',title:'x',category:identity.category,topic:identity.topic}),/already exists/);
 });
 test('custom names survive classification reconciliation and topic group normalization',()=>{
- const catalog=validatePracticeCatalog(defaultPracticeCatalog(),taxonomy),module=catalog.modules.find(m=>!m.defaultType);
+ const catalog=validatePracticeCatalog(defaultPracticeCatalog(taxonomy),taxonomy),module=catalog.modules.find(m=>!m.defaultType);
  for(const m of catalog.modules){m.title=`Custom ${m.id}`;m.titleMode='custom';}
  const skill={id:'qa-skill',label:'Renamed skill',category:module.category,subcategory:module.topic};module.skilled=skill.id;
  const result=validatePracticeCatalog(reconcilePracticeSkilled(catalog,[skill]),{...taxonomy,classificationSkills:[skill]});
  for(const m of catalog.modules)assert.equal(result.modules.find(row=>row.id===m.id).title,m.title);
 });
 test('adding a Foundation child preserves the group’s existing practice selection',()=>{
- const catalog=validatePracticeCatalog(defaultPracticeCatalog(),taxonomy),parent=catalog.modules.find(m=>m.id==='foundation');parent.includeAll=true;
+ const catalog=validatePracticeCatalog(defaultPracticeCatalog(taxonomy),taxonomy),parent=catalog.modules.find(m=>m.id==='foundation');parent.includeAll=true;
  const previous=managedGeneratorIds(parent,catalog),g={...generator(),enabled:true};
  const staged=stageTemplate(catalog,g,{id:'qa-foundation-child',title:'Foundation skill',category:identity.category,topic:identity.topic,parentId:parent.id});
  staged.modules.find(m=>m.id==='qa-foundation-child').published=true;
  const saved=validatePracticeCatalog(staged,taxonomy),updated=saved.modules.find(m=>m.id===parent.id);
- assert.equal(updated.includeAll,false);assert.deepEqual(new Set(managedGeneratorIds(updated,saved)),new Set([...previous,g.id]));
- assert.deepEqual(managedGeneratorIds(updated,saved,{childModuleIds:[]}),previous);
+ assert.equal(updated.includeAll,true);assert.deepEqual(new Set(managedGeneratorIds(updated,saved)),new Set([...previous,g.id]));
+ assert.ok(!managedGeneratorIds(updated,saved,{childModuleIds:[]}).includes(g.id),'An excluded child does not appear through the parent’s automatic selection');
 });
 test('creation prompt retains the full source and destination without asking for executable code',()=>{
  const prompt=generatorCreationPrompt({row:{category:'Algebra',subcategory:'Inequalities'},record:{id:'source-123',question:{prompt:'Solve 2x = 8.',correctTextAnswers:['4'],explanation:'Divide by 2.'},sources:[{title:'My source'}]}},'Solving equations');

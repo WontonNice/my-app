@@ -1,4 +1,12 @@
 /** Content Studio runs separately; hosted installs can configure its HTTPS address. */
+export function contentEditorPassageHref(passageId: string, cover = false, base = import.meta.env.VITE_CONTENT_STUDIO_URL || 'http://localhost:4319') {
+  const url = new URL(base);
+  if (!['http:', 'https:'].includes(url.protocol)) throw new Error('Use an HTTP or HTTPS Content Studio URL.');
+  url.searchParams.set('passageId', passageId);
+  if (cover) url.searchParams.set('settings', 'cover');
+  url.hash = 'passages';
+  return url.toString();
+}
 export function contentEditorQuestionHref(questionId:string,assessmentId?:unknown,base=import.meta.env.VITE_CONTENT_STUDIO_URL||'http://localhost:4319') {
   const url=new URL(base);
   if(!['http:','https:'].includes(url.protocol))throw new Error('Use an HTTP or HTTPS Content Studio URL.');

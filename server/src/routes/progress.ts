@@ -1,3 +1,4 @@
+import { worksheetIds } from '../shared/studyHallWorksheets';
 import { listDashboardUsers } from "../lib/studentRoster";
 import { assessmentAccessErrorHandler, resolveAssessmentAccess, resolveAssessmentAccessList } from '../lib/assessmentAccess';
 import { contentForExamAttempt } from "../lib/examResume";
@@ -17,7 +18,8 @@ import { examAttemptId, omitExamQuestions } from "../shared/examReentry";
 import { normalizeExamNavigation, type ExamNavigation } from "../shared/examNavigation";
 import { findAssessmentForStudent as configuredFindAssessmentForStudent, listTeacherAssessments as configuredListTeacherAssessments } from "../config/assessments";
 import { hasAssignedContent } from "../lib/learningPlanStore";
-import { getExamContent } from "../lib/examContent";
+import { getExamContent, getActivityRelease } from "../lib/examContent";
+import {activitySessionRelease} from '../lib/activitySessionRelease';
 const findAssessmentForStudent = (id: string, classes: string[]) => resolveAssessmentAccess(configuredFindAssessmentForStudent(id, classes));
 const listTeacherAssessments = () => resolveAssessmentAccessList(configuredListTeacherAssessments());
 
@@ -233,8 +235,9 @@ function practiceTotals(item: JsonRecord) {
 }
 
 function createInsights(progress: LearningProgress) {
+    const worksheets = worksheetIds(configuredListTeacherAssessments());
     const completedResults = [...progress.examResults, ...(progress.examHistory ?? [])].filter((result) =>
-        isFullExamResult(result)
+        !worksheets.has(String(result.assessmentId)) && isFullExamResult(result)
     );
     const scores = completedResults.map((result) => numberValue(result.percentage));
     const topicTotals = Object.values(progress.practice).map(practiceTotals);
@@ -372,7 +375,10 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
     const submitted = records.get(request.params.assessmentId);
     const globalRetake = !suppliedGrantId && submitted && isFullExamResult(submitted) && configuredAssessment?.status === "open" && configuredAssessment.allowCompletedAccess;
     const protectedSections = submitted && !globalRetake ? submittedExamSections(submitted).filter(section => !reentry?.remainingSections.includes(section) && (!openExam || !configuredAssessment.sectionAccess[section])) : [];
-    const snapshot = contentForExamAttempt(assessmentId, submitted?.analysisContent as ExamContent | undefined, openExam);
+    const releaseId=configuredAssessment.assembly?(existingSession?.status==='in_progress'&&!resetRequest?existingSession.navigation?.activityReleaseId:undefined)??navigation?.activityReleaseId??configuredAssessment.assembly.publishedReleaseId:undefined;
+    const pinnedContent=releaseId?getActivityRelease(assessmentId,releaseId):null;
+    if(releaseId&&!pinnedContent){response.status(409).json({message:'The saved activity version is unavailable. Reload this activity before continuing.'});return;}
+    const snapshot = pinnedContent??contentForExamAttempt(assessmentId, submitted?.analysisContent as ExamContent | undefined, openExam);
     const editableIds = (suppliedGrantId || openExam) && snapshot ? new Set([
         ...((openExam ? configuredAssessment.sectionAccess.english : reentry?.remainingSections.includes("english")) ? [...snapshot.passageSets.flatMap(set => set.questions), ...(snapshot.standaloneSection?.questions ?? [])].map(question => question.id) : []),
         ...((openExam ? configuredAssessment.sectionAccess.math : reentry?.remainingSections.includes("math")) ? (snapshot.mathSection?.questions ?? []).map(question => question.id) : []),
@@ -391,7 +397,7 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
     };
     const updatedAt = new Date().toISOString();
     const priorNavigation = resetIds && olderDraft && existingSession?.navigation ? { ...existingSession.navigation, [reentry!.sections[0]]: undefined } : existingSession?.navigation;
-    const nextNavigation = navigation ? { ...priorNavigation, ...navigation } : priorNavigation;
+    const nextNavigation = releaseId?{subject:navigation?.subject??priorNavigation?.subject??'english' as const,...priorNavigation,...navigation,activityReleaseId:releaseId}:navigation ? { ...priorNavigation, ...navigation } : priorNavigation;
     const session: ExamSessionProgress = {
         ...(nextNavigation ? { navigation: nextNavigation } : {}),
         answers: mergedAnswers,
@@ -682,6 +688,13 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
         result = { ...revised, attemptId: grant.attemptId, reentryGrantId: grant.id, reentrySubmittedSections: [...new Set([...previouslyRevised, ...submittedNow])], sectionCompletedAt: { ...(existing.sectionCompletedAt as object ?? {}), ...Object.fromEntries(submittedNow.map(section => [section, revised.completedAt])) }, timerState: result.timerState ?? grant.timerState };
     }
     // Preserve a previous genuine attempt before a new attempt replaces the current result.
+    // New bank assemblies are graded against the server-owned immutable edition.
+    const pinnedContent=configuredAssessment.assembly&&!suppliedGrantId?await activitySessionRelease(user,assessmentId):null;
+    if(configuredAssessment.assembly&&!suppliedGrantId){
+        const content=pinnedContent??getActivityRelease(assessmentId,result.analysisContent?.releaseId??configuredAssessment.assembly.publishedReleaseId??'');
+        if(!content){response.status(409).json({message:'The submitted activity version is unavailable. Reload before submitting.'});return;}
+        result={...result,...createExamResult(content,result.answers??{},submittedExamSections(result),result.questionTimes),completedAt:result.completedAt};
+    }
     // Section submissions within the same attempt update one record, not separate tests.
     if (!suppliedGrantId && typeof result.attemptId === "string" && result.attemptId.length <= 200) {
         const previous = await supabase.from("student_exam_results").select("result").eq("user_id", user.id).eq("assessment_id", assessmentId).maybeSingle();
@@ -693,7 +706,7 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
                 const requested = submittedExamSections(result);
                 const completed = submittedExamSections(old);
                 const protectedSections = completed.filter(section => !openExam || !configuredAssessment.sectionAccess[section] || !requested.includes(section));
-                const content = preserveSubmittedSections(contentForExamAttempt(assessmentId, old.analysisContent as ExamContent | undefined, openExam)!, old.analysisContent as ExamContent | undefined, protectedSections);
+                const content = preserveSubmittedSections(pinnedContent??contentForExamAttempt(assessmentId, old.analysisContent as ExamContent | undefined, openExam)!, old.analysisContent as ExamContent | undefined, protectedSections);
                 if (!content || content.assessmentId !== assessmentId) { response.status(409).json({ message: "The original exam content is unavailable. Ask your teacher for help." }); return; }
                 const protectedIds = [
                     ...(protectedSections.includes("english") ? [...content.passageSets.flatMap(set=>set.questions), ...(content.standaloneSection?.questions??[])].map(question=>question.id) : []),

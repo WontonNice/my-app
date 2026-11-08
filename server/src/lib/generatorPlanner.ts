@@ -27,7 +27,11 @@ function context(value: unknown): PlannerContext | undefined {
 export function readGeneratorPlanner(root: string, actor: string): GeneratorPlannerState {
   if (!actor || ['__proto__', 'constructor', 'prototype'].includes(actor)) throw fail('Teacher identity is required.', 403);
   const planner=structuredClone(readMathCommandState(root).generatorPlanners?.[actor] ?? emptyGeneratorPlanner());
-  for(const batch of planner.batches)for(const entry of batch.entries)if(!entry.destination.moduleId)entry.destination.group='foundation';
+  for(const batch of planner.batches)for(const entry of batch.entries){
+    if(!entry.destination.moduleId)entry.destination.group='foundation';
+    entry.publishAfterValidation ??= entry.status === 'available';
+    if(entry.status === 'available')entry.status = 'draft';
+  }
   return planner;
 }
 export function saveGeneratorPlanner(root: string, actor: string, value: unknown) {
@@ -40,7 +44,7 @@ export function saveGeneratorPlanner(root: string, actor: string, value: unknown
     if (input.action === 'duplicate' && !batch) throw fail('This batch is not in your planner.', 404);
     const original = batch;
     batch = { id: randomUUID(), name: text(input.name, 120, true), notes: original?.notes ?? '', updatedAt: now,
-      entries: original?.entries.map(entry => ({ ...structuredClone(entry), id: randomUUID(), status: entry.status === 'available' ? 'available' as const : 'draft' as const, addedAt: now })) ?? [] };
+      entries: original?.entries.map(entry => ({ ...structuredClone(entry), id: randomUUID(), status: 'draft' as const, addedAt: now })) ?? [] };
     own.batches.push(batch); own.activeBatchId = batch.id;
   } else {
     if (!batch) throw fail('This batch is not in your planner. Reload and choose a batch.', 404);
@@ -57,7 +61,7 @@ export function saveGeneratorPlanner(root: string, actor: string, value: unknown
         if (existing) { if (!existing.context && contexts[source.id]) existing.context = context(contexts[source.id]); continue; }
         const category = source.question.topic ?? '', topic = source.question.subtopic ?? '';
         batch.entries.push({ id: randomUUID(), source: { id: source.id, question: structuredClone(source.question), sources: source.sources, category, subcategory: topic, skilled: source.question.skilled ?? 'TBD' },
-          destination: { category, topic, moduleId: '', moduleTitle: '', group: 'foundation' }, context: context(contexts[source.id]), notes: '', status: 'available', addedAt: now });
+          destination: { category, topic, moduleId: '', moduleTitle: '', group: 'foundation' }, context: context(contexts[source.id]), notes: '', status: 'draft', publishAfterValidation: false, addedAt: now });
       }
       if (batch.entries.length > 100) throw fail('Keep at most 100 questions in one batch. Create another batch for the rest.');
     } else if (input.action === 'update') {
@@ -69,7 +73,8 @@ export function saveGeneratorPlanner(root: string, actor: string, value: unknown
         if (!entry || seen.has(entry.id)) throw fail('Each saved planner entry must appear once.');
         seen.add(entry.id);
         if (!plannerStatuses.includes(row.status as PlannerStatus)) throw fail('Choose a valid request status.');
-        return { ...entry, context: row.context === undefined ? entry.context : context(row.context), notes: text(row.notes, 6000), destination: destination(row.destination), status: row.status as PlannerStatus };
+        if(row.publishAfterValidation !== undefined && typeof row.publishAfterValidation !== 'boolean')throw fail('Choose a valid publication intent.');
+        return { ...entry, context: row.context === undefined ? entry.context : context(row.context), notes: text(row.notes, 6000), destination: destination(row.destination), status: row.status === 'available' ? 'draft' : row.status as PlannerStatus, publishAfterValidation: row.publishAfterValidation as boolean | undefined ?? (row.status === 'available' || entry.publishAfterValidation || false) };
       });
     } else if (input.action === 'remove') {
       if (!batch.entries.some(entry => entry.id === input.entryId)) throw fail('This question is not in the batch.', 404);

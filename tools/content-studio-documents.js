@@ -67,7 +67,16 @@ const DocumentStudio = {
     if (firstProblem >= 0) studioUI.showSupportPanel('question');
     document.querySelector('#document-review-dialog')?.close();
   },
-  open(id, questionId) { if (this.state.entries.find(e=>e.id===id)?.batch) { MathBatchStudio.open(id); return; } this.entry = clone(this.state.entries.find(e => e.id === id)); this.index = Math.max(0, this.entry.content.questions.findIndex(question => question.id === questionId)); this.render(); },
+  async open(id, questionId) {
+    const entry = this.state.entries.find(e=>e.id===id);
+    if (entry?.batch) { MathBatchStudio.open(id); return; }
+    if (entry?.kind === 'standalone') {
+      const question = entry.content.questions.find(q => q.id === questionId && !entry.publishedQuestionIds?.includes(q.id)) || entry.content.questions.find(q => !entry.publishedQuestionIds?.includes(q.id));
+      if (question && await PartBImport.selectDocument(id,question.id)) { this.entry=null; document.querySelector('#document-review-dialog')?.close(); switchTab('standalone'); }
+      return;
+    }
+    this.entry = clone(entry); this.index = Math.max(0, this.entry.content.questions.findIndex(question => question.id === questionId)); this.render();
+  },
   async save() {
     this.state = await api('/api/document-drafts', { method: 'POST', body: JSON.stringify({ revision: this.state.revision, entry: this.entry }) });
     this.entry = clone(this.state.entries.find(e => e.id === this.entry.id));

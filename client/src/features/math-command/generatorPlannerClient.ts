@@ -23,4 +23,4 @@ export const accountPlannerDestination = (request: MathCommandRequest, questionI
   request<{ url: string }>('/teacher-workspace', jsonRequest('POST', { query: generatorPlannerQuery(questionIds) }));
 export const plannerHref = '/teacher/math-command?tab=planner';
 export const createGeneratorHref = (id: string) => '/teacher/math-command?tab=infinite&sourceQuestionId=' + encodeURIComponent(id);
-export const plannerStatusLabels = { draft: 'Draft', exported: 'Exported', review: 'Ready for review', available: 'Available to students' };
+export const plannerStatusLabels = { draft: 'Draft request', exported: 'Exported to Codex', review: 'Ready for review', available: 'Publish after review (legacy intent)' };

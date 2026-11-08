@@ -70,6 +70,9 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
     app.use(cors(createCorsOptions(allowedOrigins)));
     // Teacher menus contain resized raster images. Keep the larger limit scoped to this write route.
     app.use('/api/classroom-meals/teacher/sessions', express.json({ limit: '10mb' }));
+    app.use('/api/infinite-practice/progress',express.json({limit:'16mb'}));
+    // Results include an immutable exam snapshot; image-heavy exams exceed 1 MB.
+    app.put('/api/progress/exam-results/:assessmentId', express.json({ limit: '16mb' }));
     app.use(express.json({ limit: "1mb" }));
 
     app.use("/health", healthRouter);
@@ -126,8 +129,9 @@ export function createApp({ allowedOrigins, clientDistPath }: CreateAppOptions) 
         const requestId = String(response.locals.requestId ?? randomUUID());
         console.error(`[${requestId}] Unhandled request error`, error);
         const isCorsError = error instanceof Error && error.message.startsWith("CORS blocked");
-        response.status(isCorsError ? 403 : 500).json({
-            message: isCorsError ? "This website origin is not allowed to call the API." : "The server hit an unexpected error. Please try again.",
+        const isPayloadTooLarge = error?.type === "entity.too.large";
+        response.status(isCorsError ? 403 : isPayloadTooLarge ? 413 : 500).json({
+            message: isCorsError ? "This website origin is not allowed to call the API." : isPayloadTooLarge ? "This submission is too large. Please contact your teacher for help." : "The server hit an unexpected error. Please try again.",
             requestId,
         });
     };

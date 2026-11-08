@@ -59,8 +59,8 @@ export function handleMathCatalogRequest(input:{method:string;pathname:string;bo
   }
   const personalSnapshot = () => { const snapshot = mathCatalogSnapshot(root, performance); return {...snapshot, catalog: teacherCatalog(snapshot.catalog, root, actor)}; };
   if(method==="GET"&&pathname==="/overview"){
-    const {catalog,taxonomy}=mathCatalogSnapshot(root,performance),state=readMathCommandState(root);
-    return {revision:state.revision,classificationRevision:mathClassificationRevision(root),summary:summarizeMathCommandCatalog(catalog,taxonomy,state.targets),taxonomy,targets:state.targets,savedViews:state.savedViews,collections:state.collections,skills:state.skills,prerequisites:Object.fromEntries(state.skills.map(skill=>[skill.id,skill.prerequisiteIds??[]])),rules:state.rules,pacePerWeek:state.pacePerWeek};
+    const {catalog,taxonomy,records,merged}=mathCatalogSnapshot(root,performance),state=readMathCommandState(root);
+    return {revision:state.revision,classificationRevision:mathClassificationRevision(root),summary:summarizeMathCommandCatalog(catalog,taxonomy,state.targets),inventoryScope:{sourceRecords:records.length,canonicalQuestions:merged.length,combinedDuplicates:records.length-merged.length},taxonomy,targets:state.targets,savedViews:state.savedViews,collections:state.collections,skills:state.skills,prerequisites:Object.fromEntries(state.skills.map(skill=>[skill.id,skill.prerequisiteIds??[]])),rules:state.rules,pacePerWeek:state.pacePerWeek};
   }
   if(method==="GET"&&pathname==="/catalog")return queryMathCommandCatalog(personalSnapshot().catalog,parseFilters(query.filters));
   if(method==="GET"&&pathname==="/player-queue"){

@@ -20,7 +20,7 @@ export const digitalShsatPracticeTest4Content: ExamContent = {
   "excerpt-from-stopping-by-woods-on-a-snowy-evening-digital-shsat-practice-test-4": "reading",
   "excerpt-from-the-grip-that-shouldn-t-work-digital-shsat-practice-test-4": "reading",
   "excerpt-from-formation-digital-shsat-practice-test-4": "reading",
-  "excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4": "reading"
+  "excerpt-from-the-case-for-more-bike-parking-at-alder-hollow-digital-shsat-practice-test-4": "revising_editing_a"
 },
   passageSets: [
     excerptFromMowgliSBrothersDigitalShsatPracticeTest4PassageSet,

@@ -56,3 +56,11 @@
 .gp-add > span { font-size: 13px; }
 .gp-add a { color: #245239; text-underline-offset: 3px; }
 @media (max-width: 760px) { .gp-columns, .gp-brief, .gp-fields, .gp-new { grid-template-columns: 1fr; } .gp-detail { border-left: 0; border-top: 1px solid #d7dcd5; padding: 24px 0 0; } .gp-entry-list { max-height: 380px; } .gp-export .gp-actions { margin-left: 0; } .gp-batch-controls > label { flex-basis: 100%; } .gp-coverage > div { flex-wrap: wrap; } }
+
+.gp-bulk { padding: 18px 0; margin: 12px 0 20px; border-block: 1px solid var(--border, #d6dce4); }
+.gp-bulk h2 { font-size: 1rem; margin: 0 0 8px; }
+.gp-bulk p { margin: 0 0 14px; max-width: 72ch; }
+.gp-bulk .gp-fields { align-items: end; }
+.gp-bulk .gp-fields > * { min-width: 0; max-width: 100%; }
+.mc-workspace .gp-workspace .gp-bulk button { white-space: normal; overflow-wrap: anywhere; line-height: 1.5; }
+.gp-bulk select { width: 100%; min-width: 0; }

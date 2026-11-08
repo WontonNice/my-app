@@ -2,6 +2,7 @@ import { moduleGeneratorIds, practiceModules } from '../../../../server/src/shar
 import { managedGeneratorIds, practiceModuleKind, type PracticeCatalog, type PracticeSelection } from '../../../../server/src/shared/practiceCatalog';
 
 import type { PracticeState } from '../../../../server/src/shared/practiceCheckpoint';
+import {practiceResponseEvidence} from '../../../../server/src/shared/practiceEvidence';
 export { parsePracticeState, type PracticeState } from '../../../../server/src/shared/practiceCheckpoint';
 /** Add module records to old sessions without changing their question set or crediting past answers. */
 export function withPracticeModuleTracking(state:PracticeState,catalog?:PracticeCatalog):PracticeState {
@@ -36,7 +37,7 @@ export function checkPracticeAnswer(state: PracticeState, correctChoice: string 
     moduleStreaks[moduleId]=correct?(moduleStreaks[moduleId]??0)+1:0;
     moduleLongestStreaks[moduleId]=Math.max(moduleLongestStreaks[moduleId]??0,moduleStreaks[moduleId]);
   }
-  return { ...state, ...(state.moduleGeneratorIds?{moduleStreaks,moduleLongestStreaks}:{}),generatorStreaks:{...state.generatorStreaks,[id]:typeStreak}, submitted: true, checked: state.checked + 1, correct: state.correct + Number(correct), streak, longestStreak: Math.max(state.longestStreak, streak), answeredMs: state.answeredMs + state.questionMs };
+  return { ...state, responses:[...(state.responses??[]),practiceResponseEvidence(state)],...(state.moduleGeneratorIds?{moduleStreaks,moduleLongestStreaks}:{}),generatorStreaks:{...state.generatorStreaks,[id]:typeStreak}, submitted: true, checked: state.checked + 1, correct: state.correct + Number(correct), streak, longestStreak: Math.max(state.longestStreak, streak), answeredMs: state.answeredMs + state.questionMs };
 }
 export function currentPracticeGeneratorId(state:PracticeState) {
   let hash=0;if(!state.generatorDefinitions)for(const char of state.seed)hash=(Math.imul(hash,31)+char.charCodeAt(0))>>>0;

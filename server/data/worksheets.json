@@ -1,0 +1,1936 @@
+[
+  {
+    "allowCompletedAccess": false,
+    "classId": "shsat",
+    "createdAt": "2026-11-07T00:22:38.143Z",
+    "description": "17 official SHSAT 9 mathematics sample questions from the 2008–2009 handbook, pages 99–101. Worksheet import in progress.",
+    "forms": [],
+    "formAssignments": {},
+    "questions": [
+      {
+        "answer": "D",
+        "choices": [
+          "70%",
+          "75%",
+          "105%",
+          "140%",
+          "240%"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q1",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In 1960, the number of tons of solid waste produced by a city was 75 million. In 1990, the number of tons was 180 million. By what percentage did the solid waste tonnage increase from 1960 to 1990?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(y \\leq -2x + 2\\)",
+          "\\(y < -2x + 2\\)",
+          "\\(y \\geq -2x + 2\\)",
+          "\\(y > -2x + 2\\)",
+          "\\(y = -2x + 2\\)"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q2",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which inequality has the shaded region in the diagram above as its graph?",
+        "topic": "Algebra",
+        "subtopic": "Functions & Graphs",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "10%",
+          "45%",
+          "80%",
+          "180%",
+          "225%"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q3",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Jessenia usually earns $25 each week. Last week, she received an extra $20 in bonus. What percent of her usual weekly income was her total income last week?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "(17, 7)",
+          "(10, 5)",
+          "(7.5, 5)",
+          "(0.2, 0.1)",
+          "(0.1, 0.2)"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q4",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Let \\(M\\prime = (12, 12)\\) and \\(N\\prime = (24, 12)\\). If \\(\\overline{M\\prime N\\prime}\\) is the dilated image of \\(\\overline{MN}\\), where \\(M = (5, 5)\\), what are the coordinates of point \\(N\\)?",
+        "topic": "Geometry",
+        "subtopic": "Similarity, Scale & Proportional Geometry",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\frac{1}{n^2} < -4\\)",
+          "\\(\\frac{1}{n^2} > 4\\)",
+          "\\(0 < \\frac{1}{n^2} < \\frac{1}{4}\\)",
+          "\\(-\\frac{1}{4} < \\frac{1}{n^2} < 0\\)",
+          "\\(-\\frac{1}{2} < \\frac{1}{n^2} < \\frac{1}{2}\\)"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q5",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(n\\) is an integer smaller than \\(-2\\). What is the range of possible values of \\(\\frac{1}{n^2}\\)?",
+        "topic": "Algebra",
+        "subtopic": "Inequalities",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(\\angle XZW\\) is a right angle.",
+          "\\(\\angle XZW\\) is larger than \\(\\angle XZY\\).",
+          "\\(\\angle XZW\\) is smaller than \\(\\angle XZY\\).",
+          "\\(\\angle XZW\\) has the same measure as \\(\\angle XYZ\\).",
+          "\\(\\angle XZW\\) has the same measure as \\(\\angle YXZ\\)."
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q6",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(\\overline{WZY}\\) is a straight line segment and \\(\\triangle XWZ\\) is congruent to \\(\\triangle YXZ\\). What can one conclude about \\(\\angle XZW\\)? (The figure is not drawn to scale.)",
+        "topic": "Geometry",
+        "subtopic": "Triangles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(1\\)",
+          "\\(e^0\\)",
+          "\\(e^{-1}\\)",
+          "\\(e^{\\frac{5}{6}}\\)",
+          "\\(e\\)"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q7",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Simplify \\(\\frac{e^2 \\cdot e^3}{e^6}\\)",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Exponents, Roots & Scientific Notation",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "40°",
+          "50°",
+          "60°",
+          "70°",
+          "80°"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q8",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "line \\(m\\) // line \\(n\\)\n\\(\\overline{VWX}\\) is a straight line segment, and W and Y are points on line \\(m\\). What is the measure of \\(\\angle XYW\\)?",
+        "topic": "Geometry",
+        "subtopic": "Lines & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(150 - x\\)",
+          "\\(165 - x\\)",
+          "\\(180 - x\\)",
+          "\\(150 - 2x\\)",
+          "\\(30 + x\\)"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q9",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, three lines intersect at a point. What is the value of \\(w\\) in terms of \\(x\\)?",
+        "topic": "Geometry",
+        "subtopic": "Lines & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "60°",
+          "90°",
+          "100°",
+          "120°",
+          "150°"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q10",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In this figure, \\(MN = NP = PM\\) and \\(\\overline{MPQ}\\) is a straight line segment. What is the measure of \\(\\angle NPQ\\)?",
+        "topic": "Geometry",
+        "subtopic": "Triangles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "E",
+        "choices": [
+          "(−3, −3)",
+          "(−2, −3)",
+          "(−2, 3)",
+          "(3, −3)",
+          "(3, 3)"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q11",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Let P = (2, 3). First, translate P one unit to the right and call the image R. Next, reflect R over the y-axis and call the image S. Finally, rotate S 90° clockwise about the origin and call the image T. What are the coordinates of T?",
+        "topic": "Geometry",
+        "subtopic": "Coordinate Geometry & Transformations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\frac{1}{2}r\\)",
+          "\\(\\frac{1}{\\sqrt{2}}r\\)",
+          "\\(\\sqrt{2}r\\)",
+          "\\(2r\\)",
+          "\\(4r\\)"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q12",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The radius of circle \\(C_1\\) is \\(R\\), and that of circle \\(C_2\\) is \\(r\\). The area of \\(C_1\\) is twice that of \\(C_2\\). What is \\(R\\) in terms of \\(r\\)?",
+        "topic": "Geometry",
+        "subtopic": "Circles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "E",
+        "choices": [
+          "\\(1\\)",
+          "\\(2\\)",
+          "\\(2\\frac{1}{2}\\)",
+          "\\(3\\)",
+          "\\(4\\)"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q13",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of \\(n\\) in the figure above?",
+        "topic": "Algebra",
+        "subtopic": "Functions & Graphs",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "E",
+        "choices": [
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q14",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(x^2 = P\\)\n\\(x^2 \\cdot x = Q\\)\n\\(x^2 \\div x = R\\)\n\\(x^2 + x = S\\)\n\\(x^2 - x = T\\)\n\nIf \\(x = -6\\) in the equations above, which letter has the greatest value?",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "30",
+          "45",
+          "135",
+          "360",
+          "1,080"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q15",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The figure above is a regular octagon. What is the sum of the measures of the exterior angles \\((a + b + c + d + e + f + g + h)\\)?",
+        "topic": "Geometry",
+        "subtopic": "Quadrilaterals & Polygons",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "45",
+          "60",
+          "75",
+          "90",
+          "120"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q16",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, Y is a point on line \\(\\overleftrightarrow{XZ}\\). What is the value of \\(m + p\\)?",
+        "topic": "Geometry",
+        "subtopic": "Lines & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(\\frac{1}{6}\\)",
+          "\\(\\frac{1}{5}\\)",
+          "\\(\\frac{5}{11}\\)",
+          "\\(\\frac{2}{3}\\)",
+          "\\(\\frac{5}{6}\\)"
+        ],
+        "id": "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q17",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A jar contains exactly 6 balls: 5 red and 1 blue. If 5 balls are drawn from the jar at random and without replacement, what is the probability that they are all red?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      }
+    ],
+    "passages": [],
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "split": false,
+    "status": "locked",
+    "id": "grade-9-2008-2009-worksheet",
+    "title": "Grade 9 2008-2009",
+    "durationMinutes": 30,
+    "updatedAt": "2026-11-07T05:04:06.214Z",
+    "studyHallWorksheet": {
+      "subject": "math",
+      "area": "math",
+      "scope": "mixed",
+      "category": "Math",
+      "collection": "Grade 9 Mathematics Sample Questions",
+      "source": {
+        "publisher": "Official Handbook",
+        "sourceFamily": "official_shsat",
+        "year": "2008-2009",
+        "shsatLevel": "9"
+      }
+    },
+    "assembly": {
+      "draftQuestionIds": [
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q1",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q2",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q3",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q4",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q5",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q6",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q7",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q8",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q9",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q10",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q11",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q12",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q13",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q14",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q15",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q16",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q17"
+      ],
+      "reviewed": false,
+      "publishedMetadata": {
+        "title": "Grade 9 2008-2009 Worksheet",
+        "description": "17 official SHSAT 9 mathematics sample questions from the 2008–2009 handbook, pages 99–101. Worksheet import in progress.",
+        "durationMinutes": 30,
+        "studyHallWorksheet": {
+          "subject": "math",
+          "area": "math",
+          "scope": "mixed",
+          "category": "Math",
+          "collection": "Grade 9 Mathematics Sample Questions",
+          "source": {
+            "publisher": "Official Handbook",
+            "sourceFamily": "official_shsat",
+            "year": "2008-2009",
+            "shsatLevel": "9"
+          }
+        }
+      },
+      "publishedReleaseId": "9a5b089c2033fea67b4010e7fbb5f36b3414d885fde80312ffe42147ffb51e75",
+      "publishedQuestionIds": [
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q1",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q2",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q3",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q4",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q5",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q6",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q7",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q8",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q9",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q10",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q11",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q12",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q13",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q14",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q15",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q16",
+        "grade-9-2008-2009-worksheet-official-shsat9-2008-2009-q17"
+      ],
+      "publishedAt": "2026-11-07T01:42:35.987Z"
+    }
+  },
+  {
+    "id": "grade-9-mini-form",
+    "title": "Grade 9 Mini Form",
+    "examLabel": "Grade 9 Mathematics Sample Questions",
+    "classId": "shsat",
+    "description": "",
+    "durationMinutes": 45,
+    "createdAt": "2026-11-03T07:15:50.914Z",
+    "updatedAt": "2026-11-06T09:00:53.503Z",
+    "passages": [],
+    "questions": [
+      {
+        "answer": "C",
+        "choices": [
+          "\\(4-\\pi \\)",
+          "\\(3\\pi -9\\)",
+          "\\(12-4\\pi \\)",
+          "\\(36-9\\pi \\)"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-adam-1",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following expressions is negative in value?",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "grade-9-mini-form-grade-9-mini-adam-2",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Triangle ABC is graphed on the coordinate plane. Triangle ABC is reflected across the line \\(y=-1\\) to create image \\(\\text{A}'\\text{B}'\\text{C}'\\text{.}\\) Graph triangle \\(\\text{A}'\\text{B}'\\text{C}'\\text{.}\\) on the coordinate plane.\nSelect the correct orientation of the triangle and position it correctly in the coordinate plane.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "coordinate_response"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "15",
+          "34",
+          "50",
+          "56"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-adam-3",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The symbol \\(<x, y, z>\\) means \\(\\frac{xz + xy}{2}+zy.\\) What is the value of \\(<3, 4, 8>?\\)",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(0\\)",
+          "\\({p}^{-3}\\)",
+          "\\({p}^{8}\\)",
+          "\\({p}^{16}\\)"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-adam-4",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Simplify:\n\\(\\frac{{p}^{12}\\cdot {p}^{0}}{{p}^{-4}}\\)",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "grade-9-mini-form-grade-9-mini-adam-5",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "inline_dropdown"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(\\frac{a}{b}\\)",
+          "\\(\\frac{2b}{a}\\)",
+          "\\(\\frac{2a}{b}\\)",
+          "\\(\\frac{b}{a}\\)"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-adam-6",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Straight line \\(l\\) passes through the origin, as shown in the figure above. What is the slope of line \\(l\\) in terms of \\(a\\) and \\(b?\\)",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B,E",
+        "choices": [
+          "The line of best fit is accurate if it passes through at least one of the data points.",
+          "The line of best fit is accurate if about half of the data points are above the line and half are below the line.",
+          "The line of best fit is accurate if it touches every single data point on the scatter plot.",
+          "The line of best fit should always pass through the origin (0, 0).",
+          "The line of best fit should capture the overall trend of the data."
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-adam-7",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A scatter plot displays the number of cars sold each month at a car dealership over the past year. A student has drawn a line of best fit to model the data and wants to determine whether the line accurately represents the data. What are two characteristics of an accurate line of best fit for a scatter plot?\nSelect the two correct answers.",
+        "topic": "Uncategorized",
+        "subtopic": "Unclassified",
+        "type": "multi_select"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "$50",
+          "$60",
+          "$70",
+          "$120"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-adam-8",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "To determine the price of servicing a car, a mechanic charges a fixed fee plus an hourly rate for each hour he works. If his price for 4 hours of work is $270, and his price for 7 hours of work is $420, what is the fixed fee that the mechanic charges?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(\\left(4, -3\\right)\\)",
+          "\\(\\left(-4, 3\\right)\\)",
+          "\\(\\left(-4, 1\\right)\\)",
+          "\\(\\left(-4, -3\\right)\\)"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-adam-9",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Rectangle \\(\\text{PQRS}\\) above is rotated \\(180^{\\circ}\\) about the origin to form rectangle \\(\\text{P}'\\text{Q}'\\text{R}'\\text{S}'.\\) What are the coordinates of \\(\\text{R}'?\\)",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(1.02\\times {10}^{-13}\\)",
+          "\\(1.02\\times {10}^{-11}\\)",
+          "\\(1.02\\times {10}^{-4}\\)",
+          "\\(1.02\\times {10}^{12}\\)"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-adam-10",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(\\frac{15.3 \\times {10}^{-8}}{1.5 \\times {10}^{4}}\\)\nWhat is the quotient of the expression above, expressed in scientific notation?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "grade-9-mini-form-grade-9-mini-adam-11",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A system of linear equations is shown.\n\\(\\left\\{\\begin{matrix}2x+y=5\\\\x-y=1\\end{matrix}\\right.\\)\n\nGraph the solution to the system of linear equations.\nGraph the system of equations and the solution using the following steps:\nSelect the Line 1 button to graph line 1. Select two points on the coordinate plane. A line will be drawn through the two points.\nSelect the Line 2 button to graph line 2. Select two points on the coordinate plane. A line will be drawn through the two points.\nSelect the Solution button. Select a place on the coordinate plane to plot the point.",
+        "topic": "Uncategorized",
+        "type": "coordinate_response"
+      },
+      {
+        "answer": "12",
+        "choices": [],
+        "id": "grade-9-mini-form-grade-9-mini-adam-12",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Assume \\(S\\left(x\\right)\\) equals the sum of all positive even integers less than or equal to \\(x.\\) What is the value of \\(S\\left(7\\right)?\\)\nEnter your answer in the space.",
+        "topic": "Uncategorized",
+        "type": "short_response"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(2x\\)",
+          "\\(2x+10\\)",
+          "\\(x+5\\)",
+          "\\(\\frac{1}{2}x+5\\)"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-adam-13",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, \\(△\\text{MPR}\\) is similar to \\(△\\text{NPQ.}\\) If the length of \\(\\overline{\\text{NQ}}\\) is 10 centimeters, what is the length of \\(\\overline{\\text{MR}}\\) in terms of \\(x?\\)",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\sqrt{37}\\)",
+          "\\(\\sqrt{47}\\)",
+          "\\(\\sqrt{57}\\)",
+          "\\(\\sqrt{67}\\)"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-1",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which number has a value that is located between 7 and 8 on a number line?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "43°",
+          "47°",
+          "133°",
+          "137°"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-2",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, \\(k\\parallel m.\\) Straight line p intersects both line k and line m. The measure of \\(∠\\text{T}\\) is 47°. What is the measure of \\(∠\\text{J}\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(0.\\overline{7}\\)",
+          "\\(\\sqrt{9}\\)",
+          "\\(\\frac{9}{7}\\)",
+          "\\(\\sqrt{7}\\)"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-3",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of these numbers is irrational?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-4",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Determine whether each function is linear or non-linear.\nSelect one answer in each row.",
+        "topic": "Uncategorized",
+        "type": "matrix_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "A translation to the right, and then a reflection across the y-axis",
+          "A reflection across the x-axis, and then a clockwise rotation of 270°",
+          "A rotation of 180° about the origin, and then a translation across the x-axis",
+          "A reflection across the y-axis, and then a counterclockwise rotation of 90° about its center"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-5",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Triangles \\(\\text{JKL}\\) and \\({\\text{J}}^{''}{\\text{K}}^{''}{\\text{L}}^{''}\\) are congruent triangles.\n\nWhich two transformations were used to transform \\(\\text{JKL}\\) to \\({\\text{J}}^{''}{\\text{K}}^{''}{\\text{L}}^{''}\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-6",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Determine whether each graph represents a function or not.\nMove the correct answer to each box. Each answer may be used more than once.",
+        "topic": "Uncategorized",
+        "type": "math_drag_drop"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(y=(-x)\\)",
+          "\\(y=x\\)",
+          "\\(y=(-x)+2\\)",
+          "\\(y=x+2\\)"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-7",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The scatter plot shows a set of data.\n\nWhich equation represents the most accurate line of best fit for the data shown in the scatter plot?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(\\left(-\\frac{1}{3}, 4\\frac{1}{3}\\right)\\)",
+          "\\(\\left(-\\frac{1}{3}, 5\\frac{2}{3}\\right)\\)",
+          "\\(\\left(\\frac{1}{3}, 1\\frac{2}{3}\\right)\\)",
+          "\\(\\left(\\frac{1}{3}, 5\\frac{2}{3}\\right)\\)"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-8",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the point of intersection of the graphs of \\(y=-4x+3\\) and \\(y=2x+5\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The rate of change for \\(y=4x+3\\) is less because \\(3<20\\).",
+          "The rate of change for \\(y=4x+3\\) is less because \\(-\\frac{3}{4}>-24\\).",
+          "The rate of change for \\(y=4x+3\\) is greater because \\(4>\\frac{5}{6}\\).",
+          "The rate of change for \\(y=4x+3\\) is greater because \\(-\\frac{3}{4}<\\frac{5}{6}\\)."
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-9",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The table below represents a linear function.\n\\(x\\) \\(y\\)\n12 30\n24 40\n36 50\n\nA second linear function is represented by the equation \\(y=4x+3.\\) Which statement comparing the rates of change of the two functions is true?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "20",
+        "choices": [],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-10",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The function \\(y=2x-4\\) is graphed. The line of the graph travels through point \\((0, -4)\\) and point \\((12, y).\\) What is the value of y in point \\((12, y)\\)?",
+        "topic": "Uncategorized",
+        "type": "short_response"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "No solutions",
+          "One solution",
+          "Two solutions",
+          "An infinite number of solutions"
+        ],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-11",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How many solutions are there to the equation \\(\\left|4x+6\\right|=-2\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-12",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The metered fare for a taxi in New York City is:\n\\(\\text{\\$}3\\text{.}00\\) initial charge\nPlus \\(\\text{\\$}0\\text{.}70\\) per \\(\\frac{1}{5}\\) mile\nPlus \\(\\text{\\$}0\\text{.}50\\) MTA State Surcharge for all trips ending in New York City\nPlus \\(\\text{\\$}1\\text{.}00\\) Improvement Surcharge\nPlus \\(\\text{\\$}2\\text{.}50\\) Rush Hour Surcharge from \\(4\\) p.m. to \\(8\\) p.m. on weekdays\nCreate the graph of the linear function that models the cost, \\(y\\text{,}\\) of a taxi ride on a Saturday for \\(x\\) miles that ends in New York City.\nSelect a location on the coordinate grid to plot each data point. A line will connect the points.",
+        "topic": "Uncategorized",
+        "type": "coordinate_response"
+      },
+      {
+        "answer": "11",
+        "choices": [],
+        "id": "grade-9-mini-form-grade-9-mini-nyc-13",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(0.44=\\frac{x}{25}\\)\nWhat is the value of x in the equation?",
+        "topic": "Uncategorized",
+        "type": "short_response"
+      }
+    ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false,
+    "studyHallWorksheet": {
+      "subject": "math",
+      "category": "Nathan Teacher's Recommended",
+      "collection": "Grade 9 Mathematics Sample Questions"
+    }
+  },
+  {
+    "id": "grade-9-2018-2019",
+    "title": "Grade 9 2018-2019",
+    "examLabel": "Grade 9 Mathematics Sample Questions",
+    "classId": "shsat",
+    "description": "13 official Grade 9 mathematics sample questions from the 2018–2019 handbook. Includes the original diagrams and supplied answer key. Practice time: 25 minutes.",
+    "durationMinutes": 25,
+    "createdAt": "2026-11-06T07:29:51.429Z",
+    "updatedAt": "2026-11-06T13:38:07.635Z",
+    "passages": [],
+    "questions": [
+      {
+        "answer": "12",
+        "choices": [],
+        "id": "grade-9-2018-2019-q1",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Assume \\(S(x)\\) equals the sum of all positive even integers less than or equal to \\(x\\). What is the value of \\(S(7)\\)?",
+        "topic": "Algebra",
+        "subtopic": "Functions & Graphs",
+        "type": "short_response"
+      },
+      {
+        "answer": "56",
+        "choices": [],
+        "id": "grade-9-2018-2019-q2",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(\\sqrt{16}\\cdot\\sqrt{196}=\\)",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Exponents, Roots & Scientific Notation",
+        "type": "short_response"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "3 square units",
+          "4 square units",
+          "5 square units",
+          "6 square units"
+        ],
+        "id": "grade-9-2018-2019-q3",
+        "skilled": "TBD",
+        "imageUrl": "/exam-images/grade-9-2018-2019-q3.png",
+        "points": 1,
+        "prompt": "If \\(\\overline{MN}\\) is translated 1 unit to the left to produce \\(M'N'\\), what is the area of parallelogram \\(NMM'N'\\)?",
+        "topic": "Geometry",
+        "subtopic": "Coordinate Geometry & Transformations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "0",
+          "\\(p^{-3}\\)",
+          "\\(p^8\\)",
+          "\\(p^{16}\\)"
+        ],
+        "id": "grade-9-2018-2019-q4",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Simplify: \\(\\dfrac{p^{12}\\cdot p^0}{p^{-4}}\\)",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Exponents, Roots & Scientific Notation",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(6\\pi\\) cu ft",
+          "\\(18\\pi\\) cu ft",
+          "\\(24\\pi\\) cu ft",
+          "\\(48\\pi\\) cu ft"
+        ],
+        "id": "grade-9-2018-2019-q5",
+        "skilled": "TBD",
+        "imageUrl": "/exam-images/grade-9-2018-2019-q5.png",
+        "points": 1,
+        "prompt": "Water is pumped into a tank that is shaped like the right inverted cone shown above. The cone has a base diameter of 12 feet and a height of 4 feet. What is the volume, in cubic feet, of the water in the tank when the height of the water is 2 feet?",
+        "topic": "Geometry",
+        "subtopic": "Surface Area & Volume",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(\\frac{a}{b}\\)",
+          "\\(\\frac{2b}{a}\\)",
+          "\\(\\frac{2a}{b}\\)",
+          "\\(\\frac{b}{a}\\)"
+        ],
+        "id": "grade-9-2018-2019-q6",
+        "skilled": "TBD",
+        "imageUrl": "/exam-images/grade-9-2018-2019-q6.png",
+        "points": 1,
+        "prompt": "Straight line \\(l\\) passes through the origin, as shown in the figure above. What is the slope of line \\(l\\) in terms of \\(a\\) and \\(b\\)?",
+        "topic": "Algebra",
+        "subtopic": "Functions & Graphs",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "The line of best fit is not a strong model for the data, because the points are not close to the line.",
+          "The line of best fit is not a strong model for the data, because it does not pass through any of the data points.",
+          "The line of best fit is a strong model for the data, because both the line and the data show a negative trend.",
+          "The line of best fit is a strong model for the data, because about half the data points are on each side of the line."
+        ],
+        "id": "grade-9-2018-2019-q7",
+        "skilled": "TBD",
+        "imageUrl": "/exam-images/grade-9-2018-2019-q7.png",
+        "points": 1,
+        "prompt": "The graph shows the wolf population in Yellowstone National Park since 2000. A student drew a line of best fit to model the data.\n\nWhich statement best describes the line of best fit that the student drew?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Data Displays & Sampling",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "$50",
+          "$60",
+          "$70",
+          "$120"
+        ],
+        "id": "grade-9-2018-2019-q8",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "To determine the price of servicing a car, a mechanic charges a fixed fee plus an hourly rate for each hour he works. If his price for 4 hours of service is $270, and his price for 7 hours of work is $420, what is the fixed fee that the mechanic charges?",
+        "topic": "Algebra",
+        "subtopic": "Equations & Systems",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\((4,-3)\\)",
+          "\\((-4,3)\\)",
+          "\\((-4,1)\\)",
+          "\\((-4,-3)\\)"
+        ],
+        "id": "grade-9-2018-2019-q9",
+        "skilled": "TBD",
+        "imageUrl": "/exam-images/grade-9-2018-2019-q9.png",
+        "points": 1,
+        "prompt": "Rectangle \\(PQRS\\) above is rotated \\(180^\\circ\\) about the origin to form rectangle \\(P'Q'R'S'\\). What are the coordinates of \\(R'\\)?",
+        "topic": "Geometry",
+        "subtopic": "Coordinate Geometry & Transformations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(1.02\\times10^{-13}\\)",
+          "\\(1.02\\times10^{-11}\\)",
+          "\\(1.02\\times10^{-4}\\)",
+          "\\(1.02\\times10^{12}\\)"
+        ],
+        "id": "grade-9-2018-2019-q10",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\[\\dfrac{15.3\\times10^{-8}}{1.5\\times10^4}\\]\nWhat is the quotient of the expression above, expressed in scientific notation?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Exponents, Roots & Scientific Notation",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(4-\\pi\\)",
+          "\\(3\\pi-9\\)",
+          "\\(12-4\\pi\\)",
+          "\\(36-9\\pi\\)"
+        ],
+        "id": "grade-9-2018-2019-q11",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following expressions is negative in value?",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Integers & Absolute Value",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(2x\\)",
+          "\\(2x+10\\)",
+          "\\(x+5\\)",
+          "\\(\\frac{1}{2}x+5\\)"
+        ],
+        "id": "grade-9-2018-2019-q12",
+        "skilled": "TBD",
+        "imageUrl": "/exam-images/grade-9-2018-2019-q12.png",
+        "points": 1,
+        "prompt": "In the figure above, \\(\\triangle MPR\\) is similar to \\(\\triangle NPQ\\). If the length of \\(\\overline{NQ}\\) is 10 centimeters, what is the length of \\(\\overline{MR}\\) in terms of \\(x\\)?",
+        "topic": "Geometry",
+        "subtopic": "Similarity, Scale & Proportional Geometry",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "15",
+          "34",
+          "50",
+          "56"
+        ],
+        "id": "grade-9-2018-2019-q13",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The symbol \\(\\langle x,y,z\\rangle\\) means \\(\\dfrac{xz+xy}{2}+zy\\). What is the value of \\(\\langle3,4,8\\rangle\\)?",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "type": "multiple_choice"
+      }
+    ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false,
+    "studyHallWorksheet": {
+      "subject": "math",
+      "category": "Nathan Teacher's Recommended",
+      "collection": "Grade 9 Mathematics Sample Questions"
+    }
+  },
+  {
+    "id": "kaplan-revising-editing-set-1",
+    "title": "Kaplan Revising/Editing Set 1",
+    "examLabel": "Kaplan",
+    "classId": "shsat",
+    "description": "Starter Revising/Editing worksheet for Part A passages and standalone items.",
+    "durationMinutes": 30,
+    "createdAt": "2026-11-06T12:32:02.450Z",
+    "updatedAt": "2026-11-06T13:54:58.114Z",
+    "passages": [],
+    "questions": [
+      {
+        "answer": "C",
+        "choices": [
+          "Archerfish are generally small, from five to ten centimeters, they is capable of growing as large as 40 centimeters.",
+          "Archerfish are generally tiny, from five to ten centimeters, they are capable of growing as large as 40 centimeters.",
+          "Archerfish are generally small, from five to ten centimeters, but they are capable of growing as large as 40 centimeters.",
+          "Fish are generally small, from five to ten centimeters, they are capable of growing as large as 40 centimeters."
+        ],
+        "id": "archerfish-kaplan-archerfish-q15",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "How should sentence 5 be revised?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "As you may know, gravity is a constant, both underwater and on land; light, however, changes its wavelength as it enters the water.",
+          "Gravity is a constant, both underwater and on land; light, however, changes its wavelength as it enters the water.",
+          "It is known that gravity is a constant, both underwater and on land; light, however, changes its wavelength as it enters the water.",
+          "Gravity is a constant, both underwater and on land; you may know that light, however, changes its wavelength as it enters the water."
+        ],
+        "id": "archerfish-kaplan-archerfish-q16",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision of sentence 11 best maintains the style established in the passage?",
+        "topic": "Word Choice & Precision",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [
+          "Moreover,",
+          "Thus,",
+          "However,",
+          "Nevertheless,"
+        ],
+        "id": "archerfish-kaplan-archerfish-q17",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which transition word should be added to the beginning of sentence 12 to emphasize the relationship between sentences 11 and 12?",
+        "topic": "Topic & Transitions",
+        "type": "transition_drop"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Interestingly, accurate aiming is not instinctual in the archerfish; as evidenced by young fish that frequently miss the target.",
+          "Interestingly, accurate aiming is not instinctual in the archerfish but it is evidenced by young fish that frequently miss the target.",
+          "Interestingly, accurate aiming is not instinctual in the archerfish, as evidenced by young fish that frequently miss the target.",
+          "Interestingly, accurate aiming is not instinctual in the archerfish, young fish frequently miss the target."
+        ],
+        "id": "archerfish-kaplan-archerfish-q18",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the best way to combine sentences 14 and 15 to clarify the relationship between the ideas?",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "To make it better, young fish hunt in small groups to increase the odds that at least one archerfish will be able to do a good job.",
+          "To make it better, young fish hunt in small groups to increase the odds that at least one archerfish will be able to catch prey.",
+          "To compensate for this, young fish hunt in small clumps to up the odds that at least one archerfish will be able to do a good job.",
+          "To compensate for this, young fish hunt in small groups to increase the odds that at least one archerfish will be able to catch prey."
+        ],
+        "id": "archerfish-kaplan-archerfish-q19",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision of sentence 16 uses the most precise language?",
+        "topic": "Word Choice & Precision",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "sentence 17",
+          "sentence 18",
+          "sentence 19",
+          "sentence 20"
+        ],
+        "id": "archerfish-kaplan-archerfish-q20",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence presents information that shifts away from the main topic of the fourth paragraph and should be removed?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      }
+    ],
+    "forms": [],
+    "formAssignments": {},
+    "status": "locked",
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "correctionsOpen": false,
+    "allowCompletedAccess": false,
+    "split": false,
+    "studyHallWorksheet": {
+      "subject": "english",
+      "category": "Revising/Editing"
+    }
+  },
+  {
+    "allowCompletedAccess": false,
+    "classId": "shsat",
+    "createdAt": "2026-11-07T03:37:49.770Z",
+    "description": "",
+    "forms": [],
+    "formAssignments": {},
+    "questions": [
+      {
+        "answer": "D",
+        "choices": [
+          "70%",
+          "75%",
+          "105%",
+          "140%",
+          "240%"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q1",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In 1960, the number of tons of solid waste produced by a city was 75 million. In 1990, the number of tons was 180 million. By what percentage did the solid waste tonnage increase from 1960 to 1990?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(y \\leq -2x + 2\\)",
+          "\\(y < -2x + 2\\)",
+          "\\(y \\geq -2x + 2\\)",
+          "\\(y > -2x + 2\\)",
+          "\\(y = -2x + 2\\)"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q2",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which inequality has the shaded region in the diagram above as its graph?",
+        "topic": "Algebra",
+        "subtopic": "Functions & Graphs",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "10%",
+          "45%",
+          "80%",
+          "180%",
+          "225%"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q3",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Jessenia usually earns $25 each week. Last week, she received an extra $20 in bonus. What percent of her usual weekly income was her total income last week?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "(17, 7)",
+          "(10, 5)",
+          "(7.5, 5)",
+          "(0.2, 0.1)",
+          "(0.1, 0.2)"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q4",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Let \\(M' = (12, 12)\\) and \\(N' = (24, 12)\\). If \\(\\overline{M'N'}\\) is the dilated image of \\(\\overline{MN}\\), where \\(M = (5, 5)\\), what are the coordinates of point N?",
+        "topic": "Geometry",
+        "subtopic": "Similarity, Scale & Proportional Geometry",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\frac{1}{n^2} < -4\\)",
+          "\\(\\frac{1}{n^2} > 4\\)",
+          "\\(0 < \\frac{1}{n^2} < \\frac{1}{4}\\)",
+          "\\(-\\frac{1}{4} < \\frac{1}{n^2} < 0\\)",
+          "\\(-\\frac{1}{2} < \\frac{1}{n^2} < \\frac{1}{2}\\)"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q5",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(n\\) is an integer smaller than \\(-2\\). What is the range of possible values of \\(\\frac{1}{n^2}\\)?",
+        "topic": "Algebra",
+        "subtopic": "Inequalities",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(\\angle XZW\\) is a right angle.",
+          "\\(\\angle XZW\\) is larger than \\(\\angle XZY\\).",
+          "\\(\\angle XZW\\) is smaller than \\(\\angle XZY\\).",
+          "\\(\\angle XZW\\) has the same measure as \\(\\angle XYZ\\).",
+          "\\(\\angle XZW\\) has the same measure as \\(\\angle YXZ\\)."
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q6",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(\\overline{WZY}\\) is a straight line segment and \\(\\triangle XWZ\\) is congruent to \\(\\triangle YXZ\\). What can one conclude about \\(\\angle XZW\\)? (The figure is not drawn to scale.)",
+        "topic": "Geometry",
+        "subtopic": "Triangles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(1\\)",
+          "\\(e^0\\)",
+          "\\(e^{-1}\\)",
+          "\\(e^{\\frac{5}{6}}\\)",
+          "\\(e\\)"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q7",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Simplify \\(\\frac{e^2 \\cdot e^3}{e^6}\\)",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Exponents, Roots & Scientific Notation",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "40°",
+          "50°",
+          "60°",
+          "70°",
+          "80°"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q8",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(\\overline{VWX}\\) is a straight line segment, and W and Y are points on line \\(m\\). What is the measure of \\(\\angle XYW\\)?",
+        "topic": "Geometry",
+        "subtopic": "Lines & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(150 - x\\)",
+          "\\(165 - x\\)",
+          "\\(180 - x\\)",
+          "\\(150 - 2x\\)",
+          "\\(30 + x\\)"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q9",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, three lines intersect at a point. What is the value of \\(w\\) in terms of \\(x\\)?",
+        "topic": "Geometry",
+        "subtopic": "Lines & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "60°",
+          "90°",
+          "100°",
+          "120°",
+          "150°"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q10",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In this figure, \\(MN = NP = PM\\) and \\(\\overline{MPQ}\\) is a straight line segment. What is the measure of \\(\\angle NPQ\\)?",
+        "topic": "Geometry",
+        "subtopic": "Triangles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "E",
+        "choices": [
+          "(−3, −3)",
+          "(−2, −3)",
+          "(−2, 3)",
+          "(3, −3)",
+          "(3, 3)"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q11",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Let P = (2, 3). First, translate P one unit to the right and call the image R. Next, reflect R over the y-axis and call the image S. Finally, rotate S 90° clockwise about the origin and call the image T. What are the coordinates of T?",
+        "topic": "Geometry",
+        "subtopic": "Coordinate Geometry & Transformations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\frac{1}{2}r\\)",
+          "\\(\\frac{1}{\\sqrt{2}}r\\)",
+          "\\(\\sqrt{2}r\\)",
+          "\\(2r\\)",
+          "\\(4r\\)"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q12",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The radius of circle \\(C_1\\) is \\(R\\), and that of circle \\(C_2\\) is \\(r\\). The area of \\(C_1\\) is twice that of \\(C_2\\). What is \\(R\\) in terms of \\(r\\)?",
+        "topic": "Geometry",
+        "subtopic": "Circles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "E",
+        "choices": [
+          "\\(1\\)",
+          "\\(2\\)",
+          "\\(2\\frac{1}{2}\\)",
+          "\\(3\\)",
+          "\\(4\\)"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q13",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of \\(n\\) in the figure above?",
+        "topic": "Algebra",
+        "subtopic": "Functions & Graphs",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "E",
+        "choices": [
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q14",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(x^2 = P\\)\n\\(x^2 \\cdot x = Q\\)\n\\(x^2 \\div x = R\\)\n\\(x^2 + x = S\\)\n\\(x^2 - x = T\\)\n\nIf \\(x = -6\\) in the equations above, which letter has the greatest value?",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "30",
+          "45",
+          "135",
+          "360",
+          "1,080"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q15",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The figure above is a regular octagon. What is the sum of the measures of the exterior angles \\((a + b + c + d + e + f + g + h)\\)?",
+        "topic": "Geometry",
+        "subtopic": "Quadrilaterals & Polygons",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "45",
+          "60",
+          "75",
+          "90",
+          "120"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q16",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, Y is a point on line \\(\\overleftrightarrow{XZ}\\). What is the value of \\(m + p\\)?",
+        "topic": "Geometry",
+        "subtopic": "Lines & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(\\frac{1}{6}\\)",
+          "\\(\\frac{1}{5}\\)",
+          "\\(\\frac{5}{11}\\)",
+          "\\(\\frac{2}{3}\\)",
+          "\\(\\frac{5}{6}\\)"
+        ],
+        "id": "grade-9-2009-2010-official-shsat9-2009-2010-q17",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A jar contains exactly 6 balls: 5 red and 1 blue. If 5 balls are drawn from the jar at random and without replacement, what is the probability that they are all red?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      }
+    ],
+    "passages": [],
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "split": false,
+    "status": "locked",
+    "id": "grade-9-2009-2010",
+    "title": "Grade 9 2009-2010",
+    "durationMinutes": 30,
+    "updatedAt": "2026-11-07T16:00:48.285Z",
+    "studyHallWorksheet": {
+      "subject": "math",
+      "area": "math",
+      "scope": "mixed",
+      "category": "Math",
+      "collection": "Grade 9 Mathematics Sample Questions",
+      "source": {
+        "publisher": "",
+        "sourceFamily": "",
+        "year": ""
+      }
+    },
+    "assembly": {
+      "draftQuestionIds": [
+        "grade-9-2009-2010-official-shsat9-2009-2010-q1",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q2",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q3",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q4",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q5",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q6",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q7",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q8",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q9",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q10",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q11",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q12",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q13",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q14",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q15",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q16",
+        "grade-9-2009-2010-official-shsat9-2009-2010-q17"
+      ],
+      "reviewed": false,
+      "previewedContentHash": "42a99c6b2a87a3fc9c7899b25a436cc64c4430e80b1d833c3ffe5940541acaef"
+    }
+  },
+  {
+    "allowCompletedAccess": false,
+    "classId": "shsat",
+    "createdAt": "2026-11-07T05:17:03.311Z",
+    "description": "17 SHSAT 9 mathematics questions from the supplied 2010–2011 JSON.",
+    "forms": [],
+    "formAssignments": {},
+    "questions": [
+      {
+        "answer": "D",
+        "choices": [
+          "70%",
+          "75%",
+          "105%",
+          "140%",
+          "240%"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q1",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In 1960, the number of tons of solid waste produced by a city was 75 million. In 1990, the number of tons was 180 million. By what percentage did the solid waste tonnage increase from 1960 to 1990?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(y \\leq -2x + 2\\)",
+          "\\(y < -2x + 2\\)",
+          "\\(y \\geq -2x + 2\\)",
+          "\\(y > -2x + 2\\)",
+          "\\(y = -2x + 2\\)"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q2",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which inequality has the shaded region in the diagram above as its graph?",
+        "topic": "Algebra",
+        "subtopic": "Functions & Graphs",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "10%",
+          "45%",
+          "80%",
+          "180%",
+          "225%"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q3",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Jessenia usually earns $25 each week. Last week, she received an extra $20 in bonus. What percent of her usual weekly income was her total income last week?",
+        "topic": "Ratios and Proportional Relationships",
+        "subtopic": "Percentages",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "(17, 7)",
+          "(10, 5)",
+          "(7.5, 5)",
+          "(0.2, 0.1)",
+          "(0.1, 0.2)"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q4",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Let \\(M' = (12, 12)\\) and \\(N' = (24, 12)\\). If \\(\\overline{M'N'}\\) is the dilated image of \\(\\overline{MN}\\), where \\(M = (5, 5)\\), what are the coordinates of point N?",
+        "topic": "Geometry",
+        "subtopic": "Similarity, Scale & Proportional Geometry",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\frac{1}{n^2} < -4\\)",
+          "\\(\\frac{1}{n^2} > 4\\)",
+          "\\(0 < \\frac{1}{n^2} < \\frac{1}{4}\\)",
+          "\\(-\\frac{1}{4} < \\frac{1}{n^2} < 0\\)",
+          "\\(-\\frac{1}{2} < \\frac{1}{n^2} < \\frac{1}{2}\\)"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q5",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(n\\) is an integer smaller than \\(-2\\). What is the range of possible values of \\(\\frac{1}{n^2}\\)?",
+        "topic": "Algebra",
+        "subtopic": "Inequalities",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(\\angle XZW\\) is a right angle.",
+          "\\(\\angle XZW\\) is larger than \\(\\angle XZY\\).",
+          "\\(\\angle XZW\\) is smaller than \\(\\angle XZY\\).",
+          "\\(\\angle XZW\\) has the same measure as \\(\\angle XYZ\\).",
+          "\\(\\angle XZW\\) has the same measure as \\(\\angle YXZ\\)."
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q6",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(\\overline{WZY}\\) is a straight line segment and \\(\\triangle XWZ\\) is congruent to \\(\\triangle YXZ\\). What can one conclude about \\(\\angle XZW\\)? (The figure is not drawn to scale.)",
+        "topic": "Geometry",
+        "subtopic": "Triangles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(1\\)",
+          "\\(e^0\\)",
+          "\\(e^{-1}\\)",
+          "\\(e^{\\frac{5}{6}}\\)",
+          "\\(e\\)"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q7",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Simplify \\(\\frac{e^2 \\cdot e^3}{e^6}\\)",
+        "topic": "Arithmetic & Number Sense",
+        "subtopic": "Exponents, Roots & Scientific Notation",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "40°",
+          "50°",
+          "60°",
+          "70°",
+          "80°"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q8",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "line \\(m\\) // line \\(n\\)\n\n\\(\\overline{VWX}\\) is a straight line segment, and W and Y are points on line \\(m\\). What is the measure of \\(\\angle XYW\\)?",
+        "topic": "Geometry",
+        "subtopic": "Lines & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(150 - x\\)",
+          "\\(165 - x\\)",
+          "\\(180 - x\\)",
+          "\\(150 - 2x\\)",
+          "\\(30 + x\\)"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q9",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, three lines intersect at a point. What is the value of \\(w\\) in terms of \\(x\\)?",
+        "topic": "Geometry",
+        "subtopic": "Lines & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "60°",
+          "90°",
+          "100°",
+          "120°",
+          "150°"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q10",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In this figure, \\(MN = NP = PM\\) and \\(\\overline{MPQ}\\) is a straight line segment. What is the measure of \\(\\angle NPQ\\)?",
+        "topic": "Geometry",
+        "subtopic": "Triangles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "E",
+        "choices": [
+          "(−3, −3)",
+          "(−2, −3)",
+          "(−2, 3)",
+          "(3, −3)",
+          "(3, 3)"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q11",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Let P = (2, 3). First, translate P one unit to the right and call the image R. Next, reflect R over the y-axis and call the image S. Finally, rotate S 90° clockwise about the origin and call the image T. What are the coordinates of T?",
+        "topic": "Geometry",
+        "subtopic": "Coordinate Geometry & Transformations",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\frac{1}{2}r\\)",
+          "\\(\\frac{1}{\\sqrt{2}}r\\)",
+          "\\(\\sqrt{2}r\\)",
+          "\\(2r\\)",
+          "\\(4r\\)"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q12",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The radius of circle \\(C_1\\) is \\(R\\), and that of circle \\(C_2\\) is \\(r\\). The area of \\(C_1\\) is twice that of \\(C_2\\). What is \\(R\\) in terms of \\(r\\)?",
+        "topic": "Geometry",
+        "subtopic": "Circles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "E",
+        "choices": [
+          "\\(1\\)",
+          "\\(2\\)",
+          "\\(2\\frac{1}{2}\\)",
+          "\\(3\\)",
+          "\\(4\\)"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q13",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of \\(n\\) in the figure above?",
+        "topic": "Algebra",
+        "subtopic": "Functions & Graphs",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "E",
+        "choices": [
+          "P",
+          "Q",
+          "R",
+          "S",
+          "T"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q14",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "\\(x^2 = P\\)\n\\(x^2 \\cdot x = Q\\)\n\\(x^2 \\div x = R\\)\n\\(x^2 + x = S\\)\n\\(x^2 - x = T\\)\n\nIf \\(x = -6\\) in the equations above, which letter has the greatest value?",
+        "topic": "Algebra",
+        "subtopic": "Algebraic Expressions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "30",
+          "45",
+          "135",
+          "360",
+          "1,080"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q15",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The figure above is a regular octagon. What is the sum of the measures of the exterior angles \\((a + b + c + d + e + f + g + h)\\)?",
+        "topic": "Geometry",
+        "subtopic": "Quadrilaterals & Polygons",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "45",
+          "60",
+          "75",
+          "90",
+          "120"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q16",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure above, Y is a point on line \\(\\overleftrightarrow{XZ}\\). What is the value of \\(m + p\\)?",
+        "topic": "Geometry",
+        "subtopic": "Lines & Angles",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(\\frac{1}{6}\\)",
+          "\\(\\frac{1}{5}\\)",
+          "\\(\\frac{5}{11}\\)",
+          "\\(\\frac{2}{3}\\)",
+          "\\(\\frac{5}{6}\\)"
+        ],
+        "id": "grade-9-2010-2011-official-shsat9-2010-2011-q17",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A jar contains exactly 6 balls: 5 red and 1 blue. If 5 balls are drawn from the jar at random and without replacement, what is the probability that they are all red?",
+        "topic": "Statistics and Probability",
+        "subtopic": "Probability",
+        "type": "multiple_choice"
+      }
+    ],
+    "passages": [],
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "split": false,
+    "status": "locked",
+    "id": "grade-9-2010-2011",
+    "title": "Grade 9 2010-2011",
+    "durationMinutes": 30,
+    "updatedAt": "2026-11-07T06:09:01.757Z",
+    "studyHallWorksheet": {
+      "subject": "math",
+      "area": "math",
+      "scope": "mixed",
+      "category": "Math",
+      "collection": "Grade 9 Mathematics Sample Questions",
+      "source": {
+        "publisher": "Official Handbook",
+        "sourceFamily": "official_shsat",
+        "sourceFormat": "pdf",
+        "playerProfile": "testnav",
+        "sourceId": "official-shsat9-2010-2011",
+        "label": "Official Handbook · SHSAT 9 · 2010–2011",
+        "year": "2010-2011",
+        "form": "Grade 9",
+        "packageId": "f615128ee184a071dfff4df7d4bad34cdcdb62105af771ab5e194db36f47f197",
+        "shsatLevel": "9"
+      }
+    },
+    "assembly": {
+      "draftQuestionIds": [
+        "grade-9-2010-2011-official-shsat9-2010-2011-q1",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q2",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q3",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q4",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q5",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q6",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q7",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q8",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q9",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q10",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q11",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q12",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q13",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q14",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q15",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q16",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q17"
+      ],
+      "reviewed": true,
+      "publishedMetadata": {
+        "title": "Grade 9 2010-2011",
+        "description": "17 SHSAT 9 mathematics questions from the supplied 2010–2011 JSON.",
+        "durationMinutes": 30,
+        "studyHallWorksheet": {
+          "subject": "math",
+          "area": "math",
+          "scope": "mixed",
+          "category": "Math",
+          "collection": "Grade 9 Mathematics Sample Questions",
+          "source": {
+            "publisher": "Official Handbook",
+            "sourceFamily": "official_shsat",
+            "year": "2010-2011",
+            "shsatLevel": "9"
+          }
+        }
+      },
+      "publishedReleaseId": "a03fa01923400b38a78a8c87d3cf20da99ea5c18f84cb148aa27bca4287b2392",
+      "publishedQuestionIds": [
+        "grade-9-2010-2011-official-shsat9-2010-2011-q1",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q2",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q3",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q4",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q5",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q6",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q7",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q8",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q9",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q10",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q11",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q12",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q13",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q14",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q15",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q16",
+        "grade-9-2010-2011-official-shsat9-2010-2011-q17"
+      ],
+      "publishedAt": "2026-11-07T06:03:44.691Z",
+      "previewedContentHash": "ba02aa38bee42175a2550feffedce08a818ba6247d968e32742eb54cdf9be7e5",
+      "reviewedContentHash": "ba02aa38bee42175a2550feffedce08a818ba6247d968e32742eb54cdf9be7e5"
+    }
+  }
+]

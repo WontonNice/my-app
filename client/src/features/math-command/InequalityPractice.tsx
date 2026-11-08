@@ -1,4 +1,4 @@
-import { flushPracticeAccount, usePracticeAccount } from './usePracticeAccount';
+import { flushPracticeAccount, retryPracticeAccount, usePracticeAccount } from './usePracticeAccount';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useAccountProfile } from '../account/account';
 import { X } from 'lucide-react';
@@ -20,18 +20,22 @@ import { PracticeStars } from './PracticeStars';
 import { readPracticeProgress, readSavedPractice } from './practiceSessionStorage';
 
 type PracticeProps = { onClose?: () => void; renderOverview?: (overview: ReactNode) => ReactNode; initialModuleId?: string; catalog?:PracticeCatalog; initialSelection?:PracticeSelection; initialStartNew?:boolean; previewOnly?:boolean; presentation?:'fullscreen'|'mini' };
+function PracticeOpening({children,onClose}:{children:ReactNode;onClose?:()=>void}) {
+  const content=<section className={onClose?'mc-exam-viewer mc-infinite-page':'mc-infinite-page'} role={onClose?'dialog':undefined} aria-modal={onClose?true:undefined} aria-label="Opening infinite practice"><main className="mc-practice-hub"><h1>Infinite practice</h1>{children}{onClose&&<button type="button" onClick={onClose}>Back to practice</button>}</main></section>;
+  return onClose?createPortal(content,document.body):content;
+}
 export function InequalityPractice(props:PracticeProps) {
   const {profile,error}=useAccountProfile(),context=getStudentPreviewContext();
   const owner=props.previewOnly?'generator-preview':context.isPreview?'preview:'+context.mode+':'+(context.studentId||'teacher'):profile?.id;
   const accountOwner = props.previewOnly || context.isPreview ? undefined : owner;
   const sync = usePracticeAccount(accountOwner);
-  if(accountOwner && sync==='loading')return <p role="status">Loading saved streaks…</p>;
+  if(accountOwner && sync==='loading')return <PracticeOpening onClose={props.onClose}><p role="status">Loading saved streaks…</p></PracticeOpening>;
   if(accountOwner && sync==='unavailable' && props.initialModuleId && !props.initialStartNew) {
     let cached;
     try { cached=readSavedPractice(localStorage,accountOwner,props.initialModuleId); } catch { /* Account sync will retry. */ }
-    if(!cached)return <div role="status"><p>Reconnect to check your saved streak before starting this module.</p>{props.onClose&&<button onClick={props.onClose}>Back to practice</button>}</div>;
+    if(!cached)return <PracticeOpening onClose={props.onClose}><div role="alert"><p>Your saved practice progress could not be loaded. Try again to safely resume or start this module.</p><button type="button" onClick={()=>retryPracticeAccount(accountOwner)}>Try again</button></div></PracticeOpening>;
   }
-  if(!owner)return <p role="status">{error||'Loading your practice session…'}</p>;
+  if(!owner)return <PracticeOpening onClose={props.onClose}><p role="status">{error||'Loading your practice session…'}</p></PracticeOpening>;
   return <PracticeContent key={owner} {...props} owner={owner} sync={accountOwner ? sync : undefined}/>;
 }
 function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, initialSelection, initialStartNew=false, previewOnly=false, presentation='fullscreen',owner,sync }: PracticeProps & {owner:string;sync?:ReturnType<typeof usePracticeAccount>}) {
@@ -78,7 +82,7 @@ function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, in
       screen: 'mathQuestion', studentName: '', timerText: '', subjectPosition: { current: (previewOnly&&previewMode==='browse'?(state.sequenceIndex??state.index):state.index) + 1, total: 0 },
       answers: state.answer ? { [question.id]: state.answer } : {}, lockedQuestionIds: state.submitted ? [question.id] : [],
       onAnswersChange: answers => { const answer = answers[question.id] ?? ''; update(previous => previous && !previous.submitted ? { ...previous, answer } : previous); },
-      onSubmit: async () => { update(previous => previous ? previous.submitted ? nextPracticeQuestion(previous) : checkPracticeAnswer(previous, isExamQuestionCorrect(question, previous.answer)) : previous); return true; },
+      onSubmit: async () => { if(!state.submitted&&(state.responses?.length??0)>=1000)return false; update(previous => previous ? previous.submitted ? nextPracticeQuestion(previous) : checkPracticeAnswer(previous, isExamQuestionCorrect(question, previous.answer)) : previous); return true; },
       practice: {
         onExit: previewOnly ? leave : saveAndExit,
         exitLabel: previewOnly ? 'Close preview' : 'Save and exit',
@@ -89,7 +93,7 @@ function PracticeContent({ onClose, renderOverview, initialModuleId, catalog, in
           {foundation?moduleRecords(true):<p>This question type: {state.generatorStreaks?.[currentPracticeGeneratorId(state)]??0} correct in a row</p>}
           {previewOnly?<p>Preview session · progress is not saved</p>:<p role="status">{(sync==='offline'||sync==='unavailable')?'Saved on this device. Account sync will retry.':sync==='saving'?'Saving streaks to your account…':sync==='saved'?'Streaks saved to your account':'Saved on this device'}</p>}
           <button className="mc-session-finish" type="button" onClick={end}>Finish session</button>
-          {saveError&&<p role="alert">{saveError}</p>}
+          {saveError&&<p role="alert">{saveError}</p>}{(state.responses?.length??0)>=1000&&<p role="alert">Your device has 1,000 answers waiting to sync. Connect to the internet to save them and continue this session.</p>}
         </section>,
       },
     };

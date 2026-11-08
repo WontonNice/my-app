@@ -136,7 +136,7 @@ function verifyPresentation(root,test,expectedCount) {
 const exists=async path=>access(path).then(()=>true,()=>false);
 const json=async path=>JSON.parse(await readFile(path,'utf8'));
 const atomicJson=(path,value)=>sourceWriter.writeExportFile(path,JSON.stringify(value,null,2)+'\n');
-const configFiles=['client/src/lib/studentMaterials.ts','server/data/assessments.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/content-studio-glossary.d.ts','tools/poem-layout.js','tools/poem-layout.d.ts','tools/exam-labels.json','tools/english-topic-sections.json'];
+const configFiles=['client/src/lib/studentMaterials.ts','client/src/lib/studyHallNavigation.ts','server/data/assessments.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/content-studio-glossary.d.ts','tools/poem-layout.js','tools/poem-layout.d.ts','tools/exam-labels.json','tools/english-topic-sections.json'];
 
 export async function disposableCopy(repo,scratch) {
   await mkdir(scratch,{recursive:true});

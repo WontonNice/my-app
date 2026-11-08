@@ -11,6 +11,7 @@ import type { ExamChoice, ExamPassage, ExamQuestion } from "../content/exams";
 import type { SelectedAnswer } from "../lib/examResults";
 import type { ReviewQuestion } from "../../../server/src/shared/examCorrections";
 import { mathAnswerToLatex } from "../../../server/src/shared/mathAnswer";
+import {sourcePublisher} from '../../../server/src/shared/learningTaxonomy';
 
 export function ExamText({ text = "", html }: { text?: string; html?: string }) {
   const markup = useMemo(() => {
@@ -198,6 +199,7 @@ export function ExamReviewQuestion({ answerPresentation = "comparison", item, sh
   }
 
   return <div data-player-profile={EXAM_PLAYER_PROFILE} className="exam-review-question-content">
+    <p className="exam-review-provenance">Source: {sourcePublisher(item.question.source??item.passage?.source,item.passage?.passageCategory)} · Category: {item.question.topic||'Not recorded'}{item.question.subtopic?` / ${item.question.subtopic}`:''}</p>
     <ReviewQuestionBody answerPresentation={answerPresentation} item={item} showAnswers={showAnswers} viewer={false} />
   </div>;
 }

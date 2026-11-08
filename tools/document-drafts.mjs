@@ -194,6 +194,20 @@ export function documentDraftStore(root, sanitize = content => content) {
       return mutate(input.revision, state => {
         const entry = state.entries.find(entry => entry.id === input.id);
         if (!entry) throw new Error('Import draft not found.');
+        if (entry.kind === 'standalone' && !entry.batch) {
+          const question = entry.content.questions.find(q => q.id === input.questionId);
+          if (!question) throw new Error('Part B draft question not found.');
+          const published = entry.status === 'published' || entry.publishedQuestionIds?.includes(question.id) || Object.values(entry.publications || {}).some(p => p.questionMap?.[question.id] || p.questionIds?.includes(question.id));
+          if (published) throw new Error('This question is published. Open its saved bank question to manage it.');
+          state.deletedStandaloneQuestions ||= [];
+          state.deletedStandaloneQuestions.push({entryId:entry.id,question:copy(question),source:copy(entry.content.source || {}),deletedAt:new Date().toISOString()});
+          entry.content.questions = entry.content.questions.filter(q => q.id !== question.id);
+          if (entry.content.visuals) entry.content.visuals = entry.content.visuals.filter(v => v.questionId !== question.id);
+          if (entry.content.review) entry.content.review.expectedQuestionCount = entry.content.questions.length;
+          entry.updatedAt = new Date().toISOString();
+          if (!entry.content.questions.length) state.entries = state.entries.filter(e => e.id !== entry.id);
+          return;
+        }
         if (entry.kind !== 'passage' || entry.status === 'published' || entry.batch) throw new Error('Only unpublished passage drafts can be deleted here.');
         state.entries = state.entries.filter(entry => entry.id !== input.id);
       });
@@ -229,6 +243,11 @@ export function documentDraftStore(root, sanitize = content => content) {
           }
         }
         current.content = sanitize(input.entry.content);
+        // A deliberate confirmation in the Part B editor applies only to the
+        // selected question, after content changes invalidate older reviews.
+        if (current.kind === 'standalone') for (const question of current.content.questions) {
+          if (input.reviewedQuestionIds?.includes(question.id)) question.review = {...question.review, sourceReviewed:true, completenessReviewed:true, classificationReviewed:true};
+        }
         current.content.importDraftId = current.id;
         current.status = 'draft';
         current.updatedAt = new Date().toISOString();
@@ -293,9 +312,35 @@ export function documentDraftStore(root, sanitize = content => content) {
       return mutate(input.revision, async state => {
         const entry = state.entries.find(e => e.id === input.entryId && e.kind === 'standalone');
         if (!entry) throw new Error('Independent English draft not found.');
-        const publication = await publish(entry);
-        entry.publications = {...entry.publications, [input.assessmentId]: publication};
-        entry.status = 'published';
+        const ids = input.questionIds ?? entry.content.questions.map(q => q.id);
+        if (!Array.isArray(ids) || !ids.length || new Set(ids).size !== ids.length || ids.some(id => !entry.content.questions.some(q => q.id === id))) throw new Error('Select existing Part B questions to publish.');
+        const selected = copy(entry);
+        selected.content.questions = selected.content.questions.filter(q => ids.includes(q.id));
+        if (input.questionIds) {
+          selected.content.review = {...selected.content.review, expectedQuestionCount:ids.length,
+            sourceReviewed:selected.content.questions.every(q => q.review?.sourceReviewed === true),
+            completenessReviewed:selected.content.questions.every(q => q.review?.completenessReviewed === true)};
+          selected.content.visuals = (selected.content.visuals || []).filter(v => !v.questionId || ids.includes(v.questionId));
+        }
+        if (input.confirmReview === true) {
+          const reviewed = review => ({...review,sourceReviewed:true,completenessReviewed:true,classificationReviewed:true,
+            warnings:(review?.warnings || []).map(warning=>({...warning,state:warning.state === 'resolved' ? 'resolved':'acknowledged'}))});
+          selected.content.review = reviewed(selected.content.review);
+          selected.content.questions.forEach(question=>question.review=reviewed(question.review));
+        }
+        const publication = await publish(selected);
+        // Only persist confirmation after the selected questions pass validation
+        // and publication succeeds. Sibling drafts keep their prior review state.
+        if (input.confirmReview === true) for (const question of selected.content.questions) {
+          entry.content.questions.find(original=>original.id===question.id).review=copy(question.review);
+        }
+        const previous = entry.publications?.[input.assessmentId];
+        entry.publications = {...entry.publications, [input.assessmentId]: {...publication,
+          questionMap:{...previous?.questionMap,...publication.questionMap},
+          questionIds:[...new Set([...(previous?.questionIds || []), ...publication.questionIds])],
+          sourceQuestionIds:[...new Set([...(previous?.sourceQuestionIds || []), ...ids])]}};
+        entry.publishedQuestionIds = [...new Set([...(entry.publishedQuestionIds || []), ...ids])];
+        entry.status = entry.content.questions.every(q => entry.publishedQuestionIds.includes(q.id)) ? 'published' : 'draft';
         entry.publishedAt = new Date().toISOString();
       });
     },

@@ -7,7 +7,7 @@ export function generatorPreviewCatalog(generator: PracticeGeneratorDefinition):
     modules: [{ id: 'generator-preview', title: definition.title, description: definition.description,
       category: definition.category ?? 'Algebra', topic: definition.topic ?? 'Inequalities',
       published: true, includeAll: false, generatorIds: [definition.id] }],
-    generators: [{ ...definition, enabled: true }], videos: [],
+    generators: [{ ...definition, enabled: true,reviewRequired:false }], videos: [],
   };
 }
 

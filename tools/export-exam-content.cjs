@@ -1,8 +1,8 @@
 // Export the same authored content used by the student app for server-side grading.
 const fs = require('node:fs');
 const path = require('node:path');
-const ts = require('typescript');
 const { writeExportFile } = require('./write-export-file.cjs');
+const { readExamCatalog, reconcileAssessments, activityStore } = require('./exam-catalog.cjs');
 const root = path.resolve(__dirname, '..');
 
 function mathImportReview(workspaceRoot, content) {
@@ -33,29 +33,25 @@ function mathImportReview(workspaceRoot, content) {
 }
 
 function exportExamContent(workspaceRoot = root) {
-  const previous = require.extensions['.ts'];
-  require.extensions['.ts'] = (module, filename) => {
-    module._compile(ts.transpileModule(fs.readFileSync(filename, 'utf8'), {
-      compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022, esModuleInterop: true },
-    }).outputText, filename);
-  };
-  try {
-    const contentRoot = path.join(workspaceRoot, 'client', 'src', 'content', 'exams');
-    for (const filename of Object.keys(require.cache)) {
-      if (filename.startsWith(contentRoot + path.sep)) delete require.cache[filename];
+  // Resolve and validate everything before replacing any derived file. Running
+  // this again also repairs an interrupted export without changing authored IDs.
+  const catalog = readExamCatalog(workspaceRoot);
+  const review = mathImportReview(workspaceRoot, catalog.content);
+  const assessments = reconcileAssessments(catalog);
+  // A small projection lets Study Hall show actual exam membership without
+  // treating editable source/version labels as evidence of exam usage.
+  const passageAppearances = {};
+  for (const assessment of assessments) {
+    for (const set of catalog.content[assessment.id]?.passageSets ?? []) {
+      if (!set.passage?.id) continue;
+      const titles = passageAppearances[set.passage.id] ??= [];
+      if (!titles.includes(assessment.title)) titles.push(assessment.title);
     }
-    const { resolveExamContent } = require(path.join(contentRoot, 'index.ts'));
-    const assessments = JSON.parse(fs.readFileSync(path.join(workspaceRoot, 'server/data/assessments.json'), 'utf8'));
-    const content = Object.fromEntries(assessments.map(assessment => [assessment.id, resolveExamContent(assessment)]));
-    const review = mathImportReview(workspaceRoot, content);
-    const output = path.join(workspaceRoot, 'server/data/exam-content.json');
-    const reviewOutput = path.join(workspaceRoot, 'server/data/math-import-review.json');
-    writeExportFile(output, JSON.stringify(content) + '\n');
-    writeExportFile(reviewOutput, JSON.stringify(review) + '\n');
-  } finally {
-    if (previous) require.extensions['.ts'] = previous;
-    else delete require.extensions['.ts'];
   }
+  writeExportFile(path.join(workspaceRoot, 'client/src/content/exams/passageAppearances.json'), JSON.stringify(passageAppearances, null, 2) + '\n');
+  writeExportFile(path.join(workspaceRoot, 'server/data/exam-content.json'), JSON.stringify(catalog.content) + '\n');
+  writeExportFile(path.join(workspaceRoot, 'server/data/math-import-review.json'), JSON.stringify(review) + '\n');
+  activityStore(path.join(workspaceRoot, 'server/data')).write(assessments);
 }
 module.exports = { exportExamContent, mathImportReview };
 if (require.main === module) exportExamContent();

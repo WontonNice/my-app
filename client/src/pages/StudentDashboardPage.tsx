@@ -1,3 +1,4 @@
+import { isStudyHallWorksheet } from '../lib/examLibrary';
 import { LoginStreak } from "../features/account/LoginStreak";
 import { StudentPracticeShelf } from "../features/math-command/StudentPracticeShelf";
 import { useEffect, useState } from "react";
@@ -30,7 +31,7 @@ export function StudentDashboardPage() {
   }
   if (isCheckingSession) return <main className="loading-shell">Loading course portal...</main>;
   if (!isSupabaseConfigured) return <main className="loading-shell">Supabase auth is not configured. Add your Vite Supabase env vars, then log in.</main>;
-  const openAssessments = assessments?.filter(item => item.status === "open");
+  const openAssessments = assessments?.filter(item => !isStudyHallWorksheet(item) && item.status === "open");
   const link = (href: string) => appendStudentPreview(href, previewContext);
   return <StudentPortalShell activeId="home" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
     <div className="student-course-home">

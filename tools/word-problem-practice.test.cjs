@@ -1,3 +1,4 @@
+const normalizedPrompt=text=>text.replace(/\\[()]/g,'').replaceAll('\\%','%').replace(/\s+/g,' ').trim();
 const {test}=require('node:test'),assert=require('node:assert/strict');
 require('./register-practice-generator.cjs');
 const {wordProblemPractice,generateSurveyTotals,generateRemainingReading,generateMixtureRatios}=require('../server/src/shared/practiceWordProblems.ts');
@@ -11,7 +12,7 @@ function verifyCycle(template,verify){
   const item=template.generate(index,'complete-bank');assert.equal(visited[item.variant],0);visited[item.variant]=1;
   const q=item.question;assert.equal(q.topic,template.category);assert.equal(q.subtopic,template.topic);
   verify(item);
-  if(q.prompt===originalPrompt)original=q;
+  if(normalizedPrompt(q.prompt)===normalizedPrompt(originalPrompt))original=q;
  }
  assert.ok(original,'Includes the source stem: '+template.sourceId);return original;
 }
@@ -59,18 +60,18 @@ test('new word-problem sequences reproduce, cycle explicitly, and reject invalid
 test('batch registration preserves teacher resources and snapshots all three generators in their own topics',()=>{
  const {defaultPracticeCatalog,validatePracticeCatalog,managedGeneratorIds,generateCatalogQuestion}=require('../server/src/shared/practiceCatalog.ts');
  const {createPracticeState,parsePracticeState}=require('../client/src/features/math-command/inequalitySession.ts');
- const {addBuiltinPractice}=require('./register-practice-generator.cjs'),taxonomy=require('./math-topics.json');
+ const {addBuiltinPractice}=require('./register-practice-generator.cjs'),taxonomy=require('./math-topics.json');const {reconcilePracticeTaxonomy}=require('../server/src/shared/practiceCatalog.ts');const add=(catalog,template)=>addBuiltinPractice(catalog,template,value=>reconcilePracticeTaxonomy(value,taxonomy));
  const original=validatePracticeCatalog(defaultPracticeCatalog(taxonomy),taxonomy);original.modules=original.modules.filter(m=>!wordProblemPractice.some(t=>(t.moduleId??t.sourceId)===m.id));original.generators=original.generators.filter(g=>!wordProblemPractice.some(t=>t.id===g.id));
  original.modules[0].title='Curated foundation';const before=structuredClone(original);
- const catalog=validatePracticeCatalog(wordProblemPractice.reduce(addBuiltinPractice,original),taxonomy);
- assert.deepEqual(original,before);assert.deepEqual(wordProblemPractice.reduce(addBuiltinPractice,catalog),catalog);
+ const catalog=validatePracticeCatalog(wordProblemPractice.reduce(add,original),taxonomy);
+ assert.deepEqual(original,before);assert.deepEqual(wordProblemPractice.reduce(add,catalog),catalog);
  assert.deepEqual(catalog.modules.slice(0,before.modules.length),before.modules);
  for(const template of wordProblemPractice){
-  const module=catalog.modules.find(m=>m.id===(template.moduleId??template.sourceId)),general=catalog.modules.find(m=>m.defaultType==='general'&&m.category===template.category&&m.topic===template.topic);
+  const module=catalog.modules.find(m=>m.id===(template.moduleId??template.sourceId)),general=catalog.modules.find(m=>m.defaultType==='general'&&m.category===template.category&&m.topic===module.topic);
   assert.equal(module.title,template.moduleId?'Overlapping Groups':template.title);assert.ok(managedGeneratorIds(general,catalog).includes(template.id));
   assert.ok(!managedGeneratorIds(catalog.modules.find(m=>m.id==='all'),catalog).includes(template.id));
   const state=createPracticeState(module.id,'batch',catalog);assert.ok(state.generatorIds.includes(template.id));assert.deepEqual(parsePracticeState(JSON.stringify(state)),state);
-  assert.deepEqual(generateCatalogQuestion(state.generatorDefinitions.find(g=>g.id===template.id),4,state.seed),{...template.generate(4,state.seed).question,skilled:'TBD'});
+  assert.deepEqual(generateCatalogQuestion(state.generatorDefinitions.find(g=>g.id===template.id),4,state.seed),{...template.generate(4,state.seed).question,topic:module.category,subtopic:module.topic,skilled:'TBD'});
  }
  assert.equal(generateSurveyTotals(0).question.type,'short_response');assert.equal(generateRemainingReading(0).question.type,'multiple_choice');assert.equal(generateMixtureRatios(0).question.type,'multiple_choice');
 });

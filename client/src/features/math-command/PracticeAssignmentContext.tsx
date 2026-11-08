@@ -11,6 +11,7 @@ export function PracticeAssignmentContext({ accessToken, studentId, intent }: { 
   const [error, setError] = useState('');
   const key = JSON.stringify(intent);
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Clear previous student evidence while loading the new external request.
     let active = true; setData(undefined); setRows(undefined); setError('');
     const request = mathCommandRequest(accessToken), scope: InfiniteAssignmentIntent = JSON.parse(key);
     const params = new URLSearchParams({ status: scope.questionId ? 'all' : 'incorrect', page: '0', ...(scope.questionId ? { questionId: scope.questionId } : {}), ...(!scope.questionId && scope.category ? { category: scope.category } : {}), ...(!scope.questionId && scope.topic ? { subcategory: scope.topic } : {}) });

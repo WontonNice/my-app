@@ -1,7 +1,7 @@
 const { test } = require('node:test'), assert = require('node:assert/strict'), { resolve } = require('node:path'), { build } = require('esbuild');
 async function render(inventory, completion = 'not_completed') {
   const page = resolve(__dirname, '../client/src/components/StudentPassageProgress.tsx');
-  const result = await build({ stdin: { contents: `import React from 'react';import {renderToStaticMarkup} from 'react-dom/server';import {StudentPassageProgress} from ${JSON.stringify(page)};console.log(renderToStaticMarkup(React.createElement(StudentPassageProgress,{inventory:${JSON.stringify(inventory)},completion:${JSON.stringify(completion)},onCompletionChange:()=>{}})));`, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic' });
+  const result = await build({alias:require('./react-build-aliases.cjs')(resolve(__dirname,'..')), stdin: { contents: `import React from 'react';import {renderToStaticMarkup} from 'react-dom/server';import {StudentPassageProgress} from ${JSON.stringify(page)};console.log(renderToStaticMarkup(React.createElement(StudentPassageProgress,{inventory:${JSON.stringify(inventory)},completion:${JSON.stringify(completion)},onCompletionChange:()=>{}})));`, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic' });
   const output = [];
   require('node:vm').runInNewContext(result.outputFiles[0].text, { require, console: { log: value => output.push(value) }, process, TextEncoder, TextDecoder, Buffer, setTimeout, clearTimeout, queueMicrotask, setImmediate, clearImmediate, AbortController, ReadableStream, WritableStream, TransformStream });
   return output.join('');

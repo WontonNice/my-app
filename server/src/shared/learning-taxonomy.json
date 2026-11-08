@@ -1,0 +1,412 @@
+{
+  "version": 1,
+  "categories": [
+    {
+      "id": "reading:central-idea-theme",
+      "area": "reading",
+      "label": "Central Idea & Theme",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "reading:authors-point-of-view",
+      "area": "reading",
+      "label": "Author's Point of View",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "reading:word-phrase-meaning",
+      "area": "reading",
+      "label": "Word & Phrase Meaning",
+      "aliases": [
+        "Vocabulary in Context"
+      ],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "reading:figurative-language-imagery",
+      "area": "reading",
+      "label": "Figurative Language & Imagery",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "reading:tone-mood",
+      "area": "reading",
+      "label": "Tone & Mood",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "reading:text-structure-purpose",
+      "area": "reading",
+      "label": "Text Structure & Purpose",
+      "aliases": [
+        "Text Structure"
+      ],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "reading:evidence-support",
+      "area": "reading",
+      "label": "Evidence & Support",
+      "aliases": [
+        "Supporting Evidence"
+      ],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "reading:inference",
+      "area": "reading",
+      "label": "Inference",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_a:sentence-structure",
+      "area": "revising_editing_a",
+      "label": "Sentence Structure",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_a:pronouns",
+      "area": "revising_editing_a",
+      "label": "Pronouns",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_a:verbs",
+      "area": "revising_editing_a",
+      "label": "Verbs",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_a:modifiers",
+      "area": "revising_editing_a",
+      "label": "Modifiers",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_a:punctuation",
+      "area": "revising_editing_a",
+      "label": "Punctuation",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_a:word-choice-precision",
+      "area": "revising_editing_a",
+      "label": "Word Choice & Precision",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_a:topic-transitions",
+      "area": "revising_editing_a",
+      "label": "Topic & Transitions",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_a:relevance-conclusion",
+      "area": "revising_editing_a",
+      "label": "Relevance & Conclusion",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_b:sentence-structure",
+      "area": "revising_editing_b",
+      "label": "Sentence Structure",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_b:pronouns",
+      "area": "revising_editing_b",
+      "label": "Pronouns",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_b:verbs",
+      "area": "revising_editing_b",
+      "label": "Verbs",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_b:modifiers",
+      "area": "revising_editing_b",
+      "label": "Modifiers",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_b:punctuation",
+      "area": "revising_editing_b",
+      "label": "Punctuation",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_b:word-choice-precision",
+      "area": "revising_editing_b",
+      "label": "Word Choice & Precision",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_b:topic-transitions",
+      "area": "revising_editing_b",
+      "label": "Topic & Transitions",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "revising_editing_b:relevance-conclusion",
+      "area": "revising_editing_b",
+      "label": "Relevance & Conclusion",
+      "aliases": [],
+      "topics": [],
+      "active": true
+    },
+    {
+      "id": "math:algebra",
+      "area": "math",
+      "label": "Algebra",
+      "aliases": [],
+      "topics": [
+        {
+          "id": "math:algebra:algebraic-expressions",
+          "label": "Algebraic Expressions",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:algebra:equations-systems",
+          "label": "Equations & Systems",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:algebra:inequalities",
+          "label": "Inequalities",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:algebra:functions-graphs",
+          "label": "Functions & Graphs",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:algebra:patterns-sequences",
+          "label": "Patterns & Sequences",
+          "aliases": [],
+          "active": true
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": "math:geometry",
+      "area": "math",
+      "label": "Geometry",
+      "aliases": [],
+      "topics": [
+        {
+          "id": "math:geometry:lines-angles",
+          "label": "Lines & Angles",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:geometry:triangles",
+          "label": "Triangles",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:geometry:quadrilaterals-polygons",
+          "label": "Quadrilaterals & Polygons",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:geometry:circles",
+          "label": "Circles",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:geometry:perimeter-area-composite-figures",
+          "label": "Perimeter, Area & Composite Figures",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:geometry:surface-area-volume",
+          "label": "Surface Area & Volume",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:geometry:coordinate-geometry-transformations",
+          "label": "Coordinate Geometry & Transformations",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:geometry:similarity-scale-proportional-geometry",
+          "label": "Similarity, Scale & Proportional Geometry",
+          "aliases": [],
+          "active": true
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": "math:statistics-and-probability",
+      "area": "math",
+      "label": "Statistics and Probability",
+      "aliases": [],
+      "topics": [
+        {
+          "id": "math:statistics-and-probability:data-displays-sampling",
+          "label": "Data Displays & Sampling",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:statistics-and-probability:averages-spread",
+          "label": "Averages & Spread",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:statistics-and-probability:counting-sets",
+          "label": "Counting & Sets",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:statistics-and-probability:probability",
+          "label": "Probability",
+          "aliases": [],
+          "active": true
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": "math:ratios-and-proportional-relationships",
+      "area": "math",
+      "label": "Ratios and Proportional Relationships",
+      "aliases": [],
+      "topics": [
+        {
+          "id": "math:ratios-and-proportional-relationships:ratios-proportions",
+          "label": "Ratios & Proportions",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:ratios-and-proportional-relationships:rates-unit-rates",
+          "label": "Rates & Unit Rates",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:ratios-and-proportional-relationships:percentages",
+          "label": "Percentages",
+          "aliases": [],
+          "active": true
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": "math:arithmetic-number-sense",
+      "area": "math",
+      "label": "Arithmetic & Number Sense",
+      "aliases": [],
+      "topics": [
+        {
+          "id": "math:arithmetic-number-sense:number-types-properties",
+          "label": "Number Types & Properties",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:arithmetic-number-sense:integers-absolute-value",
+          "label": "Integers & Absolute Value",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:arithmetic-number-sense:fractions-decimals",
+          "label": "Fractions & Decimals",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:arithmetic-number-sense:order-of-operations",
+          "label": "Order of Operations",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:arithmetic-number-sense:exponents-roots-scientific-notation",
+          "label": "Exponents, Roots & Scientific Notation",
+          "aliases": [],
+          "active": true
+        },
+        {
+          "id": "math:arithmetic-number-sense:units-conversions",
+          "label": "Units & Conversions",
+          "aliases": [],
+          "active": true
+        }
+      ],
+      "active": true
+    },
+    {
+      "id": "math:uncategorized",
+      "area": "math",
+      "label": "Uncategorized",
+      "aliases": [],
+      "topics": [],
+      "active": false
+    }
+  ]
+}

@@ -3,6 +3,25 @@ import type { ExamPassage, ExamPassageSet, ExamQuestion } from "./examTypes";
 import { isExamQuestionCorrect, type SelectedAnswer } from "./examGrading";
 
 export type PassageBook = { id: string; passageSet: ExamPassageSet; versions: { id: string; label: string; category?: ExamPassage["passageCategory"]; questionIds?: string[]; questionKeys?: string[]; coverageVerified?: boolean }[]; questionPassages: Record<string, ExamPassage> };
+export type LibraryBookSettings = { fingerprint: string; questionIds: string[]; reviewedAt: string; revision?: string };
+/** Change detection only; permissions and saved editions are enforced by the server. */
+export function libraryBookFingerprint(book: PassageBook) {
+  const value = JSON.stringify([book.versions, book.passageSet.questions, Object.fromEntries(Object.entries(book.questionPassages).map(([id, passage]) => { const { coverImage: _cover, ...content } = passage; return [id, content]; }))]);
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index++) hash = Math.imul(hash ^ value.charCodeAt(index), 16777619);
+  return `${value.length}-${(hash >>> 0).toString(16)}`;
+}
+export function libraryBookNeedsReview(book: PassageBook, settings?: LibraryBookSettings | null) {
+  return book.versions.length > 1 && (!settings?.reviewedAt || settings.fingerprint !== libraryBookFingerprint(book));
+}
+/** Select library membership without changing source exams or historical snapshots. */
+export function curateLibraryBook(book: PassageBook, settings?: LibraryBookSettings | null): PassageBook {
+  if (!settings) return book;
+  const ids = new Set(settings.questionIds);
+  if (!ids.size || ids.size !== settings.questionIds.length || [...ids].some(id => !book.passageSet.questions.some(q => q.id === id))) throw new Error('Select at least one current question for this book.');
+  const questions = book.passageSet.questions.filter(question => ids.has(question.id));
+  return { ...book, passageSet: { ...book.passageSet, questions, questionCount: questions.length } };
+}
 export type LibrarySnapshotStat = { questionId: string; isCorrect: boolean; questionSnapshot?: ExamQuestion; passageSnapshot?: ExamPassage; versionCoverage?: { contentId: string; questionIds: string[]; questionKeys?: string[] }[] };
 /** Only server-frozen membership can establish scores for a combined book's versions. */
 export function verifiedLibraryVersions(stats: LibrarySnapshotStat[]) {
@@ -59,7 +78,7 @@ export function groupPassageBooks(sets: ExamPassageSet[]): PassageBook[] {
       while (questionPassages[questionId]) questionId += "-copy";
       seen.set(key, questionId); questions.push(questionId === question.id ? question : { ...question, id: questionId }); questionPassages[questionId] = version.passage;
     }
-    return { id, passageSet: { ...first, id, passage: { ...first.passage, id }, questions, questionCount: questions.length }, versions: versions.map(version => ({ id: version.passage.id, label: version.passage.versionLabel || version.passage.title, category: version.passage.passageCategory, questionIds: version.questions.map(question => seen.get(libraryQuestionKey(question))!), questionKeys: version.questions.map(libraryQuestionKey), coverageVerified: version.questions.every(question => libraryPassageKey(questionPassages[seen.get(libraryQuestionKey(question))!]) === libraryPassageKey(version.passage)) })), questionPassages };
+    return { id, passageSet: { ...first, id, passage: { ...first.passage, id, coverImage: versions.find(version => version.passage.coverImage)?.passage.coverImage }, questions, questionCount: questions.length }, versions: versions.map(version => ({ id: version.passage.id, label: version.passage.versionLabel || version.passage.title, category: version.passage.passageCategory, questionIds: version.questions.map(question => seen.get(libraryQuestionKey(question))!), questionKeys: version.questions.map(libraryQuestionKey), coverageVerified: version.questions.every(question => libraryPassageKey(questionPassages[seen.get(libraryQuestionKey(question))!]) === libraryPassageKey(version.passage)) })), questionPassages };
   });
 }
 export function libraryAnswer(value: string): SelectedAnswer {

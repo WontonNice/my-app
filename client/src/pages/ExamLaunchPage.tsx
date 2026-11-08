@@ -7,7 +7,7 @@ import {
   getAssessmentIdFromPath,
   getDisplayName,
 } from "../lib/exam";
-import { resetExamTimer } from "../lib/examTimer";
+import { loadExamTimer, resetExamTimer, resumeExamTimer, saveExamTimerState } from "../lib/examTimer";
 import {
   getCurrentCompletedSections,
   getExamSectionAccess,
@@ -25,6 +25,8 @@ import { getSupabaseClient, isSupabaseConfigured } from "../lib/supabase";
 type StartingSubject = "english" | "math";
 
 function getAssessmentDashboardHref() {
+  const worksheetReturn = new URLSearchParams(window.location.search).get("worksheetReturn");
+  if (worksheetReturn?.startsWith("/study-hall/shsat/worksheets?")) return appendStudentPreview(worksheetReturn);
   const previewContext = getStudentPreviewContext();
   return previewContext.mode === "teacher"
     ? previewContext.returnHref
@@ -154,6 +156,7 @@ export function ExamLaunchPage() {
       window.sessionStorage.setItem(`exam-start-subject:${assessment.id}`, startingSubject);
     } catch { /* The chosen section also travels in the URL. */ }
     if (!assessment.reentry && (!hasSavedProgress || (isComplete && !assessment.canEditSubmittedSections))) resetExamTimer(assessment.id);
+    if (assessment.studyHallWorksheet) saveExamTimerState(assessment.id, resumeExamTimer(loadExamTimer(assessment.id)));
     const params = new URLSearchParams(window.location.search);
     params.set("subject", startingSubject);
     window.location.assign(`/exam/${assessment.id}/session?${params}`);
@@ -171,6 +174,7 @@ export function ExamLaunchPage() {
     );
   }
 
+  const isWorksheet = Boolean(assessment?.studyHallWorksheet);
   return (
     <main className="exam-launch-shell">
       <header className="exam-launch-header">
@@ -196,21 +200,21 @@ export function ExamLaunchPage() {
             <div className="exam-launch-panel">
               <div className="exam-launch-summary">
                 <h1 id="exam-launch-title">{assessment.title}</h1>
-                <p>This exam runs as one continuous session with {sectionLines.length} sections.</p>
-                <div className="exam-launch-access-status" aria-label="Open exam sections">
+                <p>{isWorksheet ? "Work through this worksheet, review your answers, and save your place whenever you need." : "This exam runs as one continuous session with " + sectionLines.length + " sections."}</p>
+                {!isWorksheet && <div className="exam-launch-access-status" aria-label="Open exam sections">
                   <span className={assessment.sectionAccess.english ? "is-open" : "is-locked"}>English: {assessment.sectionAccess.english ? "Open" : "Locked"}</span>
                   <span className={assessment.sectionAccess.math ? "is-open" : "is-locked"}>Math: {assessment.sectionAccess.math ? "Open" : "Locked"}</span>
-                </div>
+                </div>}
 
                 <div className="exam-launch-section-list">
-                  {sectionLines.map((section) => (
+                  {sectionLines.filter(section => !isWorksheet || section.questionCount > 0).map((section) => (
                     <p key={section.label}>
                       There are {section.questionCount} questions in {section.label}.
                     </p>
                   ))}
                 </div>
 
-                <p>You have {formatDuration(assessment.durationMinutes)} to complete this test.</p>
+                <p>You have {formatDuration(assessment.durationMinutes)} to complete this {isWorksheet ? "worksheet" : "test"}.</p>
               </div>
 
               {isComplete && !canOpenCompletedExam ? (
@@ -232,7 +236,7 @@ export function ExamLaunchPage() {
                   />
                 </label>
 
-                <fieldset className="exam-launch-start-options">
+                {!isWorksheet && <fieldset className="exam-launch-start-options">
                   <legend>Start with:</legend>
                   <label>
                     <input
@@ -256,13 +260,13 @@ export function ExamLaunchPage() {
                     Math
                     {!assessment.sectionAccess.math ? " (locked)" : ""}
                   </label>
-                </fieldset>
+                </fieldset>}
                 <button type="submit">
                   {isComplete
                     ? "Open submitted exam"
                     : hasSavedProgress
                     ? `Continue ${startingSubject === "math" ? "Math" : "English"}`
-                    : "Start"} &gt;&gt;
+                    : isWorksheet ? "Start worksheet" : "Start"} &gt;&gt;
                 </button>
                 {errorMessage && <p>{errorMessage}</p>}
               </form>}

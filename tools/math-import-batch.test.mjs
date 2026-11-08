@@ -184,7 +184,7 @@ test('the reusable example is accepted with blank explanations and an unresolved
 test('HTTP selected publication preserves good neighbors, recovers a missing ledger, and rejects changed published content',()=>isolated(async path=>{
   for(const name of ['client/src/content','server/src'])await cp(join(root,name),join(path,name),{recursive:true});
   await mkdir(join(path,'tools'),{recursive:true});await mkdir(join(path,'server/data'),{recursive:true});
-  for(const name of ['client/src/lib/studentMaterials.ts','server/data/assessments.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/poem-layout.js']){
+  for(const name of ['client/src/lib/studentMaterials.ts','client/src/lib/studyHallNavigation.ts','server/data/assessments.json','server/data/worksheets.json','server/data/activity-releases.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/poem-layout.js']){
     await mkdir(dirname(join(path,name)),{recursive:true});await cp(join(root,name),join(path,name));
   }
   await writeFile(join(path,'server/data/question-bank.json'),'{"revision":0,"questions":[],"sets":[]}');
@@ -223,7 +223,7 @@ test('HTTP selected publication preserves good neighbors, recovers a missing led
 test('direct Math import inserts incomplete red questions into the chosen test, preserves edits on retries and clears labels on finish',t=>isolated(async path=>{
   for(const name of ['client/src/content','server/src'])await cp(join(root,name),join(path,name),{recursive:true});
   await mkdir(join(path,'tools'),{recursive:true});await mkdir(join(path,'server/data'),{recursive:true});
-  for(const name of ['client/src/lib/studentMaterials.ts','server/data/assessments.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/poem-layout.js']){
+  for(const name of ['client/src/lib/studentMaterials.ts','client/src/lib/studyHallNavigation.ts','server/data/assessments.json','server/data/worksheets.json','server/data/activity-releases.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/poem-layout.js']){
     await mkdir(dirname(join(path,name)),{recursive:true});await cp(join(root,name),join(path,name));
   }
   await writeFile(join(path,'server/data/question-bank.json'),'{"revision":0,"questions":[],"sets":[]}');

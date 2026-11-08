@@ -55,3 +55,24 @@ test('malformed local status prevents export from silently dropping existing rev
   assert.deepEqual(f.read('math-import-review.json').needsEditingQuestionIds, [f.question.id]);
   assert.equal(fs.readFileSync(path.join(f.root, 'server/data/exam-content.json'), 'utf8'), before);
 });
+
+test('stand-alone edits reconcile every registered exam without changing the authored content', t => {
+  const f = fixture(t);
+  const q = {...f.question, id:'shared-english', topic:'Pronouns'};
+  fs.writeFileSync(path.join(f.root, 'client/src/content/exams/index.ts'), `export const registeredExamIds = () => ['exam-a','exam-b']; export function resolveExamContent() { return ${JSON.stringify({passageSets:[],standaloneSection:{questions:[q]}})}; }`);
+  const assessments = ['exam-a','exam-b'].map(id=>({id,questions:[{id:q.id,topic:'Sentence Structure',answer:'A'},{id:'unrelated',topic:'Algebra',answer:'B'}]}));
+  fs.writeFileSync(path.join(f.root,'server/data/assessments.json'),JSON.stringify(assessments));
+  exportExamContent(f.root);
+  assert.deepEqual(f.read('assessments.json'),assessments.map(a=>({...a,questions:[require('./exam-catalog.cjs').assessmentQuestionFrom(q)]})));
+  assert.deepEqual(f.read('exam-content.json')['exam-b'].standaloneSection.questions,[q]);
+});
+
+test('Study Hall exam appearances follow actual membership, not source labels', t => {
+  const f = fixture(t);
+  fs.writeFileSync(path.join(f.root, 'server/data/assessments.json'), JSON.stringify([{id:'exam-a',title:'Actual exam A'},{id:'exam-b',title:'Actual exam B'}]));
+  const passageSet = {id:'set-1',passage:{id:'shared-passage',title:'A reading',versionLabel:'Not an exam membership'},questions:[]};
+  fs.writeFileSync(path.join(f.root, 'client/src/content/exams/index.ts'), `export function resolveExamContent(assessment) { return {passageSets: assessment.id === 'exam-a' ? [${JSON.stringify(passageSet)}] : []}; }`);
+  exportExamContent(f.root);
+  const appearances = JSON.parse(fs.readFileSync(path.join(f.root, 'client/src/content/exams/passageAppearances.json'), 'utf8'));
+  assert.deepEqual(appearances, {'shared-passage':['Actual exam A']});
+});

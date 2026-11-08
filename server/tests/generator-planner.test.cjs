@@ -24,9 +24,9 @@ test('personal batches retain source snapshots, deduplicate additions and protec
   const batchId=own.activeBatchId,ids=fixture.data.questions.slice(0,3).map(q=>q.id);
   own=mutate('planner-one',own,{action:'add',batchId,questionIds:ids});
   assert.equal(own.batches[0].entries.length,3);assert.ok(own.batches[0].entries.every(entry=>entry.destination.group==='foundation'));
-  assert.ok(own.batches[0].entries.every(entry=>entry.status==='available'));
+  assert.ok(own.batches[0].entries.every(entry=>entry.status==='draft' && entry.publishAfterValidation===false));
   own=mutate('planner-one',own,{action:'export',batchId,entryIds:own.batches[0].entries.map(entry=>entry.id)});
-  assert.ok(own.batches[0].entries.every(entry=>entry.status==='available'),'export keeps the requested student availability');
+  assert.ok(own.batches[0].entries.every(entry=>entry.status==='exported' && entry.publishAfterValidation===false),'export advances workflow without changing publication intent');
   own=mutate('planner-one',own,{action:'add',batchId,questionIds:ids});
   assert.equal(own.batches[0].entries.length,3);assert.ok(own.batches[0].entries.every(entry=>entry.destination.group==='foundation'));
   assert.deepEqual(own.batches[0].entries[0].source.question,store.readMathCommandCatalog(root).find(q=>q.id===ids[0]).question);
@@ -102,15 +102,15 @@ test('batch export carries all sources, exact module IDs, instructions and refus
   assert.equal(result.manifest.requests[0].requestId,batch.entries[0].id);
   assert.deepEqual(result.manifest.requests[0].source.question,batch.entries[0].source.question);
   assert.match(result.prompt,/Shared instructions/);assert.match(result.prompt,/Include negative coefficients/);
-  assert.match(result.prompt,/automatically enable them for practice modules/);
+  assert.match(result.prompt,/disabled and unreviewed/);
   assert.match(result.prompt,/--enable/);
-  assert.match(result.prompt,/Keep new generators unreviewed/);
-  assert.match(result.prompt,/preserve existing review statuses/);
+  assert.match(result.prompt,/matching review approval/);
+  assert.match(result.prompt,/Never use --enable to bypass/);
   assert.ok(result.manifest.requests.every(request=>request.publishAfterValidation===false));
-  const available=generatorBatchExport(batch,batch.entries.map(entry=>({...entry,status:'available'})),catalog,taxonomy.categories);
+  const available=generatorBatchExport(batch,batch.entries.map(entry=>({...entry,publishAfterValidation:true})),catalog,taxonomy.categories);
   assert.ok(available.manifest.requests.every(request=>request.publishAfterValidation===true));
-  assert.match(available.prompt,/publish its destination module and any parent needed for student discovery/);
-  assert.doesNotMatch(available.prompt,/keep any newly created modules hidden until review/);
+  assert.match(available.prompt,/every newly requested family in that module has passed validation and review/);
+  assert.match(available.prompt,/false keeps new modules hidden for review/);
   assert.throws(()=>generatorBatchExport(batch,batch.entries,{...catalog,modules:catalog.modules.filter(m=>m.id!==target.id)},taxonomy.categories),/destination module changed/);
   assert.throws(()=>generatorBatchExport(batch,[],catalog,taxonomy.categories),/Select at least/);
   const incomplete=structuredClone(batch.entries[1]);incomplete.destination.moduleTitle='';
@@ -244,4 +244,34 @@ test('planner notifications refresh visible tabs without sharing data and clean 
   } finally {
     for(const [key,descriptor]of Object.entries(originals))if(descriptor)Object.defineProperty(globalThis,key,descriptor);else delete globalThis[key];
   }
+});
+
+
+test('compact plans preserve exact question data and omit private context while deduplicating destinations',()=>{
+  const batch=structuredClone(call('planner-reuse').batches[0]),taxonomy=store.readMathCommandTaxonomy(root),catalog=defaultPracticeCatalog(taxonomy);
+  batch.entries.forEach(entry=>{entry.context={rationale:'PRIVATE student details',studentId:'secret-id'};entry.source.skilled='TBD';});
+  const compact=generatorBatchExport(batch,batch.entries,catalog,taxonomy.categories);
+  const full=generatorBatchExport(batch,batch.entries,catalog,taxonomy.categories,undefined,'full');
+  const plan=JSON.parse(compact.prompt.split('BATCH PLAN:\n')[1]);
+  assert.equal(plan.destinations.length,1);
+  for(const [index,request] of plan.requests.entries()){
+    assert.deepEqual(request.source.question,batch.entries[index].source.question);
+    assert.equal(request.sourceQuestionId,batch.entries[index].source.id);
+    assert.equal(plan.destinations[request.destinationIndex].skilled,'TBD');
+  }
+  assert.doesNotMatch(compact.prompt,/PRIVATE|secret-id/);
+  assert.ok(compact.prompt.length<full.prompt.length);
+  assert.deepEqual(compact.manifest,full.manifest);
+});
+
+test('legacy available intent migrates to a draft request without claiming live publication',()=>{
+  const actor='legacy-intent';let own=mutate(actor,call(actor),{action:'create',name:'Legacy'});
+  own=mutate(actor,own,{action:'add',batchId:own.activeBatchId,questionIds:[fixture.data.questions[0].id]});
+  const saved=store.readMathCommandState(root),entry=saved.generatorPlanners[actor].batches[0].entries[0];
+  entry.status='available';delete entry.publishAfterValidation;
+  store.commitMathCommandState(root,saved.revision,saved);
+  own=call(actor);assert.equal(own.batches[0].entries[0].status,'draft');assert.equal(own.batches[0].entries[0].publishAfterValidation,true);
+  const batch=own.batches[0];batch.entries[0].publishAfterValidation=false;
+  own=mutate(actor,own,{action:'update',batchId:batch.id,name:batch.name,notes:batch.notes,entries:batch.entries});
+  assert.equal(call(actor).batches[0].entries[0].publishAfterValidation,false);
 });

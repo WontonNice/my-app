@@ -1,0 +1,184 @@
+{
+  "version": 1,
+  "playerProfile": "testnav",
+  "reference": "https://nycshsat.myassessmentsupport.com/practice-tests/",
+  "grading": "server/src/shared/examGrading.ts:isExamQuestionCorrect",
+  "editor": "Reading / Part A / Part B: shared passage workspace; Math: shared student preview with question inspector",
+  "import": "tools/document-import.cjs:normalizePresentationAlias, issues; tools/sat-crash-course-import.cjs",
+  "formats": {
+    "multiple_choice": {
+      "label": "Multiple choice",
+      "renderer": "ExamMathQuestion",
+      "answer": "choice ID",
+      "key": "correctChoiceId",
+      "math": true,
+      "publishable": true
+    },
+    "multi_select": {
+      "label": "Multiple Response",
+      "renderer": "ExamMathQuestion",
+      "answer": "choice ID[]",
+      "key": "correctChoiceIds",
+      "math": true,
+      "publishable": true
+    },
+    "category_sort": {
+      "label": "Drag and Drop · categories",
+      "renderer": "CategoryResponse",
+      "answer": "item → category map",
+      "key": "correctPlacements",
+      "math": false,
+      "publishable": true
+    },
+    "table_match": {
+      "label": "Drag and Drop · table",
+      "renderer": "CategoryResponse",
+      "answer": "item → row map",
+      "key": "correctPlacements",
+      "math": false,
+      "publishable": true
+    },
+    "matrix_choice": {
+      "label": "Matrix Choice",
+      "renderer": "MatrixChoiceResponse",
+      "answer": "item → column map",
+      "key": "correctPlacements",
+      "math": true,
+      "publishable": true
+    },
+    "inline_dropdown": {
+      "label": "Inline Choice",
+      "renderer": "ExamMathQuestion",
+      "answer": "menu → choice map",
+      "key": "dropdowns[].correctChoiceId",
+      "math": true,
+      "publishable": true
+    },
+    "math_drag_drop": {
+      "label": "Drag and Drop",
+      "renderer": "MathDragDropResponse",
+      "answer": "slot → item map",
+      "key": "dragDropSlots[].correctItemId",
+      "math": true,
+      "publishable": true
+    },
+    "transition_drop": {
+      "label": "Drag and Drop · sentence",
+      "renderer": "SentenceDragDrop → MathDragDropResponse",
+      "answer": "legacy choice ID or slot → choice map",
+      "key": "correctChoiceId or dragDropSlots[].correctItemId",
+      "math": false,
+      "publishable": true
+    },
+    "graph_point_select": {
+      "label": "Hot Spot · graph",
+      "renderer": "GraphPointResponse",
+      "answer": "point ID[]",
+      "key": "correctPointIds",
+      "math": true,
+      "publishable": true
+    },
+    "coordinate_response": {
+      "label": "Coordinate Response",
+      "renderer": "CoordinateResponse",
+      "answer": "serialized coordinates in map",
+      "key": "coordinateResponse",
+      "math": true,
+      "publishable": true
+    },
+    "number_line_response": {
+      "label": "Number Line",
+      "renderer": "NumberLineResponse",
+      "answer": "value/endpoint/direction map",
+      "key": "numberLineResponse",
+      "math": true,
+      "publishable": true
+    },
+    "short_response": {
+      "label": "Fill In The Blank",
+      "renderer": "ExamMathQuestion",
+      "answer": "string",
+      "key": "correctTextAnswers",
+      "math": true,
+      "publishable": true
+    },
+    "numeric_entry": {
+      "label": "Equation Editor",
+      "renderer": "MathEntryResponse",
+      "answer": "string",
+      "key": "correctTextAnswers",
+      "math": true,
+      "publishable": true
+    },
+    "expression_entry": {
+      "label": "Equation Editor",
+      "renderer": "MathEntryResponse",
+      "answer": "string",
+      "key": "correctTextAnswers",
+      "math": true,
+      "publishable": true
+    },
+    "grid_in": {
+      "label": "Grid In",
+      "renderer": "MathEntryResponse",
+      "answer": "string",
+      "key": "correctTextAnswers",
+      "math": true,
+      "publishable": true
+    },
+    "essay": {
+      "label": "Essay",
+      "renderer": "manual authoring required",
+      "answer": "string",
+      "key": "manual grading required",
+      "math": false,
+      "publishable": false
+    }
+  },
+  "variants": {
+    "hot_text": {
+      "type": [
+        "multiple_choice",
+        "multi_select"
+      ],
+      "field": "selectionHtml",
+      "label": "Hot Text",
+      "renderer": "InlineTextSelection"
+    },
+    "hot_spot": {
+      "type": [
+        "multiple_choice",
+        "multi_select"
+      ],
+      "field": "hotSpot",
+      "label": "Hot Spot",
+      "renderer": "ExamMathQuestion"
+    },
+    "evidence_matrix": {
+      "type": [
+        "matrix_choice"
+      ],
+      "field": "matrixStyle",
+      "value": "evidence",
+      "renderer": "MatrixChoiceResponse"
+    },
+    "equation_editor": {
+      "type": [
+        "numeric_entry",
+        "expression_entry"
+      ],
+      "field": "entryControl",
+      "renderer": "MathEntryResponse"
+    }
+  },
+  "aliases": {
+    "fill_in_the_blank": "short_response",
+    "multiple_response": "multi_select",
+    "inline_choice": "inline_dropdown",
+    "equation_editor": "numeric_entry",
+    "short_answer": "short_response",
+    "numerical_entry": "numeric_entry",
+    "numeric_response": "numeric_entry",
+    "evidence_matrix": "matrix_choice"
+  }
+}

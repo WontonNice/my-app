@@ -167,3 +167,36 @@ test('students cannot forge library access through practice progress or profile 
   assert.equal((await call('/library/books/book-fixture/access',role)).data.unlocked,false);
  }
 });
+
+test('book curation is teacher-only, grades the launched edition, and keeps library scores out of assessments', async () => {
+ const { libraryBookFingerprint } = require('../src/shared/libraryBooks.ts');
+ const fingerprint = libraryBookFingerprint(mergedBook);
+ const settingsPath = '/library/teacher/books/book-fixture/settings';
+ const selection = { fingerprint, questionIds: [mergedBook.passageSet.questions[0].id] };
+ assert.equal((await call(settingsPath, 'student', selection, 'PUT')).status, 403);
+ assert.equal((await call(settingsPath, 'teacher', { ...selection, fingerprint: 'stale' }, 'PUT')).status, 409);
+ for (const questionIds of [[], ['unknown'], [selection.questionIds[0], selection.questionIds[0]]]) assert.equal((await call(settingsPath, 'teacher', { fingerprint, questionIds }, 'PUT')).status, 400);
+ const saved = await call(settingsPath, 'teacher', selection, 'PUT');
+ assert.equal(saved.status, 200);
+ assert.ok(saved.data.settings.reviewedAt);
+ const launch = await call('/library/books/book-fixture/content');
+ assert.equal(launch.status, 200); assert.equal(launch.data.book.passageSet.questions.length, 1);
+ assert.equal(mergedBook.passageSet.questions.length, 2);
+ await call(settingsPath, 'teacher', { fingerprint, questionIds: mergedBook.passageSet.questions.map(q => q.id) }, 'PUT');
+ assert.equal((await call('/library/books/book-fixture/content')).data.book.passageSet.questions.length, 2);
+ await call(`/library/teacher/books/book-fixture/students/${studentId}/access`, 'teacher', { granted: false }, 'PUT');
+ assert.equal((await call('/library/books/book-fixture/content', 'student')).status, 403);
+ await call(`/library/teacher/books/book-fixture/students/${studentId}/access`, 'teacher', { granted: true }, 'PUT');
+ const examSnapshot = JSON.stringify(tables.student_exam_results);
+ const submission = { bookRevision: launch.data.revision, startedAt: '2026-11-06T00:00:00Z', totalTimeSeconds: 20, questions: [{ questionId: selection.questionIds[0], selectedAnswerId: 'A', timeSpentSeconds: 20 }] };
+ const submitted = await call('/library/books/book-fixture/attempts', 'student', submission);
+ assert.equal(submitted.status, 201); assert.equal(submitted.data.attempt.totalQuestions, 1); assert.equal(submitted.data.attempt.score, 1);
+ assert.equal(JSON.stringify(tables.student_exam_results), examSnapshot);
+ const progress = await call('/library/progress', 'student');
+ assert.equal(progress.status, 200); assert.ok(progress.data.attempts.some(a => a.id === submitted.data.attempt.id));
+ assert.equal((await call('/library/progress?studentId=' + otherId, 'student')).status, 403);
+ assert.equal((await call('/library/progress?studentId=' + studentId, 'teacher')).status, 200);
+ accessFailure = true;
+ try { assert.equal((await call('/library/books/book-fixture/content')).status, 503); }
+ finally { accessFailure = false; }
+});

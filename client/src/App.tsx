@@ -124,7 +124,7 @@ function CurrentPage() {
     if (path === "/study-hall/shsat/assignments") {
       return withClassAccess(<StudentAssignmentsPage />);
     }
-    if (path === "/study-hall/shsat/assessments") {
+    if (path === "/study-hall/shsat/assessments" || path === "/study-hall/shsat/worksheets") {
       return withClassAccess(<StudentAssessmentsPage />);
     }
     if (path === "/study-hall/shsat/materials") {

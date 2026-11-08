@@ -41,8 +41,9 @@ async function snapshot(root,sources) {
   const configPath=join(root,'tools/content-topic-sections.json'), configSource=await read(configPath), legacySource=await read(join(root,'tools/content-topics.json'));
   const files=await Promise.all(sources.map(async source=>({...source,source:await readFile(source.path,'utf8')})));
   const registryPath=join(root,'server/data/assessments.json'), registrySource=await read(registryPath);
+  const worksheetPath=join(root,'server/data/worksheets.json'),worksheetSource=await read(worksheetPath);
   const sections=await readEnglishTopicSections(root);
-  const revision=hash([configSource,legacySource,registrySource,files.map(file=>[file.path,file.source])]);
+  const revision=hash([configSource,legacySource,registrySource,worksheetSource,files.map(file=>[file.path,file.source])]);
   const unclassifiedCountBySection=Object.fromEntries(englishSections.map(section=>[section,0]));
   const topicDetailsBySection=Object.fromEntries(englishSections.map(section=>{
     const counts=new Map(sections[section].map(label=>[label,0]));
@@ -54,7 +55,7 @@ async function snapshot(root,sources) {
     }
     return [section,[...counts].map(([label,questionCount])=>({label,questionCount}))];
   }));
-  return {sections,revision,topicDetailsBySection,unclassifiedCountBySection,configPath,configSource,files,registryPath,registrySource};
+  return {sections,revision,topicDetailsBySection,unclassifiedCountBySection,configPath,configSource,files,registryPath,registrySource,worksheetPath,worksheetSource};
 }
 export async function englishTopicConfiguration(root,sources) {
   const {sections,revision,topicDetailsBySection,unclassifiedCountBySection}=await snapshot(root,sources);
@@ -86,11 +87,11 @@ async function saveTopicsLocked(root,input,sources) {
     replacements.forEach((value,id)=>ids.set(id,value));
     if(replacements.size) changes.push({path:file.path,source:file.source,next:patchQuestionTopics(file.source,replacements)});
   }
-  if(state.registrySource&&ids.size) {
-    const registry=JSON.parse(state.registrySource);
-    for(const assessment of registry) for(const question of assessment.questions||[]) if(ids.has(question.id)) question.topic=ids.get(question.id);
+  for(const [path,source] of [[state.registryPath,state.registrySource],[state.worksheetPath,state.worksheetSource]])if(source&&ids.size) {
+    const registry=JSON.parse(source);
+    for(const assessment of registry.filter(item=>!item.assembly)) for(const question of assessment.questions||[]) if(ids.has(question.id)) question.topic=ids.get(question.id);
     const next=JSON.stringify(registry,null,2)+'\n';
-    if(JSON.stringify(registry)!==JSON.stringify(JSON.parse(state.registrySource))) changes.push({path:state.registryPath,source:state.registrySource,next});
+    if(JSON.stringify(registry)!==JSON.stringify(JSON.parse(source))) changes.push({path,source,next});
   }
   state.sections[section]=topics.map(topic=>topic.label);
   changes.push({path:state.configPath,source:state.configSource,next:JSON.stringify(state.sections,null,2)+'\n'});

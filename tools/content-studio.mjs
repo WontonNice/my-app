@@ -17,6 +17,9 @@ import mathBatches from "./math-import-batch.cjs";
 import { documentDraftStore, publicationContent } from "./document-drafts.mjs";
 import { retainSourcePackage } from './source-packages.mjs';
 import examExporter from "./export-exam-content.cjs";
+import examCatalog from "./exam-catalog.cjs";
+import catalogIndex from "./question-catalog.cjs";
+import englishReview from "./english-review.cjs";
 import learningExporter from "./export-learning-catalog.cjs";
 import sourceWriter from "./write-export-file.cjs";
 import { readBank, mutateBank, importCaptures, previewCaptureBatch, applyCaptureBatch, publishQuestion, publishQuestions, createBankSet, labTopics } from "./question-bank.mjs";
@@ -37,6 +40,15 @@ import { openTeacherWorkspace, runningTeacherWorkspace } from './teacher-workspa
 import { projectExamPresentation } from './exam-presentation-projection.mjs';
 import { reconcileExamQuestionOrder, selectionOrderChanged } from './exam-order-reconcile.mjs';
 import { examVerificationStore } from './exam-verification.mjs';
+import learningTaxonomy from './learning-taxonomy.cjs';
+import learningAssemblies from './learning-assemblies.cjs';
+import { createRequire } from 'node:module';
+import {readdirSync,statSync} from 'node:fs';
+const require = createRequire(import.meta.url);
+function currentLearningTaxonomy() {
+  for (const file of ['learningTaxonomy.ts','learning-taxonomy.json','question-organization.json']) delete require.cache[require.resolve(join(workspaceRoot,'server/src/shared',file))];
+  return examCatalog.withTypeScript(() => require(join(workspaceRoot,'server/src/shared/learningTaxonomy.ts')));
+}
 
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const passageSetsRoot = join(workspaceRoot, "client", "src", "content", "exams", "passageSets");
@@ -75,6 +87,7 @@ const importSatCrashCourseImage = satCrashCourseImageImporter(examImagesRoot);
 const katexDistRoot = join(workspaceRoot, "node_modules", "katex", "dist");
 const mathliveRoot = join(workspaceRoot, "node_modules", "mathlive");
 const assessmentsPath = join(workspaceRoot, "server", "data", "assessments.json");
+const activityRegistry = examCatalog.activityStore(dirname(assessmentsPath));
 const examLabelsPath = join(workspaceRoot, "tools", "exam-labels.json");
 const examVerification = examVerificationStore(join(workspaceRoot, "tools", "exam-verifications"), {
   backup: join(homedir(), ".nathan-tutors", "content-editor", "exam-verifications"),
@@ -85,7 +98,7 @@ const appStylesPath = join(workspaceRoot, "client", "src", "styles", "global.css
 const isCodespaces = process.env.CODESPACES === "true";
 const editToken = randomBytes(24).toString("hex");
 const passageFormats = ["prose", "poem", "sentence_prose"];
-const passageTypes = ["informational", "literary", "poem", "long_reading"];
+const passageTypes = ["informational", "literary", "poem", "revising_editing"];
 function normalizePassageCategory(value) {
   try { return normalizeCategory(value); } catch (error) { throw new EditorError(400, error.message); }
 }
@@ -112,7 +125,7 @@ async function writeMathImportStatus(status) {
   await rename(mathImportStatusPath + ".tmp", mathImportStatusPath);
 }
 const mathImportStatusKey = (assessmentId, questionId) => JSON.stringify([assessmentId, questionId]);
-const importTaxonomy = () => ({ reading: topicsForPassageSection("reading"), revising_editing_a: topicsForPassageSection("revising_editing_a"), math: mathTopics, mathSpecificTopics: Object.fromEntries(mathTopicConfiguration.categories.map(category => [category.label, category.topics.map(topic => topic.label)])) });
+const importTaxonomy = () => ({ reading: topicsForPassageSection("reading"), revising_editing_a: topicsForPassageSection("revising_editing_a"), revising_editing_b: topicsForPassageSection("revising_editing_b"), math: mathTopics, mathSpecificTopics: Object.fromEntries(mathTopicConfiguration.categories.map(category => [category.label, category.topics.map(topic => topic.label)])) });
 const practiceDifficulties = ["easy", "medium", "hard", "elite"];
 const defaultPracticeTopics = [
   {
@@ -551,12 +564,7 @@ async function parsePassageFile(filePath) {
     label: labelProperty ? valueFromNode(labelProperty.initializer, environment) : undefined,
     image: passageInput.image && typeof passageInput.image === "object" ? passageInput.image : undefined,
     passageSetId: idProperty ? String(valueFromNode(idProperty.initializer, environment) ?? "") : "",
-    passageType:
-      typeof passageInput.passageType === "string" && passageTypes.includes(passageInput.passageType)
-        ? passageInput.passageType
-        : format === "poem"
-          ? "poem"
-          : "informational",
+    passageType: documentImport.normalizePassageType({ ...passageInput, format, section }),
     passageCategory: normalizePassageCategory(passageInput.passageCategory),
     questions,
     richText: typeof passageInput.richText === "string" ? passageInput.richText :
@@ -681,14 +689,8 @@ async function parseAdvancedPassageFile(filePath) {
     image: passageInput.image && typeof passageInput.image === "object" ? passageInput.image : undefined,
     label: readValue(passageSet, "label"),
     passageSetId: String(readValue(passageSet, "id") ?? ""),
-    passageType:
-      typeof passageInput.passageType === "string" && passageTypes.includes(passageInput.passageType)
-        ? passageInput.passageType
-        : format === "poem"
-          ? "poem"
-          : String(readValue(exported.initializer, "genre") ?? "") === "Fiction"
-            ? "literary"
-            : "informational",
+    passageType: documentImport.normalizePassageType({ ...passageInput, format, section: 'reading' },
+      String(readValue(exported.initializer, "genre") ?? "") === "Fiction" ? "literary" : "informational"),
     passageCategory: normalizePassageCategory(passageInput.passageCategory),
     questions,
     richText: typeof passageInput.richText === "string" ? passageInput.richText : "",
@@ -911,7 +913,7 @@ function normalizeQuestion(question, passageId, index, { allowIncomplete = false
     const isTableMatch = question.type === "table_match";
     const isMatrixChoice = question.type === "matrix_choice";
     const categoryCapacity = isTableMatch || Number(question.categoryCapacity) === 1 ? 1 : undefined;
-    const minimumCategoryCount = isTableMatch || isMatrixChoice || categoryCapacity === 1 ? 2 : 1;
+    const minimumCategoryCount = isTableMatch || isMatrixChoice ? 2 : 1;
     if (!Array.isArray(question.categories) || question.categories.length < minimumCategoryCount) {
       throw new EditorError(
         400,
@@ -1116,12 +1118,12 @@ function normalizePassage(input, { requireExamSection = false, allowIncomplete =
   if (!id) throw new EditorError(400, "Add a passage title so the Studio can create its internal ID.");
   const format = requiredText(input.format, "Passage format");
   if (!passageFormats.includes(format)) throw new EditorError(400, "Choose a valid passage format.");
-  const passageType = requiredText(input.passageType, "Library passage type");
-  if (!passageTypes.includes(passageType)) throw new EditorError(400, "Choose a valid library passage type.");
   const section = requireExamSection ? requiredText(input.section, "Exam section") : "reading";
   if (requireExamSection && !examPassageSections.includes(section)) {
     throw new EditorError(400, "Choose Reading or Revising/Editing Part A as the exam section.");
   }
+  const passageType = documentImport.normalizePassageType({ ...input, format, section }, '');
+  if (!passageTypes.includes(passageType)) throw new EditorError(400, "Choose a valid library passage type.");
   const fileName = input.fileName
     ? requiredText(input.fileName, "Source file")
     : `${id}.ts`;
@@ -1257,6 +1259,7 @@ async function savePassage(input) {
       // A previous attempt may have written the passage but failed before
       // registering it. Repair that step before completing the draft receipt.
       await ensureExamPassageRegistration(saved);
+      examExporter.exportExamContent(workspaceRoot);
       await documentDrafts.published(imported.entry.id, {...input,...saved});
       return saved;
     }
@@ -1292,9 +1295,11 @@ async function savePassage(input) {
     }
   }
 
+  await assertQuestionIdentities(passage.questions, filePath);
   sourceWriter.writeExportFile(filePath, buildPassageSource(passage));
   const savedPassage = await parsePassageFile(filePath);
   await ensureExamPassageRegistration(savedPassage);
+  examExporter.exportExamContent(workspaceRoot);
   if (imported.entry) await documentDrafts.published(imported.entry.id, { ...input, ...savedPassage, teacherSource: input.teacherSource, review: input.review, visuals: input.visuals,
     questions: savedPassage.questions.map((question,index)=>({...input.questions[index],...question})) });
   return savedPassage;
@@ -1346,6 +1351,8 @@ async function bulkPassageCategory(input) {
     finally { await rm(temporary, { force: true }); }
   } }
   catch { throw new EditorError(500, `${saved} category changes were saved before a file write failed. Reload to inspect the results.`); }
+  if (!advanced) examExporter.exportExamContent(workspaceRoot);
+  learningExporter.exportLearningCatalog(workspaceRoot);
   return { count: saved };
 }
 
@@ -2633,6 +2640,7 @@ async function saveMathInContext(input, { importedStatuses = {} } = {}) {
   if (Object.keys(importedStatuses).length) await writeMathImportStatus(importStatus);
   await mkdir(mathSetsRoot, { recursive: true });
   if (mathCommand.mathClassificationRevision(workspaceRoot) !== managementRevision) throw new EditorError(409, "Math classifications changed while this save was being prepared. Refresh the editor before saving.");
+  await assertQuestionIdentities(section.questions, mathFilePath);
   await writeFile(mathFilePath, buildMathSource(section), "utf8");
 
   const test =
@@ -2667,30 +2675,14 @@ async function saveMathInContext(input, { importedStatuses = {} } = {}) {
   await writeFile(testFilePath, testSource, "utf8");
   await ensureTestRegistration(test);
 
-  const previousMathQuestionIds = new Set((existingSection?.questions || []).map((question) => String(question.id)));
-  const updatedAssessment = {
-    ...assessment,
-    questions: [
-      ...assessment.questions.filter((question) => !previousMathQuestionIds.has(question.id)),
-      ...section.questions.map(assessmentQuestionFrom),
-    ],
-    updatedAt: new Date().toISOString(),
-  };
-  await writeFile(
-    assessmentsPath,
-    `${JSON.stringify(
-      state.assessments.map((candidate) => (candidate.id === assessmentId ? updatedAssessment : candidate)),
-      null,
-      2,
-    )}\n`,
-    "utf8",
-  );
+  await updateAssessmentMetadata(assessmentId, { updatedAt: new Date().toISOString() });
   for (const question of input.questions) {
     const status = importStatus[mathImportStatusKey(assessmentId, question.id)];
     if (status && question.importNeedsEditing === false) status.needsEditing = false;
   }
   if (Object.keys(importStatus).length) await writeMathImportStatus(importStatus);
   mathCommand.syncMathNativeClassifications(workspaceRoot, section.questions, managementRevision, {previousQuestions: [...previousQuestions.values()].filter(question => !importedStatuses[question.id]), actor: process.env.CONTENT_STUDIO_TEACHER_ID || 'local-teacher:' + createHash('sha256').update(homedir()).digest('hex').slice(0, 24)});
+  examExporter.exportExamContent(workspaceRoot);
   return {
     assessmentId,
     questionCount: section.questions.length,
@@ -2701,7 +2693,7 @@ async function saveMathInContext(input, { importedStatuses = {} } = {}) {
 async function importMathIntoTest(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) throw new EditorError(400, "Math import data is invalid.");
   const initial = await getState();
-  if (!initial.assessments.some(assessment => assessment.id === input.assessmentId)) throw new EditorError(400, "Choose a destination Math test.");
+  if (!input.newWorksheet && !initial.assessments.some(assessment => assessment.id === input.assessmentId)) throw new EditorError(400, "Choose a destination activity or create a new worksheet.");
   if (input.source !== undefined) {
     let source;
     // Ordinary malformed imports must still reach captureFailures below so the
@@ -2723,6 +2715,13 @@ async function importMathIntoTest(input) {
       ? await documentDrafts.import(input.source, undefined, [], "exam", { batch: input.batch, captureFailures: true, directImport: true })
       : await documentDrafts.read();
   } catch (error) { throw new EditorError(400, error.message); }
+  if (input.newWorksheet && !drafts.lastImport?.error) {
+    const entries=drafts.entries.filter(entry=>(drafts.lastImport?.entryIds || []).includes(entry.id) && entry.kind==='math');
+    if (!entries.some(entry=>entry.batch?.items.some(item=>!item.error))) throw new EditorError(400,'No valid Math questions were found. Correct the JSON before creating a worksheet.');
+    const source=documentImport.sourceMetadata({...entries[0]?.content.source,...input.newWorksheet.source});
+    const created=await saveLearningActivity({kind:'worksheet',title:input.newWorksheet.title,durationMinutes:30,questionIds:[],reviewed:false,studyHallWorksheet:{subject:'math',area:'math',scope:'mixed',category:'Math',collection:input.newWorksheet.collection,source}});
+    input={...input,assessmentId:created.activity.id};
+  }
   const result = { assessmentId: input.assessmentId, added: [], existing: [], errors: [], retainedDrafts: Boolean(input.entryId || drafts.lastImport?.entryIds?.length) };
   if (input.source !== undefined && drafts.lastImport?.error) {
     result.errors.push(drafts.lastImport.error);
@@ -2775,6 +2774,18 @@ async function importMathIntoTest(input) {
         }
       }
       if (Object.keys(importedStatuses).length) await saveMath({ ...existing, assessmentId: assessment.id, questions }, { importedStatuses });
+      if (successes.length && assessment.assembly) activityRegistry.update(activities=>activities.map(activity=>{
+        if(activity.id!==assessment.id)return activity;
+        const ids=[...new Set([...activity.assembly.draftQuestionIds,...successes.map(item=>item.id)])];
+        const assembly={...activity.assembly,draftQuestionIds:ids,reviewed:false};
+        delete assembly.reviewedContentHash;
+        delete assembly.previewedContentHash;
+        // Fill blank worksheet provenance without replacing a teacher's choices.
+        const incoming=documentImport.sourceMetadata(entry.content.source)||{};
+        const supplied=activity.studyHallWorksheet?.source||{};
+        const source=documentImport.sourceMetadata({...incoming,...Object.fromEntries(Object.entries(supplied).filter(([,value])=>value!==''&&value!=null))});
+        return {...activity,...(activity.studyHallWorksheet&&source?{studyHallWorksheet:{...activity.studyHallWorksheet,source}}:{}),assembly,updatedAt:new Date().toISOString()};
+      }));
       for (const { item, id } of successes) {
         item.publications ||= {}; item.publications[assessment.id] = { questionId: id, publishedAt: new Date().toISOString() };
         delete item.publicationErrors?.[assessment.id];
@@ -2908,9 +2919,7 @@ async function listTests(passages, mathSections) {
 }
 
 async function readAssessments() {
-  const assessments = JSON.parse(await readFile(assessmentsPath, "utf8"));
-  if (!Array.isArray(assessments)) throw new EditorError(500, "The assessment registry is invalid.");
-  return assessments;
+  return activityRegistry.read();
 }
 
 async function listStandaloneItems() {
@@ -2935,7 +2944,7 @@ function normalizeStandaloneItem(input) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new EditorError(400, "Part B question data is invalid.");
   }
-  if (documentImport.sourceMetadata(input.source) || input.selectionHtml) {
+  if (documentImport.sourceMetadata(input.source) || input.selectionHtml || !['multiple_choice','category_sort'].includes(input.type)) {
     return {...normalizeQuestion(input,'passage',0,{allowIncomplete:Boolean(documentImport.sourceMetadata(input.source))}),versionLabels:partBBank.labels(input),...(partBBank.labels(input)[0] ? {versionLabel:partBBank.labels(input)[0]} : {})};
   }
   const id = slugify(requiredText(input.id, "Question ID"));
@@ -3030,7 +3039,7 @@ function buildStandaloneItemsSource(items) {
   return [
     'import type { ExamQuestion } from "./types";',
     "",
-    `export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLabels?: string[]; duplicateOf?: string })[] = ${JSON.stringify(items, null, 2)};`,
+    `export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLabels?: string[]; duplicateOf?: string; canonicalContent?: boolean })[] = ${JSON.stringify(items, null, 2)};`,
     "",
     "export function getStandaloneItemsById(ids: string[]) {",
     "  return ids.map((id) => {",
@@ -3044,6 +3053,7 @@ function buildStandaloneItemsSource(items) {
     "    delete (studentQuestion as ExamQuestion & { versionLabel?: string }).versionLabel;",
     "    delete (studentQuestion as ExamQuestion & { versionLabels?: string[] }).versionLabels;",
     "    delete (studentQuestion as ExamQuestion & { duplicateOf?: string }).duplicateOf;",
+    "    delete (studentQuestion as ExamQuestion & { canonicalContent?: boolean }).canonicalContent;",
     "    return studentQuestion;",
     "  });",
     "}",
@@ -3066,9 +3076,11 @@ function mutateStandalone(operation) {
   return next;
 }
 async function writeStandaloneItems(items) {
+  await assertQuestionIdentities(items, standaloneItemsPath);
   const source = buildStandaloneItemsSource(items);
   await writeFile(standaloneItemsPath + '.tmp', source, 'utf8');
   await rename(standaloneItemsPath + '.tmp', standaloneItemsPath);
+  examExporter.exportExamContent(workspaceRoot);
   return source;
 }
 async function combineStandaloneItems(input, importedQuestions = []) {
@@ -3088,11 +3100,16 @@ async function combineStandaloneItems(input, importedQuestions = []) {
       }
       items.push(question.id === input.keepId ? normalizeStandaloneItem(question) : question);
     }
-    try { items = partBBank.combine(items, input.keepId, input.removeId, { verifiedSameQuestion: input.verifiedSameQuestion === true, additionalLabels: input.additionalLabels }); }
+    try { items = partBBank.combine(items, input.keepId, input.removeId, { verifiedSameQuestion: input.verifiedSameQuestion === true, replaceOtherContent: input.replaceOtherContent === true, additionalLabels: input.additionalLabels }); }
     catch (error) { throw new EditorError(400, error.message); }
     // Unpublished drafts have no exam references. Their original source stays
     // in the import archive, so only the chosen bank question needs exporting.
     items = items.filter(item => !item.duplicateOf || !importedQuestions.some(question => question.id === item.id));
+    if (input.verifiedSameQuestion === true && input.replaceOtherContent === true) {
+      const backupDirectory = join(workspaceRoot, 'tools', '.content-drafts', 'combined-standalone');
+      await mkdir(backupDirectory, { recursive: true });
+      await writeFile(join(backupDirectory, `${Date.now()}-${hashSource(source).slice(0,12)}.ts`), source, { encoding: 'utf8', flag: 'wx' });
+    }
     const nextSource = await writeStandaloneItems(items);
     return { item: items.find(q => q.id === input.keepId), items, sourceHash: hashSource(nextSource) };
   });
@@ -3100,36 +3117,63 @@ async function combineStandaloneItems(input, importedQuestions = []) {
 async function saveStandaloneItem(input) {
   return mutateStandalone(() => saveStandaloneItemNow(input));
 }
+async function deleteStandaloneItem(input) {
+  return mutateStandalone(async () => {
+    const source = await readFile(standaloneItemsPath, 'utf8');
+    if (!input?.sourceHash || input.sourceHash !== hashSource(source)) throw new EditorError(409, 'The Part B bank changed. Refresh before deleting.');
+    const id = requiredText(input.id, 'Question ID');
+    const state = await getState();
+    if (state.testErrors.length) throw new EditorError(409, 'Some exams could not be checked. Fix their loading errors before deleting a question.');
+    const item = state.standaloneItems.find(q => q.id === id);
+    if (!item) throw new EditorError(404, 'The Part B question was not found.');
+    if (item.duplicateOf) throw new EditorError(409, 'Open the current bank question before deleting its retained versions.');
+    const removed = partBBank.versions(item, state.standaloneItems), ids = new Set(removed.map(q => q.id));
+    const exams = new Map(partBBank.usage(item, state.standaloneItems, state.tests).map(exam => [exam.id, exam.title || exam.id]));
+    for (const assessment of state.assessments) if ((assessment.questions || []).some(q => ids.has(q.id))) exams.set(assessment.id, assessment.title || assessment.id);
+    if (exams.size) throw new EditorError(409, `This question appears in ${[...exams.values()].join(', ')}. Remove it from those exams in the exam builder before deleting it from the bank.`);
+    if (await readFile(standaloneItemsPath, 'utf8') !== source) throw new EditorError(409, 'The Part B bank changed. Refresh before deleting.');
+    const directory = join(workspaceRoot, 'tools', '.content-drafts', 'deleted-standalone');
+    await mkdir(directory, {recursive:true});
+    const backup = join(directory, `${Date.now()}-${hashSource(JSON.stringify(removed)).slice(0,12)}.json`);
+    await writeFile(backup, JSON.stringify({deletedAt:new Date().toISOString(),items:removed},null,2), {encoding:'utf8',flag:'wx'});
+    await writeStandaloneItems(state.standaloneItems.filter(q => !ids.has(q.id)));
+    return {id,removedIds:[...ids],backup:relativePath(backup)};
+  });
+}
 async function publishDocumentStandalone(input) {
   return documentDrafts.publishStandalone(input, async entry => {
+    entry.content.section = 'revising_editing_b';
     const verified = await verifyDocumentPublication(entry.content, 'standalone');
     let state = await getState();
     const assessment = state.assessments.find(a => a.id === input.assessmentId);
     if (!assessment) throw new EditorError(400, 'Choose a destination exam.');
+    if (!state.tests.some(test => test.assessmentId === assessment.id)) throw new EditorError(400, 'Destination exam could not be loaded.');
     const savedIds = [];
+    const questionMap = {};
+    // Validate every selected question before beginning any bank writes.
+    for (const question of verified.content.questions) normalizeStandaloneItem({...question,source:{...entry.content.source,...question.source}});
     for (const question of verified.content.questions) {
-      state = await getState();
-      const item = normalizeStandaloneItem({...question, source: {...entry.content.source, ...question.source}, versionLabels: [assessment.title, ...(question.versionLabels || [])]});
+      state.standaloneItems = await listStandaloneItems();
+      state.standaloneSourceHash = hashSource(await readFile(standaloneItemsPath, "utf8"));
+      const item = normalizeStandaloneItem({...question, source: {...entry.content.source, ...question.source}, versionLabels: partBBank.labels(question)});
       const old = state.standaloneItems.find(q => q.id === item.id);
       if (old) {
         const signature = q => documentImport.fingerprint({kind:'standalone', content:{questions:[normalizeStandaloneItem(q)]}});
         if (signature(old) !== signature(item)) throw new EditorError(409, `Question ${item.id} already has different content. Its saved version was preserved.`);
         const canonical = state.standaloneItems.find(q => q.id === (old.duplicateOf || old.id));
         if (!canonical) throw new EditorError(409, 'The shared English question could not be loaded. Refresh before publishing.');
-        if (!partBBank.labels(canonical).includes(assessment.title)) {
-          await saveStandaloneItem({item:{...canonical,versionLabels:[...partBBank.labels(canonical),assessment.title]},originalId:canonical.id,sourceHash:state.standaloneSourceHash});
-        }
         savedIds.push(canonical.id);
+        questionMap[question.id] = canonical.id;
       } else {
         const saved = await saveStandaloneItem({item, originalId:'', sourceHash:state.standaloneSourceHash});
         savedIds.push(saved.item.id);
+        questionMap[question.id] = saved.item.id;
       }
     }
-    state = await getState();
     const test = state.tests.find(t => t.assessmentId === assessment.id);
     if (!test) throw new EditorError(400, 'Destination exam could not be loaded.');
     await saveTest({...test, questionOrder:undefined, standaloneItemIds:[...new Set([...(test.standaloneItemIds || []), ...savedIds])]});
-    return {questionIds:savedIds, publishedAt:new Date().toISOString()};
+    return {questionIds:savedIds, questionMap, publishedAt:new Date().toISOString()};
   });
 }
 async function saveStandaloneItemNow(input) {
@@ -3150,9 +3194,12 @@ async function saveStandaloneItemNow(input) {
     throw new EditorError(404, "The Part B question being edited was not found.");
   }
   if (existingIndex >= 0 && items[existingIndex].duplicateOf) throw new EditorError(409, 'This source version has been combined. Open the current bank question to edit it.');
-  if (existingIndex >= 0 && item.id !== originalId && items.some(q => q.duplicateOf === originalId)) throw new EditorError(400, 'Keep the ID of a question with retained source versions.');
+  if (existingIndex >= 0 && item.id !== originalId) throw new EditorError(400, 'Keep the ID of a saved question. Create a new question for a different item; existing exams and attempts refer to this ID.');
   let nextItems = [...items];
-  if (existingIndex >= 0) nextItems[existingIndex] = item;
+  if (existingIndex >= 0) {
+    nextItems[existingIndex] = item;
+    nextItems = partBBank.withSharedTopic(nextItems, item.id, item.topic);
+  }
   else nextItems.push(item);
   const repeats = items.filter(q => !q.duplicateOf && q.id !== originalId && partBBank.match(item, q)?.canCombine);
   let savedItem = item;
@@ -3169,6 +3216,136 @@ async function saveStandaloneItemNow(input) {
     sourceHash: hashSource(nextSource),
     target: relativePath(standaloneItemsPath),
   };
+}
+
+async function readQuestionInventory() {
+  const [{ passages, passageErrors }, { mathSections, mathErrors }, standaloneItems] = await Promise.all([listPassages(), listMathSections(), listStandaloneItems()]);
+  const { tests, testErrors } = await listTests(passages, mathSections);
+  return { passages, mathSections, standaloneItems, tests, errors: [...passageErrors, ...mathErrors, ...testErrors] };
+}
+
+async function assertQuestionIdentities(questions, target) {
+  const inventory = await readQuestionInventory();
+  if (inventory.errors.length) throw new EditorError(409, 'Some content could not be read. Resolve the editor loading errors before saving question identities.');
+  const owners = [
+    ...inventory.passages.map(p => ({ path: join(passageSetsRoot, p.fileName), questions: p.questions })),
+    ...inventory.mathSections.map(s => ({ path: join(mathSetsRoot, s.fileName), questions: s.questions })),
+    { path: standaloneItemsPath, questions: inventory.standaloneItems },
+  ];
+  const used = new Set(owners.filter(owner => resolve(owner.path) !== resolve(target)).flatMap(owner => owner.questions.map(q => q.id)));
+  try { for (const question of (await readBank(workspaceRoot)).questions) used.add(question.id); }
+  catch (error) { if (error.code !== 'ENOENT') throw error; }
+  const seen = new Set();
+  for (const question of questions) {
+    if (!question.id || seen.has(question.id) || used.has(question.id)) throw new EditorError(409, `Question ID ${question.id || '(missing)'} must identify exactly one bank record. Reuse the saved question or choose a new ID.`);
+    seen.add(question.id);
+  }
+}
+
+async function auditQuestions() {
+  const inventory = await readQuestionInventory();
+  const catalog = examCatalog.readExamCatalog(workspaceRoot);
+  const bank = await readBank(workspaceRoot);
+  let saved;
+  try { saved = JSON.parse(await readFile(join(workspaceRoot, 'server/data/exam-content.json'), 'utf8')); }
+  catch (error) { if (error.code !== 'ENOENT') throw error; saved = {}; }
+  return catalogIndex.auditQuestionSync(inventory, catalog, bank, saved);
+}
+
+async function readEnglishReview() {
+  const inventory = await readQuestionInventory();
+  if (inventory.errors.length) throw new EditorError(409, 'Some content could not be read. Resolve the editor loading errors before reviewing.');
+  const file = join(workspaceRoot, 'server/data/english-review.json');
+  let records = {};
+  try { records = JSON.parse(await readFile(file, 'utf8')); }
+  catch (error) { if (error.code !== 'ENOENT') throw error; }
+  const rows = englishReview.buildRows(inventory, await partBImports.list(), await documentDrafts.read(), records);
+  return { rows, revision: englishReview.digest(records), records };
+}
+let englishReviewQueue = Promise.resolve();
+function saveEnglishReview(input) {
+  const operation = englishReviewQueue.then(async () => {
+    const snapshot = await readEnglishReview();
+    if (input.revision !== snapshot.revision) throw new EditorError(409, 'Review status changed in another window. Refresh before saving.');
+    let records;
+    try { records = englishReview.applyReview(snapshot.rows, snapshot.records, input); }
+    catch (error) { throw new EditorError(409, error.message); }
+    sourceWriter.writeExportFile(join(workspaceRoot, 'server/data/english-review.json'), JSON.stringify(records, null, 2) + '\n');
+    return { revision: englishReview.digest(records), changed: input.items.length };
+  });
+  englishReviewQueue = operation.catch(() => {});
+  return operation;
+}
+
+let questionIndexCache;
+function questionIndexRevision(management){
+  const sourceRoot=join(workspaceRoot,'client/src/content/exams');
+  const files=readdirSync(sourceRoot,{recursive:true,withFileTypes:true}).filter(entry=>entry.isFile()&&/\.(ts|json)$/.test(entry.name)).map(entry=>join(entry.parentPath||entry.path,entry.name));
+  files.push(...['assessments.json','worksheets.json','activity-releases.json','question-bank.json'].map(name=>join(workspaceRoot,'server/data',name)),...['learning-taxonomy.json','question-organization.json'].map(name=>join(workspaceRoot,'server/src/shared',name)));
+  return learningAssemblies.hash([management.revision,files.sort().map(file=>{try{const value=statSync(file);return [file,value.mtimeMs,value.size];}catch(error){if(error.code==='ENOENT')return [file,null];throw error;}})]);
+}
+async function readQuestionCatalog(filters = {}) {
+  return practiceCatalogService.withSharedMathContext(workspaceRoot, async () => {
+    const management = mathCommand.readMathCommandState(workspaceRoot);
+    const revision=questionIndexRevision(management);
+    if(questionIndexCache?.revision!==revision){
+      const inventory=await readQuestionInventory();
+      inventory.mathSections=inventory.mathSections.map(section=>({...section,questions:section.questions.map(question=>managedMathQuestion(question,management))}));
+      questionIndexCache={revision,result:catalogIndex.questionCatalog(inventory,examCatalog.readExamCatalog(workspaceRoot),await readBank(workspaceRoot),currentLearningTaxonomy())};
+    }
+    const result=questionIndexCache.result;
+    if (result.issues.length) throw new EditorError(409, `Question catalog needs repair: ${JSON.stringify(result.issues.slice(0, 5))}`);
+    const matching=catalogIndex.selectCatalog(result.entries, filters);
+    const page=Math.max(0,Number.parseInt(filters.page,10)||0),limit=filters.limit?Math.min(100,Math.max(1,Number.parseInt(filters.limit,10)||50)):matching.length;
+    return { questions: matching.slice(page*limit,(page+1)*limit), total: result.entries.length, matching:matching.length,page,
+      banks:currentLearningTaxonomy().questionBanks.map(bank=>({...bank,count:result.entries.filter(entry=>entry.bankId===bank.id).length})),
+      publishers:[...new Set(result.entries.map(entry=>entry.publisher))].sort(),
+      years:[...new Set(result.entries.map(entry=>entry.year).filter(Boolean))].sort().reverse(),
+      collections:[...new Set(result.entries.flatMap(entry=>entry.collections))].sort(),
+      classificationNeeded:result.entries.filter(entry=>entry.classificationIssues.length).length };
+  });
+}
+
+let organizationMutation=Promise.resolve();
+function saveQuestionOrganization(id,input) {
+  const action=organizationMutation.then(async()=>{
+    const entry=(await readQuestionCatalog({id})).questions[0];
+    if(!entry)throw new EditorError(404,'Question not found.');
+    if(input.contentVersion!==entry.contentVersion)throw new EditorError(409,'This question changed. Reload its details before saving.');
+    const learning=currentLearningTaxonomy();
+    if(input.bank!==entry.bankId || input.area!==entry.section)throw new EditorError(400,'Keep the question in its source bank and educational area. Use the source editor to change its format.');
+    const category=learning.learningCategories.find(item=>item.id===input.categoryId&&item.area===input.area&&item.active);
+    if(!category)throw new EditorError(400,'Choose a category within this question’s educational area.');
+    const publisher=requiredText(input.publisher,'Source').trim();
+    if(publisher.length>120||publisher==='Unspecified')throw new EditorError(400,'Enter the original source, such as Official Handbook or Kaplan.');
+    const metadata={bank:entry.bankId,area:entry.section,publisher,categoryId:category.id,authoredClassification:entry.authoredClassification};
+    metadata.source=documentImport.sourceMetadata({...entry.question.source,...(input.sourceFamily!==undefined?{sourceFamily:input.sourceFamily}:{}),...(input.shsatLevel!==undefined?{shsatLevel:input.shsatLevel}:{}),...(input.year!==undefined?{year:input.year}:{}),publisher});
+    if(input.sourceLocator){metadata.sourceLocator=requiredText(input.sourceLocator,'Source locator').trim();if(metadata.sourceLocator.length>300)throw new EditorError(400,'Keep the source locator under 300 characters.');}
+    if(entry.area==='math'){
+      if(!category.topics.some(topic=>topic.id===input.topicId&&topic.active))throw new EditorError(400,'Choose a math topic in this category.');
+      const configuration=await readMathTopicConfiguration(workspaceRoot),topic=category.topics.find(topic=>topic.id===input.topicId);
+      const skilled=configuration.classificationSkills.find(skill=>skill.id===input.mathSkillId&&skill.category===category.label&&skill.subcategory===topic.label);
+      if(input.mathSkillId && input.mathSkillId !== 'TBD' && !skilled)throw new EditorError(400,'Choose a math skill within this topic, or leave it uncategorized.');
+      metadata.topicId=input.topicId;metadata.mathSkillId=skilled?.id || 'TBD';
+    }
+    const file=join(workspaceRoot,'server/src/shared/question-organization.json');
+    const before=await readFile(file,'utf8'),records=JSON.parse(before);
+    records[id]=metadata;
+    sourceWriter.writeExportFile(file,JSON.stringify(records,null,2)+'\n');
+    try { currentLearningTaxonomy();examExporter.exportExamContent(workspaceRoot); }
+    catch(error){sourceWriter.writeExportFile(file,before);currentLearningTaxonomy();throw error;}
+    return {question:(await readQuestionCatalog({id})).questions[0]};
+  });
+  organizationMutation=action.catch(()=>{});return action;
+}
+
+function managedMathQuestion(question, management) {
+  const metadata = management.metadata[question.id] || {};
+  return { ...question, skilled: mathCommand.resolveSkilled(metadata.skilled ?? question.skilled, metadata.category ?? question.topic, metadata.subcategory ?? question.subtopic, management.classificationSkills ?? []),
+    ...(metadata.category !== undefined ? { topic: metadata.category } : {}),
+    ...(metadata.subcategory !== undefined ? { subtopic: metadata.subcategory } : {}),
+    ...(metadata.difficulty !== undefined ? { difficulty: metadata.difficulty } : {}),
+    commandMetadata: metadata };
 }
 
 function buildContentTopicDetails(passages, advancedPassages, standaloneItems) {
@@ -3199,7 +3376,11 @@ async function getContentTopicConfiguration() {
 
 async function saveContentTopics(input) {
   topicSections = await saveEnglishSectionTopics(workspaceRoot,input,await englishTopicSources());
+  learningTaxonomy.syncLearningTaxonomy(workspaceRoot,(input.topics||[]).filter(topic=>topic.original&&topic.original!==topic.label).map(topic=>({area:input.section,from:topic.original,to:topic.label})),{english:topicSections});
+  currentLearningTaxonomy();
   topics = [...new Set(Object.values(topicSections).flat())];
+  examExporter.exportExamContent(workspaceRoot);
+  learningExporter.exportLearningCatalog(workspaceRoot);
   return getContentTopicConfiguration();
 }
 
@@ -3208,6 +3389,8 @@ async function getStateInContext() {
   topicSections = await readEnglishTopicSections(workspaceRoot);
   topics = [...new Set(Object.values(topicSections).flat())];
   mathTopicConfiguration = await readMathTopicConfiguration(workspaceRoot);
+  learningTaxonomy.syncLearningTaxonomy(workspaceRoot,[],{english:topicSections,math:mathTopicConfiguration});
+  currentLearningTaxonomy();
   mathTopics = mathTopicConfiguration.categories.map(category => category.label);
   examExporter.exportExamContent(workspaceRoot);
   learningExporter.exportLearningCatalog(workspaceRoot);
@@ -3222,14 +3405,17 @@ async function getStateInContext() {
     const assessmentId = tests.find(test => test.mathSectionFileName === section.fileName)?.assessmentId;
     section.questions = section.questions.map(question => {
       const status = importStatus[mathImportStatusKey(assessmentId, question.id)];
-      const metadata = mathManagement.metadata[question.id] || {};
-      const managed = { ...question, skilled:mathCommand.resolveSkilled(metadata.skilled??question.skilled,metadata.category??question.topic,metadata.subcategory??question.subtopic,mathManagement.classificationSkills??[]), ...(metadata.category !== undefined ? { topic: metadata.category } : {}), ...(metadata.subcategory !== undefined ? { subtopic: metadata.subcategory } : {}), commandMetadata: metadata };
+      const managed = managedMathQuestion(question, mathManagement);
       return status ? { ...managed, importNeedsEditing: status.needsEditing, importSource: status.source, importNotes: status.notes || [] } : managed;
     });
   }
   const standaloneSource = await readFile(standaloneItemsPath, "utf8");
   const standaloneItems = await listStandaloneItems();
+  const organize=currentLearningTaxonomy().organizedQuestion;
+  for(const passage of passages)passage.questions=passage.questions.map(organize);
+  for(const section of mathSections)section.questions=section.questions.map(organize);
   return {
+    learningTaxonomy:currentLearningTaxonomy().learningCategories,
     advancedGenres,
     advancedPassageErrors,
     advancedPassages,
@@ -3249,7 +3435,7 @@ async function getStateInContext() {
     passageCategories,
     passages,
     practice: await getPracticeConfig(),
-    standaloneItems,
+    standaloneItems:standaloneItems.map(organize),
     standaloneImportDrafts: await partBImports.list(),
     standaloneSourceHash: hashSource(standaloneSource),
     readingTopics: topicsForPassageSection("reading"),
@@ -3299,26 +3485,10 @@ async function ensureTestRegistration(test) {
   await writeFile(examsIndexPath, source, "utf8");
 }
 
-function assessmentQuestionFrom(question) {
-  return {
-    answer:
-      typeof question.correctChoiceId === "string"
-        ? question.correctChoiceId
-        : Array.isArray(question.correctChoiceIds)
-          ? question.correctChoiceIds.join(",")
-          : Array.isArray(question.correctTextAnswers)
-            ? question.correctTextAnswers[0] ?? ""
-            : "",
-    choices: Array.isArray(question.choices) ? question.choices.map((choice) => String(choice.text ?? "")) : [],
-    id: String(question.id ?? ""),
-    ...(typeof question.skilled==='string'?{skilled:question.skilled}:{}),
-    imageUrl: typeof question.image?.src === "string" ? question.image.src : "",
-    points: Number.isFinite(Number(question.points)) ? Number(question.points) : 1,
-    prompt: String(question.prompt ?? ""),
-    topic: String(question.topic ?? "Uncategorized"),
-    ...(question.subtopic ? { subtopic: String(question.subtopic) } : {}),
-    type: String(question.type ?? "multiple_choice"),
-  };
+async function updateAssessmentMetadata(assessmentId, patch) {
+  // Read immediately before writing so unrelated exam/access changes are retained.
+  activityRegistry.update(assessments => assessments.map(assessment =>
+    assessment.id === assessmentId ? { ...assessment, ...patch } : assessment));
 }
 
 async function saveTest(input) {
@@ -3373,6 +3543,7 @@ async function saveTest(input) {
   const standaloneRoots = selectedStandaloneItems.map(item => partBBank.rootId(item, state.standaloneItems));
   if (new Set(standaloneRoots).size !== standaloneRoots.length) throw new EditorError(400, 'Choose only one source version of each Part B question for this exam.');
   const existingTest = state.tests.find((candidate) => candidate.assessmentId === assessmentId);
+  if (existingTest && input.sourceHash && input.sourceHash !== existingTest.sourceHash) throw new EditorError(409, 'This exam changed after it was loaded. Refresh the exam builder before saving.');
   const test = existingTest ?? {
     assessmentId,
     exportName: identifierFrom(assessmentId, "Content"),
@@ -3493,10 +3664,7 @@ async function saveTest(input) {
 
   const timestamp = new Date().toISOString();
   const readingPassages = readingPassageIds.map((id) => passageById.get(id));
-  const updatedAssessment = {
-    ...assessment,
-    formAssignments: {},
-    forms: [],
+  await updateAssessmentMetadata(assessmentId, {
     passages: readingPassages.map((passage) => ({
       id: passage.id,
       imageUrl: "",
@@ -3504,18 +3672,9 @@ async function saveTest(input) {
       title: passage.title,
       ...(passage.versionLabel ? { versionLabel: passage.versionLabel } : {}),
     })),
-    questions: [
-      ...selectedPassages.flatMap((passage) => passage.questions.map(assessmentQuestionFrom)),
-      ...selectedStandaloneItems.map(assessmentQuestionFrom),
-      ...(existingMathSection?.questions || []).map(assessmentQuestionFrom),
-    ],
     updatedAt: timestamp,
-  };
-  if (questionOrder) { const position=new Map(questionOrder.map((id,index)=>[id,index])); updatedAssessment.questions.sort((a,b)=>(position.get(a.id) ?? 1e9)-(position.get(b.id) ?? 1e9)); }
-  const updatedAssessments = state.assessments.map((candidate) =>
-    candidate.id === assessmentId ? updatedAssessment : candidate,
-  );
-  await writeFile(assessmentsPath, `${JSON.stringify(updatedAssessments, null, 2)}\n`, "utf8");
+  });
+  examExporter.exportExamContent(workspaceRoot);
   return {
     assessmentId,
     passageCount: passageIds.length,
@@ -3550,18 +3709,90 @@ function createExamLabel(input) {
   examLabelMutation = action.catch(() => {});
   return action;
 }
+async function normalizeWorksheetPlacement(placement) {
+    if (placement === null) return null;
+      if (!placement || !['math', 'english'].includes(placement.subject) || typeof placement.category !== 'string' || !placement.category.trim()) throw new EditorError(400, 'Choose a subject and Study Hall category for this worksheet.');
+      for (const key of ['category', 'topic', 'collection']) if (placement[key] != null && (typeof placement[key] !== 'string' || placement[key].length > 160)) throw new EditorError(400, 'Worksheet placement fields must be text under 160 characters.');
+      const wholeArea = placement.scope === 'mixed' && !placement.categoryId && !placement.topicId && !placement.topic?.trim() && placement.category.trim() === (placement.subject === 'math' ? 'Math' : 'Reading Comprehension');
+      if (placement.subject === 'math' && !wholeArea && placement.category.trim() !== "Nathan Teacher's Recommended") {
+        const configuration = await readMathTopicConfiguration(workspaceRoot);
+        const category = configuration.categories.find(item => item.label === placement.category.trim());
+        if (!category) throw new EditorError(400, 'Choose an existing Math Study Hall category.');
+        if (placement.topic?.trim() && !category.topics.some(item => item.label === placement.topic.trim())) throw new EditorError(400, 'Choose a subcategory within this Math category, or leave it empty.');
+      }
+      const learning=currentLearningTaxonomy();
+      const area=placement.area || (placement.subject==='math'?'math':/revis|editing|grammar|modifier/i.test(placement.category)?'revising_editing_a':'reading');
+      if(!learning.learningAreas.some(item=>item.id===area)||(placement.subject==='math')!==(area==='math'))throw new EditorError(400,'Choose an educational area within the worksheet subject.');
+      const scope=placement.scope || (placement.topic?.trim()?'focused':'mixed');
+      if(!['focused','mixed'].includes(scope))throw new EditorError(400,'Choose focused practice or mixed review.');
+      const category=learning.categoryFor(area,placement.categoryId || placement.category);
+      if(placement.categoryId&&(!category||!category.active))throw new EditorError(400,'Choose an active category for this area.');
+      const topic=category?.topics.find(topic=>topic.active&&[topic.id,topic.label,...topic.aliases].includes(placement.topicId || placement.topic));
+      if(placement.topicId&&!topic)throw new EditorError(400,'Choose a topic within the selected category.');
+      return { subject: placement.subject, area, scope, category:category?.label || placement.category.trim(), ...(category?{categoryId:category.id}:{}),...(topic?{topicId:topic.id,topic:topic.label}:placement.topic?.trim()?{topic:placement.topic.trim()}:{}), ...(placement.collection?.trim() ? { collection: examCatalog.withTypeScript(()=>require(join(workspaceRoot,'server/src/shared/studyHallWorksheets.ts')).canonicalWorksheetCollection(placement.collection)) } : {}), ...(documentImport.sourceMetadata(placement.source) ? {source:documentImport.sourceMetadata(placement.source)} : {}) };
+}
+
+let assemblyMutation=Promise.resolve();
+function saveLearningActivity(input,id) {
+  const action=assemblyMutation.then(async()=>{
+    const existing=id?activityRegistry.read().find(item=>item.id===id):null;
+    if(id&&!existing?.assembly)throw new EditorError(400,'Open this legacy activity in its existing editor.');
+    if(existing&&input.revision!==learningAssemblies.hash(existing))throw new EditorError(409,'This activity changed in another window. Reload before saving.');
+    const title=requiredText(input.title,'Title').trim();
+    if(title.length>160)throw new EditorError(400,'Keep the title under 160 characters.');
+    if(!['worksheet','assessment'].includes(input.kind))throw new EditorError(400,'Choose worksheet or assessment.');
+    if(existing?.assembly.publishedReleaseId&&Boolean(existing.studyHallWorksheet)!==(input.kind==='worksheet'))throw new EditorError(400,'A published activity keeps its type. Create a separate worksheet or assessment using the same bank questions.');
+    const placement=input.kind==='worksheet'?await normalizeWorksheetPlacement(input.studyHallWorksheet):null;
+    const questionIds=input.questionIds;
+    if(!Array.isArray(questionIds)||questionIds.length>200||questionIds.some(id=>typeof id!=='string')||new Set(questionIds).size!==questionIds.length)throw new EditorError(400,'Choose at most 200 distinct questions.');
+    const catalog=await readQuestionCatalog();
+    if(questionIds.some(id=>!catalog.questions.some(question=>question.id===id)))throw new EditorError(400,'A selected question is no longer available. Refresh the question picker.');
+    const durationMinutes=Number(input.durationMinutes||30);
+    if(!Number.isInteger(durationMinutes)||durationMinutes<1||durationMinutes>600)throw new EditorError(400,'Choose a duration from 1 to 600 minutes.');
+    const now=new Date().toISOString(),activityId=id||slugify(title);
+    if(!activityId)throw new EditorError(400,'Include letters or numbers in the title.');
+    const activity={allowCompletedAccess:false,classId:'shsat',createdAt:now,description:'',forms:[],formAssignments:{},questions:[],passages:[],sectionAccess:{english:false,math:false},split:false,status:'locked',...existing,id:activityId,title,durationMinutes,description:String(input.description||'').slice(0,2000),updatedAt:now,studyHallWorksheet:placement,assembly:{...existing?.assembly,draftQuestionIds:questionIds,reviewed:input.reviewed===true}};
+    delete activity.assembly.reviewedContentHash;
+    if(!questionIds.length)delete activity.assembly.previewedContentHash;
+    if(activity.assembly.reviewed||activity.assembly.previewedContentHash){
+      const contentVersion=learningAssemblies.hash(await assembleLearningActivity(activity));
+      if(activity.assembly.previewedContentHash!==contentVersion)delete activity.assembly.previewedContentHash;
+      if(activity.assembly.reviewed){
+        if(input.reviewedContentHash!==contentVersion)throw new EditorError(409,'The draft changed since preview. Open Student preview again, then confirm your review.');
+        activity.assembly.reviewedContentHash=contentVersion;
+      }
+    }
+    activityRegistry.update(items=>{if(!id&&items.some(item=>item.id===activityId))throw new EditorError(409,'An activity with this title already exists. Choose a different title.');return id?items.map(item=>item.id===id?activity:item):[...items,activity];});
+    return {activity,revision:learningAssemblies.hash(activity)};
+  });assemblyMutation=action.catch(()=>{});return action;
+}
+async function assembleLearningActivity(activity){
+  return practiceCatalogService.withSharedMathContext(workspaceRoot,async()=>{
+    const inventory=await readQuestionInventory(),management=mathCommand.readMathCommandState(workspaceRoot);
+    for(const section of inventory.mathSections)section.questions=section.questions.map(question=>managedMathQuestion(question,management));
+    return learningAssemblies.assembleActivity(activity,learningAssemblies.canonicalQuestions(workspaceRoot,inventory,await readBank(workspaceRoot)));
+  });
+}
+async function previewLearningActivity(id){
+  const activity=activityRegistry.read().find(item=>item.id===id);
+  if(!activity?.assembly)throw new EditorError(404,'Activity draft not found.');
+  const content=await assembleLearningActivity(activity);
+  return {activity,content,contentVersion:learningAssemblies.hash(content),issues:learningAssemblies.publicationIssues(activity,content,currentLearningTaxonomy()),revision:learningAssemblies.hash(activity)};
+}
 async function saveExamLabel(id, input) {
   const label = examLabel(input?.examLabel), assessments = await readAssessments();
   const assessment = assessments.find(item => item.id === id);
   if (!assessment) throw new EditorError(404, "Exam not found.");
+  if (Object.hasOwn(input, 'studyHallWorksheet')) assessment.studyHallWorksheet = await normalizeWorksheetPlacement(input.studyHallWorksheet);
   assessment.examLabel = label; assessment.updatedAt = new Date().toISOString();
-  await writeFile(assessmentsPath, `${JSON.stringify(assessments, null, 2)}\n`, "utf8");
+  activityRegistry.update(current => current.map(item => item.id === id ? { ...item, examLabel: label, studyHallWorksheet: assessment.studyHallWorksheet, updatedAt: assessment.updatedAt } : item));
   return assessment;
 }
 
 async function createExam(input) {
   const title = requiredText(input?.title, "Exam title");
-  const durationMinutes = Number(input.durationMinutes ?? 180);
+  const studyHallWorksheet = Object.hasOwn(input, 'studyHallWorksheet') ? await normalizeWorksheetPlacement(input.studyHallWorksheet) : undefined;
+  const durationMinutes = Number(input.durationMinutes ?? (studyHallWorksheet ? 30 : 180));
   if (title.length > 160 || !Number.isInteger(durationMinutes) || durationMinutes < 1 || durationMinutes > 600) {
     throw new EditorError(400, "Use a title under 160 characters and a duration from 1 to 600 minutes.");
   }
@@ -3577,8 +3808,12 @@ async function createExam(input) {
     createdAt: timestamp, updatedAt: timestamp, passages: [], questions: [], forms: [], formAssignments: {},
     status: "locked", sectionAccess: { english: false, math: false }, correctionsOpen: false,
     allowCompletedAccess: false, split: false,
+    ...(studyHallWorksheet !== undefined ? {studyHallWorksheet} : {}),
   };
-  await writeFile(assessmentsPath, `${JSON.stringify([...assessments, assessment], null, 2)}\n`, "utf8");
+  activityRegistry.update(current => {
+    if (current.some(item => item.id === id)) throw new EditorError(409, 'An activity with this ID already exists. Reload and choose another title.');
+    return [...current, assessment];
+  });
   await saveTest({ assessmentId: id });
   return assessment;
 }
@@ -3651,6 +3886,11 @@ function verifyEditRequest(request) {
 async function handleRequest(request, response) {
   try {
     const url = new URL(request.url ?? "/", "http://127.0.0.1");
+    if (url.pathname === '/api/english-review' && ['GET', 'POST'].includes(request.method)) {
+      if (request.method === 'POST') { verifyEditRequest(request); sendJson(response, 200, await saveEnglishReview(await readJson(request))); }
+      else { const { rows, revision } = await readEnglishReview(); sendJson(response, 200, { rows, revision }); }
+      return;
+    }
     if (url.pathname === '/api/infinite-practice/catalog') {
       if (request.method !== 'GET') verifyEditRequest(request);
       const result = await practiceCatalogService.handlePracticeCatalogRequest({method:request.method,body:request.method==='GET'?undefined:await readJson(request),root:workspaceRoot});
@@ -3728,8 +3968,12 @@ async function handleRequest(request, response) {
     if (request.method === 'GET' && examPreviewMatch) {
       const catalog = JSON.parse(await readFile(join(workspaceRoot, 'server/data/exam-content.json'), 'utf8'));
       const id = decodeURIComponent(examPreviewMatch[1]);
+      const activity=activityRegistry.read().find(item=>item.id===id);
+      const metadata=url.searchParams.get('draft')==='1'?activity:activity?.assembly?.publishedMetadata||activity;
+      const previewMetadata={durationMinutes:metadata?.durationMinutes,studyHallWorksheet:metadata?.studyHallWorksheet};
+      if(url.searchParams.get('draft')==='1'){sendJson(response,200,{...(await previewLearningActivity(id)).content,previewMetadata});return;}
       if (!Object.hasOwn(catalog, id)) throw new EditorError(404, 'Saved exam not found.');
-      sendJson(response, 200, catalog[id]); return;
+      sendJson(response, 200, {...catalog[id],previewMetadata}); return;
     }
     if (request.method === 'GET' && url.pathname.startsWith('/exam-preview/')) {
       const asset = await examPreviewAsset(workspaceRoot, url.pathname);
@@ -3752,7 +3996,12 @@ async function handleRequest(request, response) {
       response.end(html);
       return;
     }
-    if (request.method === "GET" && ["/content-studio-question-link.js", "/content-studio-command.js", "/content-studio-command.css", "/content-studio-compare.js", "/content-studio-compare.css", "/math-import-batch.cjs", "/content-studio-batches.js", "/content-studio-batches.css", "/document-import.cjs", "/content-studio-documents.js", "/content-studio-hot-text.js", "/content-studio-hot-spot.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-images.js", "/content-studio-glossary.js", "/poem-layout.js", "/passage-exam-assignment.cjs"].includes(url.pathname)) {
+    if (request.method === "GET" && url.pathname === "/tei-formats.js") {
+      response.writeHead(200, { "Content-Type": "text/javascript" });
+      response.end('globalThis.TeiFormats = ' + JSON.stringify(documentImport.formatRegistry) + ';');
+      return;
+    }
+    if (request.method === "GET" && ["/content-studio-workbench.css", "/review-ranges.js", "/content-studio-english-review.js", "/content-studio-english-review.css", "/content-studio-question-link.js", "/content-studio-command.js", "/content-studio-command.css", "/content-studio-compare.js", "/content-studio-compare.css", "/math-import-batch.cjs", "/content-studio-batches.js", "/content-studio-batches.css", "/document-import.cjs", "/content-studio-documents.js", "/content-studio-hot-text.js", "/content-studio-hot-spot.js", "/content-studio-bank.css", "/content-studio-bank.js", "/content-studio-workspace.css", "/content-studio-workspace.js", "/content-studio-math.css", "/content-studio-math.js", "/content-studio-images.js", "/content-studio-glossary.js", "/poem-layout.js", "/passage-exam-assignment.cjs"].includes(url.pathname)) {
       const asset = await readFile(join(workspaceRoot, "tools", url.pathname.slice(1)), "utf8");
       response.writeHead(200, {
         "Cache-Control": "no-store",
@@ -3856,6 +4105,63 @@ async function handleRequest(request, response) {
     }
     if (request.method === "GET" && url.pathname === "/api/question-bank") {
       sendJson(response, 200, { ...await readBank(workspaceRoot), topics: labTopics.map(topic => topic === "Text Structure" ? "Text Structure & Purpose" : topic) }); return;
+    }
+    if (request.method === 'GET' && url.pathname === '/api/question-catalog') {
+      sendJson(response, 200, await readQuestionCatalog(Object.fromEntries(url.searchParams))); return;
+    }
+    if(url.pathname==='/api/learning-activities'){
+      if(request.method==='GET'){sendJson(response,200,{activities:activityRegistry.read().map(activity=>({...activity,revision:learningAssemblies.hash(activity)}))});return;}
+      if(request.method==='POST'){verifyEditRequest(request);sendJson(response,201,await saveLearningActivity(await readJson(request)));return;}
+    }
+    const learningActivityRoute=/^\/api\/learning-activities\/([^/]+)(?:\/(preview|publish|finish-review))?$/.exec(url.pathname);
+    if(learningActivityRoute){
+      const id=decodeURIComponent(learningActivityRoute[1]),action=learningActivityRoute[2];
+      if(request.method==='GET'&&action==='preview'){sendJson(response,200,await previewLearningActivity(id));return;}
+      if(request.method==='POST'&&(action==='preview'||action==='finish-review')){
+        verifyEditRequest(request);const input=await readJson(request);
+        const operation=assemblyMutation.then(async()=>{
+          const preview=await previewLearningActivity(id);
+          if(input.revision!==preview.revision)throw new EditorError(409,'The worksheet changed in another window. Reopen it before continuing.');
+          if(action==='finish-review'){
+            if(!preview.activity.assembly.reviewed||preview.activity.assembly.reviewedContentHash!==preview.contentVersion)throw new EditorError(409,'Preview the current worksheet and confirm your review before marking its questions finished.');
+            if(preview.issues.length)throw new EditorError(400,preview.issues.join('\n'));
+            await mutateMath(async()=>{
+              const statuses=await readMathImportStatus(),ids=new Set(preview.activity.assembly.draftQuestionIds);
+              for(const [key,status] of Object.entries(statuses)){
+                let questionId;try{questionId=JSON.parse(key)[1];}catch{continue;}
+                if(ids.has(questionId))status.needsEditing=false;
+              }
+              await writeMathImportStatus(statuses);
+            });
+            return preview;
+          }
+          const activity={...preview.activity,assembly:{...preview.activity.assembly,previewedContentHash:preview.contentVersion}};
+          activityRegistry.update(items=>items.map(item=>item.id===id?activity:item));
+          return {...preview,activity,revision:learningAssemblies.hash(activity)};
+        });assemblyMutation=operation.catch(()=>{});sendJson(response,200,await operation);return;
+      }
+      if(request.method==='GET'&&!action){const activity=activityRegistry.read().find(item=>item.id===id);if(!activity)throw new EditorError(404,'Activity not found.');sendJson(response,200,{activity,revision:learningAssemblies.hash(activity)});return;}
+      if(request.method==='PUT'&&!action){verifyEditRequest(request);sendJson(response,200,await saveLearningActivity(await readJson(request),id));return;}
+      if(request.method==='POST'&&action==='publish'){
+        verifyEditRequest(request);const input=await readJson(request);
+        const publish=assemblyMutation.then(async()=>{
+          const preview=await previewLearningActivity(id);
+          if(input.revision!==preview.revision)throw new EditorError(409,'The activity changed. Reload and review it before publishing.');
+          const result=learningAssemblies.publishActivity(workspaceRoot,preview.activity,preview.content);
+          try{examExporter.exportExamContent(workspaceRoot);}
+          catch(error){activityRegistry.update(items=>items.map(item=>item.id===id?preview.activity:item));throw error;}
+          return result;
+        });assemblyMutation=publish.catch(()=>{});
+        sendJson(response,200,await publish);return;
+      }
+    }
+    if(request.method==='GET'&&['/content-studio-catalog.js','/content-studio-catalog.css'].includes(url.pathname)){
+      response.writeHead(200,{'Cache-Control':'no-store','Content-Type':url.pathname.endsWith('.css')?'text/css; charset=utf-8':'text/javascript; charset=utf-8'});response.end(await readFile(join(workspaceRoot,'tools',url.pathname.slice(1)),'utf8'));return;
+    }
+    const organizationRoute=/^\/api\/question-catalog\/([^/]+)\/organization$/.exec(url.pathname);
+    if(request.method==='PUT'&&organizationRoute){verifyEditRequest(request);sendJson(response,200,await saveQuestionOrganization(decodeURIComponent(organizationRoute[1]),await readJson(request)));return;}
+    if (request.method === 'GET' && url.pathname === '/api/question-sync') {
+      sendJson(response, 200, await auditQuestions()); return;
     }
     if (request.method === "POST" && ["/api/question-bank/import", "/api/question-bank/import-preview", "/api/question-bank/import-batch", "/api/question-bank/publish", "/api/question-bank/publish-all", "/api/question-bank/sets"].includes(url.pathname)) {
       verifyEditRequest(request);
@@ -4069,6 +4375,9 @@ async function handleRequest(request, response) {
       verifyEditRequest(request);
       const body = await readJson(request);
       const result = await mutateMath(() => practiceCatalogService.withSharedMathContext(workspaceRoot,()=>saveMathTopicConfiguration(workspaceRoot, body)));
+      learningTaxonomy.syncLearningTaxonomy(workspaceRoot,(body.categories||[]).flatMap(category=>[...(category.original&&category.original!==category.label?[{area:'math',from:category.original,to:category.label}]:[]),...(category.topics||[]).filter(topic=>topic.original&&topic.original!==topic.label).map(topic=>({area:'math',parent:category.label,from:topic.original,to:topic.label}))]),{math:result});
+      currentLearningTaxonomy();
+      examExporter.exportExamContent(workspaceRoot);
       mathTopicConfiguration = result; mathTopics = result.categories.map(category => category.label);
       sendJson(response, 200, result); return;
     }
@@ -4106,6 +4415,11 @@ async function handleRequest(request, response) {
     if (request.method === "POST" && url.pathname === "/api/standalone-items") {
       verifyEditRequest(request);
       sendJson(response, 201, { standalone: await saveStandaloneItem(await readJson(request)) });
+      return;
+    }
+    if (request.method === 'DELETE' && url.pathname === '/api/standalone-items') {
+      verifyEditRequest(request);
+      sendJson(response, 200, {deleted:await deleteStandaloneItem(await readJson(request))});
       return;
     }
     if (request.method === "PUT" && url.pathname === "/api/topics") {
@@ -4602,11 +4916,16 @@ async function validateSetup() {
   );
 }
 
+export { auditQuestions };
+const isMainModule = process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.url);
+
 if (process.argv.includes("--validate")) {
+  if (!isMainModule) throw new Error('Run content-studio.mjs directly to validate the editor.');
   await validateSetup();
   process.exit(0);
 }
 
+if (isMainModule) {
 const portArgument = process.argv.find((argument) => argument.startsWith("--port="));
 const port = portArgument ? Number(portArgument.slice("--port=".length)) : 4319;
 if (!Number.isInteger(port) || port < 1024 || port > 65535) {
@@ -4636,3 +4955,4 @@ server.listen(port, listenHost, () => {
     spawn("xdg-open", [url], { detached: true, stdio: "ignore" }).unref();
   }
 });
+}

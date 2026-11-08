@@ -31,7 +31,8 @@ const { createExamResult } = require('../src/shared/examGrading.ts');
 const { restoredReentryTimer } = require('../src/shared/examReentry.ts');
 const content = { assessmentId: 'exam', title: 'Exam', passageSets: [{ id: 'p', passage: { id: 'p', title: 'Passage', lines: [] }, questions: [{ id: 'e', type: 'multiple_choice', topic: 'Inference', choices: [{ id: 'A', text: 'Yes' }], correctChoiceId: 'A' }] }], mathSection: { id: 'math', questions: [{ id: 'm', type: 'numeric_entry', topic: 'Algebra', correctTextAnswers: ['5'] }] } };
 let publishedContent=content;
-stub('../src/lib/examContent.ts',{getExamContent:id=>id==='exam'?publishedContent:id===secondAssessment?.id?{...content,assessmentId:id,title:secondAssessment.title}:null});
+const activityReleases=new Map();
+stub('../src/lib/examContent.ts',{getActivityRelease:(id,releaseId)=>activityReleases.get(releaseId)?.assessmentId===id?structuredClone(activityReleases.get(releaseId)):null,getExamContent:id=>id==='exam'?publishedContent:id===secondAssessment?.id?{...content,assessmentId:id,title:secondAssessment.title}:null});
 let server, root;
 before(async () => { const express = require('express'), app = express(); app.use(express.json()); app.use('/api/progress', require('../src/routes/progress.ts').progressRouter); app.use('/api/assessments', require('../src/routes/assessments.ts').assessmentsRouter); server = await new Promise(resolve => { const instance = app.listen(0, '127.0.0.1', () => resolve(instance)); }); root = `http://127.0.0.1:${server.address().port}/api`; });
 after(async () => new Promise(resolve => server.close(resolve)));
@@ -39,6 +40,27 @@ beforeEach(() => { Object.values(tables).forEach(rows => rows.splice(0)); const 
 async function call(path, token = 'teacher', method = 'GET', body) { const response = await fetch(root + path, { method, headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, ...(body ? { body: JSON.stringify(body) } : {}) }); return { status: response.status, data: await response.json() }; }
 const permissionPath = '/assessments/teacher/exam/reentry/student';
 const latest = () => tables.student_exam_results.find(row => row.user_id === 'student' && row.assessment_id === 'exam').result;
+
+test('unfinished bank activities keep their release across publication, reload, saves, and server grading',async()=>{
+  const original=structuredClone(assessment);
+  const first={...structuredClone(content),releaseId:'aaaaaaaaaaaaaaaa'},second={...structuredClone(content),releaseId:'bbbbbbbbbbbbbbbb'};
+  second.mathSection.questions[0].correctTextAnswers=['9'];
+  activityReleases.set(first.releaseId,first);activityReleases.set(second.releaseId,second);
+  tables.student_exam_results.splice(0);
+  try{
+    Object.assign(assessment,{status:'open',sectionAccess:{english:true,math:true},assembly:{publishedReleaseId:first.releaseId}});publishedContent=first;
+    const save=navigation=>call('/progress/exam-sessions/exam','student','PUT',{answers:{e:'A',m:'5'},completedSections:[],navigation});
+    assert.equal((await save({subject:'math',activityReleaseId:first.releaseId})).status,200);
+    assessment.assembly.publishedReleaseId=second.releaseId;publishedContent=second;
+    const resumed=await call('/assessments/student/exam','student');assert.equal(resumed.status,200);
+    assert.equal(resumed.data.assessment.resumeContent.releaseId,first.releaseId);
+    const saved=await save({subject:'math',activityReleaseId:second.releaseId});assert.equal(saved.status,200);
+    assert.equal(saved.data.session.navigation.activityReleaseId,first.releaseId,'Existing attempts cannot silently switch versions');
+    const submission={...createExamResult(second,{e:'A',m:'5'},['english','math']),attemptId:'release-attempt'};
+    assert.equal((await call('/progress/exam-results/exam','student','PUT',{result:submission})).status,200);
+    assert.equal(latest().analysisContent.releaseId,first.releaseId);assert.equal(latest().correct,2);
+  }finally{delete assessment.assembly;Object.assign(assessment,original);publishedContent=content;activityReleases.clear();}
+});
 
 test('saving an identical passage in another exam preserves each exam result and snapshot', async () => {
   const original = structuredClone(latest());

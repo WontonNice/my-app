@@ -1,4 +1,11 @@
 import { createPlainTextPassage } from "./formatters";
+import { grade920102011Content } from "./tests/grade-9-2010-2011";
+import { grade920092010Content } from "./tests/grade-9-2009-2010";
+import { grade920082009WorksheetContent } from "./tests/grade-9-2008-2009-worksheet";
+import { organizedContent } from '../../../../server/src/shared/learningTaxonomy';
+import activityReleases from '../../../../server/data/activity-releases.json';
+import { kaplanRevisingEditingSet1Content } from "./tests/kaplan-revising-editing-set-1";
+import { grade920182019Content } from "./tests/grade-9-2018-2019";
 import { digitalShsatPracticeTestAdaptive10HardContent } from "./tests/digital-shsat-practice-test-adaptive-10-hard";
 import { grade9MiniFormContent } from "./tests/grade-9-mini-form";
 import { testnavPartADirections, testnavPartBDirections, testnavMathDirections } from "./testnavDirections";
@@ -41,6 +48,11 @@ import type {
 } from "./types";
 
 const examContentByAssessmentId: Record<string, ExamContent> = {
+  [grade920102011Content.assessmentId]: grade920102011Content,
+  [grade920092010Content.assessmentId]: grade920092010Content,
+  [grade920082009WorksheetContent.assessmentId]: grade920082009WorksheetContent,
+  [kaplanRevisingEditingSet1Content.assessmentId]: kaplanRevisingEditingSet1Content,
+  [grade920182019Content.assessmentId]: grade920182019Content,
   [digitalShsatPracticeTestAdaptive10HardContent.assessmentId]: digitalShsatPracticeTestAdaptive10HardContent,
   [grade9MiniFormContent.assessmentId]: grade9MiniFormContent,
   [digitalShsatPracticeTest6Content.assessmentId]: digitalShsatPracticeTest6Content,
@@ -199,8 +211,19 @@ function createFallbackExamContent(assessment: AssessmentContentSource): ExamCon
   };
 }
 
+/** Registry-only teacher assessments retain their own content and are not re-authored during export. */
+export function registeredExamIds() {
+  return Object.keys(examContentByAssessmentId);
+}
+
 export function resolveExamContent(assessment: AssessmentContentSource, savedContent?: ExamContent) {
-  const content = applyExamPresentation(savedContent ?? examContentByAssessmentId[assessment.id] ?? createFallbackExamContent(assessment));
+  // Early immutable releases omitted optional source notes. Normalize on read;
+  // never rewrite an edition that may already belong to a student's attempt.
+  type MathSection = NonNullable<ExamContent['mathSection']>;
+  type StoredContent = Omit<ExamContent,'mathSection'> & {mathSection?:Omit<MathSection,'directions'> & {directions:Omit<MathSection['directions'],'notes'> & {notes?:string[]}}};
+  const release = assessment.assembly?.publishedReleaseId ? (activityReleases as Record<string,{content:StoredContent}>)[assessment.assembly.publishedReleaseId] : undefined;
+  const releasedContent: ExamContent | undefined = release ? {...release.content,mathSection:release.content.mathSection ? {...release.content.mathSection,directions:{...release.content.mathSection.directions,notes:release.content.mathSection.directions.notes || []}} : undefined} : undefined;
+  const content = applyExamPresentation(savedContent ?? releasedContent ?? organizedContent(examContentByAssessmentId[assessment.id] ?? createFallbackExamContent(assessment)));
   const sectionFor = (passageSet: ExamPassageSet): ExamPassageSection =>
     content.passageSections?.[passageSet.passage.id] ??
     content.passageSections?.[passageSet.id] ??

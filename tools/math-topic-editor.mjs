@@ -115,7 +115,10 @@ export async function saveMathTopicConfiguration(root, input) {
     const label = text(category.label, `Category ${index + 1}`), original = typeof category.original === 'string' ? category.original : '';
     const prior = state.categories.find(item => item.label === original);
     if (original && !prior) throw fail('A category no longer exists. Reload and try again.', 409);
-    if (!Array.isArray(category.topics) || !category.topics.length || category.topics.length > 150) throw fail(`${label} needs between 1 and 150 specific topics.`);
+    // Imported legacy questions can introduce a category with no classified
+    // subtopics. Retaining it must not block an unrelated category rename.
+    const retainedEmpty = prior && label === original && prior.topics.length === 0;
+    if (!Array.isArray(category.topics) || (!category.topics.length && !retainedEmpty) || category.topics.length > 150) throw fail(`${label} needs between 1 and 150 specific topics.`);
     const topics = category.topics.map(topic => {
       if (!topic || typeof topic !== 'object' || Array.isArray(topic)) throw fail('Choose a valid specific topic.');
       const name = text(topic.label, 'Specific topic'), previous = typeof topic.original === 'string' ? topic.original : '';
@@ -165,15 +168,19 @@ export async function saveMathTopicConfiguration(root, input) {
     for (const edit of edits.sort((a, b) => b.start - a.start)) next = next.slice(0, edit.start) + edit.text + next.slice(edit.end);
     if (next !== file.source) changes.push({ path: file.path, source: file.source, next });
   }
-  const assessmentPath = join(root, 'server/data/assessments.json'), assessmentSource = await readFile(assessmentPath, 'utf8'), assessments = JSON.parse(assessmentSource);
   const effectiveQuestions = new Map(state.files.flatMap(file => file.questions.map(question => [question.id, question])));
   const mathIds = new Set(effectiveQuestions.keys());
+  for(const filename of ['assessments.json','worksheets.json']){
+  const assessmentPath=join(root,'server/data',filename);let assessmentSource;
+  try{assessmentSource=await readFile(assessmentPath,'utf8');}catch(error){if(error.code==='ENOENT')continue;throw error;}
+  const assessments=JSON.parse(assessmentSource);
   let assessmentChanged = false;
-  for (const assessment of assessments) for (const question of assessment.questions || []) if (mathIds.has(question.id)) {
+  for (const assessment of assessments.filter(item=>!item.assembly)) for (const question of assessment.questions || []) if (mathIds.has(question.id)) {
     const updated = reclassify(effectiveQuestions.get(question.id) || question);
     if (updated.topic !== question.topic || updated.subtopic !== question.subtopic) { Object.assign(question, updated); assessmentChanged = true; }
   }
   if (assessmentChanged) changes.push({ path: assessmentPath, source: assessmentSource, next: `${JSON.stringify(assessments, null, 2)}\n` });
+  }
   changes.push({ path: state.configPath, source: state.configSource, next: `${JSON.stringify({ categories: normalized.map(({ label, topics }) => ({ label, topics: topics.map(topic => topic.label) })) }, null, 2)}\n` });
   // Keep the downloadable extraction contract aligned with editable categories.
   // Minimal test fixtures may omit these generated artifacts entirely.

@@ -76,3 +76,20 @@ test('legacy Import Math JSON preview uses the same formatting before normalizat
   const result = await preview({ assessmentId: 'test', source: JSON.stringify({ question }) });
   assert.equal(result.choices[0].html, String.raw`The test will last \(1\frac{1}{4}\) hours.`);
 });
+
+test('five-choice historical keys normalize by observed positions, including visual references',()=>{
+  for(const labels of [['A','B','C','D','E'],['F','G','H','J','K']])for(const [index,key] of labels.entries()){
+    const q=contract.normalizeChoiceLabels({id:'historical',type:'multiple_choice',choices:labels.map(id=>({id,text:id})),correctChoiceId:key,visuals:[{choiceId:key}]});
+    assert.equal(q.correctChoiceId,'ABCDE'[index]);assert.equal(q.visuals[0].choiceId,'ABCDE'[index]);
+    assert.deepEqual(q.choices.map(choice=>choice.id),['A','B','C','D','E']);
+    assert.deepEqual(contract.normalizeChoiceLabels(q),q,'Retry does not remap an already normalized key.');
+  }
+  const unknown=contract.normalizeChoiceLabels({type:'multiple_choice',choices:['F','G','H','J','K'].map(id=>({id,text:id})),correctChoiceId:'I'});
+  assert.equal(unknown.correctChoiceId,'');assert.equal(unknown.review.warnings[0].code,'SOURCE_KEY_AMBIGUOUS');
+});
+
+test('Math extraction prompt omits English glossary instructions and explains historical labels and typography',()=>{
+  const text=contract.prompt({math:['Algebra'],mathSpecificTopics:{Algebra:['Equations & Systems']}},{subject:'math'});
+  assert.doesNotMatch(text,/ENGLISH FORMATTING AND VOCABULARY|Map source E→A/);
+  assert.match(text,/F→A, G→B, H→C, J→D, K→E/);assert.match(text,/source.shsatLevel/);assert.match(text,/M\^\{/);
+});

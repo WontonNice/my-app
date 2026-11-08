@@ -16,6 +16,8 @@ export type PlannerContext = { rationale: string; studentId?: string; evidenceId
 export type PlannerEntry = {
   id: string; source: PlannerSource; destination: PlannerDestination;
   context?: PlannerContext; notes: string; status: PlannerStatus; addedAt: string;
+  /** Publication intent only; actual availability comes from the reviewed catalog. */
+  publishAfterValidation?: boolean;
 };
 export type GeneratorBatch = {
   id: string; name: string; notes: string; entries: PlannerEntry[]; updatedAt: string;

@@ -150,7 +150,7 @@ const studioUI = {
       passage: {
         title, author, blurb, text, format, section, ...(richText ? { richText } : {}),
         passageCategory: 'prestige',
-        passageType: options.passageType || (format === 'poem' ? 'poem' : "informational"),
+        passageType: DocumentImport.normalizePassageType({section, format, passageType: options.passageType}),
         label: section === "reading" ? "ELA - Reading Comprehension" : "ELA - Revising/Editing Part A",
         versionLabel: options.versionLabel || preview.testTitle || "SAT Crash Course",
         teacherSource: `${preview.testTitle || "SAT Crash Course"}; ${preview.module || ""}; original questions ${questions.map((q) => q.number).join(", ")}; passage ${firstPassage.id || "unknown"}; ${data.source?.url || ""}`,
@@ -436,6 +436,7 @@ const studioUI = {
   },
 
   preparePassage() {
+    if (app.passageDraft) app.passageDraft.passageType = DocumentImport.normalizePassageType(app.passageDraft, '');
     if (app.passageDraft?.questions) app.passageDraft.questions = app.passageDraft.questions.map(DocumentImport.withoutSectionDirections);
     const context = `${app.passageMode}:${app.selectedPassageId || "new"}`;
     if (this.passageContext === context) return;
@@ -470,8 +471,9 @@ const studioUI = {
       toggle.setAttribute("aria-expanded", "true");
       toggle.addEventListener("click", () => {
         const expanded = !document.body.classList.contains('studio-library-hidden');
-        if (expanded && this.libraryPinned) this.setLibraryPinned(false);
-        this.setLibraryExpanded(!expanded);
+        const close = expanded && this.libraryPinned;
+        this.setLibraryPinned(!close);
+        this.setLibraryExpanded(!close);
       });
       toggle.addEventListener('pointerenter', event => {
         if (event.pointerType !== 'touch') this.setLibraryExpanded(true);
@@ -529,6 +531,7 @@ const studioUI = {
     toggle.title=expanded?'Collapse library':'Hover or click to open library';
     sidebar.inert = !expanded;
     sidebar.setAttribute('aria-hidden', String(!expanded));
+    this.syncWorkbench?.(document.body.dataset.workspace);
     const pin = sidebar.querySelector('.studio-library-pin');
     if (pin) {
       pin.setAttribute('aria-pressed', String(!!this.libraryPinned));
@@ -538,7 +541,7 @@ const studioUI = {
   },
   placeLibraryToggle(tab) {
     const toggle=document.getElementById('studio-library-toggle'); if(!toggle)return;
-    const selectors={passages:'#passages-view .passage-layout','part-a':'#passages-view .passage-layout',advanced:'#passages-view .passage-layout',standalone:'#standalone-view .passage-layout',math:'#math-view .test-grid',tests:'#tests-view .test-grid'};
+    const selectors={passages:'#passages-view .passage-layout','part-a':'#passages-view .passage-layout',advanced:'#passages-view .passage-layout',standalone:'#standalone-view .passage-layout',math:'#math-view .test-grid',tests:'#tests-view .test-grid',worksheets:'#tests-view .test-grid'};
     const layout=selectors[tab]?document.querySelector(selectors[tab]):null;
     toggle.hidden=!layout; toggle.disabled=!layout;
     clearTimeout(this.libraryCloseTimer);
@@ -575,17 +578,25 @@ const studioUI = {
     if (sectionPicker) sectionPicker.value = tab;
     this.syncSaveState?.();
     this.placeLibraryToggle(tab);
+    this.syncWorkbench?.(tab);
     // Open the first item only on initial entry; switching workspaces keeps drafts intact.
     if (tab === "standalone" && !app.standaloneDraft && app.state.standaloneItems[0]) selectStandaloneItem(app.state.standaloneItems.find(item => item.id === this.readPreference('part-b-item', ''))?.id || app.state.standaloneItems[0].id);
-    if (tab === "tests" && !app.testDraft && app.state.assessments[0]) selectAssessment(app.state.assessments.find(item => item.id === this.readPreference('builder-exam', ''))?.id || app.state.assessments[0].id);
-    else if (tab === "tests" && app.testDraft) renderTestBuilder();
+    if (['tests', 'worksheets'].includes(tab)) {
+      this.configureBuilderLibrary();
+      const items = this.builderAssessments();
+      if (!app.testDraft && items.length) selectAssessment(items.find(item => item.id === this.readPreference('builder-' + (app.builderKind || 'tests'), ''))?.id || items[0].id);
+      else if (app.testDraft && !app.testDirty && items.some(item => item.id === app.selectedAssessmentId)) selectAssessment(app.selectedAssessmentId);
+      else { renderAssessmentList(); renderTestBuilder(); }
+      this.setLibraryPinned(true);
+    }
     if (tab === "math" && !app.mathDraft && app.state.assessments[0]) selectMathAssessment(app.state.assessments.find(item => item.id === this.readPreference('math-exam', ''))?.id || app.state.assessments[0].id, { selectedQuestionId: this.readPreference('math-question', '') });
     const messages = {
       passages: app.passageDirty ? "Unsaved passage changes." : "Reading library · passages, questions, and reading topics.",
       "part-a": app.passageDirty ? "Unsaved Part A changes." : "Revising/Editing Part A library · passages, questions, and Part A topics.",
       advanced: app.passageDirty ? "Unsaved SAT passage changes." : "SAT passages · passage, library card, and questions.",
       standalone: app.standaloneDirty ? "Unsaved Part B changes." : "Part B · reusable stand-alone questions.",
-      tests: "Exam builder · arrange Reading, Part A, and Part B.",
+      tests: "Exams · arrange Reading, Part A, and Part B.",
+      worksheets: "Worksheets · short practice organized in Study Hall.",
       math: app.mathDirty ? "Unsaved math changes." : "Exam math · questions, answer keys, and student preview.",
       compare: "Compare tests · find repeated questions and passages in saved content.",
       practice: "Practice drafts save on this device. Preview to validate before publishing.",
@@ -677,10 +688,30 @@ const studioUI = {
     search.setAttribute("aria-label", "Find an exam");
     search.addEventListener("input", () => this.filterAssessmentList(id));
     list.before(search);
+    if (id === 'math-assessment-list') {
+      const library = this.element('label', 'studio-math-library-kind', 'Library');
+      const select = this.element('select', '', '<option value="tests">Exams</option><option value="worksheets">Worksheets</option>'); select.setAttribute('aria-label','Math content library');
+      library.append(select); search.before(library);
+      select.onchange = () => {
+        if (app.mathDirty && !window.confirm('Discard the unsaved math changes?')) { select.value = app.mathLibraryKind || 'tests'; return; }
+        app.mathLibraryKind = select.value; search.value = ''; app.mathDirty = false; app.mathDraft = null; app.selectedMathAssessmentId = '';
+        const first = this.builderAssessments(select.value).find(assessment=>assessment.studyHallWorksheet?.subject!=='english');
+        if (first) selectMathAssessment(first.id); else { renderMathAssessmentList(); renderMathBuilder(); }
+      };
+    }
   },
 
   assessmentLabel(assessment) {
+    const placement = this.worksheetPlacement(assessment);
+    if (placement) return placement.collection || placement.category || 'Worksheets';
     return assessment.examLabel?.trim() || (/^\d{4}-\d{4}-form-[a-z]$/i.test(assessment.id) ? "Official practice" : "Other exams");
+  },
+  worksheetSource(item) {
+    const placement = this.worksheetPlacement(item), source = placement?.source || item.source || {};
+    const legacyGrade9 = placement?.collection === 'Grade 9 Mathematics Sample Questions';
+    return {publisher:source.publisher || (source.sourceFamily === 'official_shsat' || legacyGrade9 ? 'Official Handbook' : ''),
+      shsatLevel:source.shsatLevel || (/^(?:Grade|SHSAT)\s*9$/i.test(source.form || '') || legacyGrade9 ? '9' : /^(?:Grade|SHSAT)\s*8$/i.test(source.form || '') ? '8' : ''),
+      year:source.year || (legacyGrade9 ? item.title?.match(/(?:19|20)\d{2}[-–](?:19|20)\d{2}/)?.[0]?.replace('–','-') : '') || '', collection:placement?.collection || ''};
   },
   orderedAssessments() { return this.assessmentGroups(app.state.assessments).flatMap(group => group.items); },
   transitionLayout(question) {
@@ -697,25 +728,24 @@ const studioUI = {
     if (slots.length > 1 && question.instructions === 'Move the correct answer to the box.') question.instructions = 'Move a word into each blank.';
     delete question.correctChoiceId; delete question.transitionBlankBefore; delete question.transitionBlankAfter;
   },
-  transitionSentenceMarkup(question) {
-    const layout = this.transitionLayout(question);
-    const html = question.dragDropContentHtml ? DocumentImport.sanitizeRichText(question.dragDropContentHtml)
-      : layout.content.map(line => `<p>${escapeHtml(line)}</p>`).join('');
-    return `<div class="exam-rich-response-template">${html.replace(/\{\{([\w-]+)\}\}/g, (token, id) =>
-      layout.slots.some(slot => slot.id === id) ? `<button aria-label="Blank ${layout.slots.findIndex(slot => slot.id === id) + 1}" class="exam-math-drag-slot" data-preview-transition-target="${escapeHtml(id)}" type="button">&nbsp;</button>` : token)}</div>`;
-  },
   transitionKeyFields(question) {
     const slots = this.transitionLayout(question).slots;
     return slots.length ? slots.map((slot, index) => `<label class="field"><span>Blank ${index + 1} correct word</span><select data-transition-slot="${index}"><option value="">Choose the correct word…</option>${(question.choices || []).map(choice => `<option value="${escapeHtml(choice.id)}"${choice.id === slot.correctItemId ? ' selected' : ''}>${escapeHtml(choice.text || `${choice.id} · enter a word`)}</option>`).join('')}</select></label>`).join('') : '<p role="status">Insert a blank in the sentence to choose its answer.</p>';
   },
   publishExamMarkup(key) {
     const selected = this.publishExamTargets.get(key) || '';
-    const groups = this.assessmentGroups(app.state.assessments);
-    return `<label class="studio-publish-exam"><span>Publish to</span><select aria-label="Publish to exam"><option value="">Passage library only</option>${groups.filter(group => group.items.length).map(group => `<optgroup label="${escapeHtml(group.label)}">${group.items.map(exam => `<option value="${escapeHtml(exam.id)}"${exam.id === selected ? ' selected' : ''}>${escapeHtml(exam.title)}</option>`).join('')}</optgroup>`).join('')}</select></label>`;
+    const kind = selected ? this.builderKindFor(app.state.assessments.find(item => item.id === selected)) : app.builderKind || 'tests';
+    return `<div class="studio-publish-destination"><label>Library<select aria-label="Publication library"><option value="tests"${kind === 'tests' ? ' selected' : ''}>Exams</option><option value="worksheets"${kind === 'worksheets' ? ' selected' : ''}>Worksheets</option></select></label><label class="studio-publish-exam"><span>Publish to</span><select aria-label="Publish destination">${this.publishTargetOptions(kind, selected)}</select></label></div>`;
+  },
+  publishTargetOptions(kind, selected = '') {
+    const groups = this.assessmentGroups(this.builderAssessments(kind));
+    return '<option value="">Question / passage library only</option>' + groups.filter(group => group.items.length).map(group => `<optgroup label="${escapeHtml(group.label)}">${group.items.map(item => `<option value="${escapeHtml(item.id)}"${item.id === selected ? ' selected' : ''}>${escapeHtml(item.title)}</option>`).join('')}</optgroup>`).join('');
   },
   bindPublishExam(container, key) {
-    const select = container.querySelector('[aria-label="Publish to exam"]');
+    const select = container.querySelector('[aria-label="Publish destination"]');
     if (select) select.onchange = () => this.publishExamTargets.set(key, select.value);
+    const library = container.querySelector('[aria-label="Publication library"]');
+    if (library) library.onchange = () => { this.publishExamTargets.delete(key); select.innerHTML = this.publishTargetOptions(library.value); };
   },
   completePassagePublication(result, key) {
     const assignment = result.examAssignment;
@@ -764,10 +794,10 @@ const studioUI = {
   examLabelOptions(selected = 'Other exams') {
     return this.assessmentGroups(app.state.assessments).map(group => `<option value="${escapeHtml(group.label)}"${group.label.toLowerCase() === selected.toLowerCase() ? ' selected' : ''}>${escapeHtml(group.label)}</option>`).join('');
   },
-  groupAssessmentList() {
+  groupAssessmentList(items = this.builderLibraryPage().items) {
     const list = document.getElementById("assessment-list");
     this.mountExamLabels();
-    for (const group of this.assessmentGroups(app.state.assessments)) {
+    for (const group of this.assessmentGroups(items).filter(group => group.items.length)) {
       const section = this.element("section", "studio-exam-group");
       section.setAttribute("aria-label", group.label);
       const heading = this.element("h3", ""); heading.textContent = group.label;
@@ -776,6 +806,134 @@ const studioUI = {
       if (!group.items.length) section.append(this.element("small", "field-note", "No exams in this section yet."));
       list.append(section);
     }
+  },
+  canonicalWorksheetCollection(value) {
+    return /^(?:Grade 9 Mathematics Sample Questions|SHSAT 9\s*[·-]\s*Official Handbook)$/i.test((value || '').trim()) ? 'Grade 9 Mathematics Sample Questions' : (value || '').trim();
+  },
+  worksheetPlacement(item) {
+    if(item?.studyHallWorksheet)return {...item.studyHallWorksheet,collection:this.canonicalWorksheetCollection(item.studyHallWorksheet.collection)};
+    return item?.studyHallWorksheet || (item?.studyHallWorksheet !== null && item?.examLabel === 'Grade 9 Mathematics Sample Questions' ? {subject:'math', category:"Nathan Teacher's Recommended", collection:item.examLabel} : null);
+  },
+  builderKindFor(item) { return this.worksheetPlacement(item) ? 'worksheets' : 'tests'; },
+  publicationStatus(item) {
+    const assembly=item?.assembly;
+    if(assembly&&!assembly.publishedReleaseId)return {key:'draft',label:'Draft',summary:'Not visible to students',detail:'Saving only stores your draft. Open Student preview, confirm your review, then publish this worksheet. After publishing, open student access in Study Hall.'};
+    const stable=value=>JSON.stringify(value,(_,entry)=>entry&&typeof entry==='object'&&!Array.isArray(entry)?Object.fromEntries(Object.keys(entry).sort().map(key=>[key,entry[key]])):entry);
+    const metadataChanged=assembly?.publishedMetadata&&['title','description','durationMinutes','studyHallWorksheet'].some(key=>stable(item[key])!==stable(assembly.publishedMetadata[key]));
+    const contentHash=assembly?.reviewedContentHash||assembly?.previewedContentHash;
+    if(metadataChanged||contentHash&&contentHash!==assembly.publishedReleaseId)return {key:'changes',label:'Unpublished changes',summary:'Students use the published version',detail:'These draft changes are not in the student version. Preview and review the changes, then publish the updated version. Student access is managed separately in Study Hall.'};
+    if(assembly&&!assembly.reviewed)return {key:'review',label:'Published · draft needs review',summary:'Students use the published version',detail:'A published version exists. Review the current draft before publishing it again. Student access is managed separately in Study Hall.'};
+    return {key:'published',label:'Published',summary:'Check student access in Study Hall',detail:'A published version exists. Publishing and opening student access are separate steps. Use Manage student access in Study Hall to see whether students can open it.'};
+  },
+  publicationBadge(item) {
+    const state=this.publicationStatus(item);
+    return `<span class="studio-publication-badge is-${state.key}">${escapeHtml(state.label)}</span><small class="studio-publication-summary">${escapeHtml(state.summary)}</small>`;
+  },
+  builderAssessments(kind = app.builderKind || 'tests') {
+    return app.state.assessments.filter(item => this.builderKindFor(item) === kind);
+  },
+  builderFilters() {
+    this.builderLibraryFilters ||= new Map();
+    const kind = app.builderKind || 'tests';
+    if (!this.builderLibraryFilters.has(kind)) this.builderLibraryFilters.set(kind, {query:'', subject:'', category:'', source:'', shsatLevel:'', year:'', collection:'', page:0});
+    return this.builderLibraryFilters.get(kind);
+  },
+  openBuilderLibrary() {
+    Object.assign(this.builderFilters(), {query:'', subject:'', category:'', source:'', shsatLevel:'', year:'', collection:'', page:0});
+    this.configureBuilderLibrary();
+    renderAssessmentList();
+    this.setLibraryPinned(true);
+    document.getElementById('assessment-list')?.scrollTo?.({top:0});
+    document.getElementById('assessment-list-search')?.focus();
+  },
+  builderLibraryPage() {
+    const filters = this.builderFilters(), all = this.builderAssessments();
+    const query = filters.query.trim().toLowerCase();
+    const matches = all.filter(item => {
+      const placement = this.worksheetPlacement(item);
+      const source = this.worksheetSource(item);
+      return (!filters.subject || placement?.subject === filters.subject) && (!filters.category || placement?.category === filters.category) &&
+        (!filters.source || source.publisher === filters.source) && (!filters.shsatLevel || source.shsatLevel === filters.shsatLevel) && (!filters.year || source.year === filters.year) && (!filters.collection || source.collection === filters.collection) &&
+        `${item.title} ${item.id} ${this.assessmentLabel(item)} ${source.publisher} ${source.shsatLevel ? 'SHSAT '+source.shsatLevel : ''} ${source.year} ${placement?.category || ''} ${placement?.topic || ''}`.toLowerCase().includes(query);
+    });
+    const ordered = this.assessmentGroups(matches).flatMap(group => group.items);
+    const pages = Math.max(1, Math.ceil(ordered.length / 30));
+    filters.page = Math.min(Math.max(0, filters.page), pages - 1);
+    return {items:ordered.slice(filters.page * 30, (filters.page + 1) * 30), total:ordered.length, all:all.length, page:filters.page, pages};
+  },
+  prepareBuilderWorkspace(kind) {
+    const previous = app.builderKind || 'tests';
+    if (previous === kind) { app.builderKind = kind; return; }
+    this.builderWorkspaces ||= new Map();
+    const form = document.getElementById('new-exam-form');
+    this.builderWorkspaces.set(previous, {id:app.selectedAssessmentId, draft:app.testDraft, dirty:app.testDirty, section:this.testSection,
+      formValues:form ? [...form.elements].filter(field => field.name).map(field => [field.name, field.type === 'checkbox' ? field.checked : field.value]) : [], formOpen:form && !form.hidden});
+    const saved = this.builderWorkspaces.get(kind);
+    app.builderKind = kind; app.selectedAssessmentId = saved?.id || ''; app.testDraft = saved?.draft || null; app.testDirty = saved?.dirty || false;
+    this.testSection = saved?.section || (kind === 'worksheets' ? '1' : '0');
+    if (form) {
+      form.reset(); this.configureBuilderLibrary();
+      for (const [name, value] of saved?.formValues || []) { const field = form.elements.namedItem(name); if (field.type === 'checkbox') field.checked = value; else field.value = value; if (name === 'worksheetSubject') this.refreshWorksheetCreation(); }
+      form.hidden = !saved?.formOpen; form.style.display = saved?.formOpen ? 'grid' : 'none';
+      document.getElementById('new-exam').setAttribute('aria-expanded', String(!!saved?.formOpen));
+    }
+  },
+  refreshWorksheetCreation() {
+    const form = document.getElementById('new-exam-form');
+    const field = name => form.elements.namedItem(name);
+    const categories = field('worksheetSubject').value === 'math' ? ["Nathan Teacher's Recommended", ...(app.state.mathTopics || [])] : ['Revising/Editing', 'Reading Comprehension', 'Advanced Readings'];
+    const selected = field('worksheetCategory').value;
+    field('worksheetCategory').innerHTML = categories.map(value => `<option${value === selected ? ' selected' : ''}>${escapeHtml(value)}</option>`).join('');
+    const topics = (app.state.mathTopicConfiguration?.categories || []).find(item => item.label === field('worksheetCategory').value)?.topics || [];
+    document.getElementById('new-worksheet-topics').innerHTML = topics.map(item => `<option value="${escapeHtml(item.label)}"></option>`).join('');
+  },
+  configureBuilderLibrary() {
+    const worksheets = app.builderKind === 'worksheets', noun = worksheets ? 'worksheet' : 'exam';
+    const view = document.getElementById('tests-view'), form = document.getElementById('new-exam-form');
+    view.querySelector('.test-shell > header h1').textContent = worksheets ? 'Worksheets' : 'Exams';
+    const heading = view.querySelector('.test-shell > header');
+    let back = document.getElementById('studio-all-builder-items');
+    if (!back) {
+      back = this.element('button', 'secondary studio-all-builder-items');
+      back.id = 'studio-all-builder-items'; back.type = 'button';
+      back.onclick = () => this.openBuilderLibrary();
+      heading.append(back);
+    }
+    back.textContent = worksheets ? '← All worksheets' : '← All exams';
+    view.querySelector('.test-shell > header p').textContent = worksheets ? 'Short practice organized by Study Hall category.' : 'Build and organize full assessments.';
+    view.querySelector('.test-grid > .panel .panel-head h2').textContent = worksheets ? 'Worksheets' : 'Exams';
+    view.querySelector('.test-grid > .panel .panel-head small').textContent = worksheets ? 'Find a worksheet by title, source, or category.' : 'Create an exam or select one to assemble.';
+    document.getElementById('new-exam').textContent = '+ New ' + noun;
+    form.querySelector('[data-builder-title-label]').textContent = worksheets ? 'Worksheet title' : 'Exam title';
+    form.elements.title.placeholder = worksheets ? 'Kaplan Revising/Editing Set 2' : '2026 Fall Practice Test';
+    form.querySelector('[type="submit"]').textContent = 'Create ' + noun;
+    form.elements.durationMinutes.defaultValue = worksheets ? '30' : '180';
+    const location = document.getElementById('new-worksheet-location'); location.hidden = !worksheets; location.disabled = !worksheets;
+    form.elements.worksheetCategory.required = worksheets;
+    form.querySelector('[data-builder-create-note]').textContent = `New ${worksheets ? 'worksheets' : 'exams'} start locked. Add questions, then open access from the teacher dashboard.`;
+    form.elements.paperAnswers.closest('label').hidden = worksheets;
+    form.elements.paperAnswers.closest('label').nextElementSibling.hidden = worksheets;
+    this.refreshWorksheetCreation();
+    form.elements.worksheetSubject.onchange = () => { form.elements.worksheetCategory.value = ''; form.elements.worksheetTopic.value = ''; this.refreshWorksheetCreation(); };
+    form.elements.worksheetCategory.onchange = () => { form.elements.worksheetTopic.value = ''; this.refreshWorksheetCreation(); };
+    const search = document.getElementById('assessment-list-search');
+    if (search) { search.placeholder = worksheets ? 'Find a worksheet' : 'Find an exam'; search.setAttribute('aria-label', search.placeholder); search.value = this.builderFilters().query; }
+    let filters = document.getElementById('studio-worksheet-filters');
+    if (!filters) { filters = this.element('details', 'studio-worksheet-filters'); filters.id = 'studio-worksheet-filters'; document.getElementById('assessment-list').before(filters); }
+    filters.hidden = !worksheets;
+    const values = this.builderFilters(), items = this.builderAssessments();
+    const options = (list, selected) => [...new Set(list.filter(Boolean))].sort((a,b) => a.localeCompare(b)).map(value => `<option value="${escapeHtml(value)}"${value === selected ? ' selected' : ''}>${escapeHtml(value)}</option>`).join('');
+    const activeFilters = ['subject','category','source','shsatLevel','year','collection'].filter(key => values[key]).length;
+    filters.innerHTML = `<summary>Filters${activeFilters ? ' · ' + activeFilters + ' active' : ''}</summary><div><label>Subject<select data-library-filter="subject"><option value="">All subjects</option><option value="english"${values.subject === 'english' ? ' selected' : ''}>English</option><option value="math"${values.subject === 'math' ? ' selected' : ''}>Math</option></select></label><label>Category<select data-library-filter="category"><option value="">All categories</option>${options(items.filter(item => !values.subject || this.worksheetPlacement(item)?.subject === values.subject).map(item => this.worksheetPlacement(item)?.category), values.category)}</select></label>${[['source','Source','publisher'],['shsatLevel','SHSAT level','shsatLevel'],['year','Year','year'],['collection','Collection','collection']].map(([key,label,facet]) => `<label>${label}<select data-library-filter="${key}"><option value="">All ${label.toLowerCase()}${key === 'shsatLevel' ? 's' : key === 'source' || key === 'year' || key === 'collection' ? 's' : ''}</option>${options(items.map(item => this.worksheetSource(item)[facet]),values[key])}</select></label>`).join('')}</div>`;
+    filters.querySelectorAll('select').forEach(select => { select.onchange = () => { values[select.dataset.libraryFilter] = select.value; values.page = 0; if (select.dataset.libraryFilter === 'subject') values.category = ''; this.configureBuilderLibrary(); renderAssessmentList(); }; });
+  },
+  renderBuilderPagination(result) {
+    const list = document.getElementById('assessment-list');
+    if (!result.total) list.append(this.element('p', 'field-note', result.all ? 'No matches. Clear your search or filters to see more.' : `No ${app.builderKind === 'worksheets' ? 'worksheets' : 'exams'} yet. Create one above.`));
+    let footer = document.getElementById('studio-builder-pagination');
+    if (!footer) { footer = this.element('div', 'studio-builder-pagination'); footer.id = 'studio-builder-pagination'; list.after(footer); }
+    footer.innerHTML = `<span role="status">${result.total ? `${result.page * 30 + 1}–${Math.min((result.page + 1) * 30, result.total)} of ${result.total}` : '0 results'}</span><div${result.pages < 2 ? ' hidden' : ''}><button type="button" aria-label="Previous library page"${result.page === 0 ? ' disabled' : ''}>Previous</button><button type="button" aria-label="Next library page"${result.page + 1 === result.pages ? ' disabled' : ''}>Next</button></div>`;
+    footer.querySelectorAll('button').forEach((button, index) => { button.onclick = () => { this.builderFilters().page += index ? 1 : -1; renderAssessmentList(); list.scrollTop = 0; }; });
   },
   mountExamLabels() {
     const list = document.getElementById('assessment-list');
@@ -807,6 +965,11 @@ const studioUI = {
   },
 
   filterAssessmentList(id) {
+    if (id === 'assessment-list') {
+      const filters = this.builderFilters();
+      filters.query = document.getElementById(`${id}-search`)?.value || '';
+      filters.page = 0; renderAssessmentList(); return;
+    }
     const query = document.getElementById(`${id}-search`)?.value.trim().toLowerCase() || "";
     const list = document.getElementById(id);
     let count = 0;
@@ -1140,6 +1303,7 @@ const studioUI = {
     markStandaloneDirty();
   },
   bindStandaloneCanvas(frame) {
+    if (!this.examResponseReady(frame, () => this.bindStandaloneCanvas(frame))) return;
     const doc = frame.contentDocument, draft = app.standaloneDraft;
     if (!doc?.querySelector('.exam-standalone-panel') || frame.standaloneDraft !== draft) return;
     this.standaloneActive = null; this.standaloneRange = null;
@@ -1258,26 +1422,63 @@ const studioUI = {
   },
 
   mountTestBuilder() {
-    this.remember('builder-exam', app.selectedAssessmentId);
+    this.remember('builder-' + (app.builderKind || 'tests'), app.selectedAssessmentId);
     const root = document.getElementById("test-builder");
     const assessment = app.state.assessments.find(item => item.id === app.selectedAssessmentId);
     const label = this.element("div", "studio-exam-label");
-    label.innerHTML = `<label>Exam section / label<select aria-label="Exam section label">${this.examLabelOptions(this.assessmentLabel(assessment))}</select></label><button class="secondary" type="button">Save label</button>`;
+    label.innerHTML = `<label>Library label<select aria-label="Library label">${this.examLabelOptions(assessment.examLabel || 'Other exams')}</select></label><button class="secondary" type="button">Save label</button>`;
     label.querySelector("button").onclick = async () => {
       const button = label.querySelector("button"); button.disabled = true;
       try {
         const value = await api(`/api/exams/${encodeURIComponent(assessment.id)}/label`, { method: "PUT", body: JSON.stringify({ examLabel: label.querySelector("select").value }) });
-        assessment.examLabel = value.assessment.examLabel; renderAssessmentList(); setStatus("Exam label saved.", "success");
+        assessment.examLabel = value.assessment.examLabel; this.configureBuilderLibrary(); renderAssessmentList(); setStatus("Source label saved.", "success");
       } catch (error) { setStatus(error.message, "error"); } finally { button.disabled = false; }
     };
     root.querySelector(".panel-head").after(label);
+    const placementPanel = this.element('form', 'studio-worksheet-placement');
+    const placement = assessment.studyHallWorksheet || (assessment.studyHallWorksheet !== null && assessment.examLabel === 'Grade 9 Mathematics Sample Questions' ? { subject: 'math', category: "Nathan Teacher's Recommended", collection: assessment.examLabel } : null);
+    placementPanel.innerHTML = '<label>Library placement<select name="kind"><option value="assessment">Assessment · longer exam</option><option value="worksheet">Study Hall worksheet</option></select></label><fieldset><legend>Worksheet location</legend><label>Subject<select name="subject"><option value="math">Math</option><option value="english">English</option></select></label><label>Study Hall category<input name="category" list="worksheet-categories" maxlength="160"></label><datalist id="worksheet-categories"></datalist><label>Subcategory (optional)<input name="topic" list="worksheet-topics" maxlength="160"></label><datalist id="worksheet-topics"></datalist><label>Collection (optional)<input name="collection" maxlength="160" placeholder="For example, Grade 9 Mathematics Sample Questions"></label></fieldset><button class="secondary" type="submit">Save placement</button><span role="status"></span>';
+    const field = name => placementPanel.elements.namedItem(name);
+    field('kind').value = placement ? 'worksheet' : 'assessment';
+    field('subject').value = placement?.subject || 'math';
+    for (const key of ['category', 'topic', 'collection']) field(key).value = placement?.[key] || '';
+    const refreshPlacement = () => {
+      const isWorksheet = field('kind').value === 'worksheet';
+      placementPanel.querySelector('fieldset').hidden = !isWorksheet;
+      field('category').required = isWorksheet;
+      placementPanel.querySelector('#worksheet-categories').innerHTML = (field('subject').value === 'math' ? ["Nathan Teacher's Recommended", ...app.state.mathTopics] : ['Reading Comprehension', 'Revising/Editing', 'Advanced Readings']).map(value => '<option value="' + escapeHtml(value) + '"></option>').join('');
+      const topics = (app.state.mathTopicConfiguration?.categories || []).find(item => item.label === field('category').value)?.topics || [];
+      placementPanel.querySelector('#worksheet-topics').innerHTML = topics.map(item => '<option value="' + escapeHtml(item.label) + '"></option>').join('');
+    };
+    field('kind').onchange = refreshPlacement; field('subject').onchange = refreshPlacement; field('category').oninput = refreshPlacement; refreshPlacement();
+    placementPanel.onsubmit = async event => {
+      event.preventDefault(); const button = placementPanel.querySelector('button'); const status = placementPanel.querySelector('[role="status"]'); button.disabled = true; status.textContent = 'Saving…';
+      try {
+        const studyHallWorksheet = field('kind').value === 'worksheet' ? Object.fromEntries(['subject', 'category', 'topic', 'collection'].map(key => [key, field(key).value.trim()])) : null;
+        const value = await api('/api/exams/' + encodeURIComponent(assessment.id) + '/label', { method: 'PUT', body: JSON.stringify({ examLabel: assessment.examLabel || '', studyHallWorksheet }) });
+        assessment.studyHallWorksheet = value.assessment.studyHallWorksheet;
+        const nextKind = this.builderKindFor(assessment);
+        if (nextKind !== (app.builderKind || 'tests')) {
+          this.builderWorkspaces?.delete(app.builderKind || 'tests'); app.builderKind = nextKind; switchTab(nextKind);
+        } else { this.configureBuilderLibrary(); renderAssessmentList(); }
+        status.textContent = 'Placement saved.';
+      } catch (error) { status.textContent = 'Not saved: ' + error.message; } finally { button.disabled = false; }
+    };
+    const organization = this.element('details', 'studio-builder-organization', `<summary>${placement ? 'Study Hall location · ' + escapeHtml(placement.category) : 'Organization settings'}</summary>`);
+    label.after(organization); organization.append(placementPanel);
+
     const verification = this.element('div', 'studio-exam-verification', '<label><input type="checkbox"> Verified</label><span class="field-note">I manually checked this exam.</span><span role="status" aria-live="polite"></span>');
     const checkbox = verification.querySelector('input');
     checkbox.checked = app.state.examVerification?.[assessment.id]?.verified === true;
     checkbox.onchange = () => this.saveExamVerification(assessment.id, checkbox, verification.querySelector('[role="status"]'));
     label.after(verification);
+    if (placement) verification.hidden = true;
+    const mathButton = this.element('button', 'secondary', 'Edit math questions'); mathButton.type = 'button';
+    mathButton.onclick = () => { switchTab('math'); selectMathAssessment(assessment.id); };
+    mathButton.hidden = placement?.subject === 'english';
+    root.querySelector('.panel-head').append(mathButton);
 
-    this.moveSaveBar(root, "Save English test");
+    this.moveSaveBar(root, placement ? "Save worksheet" : "Save English test");
     const sections = root.querySelector(".english-section-stack");
     const library = root.querySelector(".passage-version-groups");
     const standalone = root.querySelector(".standalone-picker");
@@ -1286,6 +1487,10 @@ const studioUI = {
     const libraryNote = library.previousElementSibling;
     const bankHead = standalone.previousElementSibling;
     if (!libraryTitle || !libraryNote || !bankHead) return;
+    if (placement?.subject === 'math') {
+      for (const element of [sections, library, standalone, libraryTitle, libraryNote, bankHead, root.querySelector('.test-summary'), root.querySelector('#save-test')]) if (element) element.hidden = true;
+      return;
+    }
     const passageDetails = this.element("details", "studio-disclosure", '<summary>Passage library <span>Add to Reading or Part A</span></summary>');
     passageDetails.open = this.folds.get("test-passages") ?? true;
     libraryTitle.before(passageDetails);
@@ -1919,7 +2124,19 @@ Object.assign(studioUI, {
       }
     }
   },
+  examResponseReady(frame, bind) {
+    const doc = frame.contentDocument;
+    if (!doc) return false;
+    if (!doc.querySelector('[data-response-preview]') || doc.documentElement.dataset.responsePreviewReady === 'true') return true;
+    // iframe load may precede the dynamic import of the shared response renderer.
+    // Bind only after its React roots exist, and ignore superseded documents.
+    doc.addEventListener('exam-response-ready', () => {
+      if (frame.isConnected && frame.contentDocument === doc) bind();
+    }, {once:true});
+    return false;
+  },
   bindExamCanvas(frame) {
+    if (!this.examResponseReady(frame, () => this.bindExamCanvas(frame))) return;
     const doc = frame.contentDocument;
     if (!doc?.querySelector('.exam-passage-pencil-surface')) return;
     const draft = app.passageDraft;
@@ -2048,7 +2265,6 @@ Object.assign(studioUI, {
       });
     }
     const q = draft.questions[this.selectedQuestionIndex];
-    if (q?.type === 'transition_drop') doc.querySelectorAll('[data-preview-transition-target], [data-preview-transition-choice]').forEach(node => { node.onclick = () => this.showSupportPanel('question'); node.title = 'Configure sentence blanks and words'; });
     if (q) editable(doc.querySelector('.exam-question-panel h1 > span'), 'Exam question prompt', () => {
       const node = doc.querySelector('.exam-question-panel h1 > span'); q.promptHtml = node.innerHTML; q.prompt = node.innerText; markDirty();
     });
@@ -2059,6 +2275,8 @@ Object.assign(studioUI, {
       markDirty();
     });
     if (q?.matrixStyle === 'evidence') {
+      // Keep editable source statements stable; try answers in Student view.
+      doc.querySelectorAll('.exam-matrix-choice-table input').forEach(input => { input.disabled = true; input.title = 'Try answers in Student view. Change keys in Answer summary.'; });
       doc.querySelectorAll('.exam-matrix-choice-table tbody th').forEach((row, index) => {
         const item = q.items?.[index]; if (!item) return;
         editable(row, `Evidence statement ${index + 1}`, () => { item.html = row.innerHTML; item.text = row.innerText; markDirty(); });
@@ -2069,10 +2287,10 @@ Object.assign(studioUI, {
       });
     }
     doc.querySelectorAll('.exam-choice').forEach((choiceNode, i) => {
-      const choice = q?.choices?.[i]; if (!choice) return;
+      const choice = q?.choices?.[i]; if (!choice || q.selectionHtml || q.hotSpot || !['multiple_choice','multi_select'].includes(q.type)) return;
       // Labels otherwise toggle the key when a teacher clicks editable text.
-      const row = doc.createElement('div'); row.className = choiceNode.className; row.append(...choiceNode.childNodes); choiceNode.replaceWith(row);
-      const text = row.querySelector('.exam-rich-text');
+      const row = choiceNode; row.addEventListener('click', event => event.preventDefault());
+      const text = row.querySelector('.exam-rich-text') || row.querySelector('[data-highlight-key]');
       editable(text, `Exam choice ${choice.id}`, () => { choice.html = text.innerHTML; choice.text = text.innerText; markDirty(); });
       const input = row.querySelector('input');
       input.checked = q.type === 'multi_select' ? q.correctChoiceIds?.includes(choice.id) : q.correctChoiceId === choice.id;
@@ -2400,7 +2618,17 @@ Object.assign(studioUI, {
       document.getElementById('studio-exam-canvas').contentDocument.execCommand(formats.value, false);
       this.examActive?.dispatchEvent(new Event('input', { bubbles: true })); formats.value = '';
     };
-    root.querySelector('.studio-direct-format').append(formats);
+    const formatting = root.querySelector('.studio-direct-format');
+    formatting.append(formats);
+    const disclosure = this.element('details', 'studio-format-disclosure', '<summary>Formatting tools</summary>');
+    formatting.before(disclosure); disclosure.append(formatting);
+    if (!this.formatDisclosureMedia) {
+      this.formatDisclosureMedia = window.matchMedia('(min-width: 601px)');
+      this.formatDisclosureMedia.addEventListener('change', event => {
+        document.querySelectorAll('.studio-format-disclosure').forEach(node => node.open = event.matches);
+      });
+    }
+    disclosure.open = this.formatDisclosureMedia.matches;
     this.updateCanvasAnswerKey();
   },
 });
@@ -2435,12 +2663,13 @@ Object.assign(studioUI, {
     header.append(document.getElementById('open-document-drafts'));
     nav.hidden = false;
     nav.classList.add('studio-universal-nav');
-    const names = { passages: 'Reading', 'part-a': 'Part A', standalone: 'Part B', tests: 'Exam builder', math: 'Math', compare: 'Compare tests', advanced: 'SAT', practice: 'Practice', 'question-bank': 'Question bank' };
+    const names = { catalog:'Question banks', 'english-review': 'English center', passages: 'Reading', 'part-a': 'Part A', standalone: 'Part B', tests: 'Exams', worksheets: 'Worksheets', math: 'Math', compare: 'Compare tests', advanced: 'SAT', practice: 'Practice', 'question-bank': 'Question bank' };
     nav.querySelectorAll('[data-tab]').forEach(button => { button.title = button.textContent; button.setAttribute('aria-label', button.textContent); button.textContent = names[button.dataset.tab]; });
     picker.after(nav);
     header.append(document.getElementById('open-document-drafts'));
     const help = this.element('details', 'studio-help', '<summary>Help</summary><div><strong>Content Editor</strong><p>Choose a workspace to browse its library. Edit the passage, questions, answer keys, and explanations together. Click text in the preview to edit it. Passage options contains details, formatting, images, definitions, and review. Question options contains type, topic, points, and explanation.</p><p><kbd>Ctrl / ⌘ + S</kbd> saves the current workspace. Saving updates repository content. Import review drafts stay teacher-only until published.</p><p>Select text to format or define it. Paragraph style applies to the current paragraph or selected paragraphs. Formatting and definitions are included in Undo.</p></div>');
     header.append(help);
+    this.mountWorkbench(header, nav, picker);
     const toggle = document.getElementById('studio-library-toggle');
     this.libraryPinned = this.readPreference('library-pinned', false);
     const hidden = !this.libraryPinned;
@@ -2457,6 +2686,7 @@ Object.assign(studioUI, {
       picker.querySelector('select').disabled = value;
       nav.querySelectorAll('button').forEach(button => button.disabled = value);
       document.getElementById('open-document-drafts').disabled = value;
+      this.syncWorkbench(document.body.dataset.workspace);
       this.syncSaveState();
     }});
     document.addEventListener('keydown', event => {
@@ -2485,6 +2715,75 @@ Object.assign(studioUI, {
     this.shellReady = true;
     this.mountExamCanvas();
     if (last !== 'passages' && document.querySelector(`[data-tab="${last}"]`) && !location.hash) switchTab(last);
+  },
+  mountWorkbench(header, nav, picker) {
+    document.body.classList.add('studio-workbench');
+    const paths = {
+      'english-review': '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="m14 17 3 3 5-6"/>',
+      passages: '<path d="M12 5c-3-2-6-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-3-1-6-1-9 1v15"/>',
+      'part-a': '<path d="M13 4H5v16h14v-8M10 14l1-4 8-8 3 3-8 8-4 1Z"/>',
+      standalone: '<rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h5M8 16h8"/>',
+      math: '<rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h2m4 0h2M8 15h2m4 0h2M8 19h2m4 0h2"/>',
+      tests: '<path d="M9 4H5v17h14V4h-4M9 2h6v4H9zM8 11h8M8 15h8"/>',
+      worksheets: '<path d="M6 3h9l4 4v14H6zM15 3v5h4M9 12h7M9 16h7"/>',
+      compare: '<rect x="2" y="4" width="8" height="16" rx="1"/><rect x="14" y="4" width="8" height="16" rx="1"/>',
+      advanced: '<path d="m12 3 10 6-10 6L2 9l10-6Zm-6 9v6c4 3 8 3 12 0v-6"/>',
+      practice: '<path d="M5 4h14v16H5zM9 9h6m-6 6h6M12 6v6"/>',
+      'question-bank': '<path d="M3 4h7l2 3h9v13H3V4Zm4 8h10m-10 4h7"/>',
+    };
+    const icon = path => `<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${path}</svg>`;
+    const labels = { catalog:'Question banks', 'english-review': 'English center', passages: 'Reading passages', 'part-a': 'Rev/Edit A', standalone: 'Standalone items', math: 'Math questions', tests: 'Exams', worksheets: 'Worksheets', compare: 'Compare exams', advanced: 'SAT passages', practice: 'Practice', 'question-bank': 'Question bank' };
+    this.workbenchLabels = labels;
+    picker.querySelectorAll('option').forEach(option => {
+      if (labels[option.value]) option.textContent = labels[option.value];
+    });
+    nav.querySelectorAll('[data-tab]').forEach(button => {
+      button.innerHTML = icon(paths[button.dataset.tab] || paths.passages) + `<span>${labels[button.dataset.tab]}</span>`;
+    });
+    const groups = [
+      ['English', ['english-review', 'passages', 'part-a', 'standalone']],
+      ['Math', ['math']],
+      ['Manage', ['tests', 'worksheets', 'compare', 'question-bank']],
+      ['More content', ['advanced', 'practice']],
+    ];
+    const rail = this.element('aside', 'studio-navigation');
+    const brand = header.querySelector('.brand');
+    brand.querySelector('small').textContent = 'Content Studio';
+    rail.append(brand, nav);
+    for (const [label, tabs] of groups) {
+      const group = this.element('div', 'studio-nav-group');
+      group.setAttribute('role', 'group'); group.setAttribute('aria-label', label);
+      group.append(this.element('p', 'studio-nav-label', label));
+      for (const key of tabs) group.append(nav.querySelector(`[data-tab="${key}"]`));
+      if (label === 'Math') group.append(nav.querySelector('a[href="/math-command/"]'));
+      if (label === 'Manage') group.append(nav.querySelector('.content-studio-answer-sheets'));
+      nav.append(group);
+    }
+    nav.querySelectorAll('a').forEach(link => {
+      const name = link.matches('.content-studio-answer-sheets') ? 'Answer sheets' : 'Math center';
+      link.innerHTML = icon('<path d="M14 3h7v7m0-7L10 14M10 3H3v18h18v-7"/>') + `<span>${name}</span>`;
+    });
+    rail.append(this.element('div', 'studio-nav-footer', '<span>Nathan Tutors</span><small>Content workspace</small>'));
+    header.before(rail);
+    const location = this.element('div', 'studio-location', '<span>Content Studio</span><strong id="studio-workspace-title"></strong>');
+    header.prepend(location);
+    const library = this.element('button', 'secondary studio-workbench-library', icon('<path d="M3 4h18v16H3zM9 4v16"/>') + '<span>Library</span>');
+    library.type = 'button'; library.id = 'studio-open-library';
+    library.onclick = () => document.getElementById('studio-library-toggle').click();
+    picker.after(library);
+    this.syncWorkbench(document.body.dataset.workspace || 'passages');
+  },
+  syncWorkbench(tab) {
+    const title = document.getElementById('studio-workspace-title');
+    if (title) title.textContent = this.workbenchLabels?.[tab] || 'Content Studio';
+    const open = document.getElementById('studio-open-library');
+    const toggle = document.getElementById('studio-library-toggle');
+    if (open && toggle) {
+      open.hidden = toggle.hidden;
+      open.disabled = toggle.disabled || app.saving;
+      open.setAttribute('aria-expanded', toggle.getAttribute('aria-expanded') || 'false');
+      open.setAttribute('aria-controls', toggle.getAttribute('aria-controls') || '');
+    }
   },
   organizeLibrary() {
     const head = document.querySelector('#passages-view .sidebar-head');
@@ -2536,9 +2835,9 @@ Object.assign(studioUI, {
     this.saveErrors ||= new Map();
     if (app.saving && tone === 'error') this.saveErrors.set(tab, true);
     else if (tone !== undefined && tone !== 'error') this.saveErrors.delete(tab);
-    const dirty = tab === 'math' ? app.mathDirty : tab === 'standalone' ? app.standaloneDirty : tab === 'tests' ? app.testDirty : ['passages', 'part-a', 'advanced'].includes(tab) ? app.passageDirty : false;
+    const dirty = tab === 'math' ? app.mathDirty : tab === 'standalone' ? app.standaloneDirty : ['tests', 'worksheets'].includes(tab) ? app.testDirty : ['passages', 'part-a', 'advanced'].includes(tab) ? app.passageDirty : false;
     const failed = this.saveErrors.has(tab);
-    const state = failed ? 'Save failed · changes retained' : app.saving ? 'Saving…' : dirty ? 'Unsaved changes' : tab === 'practice' ? 'Local recovery draft' : app.passageDraft?.importDraftId && ['passages', 'advanced'].includes(tab) ? 'Teacher-only review draft' : ['passages', 'advanced'].includes(tab) && !app.passageDraft?.sourceHash ? 'New draft' : 'Saved';
+    const state = failed ? 'Save failed · changes retained' : app.saving ? 'Saving…' : dirty ? 'Unsaved changes' : tab === 'standalone' && (app.standaloneDraft?.documentDraftId || app.standaloneDraft?.importDraftId) ? 'Saved draft · not published' : tab === 'practice' ? 'Local recovery draft' : app.passageDraft?.importDraftId && ['passages', 'advanced'].includes(tab) ? 'Teacher-only review draft' : ['passages', 'advanced'].includes(tab) && !app.passageDraft?.sourceHash ? 'New draft' : 'Saved';
     document.querySelectorAll('.studio-item-state').forEach(node => { node.textContent = state; node.dataset.state = failed ? 'error' : app.saving ? 'saving' : dirty ? 'dirty' : 'saved'; });
   },
   capturePassageLibrary() {
@@ -2749,6 +3048,7 @@ Object.assign(studioUI, {
     root.querySelectorAll('[data-support-tool]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.supportTool === key)));
     root.querySelectorAll('[data-view-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.viewMode === (key === 'preview' ? 'preview' : 'edit'))));
     document.getElementById('studio-support-title').textContent = ({ preview: 'Draft student preview', settings: 'Passage settings', media: 'Media', definitions: 'Word definitions', review: 'Review', question: 'Question options & explanation', passage: 'Passage options', answers: 'Answer summary' })[key] || '';
+    if (key === 'passage' && app.passageDraft?.partBEditor) document.getElementById('studio-support-title').textContent = 'Source & details';
     if (key === 'question') this.renderQuestionInspector();
     if (key === 'answers') this.renderAnswerSummary();
     if (!key) this.restoreExamPosition?.();
@@ -2797,6 +3097,7 @@ Object.assign(studioUI, {
   },
   passageIssues(draft) {
     if (!draft) return [];
+    if (draft.partBEditor) return DocumentImport.issues(PartBWorkspace.reviewEntry(), {...DocumentStudio.taxonomy(),revising_editing_b:questionTopicsForSection('revising_editing_b')});
     const issues = [];
     if (!draft.title?.trim()) issues.push({ message: 'Add a passage title', field: 'title' });
     if (!draft.text?.trim()) issues.push({ message: 'Add passage text', field: 'body' });
@@ -2821,6 +3122,7 @@ Object.assign(studioUI, {
     if (['review', 'passage'].includes(this.supportPanel)) this.renderReview(issues);
   },
   renderReview(issues = this.passageIssues(app.passageDraft)) {
+    if (app.passageDraft?.partBEditor) { PartBWorkspace.renderReview(); return; }
     const panel = document.querySelector('.studio-review-panel'); if (!panel) return;
     panel.innerHTML = '<p class="field-note">Draft completeness checks. Saving and publishing follow the existing validation rules; an absent explanation is never generated.</p>';
     if (app.passageDraft.importDraftId) {

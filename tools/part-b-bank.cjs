@@ -90,6 +90,20 @@ var PartBBank = (() => {
     const ids = new Set(versions(item, items).map(q => q.id));
     return tests.filter(test => (test.standaloneItemIds || []).some(id => ids.has(id))).map(test => ({ id: test.assessmentId, title: test.title }));
   }
+  function withSharedTopic(items, id, topic) {
+    const item = items.find(q => q.id === id);
+    if (!item || typeof topic !== 'string' || !topic.trim()) return syncCanonicalContent(items);
+    const root = rootId(item, items);
+    return syncCanonicalContent(items.map(q => rootId(q, items) === root ? {...q, topic} : q));
+  }
+  function syncCanonicalContent(items) {
+    return items.map(q => {
+      if (!q.duplicateOf || q.canonicalContent !== true) return q;
+      const primary = items.find(item => item.id === rootId(q, items));
+      if (!primary || primary.duplicateOf) throw new Error('The combined question is missing. Refresh the bank.');
+      return withLabels({ ...structuredClone(primary), id: q.id, duplicateOf: primary.id, canonicalContent: true }, labels(q));
+    });
+  }
   function pairs(items) {
     const active = items.filter(q => !q.duplicateOf), result = [];
     for (let i = 0; i < active.length; i++) for (let j = i + 1; j < active.length; j++) {
@@ -98,19 +112,27 @@ var PartBBank = (() => {
     }
     return result;
   }
-  function combine(items, keepId, removeId, { verifiedSameQuestion = false, additionalLabels = [] } = {}) {
+  function combine(items, keepId, removeId, { verifiedSameQuestion = false, replaceOtherContent = false, additionalLabels = [] } = {}) {
     const keep = items.find(q => q.id === keepId), other = items.find(q => q.id === removeId);
     if (!keep || !other || keep === other || keep.duplicateOf || other.duplicateOf) throw new Error('Choose two current bank questions. Refresh the repeat checker.');
     const comparison = match(keep, other);
-    if (!comparison?.canCombine && !(verifiedSameQuestion === true && comparison?.canVerify)) throw new Error('These questions differ or have unresolved answer keys. Keep them separate until corrected, or explicitly verify a compatible pair.');
+    const replace = verifiedSameQuestion === true && replaceOtherContent === true && Boolean(comparison);
+    if (replace && !answerKey(keep)) throw new Error('Complete the chosen copy’s answer key before verifying it.');
+    if (!replace && !comparison?.canCombine && !(verifiedSameQuestion === true && comparison?.canVerify)) throw new Error('These questions differ or have unresolved answer keys. Keep them separate until corrected, or explicitly verify a compatible pair.');
     if (!Array.isArray(additionalLabels) || additionalLabels.some(label => typeof label !== 'string')) throw new Error('Source tags must be an array of text labels.');
-    const combined = withLabels(keep, [...labels(keep), ...versions(other, items).flatMap(labels), ...additionalLabels]);
-    if (!combined.explanation && other.explanation) {
+    // Current copies own editable tags. Retired versions retain provenance and
+    // attempt IDs, but must not restore labels the teacher deliberately removed.
+    const combined = withLabels(keep, [...labels(keep), ...labels(other), ...additionalLabels]);
+    if (!replace && !combined.explanation && other.explanation) {
       combined.explanation = other.explanation;
       if (other.explanationHtml) combined.explanationHtml = other.explanationHtml;
     }
-    return items.map(q => q.id === keepId ? combined : q.id === removeId || q.duplicateOf === removeId ? { ...q, duplicateOf: keepId } : q);
+    const related = new Set([...versions(keep, items), ...versions(other, items)].map(q => q.id));
+    const next = items.map(q => q.id === keepId ? combined : replace && related.has(q.id)
+      ? { ...q, duplicateOf: keepId, canonicalContent: true }
+      : q.id === removeId || q.duplicateOf === removeId ? { ...q, duplicateOf: keepId } : q);
+    return withSharedTopic(next, keepId, combined.topic);
   }
-  return { labels, withLabels, text, contentKey, answerKey, match, rootId, versions, usage, pairs, combine };
+  return { labels, withLabels, text, contentKey, answerKey, match, rootId, versions, usage, withSharedTopic, syncCanonicalContent, pairs, combine };
 })();
 if (typeof module !== 'undefined') module.exports = PartBBank;

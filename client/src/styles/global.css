@@ -14656,6 +14656,18 @@ button {
   border: 1px dashed #6d95e0;
 }
 .exam-math-drag-response.is-outlined:not(.is-table) .exam-math-drag-slot.is-filled { cursor: grab; }
+/* Sentences wrap word by word around inline blanks. Flex makes each text
+   fragment indivisible and pushes the entire remainder below the blank. */
+.exam-sentence-response .exam-math-drag-line {
+  display: block;
+}
+.exam-sentence-response .exam-math-drag-slot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
+  margin-inline: 3px;
+}
 .exam-session-shell .exam-math-document.is-math-outlined-drag .exam-math-panel {
   font-family: Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: #333;
@@ -14927,3 +14939,12 @@ dialog.exam-exhibits-dialog .katex-display { overflow-x: auto; overflow-y: hidde
 .exam-review-hot-spots { min-width: 0; margin: 0; padding: 0; border: 0; }
 .exam-review-hot-spots .exam-hot-spots .exam-choice.is-answer-correct { border-color: #22733e; background-color: rgb(52 151 84 / 18%); }
 .exam-review-hot-spots .exam-hot-spots .exam-choice.is-answer-incorrect { border-color: #a32d37; background-color: rgb(203 77 87 / 16%); }
+
+/* Preview controls participate in layout, so they never cover an answer. */
+.exam-preview-controls { padding: 12px 20px; background: #fff; color: #172b3a; border-bottom: 1px solid #aebbc7; }
+.exam-math-panel:not(.has-expanded-diagrams) h1 .exam-rich-text img,
+.exam-math-panel:not(.has-expanded-diagrams) > .exam-question-image img { max-height: 280px; width: auto; max-width: 100%; object-fit: contain; }
+.exam-diagram-size { padding: 8px 12px; min-height: 40px; color: #164d79; background: #fff; border: 1px solid #aebbc7; border-radius: 4px; }
+.exam-worksheet-exit { min-height: 36px; padding: 7px 12px; border: 1px solid #aebbc7; border-radius: 4px; background: #fff; color: #172b3a; font: inherit; cursor: pointer; }
+.exam-worksheet-exit:focus-visible, .exam-diagram-size:focus-visible { outline: 3px solid #287ec1; outline-offset: 2px; }
+.exam-worksheet-exit:disabled { opacity: .65; cursor: wait; }

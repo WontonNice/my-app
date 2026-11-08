@@ -8,7 +8,7 @@ const taxonomy = require('./math-topics.json');
 test('Math Study Hall follows the managed hierarchy and reserves topic resource sections', async () => {
   const entry = resolve(__dirname, '../client/src/components/MathStudyHall.tsx');
   const catalog = resolve(__dirname, '../client/src/lib/mathStudyHall.ts');
-  const result = await build({ stdin: { contents: `
+  const result = await build({ alias: require('./react-build-aliases.cjs')(resolve(__dirname,'..')), stdin: { contents: `
     import React from 'react'; import {renderToStaticMarkup} from 'react-dom/server';
     import {MathStudyHall} from ${JSON.stringify(entry)};
     import {mathStudyHref} from ${JSON.stringify(catalog)};
@@ -68,7 +68,7 @@ test('Math Study Hall follows the managed hierarchy and reserves topic resource 
 });
 
 test('student practice lists show parent modules while nested modules remain part of their generation set', async () => {
-  const result = await build({stdin:{contents:`
+  const result = await build({alias:require('./react-build-aliases.cjs')(resolve(__dirname,'..')),stdin:{contents:`
     import React from 'react';import {renderToStaticMarkup} from 'react-dom/server';
     import {PracticeModuleList} from ${JSON.stringify(resolve(__dirname,'../client/src/features/math-command/PracticeModuleList.tsx'))};
     import {defaultPracticeCatalog,movePracticeModule} from ${JSON.stringify(resolve(__dirname,'../server/src/shared/practiceCatalog.ts'))};
@@ -78,15 +78,15 @@ test('student practice lists show parent modules while nested modules remain par
   `,resolveDir:resolve(__dirname,'..'),loader:'tsx'},platform:'node',format:'cjs',bundle:true,write:false,jsx:'automatic',loader:{'.css':'empty'},define:{'import.meta.env':'{}'}});
   let html;
   vm.runInNewContext(result.outputFiles[0].text,{require,console:{log:value=>{html=value;}},process,URL,URLSearchParams,TextEncoder,TextDecoder,Buffer,setTimeout,clearTimeout,setImmediate,clearImmediate,queueMicrotask,AbortController,ReadableStream,WritableStream,TransformStream});
-  assert.match(html,/Start or resume Foundation Building/);assert.doesNotMatch(html,/Foundation Building settings|practice-module-settings-toggle/);
+  assert.match(html,/Start or resume Foundation Building/);assert.match(html,/Foundation Building settings/);
   assert.doesNotMatch(html,/Start Writing Inequalities/);assert.match(html,/Start or resume General Practice/);
-  assert.doesNotMatch(html,/One-step Inequalities|Inequalities: Variables on Both Sides|Writing Inequalities|Focused practice|practice-contained-module/);
+  assert.match(html,/Modules to practice/);assert.doesNotMatch(html,/practice-contained-module/);
   assert.equal((html.match(/<article\b/g)||[]).length,2,'Students see only Foundation Building and General Practice');
   assert.match(html,/4 generators/,'The parent still includes its own generators and the nested modules');
 });
 
 test('YouTube references render in-site play buttons with thumbnails and optional metadata', async () => {
-  const result=await build({stdin:{contents:`
+  const result=await build({alias:require('./react-build-aliases.cjs')(resolve(__dirname,'..')),stdin:{contents:`
     import React from 'react';import {renderToStaticMarkup} from 'react-dom/server';
     import {PracticeVideoList,PracticeVideoPlayer,youtubeEmbedUrl,videoViewsLabel,videoPublishedLabel} from ${JSON.stringify(resolve(__dirname,'../client/src/features/math-command/PracticeVideoList.tsx'))};
     const base={id:'video',title:'Solving Inequalities Using Multiplication or Division',description:'',url:'https://www.youtube.com/watch?v=abcdefghijk',category:'Algebra',topic:'Inequalities',published:true};

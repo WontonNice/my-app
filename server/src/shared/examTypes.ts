@@ -22,14 +22,20 @@ export type ExamPassageSection =
   | "reading"
   | "revising_editing_a";
 
-export type ExamPassageType = "informational" | "literary" | "long_reading" | "poem";
+// long_reading is accepted only for older saved content; it is no longer a library type.
+export type ExamPassageType = "informational" | "literary" | "revising_editing" | "long_reading" | "poem";
 
 export type ExamSource = {
+  publisher?: string;
+  /** Target entry level, independent of publisher, edition and collection. */
+  shsatLevel?: '8' | '9';
   sourceFamily?: string;
   sourceFormat?: string;
   /** Original source presentation metadata only. Every exam renders in the shared TestNav player. */
   playerProfile?: string;
   sourceId?: string;
+  /** Teacher-selected source collection, independent of import provenance. */
+  collection?: string;
   label?: string;
   url?: string;
   year?: string;
@@ -194,6 +200,7 @@ export type ExamQuestionImage = {
 };
 
 export type ExamQuestion = {
+  organization?: import('./learningTaxonomy').QuestionOrganization;
   source?: ExamSource;
   /** Stable ID in the teacher-managed Skilled registry; absent means TBD. */
   skilled?: string;
@@ -303,6 +310,8 @@ export type ExamMathSection = {
 };
 
 export type ExamContent = {
+  /** Immutable edition used for the lifetime of a versioned activity attempt. */
+  releaseId?: string;
   assessmentId: string;
   source?: ExamSource;
   questionOrder?: string[];
@@ -319,6 +328,7 @@ export type ExamContent = {
 };
 
 export type AssessmentContentSource = {
+  assembly?: { publishedReleaseId?: string };
   id: string;
   passageOrder?: string[];
   passages: {

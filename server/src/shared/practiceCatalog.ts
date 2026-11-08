@@ -96,7 +96,7 @@ export function reconcilePracticeSkilled(catalog:PracticeCatalog,skills:MathClas
       const linked=skills.find(skill=>skill.moduleIds?.includes(module.id)&&skill.category===module.category&&skill.subcategory===module.topic);
       const skilled=linked?.id??resolveSkilled(module.skilled,module.category,module.topic,skills);
       const definition=skills.find(skill=>skill.id===skilled);
-      return {...module,skilled,...(definition&&!practiceModuleKind(module)?{title:definition.label,titleMode:'skill' as const}:{})};
+      return {...module,skilled,...(definition&&(linked||module.titleMode!=='custom')&&!practiceModuleKind(module)?{title:definition.label,titleMode:'skill' as const}:{})};
     })};
 }
 /** Skill moves change organization, never the mathematical meaning of a generator. */
@@ -166,12 +166,42 @@ export function managedGeneratorIds(module:ManagedPracticeModule,catalog:Pick<Pr
     const grouped=new Set(members.flatMap(child=>child.ids));
     const published=new Set(members.filter(child=>child.module.published).flatMap(child=>child.ids));
     const selected=new Set(members.filter(child=>child.module.published&&(!selection.childModuleIds||selection.childModuleIds.includes(child.module.id))).flatMap(child=>child.ids));
-    return catalog.generators.filter(generator=>generator.enabled&&sameTopic(module,generator)
+    return catalog.generators.filter(generator=>generatorAvailable(generator)&&sameTopic(module,generator)
       &&(!grouped.has(generator.id)||published.has(generator.id))
       &&(kind==='general'||(grouped.has(generator.id)?selected.has(generator.id):selection.includeUnassigned!==false))
       &&(!selection.topics||selection.topics.includes(generatorTopicKey(generator)))).map(generator=>generator.id);
   }
-  return catalog.generators.filter(generator=>generator.enabled&&(module.includeAll||module.generatorIds.includes(generator.id))&&(!selection.topics||selection.topics.includes(generatorTopicKey(generator)))).map(generator=>generator.id);
+  return catalog.generators.filter(generator=>generatorAvailable(generator)&&(module.includeAll||module.generatorIds.includes(generator.id))&&(!selection.topics||selection.topics.includes(generatorTopicKey(generator)))).map(generator=>generator.id);
+}
+export function generatorReviewSignature(generator:PracticeGeneratorDefinition){
+  const text=JSON.stringify([generator.kind,generator.builtinId,generator.settings,generator.template]);
+  let hash=2166136261;for(const character of text)hash=Math.imul(hash^character.charCodeAt(0),16777619);
+  return (hash>>>0).toString(16);
+}
+export function reviewedGeneratorChange(previous:PracticeGeneratorDefinition,next:PracticeGeneratorDefinition,approving=false):PracticeGeneratorDefinition{
+  const changed=generatorReviewSignature(previous)!==generatorReviewSignature(next);
+  return {...next,...(changed?{reviewRequired:true,reviewStatus:'unreviewed' as const,reviewedSignature:undefined,enabled:false}:{}),...(approving?{reviewRequired:true,reviewStatus:'approved' as const,reviewedSignature:generatorReviewSignature(next)}:{})};
+}
+export function generatorAvailable(generator:PracticeGeneratorDefinition){return generator.enabled&&(!generator.reviewRequired||(generator.reviewStatus==='approved'&&generator.reviewedSignature===generatorReviewSignature(generator)));}
+export function practicePublicationReadiness(module:ManagedPracticeModule,catalog:PracticeCatalog){
+  const effective=managedGeneratorIds(module,catalog),issues:string[]=[];
+  if(!effective.length)issues.push('No enabled, reviewed generators are available.');
+  for(const id of effective){const generator=catalog.generators.find(item=>item.id===id)!;try{generateCatalogQuestion(generator,0,'publication-check',3);}catch{issues.push(`${generator.title}: its runtime is unavailable or the template is invalid.`);}}
+  return {ready:!issues.length,count:effective.length,issues};
+}
+/** New and materially changed generators must be reviewed; existing teaching access is retained. */
+export function reviewPracticePublication(previous:PracticeCatalog,next:PracticeCatalog):PracticeCatalog{
+  const meaning=(generator:PracticeGeneratorDefinition)=>JSON.stringify([generator.kind,generator.builtinId,generator.settings,generator.template]);
+  const generators=next.generators.map(generator=>{
+    const old=previous.generators.find(item=>item.id===generator.id);
+    const reviewRequired=generator.reviewRequired||!old||meaning(old)!==meaning(generator);
+    if(reviewRequired&&generator.enabled&&(generator.reviewStatus!=='approved'||generator.reviewedSignature!==generatorReviewSignature(generator)))throw new Error(`${generator.title}: review and approve the generator before enabling it, or disable it while drafting.`);
+    if(reviewRequired&&generator.enabled){for(let index=0;index<5;index++)generateCatalogQuestion(generator,index,'publication-check',3);}
+    return {...generator,...(reviewRequired?{reviewRequired:true}:{})};
+  });
+  const catalog={...next,generators};
+  for(const module of next.modules.filter(module=>module.published&&!practiceModuleKind(module))){const readiness=practicePublicationReadiness(module,catalog);if(!readiness.ready)throw new Error(`${module.title}: ${readiness.issues.join(' ')}`);}
+  return catalog;
 }
 export function movePracticeModule(catalog:PracticeCatalog,moduleId:string,parentId:string|null):PracticeCatalog {
   const module=catalog.modules.find(item=>item.id===moduleId);
@@ -245,6 +275,8 @@ export function validateGenerator(value:unknown):PracticeGeneratorDefinition {
     return values;
   };
   const organization:GeneratorOrganization={};
+  if(row.reviewRequired!==undefined)organization.reviewRequired=bool(row.reviewRequired);
+  if(row.reviewedSignature!==undefined)organization.reviewedSignature=text(row.reviewedSignature,'Review signature',16);
   if(row.skills!==undefined)organization.skills=list(row.skills,'Skills',20,120);
   if(row.prerequisites!==undefined)organization.prerequisites=list(row.prerequisites,'Prerequisites',20,120);
   if(row.sourceQuestionIds!==undefined)organization.sourceQuestionIds=list(row.sourceQuestionIds,'Source question IDs',50,100).map(id);
@@ -294,7 +326,7 @@ export function validatePracticeCatalog(value:unknown,topics?:PracticeTaxonomy):
     for(const module of modules)if(module.skilled!==undefined){
       module.skilled=resolveSkilled(module.skilled,module.category,module.topic,topics.classificationSkills);
       const skill=topics.classificationSkills.find(skill=>skill.id===module.skilled);
-      if(skill&&!practiceModuleKind(module)){module.title=skill.label;module.titleMode='skill';}
+      if(skill&&(module.titleMode!=='custom'||skill.moduleIds?.includes(module.id))&&!practiceModuleKind(module)){module.title=skill.label;module.titleMode='skill';}
     }
   }
   const usedIds=new Set(modules.map(module=>module.id));
@@ -317,10 +349,10 @@ export function validatePracticeCatalog(value:unknown,topics?:PracticeTaxonomy):
   return ensureTopicPracticeModules({modules,generators,videos,...(recommended?{recommended}:{})},topics);
 }
 export function studentPracticeCatalog(catalog:PracticeCatalog):PracticeCatalog {
-  const modules=catalog.modules.filter(module=>module.published);
+  const modules=catalog.modules.filter(module=>module.published&&managedGeneratorIds(module,catalog).length>0);
   // Remove hidden-only content before omitting its module; it must not reappear as unassigned.
   const available=new Set(modules.flatMap(module=>managedGeneratorIds(module,catalog)));
-  const enabled=new Set(catalog.generators.filter(g=>g.enabled).map(g=>g.id));
+  const enabled=new Set(catalog.generators.filter(generatorAvailable).map(g=>g.id));
   const recommended=catalog.recommended?.map(category=>({...category,modules:category.modules.filter(m=>m.published).map(m=>({...m,generatorIds:m.generatorIds.filter(id=>enabled.has(id))})).filter(m=>m.generatorIds.length)})).filter(category=>category.modules.length);
   const picked=new Set(recommended?.flatMap(category=>category.modules.flatMap(m=>m.generatorIds)));
   return {...catalog,modules,generators:catalog.generators.filter(generator=>generator.enabled&&available.has(generator.id)),videos:catalog.videos.filter(video=>video.published),

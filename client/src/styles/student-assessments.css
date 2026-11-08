@@ -42,6 +42,7 @@
 .student-exams-action { text-align:right; white-space:nowrap; }
 .student-exams-action > a { display:inline-flex; align-items:center; justify-content:center; gap:7px; min-height:32px; border-radius:5px; padding:7px 11px; background:var(--student-green); color:#fff; text-decoration:none; font-size:.68rem; font-weight:650; }
 .student-exams-action > a:hover { background:var(--student-green-2); }
+.student-exams-action > a.student-exams-manage { display:flex; width:fit-content; margin:5px 0 0 auto; background:transparent; color:var(--student-green); text-decoration:underline; }
 .student-exams-action > span { color:var(--student-muted); font-size:.63rem; }
 .student-exams-note { display:flex; align-items:center; gap:7px; border-top:1px solid var(--student-line); padding:13px 22px; color:var(--student-muted); font-size:.65rem; line-height:1.5; }
 .student-exams-note > svg { flex:none; }
@@ -81,3 +82,6 @@
   .student-exams-note { padding:14px 16px; }
 }
 
+
+.student-exams-action > button.student-exams-manage { display:block; margin:5px 0 0 auto; min-height:32px; border:0; background:transparent; color:var(--student-green); text-decoration:underline; cursor:pointer; }
+.student-exams-action > button:disabled { opacity:.6; cursor:wait; }

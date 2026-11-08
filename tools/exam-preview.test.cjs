@@ -27,3 +27,10 @@ test('saved editor content takes precedence over the bundled catalog without cha
   assert.equal(preview.content.mathSection.questions[0].prompt, 'Latest saved editor change');
   assert.notEqual(original.mathSection.questions[0].prompt, 'Latest saved editor change');
 });
+
+test('worksheet preview respects its actual source identity and duration',()=>{
+  const source={sourceFamily:'official_shsat',shsatLevel:'9',year:'2008-2009'};
+  const content={assessmentId:'grade9-preview',title:'Grade 9 worksheet',source,passageSets:[],previewMetadata:{durationMinutes:30,studyHallWorksheet:{subject:'math',scope:'mixed',category:'Math',source}}};
+  const preview=createExamPreviewSession(content,'math',()=>{});
+  assert.equal(preview.assessment.durationMinutes,30);assert.equal(preview.assessment.studyHallWorksheet.source.shsatLevel,'9');assert.equal(preview.content.source.shsatLevel,'9');
+});

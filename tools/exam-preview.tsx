@@ -12,7 +12,7 @@ function ExamPreview() {
     const params = new URLSearchParams(location.search);
     const id = params.get('assessmentId');
     if (!id) { setError('Choose an exam in Content Studio to view it.'); return; }
-    fetch('/api/exams/' + encodeURIComponent(id) + '/preview', { signal: controller.signal, cache: 'no-store' })
+    fetch('/api/exams/' + encodeURIComponent(id) + '/preview' + (params.get('draft')==='1'?'?draft=1':''), { signal: controller.signal, cache: 'no-store' })
       .then(async response => {
         if (!response.ok) throw new Error('The saved exam could not be loaded. Close this view and reopen it to retry.');
         return response.json();

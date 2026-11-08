@@ -1,3 +1,6 @@
+import { LibraryBookSession } from '../components/LibraryBookSession';
+import { getLibraryBookContent } from '../lib/api';
+import '../styles/library-book-settings.css';
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import {
   ArrowLeft,
@@ -440,6 +443,9 @@ export function AdvancedPassagePage() {
     ? libraryBook
     : getAdvancedPracticePassage(bookId);
   const passageSet = passageEntry?.passageSet;
+  const [edition, setEdition] = useState<Awaited<ReturnType<typeof getLibraryBookContent>> | null>(null);
+  const [editionError, setEditionError] = useState('');
+  const [editionRetry, setEditionRetry] = useState(0);
   const [activeTool, setActiveTool] = useState<AdvancedTool>("pointer");
   const [attempts, setAttempts] = useState<StudentLibraryAttempt[]>([]);
   const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<string[]>([]);
@@ -487,6 +493,15 @@ export function AdvancedPassagePage() {
   useEffect(() => {
     if (previewContext.isPreview) questionStartedAtRef.current = Date.now();
   }, [previewContext.isPreview]);
+
+  useEffect(() => {
+    if (!isShsatLibraryPassage || bookId.startsWith('lab-set-') || !accessToken || !isUnlocked) return;
+    let current = true;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Clear stale failure feedback before retrying the external edition request.
+    setEditionError('');
+    getLibraryBookContent(accessToken, bookId).then(value => { if (current) setEdition(value); }).catch(reason => { if (current) setEditionError(reason instanceof Error ? reason.message : 'Book could not be loaded.'); });
+    return () => { current = false; };
+  }, [bookId, accessToken, isUnlocked, isShsatLibraryPassage, editionRetry]);
 
   const questions = passageSet?.questions ?? [];
   const activeQuestion = questions[questionIndex];
@@ -587,6 +602,7 @@ export function AdvancedPassagePage() {
   function openCorrections() { navigateTo(libraryCorrectionsHref(window.location.pathname, previewContext)); }
 
   function startAnotherAttempt() {
+    setEdition(null); setEditionRetry(value => value + 1);
     setActiveTool("pointer");
     setBookmarkedQuestionIds([]);
     setEliminatedChoices({});
@@ -680,6 +696,12 @@ export function AdvancedPassagePage() {
       </main>
     );
   }
+
+  if (isShsatLibraryPassage && !isBankSet && !isComplete) {
+    if (!edition) return <main className="advanced-passage-page"><a href={backHref}>← Library</a>{previewContext.mode === 'teacher' && <a href={`/teacher/library/${encodeURIComponent(bookId)}#book-settings`}>Book settings</a>}<p role={editionError ? 'alert' : 'status'}>{editionError || 'Loading book questions…'}</p>{editionError && <button type="button" onClick={() => setEditionRetry(value => value + 1)}>Retry</button>}</main>;
+    return <LibraryBookSession book={edition.book} revision={edition.revision} accessToken={accessToken} studentName={studentName} preview={previewContext.isPreview} teacher={previewContext.mode === 'teacher'} backHref={backHref} onComplete={attempt => { if (attempt) { setResultAttempt(attempt); setAttempts(current => [attempt, ...current]); } setIsComplete(true); }} />;
+  }
+  if (isComplete && previewContext.isPreview && isShsatLibraryPassage && !isBankSet) return <main className="library-finish-page"><h1>Book preview complete</h1><p>Preview answers do not save student scores.</p><a href={backHref}>Return to library</a> · <a href={`/teacher/library/${encodeURIComponent(bookId)}#book-settings`}>Book settings</a><p><button type="button" onClick={startAnotherAttempt}>Preview again</button></p></main>;
 
   const currentQuestionId = activeQuestion.id;
   const currentEliminatedChoices = eliminatedChoices[currentQuestionId] ?? [];

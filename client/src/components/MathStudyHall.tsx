@@ -3,6 +3,7 @@ import { lazy, Suspense, useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, FileText, Infinity as InfinityIcon, Layers3, Play, Star } from "lucide-react";
 import { AppLink } from "./AppLink";
 import { mathStudyHref } from "../lib/mathStudyHall";
+import { StudyHallWorksheetLinks } from './StudyHallWorksheetLinks';
 import { appendStudentPreview, type StudentPreviewContext } from "../lib/studentPreview";
 import { recommendedSectionTitle, recommendedPracticeCatalog, type PracticeCatalog, managedGeneratorIds, practiceModuleKind, type PracticeSelection } from "../../../server/src/shared/practiceCatalog";
 import { PracticeModuleList } from "../features/math-command/PracticeModuleList";
@@ -13,9 +14,10 @@ import { practiceProgressEvent, readPracticeProgress } from "../features/math-co
 import "../styles/math-study-hall.css";
 const PracticePlayer = lazy(() => import("../features/math-command/InequalityPractice").then(module => ({ default: module.InequalityPractice })));
 
-export function MathStudyHall({ query, previewContext }: { query: string; previewContext: StudentPreviewContext }) {
+export function MathStudyHall({ query, previewContext, view }: { query: string; previewContext: StudentPreviewContext; view?: 'categories' | 'recommended' }) {
   const [search, setSearch] = useState(() => window.location.search);
   const [selectedModule, setSelectedModule] = useState<{id:string;selection:PracticeSelection;startNew?:boolean;catalog?:PracticeCatalog} | null>(null);
+  const [launchError,setLaunchError]=useState('');
   const {catalog,taxonomy,error,loading,reload}=usePracticeCatalog();
   const {profile}=useAccountProfile();
   const owner=previewContext.isPreview?'preview:'+previewContext.mode+':'+(previewContext.studentId||'teacher'):profile?.id;
@@ -49,8 +51,10 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
   const modules=catalog?.modules.filter(module=>module.published&&module.category===category?.label&&module.topic===topic)??[];
   const videos=catalog?.videos.filter(video=>video.published&&video.category===category?.label&&video.topic===topic)??[];
   async function startModule(id:string,selection:PracticeSelection,startNew=false) {
+    setLaunchError('');
     const next=await reload();
     if(next?.modules.some(module=>module.id===id&&module.published&&managedGeneratorIds(module,next,selection).length>0))setSelectedModule({id,selection,startNew});
+    else if(next)setLaunchError('This practice module no longer has available questions. Choose another module or refresh the page.');
   }
   async function startRecommended(id:string) {
     const fresh=await reload();
@@ -62,7 +66,8 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
 
   if(!taxonomy)return <section className="math-study-hall" aria-labelledby="math-study-title"><h2 id="math-study-title">Math categories</h2>{error?<div className="math-study-resource-status" role="alert"><p>{error}</p><button type="button" onClick={()=>void reload()}>Try again</button></div>:<p role="status">Loading math categories…</p>}</section>;
 
-  return <section className="math-study-hall" aria-labelledby="math-study-title">
+  return <section className="math-study-hall" aria-labelledby={view === 'recommended' ? 'recommended-heading' : 'math-study-title'}>
+    <div hidden={view === 'recommended'}>
     <nav className="math-study-breadcrumbs" aria-label="Math topic navigation">
       <AppLink href={href()}>Math categories</AppLink>
       {category && <><span aria-hidden="true">/</span><AppLink href={href(category.label)} aria-current={!topic ? "page" : undefined}>{category.label}</AppLink></>}
@@ -79,11 +84,12 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
       <div className="math-study-resources">
         <section aria-labelledby="math-infinite-title" className="math-study-resource-section math-study-practice-section">
           <header><InfinityIcon size={28} aria-hidden="true" /><div><h3 id="math-infinite-title">Infinite practice</h3><p>Practice the full topic in General Practice, or choose modules and earn module stars in Foundation Building.</p></div></header>
+          {launchError&&<p role="alert">{launchError}</p>}
           {resourceStatus??(modules.length?<PracticeModuleList catalog={catalog!} previewContext={previewContext} category={category.label} topic={topic} onStart={(id,selection,startNew)=>void startModule(id,selection,startNew)}/>:<div className="math-study-resource-empty"><InfinityIcon size={34} aria-hidden="true" /><strong>No practice modules yet</strong><p>Modules published by your teacher will appear here.</p></div>)}
         </section>
         <section aria-labelledby="math-worksheets-title" className="math-study-resource-section">
           <header><FileText size={21} aria-hidden="true" /><div><h3 id="math-worksheets-title">Worksheets</h3><p>Work through a focused set at your own pace.</p></div></header>
-          <div className="math-study-resource-empty"><FileText size={30} aria-hidden="true" /><strong>No worksheets yet</strong><p>Worksheets from your teacher will appear here.</p></div>
+          <StudyHallWorksheetLinks subject="math" category={category.label} topic={topic} query={query} previewContext={previewContext} />
         </section>
         <section aria-labelledby="math-videos-title" className="math-study-resource-section">
           <header><Play size={23} aria-hidden="true"/><div><h3 id="math-videos-title">YouTube videos</h3><p>Educational references for this topic.</p></div></header>
@@ -103,12 +109,16 @@ export function MathStudyHall({ query, previewContext }: { query: string; previe
         {!mathStudyCategories.some(item => matches(`${item.label} ${item.topics.join(" ")}`)) && <p className="math-study-empty">No math categories match your search.</p>}
       </div>}
     </>}
-    {!categoryName&&!topicName&&<section className="math-recommended" aria-labelledby="recommended-heading">
+    {!category && view === "categories" && <section className="math-study-resource-section"><h3>General & mixed review worksheets</h3><p>Find official Grade 9 collections and worksheets covering several topics.</p><StudyHallWorksheetLinks subject="math" scope="mixed" query={query} previewContext={previewContext} /></section>}
+    {category && !topic && <section className="math-study-resource-section"><h3>Worksheets</h3><StudyHallWorksheetLinks subject="math" category={category.label} query={query} previewContext={previewContext} /></section>}
+    </div>
+    {view !== 'categories'&&!categoryName&&!topicName&&<section className="math-recommended" aria-labelledby="recommended-heading">
       <header><h2 id="recommended-heading">{recommendedSectionTitle}</h2>{previewContext.isPreview&&<AppLink href="/teacher/practice-studio#recommended">Manage recommendations</AppLink>}</header>
+      <StudyHallWorksheetLinks subject="math" category={recommendedSectionTitle} query={query} previewContext={previewContext} />
       {recommended.map(c=><details key={c.id}><summary>{c.title} <small>{c.modules.length} {c.modules.length===1?'module':'modules'}</small></summary>
         {c.modules.map(m=><button key={m.id} type="button" onClick={()=>void startRecommended(m.id)}><span>{m.title}</span><small>{m.generatorIds.length} {m.generatorIds.length===1?'template':'templates'}</small><Play size={16} aria-hidden="true"/></button>)}
       </details>)}
-      {!recommended.length&&<p>{query?'No recommended modules match your search.':'No recommended modules published yet.'}</p>}
+      {!recommended.length&&<p>{query?'No recommended practice modules match your search.':'No recommended practice modules published yet.'}</p>}
       {error&&<p role="alert">{error}</p>}
     </section>}
     {selectedModule && catalog && <Suspense fallback={<p role="status">Opening practice…</p>}><PracticePlayer key={selectedModule.id} initialModuleId={selectedModule.id} initialSelection={selectedModule.selection} initialStartNew={selectedModule.startNew} catalog={selectedModule.catalog??catalog} onClose={() => setSelectedModule(null)} /></Suspense>}

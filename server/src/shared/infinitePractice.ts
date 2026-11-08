@@ -1,6 +1,7 @@
 import { probabilityBatchPractice } from './probabilityBatchPractice';
 import { prob2Practice } from './prob2Practice';
 import { algebraPlannerPractice } from './algebraPlannerPractice';
+import { exponentsPractice } from './exponentsPractice';
 import type { ExamQuestion } from './examTypes';
 import { generateInequality, generateVariablesBothSidesInequality, variablesBothSidesTemplate } from './inequalityPractice';
 import { generateWritingInequality, writingInequalitiesTemplate } from './writingInequalities';
@@ -38,6 +39,7 @@ export const practiceGenerators: Generator[] = [
   ...probabilityBatchPractice.map(template=>({...template,foundation:template.destination.groupType==='foundation',generate:(index:number,seed:string)=>template.generate(index,seed).question})),
   ...prob2Practice.map(template=>({...template,foundation:template.destination.groupType==='foundation',generate:(index:number,seed:string)=>template.generate(index,seed).question})),
   ...algebraPlannerPractice.map(template=>({...template,foundation:true,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
+  ...exponentsPractice.map(template=>({...template,foundation:true,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
 ];
 
 // Targeted modules can combine any number of registered generators. Stable IDs

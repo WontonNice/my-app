@@ -1,5 +1,4 @@
-import { readCachedJson } from "../lib/cachedJson";
-import fs from "node:fs";
+import { activityStore } from '../lib/activityStore';
 import path from "node:path";
 
 export type AssessmentStatus = "locked" | "open";
@@ -52,6 +51,8 @@ export type AssessmentSection = "english" | "math";
 export type AssessmentSectionAccess = Record<AssessmentSection, boolean>;
 
 export type Assessment = {
+    assembly?: { draftQuestionIds: string[]; reviewed: boolean; previewedContentHash?:string; reviewedContentHash?:string; publishedReleaseId?: string; publishedQuestionIds?: string[]; publishedAt?: string; publishedMetadata?:Pick<Assessment,'title'|'description'|'durationMinutes'|'studyHallWorksheet'> };
+  studyHallWorksheet?: import("../shared/studyHallWorksheets").StudyHallWorksheet | null;
     examLabel?: string;
     correctionsOpen?: boolean;
     allowCompletedAccess: boolean;
@@ -72,6 +73,9 @@ export type Assessment = {
 };
 
 export type AssessmentSummary = {
+  assembly?: { publishedReleaseId?: string };
+  studyHallWorksheet?: import("../shared/studyHallWorksheets").StudyHallWorksheet | null;
+    examLabel?: string;
     correctionsOpen: boolean;
     allowCompletedAccess: boolean;
     classId: string;
@@ -87,7 +91,8 @@ export type AssessmentSummary = {
     title: string;
 };
 
-export type StudentAssessmentDetail = Omit<Assessment, "formAssignments" | "forms"> & {
+export type StudentAssessmentDetail = Omit<Assessment, "formAssignments" | "forms" | "assembly"> & {
+    assembly?: {publishedReleaseId?:string};
     assignedFormId?: string;
     assignedFormLabel?: string;
     passageOrder?: string[];
@@ -108,22 +113,10 @@ export type CreateAssessmentInput = {
     title: string;
 };
 
-const assessmentsFilePath = path.resolve(__dirname, "../../data/assessments.json");
-
-function ensureAssessmentFile() {
-    if (fs.existsSync(assessmentsFilePath)) {
-        return;
-    }
-
-    fs.mkdirSync(path.dirname(assessmentsFilePath), { recursive: true });
-    fs.writeFileSync(assessmentsFilePath, "[]\n", "utf8");
-}
+const activities = activityStore<Assessment>(path.resolve(__dirname, '../../data'));
 
 function readAssessments(): Assessment[] {
-    ensureAssessmentFile();
-
-    try {
-        const assessments = readCachedJson<unknown>(assessmentsFilePath);
+        const assessments = activities.read();
 
         return Array.isArray(assessments)
             ? (assessments as Assessment[]).map((assessment) => {
@@ -152,14 +145,10 @@ function readAssessments(): Assessment[] {
                   };
               })
             : [];
-    } catch {
-        return [];
-    }
 }
 
 function writeAssessments(assessments: Assessment[]) {
-    ensureAssessmentFile();
-    fs.writeFileSync(assessmentsFilePath, `${JSON.stringify(assessments, null, 2)}\n`, "utf8");
+    activities.write(assessments);
 }
 
 function slugify(value: string) {
@@ -171,7 +160,11 @@ function slugify(value: string) {
 }
 
 export function toAssessmentSummary(assessment: Assessment): AssessmentSummary {
+    assessment={...assessment,...assessment.assembly?.publishedMetadata};
     return {
+        ...(assessment.assembly ? { assembly:{publishedReleaseId:assessment.assembly.publishedReleaseId} } : {}),
+        examLabel: assessment.examLabel,
+        studyHallWorksheet: assessment.studyHallWorksheet,
         correctionsOpen: assessment.correctionsOpen === true,
         allowCompletedAccess: assessment.allowCompletedAccess,
         classId: assessment.classId,
@@ -192,6 +185,7 @@ export function listStudentAssessments(classIds: string[]) {
     const allowedClassIds = new Set(classIds);
 
     return readAssessments()
+        .filter(assessment => !assessment.assembly || Boolean(assessment.assembly.publishedReleaseId))
         .filter((assessment) => allowedClassIds.has(assessment.classId))
         .map(toAssessmentSummary);
 }
@@ -205,7 +199,7 @@ export function findAssessmentForStudent(assessmentId: string, classIds: string[
     const allowedClassIds = new Set(classIds);
 
     return readAssessments().find(
-        (assessment) => assessment.id === assessmentId && allowedClassIds.has(assessment.classId),
+        (assessment) => assessment.id === assessmentId && allowedClassIds.has(assessment.classId) && (!assessment.assembly || Boolean(assessment.assembly.publishedReleaseId)),
     );
 }
 
@@ -342,11 +336,13 @@ export function toStudentAssessmentDetail(
     assessment: Assessment,
     studentId: string,
 ): StudentAssessmentDetail {
-    const { formAssignments: _formAssignments, forms: _forms, ...studentAssessment } = assessment;
+    assessment={...assessment,...assessment.assembly?.publishedMetadata};
+    const { formAssignments: _formAssignments, forms: _forms, assembly, ...studentAssessment } = assessment;
     const assignedFormId = assessment.formAssignments[studentId];
     const assignedForm = assessment.forms.find((form) => form.id === assignedFormId);
     return {
         ...studentAssessment,
+        ...(assembly?{assembly:{publishedReleaseId:assembly.publishedReleaseId}}:{}),
         assignedFormId: assignedForm?.id,
         assignedFormLabel: assignedForm?.label,
         passageOrder: assignedForm?.passageOrder,

@@ -8,7 +8,7 @@ const PartBWorkspace = {
       this.previous = { parent: editor.parentNode, next: editor.nextSibling, draft: app.passageDraft, id: app.selectedPassageId, dirty: app.passageDirty, mode: app.passageMode, library: app.passageLibrary };
     }
     if (!app.passageDraft?.partBEditor || app.passageDraft.questions[0] !== question) {
-      app.passageDraft = { ...defaultPassage(), id: `part-b-editor-${question.id}`, title: '', format: 'prose', preserveSourceLayout: true, text: question.stimulus || '', richText: question.stimulusHtml || '', questions: [question], section: 'revising_editing_a', partBEditor: true };
+      app.passageDraft = { ...defaultPassage(), id: `part-b-editor-${question.id}`, title: '', format: 'prose', preserveSourceLayout: true, text: question.stimulus || '', richText: question.stimulusHtml || '', questions: [question], section: 'revising_editing_b', partBEditor: true };
       app.selectedPassageId = app.passageDraft.id;
       app.passageMode = 'exam'; app.passageDirty = app.standaloneDirty;
       studioUI.passageContext = '';
@@ -16,10 +16,14 @@ const PartBWorkspace = {
     const host = document.getElementById('standalone-editor');
     if (editor.parentNode !== host) { host.replaceChildren(editor); }
     renderPassageEditor();
+    // The shared editor normalizes questions by cloning them. All Part B
+    // metadata controls must edit that same normalized question instance.
+    this.sync();
     editor.querySelector('.editor-head h1').textContent = 'Part B question';
-    const destination = editor.querySelector('.studio-publish-exam');
+    const destination = editor.querySelector('.studio-publish-destination');
     if (destination) destination.hidden = true;
     editor.querySelector('#save-passage').textContent = question.documentDraftId || question.importDraftId ? 'Save draft' : 'Save Part B question';
+    editor.querySelector('#open-student-preview').removeEventListener('click', openStudentPreview);
     editor.querySelector('#open-student-preview').onclick = openStandaloneStudentPreview;
     for (const id of ['create-passage-version', 'delete-passage', 'add-question']) editor.querySelector('#' + id)?.setAttribute('hidden', '');
     editor.querySelectorAll('.studio-direct-question button').forEach(button => { if (button.textContent === '+ Question') button.hidden = true; });
@@ -30,23 +34,170 @@ const PartBWorkspace = {
     }
     if (question.documentDraftId && destination) {
       destination.hidden = false;
-      destination.querySelector('option').textContent = 'Choose an exam';
-      const count = PartBImport.documentBase.entry.content.questions.length;
-      const publish = studioUI.element('button', 'secondary', `Publish ${count} reviewed questions`);
-      publish.type = 'button';
-      publish.onclick = async () => {
-        const assessmentId = destination.querySelector('select').value;
-        if (!assessmentId) { setStatus('Choose a destination exam before publishing.', 'error'); return; }
-        if (!await this.save()) return;
-        app.saving = true;
-        try {
-          await api('/api/document-publish-english', { method: 'POST', body: JSON.stringify({ entryId: question.documentDraftId, assessmentId, revision: PartBImport.documentBase.revision }) });
-          await reloadState(); renderStandaloneEditor(); setStatus('Reviewed Part B questions published.', 'success');
-        } catch (error) { setStatus(error.message, 'error'); }
-        finally { app.saving = false; studioUI.syncSaveState(); }
-      };
+      destination.querySelector('[aria-label="Publish destination"] option').textContent = 'Choose an exam or worksheet';
+      editor.querySelector('#save-passage').className = 'secondary';
+      const publish = studioUI.element('button', 'primary', 'Publish this question');
+      publish.type = 'button'; publish.id = 'publish-part-b-question';
+      publish.onclick = () => this.publish();
       editor.querySelector('.studio-item-actions').append(publish);
     }
+    this.mountMetadata(editor);
+    if (question.importDraftId) {
+      const remove = studioUI.element('button', 'danger', 'Delete draft');
+      remove.type = 'button'; remove.onclick = () => PartBImport.deleteCurrent();
+      editor.querySelector('.studio-item-actions').append(remove);
+    } else {
+      const remove = studioUI.element('button', 'danger', question.documentDraftId ? 'Delete draft' : 'Delete question');
+      remove.type = 'button'; remove.id = 'delete-part-b-question'; remove.onclick = () => this.deleteCurrent();
+      editor.querySelector('.studio-item-actions').append(remove);
+    }
+  },
+  async deleteCurrent() {
+    if (app.saving || !app.standaloneDraft) return;
+    this.sync();
+    const question = app.standaloneDraft;
+    const isDraft = Boolean(question.documentDraftId);
+    const saved = app.state.standaloneItems.find(q => q.id === question.id);
+    const usage = saved ? PartBBank.usage(saved, app.state.standaloneItems, app.state.tests || []) : [];
+    if (usage.length) {
+      studioUI.showSupportPanel('passage');
+      setStatus(`This question appears in ${usage.map(exam=>exam.title || exam.id).join(', ')}. Remove it from those exams in the exam builder before deleting it from the bank.`, 'error');
+      return;
+    }
+    if (!window.confirm(`Delete this ${isDraft?'draft':'question'}?${app.standaloneDirty?' Unsaved edits will also be discarded.':''}\n\n${isDraft?'Other questions in this import will be kept.':saved?'A recovery copy will be kept.':''}`)) return;
+    app.saving = true;
+    const editor = document.getElementById('standalone-editor'); editor.inert = true;
+    try {
+      if (isDraft) {
+        const base = PartBImport.documentBase;
+        if (base?.entry.id !== question.documentDraftId) throw new Error('Reopen this draft before deleting.');
+        const state = await api('/api/document-drafts',{method:'DELETE',body:JSON.stringify({id:question.documentDraftId,questionId:question.id,revision:base.revision})});
+        PartBImport.documentState = state; PartBImport.documentBase = null;
+      } else if (saved) {
+        const result = await api('/api/standalone-items',{method:'DELETE',body:JSON.stringify({id:question.id,sourceHash:app.state.standaloneSourceHash})});
+        const removed = new Set(result.deleted.removedIds);
+        app.state.standaloneItems = app.state.standaloneItems.filter(q=>!removed.has(q.id));
+      }
+      app.standaloneDirty = false; app.passageDirty = false;
+      this.leave();
+      app.standaloneDraft = null; app.selectedStandaloneItemId = '';
+      await reloadState();
+      renderStandaloneList(); renderStandaloneEditor();
+      setStatus(isDraft?'Part B draft deleted. Other questions were kept.':saved?'Part B question deleted. A recovery copy was kept.':'Unsaved Part B question discarded.', 'success');
+    } catch(error) { setStatus(error.message,'error'); }
+    finally { app.saving = false; editor.inert = false; studioUI.syncSaveState(); }
+  },
+  mountMetadata(editor) {
+    editor.querySelector('#passage-version-indicator')?.remove();
+    editor.querySelectorAll('.source-path').forEach(node => node.hidden = true);
+    editor.querySelector('#save-passage').title = 'Save Part B question (Ctrl / ⌘ + S)';
+    for (const field of ['title','author','blurb','section','versionLabel','versionLabels','teacherSource','passageCategory','passageType','format','label','sourceNote']) {
+      editor.querySelector(`[data-field="${field}"]`)?.closest('.field')?.setAttribute('hidden','');
+    }
+    const information = editor.querySelector('#passage-information');
+    information.querySelector('.panel-head').hidden = true;
+    const settings = editor.querySelector('[data-option-group="settings"]');
+    if (settings) { settings.open = true; settings.querySelector('summary').hidden = true; }
+    const question = app.standaloneDraft;
+    const source = this.sourceInfo(question);
+    const usage = PartBBank.usage(question, app.state.standaloneItems, app.state.tests || []);
+    const details = studioUI.element('div', 'studio-part-b-details');
+    const categories = app.state.passageCategories || [{value:'official_handbook',label:'Official Handbook'},{value:'prestige',label:'Prestige'},{value:'kaplan',label:'Kaplan'},{value:'miscellaneous',label:'Miscellaneous'}];
+    details.innerHTML = `<p class="studio-part-b-section">Revising/Editing Part B · Stand-alone items</p>
+      <label class="field"><span>Source collection</span><select id="part-b-source-collection">${categories.map(category=>`<option value="${escapeHtml(category.value)}"${category.value===this.collection(question)?' selected':''}>${escapeHtml(category.label)}</option>`).join('')}</select></label>
+      <section class="studio-part-b-exam-usage" aria-label="Exam appearances">
+        <h3>Appears in exams <span>${usage.length}</span></h3>
+        ${usage.length ? `<ul>${usage.map(test=>`<li>${escapeHtml(test.title || test.id)}</li>`).join('')}</ul>` : '<p>Not added to an exam yet.</p>'}
+      </section>
+      <details class="studio-part-b-source-extra"><summary>Import details</summary>
+        <label class="field"><span>Original source title</span><input id="part-b-source-label" value="${escapeHtml(source.label || '')}" placeholder="Test, form, or book title"></label>
+        <label class="field"><span>Source URL</span><input data-part-b-source="url" type="url" value="${escapeHtml(source.url || '')}"></label>
+        <label class="field"><span>Original question number</span><input data-part-b-source="sourceQuestion" value="${escapeHtml(source.sourceQuestion || '')}"></label>
+        <div id="standalone-version-tags"></div>
+      </details>`;
+    information.append(details); PartBTools.renderTags();
+    const updateSource = (field,value) => { question.source={...this.sourceInfo(question),[field]:value}; markStandaloneDirty(); };
+    details.querySelector('#part-b-source-collection').onchange = event => updateSource('collection',event.target.value);
+    details.querySelector('#part-b-source-label').oninput = event => updateSource('label',event.target.value);
+    details.querySelectorAll('[data-part-b-source]').forEach(input=>input.oninput=event=>updateSource(input.dataset.partBSource,event.target.value));
+    editor.querySelector('[data-support-tool="media"]')?.setAttribute('hidden','');
+    editor.querySelector('[data-option-group="media"]')?.setAttribute('hidden','');
+    const options = editor.querySelector('[data-support-tool="passage"]');
+    if (options) options.textContent = 'Source & details';
+    const reviewTitle = editor.querySelector('[data-option-group="review"] > summary');
+    if (reviewTitle) reviewTitle.textContent = 'Validation';
+    this.renderReview();
+  },
+  sourceInfo(question) {
+    const entry = question.documentDraftId && (PartBImport.documentBase?.entry?.id === question.documentDraftId ? PartBImport.documentBase.entry : PartBImport.documentState.entries.find(entry=>entry.id===question.documentDraftId));
+    return {...entry?.content.source,...question.source};
+  },
+  collection(question) {
+    const source = this.sourceInfo(question);
+    if (source.collection) return source.collection;
+    if (/official|testnav/i.test(source.sourceFamily || '')) return 'official_handbook';
+    const labels = PartBImport.sourceLabels({...question,source});
+    if (labels.some(label=>/^kaplan$/i.test(label))) return 'kaplan';
+    if (labels.some(label=>/^prestige$/i.test(label))) return 'prestige';
+    if (labels.some(label=>/^official[ -](?:practice|handbook)$/i.test(label))) return 'official_handbook';
+    const exams = PartBBank.usage(question,app.state.standaloneItems,app.state.tests || []);
+    const groups = exams.map(test=>{
+      const exam = app.state.assessments.find(exam=>exam.id===test.id) || test;
+      return studioUI.assessmentLabel?.(exam) || exam.examLabel || (/^\d{4}-\d{4}-form-[a-z]$/i.test(exam.id) ? 'Official practice':'');
+    });
+    if (groups.length && groups.every(group=>/^official[ -](?:practice|handbook)$/i.test(group || ''))) return 'official_handbook';
+    if (groups.length && groups.every(group=>/^prestige$/i.test(group || ''))) return 'prestige';
+    if (groups.length && groups.every(group=>/^kaplan$/i.test(group || ''))) return 'kaplan';
+    return 'miscellaneous';
+  },
+  collectionLabel(question) {
+    const collection = this.collection(question);
+    return {official_handbook:'Official',prestige:'Prestige',kaplan:'Kaplan',miscellaneous:'Miscellaneous'}[collection] || collection;
+  },
+  reviewEntry() {
+    const question = app.standaloneDraft;
+    const base = question?.documentDraftId && PartBImport.documentBase?.entry;
+    // Preview validation assumes the review confirmation supplied by Publish.
+    // These copies never mark an unsaved draft as reviewed.
+    return {kind:'standalone',content:{...(base?.content || {}),section:'revising_editing_b',questions:[{...question,review:{...question.review,classificationReviewed:true,warnings:[]}}],
+      visuals:(base?.content.visuals || []).filter(v => !v.questionId || v.questionId === question.id),
+      review:{...base?.content.review,expectedQuestionCount:1,sourceReviewed:true,completenessReviewed:true,warnings:[]}}};
+  },
+  renderReview() {
+    const panel = document.querySelector('.studio-review-panel');
+    if (!panel || !app.passageDraft?.partBEditor) return;
+    const question = app.standaloneDraft;
+    const entry = this.reviewEntry();
+    // Publishing is the teacher's review confirmation. Show content problems,
+    // never a separate checklist or verification gate.
+    const issues = DocumentImport.issues(entry, {...DocumentStudio.taxonomy(),revising_editing_b:questionTopicsForSection('revising_editing_b')});
+    panel.innerHTML = '';
+    if (!issues.some(issue=>issue.blocking)) panel.append(studioUI.element('p','','Ready to publish. Publishing confirms your review of this question.'));
+    for (const issue of issues) { const line = studioUI.element('p','field-note'); line.textContent = `${issue.blocking?'Fix before publishing':'Note'}: ${issue.message}`; panel.append(line); }
+    document.querySelectorAll('[data-review-count]').forEach(node => node.textContent = issues.filter(i=>i.blocking).length);
+  },
+  async publish() {
+    if (app.saving) return;
+    this.sync();
+    const question = app.standaloneDraft;
+    const assessmentId = document.querySelector('#standalone-editor [aria-label="Publish destination"]').value;
+    if (!assessmentId) { setStatus('Choose an exam or worksheet next to Publish this question.', 'error'); return; }
+    if (!questionTopicsForSection('revising_editing_b').includes(question.topic)) {
+      setStatus('Choose a topic in Question options, then publish. Your edits are retained.', 'error');
+      studioUI.showSupportPanel('question');
+      document.querySelector('.studio-question-inspector [data-question-field="topic"]')?.focus();
+      return;
+    }
+    if (!await this.save()) return;
+    app.saving = true; document.getElementById('standalone-editor').inert = true; studioUI.syncSaveState();
+    try {
+      const state = await api('/api/document-publish-english', {method:'POST',body:JSON.stringify({entryId:question.documentDraftId,questionIds:[question.id],assessmentId,confirmReview:true,revision:PartBImport.documentBase.revision})});
+      app.standaloneDirty=false; app.passageDirty=false;
+      await reloadState(); PartBImport.setDocumentState(state);
+      renderStandaloneList(); renderStandaloneEditor();
+      setStatus('This Part B question was published to the selected exam or worksheet. Other drafts remain unpublished.', 'success');
+    } catch(error) { setStatus(error.message, 'error'); studioUI.showSupportPanel('review'); this.renderReview(); }
+    finally { app.saving=false; document.getElementById('standalone-editor').inert=false; studioUI.syncSaveState(); }
   },
   sync() {
     if (!app.passageDraft?.partBEditor) return;
@@ -70,6 +221,7 @@ const PartBWorkspace = {
     const question = app.standaloneDraft;
     if (question.documentDraftId) {
       app.saving = true;
+      document.getElementById?.('standalone-editor')?.setAttribute('inert','');
       try {
         const base = PartBImport.documentBase;
         if (base?.entry.id !== question.documentDraftId) throw new Error('Reopen the Part B draft before saving. Your edits are retained.');
@@ -78,7 +230,7 @@ const PartBWorkspace = {
         const index = entry.content.questions.findIndex(q => q.id === saved.id);
         if (index < 0) throw new Error('The saved question could not be found. Your edits are retained.');
         entry.content.questions[index] = saved;
-        const state = await api('/api/document-drafts', { method: 'POST', body: JSON.stringify({ revision: base.revision, entry }) });
+        const state = await api('/api/document-drafts', { method: 'POST', body: JSON.stringify({ revision: base.revision, entry, reviewedQuestionIds:['sourceReviewed','completenessReviewed','classificationReviewed'].every(key => question.review?.[key] === true) ? [question.id] : [] }) });
         PartBImport.documentBase = { revision: state.revision, entry: clone(state.entries.find(e => e.id === entry.id)) };
         app.standaloneDirty = false; app.passageDirty = false;
         PartBImport.setDocumentState(state);
@@ -86,7 +238,7 @@ const PartBWorkspace = {
         setStatus('Part B draft saved.', 'success');
         return true;
       } catch (error) { setStatus(error.message, 'error'); return false; }
-      finally { app.saving = false; studioUI.syncSaveState(); }
+      finally { app.saving = false; document.getElementById?.('standalone-editor')?.removeAttribute('inert'); studioUI.syncSaveState(); }
     } else if (question.importDraftId) await PartBImport.saveCurrent();
     else {
       // The ordinary bank save also needs a button for its busy state.
@@ -107,19 +259,21 @@ const PartBImport = {
     const current = app.standaloneDraft;
     if (!current?.documentDraftId || app.standaloneDirty) return;
     const entry = state.entries.find(entry => entry.id === current.documentDraftId && entry.status !== 'published');
-    const question = entry?.content.questions.find(question => question.id === current.id);
+    const question = entry?.content.questions.find(question => question.id === current.id && !entry.publishedQuestionIds?.includes(question.id));
     if (question) app.standaloneDraft = { ...clone(question), documentDraftId: entry.id };
     else {
-      const saved = app.state.standaloneItems.find(question => question.id === current.id);
+      const publication = state.entries.find(entry => entry.id === current.documentDraftId);
+      const savedId = Object.values(publication?.publications || {}).map(p => p.questionMap?.[current.id]).find(Boolean) || current.id;
+      const saved = app.state.standaloneItems.find(question => question.id === savedId);
       app.selectedStandaloneItemId = saved?.id || '';
       app.standaloneDraft = saved ? clone(saved) : null;
     }
   },
   documentRecords() {
     return this.documentState.entries.filter(entry => entry.kind === 'standalone' && entry.status !== 'published')
-      .flatMap(entry => entry.content.questions.map(question => ({
+      .flatMap(entry => entry.content.questions.filter(question => !entry.publishedQuestionIds?.includes(question.id)).map(question => ({
         ...question, documentDraftId: entry.id,
-        versionLabels: PartBBank.labels({ versionLabels: [...PartBBank.labels(question), ...PartBBank.labels(entry.content), question.source?.label || entry.content.source?.label || ''].filter(Boolean) }),
+        versionLabels: PartBBank.labels(question),
         source: { ...entry.content.source, ...question.source },
       })));
   },
@@ -138,7 +292,7 @@ const PartBImport = {
       const state = await api('/api/document-drafts');
       this.setDocumentState(state);
       const entry = state.entries.find(entry => entry.id === entryId && entry.kind === 'standalone' && entry.status !== 'published');
-      const question = entry?.content.questions.find(question => question.id === questionId);
+      const question = entry?.content.questions.find(question => question.id === questionId && !entry.publishedQuestionIds?.includes(question.id));
       if (!question) throw new Error('This imported draft has changed or was published. Refresh the Part B library.');
       app.selectedStandaloneItemId = '';
       app.standaloneDraft = { ...clone(question), documentDraftId: entry.id };
@@ -146,6 +300,7 @@ const PartBImport = {
       this.documentBase = { revision: state.revision, entry: clone(entry) };
       renderStandaloneList(); renderStandaloneEditor();
       setStatus('Editing saved Part B draft. Use Save draft to keep your changes.');
+      return true;
     } catch (error) { setStatus(error.message, 'error'); }
   },
   async open() {

@@ -46,11 +46,43 @@ const PartBTools = {
     root.innerHTML = `<div><strong>Source versions</strong> ${this.tagsMarkup(draft)}</div><small>Used in saved exams: ${usage.length ? usage.map(test => escapeHtml(test.title)).join(' · ') : 'Not assigned yet'}</small><div>${versions.length > 1 ? `<button type="button" data-view-sources>${versions.length} retained source versions</button>` : ''}${repeats.length ? `<button type="button" class="studio-part-b-repeat-alert" data-view-repeats>${repeats.length} possible repeat${repeats.length === 1 ? '' : 's'} · Compare</button>` : ''}</div>`;
     root.querySelectorAll('button').forEach(button => button.onclick = () => this.openRepeats(draft.id));
   },
+  interactionLabel(item) {
+    if (item.selectionHtml) return 'TEI · Hot text';
+    return ({ multiple_choice: 'Multiple choice', multi_select: 'TEI · Multiple select', category_sort: 'TEI · Drag and drop', math_drag_drop: 'TEI · Drag and drop' })[item.type] || `TEI · ${String(item.type || 'Unknown interaction').replaceAll('_', ' ')}`;
+  },
+  answerKeyLabel(item) {
+    if (item.correctPlacements) return Object.entries(item.correctPlacements).map(([id, target]) => {
+      const choice = (item.items || []).find(value => value.id === id);
+      const category = (item.categories || []).find(value => value.id === target);
+      return `${PartBBank.text(choice?.html || choice?.text || id)} → ${PartBBank.text(category?.title || target)}`;
+    }).join('; ') || 'No answer key';
+    const ids = item.correctChoiceIds || (item.correctChoiceId ? [item.correctChoiceId] : []);
+    return ids.map(id => {
+      const choice = (item.choices || []).find(value => value.id === id);
+      return `${id}: ${PartBBank.text(choice?.html || choice?.text || id)}`;
+    }).join('; ') || 'Review the answer key in the editor';
+  },
   card(item) {
     const usage = PartBBank.usage(item, app.state.standaloneItems, app.state.tests || []);
-    const choices = item.choices || item.items || [];
-    const marked = ['promptHtml', 'stimulusHtml', 'instructionsHtml'].flatMap(field => [...String(item[field] || '').matchAll(/<(u|sup|sub)\b[^>]*>([\s\S]*?)<\/\1>/gi)].map(match => `${({u:"Underline",sup:"Superscript",sub:"Subscript"})[match[1].toLowerCase()]}: ${PartBBank.text(match[2])}`));
-    return `<article class="studio-part-b-repeat-copy">${this.tagsMarkup(item)}<small>${item.unsaved ? 'Current unsaved question' : item.importDraftId ? 'Imported draft' : 'Saved source version'} · ${escapeHtml(item.topic || 'Unclassified')}</small><p><strong>${escapeHtml(PartBBank.text(item.promptHtml || item.prompt))}</strong></p><p>${escapeHtml(PartBBank.text(item.stimulusHtml || item.stimulus))}</p><small>Source formatting: ${marked.length ? escapeHtml(marked.join(' · ')) : 'No underlining or superscript/subscript'}</small><ol type="A">${choices.map(choice => `<li>${escapeHtml(PartBBank.text(choice.html || choice.text))}${choice.id === item.correctChoiceId || item.correctPlacements?.[choice.id] ? ' ✓' : ''}</li>`).join('')}</ol>${item.explanation ? `<details><summary>Source explanation</summary><p>${escapeHtml(item.explanation).replaceAll('\n', '<br>')}</p></details>` : '<small>No explanation</small>'}<small>Saved exams: ${usage.map(test => escapeHtml(test.title)).join(', ') || 'Not assigned yet'}</small>${item.unsaved ? '' : `<button type="button" data-open-copy="${escapeHtml(item.id)}">Open in editor</button>`}</article>`;
+    this.previewQuestions ||= new Map();
+    const key = `standalone-repeat-${this.previewQuestions.size}`;
+    this.previewQuestions.set(key, structuredClone(item));
+    return `<article class="studio-part-b-repeat-copy">${this.tagsMarkup(item)}<strong class="studio-repeat-interaction">${escapeHtml(this.interactionLabel(item))}</strong><small>${item.unsaved ? 'Current unsaved question' : item.importDraftId ? 'Imported draft' : 'Saved source version'} · ${escapeHtml(item.topic || 'Unclassified')}</small><iframe class="studio-repeat-player" title="Student exam player · ${escapeHtml(this.interactionLabel(item))} · ${escapeHtml(PartBBank.labels(item).join(', ') || item.id)}" data-math-student-preview="${key}"></iframe><small>Interactive student preview · Your practice responses are not saved.</small><details><summary>Answer key</summary><p>${escapeHtml(this.answerKeyLabel(item))}</p></details>${item.explanation ? `<details><summary>Source explanation</summary><p>${escapeHtml(item.explanation).replaceAll('\n', '<br>')}</p></details>` : ''}<small>Saved exams: ${usage.map(test => escapeHtml(test.title)).join(', ') || 'Not assigned yet'}</small>${item.unsaved ? '' : `<button type="button" data-open-copy="${escapeHtml(item.id)}">Open in editor</button>`}</article>`;
+  },
+  previewForFrame(frame) {
+    const question = this.previewQuestions?.get(frame.dataset.mathStudentPreview);
+    return question ? { question: structuredClone(question), index: 0, count: 1, title: PartBBank.labels(question).join(' · ') || 'Compare question', subject: 'english' } : null;
+  },
+  startRepeatPreviews(dialog) {
+    this.previewObserver?.disconnect();
+    // Only boot visible comparisons: a large repeat search can contain hundreds of cards.
+    this.previewObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) {
+        this.previewObserver.unobserve(entry.target);
+        bootMathPreviewFrame(entry.target);
+      }
+    }, { root: dialog, rootMargin: '150px' });
+    dialog.querySelectorAll('.studio-repeat-player').forEach(frame => this.previewObserver.observe(frame));
   },
   openRepeats(focusId = '') {
     let dialog = document.getElementById('part-b-repeats-dialog');
@@ -60,10 +92,10 @@ const PartBTools = {
     if (!dialog.open) dialog.showModal();
   },
   mergeActions(pair, index) {
-    if (!pair.canCombine && !pair.canVerify) return '';
     const blocked = app.standaloneDirty && (!app.standaloneDraft?.importDraftId || ![pair.left.id, pair.right.id].includes(app.standaloneDraft.id));
+    const differentInteraction = this.interactionLabel(pair.left) !== this.interactionLabel(pair.right);
     const untagged = !PartBBank.labels(pair.left).length || !PartBBank.labels(pair.right).length;
-    return `<div class="studio-part-b-merge-actions"><p><strong>Verified these are the same question?</strong> Keep one bank question with all source tags. Choose which copy’s wording, answer and topic to use.</p><label class="field"><span>${untagged ? 'Source test / version for the untagged copy (optional)' : 'Additional source tag (optional)'}</span><input data-repeat-source="${index}" placeholder="e.g. 2019–2020 Form A"></label>${untagged ? '<small>A copy has no source tag. Add its test/version above if known; existing tags are always kept.</small>' : ''}<div class="studio-part-b-add-tag"><button class="secondary" type="button" data-keep-pair="${index}:left" ${blocked ? 'disabled' : ''}>Verify same · keep left</button><button class="secondary" type="button" data-keep-pair="${index}:right" ${blocked ? 'disabled' : ''}>Verify same · keep right</button></div></div>`;
+    return `<div class="studio-part-b-merge-actions"><p><strong>Verify the copy to use everywhere</strong>The chosen copy replaces the other copy’s wording, formatting, choices, answer and topic in every linked exam. Both source tags and exam IDs stay connected.${differentInteraction ? `<strong class="studio-repeat-interaction-warning">Different interaction types: ${escapeHtml(this.interactionLabel(pair.left))} / ${escapeHtml(this.interactionLabel(pair.right))}. Combining also replaces the response interaction.</strong>` : ''}</p><details class="studio-repeat-source-options"><summary>Source tag (optional)</summary><label class="field"><span>${untagged ? 'Source test / version for the untagged copy (optional)' : 'Additional source tag (optional)'}</span><input data-repeat-source="${index}" placeholder="e.g. 2019–2020 Form A"></label>${untagged ? '<small>A copy has no source tag. Add its test/version above if known; existing tags are always kept.</small>' : ''}</details><div class="studio-part-b-add-tag"><button class="secondary" type="button" data-keep-pair="${index}:left" ${blocked ? 'disabled' : ''}>Verify same · keep left</button><button class="secondary" type="button" data-keep-pair="${index}:right" ${blocked ? 'disabled' : ''}>Verify same · keep right</button></div></div>`;
   },
   renderRepeats(query = '') {
     const dialog = document.getElementById('part-b-repeats-dialog');
@@ -72,7 +104,9 @@ const PartBTools = {
     const sources = focused ? PartBBank.versions(focused, app.state.standaloneItems) : [];
     const search = query.toLowerCase();
     const matches = pairs.filter(pair => (!this.focusId || [pair.left.id, pair.right.id].includes(this.focusId)) && [pair.left, pair.right].some(q => `${q.prompt} ${q.stimulus} ${PartBBank.labels(q).join(' ')}`.toLowerCase().includes(search)));
-    dialog.innerHTML = `<section class="panel"><div class="panel-head"><div><h2>Part B repeats</h2><p>${pairs.filter(p => p.canCombine).length} matching pairs · ${pairs.filter(p => !p.canCombine).length} pairs to check</p></div><button type="button" id="part-b-repeats-close">Close</button></div><p>Compare saved content before combining. The chosen copy becomes the bank question with both sets of source tags. Existing exam question IDs and source versions stay intact.</p>${app.standaloneDirty ? `<p class="studio-part-b-repeat-alert">${app.standaloneDraft?.importDraftId ? 'Your current draft edits will be included when you verify this pair.' : 'You have unsaved edits. Save them before combining copies.'}</p>` : ''}<div class="studio-part-b-add-tag"><input id="part-b-repeat-search" aria-label="Search repeats" placeholder="Search a sentence or source test" value="${escapeHtml(query)}">${this.focusId ? '<button type="button" id="part-b-show-all">Show all questions</button>' : ''}</div><p role="status" id="part-b-repeat-status"></p>${sources.length > 1 ? `<details><summary>Source history · ${sources.length} references</summary><p>One bank question, with the original versions kept for existing exam references.</p><div class="studio-part-b-repeat-grid">${sources.map(q => this.card(q)).join('')}</div></details>` : ''}${matches.slice(0, 100).map((pair, i) => `<section class="studio-part-b-repeat-group"><h3>${escapeHtml(pair.label)}</h3><p>${escapeHtml(pair.reason)}</p><div class="studio-part-b-repeat-grid">${this.card(pair.left)}${this.card(pair.right)}</div>${this.mergeActions(pair, i)}</section>`).join('') || '<p>No uncombined repeats match this view.</p>'}${matches.length > 100 ? '<p>Showing the first 100 pairs. Use search to narrow the results.</p>' : ''}</section>`;
+    this.previewQuestions = new Map();
+    dialog.innerHTML = `<section class="panel"><div class="panel-head"><div><h2>Part B repeats</h2><p>${pairs.filter(p => p.canCombine).length} matching pairs · ${pairs.filter(p => !p.canCombine).length} pairs to check</p></div><button type="button" id="part-b-repeats-close">Close</button></div><p>Compare saved content before combining. The chosen copy becomes the bank question with both sets of source tags. Existing exam question IDs stay intact; all linked copies use the content you choose. A backup is saved before replacement.</p>${app.standaloneDirty ? `<p class="studio-part-b-repeat-alert">${app.standaloneDraft?.importDraftId ? 'Your current draft edits will be included when you verify this pair.' : 'You have unsaved edits. Save them before combining copies.'}</p>` : ''}<div class="studio-part-b-add-tag"><input id="part-b-repeat-search" aria-label="Search repeats" placeholder="Search a sentence or source test" value="${escapeHtml(query)}">${this.focusId ? '<button type="button" id="part-b-show-all">Show all questions</button>' : ''}</div><p role="status" id="part-b-repeat-status"></p>${sources.length > 1 ? `<details><summary>Source history · ${sources.length} references</summary><p>One bank question, with the original versions kept for existing exam references.</p><div class="studio-part-b-repeat-grid">${sources.map(q => this.card(q)).join('')}</div></details>` : ''}${matches.slice(0, 100).map((pair, i) => `<section class="studio-part-b-repeat-group"><h3>${escapeHtml(pair.label.replace('Shared paragraph · different question', 'Shared paragraph · compare copies'))}</h3><p>${escapeHtml(pair.reason.replace("Keep separate questions.", "Choose the copy to use if you want to combine them.").replace("Correct the keys before combining.", "The chosen copy’s answer key will be used.").replace("Complete and verify both answer keys before combining.", "Choose a copy with a complete answer key."))}</p>${this.mergeActions(pair, i)}<div class="studio-part-b-repeat-grid"><div><h4 class="studio-repeat-side">Left copy</h4>${this.card(pair.left)}</div><div><h4 class="studio-repeat-side">Right copy</h4>${this.card(pair.right)}</div></div></section>`).join('') || '<p>No uncombined repeats match this view.</p>'}${matches.length > 100 ? '<p>Showing the first 100 pairs. Use search to narrow the results.</p>' : ''}</section>`;
+    this.startRepeatPreviews(dialog);
     dialog.querySelector('#part-b-repeats-close').onclick = () => dialog.close();
     dialog.querySelector('#part-b-show-all')?.addEventListener('click', () => { this.focusId = ''; this.renderRepeats(query); });
     dialog.querySelector('#part-b-repeat-search').oninput = event => {
@@ -99,7 +133,7 @@ const PartBTools = {
     const dialog = document.getElementById('part-b-repeats-dialog');
     app.saving = true; dialog.inert = true;
     try {
-      const result = await api('/api/standalone-items/combine', { method: 'POST', body: JSON.stringify({ keepId: keep.id, removeId: other.id, sourceHash: app.state.standaloneSourceHash, verifiedSameQuestion, additionalLabels, ...(drafts.length ? { drafts } : {}) }) });
+      const result = await api('/api/standalone-items/combine', { method: 'POST', body: JSON.stringify({ keepId: keep.id, removeId: other.id, sourceHash: app.state.standaloneSourceHash, verifiedSameQuestion, replaceOtherContent: verifiedSameQuestion === true, additionalLabels, ...(drafts.length ? { drafts } : {}) }) });
       app.state.standaloneItems = result.items; app.state.standaloneSourceHash = result.sourceHash;
       if (result.drafts) app.state.standaloneImportDrafts = result.drafts;
       app.selectedStandaloneItemId = result.item.id; app.standaloneDraft = clone(result.item); app.standaloneDirty = false;

@@ -22,7 +22,7 @@ test('subcategory migration retains practice IDs, content, selections and Founda
     assert.deepEqual(questionContent(newQuestion),questionContent(originalQuestion));
   }
   for(const module of previous.modules){
-    const migrated=next.modules.find(m=>m.id===module.id);
+    const migrated=next.modules.find(m=>m.id===module.id||m.selectionAliases?.includes(module.id));
     assert.ok(migrated,module.id);
     assert.equal(migrated.title,module.title);assert.equal(migrated.published,module.published);
     assert.deepEqual(migrated.generatorIds,module.generatorIds);

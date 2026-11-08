@@ -4,7 +4,7 @@ const { resolve } = require('node:path');
 const { build } = require('esbuild');
 
 async function render(evidence, exams, section, dimension = 'skill') {
-  const result = await build({
+  const result = await build({alias:require('./react-build-aliases.cjs')(resolve(__dirname,'..')),
     stdin: { contents: `
       import React from 'react';
       import { renderToStaticMarkup } from 'react-dom/server';

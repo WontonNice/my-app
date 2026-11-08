@@ -5,6 +5,7 @@ import {join,dirname} from 'node:path';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {createServer} from 'node:http';
 import vm from 'node:vm';
+import { isolateStudioPersistence } from './content-studio-test-context.mjs';
 import {compareExamState,normalizeDuplicateText} from './exam-duplicates.mjs';
 const root=fileURLToPath(new URL('..',import.meta.url)),toolsRoot=join(root,'tools');
 const question=(id,prompt='What is the value of \\(x + 2\\) when \\(x = 5\\)?')=>({id,type:'multiple_choice',prompt,choices:[{id:'A',text:'7'},{id:'B',text:'9'}],correctChoiceId:'A',topic:'Algebra'});
@@ -54,12 +55,13 @@ test('rejects invalid selections, excludes empty drafts, and reports unreadable 
  const report=await compareExamState(state,'a','b');assert.equal(report.stats.math.leftTotal,2);assert.ok(report.warnings.some(w=>w.includes('empty')));assert.ok(report.warnings.some(w=>w.includes('incomplete')));
  new vm.Script(await readFile(join(toolsRoot,'content-studio-compare.js'),'utf8'));
 });
-test('real comparison endpoint counts actual authored test content and serves its dashboard without changing source files',async()=>{
+test('real comparison endpoint counts actual authored test content and serves its dashboard without changing source files',async t=>{
+ isolateStudioPersistence(t);
  const baseDir=join(toolsRoot,'.content-drafts');await mkdir(baseDir,{recursive:true});const work=await mkdtemp(join(baseDir,'compare-test-'));
  const modulePath=join(toolsRoot,`.compare-http-${Date.now()}.mjs`);let server;
  try{
   for(const name of ['client/src/content','server/src/shared'])await cp(join(root,name),join(work,name),{recursive:true});
-  for(const name of ['client/src/lib/studentMaterials.ts','server/data/assessments.json','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/poem-layout.js']){await mkdir(dirname(join(work,name)),{recursive:true});await cp(join(root,name),join(work,name));}
+  for(const name of ['client/src/lib/studentMaterials.ts','server/data/assessments.json','server/data/worksheets.json','server/data/activity-releases.json','client/src/lib/studyHallNavigation.ts','tools/content-topics.json','tools/math-topics.json','tools/practice-topics.json','tools/content-studio-glossary.js','tools/poem-layout.js']){await mkdir(dirname(join(work,name)),{recursive:true});await cp(join(root,name),join(work,name));}
   await writeFile(join(work,'server/data/question-bank.json'),'{"revision":0,"questions":[],"sets":[]}');
   const source=(await readFile(join(toolsRoot,'content-studio.mjs'),'utf8')).replace('const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");',`const workspaceRoot = ${JSON.stringify(work)};`).split('if (process.argv.includes("--validate"))')[0]+'\nexport {handleRequest,getState};';
   await writeFile(modulePath,source);const studio=await import(pathToFileURL(modulePath).href),state=await studio.getState();

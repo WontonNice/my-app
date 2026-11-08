@@ -3,10 +3,12 @@ import { createPortal } from 'react-dom';
 import { Play, X } from 'lucide-react';
 import { youtubeVideoId, type PracticeVideo } from '../../../../server/src/shared/practiceCatalog';
 
+// eslint-disable-next-line react-refresh/only-export-components -- Preserve the shared, tested helper export; edits may reload this module.
 export function videoViewsLabel(views: number): string {
   return `${new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(views)} views`;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components -- Preserve the shared, tested helper export; edits may reload this module.
 export function videoPublishedLabel(date: string, now = Date.now()): string {
   const timestamp = new Date(`${date}T00:00:00Z`).getTime();
   if (!Number.isFinite(timestamp)) return '';
@@ -19,6 +21,7 @@ export function videoPublishedLabel(date: string, now = Date.now()): string {
   return new Intl.RelativeTimeFormat('en-US', { numeric: 'always' }).format(-value, unit);
 }
 
+// eslint-disable-next-line react-refresh/only-export-components -- Preserve the shared, tested helper export; edits may reload this module.
 export function youtubeEmbedUrl(value: string): string | null {
   const key = youtubeVideoId(value);
   return key ? `https://www.youtube-nocookie.com/embed/${key}?autoplay=1&rel=0&playsinline=1` : null;

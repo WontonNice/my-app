@@ -101,7 +101,8 @@ export function StudentPortalShell({
 
   const homeHref = appendStudentPreview("/study-hall/shsat", previewContext);
   const materialsHref = appendStudentPreview("/study-hall/shsat/materials", previewContext);
-  const englishHref = appendStudentPreview("/study-hall/shsat/materials?subject=english", previewContext);
+  const englishHref = appendStudentPreview("/study-hall/shsat/materials?subject=english&entry=reading", previewContext);
+  const editingHref = appendStudentPreview("/study-hall/shsat/materials?subject=english&entry=editing", previewContext);
   const mathHref = appendStudentPreview("/study-hall/shsat/materials?subject=math", previewContext);
   const assignmentsHref = appendStudentPreview("/study-hall/shsat/assignments", previewContext);
   const assessmentsHref = appendStudentPreview("/study-hall/shsat/assessments", previewContext);
@@ -186,7 +187,9 @@ export function StudentPortalShell({
           </button>
           {isMaterialsExpanded ? (
             <div className="student-portal-subnav">
-              <AppLink href={englishHref} onClick={closeMobileNavigation}>English</AppLink>
+              <AppLink href={englishHref} onClick={closeMobileNavigation}>Reading Comprehension</AppLink>
+              <AppLink href={editingHref} onClick={closeMobileNavigation}>Revising/Editing A</AppLink>
+              <AppLink href={appendStudentPreview("/study-hall/shsat/materials?subject=english&entry=standalone",previewContext)} onClick={closeMobileNavigation}>Stand Alone Items</AppLink>
               <AppLink href={mathHref} onClick={closeMobileNavigation}>Math</AppLink>
             </div>
           ) : null}

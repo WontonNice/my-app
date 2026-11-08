@@ -1,3 +1,4 @@
+const normalizedPrompt=text=>text.replace(/\\[()]/g,'').replaceAll('\\%','%').replace(/\s+/g,' ').trim();
 const {test}=require('node:test');
 const assert=require('node:assert/strict');
 require('./register-practice-generator.cjs');
@@ -68,7 +69,7 @@ test('all 48 stems: independent symbolic key, four distinct traps, explanations,
 test('source example, all seed offsets, repeat cycle, determinism, and safe indices',()=>{
  const bank=require('../server/data/exam-content.json');
  const source=Object.values(bank).flatMap(a=>a.mathSection?.questions??[]).find(q=>q.id===template.sourceId);
- const original=generate(0,'').question;assert.equal(original.prompt,source.prompt);assert.deepEqual(original.choices,source.choices);assert.equal(original.correctChoiceId,source.correctChoiceId);
+ const original=generate(0,'').question;assert.equal(normalizedPrompt(original.prompt),normalizedPrompt(source.prompt));assert.deepEqual(original.choices,source.choices);assert.equal(original.correctChoiceId,source.correctChoiceId);
  const base=new Set(Array.from({length:48},(_,i)=>generate(i,'').question.prompt));
  // Single-character seeds 0..47 exercise every hash offset modulo 48.
  for(let code=0;code<48;code++){

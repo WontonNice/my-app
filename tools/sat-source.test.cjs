@@ -8,6 +8,13 @@ const source={url:'https://tutor.thesatcrashcourse.com/tests/fixture',label:'Fix
 const q=(number,extra={})=>({number,total:50,sourceNumber:number,prompt:'Choose the answer.',promptHtml:'Choose the <strong>answer</strong>.',choices:[{label:'A',text:'One',html:'One',isCorrect:true},{label:'B',text:'Two',html:'Two'}],correctAnswer:{label:'A',text:'One'},explanation:'Source explanation.',explanationHtml:'Source <em>explanation</em>.',...extra});
 const reader=questions=>({source,testPreview:{testTitle:'Fixture source',module:'English Language Arts',questions,capture:{mode:'ela-all',warnings:[]}}});
 
+test('prose exam imports do not become long readings and explicit genres survive', async () => {
+  for (const [extra, expected] of [[{}, 'informational'], [{passageType:'literary'}, 'literary'], [{format:'poem'}, 'poem']]) {
+    const result = await ela(reader([q(1, {passage:{id:'reading',title:'A reading',text:'An ordinary exam excerpt.',html:'<p>An ordinary exam excerpt.</p>',...extra}})]));
+    assert.equal(result.passages[0].passageType, expected);
+  }
+});
+
 test('math TEI names map to existing gradable response types and calculator modes',()=>{
   const contract=require('./document-import.cjs');
   const decode=(type,extra={})=>contract.normalizeChoiceLabels({type,...extra});

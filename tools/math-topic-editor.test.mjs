@@ -23,6 +23,24 @@ async function fixture(run) {
   } finally { if (dirname(resolve(root)) !== resolve(fixtureRoot) || !root.startsWith(join(fixtureRoot, 'math-topics-test-'))) throw Error('Unexpected fixture target'); await rm(root, { recursive: true, force: true }); }
 }
 
+test('retained legacy categories without subtopics do not block unrelated taxonomy edits', async () => fixture(async root => {
+  const file = join(root, 'client/src/content/exams/mathSets/unclassified.ts');
+  const legacySource = `export const legacy = { questions: [{ id: 'unclassified-import', topic: 'Uncategorized', prompt: 'Imported question', correctTextAnswers: ['2'], type: 'short_response' }] };\n`;
+  await writeFile(file, legacySource);
+  const config = await readMathTopicConfiguration(root);
+  assert.deepEqual(config.categories.find(category => category.label === 'Uncategorized').topics, []);
+  const input = draft(config);
+  input.categories[0].topics[0].label = 'One-variable equations';
+  const updated = await saveMathTopicConfiguration(root, input);
+  assert.equal(updated.categories[0].topics[0].label, 'One-variable equations');
+  assert.equal(updated.categories.find(category => category.label === 'Uncategorized').unclassifiedCount, 1);
+  assert.equal(await readFile(file, 'utf8'), legacySource, 'legacy question identity and content remain intact');
+  const newEmpty = draft(updated); newEmpty.categories.push({ label: 'New empty category', original: '', topics: [] });
+  await assert.rejects(saveMathTopicConfiguration(root, newEmpty), /1 and 150/);
+  const cleared = draft(updated); cleared.categories[0].topics = [];
+  await assert.rejects(saveMathTopicConfiguration(root, cleared), /1 and 150/);
+}));
+
 test('two math categories are required for new questions; legacy gaps remain explicit and cross-category skills are rejected', () => {
   const configuration = { categories: [{ label: 'Algebra', topics: [{ label: 'Linear equations' }] }, { label: 'Geometry', topics: [{ label: 'Area' }] }] };
   assert.deepEqual(validateMathClassification({ topic: 'Algebra', subtopic: 'Linear equations' }, configuration), { topic: 'Algebra', subtopic: 'Linear equations', skilled:'TBD' });

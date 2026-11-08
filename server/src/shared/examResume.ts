@@ -1,9 +1,9 @@
 import type { ExamContent } from './examTypes';
 import { orderedEnglishQuestions, orderByQuestionIds } from './examQuestionOrder';
 
-/** An open section uses the published edition. Submitted sections are preserved separately. */
+/** Versioned activities retain the edition on which the attempt began. */
 export function resumeExamContent(current: ExamContent, saved?: ExamContent | null): ExamContent {
-  void saved;
+  if (saved?.releaseId && saved.assessmentId === current.assessmentId) return saved;
   return current;
 }
 

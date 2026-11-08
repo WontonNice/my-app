@@ -18,7 +18,7 @@ test('native math saves and assessment registration preserve Skilled IDs and def
   const input={id:'manual-question',type:'short_response',topic:'Algebra',subtopic:'Inequalities',skilled:'teacher-skill-id',prompt:'Find x.',correctTextAnswers:['2']};
   const normalized=normalize(input,'exam',0);assert.equal(normalized.skilled,input.skilled);assert.equal(normalized.prompt,input.prompt);assert.deepEqual(Array.from(normalized.correctTextAnswers),input.correctTextAnswers);
   assert.equal(normalize({...input,skilled:undefined},'exam',0).skilled,'TBD');
-  const registry=vm.runInNewContext(server.slice(server.indexOf('function assessmentQuestionFrom('),server.indexOf('async function saveTest('))+'\nassessmentQuestionFrom;');
+  const {default: {assessmentQuestionFrom: registry}} = await import('./exam-catalog.cjs');
   assert.equal(registry(normalized).skilled,input.skilled);
   assert.equal(registry({id:'english',topic:'Reading',prompt:'A passage question',type:'short_response'}).skilled,undefined);
 });

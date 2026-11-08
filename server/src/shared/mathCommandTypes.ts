@@ -49,6 +49,7 @@ export type MathQuestionPerformance = {
 export type MathDuplicateKind = "exact" | "possible" | "template";
 export type MathDuplicateGroup = { id: string; kind: MathDuplicateKind; questionIds: string[]; score: number; reason: string };
 export type MathCatalogRow = {
+  shsatLevel?: string; publisher?: string; sourceFamily?: string; sourceCollection?: string;
   classification?: MathClassification;
   personal?: import("./teacherLabels").TeacherQuestionNote;
   teacherLabelNames?: string[];
@@ -61,6 +62,7 @@ export type MathCatalogRow = {
   duplicateKinds: MathDuplicateKind[]; performance: MathQuestionPerformance | null;
 };
 export type MathCatalogFilters = {
+  shsatLevel?: string[]; publisher?: string[]; sourceFamily?: string[]; sourceCollection?: string[];
   classification?: MathClassificationFilter;
   skilled?: string[];
   search?: string;

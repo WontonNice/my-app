@@ -1,4 +1,4 @@
-import { managedGeneratorIds, practiceModuleKind, type PracticeCatalog, type ManagedPracticeModule, type PracticeGeneratorDefinition, type PracticeVideo } from '../../../../server/src/shared/practiceCatalog';
+import { reviewedGeneratorChange, managedGeneratorIds, practiceModuleKind, type PracticeCatalog, type ManagedPracticeModule, type PracticeGeneratorDefinition, type PracticeVideo } from '../../../../server/src/shared/practiceCatalog';
 
 export type StudioResource = ManagedPracticeModule | PracticeGeneratorDefinition | PracticeVideo;
 export const studioLocation = (item: StudioResource) => ({ category: item.category ?? 'Algebra', topic: item.topic ?? 'Inequalities' });
@@ -42,8 +42,8 @@ export function filterStudioGenerators(catalog:PracticeCatalog,query:string,cate
 
 export function updateStudioGenerators(catalog:PracticeCatalog,ids:string[],patch:Partial<PracticeGeneratorDefinition>):PracticeCatalog {
   const chosen=new Set(ids);
-  const next={...catalog,generators:catalog.generators.map(generator=>chosen.has(generator.id)?{...generator,...patch,...(patch.category!==undefined&&patch.category!==generator.category||patch.topic!==undefined&&patch.topic!==generator.topic?{skilled:'TBD'}:{}),id:generator.id}:generator)};
-  return patch.enabled===false?{...next,modules:next.modules.map(module=>({...module,published:module.published&&(Boolean(practiceModuleKind(module))||managedGeneratorIds(module,next).length>0)}))}:next;
+  const next={...catalog,generators:catalog.generators.map(generator=>chosen.has(generator.id)?reviewedGeneratorChange(generator,{...generator,...patch,...(patch.category!==undefined&&patch.category!==generator.category||patch.topic!==undefined&&patch.topic!==generator.topic?{skilled:'TBD'}:{}),id:generator.id},patch.reviewStatus==='approved'):generator)};
+  return {...next,modules:next.modules.map(module=>({...module,published:module.published&&(Boolean(practiceModuleKind(module))||managedGeneratorIds(module,next).length>0)}))};
 }
 export function studioResourceGroups(items: StudioResource[], query: string, category = '', topic = '') {
   const groups = new Map<string, {category:string; topics:{topic:string;resources:StudioResource[];count:number}[];count:number}>();

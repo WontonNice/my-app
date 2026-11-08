@@ -60,9 +60,18 @@ export function saveLocalExamSession(
 }
 
 /** IDs survive reordering; removed questions fall back to an unfinished question. */
-export function getExamResumePosition(content: ExamContent, subject: ExamSection, progress: ExamSessionProgress | null | undefined) {
+export function getExamResumePosition(content: ExamContent, subject: ExamSection, progress: ExamSessionProgress | null | undefined, worksheet = false) {
   const saved = normalizeExamNavigation(progress?.navigation)?.[subject];
-  const position = (screen: ExamPosition['screen'], passageIndex = 0, questionIndex = 0) => ({ screen, passageIndex, questionIndex });
+  const position = (screen: ExamPosition['screen'], passageIndex = 0, questionIndex = 0) => {
+    if (worksheet && ['mathIntro', 'mathDirections', 'directions', 'passageIntro', 'readingDirections', 'standaloneIntro', 'standaloneDirections'].includes(screen)) {
+      if (subject === 'math') screen = 'mathQuestion';
+      else {
+        const first = orderedEnglishQuestions(content)[0];
+        if (first) { screen = first.kind === 'passage' ? 'passage' : 'standaloneQuestion'; passageIndex = first.passageIndex; questionIndex = first.questionIndex; }
+      }
+    }
+    return { screen, passageIndex, questionIndex };
+  };
   const math = content.mathSection?.questions ?? [];
   const standalone = content.standaloneSection?.questions ?? [];
   if (saved) {

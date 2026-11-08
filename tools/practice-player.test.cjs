@@ -8,7 +8,7 @@ const {build} = require('esbuild');
 let renderer;
 async function loadRenderer() {
   if (!renderer) renderer = (async () => {
-    const result = await build({stdin:{contents:`
+    const result = await build({alias:require('./react-build-aliases.cjs')(resolve(__dirname,'..')),stdin:{contents:`
       import React from 'react';import {renderToStaticMarkup} from 'react-dom/server';
       import {PracticeStats,PracticeFeedback} from './client/src/features/math-command/PracticeFeedback';
       import {PracticeStars} from './client/src/features/math-command/PracticeStars';

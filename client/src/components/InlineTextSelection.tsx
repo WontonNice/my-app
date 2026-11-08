@@ -19,9 +19,11 @@ export function InlineTextSelection({question, answer, onChange, correctIds = []
     const timer = window.setTimeout(() => setShowLimitWarning(false), 5000);
     return () => window.clearTimeout(timer);
   }, [showLimitWarning]);
-  useEffect(() => { setShowLimitWarning(false); }, [question.id]);
+  const [warningQuestionId, setWarningQuestionId] = useState(question.id);
+  if (warningQuestionId !== question.id) { setWarningQuestionId(question.id); setShowLimitWarning(false); }
   const selected = typeof answer === 'string' ? [answer] : Array.isArray(answer) ? answer : [];
   const markup = useMemo(() => {
+    const selected = typeof answer === 'string' ? [answer] : Array.isArray(answer) ? answer : [];
     const doc = new DOMParser().parseFromString(question.selectionHtml || '', 'text/html');
     doc.body.querySelectorAll('script,style,iframe,object,embed,svg,math,link,meta,input,button').forEach(node => node.remove());
     doc.body.querySelectorAll('*').forEach(node => {
@@ -49,7 +51,7 @@ export function InlineTextSelection({question, answer, onChange, correctIds = []
       node.replaceWith(button);
     });
     return doc.body.innerHTML;
-  }, [question, answer, onChange, correctIds.join('|')]);
+  }, [question, answer, onChange, correctIds]);
   useLayoutEffect(() => {
     const id = focusAfterUpdate.current;
     focusAfterUpdate.current = null;

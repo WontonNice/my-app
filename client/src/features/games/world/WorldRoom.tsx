@@ -52,12 +52,16 @@ export function WorldRoom({ room, accessToken, act, busy, back, error }: Props) 
   const heartbeatOwn = Boolean(crystal?.participants.some(player => player.id === ownId && !player.left));
   const heartbeatTest = Boolean(testSpawned && crystal?.participants.some(player => player.id === `test:${room.hostId}` && !player.left));
   const runId = crystal?.runId;
-  useEffect(() => {
+  const [previousPlaytesting, setPreviousPlaytesting] = useState(playtesting);
+  if (previousPlaytesting !== playtesting) {
+    setPreviousPlaytesting(playtesting);
     if (!playtesting) { setControlTest(false); setTestSpawned(false); }
-  }, [playtesting]);
-  useEffect(() => {
+  }
+  const [previousPhase, setPreviousPhase] = useState(crystal?.phase);
+  if (previousPhase !== crystal?.phase) {
+    setPreviousPhase(crystal?.phase);
     if (crystal?.phase === "battle" || crystal?.phase === "victory" || crystal?.phase === "defeat") setCrystalPanelOpen(false);
-  }, [crystal?.phase]);
+  }
   useEffect(() => {
     if (!enabled || !runId || !heartbeatOwn && !heartbeatTest) return;
     const heartbeat = () => {

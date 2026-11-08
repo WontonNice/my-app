@@ -1,5 +1,6 @@
 [
   { "value": "official_handbook", "label": "Official Handbook" },
   { "value": "prestige", "label": "Prestige" },
+  { "value": "kaplan", "label": "Kaplan" },
   { "value": "miscellaneous", "label": "Miscellaneous" }
 ]

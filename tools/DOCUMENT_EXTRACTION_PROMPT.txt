@@ -98,11 +98,12 @@ EXACT CONTRACT
       "informational",
       "literary",
       "poem",
-      "long_reading"
+      "revising_editing"
     ],
     "passageCategory": [
       "official_handbook",
       "prestige",
+      "kaplan",
       "miscellaneous"
     ],
     "section": [
@@ -128,20 +129,19 @@ EXACT CONTRACT
     "type": [
       "multiple_choice",
       "multi_select",
-      "numeric_entry",
-      "expression_entry",
-      "short_response",
-      "grid_in",
+      "category_sort",
+      "table_match",
+      "matrix_choice",
       "inline_dropdown",
       "math_drag_drop",
-      "graph_point_select",
-      "number_line_response",
-      "coordinate_response",
-      "matrix_choice",
-      "category_sort",
-      "matrix_choice",
-      "table_match",
       "transition_drop",
+      "graph_point_select",
+      "coordinate_response",
+      "number_line_response",
+      "short_response",
+      "numeric_entry",
+      "expression_entry",
+      "grid_in",
       "essay"
     ],
     "topic": "exact section topic; for math, the main sorting category; empty when uncertain",
@@ -467,9 +467,10 @@ TOPIC TAXONOMY (exact values)
   }
 }
 
-Use multiple_choice for one keyed choice, multi_select only when source instructions require multiple choices, numeric_entry for the basic Math numeric keypad, expression_entry for Calculator Input (Advanced) with arithmetic, fractions, roots, powers, inequalities, pi, parentheses and absolute value, short_response for a plain typed short answer in either Math or English. short_answer is accepted as an alias, but emit short_response. To change numeric_entry to short_response keep correctTextAnswers, prompt, classification, and explanation; omit entryLayout and entryVariable. Retain extended writing as essay with UNSUPPORTED_RESPONSE_TYPE: essays remain drafts because the existing publication/grading workflow does not support them. For Math also support inline_dropdown, math_drag_drop, graph_point_select, coordinate_response, and number_line_response using the exact fields below. These types publish and run in the student player. Other unsupported interactions must be retained with their actual type and source fields plus UNSUPPORTED_RESPONSE_TYPE; they remain drafts until manually authored. Do not transform a static diagram into an interactive graph question. Keep choice wording and order unchanged, but use the editor’s A, B, C, D labels for the first four choices. Map source E→A, F→B, G→C, H→D by position, including supplied single/multi-select answer keys and visual choiceId references. Additional choices continue E, F, and so on. Retain original labels privately in review.sourceChoiceIds. Never guess an answer during this mapping. There is no mandatory difficulty field. Never fabricate a key to satisfy publication checks. All extracted warnings start unresolved and all review booleans start false. Do not put teacher-only source references into prompt, text or sourceNote. Source attribution printed for students belongs in sourceNote.
+Use multiple_choice for one keyed choice, multi_select only when source instructions require multiple choices, numeric_entry for the basic Math numeric keypad, expression_entry for Calculator Input (Advanced) with arithmetic, fractions, roots, powers, inequalities, pi, parentheses and absolute value, short_response for a plain typed short answer in either Math or English. short_answer is accepted as an alias, but emit short_response. To change numeric_entry to short_response keep correctTextAnswers, prompt, classification, and explanation; omit entryLayout and entryVariable. Retain extended writing as essay with UNSUPPORTED_RESPONSE_TYPE: essays remain drafts because the existing publication/grading workflow does not support them. For Math also support inline_dropdown, math_drag_drop, graph_point_select, coordinate_response, and number_line_response using the exact fields below. These types publish and run in the student player. Other unsupported interactions must be retained with their actual type and source fields plus UNSUPPORTED_RESPONSE_TYPE; they remain drafts until manually authored. Do not transform a static diagram into an interactive graph question. Keep choice wording and order unchanged, but use the editor’s A, B, C, D labels for the first four choices. Map the ACTUAL ordered printed choice labels by position to A, B, C, D, E and onward, including supplied single/multi-select keys and visual choiceId references. For printed A,B,C,D,E keep the labels unchanged. For printed F,G,H,J,K map F→A, G→B, H→C, J→D, K→E. Never assume a label sequence from an alternating question number. If the printed labels or supplied key are ambiguous, leave the answer blank and flag SOURCE_KEY_AMBIGUOUS. Retain original labels privately in review.sourceChoiceIds. Never guess an answer during this mapping. There is no mandatory difficulty field. Never fabricate a key to satisfy publication checks. All extracted warnings start unresolved and all review booleans start false. Do not put teacher-only source references into prompt, text or sourceNote. Source attribution printed for students belongs in sourceNote.
 
 OUTPUT EXAMPLE (structure only; replace ALL sample content with the actual complete source, not a sample of it)
+For passages in section revising_editing_a, always use passageType revising_editing (Revising/Editing). Reading passages use informational, literary, or poem. Long reading is not a passage type; an excerpt's length does not change its type.
 {
   "format": "nathan-tutors-official-passage-v1",
   "passages": [
@@ -544,6 +545,9 @@ OUTPUT EXAMPLE (structure only; replace ALL sample content with the actual compl
   "reviewNotes": [],
   "visuals": []
 }
+
+PRESENTATION STANDARD
+All sources, including Prestige and SAT Crash Course, use the existing TestNav controls. Import content and configuration only. Never import source interaction widgets, CSS, or event handlers, and never create a new layout to imitate a provider. Unsupported interactions remain editable drafts with a specific warning. Preserve canonical question, choice, menu and slot IDs when editing existing records.
 
 FINAL INTERNAL AUDIT
 Count questions in the requested source and account for every one across complete chunks. For Math, put the whole requested count/inventory in batch.expectedTotal/expectedQuestions, and the count of this complete chunk in review.expectedQuestionCount. For a passage set expectedQuestionCount to that passage's source count. Count every choice and set expectedChoiceCount. Check original order, complete passage, title/author, headings, stanzas, paragraph divisions, footnotes, every prompt/choice/number/unit/punctuation mark, source-only answers and explanations, source-file attribution, visual coverage and classification provenance/confidence. Flag actual missing/unreadable source content specifically; planned bounded continuation is tracked by the manifest rather than presented as a transcription error. Review the entire requested range, including the final question. Use complete file attachments when available; otherwise stop at complete question boundaries and record completed, unresolved, and remaining source identities in the continuation ledger. Never claim completeness from a partial output.

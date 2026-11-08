@@ -6,7 +6,7 @@ export type ExamPosition = {
   questionId?: string;
   passageSetId?: string;
 };
-export type ExamNavigation = { subject: ExamSubject; english?: ExamPosition; math?: ExamPosition };
+export type ExamNavigation = { subject: ExamSubject; english?: ExamPosition; math?: ExamPosition; activityReleaseId?: string };
 
 /** Shared by device storage and the API. Never restore arbitrary screens or indices. */
 export function normalizeExamNavigation(value: unknown): ExamNavigation | undefined {
@@ -14,6 +14,7 @@ export function normalizeExamNavigation(value: unknown): ExamNavigation | undefi
   const candidate = value as Record<string, unknown>;
   if (candidate.subject !== 'english' && candidate.subject !== 'math') return;
   const result: ExamNavigation = { subject: candidate.subject };
+  if(typeof candidate.activityReleaseId==='string'&&/^[a-f0-9]{16,64}$/.test(candidate.activityReleaseId))result.activityReleaseId=candidate.activityReleaseId;
   for (const subject of ['english', 'math'] as const) {
     const position = candidate[subject];
     if (!position || typeof position !== 'object' || Array.isArray(position)) continue;

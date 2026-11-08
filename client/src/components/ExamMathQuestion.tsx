@@ -1,5 +1,6 @@
 import { CoordinateResponse } from './CoordinateResponse';
 import { EXAM_PLAYER_PROFILE } from "../content/exams/playerPresentation";
+import { legibleMathExpression } from '../../../server/src/shared/mathPresentation';
 import { RichResponseTemplate } from "./RichResponseTemplate";
 // One math question renderer for the student player and Content Studio preview.
 /* eslint react-refresh/only-export-components: ["error", { "allowExportNames": ["renderKatexExpression", "renderInlineMathText", "getBoldFormattedText", "renderMathAuthoredText", "renderMathRichText"] }] */
@@ -17,7 +18,7 @@ import type { CategoryPlacements, SelectedAnswer } from '../../../server/src/sha
 import 'katex/dist/katex.min.css';
 
 export function renderKatexExpression(expression: string, displayMode = false) {
-  const markup = katex.renderToString(expression, {
+  const markup = katex.renderToString(legibleMathExpression(expression), {
     displayMode,
     output: "htmlAndMathml",
     strict: false,
@@ -410,7 +411,7 @@ export function MatrixChoiceResponse({
   const evidence = question.matrixStyle === 'evidence';
 
   return (
-    <div className={`exam-matrix-choice-wrap${evidence ? ' is-evidence-matrix' : ''}`}>
+    <div className={`exam-matrix-choice-wrap${evidence ? ' is-evidence-matrix' : question.matrixStyle === 'compact' ? ' is-compact-matrix' : ''}`}>
       <table className="exam-matrix-choice-table">
         <thead>
           <tr>
@@ -421,7 +422,7 @@ export function MatrixChoiceResponse({
         <tbody>
           {items.map((item) => (
             <tr key={item.id}>
-              <th scope="row">{item.html ? <span className="exam-rich-text" dangerouslySetInnerHTML={{ __html: item.html }} /> : item.text}</th>
+              <th scope="row">{renderMathRichText(item.html, item.text, item.id)}</th>
               {categories.map((category) => (
                 <td key={category.id}>
                   <label className="exam-matrix-choice-option">
@@ -852,6 +853,8 @@ const isTextEntryQuestion = (q: ExamQuestion) => ['short_response','numeric_entr
 const textEntryControl = (q: ExamQuestion) => isTextEntryQuestion(q) ? q.entryControl || (q.type==='short_response' ? 'text' : q.type==='expression_entry' ? 'expression' : 'numeric') : undefined;
 const isInlineDropdownQuestion = (q: ExamQuestion) => q.type === 'inline_dropdown';
 export function ExamMathQuestion({question, answer, onChange, onSelectChoice, onTogglePoint, onEliminatePoint, allowExtraSelections = false, eliminatedIds = [], onChoiceLabelClick, onTextSelection, children, renderText = renderMathRichText, answerFeedback, responseOnly = false}: Props) {
+  const [expandedDiagramQuestion, setExpandedDiagramQuestion] = useState<string | null>(null);
+  const diagramsExpanded = expandedDiagramQuestion === question.id;
   const [selectionWarning, setSelectionWarning] = useState(false);
   const Panel = responseOnly ? "div" : "form";
   const choices = question.choices || [], selectedIds = Array.isArray(answer) ? answer : typeof answer === 'string' && answer ? [answer] : [];
@@ -878,9 +881,10 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
           } ${question.type === 'coordinate_response' ? 'is-coordinate-response' : ''} ${answerFeedback ? `has-answer-feedback is-${answerFeedback}` : ''}`}
           onMouseUp={onTextSelection}
         >
-          <Panel key={question.id} className="exam-standalone-panel exam-math-panel" onSubmit={event => event.preventDefault()}>
+          <Panel key={question.id} className={`exam-standalone-panel exam-math-panel${diagramsExpanded ? ' has-expanded-diagrams' : ''}`} onSubmit={event => event.preventDefault()}>
             {children}
             {!responseOnly && <>
+            {(question.image || /<img\b/i.test(question.promptHtml || '')) && !spotDiagram && <button className="exam-diagram-size" type="button" aria-pressed={diagramsExpanded} onClick={() => setExpandedDiagramQuestion(diagramsExpanded ? null : question.id)}>{diagramsExpanded ? 'Fit diagram to question' : 'Enlarge diagram'}</button>}
             {question.image && !spotDiagram ? (
               <figure className="exam-question-image">
                 <img alt={question.image.alt} src={question.image.src} />
@@ -985,7 +989,7 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
                 ))}
               </div>
             ) : question.type === 'matrix_choice' && question.items && question.categories ? (
-              <div className={`exam-matrix-choice-wrap${question.matrixStyle === "compact" ? " is-compact-matrix" : ""}`}><table className="exam-matrix-choice-table"><thead><tr><th>{question.tableHeaders?.row || ''}</th>{question.categories.map(category=><th key={category.id} scope="col">{category.title}</th>)}</tr></thead><tbody>{question.items.map(item=><tr key={item.id}><th scope="row">{renderInteractionMath(item.text,item.id)}</th>{question.categories!.map(category=><td key={category.id}><label><input type="radio" name={question.id+'-'+item.id} aria-label={item.text+': '+category.title} checked={placements(answer)[item.id]===category.id} onChange={()=>onChange({...placements(answer),[item.id]:category.id})}/></label></td>)}</tr>)}</tbody></table></div>
+              <MatrixChoiceResponse question={question} answer={placements(answer)} onChange={onChange} />
             ) : choices.length > 0 ? (
               <div className={`exam-choice-list exam-standalone-choice-list${question.hotSpot ? " exam-hot-spots" : ""}${spotDiagram ? " is-spot-diagram" : ""}${question.choiceColumns === 2 ? ' is-two-column' : ''}${question.hideChoiceLabels ? ' is-unlettered' : ''}`}>
                 {spotDiagram && <img className="exam-spot-diagram-image" src={spotDiagram.src} alt={spotDiagram.alt} />}

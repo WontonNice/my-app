@@ -3,6 +3,8 @@ import type { SelectedAnswer } from './examGrading';
 import { validateGenerator, type PracticeGeneratorDefinition, type PracticeSelection } from './practiceCatalog';
 
 export type PracticeState = {
+  evidenceThrough?: number;
+  responses?: import('./practiceEvidence').PracticeResponseEvidence[];
   // v3 varies probability event colors; older in-progress questions keep their version.
   generationVersion?:1|2|3;
   startedAt?: number;
@@ -19,6 +21,8 @@ export type PracticeState = {
 export function parsePracticeState(raw: string | null): PracticeState | null {
   try {
     const state = JSON.parse(raw || 'null');
+    if(state?.evidenceThrough!==undefined&&(!Number.isSafeInteger(state.evidenceThrough)||state.evidenceThrough < -1||state.evidenceThrough>=state.checked))return null;
+    if(state?.responses!==undefined&&(!Array.isArray(state.responses)||state.responses.length>1000))return null;
     if(state?.startedAt !== undefined && (!Number.isSafeInteger(state.startedAt) || state.startedAt < 0))return null;
     if(state?.generationVersion!==undefined&&state.generationVersion!==1&&state.generationVersion!==2&&state.generationVersion!==3)return null;
     if(state?.moduleSelection!==undefined&&(!state.moduleSelection||typeof state.moduleSelection!=='object'||Array.isArray(state.moduleSelection)||(state.moduleSelection.includeUnassigned!==undefined&&typeof state.moduleSelection.includeUnassigned!=='boolean')||['childModuleIds','topics'].some(key=>state.moduleSelection[key]!==undefined&&(!Array.isArray(state.moduleSelection[key])||state.moduleSelection[key].length>1000||!state.moduleSelection[key].every((value:unknown)=>typeof value==='string'&&value.length<250)))))return null;
@@ -58,9 +62,15 @@ export function comparePracticeSessions(left: PracticeState | null, right: Pract
 }
 
 export function mergePracticeCheckpoint(current: PracticeCheckpoint, incoming: PracticeCheckpoint): PracticeCheckpoint {
+  let session=comparePracticeSessions(incoming.session,current.session)>0?incoming.session:current.session;
+  if(session&&current.session&&incoming.session&&current.session.seed===incoming.session.seed&&current.session.startedAt===incoming.session.startedAt){
+    const evidenceThrough=Math.max(current.session.evidenceThrough??-1,incoming.session.evidenceThrough??-1);
+    const responses=[...new Map([...(incoming.session.responses??[]),...(current.session.responses??[])].map(row=>[row.index,row])).values()].filter(row=>row.index>evidenceThrough).sort((a,b)=>a.index-b.index);
+    if(evidenceThrough!==(session.evidenceThrough??-1)||JSON.stringify(responses)!==JSON.stringify(session.responses??[]))session={...session,evidenceThrough,responses};
+  }
   return {
     moduleId: current.moduleId,
     best: Math.max(current.best, incoming.best, incoming.session?.longestStreak ?? 0),
-    session: comparePracticeSessions(incoming.session, current.session) > 0 ? incoming.session : current.session,
+    session,
   };
 }

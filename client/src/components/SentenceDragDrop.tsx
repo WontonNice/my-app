@@ -11,6 +11,6 @@ export function SentenceDragDrop({ question, answer, onChange }: { question: Exa
   const content = modern ? question.dragDropContent || [] : [
     [question.transitionSentenceNumber, question.transitionBlankBefore, '{{blank-1}}', question.transitionBlankAfter].filter(Boolean).join(' '),
   ];
-  return <MathDragDropResponse question={{ ...question, type: 'math_drag_drop', items: question.choices || [], dragDropStyle: question.dragDropStyle || 'outlined', dragDropSlots: slots, dragDropContent: content }}
-    answer={values} onChange={next => onChange(modern ? next : next['blank-1'] || '')} />;
+  return <div className="exam-sentence-response"><MathDragDropResponse question={{ ...question, type: 'math_drag_drop', items: question.choices || [], dragDropStyle: question.dragDropStyle || 'outlined', dragDropSlots: slots, dragDropContent: content }}
+    answer={values} onChange={next => onChange(modern ? next : next['blank-1'] || '')} /></div>;
 }

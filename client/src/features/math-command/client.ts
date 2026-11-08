@@ -7,6 +7,7 @@ export type MathCollection = { id: string; name: string; questionIds: string[] }
 export type MathCommandOverview = {
   revision: string;
   summary: MathCatalogSummary;
+  inventoryScope?: { sourceRecords: number; canonicalQuestions: number; combinedDuplicates: number };
   taxonomy: MathTaxonomy;
   targets: MathInventoryTargets;
   savedViews: SavedMathView[];

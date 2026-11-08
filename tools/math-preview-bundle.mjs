@@ -16,7 +16,7 @@ window.addEventListener('error', function(event) {
   root.append(message);
 }, true);
 </script><script type="module" src="/math-student-preview/math-student-preview.js"></script></body></html>` };
-  bundle ||= build({ alias:reactAliases(root), entryPoints: [join(root,'tools/math-student-preview.tsx'), join(root,'tools/hot-text-preview.tsx')], bundle: true, write: false, outdir: join(root,'tools/.content-drafts/math-preview-build'), format: 'esm', jsx: 'automatic', minify: true, define: { 'import.meta.env': '{}', 'process.env.NODE_ENV': '"production"' }, loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file' } }).catch(error => { bundle = undefined; throw error; });
+  bundle ||= build({ alias:reactAliases(root), entryPoints: [join(root,'tools/math-student-preview.tsx'), join(root,'tools/hot-text-preview.tsx'), join(root,'tools/question-response-preview.tsx')], bundle: true, write: false, outdir: join(root,'tools/.content-drafts/math-preview-build'), format: 'esm', jsx: 'automatic', minify: true, define: { 'import.meta.env': '{}', 'process.env.NODE_ENV': '"production"' }, loader: { '.woff': 'file', '.woff2': 'file', '.ttf': 'file' } }).catch(error => { bundle = undefined; throw error; });
   const output = (await bundle).outputFiles.find(file => '/math-student-preview/' + basename(file.path) === pathname);
   if (!output) return null;
   return { type: pathname.endsWith('.js') ? 'text/javascript' : pathname.endsWith('.css') ? 'text/css' : 'application/octet-stream', body: output.contents };

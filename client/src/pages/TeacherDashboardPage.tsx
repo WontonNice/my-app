@@ -1,3 +1,8 @@
+import { LibraryProgress } from '../components/LibraryProgress';
+import { isStudyHallWorksheet, worksheetIds } from '../lib/examLibrary';
+import { WorksheetProgress } from '../components/WorksheetProgress';
+import { PracticeEvidence } from '../components/PracticeEvidence';
+import { getStudentPreviewContext } from '../lib/studentPreview';
 import { StudentRecordFilterProvider } from "../components/StudentRecordFilterProvider";
 import { mergeAnalyticsInputs } from "../lib/studentAnalytics";
 import { teacherPlanClient } from "../lib/api";
@@ -858,6 +863,7 @@ function buildTeacherAnalyticsInputs(student: StudentProgressSnapshot, assessmen
       const assessment = byId.get(String(result.assessmentId));
       return {
         result,
+        ...(assessment && isStudyHallWorksheet(assessment) ? { kind: 'practice' as const, sourceLabel: 'Study Hall worksheet' } : {}),
         content: assessment ? resolveExamContent({ ...assessment, passageOrder: assessment.forms?.find(form => form.id === assessment.formAssignments?.[student.id])?.passageOrder }) : undefined,
         ...scoreBreakdownForResult(result, assessment),
       };
@@ -880,7 +886,7 @@ export function StudentDetail({
   onAddPaperScore: (studentId: string, input: ManualExamScoreInput) => Promise<void>;
   student: StudentProgressSnapshot;
 }) {
-  const [workspaceView, setWorkspaceView] = useState<"progress" | "results" | "passages" | "boards" | PlanView>(() => { const value = new URLSearchParams(window.location.search).get("workspace"); return ["results", "passages", "boards", "plan", "content", "schedule", "history"].includes(value ?? "") ? value as "results" | PlanView : initialAnalyticsAssessmentId ? "results" : "progress"; });
+  const [workspaceView, setWorkspaceView] = useState<"progress" | "results" | "library" | "worksheets" | "infinite" | "passages" | "boards" | PlanView>(() => { const value = new URLSearchParams(window.location.search).get("workspace"); return ["results", "library", "worksheets", "infinite", "passages", "boards", "plan", "content", "schedule", "history"].includes(value ?? "") ? value as "results" | PlanView : initialAnalyticsAssessmentId ? "results" : "progress"; });
   const [analyticsView, setAnalyticsView] = useState(() => new URLSearchParams(window.location.search).get("view") || (initialAnalyticsAssessmentId ? "history" : workspaceView === "passages" ? "passages" : workspaceView === "results" ? "history" : "overview"));
   const [planOverview, setPlanOverview] = useState<import("../lib/learningPlan").PlanOverview>();
   const [planError, setPlanError] = useState("");
@@ -901,7 +907,8 @@ export function StudentDetail({
   const [paperScoreMessage, setPaperScoreMessage] = useState("");
   const [isSavingPaperScore, setIsSavingPaperScore] = useState(false);
   const assessmentIds = new Set(assessments.map((assessment) => assessment.id));
-  const examResults = studentExamResultsForAssessments(student, assessments);
+  const worksheetIdSet = worksheetIds(assessments);
+  const examResults = studentExamResultsForAssessments(student, assessments).filter(result => !worksheetIdSet.has(String(result.assessmentId)));
   const analyticsInputs = useMemo(() => buildTeacherAnalyticsInputs(student, assessments), [student, assessments]);
   const [examCorrections, setExamCorrections] = useState<Awaited<ReturnType<typeof getTeacherAnalyticsEvidence>>["examCorrections"]>([]);
   const [additionalEvidence, setAdditionalEvidence] = useState<import("../lib/studentAnalytics").AnalyticsInput[]>([]);
@@ -962,7 +969,7 @@ export function StudentDetail({
     }
   }
   Object.entries(student.examSessions ?? {}).forEach(([assessmentId, session]) => {
-    if (!assessmentIds.has(assessmentId)) return;
+    if (!assessmentIds.has(assessmentId) || worksheetIdSet.has(assessmentId)) return;
     const existing = responseRecords.get(assessmentId);
     if (session.status === "submitted" && existing && Object.keys(existing.answers).length) return;
     responseRecords.set(assessmentId, {
@@ -975,16 +982,19 @@ export function StudentDetail({
   return (
     <section className="teacher-student-detail" aria-label={`${student.fullName} record`}>
       <div className="teacher-panel-header"><div><span>Student record</span><h2>{student.fullName}</h2></div><p>{student.email} · Last login: {formatDate(student.lastLoginAt)}</p></div>
-      {accessToken && <><nav className="lp-record-tabs" aria-label="Student record workspaces">{([["progress", "Overview"], ["results", "Results & evidence"], ["plan", "Learning plan"], ["passages", "Passage inventory"]] as const).map(([value, label]) => <button key={value} aria-pressed={workspaceView === value || value === "plan" && ["content", "schedule", "history"].includes(workspaceView)} onClick={() => { setWorkspaceView(value); if (value === "progress") setAnalyticsView("overview"); if (value === "results") setAnalyticsView("history"); if (value === "passages") setAnalyticsView("passages"); }} type="button">{label}</button>)}<button type="button" aria-pressed={workspaceView === "boards"} onClick={() => setWorkspaceView("boards")}>Boards</button></nav>
-      <div hidden={["progress", "results", "passages"].includes(workspaceView)}>{workspaceView === "boards" ? <BoardLibrary accessToken={accessToken} studentId={student.id} studentName={student.fullName} teacher /> : <TeacherLearningPlan client={activePlanClient} key={planFocus} targetSubject={planTargetSubject} targetCategory={planTargetCategory} assignmentContentId={assignmentContentId} onOverview={setPlanOverview} onLoadError={setPlanError} onEvidence={activity => { setActivityFocus(activity); openAnalyticsView("history"); }} sourceCategory={planCategory} onSourceCategory={setPlanCategory} onInventory={setPassageInventory} accessToken={accessToken} studentId={student.id} studentName={student.fullName} view={["progress", "results", "passages"].includes(workspaceView) ? "summary" : workspaceView as PlanView} onView={setWorkspaceView} skillFilter={planSkill} onSkillFilter={setPlanSkill} />}</div></>}
+      {accessToken && <><nav className="lp-record-tabs" aria-label="Student record workspaces">{([["progress", "Overview"], ["results", "Assessment results"], ["worksheets", "Worksheets"], ["infinite", "Infinite practice"], ["library", "Library practice"], ["plan", "Learning plan"], ["passages", "Passage inventory"]] as const).map(([value, label]) => <button key={value} aria-pressed={workspaceView === value || value === "plan" && ["content", "schedule", "history"].includes(workspaceView)} onClick={() => { setWorkspaceView(value); if (value === "progress") setAnalyticsView("overview"); if (value === "results") setAnalyticsView("history"); if (value === "passages") setAnalyticsView("passages"); }} type="button">{label}</button>)}<button type="button" aria-pressed={workspaceView === "boards"} onClick={() => setWorkspaceView("boards")}>Boards</button></nav>
+      <div hidden={["progress", "results", "passages", "worksheets", "infinite", "library"].includes(workspaceView)}>{workspaceView === "boards" ? <BoardLibrary accessToken={accessToken} studentId={student.id} studentName={student.fullName} teacher /> : <TeacherLearningPlan client={activePlanClient} key={planFocus} targetSubject={planTargetSubject} targetCategory={planTargetCategory} assignmentContentId={assignmentContentId} onOverview={setPlanOverview} onLoadError={setPlanError} onEvidence={activity => { setActivityFocus(activity); openAnalyticsView("history"); }} sourceCategory={planCategory} onSourceCategory={setPlanCategory} onInventory={setPassageInventory} accessToken={accessToken} studentId={student.id} studentName={student.fullName} view={["progress", "results", "passages", "infinite"].includes(workspaceView) ? "summary" : workspaceView as PlanView} onView={setWorkspaceView} skillFilter={planSkill} onSkillFilter={setPlanSkill} />}</div></>}
+      {workspaceView === "library" && <LibraryProgress accessToken={accessToken ?? ""} studentId={student.id} teacher />}
+      {workspaceView === 'infinite' && <PracticeEvidence key={student.id} accessToken={accessToken??''} studentId={student.id}/>}
+      {workspaceView === "worksheets" && <WorksheetProgress assessments={assessments} results={[...student.progress.examResults, ...(student.progress.examHistory ?? [])]} sessions={student.examSessions} teacher previewContext={getStudentPreviewContext("?preview=teacher&teacherTools=1")} />}
       <div hidden={!["progress", "results", "passages"].includes(workspaceView)}>
       <StudentAnalyticsWorkstation studentName={student.fullName} view={accessToken ? analyticsView : undefined} onView={accessToken ? openAnalyticsView : undefined} plan={planOverview} planError={planError} activityFocus={activityFocus} onOpenPlan={() => setWorkspaceView("plan")} evidenceState={evidenceState} evidenceMessage={evidenceStatus} onRetryEvidence={() => { setEvidenceState("loading"); setEvidenceStatus("Loading saved passage, practice and archived exam evidence…"); setEvidenceRevision(value => value + 1); setPlanFocus(value => value + 1); }}
-        pending={[...Object.entries(student.examSessions ?? {}).filter(([, session]) => session.status !== "submitted").map(([id, session]) => ({ title: assessments.find(item => item.id === id)?.title ?? "Saved assessment", detail: "Saved session in progress", at: session.updatedAt, assessmentId: id })), ...examResults.filter(result => result.source !== "manual" && result.source !== "answer_sheet" && ["english_complete", "math_complete"].includes(String(result.completionStatus)) && !Object.entries(student.examSessions ?? {}).some(([id, session]) => id === result.assessmentId && session.status !== "submitted")).map(result => ({ title: String(result.title ?? "Assessment"), detail: result.completionStatus === "english_complete" ? "English submitted · Math not submitted" : "Math submitted · English not submitted", at: typeof result.completedAt === "string" ? result.completedAt : null, assessmentId: String(result.assessmentId) }))]}
+        pending={[...Object.entries(student.examSessions ?? {}).filter(([id, session]) => !worksheetIdSet.has(id) && session.status !== "submitted").map(([id, session]) => ({ title: assessments.find(item => item.id === id)?.title ?? "Saved assessment", detail: "Saved session in progress", at: session.updatedAt, assessmentId: id })), ...examResults.filter(result => result.source !== "manual" && result.source !== "answer_sheet" && ["english_complete", "math_complete"].includes(String(result.completionStatus)) && !Object.entries(student.examSessions ?? {}).some(([id, session]) => id === result.assessmentId && session.status !== "submitted")).map(result => ({ title: String(result.title ?? "Assessment"), detail: result.completionStatus === "english_complete" ? "English submitted · Math not submitted" : "Math submitted · English not submitted", at: typeof result.completedAt === "string" ? result.completedAt : null, assessmentId: String(result.assessmentId) }))]}
         onAssignContent={id => { setAssignmentContentId(id); setPlanTargetSubject(""); setPlanFocus(value => value + 1); setWorkspaceView("content"); }}
         loadPassagePreview={activePlanClient.passagePreview}
         onRelatePassages={async relation => { await activePlanClient.relatePassages?.(relation); const next = await activePlanClient.overview(); setPlanOverview(next); setPassageInventory(next.inventory); }}
         overviewExtra={accessToken ? <StudentSheetSummary token={accessToken} studentId={student.id} compact /> : undefined}
-        studentId={student.id} canEditQuestions inputs={mergeAnalyticsInputs(analyticsInputs.map(input => ({ ...input, corrections: examCorrections.find(item => item.assessmentId === input.result.assessmentId && item.completedAt === input.result.completedAt)?.responses })), additionalEvidence)} preferenceKey={`teacher-analysis:${student.id}`} initialAssessmentId={initialAnalyticsAssessmentId}
+        studentId={student.id} canEditQuestions inputs={mergeAnalyticsInputs(analyticsInputs.map(input => ({ ...input, corrections: examCorrections.find(item => item.assessmentId === input.result.assessmentId && item.completedAt === input.result.completedAt)?.responses })), additionalEvidence).map(input => worksheetIdSet.has(String(input.result.assessmentId)) ? { ...input, kind: "practice" as const, sourceLabel: "Study Hall worksheet" } : input).filter(input => workspaceView === "progress" || !worksheetIdSet.has(String(input.result.assessmentId)))} preferenceKey={`teacher-analysis:${student.id}`} initialAssessmentId={initialAnalyticsAssessmentId}
         passageInventory={passageInventory}
         onBrowseCategory={accessToken ? category => { setAssignmentContentId(""); setPlanTargetSubject(""); setPlanCategory(category); setPlanSkill(""); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
         onAssignMathSkill={accessToken ? (category, subtopic) => { setPlanTargetCategory(category); setAssignmentContentId(""); setPlanTargetSubject("Math"); setPlanCategory(""); setPlanSkill(subtopic && subtopic !== "Unclassified" ? subtopic : ""); setPlanFocus(value => value + 1); setWorkspaceView("content"); } : undefined}
@@ -995,7 +1005,7 @@ export function StudentDetail({
           return <><SectionScoreBreakdown assessment={assessment} result={exam.result} /><details className="sa-individual-details"><summary>View individual analytics</summary><IndividualExamAnalytics evidence={exam.evidence} result={exam.result} /></details></>;
         }} />
       <details className="sa-retained-section"><summary>Data coverage & source notes</summary><p>{evidenceStatus}</p></details>
-      {accessToken && <details className="sa-retained-section"><summary>Reopen or reset an exam section</summary><TeacherExamReentry key={student.id} accessToken={accessToken} assessments={assessments} students={[student]} initialStudentId={student.id} /></details>}
+      {accessToken && <details className="sa-retained-section"><summary>Reopen or reset an exam section</summary><TeacherExamReentry key={student.id} accessToken={accessToken} assessments={assessments.filter(assessment => !isStudyHallWorksheet(assessment))} students={[student]} initialStudentId={student.id} /></details>}
       <details className="sa-retained-section"><summary>Score entry & source tools</summary>
 
       <details className="teacher-paper-score-entry">
@@ -1111,6 +1121,16 @@ export function TeacherDashboardPage() {
   const [assessmentSort, setAssessmentSort] = useState("year");
   const [assessmentDimensions, setAssessmentDimensions] = useState(emptyExamLibraryFilter);
   const [expandedAssessmentId, setExpandedAssessmentId] = useState("");
+  const managedAssessmentId = new URLSearchParams(window.location.search).get('manage');
+  const managedAssessmentTitle = assessments.find(assessment => assessment.id === managedAssessmentId)?.title;
+  useEffect(() => {
+    if (!managedAssessmentId || !managedAssessmentTitle) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- Synchronize the external manage URL after its assessment title becomes available.
+    setAssessmentSearch(managedAssessmentTitle);
+    setAssessmentAccess('all');
+    setAssessmentDimensions(emptyExamLibraryFilter);
+    setExpandedAssessmentId(managedAssessmentId);
+  }, [managedAssessmentId, managedAssessmentTitle]);
   const [formDrafts, setFormDrafts] = useState<Record<string, FormDraft>>({});
   const [editingStudentAccountId, setEditingStudentAccountId] = useState("");
   const [studentAccountDraft, setStudentAccountDraft] = useState({ fullName: "", password: "", username: "" });
@@ -1186,12 +1206,12 @@ export function TeacherDashboardPage() {
   );
   const visibleStudentAccounts = accountView === "archived" ? archivedStudentAccounts : currentStudentAccounts;
   const classAverage = useMemo(() => {
-    const assessmentIds = new Set(assessments.map((assessment) => assessment.id));
+    const assessmentIds = new Set(assessments.filter(item => !isStudyHallWorksheet(item)).map((assessment) => assessment.id));
     const values = students.flatMap((student) =>
       student.progress.examResults.flatMap((result) =>
         typeof result.assessmentId === "string" &&
         (assessmentIds.has(result.assessmentId) || result.source === "manual" || result.source === "answer_sheet") &&
-        isCompleteExamResult(result) &&
+        !worksheetIds(assessments).has(result.assessmentId) && isCompleteExamResult(result) &&
         typeof result.percentage === "number"
           ? [result.percentage]
           : [],
@@ -1229,7 +1249,7 @@ export function TeacherDashboardPage() {
     });
 
     const assessmentById = new Map(assessments.map((assessment) => [assessment.id, assessment]));
-    const currentAssessmentIds = assessments.map((assessment) => assessment.id);
+    const currentAssessmentIds = assessments.filter(assessment => !isStudyHallWorksheet(assessment)).map((assessment) => assessment.id);
     return currentAssessmentIds.map((assessmentId) => {
       const assessment = assessmentById.get(assessmentId);
       const resultByStudent = resultsByAssessment.get(assessmentId) ?? new Map();
@@ -1304,7 +1324,8 @@ export function TeacherDashboardPage() {
       };
     });
   }, [assessmentAverages, assessments, shsatStudents]);
-  const visibleAssessments = assessments.filter(assessment =>
+  const examAssessments = assessments.filter(assessment => !isStudyHallWorksheet(assessment));
+  const visibleAssessments = examAssessments.filter(assessment =>
     matchesExamLibrary(assessment, assessmentSearch, assessmentDimensions) &&
     (assessmentAccess === "all" || (assessment.sectionAccess.english || assessment.sectionAccess.math ? "open" : "locked") === assessmentAccess),
   ).sort((a,b) => (assessmentSort === "submissions" ? (classAssessmentInsights.find(item => item.assessmentId === b.id)?.submissions ?? 0) - (classAssessmentInsights.find(item => item.assessmentId === a.id)?.submissions ?? 0) : 0) || compareExamLibrary(a, b, assessmentSort));
@@ -1539,8 +1560,8 @@ export function TeacherDashboardPage() {
   const teacherStats = [
     { icon: Users, label: "SHSAT students", value: String(shsatStudents.length) },
     { icon: BarChart3, label: "Average test score", value: classAverage === null ? "—" : `${classAverage}%` },
-    { icon: CheckCircle2, label: "Tests completed", value: String(students.reduce((sum, student) => sum + studentExamResultsForAssessments(student, assessments).filter(isCompleteExamResult).length, 0)) },
-    { icon: BookOpen, label: "Open exams", value: String(assessments.filter((assessment) => assessment.status === "open").length) },
+    { icon: CheckCircle2, label: "Tests completed", value: String(students.reduce((sum, student) => sum + studentExamResultsForAssessments(student, assessments).filter(result => !worksheetIds(assessments).has(String(result.assessmentId)) && isCompleteExamResult(result)).length, 0)) },
+    { icon: BookOpen, label: "Open exams", value: String(examAssessments.filter((assessment) => assessment.status === "open").length) },
   ];
   const activeWorkspace = getTeacherWorkspace(window.location.pathname);
   const workspaceResources: (keyof typeof resources)[] = activeWorkspace === "accounts" ? ["accounts"]
@@ -1629,7 +1650,7 @@ export function TeacherDashboardPage() {
               <AppLink href="/teacher/enrollment"><UserRoundCheck size={20} /><span><strong>Class requests</strong><small>{classJoinRequests.length} awaiting approval</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/accounts"><UserRoundPlus size={20} /><span><strong>Student accounts</strong><small>Edit access or preview an account</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/library"><BookOpen size={20} /><span><strong>English library</strong><small>Individual book access, previews, and results</small></span><ArrowUpRight size={17} /></AppLink>
-              <AppLink href="/teacher/assessments"><ClipboardList size={20} /><span><strong>Assessments & insights</strong><small>{assessments.length} exam{assessments.length === 1 ? "" : "s"} · {classAssessmentInsights.length} performance dashboard{classAssessmentInsights.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
+              <AppLink href="/teacher/assessments"><ClipboardList size={20} /><span><strong>Assessments & insights</strong><small>{examAssessments.length} exam{examAssessments.length === 1 ? "" : "s"} · {classAssessmentInsights.length} performance dashboard{classAssessmentInsights.length === 1 ? "" : "s"}</small></span><ArrowUpRight size={17} /></AppLink>
               <AppLink href="/teacher/answer-sheets"><ClipboardList size={20} /><span><strong>Digital answer sheets</strong><small>Paper/PDF tests · saved responses · grade later</small></span><ArrowUpRight size={17} /></AppLink>
               <a href={contentStudioCodespaceUrl} rel="noreferrer" target="_blank"><Cloud size={20} /><span><strong>Content Studio</strong><small>Author exams and practice content from any computer</small></span><ArrowUpRight size={17} /></a>
             </div>
@@ -1641,7 +1662,7 @@ export function TeacherDashboardPage() {
       {activeWorkspace === "students" ? (
       <section className={`teacher-panel teacher-roster-panel${selectedStudent ? " sa-selected-workspace" : ""}`} id="students">
           {selectedStudent ? <div className="sa-student-picker"><button onClick={() => setSelectedStudentId("")} type="button"><ArrowLeft size={14} /> All students</button><label>Student <select value={selectedStudentId} onChange={event => setSelectedStudentId(event.target.value)}>{shsatStudents.map(student => <option key={student.id} value={student.id}>{student.fullName}</option>)}</select></label><span>{shsatStudents.length} enrolled</span></div> : <div className="teacher-panel-header"><div><span>Roster</span><h2>SHSAT student progress</h2></div><p>Select a student to review progression and question evidence.</p></div>}
-          {!selectedStudent && <StudentProgressRoster plans={planRoster} students={shsatStudents} inputsFor={student => buildTeacherAnalyticsInputs(student, assessments)} onSelect={setSelectedStudentId} />}
+          {!selectedStudent && <StudentProgressRoster plans={planRoster} students={shsatStudents} inputsFor={student => buildTeacherAnalyticsInputs(student, assessments).filter(input => !worksheetIds(assessments).has(String(input.result.assessmentId)))} onSelect={setSelectedStudentId} />}
           <StudentRecordFilterProvider key={teacherUserId}>{selectedStudent && <StudentDetail key={selectedStudent.id+":"+(new URLSearchParams(window.location.search).get("exam")??"")} accessToken={accessToken} assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={selectedStudent} />}</StudentRecordFilterProvider>
 
       </section>
@@ -1706,15 +1727,15 @@ export function TeacherDashboardPage() {
 
       {activeWorkspace === "assessments" && !insightAssessmentId ? (
       <section className="teacher-assessments-hub" id="assessments">
-        {accessToken && <details className="assessment-reentry-tool"><summary><RotateCcw size={15} /> Reopen or reset a student’s exam section</summary><TeacherExamReentry accessToken={accessToken} assessments={assessments} students={shsatStudents} /></details>}
+        {accessToken && <details className="assessment-reentry-tool"><summary><RotateCcw size={15} /> Reopen or reset a student’s exam section</summary><TeacherExamReentry accessToken={accessToken} assessments={examAssessments} students={shsatStudents} /></details>}
         <div className="assessment-library-summary">
-          <div><span><strong>{assessments.length}</strong> assessments</span><span><strong>{assessments.filter(assessment => assessment.sectionAccess.english || assessment.sectionAccess.math).length}</strong> open</span><span><strong>{classAssessmentInsights.reduce((sum, insight) => sum + insight.fullSubmissions, 0)}</strong> full exams submitted</span><span><strong>{shsatStudents.length}</strong> students</span></div>
+          <div><span><strong>{examAssessments.length}</strong> assessments</span><span><strong>{examAssessments.filter(assessment => assessment.sectionAccess.english || assessment.sectionAccess.math).length}</strong> open</span><span><strong>{classAssessmentInsights.reduce((sum, insight) => sum + insight.fullSubmissions, 0)}</strong> full exams submitted</span><span><strong>{shsatStudents.length}</strong> students</span></div>
           <AppLink className="assessment-button" href="/teacher/answer-sheets"><ClipboardList size={15} /> Digital answer sheets <ArrowUpRight size={13} /></AppLink>
         </div>
         <div className="teacher-panel teacher-assessment-management-panel">
         <div className="assessment-library-heading"><h2>Assessment library <span>{visibleAssessments.length}</span></h2><p>Find an exam, then open Manage for access, answer keys, and corrections.</p></div>
         <div className="assessment-library-filters"><label className="assessment-search"><Search size={16} /><input type="search" aria-label="Find an assessment" placeholder="Search by exam name or year…" value={assessmentSearch} onChange={event => setAssessmentSearch(event.target.value)} /></label><label>Access<select value={assessmentAccess} onChange={event => setAssessmentAccess(event.target.value)}><option value="all">All exams</option><option value="open">Open sections</option><option value="locked">All sections locked</option></select></label><label>Sort<select value={assessmentSort} onChange={event => setAssessmentSort(event.target.value)}><option value="year">Test year · newest</option><option value="form">Form A–Z</option><option value="category">Category</option><option value="name">Name A–Z</option><option value="submissions">Most submissions</option></select></label></div>
-        <ExamLibraryFilters exams={assessments} value={assessmentDimensions} onChange={setAssessmentDimensions} />
+        <ExamLibraryFilters exams={examAssessments} value={assessmentDimensions} onChange={setAssessmentDimensions} />
         <div className="teacher-exams-table-wrap"><table className="teacher-exams-table"><caption className="sr-only">Assessment library ordered by {assessmentSort}. Expand Manage for exam controls.</caption><thead><tr><th scope="col">Exam name</th><th scope="col" aria-sort={assessmentSort === "year" ? "descending" : undefined}><button onClick={() => setAssessmentSort("year")} type="button">Test year{assessmentSort === "year" ? " ↓" : ""}</button></th><th scope="col" aria-sort={assessmentSort === "form" ? "ascending" : undefined}><button onClick={() => setAssessmentSort("form")} type="button">Form{assessmentSort === "form" ? " ↑" : ""}</button></th><th scope="col" aria-sort={assessmentSort === "category" ? "ascending" : undefined}><button onClick={() => setAssessmentSort("category")} type="button">Category{assessmentSort === "category" ? " ↑" : ""}</button></th><th scope="col">Access</th><th scope="col">Full-exam avg.</th><th scope="col">Actions</th></tr></thead><tbody>
           {visibleAssessments.map((assessment) => {
             const classResult = assessmentAverages.get(assessment.id);
@@ -1803,7 +1824,7 @@ export function TeacherDashboardPage() {
               </section> : null}
             </article></td></tr></Fragment>;
           })}
-          {!visibleAssessments.length && <tr><td colSpan={7}><div className="assessment-empty"><strong>{assessments.length ? "No matching assessments" : "No assessments yet"}</strong><p>{assessments.length ? "Try a different search, test year, form, category, or access filter." : "Published exams will appear here."}</p>{assessments.length > 0 && <button className="assessment-button" type="button" onClick={() => { setAssessmentSearch(""); setAssessmentAccess("all"); setAssessmentDimensions(emptyExamLibraryFilter); }}>Clear filters</button>}</div></td></tr>}
+          {!visibleAssessments.length && <tr><td colSpan={7}><div className="assessment-empty"><strong>{examAssessments.length ? "No matching assessments" : "No assessments yet"}</strong><p>{examAssessments.length ? "Try a different search, test year, form, category, or access filter." : "Published exams will appear here."}</p>{examAssessments.length > 0 && <button className="assessment-button" type="button" onClick={() => { setAssessmentSearch(""); setAssessmentAccess("all"); setAssessmentDimensions(emptyExamLibraryFilter); }}>Clear filters</button>}</div></td></tr>}
         </tbody></table>
         </div>
         </div>

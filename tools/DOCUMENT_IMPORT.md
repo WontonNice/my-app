@@ -111,7 +111,7 @@ content format or a JSON Schema validator.
   Unknown single key/explanation: `""` or `null` (normalized to empty string).
   Unknown multi/typed keys: `[]`. The parser never fills an absent key.
 - Formats: `prose`, `poem`, `sentence_prose`. Passage types: `informational`,
-  `literary`, `poem`, `long_reading`. Categories: `official_handbook`, `prestige`,
+  `literary`, `poem`, `revising_editing` (required for Rev/Edit Part A). Categories: `official_handbook`, `prestige`, `kaplan`,
   `miscellaneous`. English sections: `reading`, `revising_editing_a`.
 - Review provenance: `source`, `inferred`, `unknown`, `teacher`. Confidence:
   number 0-1 or null. Source pages are 1-based PDF page numbers; printed labels

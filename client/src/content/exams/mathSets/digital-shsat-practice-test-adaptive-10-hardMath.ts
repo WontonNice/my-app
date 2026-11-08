@@ -35,7 +35,8 @@ export const digitalShsatPracticeTestAdaptive10HardMathSection: ExamMathSection 
     "points": 1,
     "prompt": "A shipping crate is a right rectangular prism with a volume of \\(1008\\) cubic inches and a height of \\(14\\) inches. A plane parallel to the top of the crate slices through it, and the cross section is a rectangle whose length is twice its width. What is the perimeter, in inches, of the cross section?",
     "promptHtml": "A shipping crate is a right rectangular prism with a volume of \\(1008\\) cubic inches and a height of \\(14\\) inches. A plane parallel to the top of the crate slices through it, and the cross section is a rectangle whose length is twice its width. What is the perimeter, in inches, of the cross section?",
-    "topic": "Uncategorized",
+    "topic": "Geometry",
+    "subtopic": "Perimeter, Area & Composite Figures",
     "choices": [
       {
         "id": "A",

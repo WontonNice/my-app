@@ -15,17 +15,23 @@ async function loadRenderer() {
           import React from 'react';
           import { renderToStaticMarkup } from 'react-dom/server';
           import { ExamSessionPage } from './client/src/pages/ExamSessionPage';
+          import { LibraryBookSession } from './client/src/components/LibraryBookSession';
+          export function renderLibrary(book) {
+            return renderToStaticMarkup(<LibraryBookSession book={book} revision="qa" accessToken="" studentName="Teacher preview" preview teacher backHref="/study-hall/shsat/materials?entry=reading" onComplete={() => {}} />);
+          }
           import { createExamPreviewSession } from './tools/exam-preview-content';
           import { resolveExamContent } from './client/src/content/exams';
-          export { getExamSectionAccess, getOpenExamSubject } from './client/src/lib/examSessionProgress';
+          export { getExamSectionAccess, getOpenExamSubject, getExamResumePosition } from './client/src/lib/examSessionProgress';
           export { createAssessmentSectionLines } from './client/src/lib/exam';
           export { resolveExamContent };
           export { generalDirectionsParts } from './client/src/components/ExamGeneralDirections';
           import assessments from './server/data/assessments.json';
-          export { assessments };
+          import worksheets from './server/data/worksheets.json';
+          export { assessments, worksheets };
           export function renderStudioPreview(id, subject) {
-            const assessment = assessments.find(item => item.id === id);
-            const session = createExamPreviewSession(resolveExamContent(assessment), subject, () => {});
+            const assessment = [...assessments, ...worksheets].find(item => item.id === id);
+            const content = {...resolveExamContent(assessment), previewMetadata:{durationMinutes:assessment.durationMinutes,studyHallWorksheet:assessment.studyHallWorksheet}};
+            const session = createExamPreviewSession(content, subject, () => {});
             return renderToStaticMarkup(<ExamSessionPage previewSession={session} />);
           }
           export function renderExam(id, screen, transform = content => content, sessionOptions = {}) {
@@ -80,11 +86,11 @@ test('Content Studio mounts the student player with isolated teacher navigation 
   }
 });
 
-test('2021–2022 Form A renders a math question with no English passages', async () => {
+test('2021–2022 Form A renders a math question independently of its English passages', async () => {
   const { renderExam } = await loadRenderer();
   // Use the plain-text question here; diagram HTML is exercised in browser QA.
   const html = renderExam('2021-2022-form-a', 'mathQuestion', content => ({
-    ...content, mathSection: { ...content.mathSection, questions: content.mathSection.questions.slice(1) },
+    ...content, mathSection: { ...content.mathSection, questions: content.mathSection.questions.slice(1).map(q => ({ ...q, promptHtml: undefined, choices: q.choices?.map(choice => ({ ...choice, html: undefined })) })) },
   }));
   assert.match(html, /2021-2022 FORM A/);
   assert.match(html, /owner of a tree farm/);
@@ -92,8 +98,9 @@ test('2021–2022 Form A renders a math question with no English passages', asyn
 });
 
 test('a math-only exam selects math and still respects teacher locks', async () => {
-  const { assessments, resolveExamContent, getExamSectionAccess, getOpenExamSubject } = await loadRenderer();
-  const content = resolveExamContent(assessments.find(item => item.id === '2021-2022-form-a'));
+  const { worksheets, resolveExamContent, getExamSectionAccess, getOpenExamSubject } = await loadRenderer();
+  // This catalog now includes English in Form A; use the actual math-only worksheet.
+  const content = resolveExamContent(worksheets.find(item => item.id === 'grade-9-2018-2019'));
   const access = getExamSectionAccess(content, { english: true, math: true });
   assert.equal(access.english, false);
   assert.equal(access.math, true);
@@ -102,11 +109,11 @@ test('a math-only exam selects math and still respects teacher locks', async () 
 });
 
 test('launch summary reflects the actual math-only exam content', async () => {
-  const { assessments, createAssessmentSectionLines } = await loadRenderer();
-  const sections = createAssessmentSectionLines(assessments.find(item => item.id === '2021-2022-form-a'));
+  const { worksheets, createAssessmentSectionLines } = await loadRenderer();
+  const sections = createAssessmentSectionLines(worksheets.find(item => item.id === 'grade-9-2018-2019'));
   assert.equal(sections.length, 2);
   assert.equal(sections[1].label, 'Math');
-  assert.equal(sections[1].questionCount, 57);
+  assert.equal(sections[1].questionCount, 13);
 });
 
 test('registered exams render their available section introductions', async () => {
@@ -321,9 +328,9 @@ test('general directions match the TestNav cover and planning text for every exa
     assert.match(page('.exam-session-content-block').first().text(),new RegExp('This test consists of '+total+' questions across'));
     assert.match(page('.exam-general-planning').text(),/In a computer adaptive test \(CAT\), you must answer every question\./);
     assert.match(page('.exam-general-planning').text(),new RegExp('end after '+assessment.durationMinutes+' minutes'));
-    assert.equal(page('.exam-general-planning > ul > li').length,5);
-    assert.equal(page('.exam-general-planning ul ul li').length,1);
-    assert.match(page('.exam-general-planning ul ul').text(),/once you advance forward from the last question of that set/);
+    assert.equal(page('.exam-general-planning > ul > li').length,content.passageSets.length || content.standaloneSection?.questions.length ? 5 : 4);
+    assert.equal(page('.exam-general-planning ul ul li').length,content.passageSets.length || content.standaloneSection?.questions.length ? 1 : 0);
+    if(content.passageSets.length || content.standaloneSection?.questions.length) assert.match(page('.exam-general-planning ul ul').text(),/once you advance forward from the last question of that set/);
     assert.doesNotMatch(page.text(),/Your answers stay saved after submission|Your teacher keeps|SHSAT Practice TestGrade/);
     assert.equal(page('progress').length,0);
   }
@@ -340,4 +347,37 @@ test('Smallest Spark blurb wraps above the title; poem verses retain their sourc
   const paragraphs=page('.exam-question-passage-scroll .exam-poem-line');
   assert.ok(paragraphs.toArray().indexOf(context[0]) < paragraphs.toArray().findIndex(e=>page(e).hasClass('is-title')),'Blurb must precede title');
   assert.ok(page('.exam-poem-line:not(.is-context)').toArray().some(e=>page(e).text().includes('There are the things the world is made of')));
+});
+
+test('library adapter renders the existing player and each question’s original passage', async () => {
+  const { renderLibrary } = await loadRenderer();
+  const passage = { id: 'source-version', title: 'Original version title', format: 'prose', lines: [{kind:'title', text:'Original version title'}, {lineNumber:1, text:'The original passage text stays with its question.'}] };
+  const question = { id:'library-q', prompt:'Which detail is supported?', type:'multiple_choice', topic:'Inference', choices:[{id:'A',text:'First choice'},{id:'B',text:'Second choice'}], correctChoiceId:'A' };
+  const html = renderLibrary({ id:'book-fixture', passageSet:{ id:'book-fixture', passage:{...passage,lines:[{text:'Wrong combined fallback'}]}, questions:[question], questionCount:1, directions:{body:'Read the passage.',title:'Read',subject:'English'} }, versions:[], questionPassages:{'library-q':passage} });
+  assert.match(html, /data-player-profile="testnav"/);
+  assert.doesNotMatch(html, /game-answer-lock|<fieldset/);
+  assert.match(html, /Original version title/); assert.match(html, /original passage text stays/);
+  assert.doesNotMatch(html, /Wrong combined fallback/);
+  assert.match(html, /Next item/); assert.match(html, /Notepad tool/);
+  assert.match(html, /Book settings/); assert.match(html, /Scores saved separately from assessments/);
+});
+
+test('worksheet entry bypasses exam introductions and preserves the saved question', async () => {
+  const { worksheets, resolveExamContent, getExamResumePosition } = await loadRenderer();
+  const worksheet = worksheets.find(item => item.id === 'grade-9-2018-2019');
+  const content = resolveExamContent(worksheet);
+  assert.equal(getExamResumePosition(content, 'math', null).screen, 'mathIntro');
+  assert.equal(getExamResumePosition(content, 'math', null, true).screen, 'mathQuestion');
+  const progress = {answers:{}, completedSections:[], navigation:{subject:'math',math:{screen:'mathQuestion',questionId:content.mathSection.questions[1].id}},status:'in_progress',updatedAt:''};
+  assert.equal(getExamResumePosition(content, 'math', progress, true).questionIndex, 1);
+});
+
+test('worksheet teacher preview opens at a question without student save controls', async () => {
+  const {renderStudioPreview}=await loadRenderer();
+  const {load}=require('cheerio');
+  const page=load(renderStudioPreview('grade-9-2018-2019','math'));
+  assert.equal(page('.exam-math-panel').length,1);
+  assert.equal(page('.exam-preview-controls').length,1);
+  assert.equal(page('.exam-worksheet-exit').length,0);
+  assert.equal(page('.exam-general-directions-document').length,0);
 });

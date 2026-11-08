@@ -1,6 +1,6 @@
 import categories from "./passage-category-options.json";
 
-export type PassageCategory = "official_handbook" | "prestige" | "miscellaneous";
+export type PassageCategory = "official_handbook" | "prestige" | "kaplan" | "miscellaneous";
 export const PASSAGE_CATEGORIES = categories as { value: PassageCategory; label: string }[];
 /** Old content is valid. Unknown sources are never guessed from titles/genres. */
 export function passageCategory(value: unknown): PassageCategory {

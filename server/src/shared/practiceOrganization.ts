@@ -13,6 +13,8 @@ export const practicePrograms = ['SHSAT', 'SAT', 'PSAT', 'AP'] as const;
 export const practiceDifficulties = ['unassigned', 'foundation', 'standard', 'advanced'] as const;
 export const practiceReviewStatuses = ['unreviewed', 'in-review', 'approved'] as const;
 export type GeneratorOrganization = {
+  reviewRequired?: boolean;
+  reviewedSignature?: string;
   skills?: string[];
   prerequisites?: string[];
   sourceQuestionIds?: string[];

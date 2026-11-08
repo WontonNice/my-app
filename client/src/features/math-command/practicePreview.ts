@@ -14,7 +14,7 @@ export function previewCorrectAnswer(question: ExamQuestion) {
 }
 
 export function browsePreviewGeneration(state: PracticeState, sequenceIndex: number): PracticeState {
-  return { ...state, sequenceIndex: Math.max(0, sequenceIndex), index: 0, answer: '', submitted: false, finished: false, checked: 0, correct: 0, streak: 0, longestStreak: 0, generatorStreaks: {}, moduleStreaks:{},moduleLongestStreaks:{}, unlockedGeneratorIds: [], hiddenGeneratorIds: [], totalMs: 0, questionMs: 0, answeredMs: 0 };
+  return { ...state, responses:[],sequenceIndex: Math.max(0, sequenceIndex), index: 0, answer: '', submitted: false, finished: false, checked: 0, correct: 0, streak: 0, longestStreak: 0, generatorStreaks: {}, moduleStreaks:{},moduleLongestStreaks:{}, unlockedGeneratorIds: [], hiddenGeneratorIds: [], totalMs: 0, questionMs: 0, answeredMs: 0 };
 }
 
 /** Exercise the same scoring, advancement, and unlock transitions as real practice. */

@@ -1,10 +1,14 @@
+import { LibraryProgress } from '../components/LibraryProgress';
+import { WorksheetProgress } from '../components/WorksheetProgress';
+import { PracticeEvidence } from '../components/PracticeEvidence';
+import { worksheetIds } from '../lib/examLibrary';
 import { hasFullyAnsweredExam } from "../../../server/src/shared/examCorrectionAccess";
 import { useEffect, useMemo, useState } from "react";
 import { BarChart3, CheckCircle2 } from "lucide-react";
 import { StudentPortalShell } from "../components/StudentPortalShell";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { signOutCurrentAccount } from "../lib/accountSwitching";
-import { getLearningProgress, getStudentAssessments, getStudentPreviewResults, type StudentAssessment } from "../lib/api";
+import { getExamSessionProgress, type ExamSessionProgress, getLearningProgress, getStudentAssessments, getStudentPreviewResults, type StudentAssessment } from "../lib/api";
 import { AppLink } from "../components/AppLink";
 import { examCorrectionsHref } from "../lib/correctionNavigation";
 import { getExamResults, type ExamResult } from "../lib/examResults";
@@ -19,9 +23,15 @@ function isExamResult(value: Record<string, unknown>): value is ExamResult & Rec
 export function StudentResultsPage() {
   const { accessToken, isCheckingSession, isSupabaseConfigured, previewContext, studentName } = useStudentPortalAccess();
   const initialSession = peekActiveSession();
-  const [results, setResults] = useState<ExamResult[]>(() => initialSession && !previewContext.isPreview ? getExamResults(initialSession.user.id) : []);
+  const [savedResults, setResults] = useState<ExamResult[]>(() => initialSession && !previewContext.isPreview ? getExamResults(initialSession.user.id) : []);
+  const [catalogLoaded, setCatalogLoaded] = useState(false);
   const [assessments, setAssessments] = useState<StudentAssessment[]>([]);
+  const [sessions, setSessions] = useState<Record<string, ExamSessionProgress>>({});
+  const [worksheetHistory, setWorksheetHistory] = useState<Record<string, unknown>[]>([]);
+  const worksheetIdSet = worksheetIds(assessments);
+  const results = (catalogLoaded ? savedResults : []).filter(result => !worksheetIdSet.has(result.assessmentId));
   const [error, setError] = useState("");
+  const [resultView,setResultView]=useState('assessments');
   const [filters, setFilters] = useState({ name: "", from: "", to: "", sort: "date-desc" as ResultSort });
   const visibleResults = useMemo(() => filterResults(results, filters), [results, filters]);
 
@@ -30,13 +40,14 @@ export function StudentResultsPage() {
     let isMounted = true;
     if (previewContext.isPreview) {
       if (!previewContext.studentId) return;
-      getStudentPreviewResults(accessToken, previewContext.studentId).then(data => { if (isMounted) { setResults(data.results); setAssessments(data.assessments); setError(""); } }).catch(reason => { if (isMounted) setError(reason instanceof Error ? reason.message : "Student results could not be loaded."); });
+      getStudentPreviewResults(accessToken, previewContext.studentId).then(data => { if (isMounted) { setResults(data.results); setAssessments(data.assessments); setCatalogLoaded(true); setError(""); } }).catch(reason => { if (isMounted) setError(reason instanceof Error ? reason.message : "Student results could not be loaded."); });
       return () => { isMounted = false; };
     }
-    getStudentAssessments(accessToken).then(data => { if (isMounted) setAssessments(data); }).catch(() => undefined);
+    getExamSessionProgress(accessToken).then(data => { if (isMounted) setSessions(data); }).catch(() => undefined);
+    getStudentAssessments(accessToken).then(data => { if (isMounted) { setAssessments(data); setCatalogLoaded(true); } }).catch(() => { if (isMounted) setError("Result categories could not be loaded. Refresh to retry."); });
     getLearningProgress(accessToken).then((progress) => {
       const cloudResults = progress.examResults.filter(isExamResult) as ExamResult[];
-      if (isMounted) setResults(cloudResults);
+      if (isMounted) { setResults(cloudResults); setWorksheetHistory(progress.examHistory ?? []); }
     }).catch(() => { if (isMounted) setError("Latest results could not be loaded. Refresh to retry; saved results are shown below."); });
     return () => { isMounted = false; };
   }, [accessToken, previewContext.isPreview, previewContext.studentId]);
@@ -54,9 +65,14 @@ export function StudentResultsPage() {
   return (
     <StudentPortalShell activeId="results" onSignOut={handleSignOut} previewContext={previewContext} studentName={studentName}>
       <div className="student-section-page">
-        <header className="student-section-heading"><div><h1>Results</h1><span>Review your submissions and subject scores.</span></div><strong>{average === null ? "No results yet" : `${average}% average`}</strong></header>
+        <header className="student-section-heading"><div><h1>Results</h1><span>Review your submissions and subject scores.</span></div><strong>{average === null ? "No results yet" : `${average}% assessment average`}</strong></header>
         {error && <p role="alert">{error}</p>}
         {previewContext.isPreview && !previewContext.studentId && <p>Select a student to preview their results.</p>}
+        <nav className="learning-results-nav" aria-label="Result types">{[['assessments','Assessments'],['worksheets','Worksheets'],['practice','Infinite practice'],['library','Reading & passage work']].map(([id,label])=><button type="button" key={id} aria-pressed={resultView===id} onClick={()=>setResultView(id)}>{label}</button>)}</nav>
+        {resultView==='worksheets'&&(catalogLoaded ? <WorksheetProgress assessments={assessments} results={[...savedResults as unknown as Record<string, unknown>[], ...worksheetHistory]} sessions={sessions} previewContext={previewContext} /> : <p role="status">Loading worksheet progress…</p>)}
+        {resultView==='library'&&<LibraryProgress accessToken={accessToken} studentId={previewContext.studentId} preview={previewContext.isPreview} />}
+        {resultView==='practice'&&accessToken&&(!previewContext.isPreview||previewContext.studentId)&&<PracticeEvidence key={previewContext.studentId||'me'} accessToken={accessToken} studentId={previewContext.studentId}/>}
+        <div hidden={resultView!=='assessments'}><h2>Assessment results</h2>
         <div className="student-results-filters" role="search" aria-label="Filter results">
           <label>Test name<input type="search" placeholder="Search tests" value={filters.name} onChange={event => setFilters({ ...filters, name: event.target.value })} /></label>
           <label>Taken from<input type="date" value={filters.from} max={filters.to || undefined} onChange={event => setFilters({ ...filters, from: event.target.value })} /></label>
@@ -79,7 +95,7 @@ export function StudentResultsPage() {
           </section>
         ) : (
           <section className="student-section-empty"><BarChart3 size={28} /><h2>No completed assessments yet</h2><p>Results will appear here after you submit work and your teacher makes it available.</p></section>
-        )}
+        )}</div>
       </div>
     </StudentPortalShell>
   );

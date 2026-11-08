@@ -59,7 +59,8 @@ function connect(owner: string) {
         window.dispatchEvent(new Event(practiceProgressEvent));
         report('saved');
       }
-    } catch {
+    } catch (error) {
+      console.warn('Practice account sync failed:', error instanceof Error ? error.message : 'Unknown error');
       download = true;
       if (!closed) report(hydrated ? 'offline' : 'unavailable');
     } finally {
@@ -81,6 +82,7 @@ function connect(owner: string) {
   const retry = window.setInterval(() => { if (status === 'offline' || status === 'unavailable') void sync(); }, 30000);
   void sync();
   return {
+    retry() { report('loading'); refresh(); },
     flush(moduleId: string) {
       pending.add(moduleId);
       const flushed = new Promise<void>(resolve => waiting.add(resolve));
@@ -118,3 +120,5 @@ export function usePracticeAccount(owner?: string): SyncStatus {
 export function flushPracticeAccount(owner: string, moduleId: string) {
   return active.get(owner)?.flush(moduleId);
 }
+
+export function retryPracticeAccount(owner: string) { active.get(owner)?.retry(); }

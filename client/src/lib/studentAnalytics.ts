@@ -164,7 +164,7 @@ export function buildStudentAnalytics(inputs: AnalyticsInput[], basis = "all") {
     const english = subjects.find(item => item.subject === "English Language Arts" && item.total > 0);
     const math = subjects.find(item => item.subject === "Mathematics" && item.total > 0);
     const answersAvailable = result.answers && typeof result.answers === "object" && !Array.isArray(result.answers)
-      && (source === "Digital" || Object.keys(result.answers).length > 0);
+      && (source === "Digital" || source === "Study Hall worksheet" || Object.keys(result.answers).length > 0);
     const candidates = content && answersAvailable ? reviewQuestions(content, result as unknown as ExamResult) : [];
     const scope = contentScope(content);
     const sectionCounts = candidates.reduce((counts, row) => { counts[row.section]++; return counts; }, { english: 0, math: 0 });

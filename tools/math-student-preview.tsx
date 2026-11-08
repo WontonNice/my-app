@@ -1,3 +1,4 @@
+import 'katex/dist/katex.min.css';
 import { useEffect, useRef, useState, type ComponentProps } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ExamToolbar } from '../client/src/pages/ExamSessionPage';
@@ -19,6 +20,12 @@ function StudentPreview() {
   const [userMenu, setUserMenu] = useState(false);
   const [timer, setTimer] = useState(false);
   const questionKey = useRef('');
+  const responses = useRef(new Map<string, {answer: SelectedAnswer; eliminated: string[]}>());
+  const rememberAnswer = (value: SelectedAnswer) => {
+    responses.current.set(questionKey.current, {answer:value, eliminated:responses.current.get(questionKey.current)?.eliminated || []});
+    setAnswer(value);
+  };
+  useEffect(() => { if(questionKey.current) responses.current.set(questionKey.current,{answer,eliminated}); }, [answer, eliminated]);
   const [drawings, setDrawings] = useState<NonNullable<ComponentProps<typeof ExamToolbar>['pencilStorage']>['drawings']>({});
   const [redoStacks, setRedoStacks] = useState<typeof drawings>({});
   useEffect(() => {
@@ -26,8 +33,8 @@ function StudentPreview() {
       if (event.origin !== editorOrigin || event.source !== parent || event.data?.type !== 'studio:math-preview') return;
       const next = event.data.preview as Preview;
       if (!next?.question || typeof next.question.id !== 'string') return;
-      const key = next.question.id + ':' + next.question.type;
-      if (questionKey.current !== key) { setAnswer(''); setEliminated([]); setTool('pointer'); questionKey.current = key; }
+      const key = next.title + ':' + JSON.stringify(next.question);
+      if (questionKey.current !== key) { const saved=responses.current.get(key);setAnswer(saved?.answer ?? '');setEliminated(saved?.eliminated || []);setTool('pointer');questionKey.current = key; }
       setPreview(next);
     };
     window.addEventListener('message', receive);
@@ -43,7 +50,7 @@ function StudentPreview() {
       onSelectTool={next => setTool(current => current === next ? 'pointer' : next)} isNotepadOpen={tool === 'notepad'}
       isTimerVisible={timer} onToggleTimer={() => setTimer(value => !value)} isUserMenuOpen={userMenu} onToggleUserMenu={() => setUserMenu(value => !value)} pencilKey={preview.question.id}
       pencilStorage={{drawings, setDrawings, redoStacks, setRedoStacks}} />
-    {preview.subject === 'english' ? <StandaloneStudentPreview key={preview.question.id + preview.question.type} question={preview.question} answer={answer} onChange={setAnswer} /> : <ExamMathQuestion key={preview.question.id + preview.question.type} question={preview.question} answer={answer} onChange={value => { setAnswer(value); const selected = Array.isArray(value) ? value : typeof value === 'string' ? [value] : []; setEliminated(current => current.filter(id => !selected.includes(id))); }} eliminatedIds={eliminated}
+    {preview.subject === 'english' ? <StandaloneStudentPreview key={preview.question.id + preview.question.type} question={preview.question} answer={answer} onChange={rememberAnswer} /> : <ExamMathQuestion key={preview.question.id + preview.question.type} question={preview.question} answer={answer} onChange={value => { rememberAnswer(value); const selected = Array.isArray(value) ? value : typeof value === 'string' ? [value] : []; setEliminated(current => current.filter(id => !selected.includes(id))); }} eliminatedIds={eliminated}
       onEliminatePoint={tool === 'eliminator' ? id => setEliminated(current => current.includes(id) ? current.filter(item => item !== id) : [...current,id]) : undefined}
       onChoiceLabelClick={(event,id) => { if (tool !== 'eliminator') return; event.preventDefault(); setEliminated(current => current.includes(id) ? current.filter(item => item !== id) : [...current,id]); }} />}
     {tool === 'notepad' && <section className="exam-notepad-window" aria-label="Notepad"><header><h2>Notepad</h2><button aria-label="Close notepad" onClick={() => setTool('pointer')}>×</button></header><textarea aria-label="Notes" value={note} onChange={event => setNote(event.target.value)} /></section>}

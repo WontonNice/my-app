@@ -19,6 +19,7 @@ import { supabase } from "../lib/supabase";
 import { examReentryPrefix, readExamReentries, withExamWriteLock } from "../lib/examReentry";
 import { examAttemptId, type ExamReentryGrant } from "../shared/examReentry";
 import { contentForExamAttempt } from "../lib/examResume";
+import {activitySessionRelease} from '../lib/activitySessionRelease';
 import type { ExamContent } from "../shared/examTypes";
 import { submittedExamSections } from "../shared/examCompletion";
 import { preserveSubmittedSections } from "../shared/examResume";
@@ -91,7 +92,8 @@ assessmentsRouter.get("/student/:assessmentId", async (request, response) => {
     }
 
     const savedContent = records.get(assessment.id)?.analysisContent as ExamContent | undefined;
-    const publishedContent = assessment.status === "open" && !(reentry?.resetAnswers && reentry.remainingSections.length) ? contentForExamAttempt(assessment.id, savedContent, true) : undefined;
+    const pinnedContent=assessment.assembly&&!reentry?.resetAnswers?await activitySessionRelease(user,assessment.id):null;
+    const publishedContent = pinnedContent??(assessment.status === "open" && !(reentry?.resetAnswers && reentry.remainingSections.length) ? contentForExamAttempt(assessment.id, savedContent, true) : undefined);
     const closedSections = (["english", "math"] as const).filter(section => !assessment.sectionAccess[section]);
     const resumeContent = publishedContent ? preserveSubmittedSections(publishedContent, savedContent, closedSections) : undefined;
     response.json({ assessment: { ...applyReentry(toStudentAssessmentDetail(personalAccess ? { ...assessment, status: "open", allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, user.id), reentry, assessment.status === "open"), ...(resumeContent ? { resumeContent } : {}) } });

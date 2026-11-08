@@ -221,7 +221,7 @@ export async function convertPackage(folder) {
     const $=load(data.itemBodyHtml,null,false);hydrateGlossary($);const stimulus=$('.stimulus .passageContent').first().clone();
     const {poem,...presentation}=passagePresentation(stimulus.html(),assets);
     const sectionName=entry.id.startsWith('EW')?'revising_editing_a':'reading';
-    passage={...presentation,author:presentation.byline.replace(/^by\s+/i,''),preserveSourceLayout:true,format:poem?'poem':sectionName==='revising_editing_a'?'sentence_prose':'prose',passageType:poem?'poem':'long_reading',passageCategory:'official_handbook',section:sectionName,
+    passage={...presentation,author:presentation.byline.replace(/^by\s+/i,''),preserveSourceLayout:true,format:poem?'poem':sectionName==='revising_editing_a'?'sentence_prose':'prose',passageType:poem?'poem':'informational',passageCategory:'official_handbook',section:sectionName,
      teacherSource:inv.sourceUrl,versionLabel:`SHSAT 2026 Practice Test ${inv.form}`,source:{sourceFamily:'official_shsat',sourceFormat:'testnav',playerProfile:'testnav',year:2026,form:inv.form,section:section.title},questions:[],review:{expectedQuestionCount:qs.length,warnings:[]}};
    }
   }
