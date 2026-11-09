@@ -9,3 +9,8 @@ dist/
 
 # Private document import review drafts (published source remains versioned).
 tools/.content-drafts/
+
+# Local reports, import backups, and scratch work (keep existing tracked fixtures).
+/artifacts/
+/tmp/
+/tools/.activity-test-*.mjs

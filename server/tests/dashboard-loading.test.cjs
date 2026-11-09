@@ -12,7 +12,17 @@ function loadTS(relative) {
   return loaded.exports;
 }
 const deadline = loadTS('../../client/src/lib/requestDeadline.ts');
-const { loadDashboardResource } = loadTS('../../client/src/lib/dashboardResource.ts');
+const { loadDashboardResource, teacherWorkspaceResources } = loadTS('../../client/src/lib/dashboardResource.ts');
+
+test('assessment management stays available when student progress times out; insights require progress', async () => {
+  const state = {};
+  const load = (key, fetch) => loadDashboardResource(fetch, () => {}, value => { state[key] = value; });
+  await load('assessments', async () => ['exam']);
+  await load('students', async () => { throw new deadline.RequestTimeoutError(); });
+  assert.ok(teacherWorkspaceResources('assessments').every(key => state[key].status === 'ready'));
+  assert.ok(teacherWorkspaceResources('assessments', true).some(key => state[key].status === 'error'));
+  assert.ok(teacherWorkspaceResources('students').some(key => state[key].status === 'error'));
+});
 
 function apiWith(fetch, auth = {}) {
   const source = fs.readFileSync(path.resolve(__dirname, '../../client/src/lib/api.ts'), 'utf8').replaceAll('import.meta.env.DEV', 'false').replaceAll('import.meta.env.VITE_API_BASE_URL', 'undefined');

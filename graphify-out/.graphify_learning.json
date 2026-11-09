@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-11-06T15:59:08.289196+00:00",
+  "nodes": {
+    "tools_content_studio": {
+      "code_fingerprint": "4626fcc5d3e21df0cc507f200c45c264a293a1b717c78405367c00906d1cff40",
+      "label": "content-studio.mjs",
+      "last": "2026-11-06T06:56:52.348122+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T06:56:52.348122+00:00",
+          "outcome": "useful",
+          "q": "Audit SHSAT exams, content editor, and question-bank synchronization"
+        }
+      ],
+      "score": 0.991337049,
+      "source_file": "tools/content-studio.mjs",
+      "status": "tentative",
+      "uses": 1
+    },
+    "tools_export_exam_content_exportexamcontent": {
+      "code_fingerprint": "2e9e02af73099612e6a6de76ed8513fe99b93efae8c2ad2246006fc65f61e8b4",
+      "label": "exportExamContent()",
+      "last": "2026-11-06T06:56:52.348122+00:00",
+      "provenance": [
+        {
+          "date": "2026-11-06T06:56:52.348122+00:00",
+          "outcome": "useful",
+          "q": "Audit SHSAT exams, content editor, and question-bank synchronization"
+        }
+      ],
+      "score": 0.991337049,
+      "source_file": "tools/export-exam-content.cjs",
+      "status": "tentative",
+      "uses": 1
+    }
+  },
+  "version": 1
+}

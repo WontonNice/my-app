@@ -7,7 +7,7 @@ import { StudentRecordFilterProvider } from "../components/StudentRecordFilterPr
 import { mergeAnalyticsInputs } from "../lib/studentAnalytics";
 import { teacherPlanClient } from "../lib/api";
 import { teacherNavItems } from '../lib/teacherNavigation';
-import { loadDashboardResource, type DashboardResourceState } from "../lib/dashboardResource";
+import { teacherWorkspaceResources, loadDashboardResource, type DashboardResourceState } from "../lib/dashboardResource";
 import { withRequestDeadline } from "../lib/requestDeadline";
 import { AccountActivity, useAccountActivity } from "../features/account/AccountActivity";
 import { isFullExamResult } from "../../../server/src/shared/examCompletion";
@@ -1564,10 +1564,9 @@ export function TeacherDashboardPage() {
     { icon: BookOpen, label: "Open exams", value: String(examAssessments.filter((assessment) => assessment.status === "open").length) },
   ];
   const activeWorkspace = getTeacherWorkspace(window.location.pathname);
-  const workspaceResources: (keyof typeof resources)[] = activeWorkspace === "accounts" ? ["accounts"]
-    : activeWorkspace === "enrollment" ? ["requests"]
-    : ["overview", "students", "assessments"].includes(activeWorkspace) ? ["assessments", "students"]
-    : activeWorkspace === "boards" ? ["students"] : [];
+  const workspaceResources = teacherWorkspaceResources(activeWorkspace, Boolean(getInsightAssessmentId(window.location.pathname)));
+  const progressReady = resources.students.status === 'ready';
+  const progressMessage = resources.students.status === 'error' ? 'Student results could not be loaded. Exam access controls are still available.' : 'Loading student results…';
   const workspaceError = workspaceResources.map(key => resources[key].error).find(Boolean);
   const workspaceLoading = workspaceResources.some(key => resources[key].status === "loading");
   const insightAssessmentId = getInsightAssessmentId(window.location.pathname);
@@ -1727,7 +1726,8 @@ export function TeacherDashboardPage() {
 
       {activeWorkspace === "assessments" && !insightAssessmentId ? (
       <section className="teacher-assessments-hub" id="assessments">
-        {accessToken && <details className="assessment-reentry-tool"><summary><RotateCcw size={15} /> Reopen or reset a student’s exam section</summary><TeacherExamReentry accessToken={accessToken} assessments={examAssessments} students={shsatStudents} /></details>}
+        {!progressReady && <section className="teacher-panel" role="status"><p>{progressMessage}</p>{resources.students.status === "error" && <button type="button" onClick={() => void loadDashboardResource(() => getTeacherStudentProgress(accessToken), setStudents, state => setResources(previous => ({ ...previous, students: state })))}>Retry student results</button>}</section>}
+        {accessToken && progressReady && <details className="assessment-reentry-tool"><summary><RotateCcw size={15} /> Reopen or reset a student’s exam section</summary><TeacherExamReentry accessToken={accessToken} assessments={examAssessments} students={shsatStudents} /></details>}
         <div className="assessment-library-summary">
           <div><span><strong>{examAssessments.length}</strong> assessments</span><span><strong>{examAssessments.filter(assessment => assessment.sectionAccess.english || assessment.sectionAccess.math).length}</strong> open</span><span><strong>{classAssessmentInsights.reduce((sum, insight) => sum + insight.fullSubmissions, 0)}</strong> full exams submitted</span><span><strong>{shsatStudents.length}</strong> students</span></div>
           <AppLink className="assessment-button" href="/teacher/answer-sheets"><ClipboardList size={15} /> Digital answer sheets <ArrowUpRight size={13} /></AppLink>
@@ -1762,7 +1762,7 @@ export function TeacherDashboardPage() {
               <th scope="row" className="teacher-exams-name"><button type="button" aria-expanded={expanded} aria-controls={"exam-management-" + assessment.id} onClick={() => setExpandedAssessmentId(expanded ? "" : assessment.id)}>{assessment.title}</button><small>{getAllExamQuestions(assessmentContent).length} questions · {assessment.durationMinutes} min</small></th>
               <td data-label="Test year">{metadata.year || "—"}</td><td data-label="Form">{metadata.form || "—"}</td><td data-label="Category">{metadata.category}</td>
               <td data-label="Access"><span className={"teacher-exams-access " + (assessment.sectionAccess.english || assessment.sectionAccess.math ? "is-open" : "")}>{sectionAccessLabel}</span></td>
-              <td data-label="Full-exam avg."><strong>{assessmentInsight?.overallAverage == null ? "—" : assessmentInsight.overallAverage + "%"}</strong><small>{classResult?.submissions ?? 0} full submissions</small></td>
+              <td data-label="Full-exam avg."><strong>{assessmentInsight?.overallAverage == null ? "—" : assessmentInsight.overallAverage + "%"}</strong><small>{progressReady ? `${classResult?.submissions ?? 0} full submissions` : "Results unavailable"}</small></td>
               <td className="teacher-exams-actions"><a href={getTeacherExamPreviewHref(assessment.id)} onClick={() => resetExamTimer(assessment.id)} target="_blank" rel="noreferrer" aria-label={"View test " + assessment.title}>View test<ArrowUpRight size={12} /></a><AppLink href={"/teacher/assessments/" + encodeURIComponent(assessment.id)} aria-label={"Insights for " + assessment.title}>Insights</AppLink><button type="button" aria-expanded={expanded} aria-controls={"exam-management-" + assessment.id} onClick={() => setExpandedAssessmentId(expanded ? "" : assessment.id)}>{expanded ? "Close" : "Manage"}</button></td>
             </tr><tr className="teacher-exams-expanded" hidden={!expanded} id={"exam-management-" + assessment.id}><td colSpan={7}><article className="teacher-assessment-card assessment-library-card">
               <header className="assessment-card-header">
@@ -1778,13 +1778,14 @@ export function TeacherDashboardPage() {
               </header>
               <div className="assessment-card-body">
                 <section className="assessment-card-performance" aria-label={`${assessment.title} class performance`}>
-                  <div className="assessment-card-section-heading"><h4>Class performance</h4><span>{classResult?.submissions ?? 0} full exams submitted</span></div>
+                  {progressReady ? <><div className="assessment-card-section-heading"><h4>Class performance</h4><span>{classResult?.submissions ?? 0} full exams submitted</span></div>
                   <div className="assessment-card-scores">
                     <div><span>Full-exam average</span><strong>{assessmentInsight?.overallAverage == null ? "—" : `${assessmentInsight.overallAverage}%`}</strong><small>{classResult?.submissions ?? 0} students scored</small></div>
                     <div><span>English</span><strong>{assessmentInsight?.english.average == null ? "—" : `${assessmentInsight.english.average}%`}</strong><small>{assessmentInsight?.english.scoredStudents ?? 0} students scored</small></div>
                     <div><span>Math</span><strong>{assessmentInsight?.math.average == null ? "—" : `${assessmentInsight.math.average}%`}</strong><small>{assessmentInsight?.math.scoredStudents ?? 0} students scored</small></div>
                   </div>
                   <div className="assessment-submission-coverage"><span><strong>{submissions} / {shsatStudents.length}</strong> students submitted <small>{submissions - (classResult?.submissions ?? 0)} section / other results</small></span><div role="progressbar" aria-label="Students with submitted results" aria-valuenow={submissions} aria-valuemin={0} aria-valuemax={Math.max(1,shsatStudents.length)}><i style={{width: `${shsatStudents.length ? 100 * submissions / shsatStudents.length : 0}%`}} /></div></div>
+                  </> : <p role="status">{progressMessage}</p>}
                 </section>
                 <section className="assessment-card-access" aria-label={`${assessment.title} student access`}>
                   <div className="assessment-card-section-heading"><h4>Student access</h4><button className="assessment-text-button" disabled={isSavingAccess} type="button" onClick={() => handleToggleAssessment(assessment)}>{savingStatusId === assessment.id ? "Saving…" : allSectionsOpen ? "Lock both" : "Open both"}</button></div>
@@ -1794,10 +1795,10 @@ export function TeacherDashboardPage() {
               </div>
               <div className="assessment-card-tools"><span>Exam tools</span><button className="assessment-button teacher-form-toggle" disabled={!assessment.passages.length} type="button" aria-expanded={isFormEditorOpen} onClick={() => openFormEditor(assessment)}><Shuffle size={14} />{isFormEditorOpen ? "Close passage forms" : "Passage forms"}</button><button className="assessment-button teacher-answer-key-toggle" type="button" aria-expanded={openAnswerKeyId === assessment.id} onClick={() => setOpenAnswerKeyId(current => current === assessment.id ? "" : assessment.id)}><ClipboardList size={14} />{openAnswerKeyId === assessment.id ? "Close answer key" : "Answer key"}</button></div>
               {openAnswerKeyId === assessment.id && <ExamAnswerKey assessment={assessment} />}
-              <TeacherExamTools assessment={assessment} accessToken={accessToken} students={students}
+              {progressReady && <TeacherExamTools assessment={assessment} accessToken={accessToken} students={students}
                 onAssessmentChange={updated => setAssessments(current => current.map(item => item.id === updated.id ? updated : item))}
                 onResultSaved={(studentId, result) => setStudents(current => current.map(student => student.id === studentId ? { ...student, progress: { ...student.progress, examResults: [result as unknown as Record<string, unknown>, ...student.progress.examResults.filter(item => item.assessmentId !== result.assessmentId)] } } : student))}
-              />
+              />}
               {isFormEditorOpen && formDraft ? <section className="teacher-form-editor" aria-label={`${assessment.title} passage forms`}>
                 <header>
                   <div><strong>Reading passage-order forms</strong><small>Only Reading Comprehension passages move. Passage-based Part A, stand-alone Part B, and Math remain fixed.</small></div>
