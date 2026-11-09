@@ -2,8 +2,11 @@ import { supabase } from "./supabase";
 import { remainingReentrySections, type ExamReentryGrant } from "../shared/examReentry";
 
 export const examReentryPrefix = "__exam_reentry__:";
-export async function readExamReentries(studentId: string) {
-  const query = await supabase.from("student_exam_results").select("assessment_id,result").eq("user_id", studentId);
+export async function readExamReentries(studentId: string, assessmentId?: string) {
+  let request = supabase.from("student_exam_results").select("assessment_id,result").eq("user_id", studentId);
+  // Saves need only this exam and its grant. Keep the full read for list views.
+  if (assessmentId !== undefined) request = request.in("assessment_id", [assessmentId, examReentryPrefix + assessmentId]);
+  const query = await request;
   if (query.error) throw new Error("Could not verify exam re-entry permissions. Please retry.");
   const records = new Map((query.data ?? []).map(row => [String(row.assessment_id), row.result as Record<string, unknown>]));
   const grants: Record<string, ExamReentryGrant> = {};

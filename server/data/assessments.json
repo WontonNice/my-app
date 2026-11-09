@@ -6307,15 +6307,15 @@
       {
         "answer": "C",
         "choices": [
-          "The Appalachian Trail is an extremely long trail that millions of people do each year",
-          "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year",
-          "The Appalachian Trail is a 2,200-mile trail that two million people hike each year",
+          "The Appalachian Trail is an extremely long trail that millions of people do each year.",
+          "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year.",
+          "The Appalachian Trail is a 2,200-mile trail that two million people hike each year.",
           "The Appalachian Trail is a lengthy trail that a couple million people do each year."
         ],
         "id": "part-b-question-8",
         "imageUrl": "",
         "points": 1,
-        "prompt": "Which revision of the sentence uses the most precise language?",
+        "prompt": "Read this sentence.\n\nWhich revision of the sentence uses the most precise language?",
         "topic": "Word Choice & Precision",
         "type": "multiple_choice"
       },
@@ -32346,231 +32346,6 @@
     ],
     "questions": [
       {
-        "answer": "B",
-        "choices": [
-          "The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, which cost $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space.",
-          "The International Space Station has been inhabited by crew members since 2000 and will soon allow tourists to pay for visits, but because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space.",
-          "The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, though the cost is $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space.",
-          "The International Space Station has been inhabited by crew members since 2000, and tourists will soon be allowed to pay for visits to the space station because the cost is $52–$58 million round trip, therefore few people will be able to take advantage of the opportunity to have a vacation in outer space."
-        ],
-        "id": "pdf-shsat-2024-2025-b-q001",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "What is the best way to combine these sentences to clarify the relationship between ideas?\n\n(1) The International Space Station has been inhabited by crew members since 2000. (2) Tourists will soon be allowed to pay for visits to the space station. (3) Because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space.",
-        "topic": "Sentence Structure",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "B",
-        "choices": [
-          "sentence 1",
-          "sentence 2",
-          "sentence 3",
-          "sentence 4"
-        ],
-        "id": "pdf-shsat-2024-2025-b-q002",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.",
-        "topic": "Modifiers",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "C",
-        "choices": [
-          "The Appalachian Trail is an extremely long trail that millions of people do each year.",
-          "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year.",
-          "The Appalachian Trail is a 2,200-mile trail that two million people hike each year.",
-          "The Appalachian Trail is a lengthy trail that a couple million people do each year."
-        ],
-        "id": "pdf-shsat-2024-2025-b-q003",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Read this sentence.\n\nThe Appalachian Trail is a really long trail that a lot of people do each year.\n\nWhich revision of the sentence uses the most precise language?",
-        "topic": "Word Choice & Precision",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "C",
-        "choices": [
-          "Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became.",
-          "Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed.",
-          "Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became.",
-          "Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed."
-        ],
-        "id": "pdf-shsat-2024-2025-b-q004",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
-        "topic": "Verbs",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "A",
-        "choices": [
-          "These are the people who spend their free time volunteering at animal shelters, helping with activities in community centers, or cleaning up parks.",
-          "These are the people who spend their free time helping others in numerous ways at a variety of places, events, or organizations that need support.",
-          "These are the people who spend their free time working at local establishments that help people, animals, or other groups in need of assistance.",
-          "These are the people who spend a lot of time volunteering at places where they can help people in many ways."
-        ],
-        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q005",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which revision of sentence 2 uses the most precise language?",
-        "topic": "Word Choice & Precision",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "A",
-        "choices": [
-          "With that in mind, high school students should consider engaging in some form of regular volunteerism.",
-          "Fortunately for students, these benefits are guaranteed to produce both immediate and long-term results.",
-          "In fact, studies have confirmed that volunteerism can be beneficial for students, the family, and the community.",
-          "For this reason, high school students should learn about how helping others can strengthen their communities."
-        ],
-        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q006",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which sentence should follow sentence 4 to introduce the main claim of the passage?",
-        "topic": "Topic & Transitions",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "B",
-        "choices": [
-          "sentence 6",
-          "sentence 7",
-          "sentence 8",
-          "sentence 9"
-        ],
-        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q007",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which sentence is least relevant to the ideas presented in the second paragraph (sentences 5–10) and should be deleted?",
-        "topic": "Relevance & Conclusion",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "D",
-        "choices": [
-          "These students show that they are likely to be responsible, reliable, and helpful young adults. Admissions counselors know that character traits like these will benefit the applicants as well as whomever they interact with.",
-          "Volunteering can help students meet new people who can provide references and advice to the students when they are applying to colleges. It can also be an invaluable opportunity for students to meet possible future employers.",
-          "The counselors hope that young adults who demonstrate this behavior will go on to volunteer during their college years, working on campus in student government and leadership programs or serving in the community at hospitals, schools, and homeless shelters.",
-          "Many colleges are looking for students who are not just academically successful but who also work well with others and care about improving and serving surrounding communities."
-        ],
-        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q008",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which of these would best follow sentence 12 and support the ideas presented in the third paragraph (sentences 11–12)?",
-        "topic": "Relevance & Conclusion",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "D",
-        "choices": [
-          "In every city, there are homeless shelters, food pantries, youth centers, and political campaigns that depend on the support and commitment of hardworking young people.",
-          "Clearly, students who volunteer will experience a host of benefits, such as learning new skills, meeting interesting people, opening up opportunities for the future, and gaining a sense of satisfaction.",
-          "When students carefully evaluate their activities and prioritize volunteerism, they find a way to work it into their schedule and are soon encouraging their peers to do the same.",
-          "Whether they are seeking admission to college, preparing to enter the workforce, or simply looking to reduce stress, high school students who volunteer can help themselves as much as they help others."
-        ],
-        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q009",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which concluding sentence should replace sentence 22 to provide the best support for the argument presented in the passage?",
-        "topic": "Relevance & Conclusion",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "C",
-        "choices": [
-          "The construction of the Gotthard Base Tunnel was approved by Swiss voters in 1992 and was funded by tolls, fuel taxes, and government loans.",
-          "Leaders from several European countries attended the opening ceremonies for the Gotthard Base Tunnel, a Swiss tunnel.",
-          "The Gotthard Base Tunnel is the world’s longest and deepest railway tunnel, stretching 35.5 miles straight through the base of the Swiss Alps.",
-          "The Gotthard Base Tunnel continues to help reduce the number of freight trucks on the roadways in the Swiss Alps."
-        ],
-        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-41",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which sentence should be added after sentence 5 to introduce the main topic of the passage?",
-        "topic": "Topic & Transitions",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "B",
-        "choices": [
-          "The tunnel-boring machine is helpful to tunnel builders in the modern era and has been an improvement over dynamite.",
-          "These enormous tunnel-boring machines function somewhat like a cheese grater, with the cutter head grinding slowly through rock and stone.",
-          "Engineers had considered making a tunnel under the mountains for many years, but it was impossible to do without modern tunnel-boring machines.",
-          "Different types of cutter heads are used with tunnel-boring machines depending on the geology of the area where the tunnel is being created."
-        ],
-        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-42",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which sentence should be added to follow and support sentence 7?",
-        "topic": "Relevance & Conclusion",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "D",
-        "choices": [
-          "to the beginning of the paragraph (before sentence 6)",
-          "between sentences 6 and 7",
-          "between sentences 8 and 9",
-          "between sentences 9 and 10"
-        ],
-        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-43",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Where should sentence 11 be moved in order to improve the organization of the second paragraph (sentences 6–11)?",
-        "topic": "Topic & Transitions",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "D",
-        "choices": [
-          "sentence 13",
-          "sentence 14",
-          "sentence 15",
-          "sentence 16"
-        ],
-        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-44",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which sentence presents information that shifts away from the main topic of the third paragraph (sentences 12–16) and should be removed?",
-        "topic": "Relevance & Conclusion",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "C",
-        "choices": [
-          "Although the Gotthard Base Tunnel is mainly for freight trains,",
-          "With the Gotthard Base Tunnel taking ten years to complete,",
-          "Because of the successful completion of the Gotthard Base Tunnel,",
-          "As the number of trains using the Gotthard Base Tunnel increases,"
-        ],
-        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-45",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which transition phrase should be added to the beginning of sentence 18?",
-        "topic": "Topic & Transitions",
-        "type": "multiple_choice"
-      },
-      {
-        "answer": "B",
-        "choices": [
-          "There is proof that underground tunnels such as the Gotthard Base Tunnel are beneficial to the economy of the surrounding area.",
-          "The Gotthard Base Tunnel is an extraordinary example of how human ingenuity and persistence can overcome great obstacles.",
-          "The completion of the Gotthard Base Tunnel shows that people can work together to achieve important goals.",
-          "The Swiss government is confident that the economic impact of the Gotthard Base Tunnel will be worth its construction cost."
-        ],
-        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-46",
-        "imageUrl": "",
-        "points": 1,
-        "prompt": "Which concluding sentence should be added after sentence 18 to support the topic presented in the passage?",
-        "topic": "Relevance & Conclusion",
-        "type": "multiple_choice"
-      },
-      {
         "answer": "D",
         "choices": [
           "It identifies why many adults are never able to learn a second language.",
@@ -33198,6 +32973,231 @@
         "points": 1,
         "prompt": "Throughout the excerpt, the author conveys his point of view mainly by",
         "topic": "Author's Point of View",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "These are the people who spend their free time volunteering at animal shelters, helping with activities in community centers, or cleaning up parks.",
+          "These are the people who spend their free time helping others in numerous ways at a variety of places, events, or organizations that need support.",
+          "These are the people who spend their free time working at local establishments that help people, animals, or other groups in need of assistance.",
+          "These are the people who spend a lot of time volunteering at places where they can help people in many ways."
+        ],
+        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q005",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which revision of sentence 2 uses the most precise language?",
+        "topic": "Word Choice & Precision",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "With that in mind, high school students should consider engaging in some form of regular volunteerism.",
+          "Fortunately for students, these benefits are guaranteed to produce both immediate and long-term results.",
+          "In fact, studies have confirmed that volunteerism can be beneficial for students, the family, and the community.",
+          "For this reason, high school students should learn about how helping others can strengthen their communities."
+        ],
+        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q006",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence should follow sentence 4 to introduce the main claim of the passage?",
+        "topic": "Topic & Transitions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "sentence 6",
+          "sentence 7",
+          "sentence 8",
+          "sentence 9"
+        ],
+        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q007",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence is least relevant to the ideas presented in the second paragraph (sentences 5–10) and should be deleted?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "These students show that they are likely to be responsible, reliable, and helpful young adults. Admissions counselors know that character traits like these will benefit the applicants as well as whomever they interact with.",
+          "Volunteering can help students meet new people who can provide references and advice to the students when they are applying to colleges. It can also be an invaluable opportunity for students to meet possible future employers.",
+          "The counselors hope that young adults who demonstrate this behavior will go on to volunteer during their college years, working on campus in student government and leadership programs or serving in the community at hospitals, schools, and homeless shelters.",
+          "Many colleges are looking for students who are not just academically successful but who also work well with others and care about improving and serving surrounding communities."
+        ],
+        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q008",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of these would best follow sentence 12 and support the ideas presented in the third paragraph (sentences 11–12)?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "In every city, there are homeless shelters, food pantries, youth centers, and political campaigns that depend on the support and commitment of hardworking young people.",
+          "Clearly, students who volunteer will experience a host of benefits, such as learning new skills, meeting interesting people, opening up opportunities for the future, and gaining a sense of satisfaction.",
+          "When students carefully evaluate their activities and prioritize volunteerism, they find a way to work it into their schedule and are soon encouraging their peers to do the same.",
+          "Whether they are seeking admission to college, preparing to enter the workforce, or simply looking to reduce stress, high school students who volunteer can help themselves as much as they help others."
+        ],
+        "id": "find-time-to-volunteer-2024-2025-form-b-pdf-shsat-2024-2025-b-q009",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which concluding sentence should replace sentence 22 to provide the best support for the argument presented in the passage?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The construction of the Gotthard Base Tunnel was approved by Swiss voters in 1992 and was funded by tolls, fuel taxes, and government loans.",
+          "Leaders from several European countries attended the opening ceremonies for the Gotthard Base Tunnel, a Swiss tunnel.",
+          "The Gotthard Base Tunnel is the world’s longest and deepest railway tunnel, stretching 35.5 miles straight through the base of the Swiss Alps.",
+          "The Gotthard Base Tunnel continues to help reduce the number of freight trucks on the roadways in the Swiss Alps."
+        ],
+        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-41",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence should be added after sentence 5 to introduce the main topic of the passage?",
+        "topic": "Topic & Transitions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "The tunnel-boring machine is helpful to tunnel builders in the modern era and has been an improvement over dynamite.",
+          "These enormous tunnel-boring machines function somewhat like a cheese grater, with the cutter head grinding slowly through rock and stone.",
+          "Engineers had considered making a tunnel under the mountains for many years, but it was impossible to do without modern tunnel-boring machines.",
+          "Different types of cutter heads are used with tunnel-boring machines depending on the geology of the area where the tunnel is being created."
+        ],
+        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-42",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence should be added to follow and support sentence 7?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "to the beginning of the paragraph (before sentence 6)",
+          "between sentences 6 and 7",
+          "between sentences 8 and 9",
+          "between sentences 9 and 10"
+        ],
+        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-43",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Where should sentence 11 be moved in order to improve the organization of the second paragraph (sentences 6–11)?",
+        "topic": "Topic & Transitions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "sentence 13",
+          "sentence 14",
+          "sentence 15",
+          "sentence 16"
+        ],
+        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-44",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence presents information that shifts away from the main topic of the third paragraph (sentences 12–16) and should be removed?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Although the Gotthard Base Tunnel is mainly for freight trains,",
+          "With the Gotthard Base Tunnel taking ten years to complete,",
+          "Because of the successful completion of the Gotthard Base Tunnel,",
+          "As the number of trains using the Gotthard Base Tunnel increases,"
+        ],
+        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-45",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which transition phrase should be added to the beginning of sentence 18?",
+        "topic": "Topic & Transitions",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "There is proof that underground tunnels such as the Gotthard Base Tunnel are beneficial to the economy of the surrounding area.",
+          "The Gotthard Base Tunnel is an extraordinary example of how human ingenuity and persistence can overcome great obstacles.",
+          "The completion of the Gotthard Base Tunnel shows that people can work together to achieve important goals.",
+          "The Swiss government is confident that the economic impact of the Gotthard Base Tunnel will be worth its construction cost."
+        ],
+        "id": "moving-through-mountains-2026-2027-form-d-official-shsat-2026-d-46",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which concluding sentence should be added after sentence 18 to support the topic presented in the passage?",
+        "topic": "Relevance & Conclusion",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, which cost $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space.",
+          "The International Space Station has been inhabited by crew members since 2000 and will soon allow tourists to pay for visits, but because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space.",
+          "The International Space Station has been inhabited by crew members since 2000, but tourists will soon be allowed to pay for visits to the space station, though the cost is $52–$58 million round trip, so few people will be able to take advantage of the opportunity to have a vacation in outer space.",
+          "The International Space Station has been inhabited by crew members since 2000, and tourists will soon be allowed to pay for visits to the space station because the cost is $52–$58 million round trip, therefore few people will be able to take advantage of the opportunity to have a vacation in outer space."
+        ],
+        "id": "pdf-shsat-2024-2025-b-q001",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the best way to combine these sentences to clarify the relationship between ideas?\n\n(1) The International Space Station has been inhabited by crew members since 2000. (2) Tourists will soon be allowed to pay for visits to the space station. (3) Because the cost is $52–$58 million round trip, few people will be able to take advantage of the opportunity to have a vacation in outer space.",
+        "topic": "Sentence Structure",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "sentence 1",
+          "sentence 2",
+          "sentence 3",
+          "sentence 4"
+        ],
+        "id": "pdf-shsat-2024-2025-b-q002",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which sentence contains an error in its construction and should be revised?\n\n(1) In 1976, the National Basketball Association (NBA) absorbed several teams of the American Basketball Association (ABA), including the New York Nets, who played in the Long Island area at the time. (2) The owner of the Nets decided to take the team to New Jersey after the team had financial troubles, where the team played for thirty-five seasons. (3) The New Jersey Nets had sixteen playoff appearances, including two appearances in the NBA finals. (4) In 2012, the team changed ownership and returned to New York, where the team now plays under the name the Brooklyn Nets.",
+        "topic": "Modifiers",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The Appalachian Trail is an extremely long trail that millions of people do each year.",
+          "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year.",
+          "The Appalachian Trail is a 2,200-mile trail that two million people hike each year.",
+          "The Appalachian Trail is a lengthy trail that a couple million people do each year."
+        ],
+        "id": "pdf-shsat-2024-2025-b-q003",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Read this sentence.\n\nThe Appalachian Trail is a really long trail that a lot of people do each year.\n\nWhich revision of the sentence uses the most precise language?",
+        "topic": "Word Choice & Precision",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Sentence 1: Delete the comma after homes. Sentence 3: Change becomes to became.",
+          "Sentence 1: Delete the comma after homes. Sentence 4: Change remarketed to had remarketed.",
+          "Sentence 2: Insert a comma after company. Sentence 3: Change becomes to became.",
+          "Sentence 2: Insert a comma after company. Sentence 4: Change remarketed to had remarketed."
+        ],
+        "id": "pdf-shsat-2024-2025-b-q004",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which pair of revisions need to be made in this paragraph?\n\n(1) When coal was used to heat homes, it frequently left soot stains on the walls. (2) Brothers Cleo and Noah McVicker, who owned a cleaning product company created a doughy substance to help people remove this soot. (3) Over time, as natural gas becomes more common, people had little need for soot cleansers, and the McVickers’ family company struggled to stay in business. (4) Then one day Joe McVicker, Cleo’s son, learned that his sister-in-law had been using the substance for art projects in her classroom, so he remarketed the product as the toy known today as Play-Doh.",
+        "topic": "Verbs",
         "type": "multiple_choice"
       },
       {
@@ -35759,7 +35759,7 @@
     "description": "",
     "durationMinutes": 180,
     "createdAt": "2026-10-26T05:46:42.376Z",
-    "updatedAt": "2026-11-06T01:20:35.249Z",
+    "updatedAt": "2026-11-09T11:16:31.676Z",
     "passages": [
       {
         "id": "excerpt-from-the-past-and-the-future-of-the-earth-s-oldest-trees-2026-2027-form-b",
@@ -37351,7 +37351,7 @@
         "prompt": "Let \\(b=3\\text{,} c=4\\text{,}\\) and \\(d=5\\text{.}\\) Determine the value of \\(\\frac{\\frac{c}{d}}{\\frac{c}{b}}+\\frac{c}{d}\\text{.}\\)\nEnter your fractional answer in the space provided. Enter only your fraction.",
         "topic": "Algebra",
         "subtopic": "Algebraic Expressions",
-        "type": "expression_entry"
+        "type": "numeric_entry"
       }
     ],
     "forms": [],

@@ -1,4 +1,5 @@
 import { probabilityBatchPractice } from './probabilityBatchPractice';
+import { geometryReviewPractice } from './geometryReviewPractice';
 import { prob2Practice } from './prob2Practice';
 import { algebraPlannerPractice } from './algebraPlannerPractice';
 import { exponentsPractice } from './exponentsPractice';
@@ -40,6 +41,7 @@ export const practiceGenerators: Generator[] = [
   ...prob2Practice.map(template=>({...template,foundation:template.destination.groupType==='foundation',generate:(index:number,seed:string)=>template.generate(index,seed).question})),
   ...algebraPlannerPractice.map(template=>({...template,foundation:true,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
   ...exponentsPractice.map(template=>({...template,foundation:true,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
+  ...geometryReviewPractice.map(template=>({id:template.id,title:template.title,description:template.description,category:template.category,topic:template.topic,foundation:false,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
 ];
 
 // Targeted modules can combine any number of registered generators. Stable IDs
@@ -53,6 +55,7 @@ export const practiceModules: PracticeModule[] = [
   { id: overlappingGroupsTemplate.sourceId, title: overlappingGroupsTemplate.title, description: 'Practice overlapping group percentages and survey totals, including both groups and neither group.', category: overlappingGroupsTemplate.category, topic: overlappingGroupsTemplate.topic, selection: [overlappingGroupsTemplate.id,surveyTotalsTemplate.id] },
   ...wordProblemPractice.filter(template=>!('moduleId'in template)).map(template=>({id:template.sourceId,title:template.title,description:template.description,category:template.category,topic:template.topic,selection:[template.id]})),
   {...probabilityModule,selection:probabilityPractice.map(template=>template.id)},
+  ...geometryReviewPractice.filter((template,index,all)=>all.findIndex(item=>item.moduleId===template.moduleId)===index).map(template=>({id:template.moduleId,title:template.moduleId==='geometry-cube-edges'?'Cube Edges and Volume':template.moduleId==='geometry-angle-relationships'?'Angle Relationships':template.title,description:template.description,category:template.category,topic:template.topic,selection:geometryReviewPractice.filter(item=>item.moduleId===template.moduleId).map(item=>item.id)})),
 ];
 
 export function moduleGeneratorIds(module: PracticeModule): string[] {

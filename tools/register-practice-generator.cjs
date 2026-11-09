@@ -85,7 +85,21 @@ function publishBuiltinDestinations(catalog, templates) {
   }
   return next;
 }
-async function registerBuiltinPractices(templates) {
+// Optional mixed review uses existing recommendation support without changing topic membership.
+function addRecommendedPractice(catalog, request) {
+  if (!request) return catalog;
+  if (request.module.generatorIds.some(id=>!catalog.generators.some(generator=>generator.id===id))) throw new Error('A mixed review references an unregistered generator.');
+  const next=structuredClone(catalog);
+  next.recommended??=[];
+  let category=next.recommended.find(item=>item.id===request.id);
+  if (!category) {category={id:request.id,title:request.title,modules:[]};next.recommended.push(category);}
+  if (category.title!==request.title) throw new Error('The mixed-review category already has different saved details.');
+  const existing=category.modules.find(item=>item.id===request.module.id);
+  if (existing&&!isDeepStrictEqual(existing,request.module)) throw new Error('The mixed-review module already has different saved selections.');
+  if (!existing) category.modules.push(structuredClone(request.module));
+  return next;
+}
+async function registerBuiltinPractices(templates, recommended) {
   serverRequire('dotenv').config({ path: [path.resolve(__dirname, '../server/.env'), path.resolve(__dirname, '../.env')], quiet: true });
   const { supabase } = require('../server/src/lib/supabase.ts');
   const {mathCommandRoot,readMathCommandState,readMathCommandTaxonomy}=require('../server/src/lib/mathCommandCatalogStore.ts');
@@ -99,7 +113,8 @@ async function registerBuiltinPractices(templates) {
   const enable = process.argv.includes('--enable');
   const registered = previous ? templates.reduce((current,template)=>addBuiltinPractice(current,template,resolveCatalog),resolveCatalog(previous)) : resolveCatalog(defaultPracticeCatalog());
   const enabled = enable ? enableBuiltinPractices(registered,templates) : registered;
-  const catalog = validatePracticeCatalog(process.argv.includes('--publish-validated') ? publishBuiltinDestinations(enabled,templates) : enabled,taxonomy);
+  if (recommended?.module.generatorIds.some(id=>!templates.some(template=>template.id===id))) throw new Error('A new mixed review may include only generators from this batch.');
+  const catalog = validatePracticeCatalog(addRecommendedPractice(process.argv.includes('--publish-validated') ? publishBuiltinDestinations(enabled,templates) : enabled,recommended),taxonomy);
   if (templates.some(template=>template.destination)) {
     if (!previous) throw new Error('Exact batch destinations require a saved catalog.');
     const requested=new Set(templates.map(template=>template.id));
@@ -128,8 +143,8 @@ async function registerBuiltinPractices(templates) {
     if (saved.error || !saved.data) throw new Error(saved.error?.message ?? 'Another window saved changes. Run this command again to use the latest revision.');
   }
   const resources=templates.map(template=>{const module=template.destination||template.existingModuleOnly?catalog.modules.find(module=>module.id===template.moduleId):catalog.modules.find(module=>!practiceModuleKind(module)&&module.generatorIds.includes(template.id));const generator=catalog.generators.find(item=>item.id===template.id);return{requestId:template.requestId,generator:template.id,module:module?.id,category:module?.category,topic:module?.topic,enabled:generator?.enabled,published:module?.published,parentPublished:catalog.modules.find(item=>item.id===module?.parentId)?.published,reviewStatus:generator?.reviewStatus,...(template.destination||template.existingModuleOnly?{destination:module,definition:generator}:{})};});
-  console.log(JSON.stringify({ mode: apply ? 'apply' : 'read-only-preview', changed, saved: apply && changed, revision: revision + Number(apply && changed), ...(resources.length===1?resources[0]:{resources}) }, null, 2));
+  console.log(JSON.stringify({ mode: apply ? 'apply' : 'read-only-preview', changed, saved: apply && changed, revision: revision + Number(apply && changed), ...(recommended?{recommended}:{}), ...(resources.length===1?resources[0]:{resources}) }, null, 2));
   });
 }
 
-module.exports = { addBuiltinPractice, enableBuiltinPractices, publishBuiltinDestinations, registerBuiltinPractice, registerBuiltinPractices };
+module.exports = { addBuiltinPractice, addRecommendedPractice, enableBuiltinPractices, publishBuiltinDestinations, registerBuiltinPractice, registerBuiltinPractices };

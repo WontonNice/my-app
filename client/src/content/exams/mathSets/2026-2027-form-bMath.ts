@@ -2033,6 +2033,8 @@ export const content20262027FormBMathSection: ExamMathSection = {
       "y=20x+50"
     ],
     "entryLayout": "plain",
+    "entryVariable": "x, y",
+    "entryPrefixVariable": "x",
     "type": "expression_entry"
   },
   {
@@ -2190,7 +2192,7 @@ export const content20262027FormBMathSection: ExamMathSection = {
       "7/5"
     ],
     "entryLayout": "fraction",
-    "type": "expression_entry"
+    "type": "numeric_entry"
   }
 ],
 };

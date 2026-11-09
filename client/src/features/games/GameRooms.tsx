@@ -7,6 +7,7 @@ import { LandmineOutcome } from "./LandmineOutcome";
 import { SabotageShop } from "./SabotageShop";
 import type { GameCatalog, GameMode, GameSummary, GameView } from "../../../../server/src/shared/gameRooms";
 import { gameApi } from "./api";
+import { startVisiblePolling } from "../../lib/visiblePolling";
 import { GamePlaytestControls } from "./GamePlaytestControls";
 import { GameStandings } from "./GameStandings";
 import { TeamObserver } from "./TeamObserver";
@@ -47,6 +48,7 @@ export function GameRooms({ accessToken, teacher = false }: { accessToken: strin
   const [rooms, setRooms] = useState<GameSummary[]>([]), [catalog, setCatalog] = useState<GameCatalog | null>(null), [room, setRoom] = useState<GameView | null>(null);
   const [error, setError] = useState(""), [connectionError, setConnectionError] = useState(""), [busy, setBusy] = useState(false), [loading, setLoading] = useState(true), [mode, setMode] = useState<GameMode>("survival");
   const roomId = room?.id, playtestPlayerId = room?.playtest?.controlledPlayerId;
+  const pollInterval = room?.phase === "lobby" ? 3000 : 1500;
   const activeRoom = useRef<string | null>(null);
   const showRoom = (next: GameView) => { activeRoom.current = next.id; setConnectionError(""); setRoom(next); };
   const accept = useCallback((next: GameView) => { if (activeRoom.current !== next.id) return; setRoom(current => current?.id === next.id && next.revision >= current.revision ? next : current); }, []);
@@ -54,16 +56,30 @@ export function GameRooms({ accessToken, teacher = false }: { accessToken: strin
   useEffect(() => { let active = true; void Promise.all([api.list(), teacher ? api.catalog() : Promise.resolve(null)]).then(([list, options]) => { if (active) { setRooms(list); setCatalog(options); } }).catch(reason => { if (active) setError(reason.message); }).finally(() => { if (active) setLoading(false); }); return () => { active = false; }; }, [api, teacher]);
   useEffect(() => {
     if (!roomId) return;
-    let active = true, timer: number;
-    const poll = async () => { try { const next = await api.get(roomId); if (active) { accept(next); setConnectionError(""); } } catch (reason) { if (active && reason instanceof Error && reason.message === "This room has ended.") { activeRoom.current = null; setRoom(null); setConnectionError(""); void refreshList(); } else if (active) setConnectionError(reason instanceof Error ? reason.message : "Connection interrupted. Retrying…"); } finally { if (active) timer = window.setTimeout(() => { void poll(); }, 1500); } };
-    timer = window.setTimeout(() => { void poll(); }, 1500);
-    return () => { active = false; window.clearTimeout(timer); };
-  }, [roomId, api, accept, refreshList]);
+    let active = true;
+    const stop = startVisiblePolling(async () => {
+      try {
+        const next = await api.get(roomId);
+        if (active) { accept(next); setConnectionError(""); }
+      } catch (reason) {
+        if (active && reason instanceof Error && reason.message === "This room has ended.") {
+          activeRoom.current = null; setRoom(null); setConnectionError("");
+          void refreshList().catch(() => {});
+        } else if (active) setConnectionError(reason instanceof Error ? reason.message : "Connection interrupted. Retrying…");
+        throw reason;
+      }
+    }, { intervalMs: pollInterval, immediate: false });
+    return () => { active = false; void stop(); };
+  }, [roomId, api, accept, refreshList, pollInterval]);
   useEffect(() => {
     if (roomId) return;
-    const timer = window.setInterval(() => { void refreshList().catch(() => {}); }, 5000);
-    return () => window.clearInterval(timer);
-  }, [roomId, refreshList]);
+    let active = true;
+    const stop = startVisiblePolling(async () => {
+      const next = await api.list();
+      if (active) setRooms(next);
+    }, { intervalMs: 15000, immediate: false });
+    return () => { active = false; void stop(); };
+  }, [roomId, api]);
   async function removeRoom(id: string) { setBusy(true); setError(""); try { await api.remove(id); await refreshList(); } catch (reason) { setError((reason as Error).message); } finally { setBusy(false); } }
   const act: Action = useCallback(async (action, body, quiet = false) => { if (!roomId) return false; if (!quiet) setBusy(true); setError(""); try { const next = await api.action(roomId, action, { ...body, ...(playtestPlayerId ? { playtestPlayerId } : {}) }); if (next.closedAt) { activeRoom.current = null; setRoom(null); setConnectionError(""); await refreshList(); } else accept(next); return true; } catch (reason) { if (activeRoom.current === roomId) setError(reason instanceof Error ? reason.message : "Could not update this room."); return false; } finally { if (!quiet) setBusy(false); } }, [api, roomId, playtestPlayerId, accept, refreshList]);
   async function open(id: string) { setBusy(true); setError(""); try { showRoom(await api.get(id)); } catch (reason) { setError((reason as Error).message); } finally { setBusy(false); } }

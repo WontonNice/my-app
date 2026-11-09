@@ -5,6 +5,7 @@ import { supabase } from "../lib/supabase";
 import { getUserRole, isStudentArchived } from "../lib/auth";
 import { accountMailReady, sendAccountMail } from "../lib/accountMail";
 import { ACCOUNT_COLORS, accountColor, loginStreak } from "../shared/accountPreferences";
+import { ACCOUNT_PRESENCE_WINDOW_MS } from "../shared/accountPresence";
 
 export const accountRouter = Router();
 function fail(message: string, status = 400): never { throw Object.assign(new Error(message), { status }); }
@@ -127,10 +128,10 @@ accountRouter.delete("/presence/:clientId", async (request, response) => {
 accountRouter.get("/activity", async (request, response) => {
   const user = await userFor(request);
   if (!["teacher", "admin"].includes(getUserRole(user))) fail("Teacher access is required.", 403);
-  const result = await supabase.from("account_presence").select("user_id,last_seen_at,last_login_at").gte("last_seen_at", new Date(Date.now() - 90000).toISOString()); storage(result.error);
+  const result = await supabase.from("account_presence").select("user_id,last_seen_at,last_login_at").gte("last_seen_at", new Date(Date.now() - ACCOUNT_PRESENCE_WINDOW_MS).toISOString()); storage(result.error);
   const onlineIds = [...new Set((result.data ?? []).map(row => row.user_id))];
   const lastLogins = Object.fromEntries((result.data ?? []).filter(row => row.last_login_at).sort((a, b) => Date.parse(a.last_login_at) - Date.parse(b.last_login_at)).map(row => [row.user_id, row.last_login_at]));
-  response.json({ onlineIds, lastLogins, checkedAt: new Date().toISOString(), windowSeconds: 90 });
+  response.json({ onlineIds, lastLogins, checkedAt: new Date().toISOString(), windowSeconds: ACCOUNT_PRESENCE_WINDOW_MS / 1000 });
 });
 const errors: ErrorRequestHandler = (error, _request, response, next) => {
   if (response.headersSent) { next(error); return; }

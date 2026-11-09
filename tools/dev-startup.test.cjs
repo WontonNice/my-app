@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const { createServer } = require('node:http');
 const { once } = require('node:events');
 const { waitForApi } = require('./wait-for-api.cjs');
+const { isApiListening, startStudentDev } = require('./dev-student.cjs');
 
 async function fixture(t, handler) {
   const server = createServer(handler);
@@ -54,4 +55,38 @@ test('an unrelated HTML server or a stalled response cannot release the startup 
       await assert.rejects(waitForApi({ url, pollMs: 5, requestTimeoutMs: 20, timeoutMs: 100 }), /frontend was not started/);
     });
   }
+});
+
+test('student startup reuses a listening API without taking ownership of its process', async t => {
+  const { server } = await fixture(t, (_request, response) => response.end('{"ok":true,"status":"up"}'));
+  const port = server.address().port;
+  let launched;
+  await startStudentDev({
+    checkApi: () => isApiListening({ port }), log() {},
+    run(commands, options) { launched = { commands, options }; return { result: Promise.resolve() }; },
+  });
+  assert.equal(launched.commands.length, 1, 'do not launch or stop the teacher-owned API');
+  assert.match(launched.commands[0].command, /wait-for-api\.cjs && .*--port 5174 --strictPort/);
+  assert.equal(server.listening, true);
+});
+
+test('student startup starts a missing API and health-gates the frontend in the same process group', async () => {
+  const socket = createServer();
+  socket.listen(0, '127.0.0.1');
+  await once(socket, 'listening');
+  const port = socket.address().port;
+  await new Promise(resolve => socket.close(resolve));
+  let launched;
+  await startStudentDev({
+    checkApi: () => isApiListening({ port }), log() {},
+    run(commands, options) { launched = { commands, options }; return { result: Promise.resolve() }; },
+  });
+  assert.equal(launched.commands.filter(item => item.command === 'npm run dev:server').length, 1);
+  assert.match(launched.commands.find(item => item.name === 'student').command, /^node tools\/wait-for-api\.cjs && /);
+  assert.deepEqual(launched.options.killOthersOn, ['failure', 'success'], 'an owned API cannot leave an unusable frontend behind when it exits');
+});
+
+test('uncertain port ownership and process failures are reported, not swallowed', async () => {
+  await assert.rejects(startStudentDev({ checkApi: async () => { throw Error('Port check failed'); }, run() { assert.fail('must not spawn'); } }), /Port check failed/);
+  await assert.rejects(startStudentDev({ checkApi: async () => false, log() {}, run: () => ({ result: Promise.reject(new Error('API startup failed')) }) }), /API startup failed/);
 });

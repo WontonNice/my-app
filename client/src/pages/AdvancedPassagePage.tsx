@@ -1,26 +1,17 @@
 import { LibraryBookSession } from '../components/LibraryBookSession';
 import { getLibraryBookContent } from '../lib/api';
 import '../styles/library-book-settings.css';
-import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 import {
   ArrowLeft,
   BarChart3,
-  Bookmark,
   CheckCircle2,
-  ChevronDown,
-  Clock3,
   KeyRound,
-  List,
   MessageSquare,
-  Monitor,
-  MousePointer2,
-  Pencil,
   RotateCcw,
   Send,
   Timer,
   Trophy,
-  User,
-  X,
 } from "lucide-react";
 import { getAdvancedPracticePassage } from "../content/advancedPractice";
 import { getExamLibraryPassage } from "../content/exams/passageLibrary";
@@ -29,21 +20,16 @@ import type { ExamPassageSet } from "../content/exams/types";
 import {
   getStudentLibraryBookAccess,
   getStudentLibraryAttempts,
-  saveStudentLibraryAttempt,
   type StudentLibraryCorrectionView,
   type StudentLibraryAttempt,
 } from "../lib/api";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { appendStudentPreview } from "../lib/studentPreview";
-import { LibraryQuestionResponse } from "../components/LibraryQuestionResponse";
-import { ExamAnswer, ExamText } from "../components/ExamReviewQuestion";
-import { libraryAnswer, libraryQuestionAnswered } from "../../../server/src/shared/libraryBooks";
+import { ExamAnswer } from "../components/ExamReviewQuestion";
+import { libraryAnswer } from "../../../server/src/shared/libraryBooks";
 import { libraryCorrectionsHref } from "../lib/correctionNavigation";
 import { navigateTo } from "../lib/navigation";
 import { correctionQuestionTypes } from "../../../server/src/shared/correctionTypes";
-
-type AdvancedTool = "pointer" | "eliminator" | "notepad" | "pencil";
-type ReviewFilter = "all" | "notAnswered" | "bookmarks";
 
 function getPassageIdFromPath() {
   return window.location.pathname.split("/").filter(Boolean).at(-1) ?? "";
@@ -239,201 +225,6 @@ export function LibraryCorrectionsWorkspace({
   );
 }
 
-function AdvancedExamToolbar({
-  activeTool,
-  bookmarkedQuestionIds,
-  collectionLabel,
-  currentQuestionIndex,
-  isComplete,
-  isNotepadOpen,
-  isReviewOpen,
-  maxVisitedIndex,
-  onNext,
-  onPrevious,
-  onReviewFilterChange,
-  onReviewQuestionSelect,
-  onSelectTool,
-  onToggleBookmark,
-  onToggleReview,
-  passageTitle,
-  questionIds,
-  reviewFilter,
-  selectedAnswers,
-  studentName,
-  historyLinks,
-}: {
-  activeTool: AdvancedTool;
-  bookmarkedQuestionIds: string[];
-  collectionLabel: string;
-  currentQuestionIndex: number;
-  isComplete: boolean;
-  isNotepadOpen: boolean;
-  isReviewOpen: boolean;
-  maxVisitedIndex: number;
-  onNext: () => void;
-  onPrevious: () => void;
-  onReviewFilterChange: (filter: ReviewFilter) => void;
-  onReviewQuestionSelect: (index: number) => void;
-  onSelectTool: (tool: AdvancedTool) => void;
-  onToggleBookmark: () => void;
-  onToggleReview: () => void;
-  passageTitle: string;
-  questionIds: string[];
-  reviewFilter: ReviewFilter;
-  selectedAnswers: Record<string, string>;
-  studentName: string;
-  historyLinks?: ReactNode;
-}) {
-  const currentQuestionId = questionIds[currentQuestionIndex];
-  const unansweredCount = questionIds.filter((questionId, index) => index <= maxVisitedIndex && !selectedAnswers[questionId]).length;
-  const visibleQuestions = questionIds
-    .map((questionId, index) => ({
-      id: questionId,
-      index,
-      isAnswered: Boolean(selectedAnswers[questionId]),
-      isBookmarked: bookmarkedQuestionIds.includes(questionId),
-    }))
-    .filter((question) => {
-      if (question.index > maxVisitedIndex) {
-        return false;
-      }
-      if (reviewFilter === "notAnswered") {
-        return !question.isAnswered;
-      }
-      if (reviewFilter === "bookmarks") {
-        return question.isBookmarked;
-      }
-      return true;
-    });
-
-  return (
-    <>
-      <header className="exam-session-toolbar" aria-label={`${collectionLabel} controls`}>
-        <div className="exam-session-toolbar-inner">
-          <div className="exam-session-toolbar-cluster">
-            <div className="exam-session-toolbar-group exam-session-question-nav">
-              <button
-                aria-disabled={currentQuestionIndex === 0 && !isComplete ? true : undefined}
-                aria-label="Previous item"
-                className={`exam-session-toolbar-button ${currentQuestionIndex > 0 || isComplete ? "is-next" : "is-muted"}`}
-                data-tooltip="Previous"
-                onClick={currentQuestionIndex > 0 || isComplete ? onPrevious : undefined}
-                type="button"
-              >
-                <span aria-hidden="true" className="exam-session-arrow-glyph is-left" />
-              </button>
-              <button
-                aria-disabled={isComplete ? true : undefined}
-                aria-label="Next item"
-                className={`exam-session-toolbar-button ${isComplete ? "is-muted" : "is-next"}`}
-                data-tooltip="Next"
-                onClick={isComplete ? undefined : onNext}
-                type="button"
-              >
-                <span aria-hidden="true" className="exam-session-arrow-glyph is-right" />
-              </button>
-            </div>
-
-            <div className="exam-session-toolbar-group exam-session-review-tools">
-              <button
-                className={`exam-session-toolbar-button is-review ${isReviewOpen ? "is-active-review" : ""}`}
-                data-tooltip="Review"
-                onClick={onToggleReview}
-                type="button"
-              >
-                <span>Review</span><List aria-hidden="true" size={16} strokeWidth={2.4} />
-              </button>
-              <button
-                aria-pressed={Boolean(currentQuestionId && bookmarkedQuestionIds.includes(currentQuestionId))}
-                className={`exam-session-toolbar-button is-bookmark ${currentQuestionId && bookmarkedQuestionIds.includes(currentQuestionId) ? "is-bookmarked" : ""}`}
-                disabled={isComplete}
-                onClick={onToggleBookmark}
-                type="button"
-              >
-                <Bookmark
-                  aria-hidden="true"
-                  fill={currentQuestionId && bookmarkedQuestionIds.includes(currentQuestionId) ? "currentColor" : "none"}
-                  size={17}
-                />
-                <span>Bookmark</span>
-                <span className="exam-bookmark-tooltip">Bookmark Question for Review</span>
-              </button>
-
-              {isReviewOpen ? (
-                <section className="exam-review-menu" aria-label="Review questions">
-                  <div className="exam-review-tabs">
-                    <button className={`exam-review-tab ${reviewFilter === "all" ? "is-active" : ""}`} onClick={() => onReviewFilterChange("all")} type="button">
-                      <span className="exam-review-tab-icon exam-review-tab-icon-square">{maxVisitedIndex + 1}</span>
-                      <span>All Questions</span>
-                    </button>
-                    <button className={`exam-review-tab ${reviewFilter === "notAnswered" ? "is-active" : ""}`} onClick={() => onReviewFilterChange("notAnswered")} type="button">
-                      <span className="exam-review-tab-icon exam-review-tab-icon-circle">{unansweredCount}</span>
-                      <span>Not Answered</span>
-                    </button>
-                    <button className={`exam-review-tab ${reviewFilter === "bookmarks" ? "is-active" : ""}`} onClick={() => onReviewFilterChange("bookmarks")} type="button">
-                      <span className="exam-review-tab-icon exam-review-tab-icon-bookmark">{bookmarkedQuestionIds.length}</span>
-                      <span>Bookmarks</span>
-                    </button>
-                  </div>
-                  <div className="exam-review-list">
-                    {visibleQuestions.length > 0 ? visibleQuestions.map((question) => (
-                      <button
-                        className={`exam-review-row ${!isComplete && question.index === currentQuestionIndex ? "is-current" : ""} ${question.isAnswered ? "" : "is-unanswered"}`}
-                        key={question.id}
-                        onClick={() => onReviewQuestionSelect(question.index)}
-                        type="button"
-                      >
-                        {!question.isAnswered ? <span className="exam-review-row-dot" aria-hidden="true" /> : null}
-                        <span>Question {question.index + 1}</span>
-                        {question.isBookmarked ? <Bookmark aria-label="Bookmarked" className="exam-review-row-bookmark" fill="currentColor" size={15} /> : null}
-                      </button>
-                    )) : <p className="exam-review-empty">No questions to show.</p>}
-                  </div>
-                </section>
-              ) : null}
-            </div>
-
-            <div className="exam-session-toolbar-group exam-session-work-tools">
-              <button aria-label="Pointer tool" className={`exam-session-tool-button ${activeTool === "pointer" ? "is-active" : ""}`} data-tooltip="Pointer" onClick={() => onSelectTool("pointer")} type="button">
-                <MousePointer2 aria-hidden="true" fill="currentColor" size={18} />
-              </button>
-              <button aria-label="Eliminate answer tool" className={`exam-session-tool-button ${activeTool === "eliminator" ? "is-active" : ""}`} data-tooltip="Answer Eliminator" onClick={() => onSelectTool("eliminator")} type="button">
-                <X aria-hidden="true" size={18} />
-              </button>
-              <button aria-label="Notepad tool" className={`exam-session-tool-button ${activeTool === "notepad" || isNotepadOpen ? "is-active" : ""}`} data-tooltip="Notepad" onClick={() => onSelectTool("notepad")} type="button">
-                <MessageSquare aria-hidden="true" size={17} />
-              </button>
-              <button aria-label="Pencil tool" className={`exam-session-tool-button ${activeTool === "pencil" ? "is-active" : ""}`} data-tooltip="Pencil" onClick={() => onSelectTool("pencil")} type="button">
-                <Pencil aria-hidden="true" size={17} />
-              </button>
-            </div>
-          </div>
-
-          <div className="exam-session-user-tools">
-            {historyLinks}
-            <button aria-label="Show timer" className="exam-session-timer-button" type="button"><Clock3 aria-hidden="true" size={16} /></button>
-            <span className="exam-session-user-name">{studentName}</span>
-            <button aria-label="User menu" className="exam-session-user-button" type="button">
-              <User aria-hidden="true" fill="currentColor" size={14} />
-              <ChevronDown aria-hidden="true" size={12} />
-            </button>
-          </div>
-        </div>
-      </header>
-      <div className="exam-session-bluebar" />
-      <nav className="exam-session-breadcrumb" aria-label={`${collectionLabel} location`}>
-        <div className="exam-session-breadcrumb-inner">
-          <div className="exam-session-breadcrumb-text">
-            <span>{collectionLabel.toUpperCase()}</span><span>/</span><span>{passageTitle.toUpperCase()}</span><span>/</span>
-            <span>{isComplete ? "PASSAGE END DIRECTIONS" : `${currentQuestionIndex + 1} OF ${questionIds.length}`}</span>
-          </div>
-          <span className="exam-session-status-icon" aria-hidden="true"><Monitor size={19} /></span>
-        </div>
-      </nav>
-    </>
-  );
-}
-
 export function AdvancedPassagePage() {
   const { accessToken, isCheckingSession, previewContext, studentName } = useStudentPortalAccess();
   const isShsatLibraryPassage = window.location.pathname.includes("/study-hall/shsat/library/");
@@ -446,29 +237,12 @@ export function AdvancedPassagePage() {
   const [edition, setEdition] = useState<Awaited<ReturnType<typeof getLibraryBookContent>> | null>(null);
   const [editionError, setEditionError] = useState('');
   const [editionRetry, setEditionRetry] = useState(0);
-  const [activeTool, setActiveTool] = useState<AdvancedTool>("pointer");
   const [attempts, setAttempts] = useState<StudentLibraryAttempt[]>([]);
-  const [bookmarkedQuestionIds, setBookmarkedQuestionIds] = useState<string[]>([]);
-  const [eliminatedChoices, setEliminatedChoices] = useState<Record<string, string[]>>({});
   const [isComplete, setIsComplete] = useState(false);
-  const [isNotepadOpen, setIsNotepadOpen] = useState(false);
-  const [isReviewOpen, setIsReviewOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isUnansweredModalOpen, setIsUnansweredModalOpen] = useState(false);
   const [isUnlocked, setIsUnlocked] = useState(previewContext.isPreview);
   const [isUnlocking, setIsUnlocking] = useState(!previewContext.isPreview);
-  const [maxVisitedIndex, setMaxVisitedIndex] = useState(0);
-  const [note, setNote] = useState("");
-  const [questionIndex, setQuestionIndex] = useState(0);
   const [resultAttempt, setResultAttempt] = useState<StudentLibraryAttempt | null>(null);
-  const [reviewFilter, setReviewFilter] = useState<ReviewFilter>("all");
-  const [selectedAnswers, setSelectedAnswers] = useState<Record<string, string>>({});
-  const [submissionError, setSubmissionError] = useState("");
   const [unlockError, setUnlockError] = useState("");
-  const attemptStartedAtRef = useRef(new Date().toISOString());
-  const questionStartedAtRef = useRef(0);
-  const questionTimesRef = useRef<Record<string, number>>({});
-
   useEffect(() => {
     if (!accessToken || previewContext.isPreview || !passageSet) return;
     let isMounted = true;
@@ -480,8 +254,6 @@ export function AdvancedPassagePage() {
         if (!isMounted) return;
         setAttempts(nextAttempts);
         if (bookAccess.unlocked) {
-          attemptStartedAtRef.current = new Date().toISOString();
-          questionStartedAtRef.current = Date.now();
           setIsUnlocked(true);
         }
       })
@@ -489,10 +261,6 @@ export function AdvancedPassagePage() {
       .finally(() => { if (isMounted) setIsUnlocking(false); });
     return () => { isMounted = false; };
   }, [accessToken, bookId, passageSet, previewContext.isPreview]);
-
-  useEffect(() => {
-    if (previewContext.isPreview) questionStartedAtRef.current = Date.now();
-  }, [previewContext.isPreview]);
 
   useEffect(() => {
     if (!isShsatLibraryPassage || bookId.startsWith('lab-set-') || !accessToken || !isUnlocked) return;
@@ -504,88 +272,13 @@ export function AdvancedPassagePage() {
   }, [bookId, accessToken, isUnlocked, isShsatLibraryPassage, editionRetry]);
 
   const questions = passageSet?.questions ?? [];
-  const activeQuestion = questions[questionIndex];
   const isBankSet = Boolean(getBankSet(bookId));
-  const activePassage = (activeQuestion && isBankSet ? getBankPassage(activeQuestion.id) : undefined) ?? (activeQuestion ? libraryBook?.questionPassages[activeQuestion.id] : undefined) ?? passageSet?.passage;
-  const questionIds = questions.map((question) => question.id);
-  const backHref = appendStudentPreview("/study-hall/shsat/materials?subject=english");
+  const backHref = appendStudentPreview(isShsatLibraryPassage ? "/study-hall/shsat/materials?subject=english" : "/study-hall/shsat/materials?subject=english&section=advanced", previewContext);
   const collectionLabel = isBankSet ? "SHSAT Lab · ELA Practice" : isShsatLibraryPassage ? "SHSAT Library" : "Advanced Practice";
   const firstAttempt = attempts.reduce<StudentLibraryAttempt | null>((first, attempt) => (
     !first || attempt.attemptNumber < first.attemptNumber ? attempt : first
   ), null);
   const canRequestCorrections = Boolean(firstAttempt && firstAttempt.score < firstAttempt.totalQuestions);
-
-  function recordCurrentQuestionTime() {
-    const question = questions[questionIndex];
-    if (!question) return;
-    const elapsedSeconds = questionStartedAtRef.current
-      ? Math.max(0, Math.round((Date.now() - questionStartedAtRef.current) / 1000))
-      : 0;
-    questionTimesRef.current[question.id] = (questionTimesRef.current[question.id] ?? 0) + elapsedSeconds;
-    questionStartedAtRef.current = Date.now();
-  }
-
-  function moveToQuestion(index: number) {
-    recordCurrentQuestionTime();
-    setQuestionIndex(index);
-    setIsComplete(false);
-    setIsReviewOpen(false);
-  }
-
-  async function handleNext() {
-    if (!activeQuestion || !(libraryBook ? libraryQuestionAnswered(activeQuestion, selectedAnswers[activeQuestion.id] || "") : selectedAnswers[activeQuestion.id])) {
-      setIsUnansweredModalOpen(true);
-      return;
-    }
-
-    if (questionIndex >= questions.length - 1) {
-      recordCurrentQuestionTime();
-      setSubmissionError("");
-      if (previewContext.isPreview) {
-        setIsComplete(true);
-        setIsReviewOpen(false);
-        return;
-      }
-      if (!accessToken || isSubmitting) return;
-      setIsSubmitting(true);
-      try {
-        const completedAt = Date.now();
-        const nextAttempt = await saveStudentLibraryAttempt(accessToken, bookId, {
-          questions: questions.map((question) => ({
-            correctAnswerId: question.correctChoiceId ?? "",
-            questionId: question.id,
-            selectedAnswerId: selectedAnswers[question.id] ?? "",
-            timeSpentSeconds: questionTimesRef.current[question.id] ?? 0,
-          })),
-          startedAt: attemptStartedAtRef.current,
-          totalTimeSeconds: Math.max(1, Math.round((completedAt - Date.parse(attemptStartedAtRef.current)) / 1000)),
-        });
-        setResultAttempt(nextAttempt);
-        setAttempts((current) => [nextAttempt, ...current]);
-        setIsComplete(true);
-        setIsReviewOpen(false);
-      } catch (error) {
-        setSubmissionError(error instanceof Error ? error.message : "Your attempt could not be saved. Try again.");
-      } finally {
-        setIsSubmitting(false);
-      }
-      return;
-    }
-
-    const nextIndex = questionIndex + 1;
-    moveToQuestion(nextIndex);
-    setMaxVisitedIndex((current) => Math.max(current, nextIndex));
-    setActiveTool("pointer");
-  }
-
-  function handlePrevious() {
-    if (isComplete) {
-      moveToQuestion(questions.length - 1);
-      return;
-    }
-
-    moveToQuestion(Math.max(0, questionIndex - 1));
-  }
 
   async function handleCheckAccess() {
     if (!accessToken) return;
@@ -593,7 +286,7 @@ export function AdvancedPassagePage() {
     try {
       const result = await getStudentLibraryBookAccess(accessToken, bookId);
       if (result.unlocked) {
-        attemptStartedAtRef.current = new Date().toISOString(); questionStartedAtRef.current = Date.now(); setIsUnlocked(true);
+        setIsUnlocked(true);
       } else setUnlockError("Your teacher hasn't enabled this book for your account yet.");
     } catch (error) { setUnlockError(error instanceof Error ? error.message : "Book access could not be checked."); }
     finally { setIsUnlocking(false); }
@@ -602,60 +295,17 @@ export function AdvancedPassagePage() {
   function openCorrections() { navigateTo(libraryCorrectionsHref(window.location.pathname, previewContext)); }
 
   function startAnotherAttempt() {
-    setEdition(null); setEditionRetry(value => value + 1);
-    setActiveTool("pointer");
-    setBookmarkedQuestionIds([]);
-    setEliminatedChoices({});
+    setEdition(null);
+    setEditionRetry(value => value + 1);
     setIsComplete(false);
-    setIsNotepadOpen(false);
-    setIsReviewOpen(false);
-    setMaxVisitedIndex(0);
-    setNote("");
-    setQuestionIndex(0);
     setResultAttempt(null);
-    setSelectedAnswers({});
-    setSubmissionError("");
-    questionTimesRef.current = {};
-    attemptStartedAtRef.current = new Date().toISOString();
-    questionStartedAtRef.current = Date.now();
-  }
-
-  function handleTool(tool: AdvancedTool) {
-    if (tool === "notepad") {
-      const nextOpen = !isNotepadOpen;
-      setIsNotepadOpen(nextOpen);
-      setActiveTool(nextOpen ? "notepad" : "pointer");
-      return;
-    }
-    setActiveTool(tool);
-  }
-
-  function handleChoice(questionId: string, choiceId: string) {
-    if (activeTool === "eliminator") {
-      setEliminatedChoices((current) => {
-        const choices = current[questionId] ?? [];
-        return {
-          ...current,
-          [questionId]: choices.includes(choiceId)
-            ? choices.filter((id) => id !== choiceId)
-            : [...choices, choiceId],
-        };
-      });
-      return;
-    }
-
-    setSelectedAnswers((current) => ({ ...current, [questionId]: choiceId }));
-    setEliminatedChoices((current) => ({
-      ...current,
-      [questionId]: (current[questionId] ?? []).filter((id) => id !== choiceId),
-    }));
   }
 
   if (isCheckingSession) {
     return <main className="loading-shell">Loading passage...</main>;
   }
 
-  if (!passageEntry || !passageSet || !activeQuestion) {
+  if (!passageEntry || !passageSet || !questions.length) {
     return (
       <main className="advanced-passage-page">
         <section className="advanced-passage-missing">
@@ -697,42 +347,18 @@ export function AdvancedPassagePage() {
     );
   }
 
-  if (isShsatLibraryPassage && !isBankSet && !isComplete) {
-    if (!edition) return <main className="advanced-passage-page"><a href={backHref}>← Library</a>{previewContext.mode === 'teacher' && <a href={`/teacher/library/${encodeURIComponent(bookId)}#book-settings`}>Book settings</a>}<p role={editionError ? 'alert' : 'status'}>{editionError || 'Loading book questions…'}</p>{editionError && <button type="button" onClick={() => setEditionRetry(value => value + 1)}>Retry</button>}</main>;
-    return <LibraryBookSession book={edition.book} revision={edition.revision} accessToken={accessToken} studentName={studentName} preview={previewContext.isPreview} teacher={previewContext.mode === 'teacher'} backHref={backHref} onComplete={attempt => { if (attempt) { setResultAttempt(attempt); setAttempts(current => [attempt, ...current]); } setIsComplete(true); }} />;
+  if (!isComplete) {
+    const needsEdition = isShsatLibraryPassage && !isBankSet;
+    if (needsEdition && !edition) return <main className="advanced-passage-page"><a href={backHref}>← Library</a>{previewContext.mode === 'teacher' && <a href={`/teacher/library/${encodeURIComponent(bookId)}#book-settings`}>Book settings</a>}<p role={editionError ? 'alert' : 'status'}>{editionError || 'Loading book questions…'}</p>{editionError && <button type="button" onClick={() => setEditionRetry(value => value + 1)}>Retry</button>}</main>;
+    const book = needsEdition && edition ? edition.book : {
+      id: bookId,
+      passageSet,
+      versions: [],
+      questionPassages: Object.fromEntries(questions.map(question => [question.id, (isBankSet ? getBankPassage(question.id) : undefined) ?? passageSet.passage])),
+    };
+    return <LibraryBookSession key={`${bookId}:${editionRetry}`} book={book} revision={needsEdition ? edition?.revision : undefined} accessToken={accessToken} studentName={studentName} preview={previewContext.isPreview} teacher={previewContext.mode === 'teacher'} backHref={backHref} onComplete={attempt => { if (attempt) { setResultAttempt(attempt); setAttempts(current => [attempt, ...current]); } setIsComplete(true); }} />;
   }
-  if (isComplete && previewContext.isPreview && isShsatLibraryPassage && !isBankSet) return <main className="library-finish-page"><h1>Book preview complete</h1><p>Preview answers do not save student scores.</p><a href={backHref}>Return to library</a> · <a href={`/teacher/library/${encodeURIComponent(bookId)}#book-settings`}>Book settings</a><p><button type="button" onClick={startAnotherAttempt}>Preview again</button></p></main>;
-
-  const currentQuestionId = activeQuestion.id;
-  const currentEliminatedChoices = eliminatedChoices[currentQuestionId] ?? [];
-  const toolbar = (
-    <AdvancedExamToolbar
-      activeTool={activeTool}
-      bookmarkedQuestionIds={bookmarkedQuestionIds}
-      collectionLabel={collectionLabel}
-      currentQuestionIndex={questionIndex}
-      isComplete={isComplete}
-      isNotepadOpen={isNotepadOpen}
-      isReviewOpen={isReviewOpen}
-      maxVisitedIndex={maxVisitedIndex}
-      onNext={handleNext}
-      onPrevious={handlePrevious}
-      onReviewFilterChange={setReviewFilter}
-      onReviewQuestionSelect={moveToQuestion}
-      onSelectTool={handleTool}
-      onToggleBookmark={() => setBookmarkedQuestionIds((current) =>
-        current.includes(currentQuestionId)
-          ? current.filter((questionId) => questionId !== currentQuestionId)
-          : [...current, currentQuestionId])}
-      onToggleReview={() => setIsReviewOpen((current) => !current)}
-      passageTitle={passageSet.passage.title}
-      questionIds={questionIds}
-      reviewFilter={reviewFilter}
-      selectedAnswers={selectedAnswers}
-      studentName={studentName}
-      historyLinks={libraryBook?.isCombined && <details className="library-toolbar-history"><summary>Earlier version work</summary><nav aria-label="Earlier version history">{libraryBook.versions.map(version => <a key={version.id} href={appendStudentPreview(`/study-hall/shsat/library/${version.id}`, previewContext)}>{version.label} · original version</a>)}</nav></details>}
-    />
-  );
+  if (previewContext.isPreview) return <main className="library-finish-page"><h1>Book preview complete</h1><p>Preview answers do not save student scores.</p><a href={backHref}>Return to library</a>{previewContext.mode === 'teacher' && isShsatLibraryPassage && !isBankSet && <> · <a href={`/teacher/library/${encodeURIComponent(bookId)}#book-settings`}>Book settings</a></>}<p><button type="button" onClick={startAnotherAttempt}>Preview again</button></p></main>;
 
   if (isComplete) {
     if (!previewContext.isPreview && resultAttempt) {
@@ -771,109 +397,6 @@ export function AdvancedPassagePage() {
         </main>
       );
     }
-    return (
-      <main className="exam-session-shell">
-        {toolbar}
-        <section className="exam-passage-end-document" aria-labelledby="advanced-passage-end-title">
-          <article className="exam-passage-end-page">
-            <div className="exam-passage-end-content advanced-passage-end-content">
-              <p id="advanced-passage-end-title"><strong>There are no more questions for this passage set.</strong></p>
-              <p>Use the review button to return to any question you have completed.</p>
-              <a href={backHref}>Return to Study Hall</a>
-            </div>
-          </article>
-        </section>
-      </main>
-    );
   }
-
-  return (
-    <main className="exam-session-shell">
-      {toolbar}
-      <section className="exam-question-document" aria-labelledby={`advanced-question-${currentQuestionId}`}>
-        <div className="exam-question-passage">
-          <div className={`exam-question-passage-scroll ${activePassage?.format === "poem" ? "is-poem" : "is-prose"}`} aria-label={activePassage?.title}>
-            {isBankSet && <h2>{activePassage?.title}</h2>}
-            {activePassage?.lines.filter((line) => line.kind !== "image").map((line, index) => {
-              if (!line.text) {
-                return <p aria-hidden="true" className="exam-prose-line is-spacer" key={`spacer-${index}`} />;
-              }
-
-              const isFullWidth = isBankSet || Boolean(line.kind) || line.align === "center";
-              const className = [
-                "exam-prose-line",
-                line.kind ? `is-${line.kind}` : "",
-                line.align === "center" && !line.kind ? "is-title" : "",
-              ].filter(Boolean).join(" ");
-
-              return (
-                <p className={className} style={isBankSet ? { display: "block", whiteSpace: "pre-wrap", marginBottom: activePassage?.format === "poem" ? 6 : undefined } : undefined} key={`${line.lineNumber}-${index}`}>
-                  {isFullWidth ? <span>{isBankSet ? renderFormattedText(line.text) : line.text}</span> : <><span>{line.lineNumber}</span><span>{line.text}</span></>}
-                </p>
-              );
-            })}
-            {activePassage?.sourceNote ? <p className="exam-passage-source-note">{activePassage.sourceNote}</p> : null}
-            {activePassage?.lines
-              .filter((line) => line.kind === "image" && line.image)
-              .map((line, index) =>
-                line.image ? (
-                  <figure className="exam-passage-image" key={`${line.image.src}-footer-${index}`}>
-                    <img alt={line.image.alt} src={line.image.src} width={line.image.width} />
-                    {line.image.caption ? <figcaption>{line.image.caption}</figcaption> : null}
-                  </figure>
-                ) : null,
-              )}
-          </div>
-        </div>
-
-        <form className="exam-question-panel" onSubmit={(event) => event.preventDefault()}>
-          <h1 id={`advanced-question-${currentQuestionId}`}>{libraryBook ? <ExamText text={activeQuestion.prompt} html={activeQuestion.promptHtml} /> : renderFormattedText(activeQuestion.prompt)}</h1>
-          {isBankSet && activeQuestion.image && <figure><img style={{ maxWidth: "100%" }} src={activeQuestion.image.src} alt={activeQuestion.image.alt} /></figure>}
-          {libraryBook ? <LibraryQuestionResponse question={activeQuestion} value={selectedAnswers[currentQuestionId] || ""} onChange={value => setSelectedAnswers(current => ({ ...current, [currentQuestionId]: value }))} /> : <div className="exam-choice-list">
-            {activeQuestion.choices?.map((choice) => (
-              <label
-                className={`exam-choice ${currentEliminatedChoices.includes(choice.id) ? "is-eliminated" : ""}`}
-                key={choice.id}
-                onClick={(event) => {
-                  if (activeTool === "eliminator") {
-                    event.preventDefault();
-                  }
-                  handleChoice(currentQuestionId, choice.id);
-                }}
-              >
-                <input checked={selectedAnswers[currentQuestionId] === choice.id} name={currentQuestionId} onChange={() => undefined} type="radio" />
-                <span>{choice.id}.</span>
-                <span>{renderFormattedText(choice.text)}</span>
-                {currentEliminatedChoices.includes(choice.id) ? (
-                  <svg aria-hidden="true" className="exam-choice-eliminator-x" focusable="false" preserveAspectRatio="none" viewBox="0 0 100 100">
-                    <line vectorEffect="non-scaling-stroke" x1="0" x2="100" y1="0" y2="100" />
-                    <line vectorEffect="non-scaling-stroke" x1="0" x2="100" y1="100" y2="0" />
-                  </svg>
-                ) : null}
-              </label>
-            ))}
-          </div>}
-        </form>
-      </section>
-
-      {isNotepadOpen ? (
-        <section className="exam-notepad-window" aria-label="Notepad">
-          <header><h2>Notepad</h2><button aria-label="Close notepad" onClick={() => handleTool("notepad")} type="button">x</button></header>
-          <textarea autoFocus onChange={(event) => setNote(event.target.value)} value={note} />
-        </section>
-      ) : null}
-
-      {isUnansweredModalOpen ? (
-        <div className="exam-attention-layer">
-          <section aria-modal="true" className="exam-attention-modal" role="alertdialog">
-            <header><h2>Attention</h2><button className="exam-attention-close" onClick={() => setIsUnansweredModalOpen(false)} type="button">x</button></header>
-            <p>You must answer all parts of the question before you can continue.</p>
-            <div className="exam-attention-actions"><button onClick={() => setIsUnansweredModalOpen(false)} type="button">OK</button></div>
-          </section>
-        </div>
-      ) : null}
-      {submissionError ? <div className="library-submission-error" role="alert"><span>{submissionError}</span><button onClick={() => setSubmissionError("")} type="button">Dismiss</button></div> : null}
-      {isSubmitting ? <div className="library-saving-attempt" role="status">Saving your score and time…</div> : null}
-    </main>
-  );
+  return null;
 }

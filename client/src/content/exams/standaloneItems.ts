@@ -332,31 +332,30 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
   },
   {
     "id": "part-b-question-8",
-    "source": {
-      "sourceFamily": "official_shsat",
-      "collection": "official_handbook"
-    },
     "points": 1,
-    "prompt": "Which revision of the sentence uses the most precise language?",
-    "stimulus": "The Appalachian Trail is a really long trail that a lot of people do each year.r.",
+    "prompt": "Read this sentence.\n\nWhich revision of the sentence uses the most precise language?",
+    "promptHtml": "Read this sentence.<br>Which revision of the sentence uses the <strong>most</strong> precise language?",
+    "stimulus": "The Appalachian Trail is a really long trail that a lot of people do each year.",
     "stimulusHtml": "<p>The Appalachian Trail is a really long trail that a lot of people do each year.</p>",
-    "promptHtml": "Which revision of the sentence uses the most precise language?",
+    "explanation": "The question asks for the revision of the sentence that uses the most precise language.\n\nE. Incorrect. The word “extremely” does not specify the precise length of the trail (2,200 miles); “millions” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking).\n\nF. Incorrect. While the revision specifies the precise length of the trail and the verb “hike” precisely describes the purpose of visiting the trail, “more than a million” is less precise than the specific number of people who hike the trail each year (two million).\n\nG. CORRECT. The length of the trail (2,200 miles), the specific number of people who hike the trail each year (two million), and the action of the visitors (hiking) are clear and precise in this revision of the sentence.\n\nH. Incorrect. The word “lengthy” is less precise than specifying the actual length of the trail (2,200 miles); “a couple million” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking).",
+    "explanationHtml": "The question asks for the revision of the sentence that uses the <strong>most</strong> precise language.<br><strong>E.</strong> Incorrect. The word “extremely” does not specify the precise length of the trail (2,200 miles); “millions” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking).<br><strong>F.</strong> Incorrect. While the revision specifies the precise length of the trail and the verb “hike” precisely describes the purpose of visiting the trail, “more than a million” is less precise than the specific number of people who hike the trail each year (two million).<br><strong>G. CORRECT.</strong> The length of the trail (2,200 miles), the specific number of people who hike the trail each year (two million), and the action of the visitors (hiking) are clear and precise in this revision of the sentence.<br><strong>H.</strong> Incorrect. The word “lengthy” is less precise than specifying the actual length of the trail (2,200 miles); “a couple million” is less precise than the specific number of people who hike the trail each year (two million); and the verb “do” imprecisely describes the purpose of visiting the trail (hiking).",
     "topic": "Word Choice & Precision",
+    "versionLabel": "2020-2021 Form A",
     "choices": [
       {
         "id": "A",
-        "html": "The Appalachian Trail is an extremely long trail that millions of people do each year",
-        "text": "The Appalachian Trail is an extremely long trail that millions of people do each year"
+        "html": "The Appalachian Trail is an extremely long trail that millions of people do each year.",
+        "text": "The Appalachian Trail is an extremely long trail that millions of people do each year."
       },
       {
         "id": "B",
-        "html": "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year",
-        "text": "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year"
+        "html": "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year.",
+        "text": "The Appalachian Trail is a 2,200-mile trail that more than a million people hike each year."
       },
       {
         "id": "C",
-        "html": "The Appalachian Trail is a 2,200-mile trail that two million people hike each year",
-        "text": "The Appalachian Trail is a 2,200-mile trail that two million people hike each year"
+        "html": "The Appalachian Trail is a 2,200-mile trail that two million people hike each year.",
+        "text": "The Appalachian Trail is a 2,200-mile trail that two million people hike each year."
       },
       {
         "id": "D",
@@ -366,10 +365,15 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     ],
     "correctChoiceId": "C",
     "type": "multiple_choice",
+    "source": {
+      "sourceFamily": "official_shsat",
+      "collection": "official_handbook"
+    },
     "versionLabels": [
       "2020-2021 Form A"
     ],
-    "versionLabel": "2020-2021 Form A"
+    "duplicateOf": "part-b-import-6ac23baedc82-90db8349",
+    "canonicalContent": true
   },
   {
     "id": "part-b-question-9",
@@ -532,7 +536,11 @@ export const standaloneItems: (ExamQuestion & { versionLabel?: string; versionLa
     "source": {
       "sourceFamily": "official_shsat",
       "collection": "official_handbook"
-    }
+    },
+    "versionLabels": [
+      "2022-2023 Form A",
+      "2020-2021 Form A"
+    ]
   },
   {
     "id": "part-b-import-ba9708d4a08f-39a88e57",

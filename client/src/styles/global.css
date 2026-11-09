@@ -14942,9 +14942,8 @@ dialog.exam-exhibits-dialog .katex-display { overflow-x: auto; overflow-y: hidde
 
 /* Preview controls participate in layout, so they never cover an answer. */
 .exam-preview-controls { padding: 12px 20px; background: #fff; color: #172b3a; border-bottom: 1px solid #aebbc7; }
-.exam-math-panel:not(.has-expanded-diagrams) h1 .exam-rich-text img,
-.exam-math-panel:not(.has-expanded-diagrams) > .exam-question-image img { max-height: 280px; width: auto; max-width: 100%; object-fit: contain; }
-.exam-diagram-size { padding: 8px 12px; min-height: 40px; color: #164d79; background: #fff; border: 1px solid #aebbc7; border-radius: 4px; }
+.exam-math-panel h1 .exam-rich-text img,
+.exam-math-panel > .exam-question-image img { max-height: 280px; width: auto; max-width: 100%; object-fit: contain; }
 .exam-worksheet-exit { min-height: 36px; padding: 7px 12px; border: 1px solid #aebbc7; border-radius: 4px; background: #fff; color: #172b3a; font: inherit; cursor: pointer; }
-.exam-worksheet-exit:focus-visible, .exam-diagram-size:focus-visible { outline: 3px solid #287ec1; outline-offset: 2px; }
+.exam-worksheet-exit:focus-visible { outline: 3px solid #287ec1; outline-offset: 2px; }
 .exam-worksheet-exit:disabled { opacity: .65; cursor: wait; }

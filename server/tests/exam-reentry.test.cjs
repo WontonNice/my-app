@@ -12,6 +12,7 @@ const assessment = { id: 'exam', classId: 'shsat', title: 'Test exam', status: '
 let secondAssessment = null;
 const configuredAssessments = () => secondAssessment ? [assessment, secondAssessment] : [assessment];
 const tables = { student_exam_results: [], student_exam_sessions: [], student_practice_progress: [] };
+const reads = [], unavailable = new Set();
 function stub(relative, exports) { const id = require.resolve(relative); require.cache[id] = { id, filename: id, loaded: true, exports }; }
 stub('../src/lib/auth.ts', { getAuthenticatedUser: async header => { const user = users[header?.replace('Bearer ', '')]; return { user, error: user ? null : 'Sign in required' }; }, getEnrolledClassIds: metadata => metadata.class_ids ?? [], getUserRole: user => user.app_metadata.role, isStudentArchived: () => false });
 stub('../src/lib/assessmentAccess.ts', {resolveAssessmentAccess:async value=>value,resolveAssessmentAccessList:async values=>values,assessmentAccessErrorHandler:(error,_request,_response,next)=>next(error)});
@@ -22,9 +23,9 @@ stub('../src/config/assessments.ts', {
 stub('../src/lib/learningPlanStore.ts', { hasAssignedContent: async () => false, assignedContentIds: async () => new Set(), recordPlanCompletion: async () => {}, recordPracticePlanCompletion: async () => {} });
 stub('../src/lib/supabase.ts', { supabase: { auth: { admin: { listUsers: async () => ({ data: { users: Object.values(users) }, error: null }), getUserById: async id => ({ data: { user: users[id] }, error: null }) } }, from(table) {
   const filters = []; let single = false;
-  return { select() { return this; }, eq(key, value) { filters.push(row => row[key] === value); return this; }, like(key, value) { filters.push(row => String(row[key]).startsWith(value.replace(/%$/, ''))); return this; }, maybeSingle() { single = true; return this; },
-    upsert(row) { const old = tables[table].find(item => item.user_id === row.user_id && item.assessment_id === row.assessment_id); if (old) Object.assign(old, structuredClone(row)); else tables[table].push(structuredClone(row)); return Promise.resolve({ error: null }); },
-    then(resolve, reject) { const rows = tables[table].filter(row => filters.every(filter => filter(row))); return Promise.resolve({ data: single ? rows[0] ?? null : rows, error: null }).then(resolve, reject); },
+  return { select() { return this; }, eq(key, value) { filters.push(row => row[key] === value); return this; }, in(key, values) { filters.push(row => values.includes(row[key])); return this; }, like(key, value) { filters.push(row => String(row[key]).startsWith(value.replace(/%$/, ''))); return this; }, maybeSingle() { single = true; return this; },
+    upsert(row) { if (unavailable.has(table)) return Promise.resolve({ error: { message: 'Unavailable' } }); const old = tables[table].find(item => item.user_id === row.user_id && item.assessment_id === row.assessment_id); if (old) Object.assign(old, structuredClone(row)); else tables[table].push(structuredClone(row)); return Promise.resolve({ error: null }); },
+    then(resolve, reject) { const rows = tables[table].filter(row => filters.every(filter => filter(row))); reads.push({ table, rows: structuredClone(rows) }); return Promise.resolve({ data: unavailable.has(table) ? null : single ? rows[0] ?? null : rows, error: unavailable.has(table) ? { message: 'Unavailable' } : null }).then(resolve, reject); },
   };
 } } });
 const { createExamResult } = require('../src/shared/examGrading.ts');
@@ -36,10 +37,46 @@ stub('../src/lib/examContent.ts',{getActivityRelease:(id,releaseId)=>activityRel
 let server, root;
 before(async () => { const express = require('express'), app = express(); app.use(express.json()); app.use('/api/progress', require('../src/routes/progress.ts').progressRouter); app.use('/api/assessments', require('../src/routes/assessments.ts').assessmentsRouter); server = await new Promise(resolve => { const instance = app.listen(0, '127.0.0.1', () => resolve(instance)); }); root = `http://127.0.0.1:${server.address().port}/api`; });
 after(async () => new Promise(resolve => server.close(resolve)));
-beforeEach(() => { Object.values(tables).forEach(rows => rows.splice(0)); const now = Date.now(); tables.student_exam_results.push({ user_id: 'student', assessment_id: 'exam', result: { ...createExamResult(content, { e: 'A', m: '0' }, ['english', 'math']), attemptId: 'original', timerState: { startedAt: now - 60 * 60_000, pausedAt: now, totalPausedMs: 0 } } }); });
+beforeEach(() => { reads.length = 0; unavailable.clear(); Object.values(tables).forEach(rows => rows.splice(0)); const now = Date.now(); tables.student_exam_results.push({ user_id: 'student', assessment_id: 'exam', result: { ...createExamResult(content, { e: 'A', m: '0' }, ['english', 'math']), attemptId: 'original', timerState: { startedAt: now - 60 * 60_000, pausedAt: now, totalPausedMs: 0 } } }); });
 async function call(path, token = 'teacher', method = 'GET', body) { const response = await fetch(root + path, { method, headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, ...(body ? { body: JSON.stringify(body) } : {}) }); return { status: response.status, data: await response.json() }; }
 const permissionPath = '/assessments/teacher/exam/reentry/student';
 const latest = () => tables.student_exam_results.find(row => row.user_id === 'student' && row.assessment_id === 'exam').result;
+
+test('autosaves read only the current exam, grant and session even with a large history', async () => {
+  const grant = (await call(permissionPath, 'teacher', 'PUT', { sections: ['math'] })).data.grant;
+  const navigation = { subject: 'english', english: { screen: 'passage', passageSetId: 'p', questionId: 'e' } };
+  tables.student_exam_sessions.push({ user_id: 'student', assessment_id: 'exam', answers: { e: 'A' }, completed_sections: ['english'], status: 'in_progress', updated_at: new Date().toISOString(), navigation });
+  for (let i = 0; i < 1000; i++) {
+    tables.student_exam_results.push({ user_id: 'student', assessment_id: `old-${i}`, result: { answers: { unrelated: 'B' } } });
+    tables.student_exam_sessions.push({ user_id: 'student', assessment_id: `old-${i}`, answers: { unrelated: 'B' } });
+  }
+  tables.student_exam_results.push({ user_id: 'other', assessment_id: 'exam', result: { answers: { stolen: 'B' } } });
+  tables.student_exam_sessions.push({ user_id: 'other', assessment_id: 'exam', answers: { stolen: 'B' } });
+  reads.length = 0;
+  const saved = await call('/progress/exam-sessions/exam', 'student', 'PUT', { reentryGrantId: grant.id, answers: { m: '5' }, completedSections: [] });
+  assert.equal(saved.status, 200);
+  assert.deepEqual(saved.data.session.answers, { e: 'A', m: '5' });
+  assert.deepEqual(saved.data.session.navigation, navigation);
+  assert.equal(reads.length, 3, 'one grant/result lookup and two compatible session lookups');
+  assert.equal(reads.flatMap(read => read.rows).length, 3, 'history size does not increase autosave read volume');
+  for (const row of reads.flatMap(read => read.rows)) {
+    assert.equal(row.user_id, 'student');
+    assert.ok(['exam', '__exam_reentry__:exam', '__exam_session__:exam'].includes(row.assessment_id));
+  }
+});
+
+test('scoped autosaves retain legacy session fallback and fresh revocation checks', async () => {
+  const grant = (await call(permissionPath, 'teacher', 'PUT', { sections: ['math'] })).data.grant;
+  const navigation = { subject: 'math', math: { screen: 'mathQuestion', questionId: 'm' } };
+  tables.student_exam_results.push({ user_id: 'student', assessment_id: '__exam_session__:exam', result: { answers: { m: '2' }, completedSections: ['english'], status: 'in_progress', updatedAt: new Date().toISOString(), navigation } });
+  unavailable.add('student_exam_sessions');
+  const body = { reentryGrantId: grant.id, answers: { m: '5' }, completedSections: [] };
+  const saved = await call('/progress/exam-sessions/exam', 'student', 'PUT', body);
+  assert.equal(saved.status, 200); assert.equal(saved.data.storage, 'results-database-fallback');
+  assert.deepEqual(saved.data.session.navigation, navigation);
+  tables.student_exam_results.find(row => row.assessment_id === '__exam_reentry__:exam').result.revokedAt = new Date().toISOString();
+  assert.equal((await call('/progress/exam-sessions/exam', 'student', 'PUT', body)).status, 403);
+});
 
 test('unfinished bank activities keep their release across publication, reload, saves, and server grading',async()=>{
   const original=structuredClone(assessment);

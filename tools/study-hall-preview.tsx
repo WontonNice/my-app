@@ -11,6 +11,6 @@ import "../client/src/styles/global.css";
 function Preview() {
   const [path, setPath] = useState(location.pathname + location.search);
   useEffect(() => { const update = () => setPath(location.pathname + location.search); window.addEventListener('popstate', update); return () => window.removeEventListener('popstate', update); }, []);
-  return path.split('?')[0]==='/study-hall/shsat' ? <StudentDashboardPage/> : path.startsWith('/teacher/practice-studio') ? <PracticeStudioPage/> : path.startsWith('/math-practice/inequalities') || path.startsWith('/math-practice/infinite') ? <InfinitePracticePage key={path} /> : path.includes('/library/') ? <AdvancedPassagePage /> : path.includes('/topics/') ? <StudentTopicHubPage /> : <StudentMaterialsPage key={path + location.search} teacherWorkspace={path.startsWith("/teacher/study-hall")} />;
+  return path.split('?')[0]==='/study-hall/shsat' ? <StudentDashboardPage/> : path.startsWith('/teacher/practice-studio') ? <PracticeStudioPage/> : path.startsWith('/math-practice/inequalities') || path.startsWith('/math-practice/infinite') ? <InfinitePracticePage key={path} /> : path.includes('/library/') || path.startsWith('/advanced-practice/') ? <AdvancedPassagePage key={path} /> : path.includes('/topics/') ? <StudentTopicHubPage /> : <StudentMaterialsPage key={path + location.search} teacherWorkspace={path.startsWith("/teacher/study-hall")} />;
 }
 createRoot(document.getElementById("root")!).render(<Preview />);

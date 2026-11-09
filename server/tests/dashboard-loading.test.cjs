@@ -24,8 +24,8 @@ test('assessment management stays available when student progress times out; ins
   assert.ok(teacherWorkspaceResources('students').some(key => state[key].status === 'error'));
 });
 
-function apiWith(fetch, auth = {}) {
-  const source = fs.readFileSync(path.resolve(__dirname, '../../client/src/lib/api.ts'), 'utf8').replaceAll('import.meta.env.DEV', 'false').replaceAll('import.meta.env.VITE_API_BASE_URL', 'undefined');
+function apiWith(fetch, auth = {}, dev = false) {
+  const source = fs.readFileSync(path.resolve(__dirname, '../../client/src/lib/api.ts'), 'utf8').replaceAll('import.meta.env.DEV', String(dev)).replaceAll('import.meta.env.VITE_API_BASE_URL', 'undefined');
   const output = require('typescript').transpileModule(source, { compilerOptions: { module: 1, target: 9 } }).outputText;
   const exports = {};
   vm.runInNewContext(output, {
@@ -104,4 +104,24 @@ test('caller cancellation is immediate and prevents a later request', async () =
   resolveSession({ data: {} });
   await new Promise(resolve => setImmediate(resolve));
   assert.equal(calls, 0);
+});
+
+test('an empty Vite proxy 500 explains the stopped API instead of implying lost classroom access', async () => {
+  let calls = 0;
+  const api = apiWith(async () => { calls++; return new Response('', { status: 500 }); }, {}, true);
+  await assert.rejects(api('/api/classes/mine'), error => {
+    assert.equal(error.status, 500);
+    assert.match(error.message, /local API server is unavailable/);
+    assert.match(error.message, /npm run dev:server/);
+    assert.doesNotMatch(error.message, /Something went wrong/);
+    return true;
+  });
+  assert.equal(calls, 3, 'retain the bounded read retry policy');
+});
+
+test('production outages omit local commands and authoritative denials retain their message', async () => {
+  const outage = apiWith(async () => new Response('<html>Bad Gateway</html>', { status: 502 }));
+  await assert.rejects(outage('/api/classes/mine'), /server is temporarily unavailable/);
+  const denied = apiWith(async () => Response.json({ message: 'This student account is archived.' }, { status: 403 }), {}, true);
+  await assert.rejects(denied('/api/classes/mine'), /This student account is archived/);
 });

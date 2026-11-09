@@ -5,10 +5,11 @@ import { saveStudentLibraryAttempt, type StudentLibraryAttempt, type TeacherAsse
 import type { SelectedAnswers } from '../lib/examResults';
 import type { PassageBook } from '../../../server/src/shared/libraryBooks';
 import type { ExamContent } from '../content/exams/types';
+import { libraryQuestionAnswered } from '../../../server/src/shared/libraryBooks';
 
 /** Library persistence adapter; all questions, passages and tools use the exam player. */
 export function LibraryBookSession({ book, revision, accessToken, studentName, preview, teacher, backHref, onComplete }: {
-  book: PassageBook; revision: string; accessToken: string; studentName: string; preview: boolean; teacher: boolean; backHref: string; onComplete: (attempt?: StudentLibraryAttempt) => void;
+  book: PassageBook; revision?: string; accessToken: string; studentName: string; preview: boolean; teacher: boolean; backHref: string; onComplete: (attempt?: StudentLibraryAttempt) => void;
 }) {
   const [answers, setAnswers] = useState<SelectedAnswers>({});
   const [error, setError] = useState('');
@@ -25,20 +26,30 @@ export function LibraryBookSession({ book, revision, accessToken, studentName, p
   const content: ExamContent = { assessmentId: book.id, title: book.passageSet.passage.title, passageSets: [book.passageSet] };
   async function submit(next: SelectedAnswers) {
     if (busy.current) return false;
+    const responses = book.passageSet.questions.map(question => ({
+      questionId: question.id,
+      // Advanced readings retain the existing legacy submission contract.
+      correctAnswerId: question.correctChoiceId ?? '',
+      selectedAnswerId: typeof next[question.id] === 'string' ? next[question.id] as string : JSON.stringify(next[question.id] ?? ''),
+    }));
+    if (responses.some((response, index) => !libraryQuestionAnswered(book.passageSet.questions[index], response.selectedAnswerId))) {
+      setError('Answer every question before submitting this book. Use Review to return to unanswered questions.');
+      return false;
+    }
     if (preview) { onComplete(); return true; }
     busy.current = true; setSaving(true); setError(''); recordQuestion(null);
     try {
       const attempt = await saveStudentLibraryAttempt(accessToken, book.id, {
         bookRevision: revision, startedAt: timing.current.startedAt,
         totalTimeSeconds: Math.max(1, Math.round((Date.now() - Date.parse(timing.current.startedAt)) / 1000)),
-        questions: book.passageSet.questions.map(question => ({ questionId: question.id, correctAnswerId: '', selectedAnswerId: typeof next[question.id] === 'string' ? next[question.id] as string : JSON.stringify(next[question.id] ?? ''), timeSpentSeconds: Math.round(timing.current.seconds[question.id] ?? 0) })),
+        questions: responses.map(response => ({ ...response, timeSpentSeconds: Math.round(timing.current.seconds[response.questionId] ?? 0) })),
       });
       onComplete(attempt); return true;
     } catch (reason) { setError(reason instanceof Error ? reason.message : 'Your library attempt could not be saved. Try again.'); return false; }
     finally { busy.current = false; setSaving(false); }
   }
   return <>
-    <nav className="library-session-links" aria-label="Library book navigation"><a href={backHref}>← Library</a><span>Library practice · Scores saved separately from assessments</span>{book.versions.length > 1 && <details><summary>Earlier version work</summary>{book.versions.map(version => <a key={version.id} href={appendStudentPreview(`/study-hall/shsat/library/${encodeURIComponent(version.id)}`)}>{version.label} · original version</a>)}</details>}{teacher && <a href={`/teacher/library/${encodeURIComponent(book.id)}#book-settings`}>Book settings</a>}</nav>
+    <nav className="library-session-links" aria-label="Library book navigation"><a href={backHref}>← Library</a><span>Library practice · Scores saved separately from assessments</span>{book.versions.length > 1 && <details><summary>Earlier version work</summary>{book.versions.map(version => <a key={version.id} href={appendStudentPreview(`/study-hall/shsat/library/${encodeURIComponent(version.id)}`)}>{version.label} · original version</a>)}</details>}{teacher && revision && <a href={`/teacher/library/${encodeURIComponent(book.id)}#book-settings`}>Book settings</a>}</nav>
     {(error || saving) && <div className="library-session-status" role={error ? 'alert' : 'status'}>{saving ? 'Saving library attempt…' : <>{error} <button onClick={() => void submit(answers)} type="button">Retry saving</button></>}</div>}
     <ExamSessionPage librarySession={{ assessment, content, studentName, screen: 'passage', answers, onAnswersChange: setAnswers, onSubmit: submit, timerText: '', hideTimer: true, subjectPosition: { current: 1, total: book.passageSet.questions.length }, passageByQuestion: book.questionPassages, onCurrentQuestionChange: recordQuestion, onExit: () => window.location.assign(backHref) }} />
   </>;

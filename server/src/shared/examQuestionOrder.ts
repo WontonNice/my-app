@@ -24,6 +24,28 @@ export function orderByQuestionIds<T extends { id: string }>(questions: T[], ord
   return [...result, ...questions.filter(question => byId.has(question.id))];
 }
 
+/** Current exams always present Reading, Part A, then Stand Alone Items.
+ * Source order still controls questions within a passage and within each standalone/math section.
+ * Normalize at content loading boundaries so historical result snapshots retain their own order.
+ */
+export function normalizeExamSectionOrder(content: ExamContent): ExamContent {
+  const section = (set: ExamContent['passageSets'][number]) =>
+    content.passageSections?.[set.passage.id] ?? content.passageSections?.[set.id] ?? set.section ?? 'reading';
+  const passageSets = [
+    ...content.passageSets.filter(set => section(set) === 'reading'),
+    ...content.passageSets.filter(set => section(set) === 'revising_editing_a'),
+  ];
+  return {
+    ...content,
+    passageSets,
+    questionOrder: [
+      ...passageSets.flatMap(set => orderByQuestionIds(set.questions, content.questionOrder).map(question => question.id)),
+      ...orderByQuestionIds(content.standaloneSection?.questions ?? [], content.questionOrder).map(question => question.id),
+      ...orderByQuestionIds(content.mathSection?.questions ?? [], content.questionOrder).map(question => question.id),
+    ],
+  };
+}
+
 export function orderedEnglishQuestions(content: ExamContent): EnglishQuestionLocation[] {
   const locations: EnglishQuestionLocation[] = [
     ...content.passageSets.flatMap((set, passageIndex) => set.questions.map((question, questionIndex) => ({ kind: 'passage' as const, passageIndex, questionIndex, question }))),

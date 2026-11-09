@@ -188,8 +188,7 @@ export function StudentPortalShell({
           {isMaterialsExpanded ? (
             <div className="student-portal-subnav">
               <AppLink href={englishHref} onClick={closeMobileNavigation}>Reading Comprehension</AppLink>
-              <AppLink href={editingHref} onClick={closeMobileNavigation}>Revising/Editing A</AppLink>
-              <AppLink href={appendStudentPreview("/study-hall/shsat/materials?subject=english&entry=standalone",previewContext)} onClick={closeMobileNavigation}>Stand Alone Items</AppLink>
+              <AppLink href={editingHref} onClick={closeMobileNavigation}>Revising/Editing</AppLink>
               <AppLink href={mathHref} onClick={closeMobileNavigation}>Math</AppLink>
             </div>
           ) : null}

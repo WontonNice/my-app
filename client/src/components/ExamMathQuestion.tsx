@@ -853,8 +853,6 @@ const isTextEntryQuestion = (q: ExamQuestion) => ['short_response','numeric_entr
 const textEntryControl = (q: ExamQuestion) => isTextEntryQuestion(q) ? q.entryControl || (q.type==='short_response' ? 'text' : q.type==='expression_entry' ? 'expression' : 'numeric') : undefined;
 const isInlineDropdownQuestion = (q: ExamQuestion) => q.type === 'inline_dropdown';
 export function ExamMathQuestion({question, answer, onChange, onSelectChoice, onTogglePoint, onEliminatePoint, allowExtraSelections = false, eliminatedIds = [], onChoiceLabelClick, onTextSelection, children, renderText = renderMathRichText, answerFeedback, responseOnly = false}: Props) {
-  const [expandedDiagramQuestion, setExpandedDiagramQuestion] = useState<string | null>(null);
-  const diagramsExpanded = expandedDiagramQuestion === question.id;
   const [selectionWarning, setSelectionWarning] = useState(false);
   const Panel = responseOnly ? "div" : "form";
   const choices = question.choices || [], selectedIds = Array.isArray(answer) ? answer : typeof answer === 'string' && answer ? [answer] : [];
@@ -881,10 +879,9 @@ export function ExamMathQuestion({question, answer, onChange, onSelectChoice, on
           } ${question.type === 'coordinate_response' ? 'is-coordinate-response' : ''} ${answerFeedback ? `has-answer-feedback is-${answerFeedback}` : ''}`}
           onMouseUp={onTextSelection}
         >
-          <Panel key={question.id} className={`exam-standalone-panel exam-math-panel${diagramsExpanded ? ' has-expanded-diagrams' : ''}`} onSubmit={event => event.preventDefault()}>
+          <Panel key={question.id} className="exam-standalone-panel exam-math-panel" onSubmit={event => event.preventDefault()}>
             {children}
             {!responseOnly && <>
-            {(question.image || /<img\b/i.test(question.promptHtml || '')) && !spotDiagram && <button className="exam-diagram-size" type="button" aria-pressed={diagramsExpanded} onClick={() => setExpandedDiagramQuestion(diagramsExpanded ? null : question.id)}>{diagramsExpanded ? 'Fit diagram to question' : 'Enlarge diagram'}</button>}
             {question.image && !spotDiagram ? (
               <figure className="exam-question-image">
                 <img alt={question.image.alt} src={question.image.src} />

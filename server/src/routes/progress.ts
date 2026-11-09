@@ -97,17 +97,20 @@ function normalizeExamSession(value: unknown): ExamSessionProgress | null {
     };
 }
 
-async function getExamSessions(user: User): Promise<Record<string, ExamSessionProgress>> {
+async function getExamSessions(user: User, assessmentId?: string): Promise<Record<string, ExamSessionProgress>> {
+    let sessions = supabase.from("student_exam_sessions")
+        .select("assessment_id,answers,completed_sections,status,updated_at,submitted_at,navigation")
+        .eq("user_id", user.id);
+    let fallback = supabase.from("student_exam_results").select("assessment_id,result").eq("user_id", user.id);
+    if (assessmentId !== undefined) {
+        sessions = sessions.eq("assessment_id", assessmentId);
+        fallback = fallback.eq("assessment_id", examSessionResultPrefix + assessmentId);
+    } else {
+        fallback = fallback.like("assessment_id", `${examSessionResultPrefix}%`);
+    }
     const [query, resultFallback] = await Promise.all([
-        supabase
-            .from("student_exam_sessions")
-            .select("assessment_id,answers,completed_sections,status,updated_at,submitted_at,navigation")
-            .eq("user_id", user.id),
-        supabase
-            .from("student_exam_results")
-            .select("assessment_id,result")
-            .eq("user_id", user.id)
-            .like("assessment_id", `${examSessionResultPrefix}%`),
+        sessions,
+        fallback,
     ]);
     return mergeExamSessions(user, query, resultFallback);
 }
@@ -350,7 +353,7 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
     );
     const status: "in_progress" | "submitted" =
         request.body?.status === "submitted" ? "submitted" : "in_progress";
-    const { grants, records } = await readExamReentries(user.id);
+    const { grants, records } = await readExamReentries(user.id, assessmentId);
     const individual = grants[assessmentId];
     const resetRequest = individual?.resetAnswers && (individual.remainingSections.length > 0 || Boolean(request.body?.reentryGrantId));
     const openExam = configuredAssessment.status === "open" && !resetRequest;
@@ -365,7 +368,7 @@ progressRouter.put("/exam-sessions/:assessmentId", async (request, response) => 
     if (!openExam && getUserRole(user) === "student" && !reentry?.remainingSections.length && !(await hasAssignedContent(user.id, "exam", assessmentId, true))) {
         response.status(403).json({ message: "Your teacher has locked this exam." }); return;
     }
-    const existingSession = (await getExamSessions(user))[request.params.assessmentId];
+    const existingSession = (await getExamSessions(user, assessmentId))[assessmentId];
     const navigation = normalizeExamNavigation(request.body?.navigation);
     if (request.body?.navigation !== undefined && (!navigation ||
         (request.body.navigation.english !== undefined && !navigation.english) ||
@@ -627,7 +630,7 @@ progressRouter.put("/exam-results/:assessmentId", async (request, response) => {
         response.status(404).json({ message: "Assessment was not found." }); return;
     }
     return withExamWriteLock(user.id, assessmentId, async () => {
-    const { grants, records } = await readExamReentries(user.id);
+    const { grants, records } = await readExamReentries(user.id, assessmentId);
     const configuredAssessment = (await listTeacherAssessments()).find(item => item.id === assessmentId)!;
     const individual = grants[assessmentId];
     const resetRequest = individual?.resetAnswers && (individual.remainingSections.length > 0 || Boolean(result.reentryGrantId));

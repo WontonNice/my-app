@@ -46,7 +46,8 @@ test('presence is per authenticated account and browser lease; students cannot r
  assert.equal((await call('/presence','student','POST',{clientId:first,userId:'teacher'})).status,200);assert.equal((await call('/presence','student','POST',{clientId:second})).status,200);
  assert.equal((await call('/activity','student')).status,403);let activity=(await call('/activity','teacher')).data;assert.deepEqual(activity.onlineIds,['student']);assert.equal(activity.lastLogins.student,users.student.last_sign_in_at);
  await call(`/presence/${first}`,'student','DELETE');assert.deepEqual((await call('/activity','teacher')).data.onlineIds,['student']);
- tables.account_presence[0].last_seen_at=new Date(Date.now()-100000).toISOString();assert.deepEqual((await call('/activity','teacher')).data.onlineIds,[]);
+ tables.account_presence[0].last_seen_at=new Date(Date.now()-100000).toISOString();assert.deepEqual((await call('/activity','teacher')).data.onlineIds,['student'],'one delayed heartbeat retains the visible tab');
+ tables.account_presence[0].last_seen_at=new Date(Date.now()-151000).toISOString();activity=(await call('/activity','teacher')).data;assert.deepEqual(activity.onlineIds,[]);assert.equal(activity.windowSeconds,150);
 });
 
 test('unverified, pending and archived recovery addresses stop before creating a token or sending mail',async()=>{

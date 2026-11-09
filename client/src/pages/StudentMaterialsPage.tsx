@@ -13,7 +13,7 @@ import { useStudentPortalAccess } from '../hooks/useStudentPortalAccess';
 import { signOutCurrentAccount } from '../lib/accountSwitching';
 import { readingPracticeMaterials, editingPracticeMaterials, studentLibraryBooks, advancedPassageMaterials, materialMatchesQuery, type StudentMaterial } from '../lib/studentMaterials';
 import { appendStudentPreview, type StudentPreviewContext } from '../lib/studentPreview';
-import { studyHallEntries, studyHallSections, studyHallLocation, studyHallHref } from '../lib/studyHallNavigation';
+import { studyHallEntries, studyHallDirectories, studyHallSections, studyHallLocation, studyHallHref } from '../lib/studyHallNavigation';
 import { PASSAGE_CATEGORIES, passageCategory, passageCategoryLabel } from '../../../server/src/shared/passageCategories';
 import '../styles/learning-plan.css';
 import '../styles/study-hall-navigation.css';
@@ -69,8 +69,11 @@ export function StudentMaterialsPage({ teacherWorkspace = false }: { teacherWork
       {previewContext.mode === 'teacher' && <details className="study-hall-management"><summary>Teacher tools</summary><nav aria-label="Teacher Study Hall tools"><AppLink href="/teacher"><ArrowLeft size={15} /> Teacher dashboard</AppLink><AppLink href="/teacher/practice-studio">Practice &amp; video studio</AppLink><AppLink href="/teacher/library">Manage English library</AppLink><AppLink href="/teacher/math-command">Math Command Center</AppLink></nav></details>}
       <header className="study-hall-heading"><h1>Study Hall</h1><p>{current.description}</p></header>
       <nav className="study-hall-entries" aria-label="Study Hall entries">
-        {studyHallEntries.map(item => <AppLink key={item.id} href={href(item.id)} aria-current={entry === item.id ? 'page' : undefined}>{item.title}<ArrowRight size={17} aria-hidden="true" /></AppLink>)}
+        {studyHallDirectories.map(item => <AppLink key={item.id} href={href(item.id)} aria-current={(entry === 'standalone' ? 'editing' : entry) === item.id ? 'page' : undefined}>{item.title}<ArrowRight size={17} aria-hidden="true" /></AppLink>)}
       </nav>
+      {(entry === 'editing' || entry === 'standalone') && <nav className="study-hall-sections" aria-label="Revising/Editing practice types">
+        {studyHallEntries.filter(item => item.id === 'editing' || item.id === 'standalone').map(item => <AppLink key={item.id} href={href(item.id, section)} aria-current={entry === item.id ? 'page' : undefined}>{item.title}</AppLink>)}
+      </nav>}
       <h2 className="sr-only">{current.title}</h2>
       <nav className="study-hall-sections" aria-label={`${current.title} sections`}>
         {studyHallSections[entry].map(item => <AppLink key={item.id} href={href(entry, item.id)} aria-current={section === item.id ? 'page' : undefined}>{item.title}</AppLink>)}

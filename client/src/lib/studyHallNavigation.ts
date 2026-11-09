@@ -8,6 +8,11 @@ export const studyHallEntries = [
   { id: 'math', title: 'Math', description: 'Choose a category, then find infinite practice, worksheets, and videos for your topic.' },
 ] as const;
 export type StudyHallEntry = typeof studyHallEntries[number]['id'];
+export const studyHallDirectories = [
+  { id: 'reading', title: 'Reading Comprehension' },
+  { id: 'editing', title: 'Revising/Editing' },
+  { id: 'math', title: 'Math' },
+] as const;
 export const studyHallSections = {
   reading: [{ id: 'library', title: 'Library' }, { id: 'categories', title: 'Reading Categories' }, { id: 'worksheets', title: 'Worksheets' }, { id: 'advanced', title: 'Advanced Readings' }],
   editing: [{ id: 'categories', title: 'Categories' }, { id: 'worksheets', title: 'Worksheets' }],

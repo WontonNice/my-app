@@ -567,7 +567,11 @@ const retryableReadStatuses = new Set([408, 425, 429, 500, 502, 503, 504]);
 let sessionRefreshPromise: Promise<string | null> | null = null;
 
 async function readErrorMessage(response: Response) {
-  const fallback = "Something went wrong. Please try again.";
+  const fallback = response.status >= 500
+    ? import.meta.env.DEV
+      ? "The local API server is unavailable. Start it with npm run dev:server, then retry. This does not mean your classroom access was removed."
+      : "The server is temporarily unavailable. Please try again shortly."
+    : "Something went wrong. Please try again.";
   if (response.status === 431) return "Your sign-in token is too large. Sign out, then log in again to refresh it.";
 
   try {

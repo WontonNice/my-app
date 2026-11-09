@@ -1,4 +1,5 @@
 import { probabilityBatchPractice } from './probabilityBatchPractice';
+import { geometryReviewTemplates } from './geometryReviewPractice';
 import type { PracticeCatalog, PracticeGeneratorDefinition } from './practiceCatalog';
 import { inequalityTemplate, variablesBothSidesTemplate } from './inequalityPractice';
 import { writingInequalitiesTemplate } from './writingInequalities';
@@ -24,7 +25,7 @@ export type GeneratorOrganization = {
   reviewStatus?: typeof practiceReviewStatuses[number];
 };
 
-const definitions = [...probabilityBatchPractice, inequalityTemplate, variablesBothSidesTemplate, writingInequalitiesTemplate, overlappingGroupsTemplate, ...wordProblemPractice, ...probabilityPractice, symbolicFractionDivisionTemplate, repeatingDecimalDigitsTemplate, rectangleAreaPercentTemplate];
+const definitions = [...geometryReviewTemplates, ...probabilityBatchPractice, inequalityTemplate, variablesBothSidesTemplate, writingInequalitiesTemplate, overlappingGroupsTemplate, ...wordProblemPractice, ...probabilityPractice, symbolicFractionDivisionTemplate, repeatingDecimalDigitsTemplate, rectangleAreaPercentTemplate];
 const titleAliases: Record<string, string[]> = {
   'one-step-inequalities-v1': ['One-step inequalities and sign flips', 'One-step inequalities', 'One-Step Inequalities'],
   'variables-both-sides-inequalities-v1': ['Inequalities: Variables on Both Sides'],

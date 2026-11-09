@@ -22,6 +22,11 @@ Sign in as the teacher at `http://localhost:5173/teacher` and as the student at
 while sharing the same backend and data. Keep both terminals running. If the
 normal client reports a different port, use that URL for the teacher; port 5174
 is reserved by the student command and it will report an error if already in use.
+`dev:student` also works on its own: it starts the API if port 8080 is free,
+otherwise reuses the existing API, and waits for a healthy response before
+starting the student frontend. If the teacher terminal owns the API, keep that
+terminal running too. To restore a stopped API while the student frontend is
+already open, run `npm.cmd run dev:server`, then retry classroom access.
 
 Build the full app:
 

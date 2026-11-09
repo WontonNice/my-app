@@ -10,6 +10,7 @@ import { digitalShsatPracticeTestAdaptive10HardContent } from "./tests/digital-s
 import { grade9MiniFormContent } from "./tests/grade-9-mini-form";
 import { testnavPartADirections, testnavPartBDirections, testnavMathDirections } from "./testnavDirections";
 import { applyExamPresentation } from '../../../../server/src/shared/examPresentation';
+import { normalizeExamSectionOrder } from '../../../../server/src/shared/examQuestionOrder';
 import { digitalShsatPracticeTest6Content } from "./tests/digital-shsat-practice-test-6";
 import { digitalShsatPracticeTest5Content } from "./tests/digital-shsat-practice-test-5";
 import { digitalShsatPracticeTest4Content } from "./tests/digital-shsat-practice-test-4";
@@ -268,7 +269,7 @@ export function resolveExamContent(assessment: AssessmentContentSource, savedCon
     "ELA Rev/Edit A Directions",
     testnavPartADirections,
   );
-  return {
+  return normalizeExamSectionOrder({
     ...content,
     ...(content.mathSection ? {mathSection: {...content.mathSection, directions: testnavMathDirections}} : {}),
     ...(content.standaloneSection ? {standaloneSection: {
@@ -279,7 +280,7 @@ export function resolveExamContent(assessment: AssessmentContentSource, savedCon
       ...orderedReadingPassageSets,
       ...revisingEditingPartA,
     ],
-  };
+  });
 }
 
 export type {

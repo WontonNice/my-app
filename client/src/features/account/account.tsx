@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { createAuthHeaders, requestApi } from "../../lib/api";
 import { getSupabaseClient, isSupabaseConfigured } from "../../lib/supabase";
+import { startAccountPresence } from "./presence";
 import type { Session } from "@supabase/supabase-js";
 import { accountColor, accountDay, type AccountColor, type LoginStreak } from "../../../../server/src/shared/accountPreferences";
 import "./account-personalization.css";
@@ -13,7 +14,6 @@ const AccountContext = createContext<{ profile: AccountProfile | null; signedIn:
 export function AccountProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session | null>(null), [profile, setProfile] = useState<AccountProfile | null>(null);
   const [authLoading, setAuthLoading] = useState(isSupabaseConfigured), [error, setError] = useState("");
-  const [clientId] = useState(() => crypto.randomUUID());
   const currentId = useRef<string | undefined>(undefined);
   const checkedDay = useRef("");
   useEffect(() => {
@@ -23,10 +23,11 @@ export function AccountProvider({ children }: { children: ReactNode }) {
     const { data } = client.auth.onAuthStateChange((_event, next) => { currentId.current = next?.user.id; setSession(next); setAuthLoading(false); });
     return () => { active = false; data.subscription.unsubscribe(); };
   }, []);
+  const accessToken = session?.access_token, userId = session?.user.id;
   useEffect(() => {
-    if (!session) return;
+    if (!accessToken || !userId) return;
     let active = true, loaded = false;
-    const token = session.access_token, id = session.user.id;
+    const token = accessToken, id = userId;
     void accountCall<AccountProfile>("/profile", token).then(next => { if (active && currentId.current === id) { setProfile(next); setError(""); loaded = true; checkIn(); } }).catch((failure: unknown) => { if (active) setError(failure instanceof Error ? failure.message : "Your profile could not be loaded."); });
     let checking = false;
     const checkIn = () => {
@@ -39,13 +40,18 @@ export function AccountProvider({ children }: { children: ReactNode }) {
         setProfile(current => current?.id === id ? { ...current, streak: next.streak } : current);
       }).catch(() => {}).finally(() => { checking = false; });
     };
-    const beat = () => { void accountCall("/presence", token, "POST", { clientId }).catch(() => {}); checkIn(); };
-    const leave = () => { void accountCall(`/presence/${clientId}`, token, "DELETE").catch(() => {}); };
-    beat(); const timer = window.setInterval(beat, 30000);
-    window.addEventListener("pagehide", leave);
+    const stopPresence = startAccountPresence(async clientId => {
+      if (!active) return;
+      checkIn();
+      await accountCall("/presence", token, "POST", { clientId });
+    }, clientId => accountCall(`/presence/${clientId}`, token, "DELETE"));
     document.addEventListener("visibilitychange", checkIn);
-    return () => { active = false; window.clearInterval(timer); window.removeEventListener("pagehide", leave); document.removeEventListener("visibilitychange", checkIn); leave(); };
-  }, [session, clientId]);
+    return () => {
+      active = false;
+      document.removeEventListener("visibilitychange", checkIn);
+      void stopPresence();
+    };
+  }, [accessToken, userId]);
   const refresh = async () => { if (!session) return; const next = await accountCall<AccountProfile>("/profile", session.access_token); if (currentId.current === next.id) { setProfile(next); setError(""); } };
   const ownProfile = session?.user.id === profile?.id ? profile : null;
   const color = accountColor(ownProfile?.themeColor);

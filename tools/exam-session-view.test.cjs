@@ -15,6 +15,15 @@ async function loadRenderer() {
           import React from 'react';
           import { renderToStaticMarkup } from 'react-dom/server';
           import { ExamSessionPage } from './client/src/pages/ExamSessionPage';
+          import { AdvancedPassagePage } from './client/src/pages/AdvancedPassagePage';
+          import { advancedPracticePassages } from './client/src/content/advancedPractice';
+          import { questionBank } from './client/src/content/questionBank';
+          export function renderLibraryRoutes() {
+            return ['/advanced-practice/'+advancedPracticePassages[0].id, '/study-hall/shsat/library/'+questionBank.sets[0].id].map(path => {
+              window.location.pathname=path;
+              return renderToStaticMarkup(<AdvancedPassagePage />);
+            });
+          }
           import { LibraryBookSession } from './client/src/components/LibraryBookSession';
           export function renderLibrary(book) {
             return renderToStaticMarkup(<LibraryBookSession book={book} revision="qa" accessToken="" studentName="Teacher preview" preview teacher backHref="/study-hall/shsat/materials?entry=reading" onComplete={() => {}} />);
@@ -24,6 +33,7 @@ async function loadRenderer() {
           export { getExamSectionAccess, getOpenExamSubject, getExamResumePosition } from './client/src/lib/examSessionProgress';
           export { createAssessmentSectionLines } from './client/src/lib/exam';
           export { resolveExamContent };
+          export { orderedEnglishQuestions, orderedEnglishSegments } from './server/src/shared/examQuestionOrder';
           export { generalDirectionsParts } from './client/src/components/ExamGeneralDirections';
           import assessments from './server/data/assessments.json';
           import worksheets from './server/data/worksheets.json';
@@ -51,6 +61,7 @@ async function loadRenderer() {
       alias: reactAliases(resolve(__dirname, '..')),
       jsx: 'automatic', loader: { '.css': 'empty' }, define: { 'import.meta.env': '{}' },
       plugins: [{ name: 'browser-only-mathfield', setup(plugin) {
+        plugin.onLoad({filter:/useStudentPortalAccess\.ts$/},()=>({loader:'ts',contents:"export function useStudentPortalAccess(){return {accessToken:'',isCheckingSession:false,studentName:'Preview',previewContext:{isPreview:true,mode:'student',query:'?preview=student',returnHref:'/study-hall/shsat',studentId:'',studentName:''}};}"}));
         plugin.onResolve({ filter: /^mathlive$/ }, () => ({ path: 'mathlive', namespace: 'mathfield-stub' }));
         plugin.onLoad({ filter: /.*/, namespace: 'mathfield-stub' }, () => ({
           contents: 'export class MathfieldElement {}', loader: 'js',
@@ -380,4 +391,44 @@ test('worksheet teacher preview opens at a question without student save control
   assert.equal(page('.exam-preview-controls').length,1);
   assert.equal(page('.exam-worksheet-exit').length,0);
   assert.equal(page('.exam-general-directions-document').length,0);
+});
+
+test('advanced readings and bank sets use the shared TestNav player', async () => {
+  const {renderLibraryRoutes}=await loadRenderer();
+  for(const html of renderLibraryRoutes()) {
+    assert.match(html,/data-player-profile="testnav"/);
+    assert.match(html,/Notepad tool/);
+    assert.match(html,/aria-label="Library book navigation"/);
+    assert.doesNotMatch(html,/advanced-exam-toolbar|Book settings/);
+  }
+});
+
+test('exam diagrams remain visible without an enlarge control',async()=>{
+  const {renderExam}=await loadRenderer();
+  const html=renderExam('2021-2022-form-a','mathQuestion',content=>({...content,mathSection:{...content.mathSection,questions:[{...content.mathSection.questions[0],promptHtml:undefined,image:{src:'/fixture-diagram.svg',alt:'Fixture diagram'}}]}}));
+  assert.match(html,/alt="Fixture diagram"/);
+  assert.doesNotMatch(html,/Enlarge diagram|Fit diagram to question|exam-diagram-size/);
+});
+
+test('every exam plays Reading, Revising/Editing A, then Stand Alone Items, including 2024–2025 Form B',async()=>{
+  const {resolveExamContent,assessments,orderedEnglishQuestions,orderedEnglishSegments,getExamResumePosition}=await loadRenderer();
+  for(const assessment of assessments) {
+    const content=resolveExamContent(assessment),sequence=orderedEnglishQuestions(content);
+    const stages=sequence.map(item=>item.kind==='standalone'?2:content.passageSets[item.passageIndex].section==='revising_editing_a'?1:0);
+    assert.deepEqual([...stages],[...stages].sort(),assessment.id);
+    const sourceIds=[...content.passageSets.flatMap(set=>set.questions),...(content.standaloneSection?.questions??[])].map(q=>q.id);
+    assert.deepEqual([...sequence.map(item=>item.question.id)].sort(),[...sourceIds].sort(),assessment.id+' retains every question');
+    const segments=orderedEnglishSegments(content);
+    assert.equal(segments.length,content.passageSets.filter(set=>set.questions.length).length+(content.standaloneSection?.questions.length?1:0),assessment.id+' keeps passage questions together');
+    if(assessment.id==='2024-2025-form-b') {
+      assert.equal(sequence[0].kind,'passage');
+      assert.deepEqual([...new Set(stages)],[0,1,2]);
+      const first=getExamResumePosition(content,'english',null,true);
+      assert.equal(first.screen,'passage');
+      assert.equal(content.passageSets[first.passageIndex].section??'reading','reading');
+      const answerId=sequence[0].question.id;
+      const resumed=getExamResumePosition(content,'english',{answers:{[answerId]:'A'},navigation:{subject:'english',english:{screen:'passage',passageSetId:content.passageSets[0].id,questionId:answerId}}});
+      assert.equal(content.passageSets[resumed.passageIndex].questions[resumed.questionIndex].id,answerId);
+    }
+  }
 });
