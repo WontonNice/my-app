@@ -576,10 +576,6 @@ libraryRouter.get("/books/:bookId/corrections", async (request, response) => {
         response.status(409).json({ message: "Your first attempt was already perfect, so no corrections are needed." });
         return;
     }
-    if (!attemptResult.attempts.some((candidate) => candidate.score >= candidate.total_questions)) {
-        response.status(403).json({ message: "Earn a perfect score on a new attempt before opening Corrections." });
-        return;
-    }
     let correctionData = attemptResult.fallbackProgress?.data.correction ?? null;
     if (!attemptResult.fallbackProgress) {
         const correction = await supabase
@@ -638,10 +634,6 @@ libraryRouter.post("/books/:bookId/corrections", async (request, response) => {
     const missedQuestionIds = attempt.question_stats.filter((question) => !question.isCorrect).map((question) => question.questionId);
     if (!missedQuestionIds.length) {
         response.status(409).json({ message: "Your first attempt was already perfect, so no corrections are needed." });
-        return;
-    }
-    if (!attemptResult.attempts.some((candidate) => candidate.score >= candidate.total_questions)) {
-        response.status(403).json({ message: "Earn a perfect score on a new attempt before submitting Corrections." });
         return;
     }
     const responses = normalizeCorrectionResponses(request.body?.responses, missedQuestionIds);

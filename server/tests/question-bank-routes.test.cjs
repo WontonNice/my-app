@@ -118,14 +118,21 @@ test('combined books use individual grants, preserve legacy access/history, reje
   assert.equal((await call('/library/books/book-fixture/attempts','other',attempt({questions:responses.slice(0,1)}))).status,400);
   assert.deepEqual(completions.filter(row=>row[0]===otherId).map(row=>row[2]),['book-fixture']); // No version coverage exists in this legacy fixture.
 });
-test('library correction classification persists, previews are student-isolated, and the perfect-score gate remains enforced',async()=>{
-  assert.equal((await call(`/library/books/${set.id}/corrections`,'student')).status,403);
-  await call(`/library/books/${set.id}/attempts`,'student',attempt({questions:[{questionId:question.id,selectedAnswerId:'A',timeSpentSeconds:10}]}));
+test('library corrections open and submit after a missed first attempt without a perfect retake',async()=>{
+  const originalAttempts=structuredClone(tables.student_library_attempts);
+  assert.ok(originalAttempts.filter(row=>row.user_id===studentId&&row.book_id===set.id).every(row=>row.score<row.total_questions));
   const view=await call(`/library/books/${set.id}/corrections`,'student');assert.equal(view.status,200);
+  assert.equal(view.data.attempt.score,0);
+  assert.equal(view.data.attempt.questions[0].isCorrect,false);
+  assert.equal(view.data.attempt.questions[0].selectedAnswerId,'C');
+  assert.equal(view.data.attempt.questions[0].correctAnswerId,'A');
   const response={questionId:question.id,whyChosenIncorrect:'No supporting detail.',whyCorrectAnswerCorrect:'The text supports A.',questionType:'Tone & Mood'};
   assert.equal((await call(`/library/books/${set.id}/corrections`,'student',{responses:[{...response,questionType:''}]})).status,400);
   const submitted=await call(`/library/books/${set.id}/corrections`,'student',{responses:[response]});
   assert.equal(submitted.status,201);assert.equal(submitted.data.correction.responses[0].questionType,'Tone & Mood');
+  assert.equal(submitted.data.correction.attemptId,view.data.attempt.id);
+  assert.deepEqual(tables.student_library_attempts,originalAttempts);
+  assert.equal((await call(`/library/books/${set.id}/corrections`,'student',{responses:[response]})).status,409);
   assert.equal(question.topic,'Evidence & Support');
   const preview=await call(`/library/books/${set.id}/corrections?studentId=${studentId}`);assert.equal(preview.status,200);assert.equal(preview.data.readOnly,true);
   assert.equal((await call(`/library/books/${set.id}/corrections?studentId=${studentId}`,'other')).status,403);
@@ -133,6 +140,23 @@ test('library correction classification persists, previews are student-isolated,
   assert.equal((await call(`/library/books/${set.id}/corrections`,'teacher',{responses:[response]})).status,403);
   delete tables.student_library_corrections.at(-1).responses[0].questionType;
   assert.equal((await call(`/library/books/${set.id}/corrections`,'student')).status,200);
+});
+
+test('library corrections still require a completed attempt with missed questions',async()=>{
+  const bookId='corrections-access-fixture';
+  const url=`/library/books/${bookId}/corrections`;
+  const body={responses:[{questionId:question.id,whyChosenIncorrect:'Wrong detail.',whyCorrectAnswerCorrect:'Supporting detail.',questionType:'Inference'}]};
+  for(const requestBody of [undefined,body]) {
+    assert.equal((await call(url,'signed-out',requestBody)).status,401);
+    assert.equal((await call(url,'student',requestBody)).status,404);
+  }
+  const perfect={...tables.student_library_attempts[0],id:'perfect-corrections-fixture',book_id:bookId,user_id:studentId,score:1,total_questions:1,question_stats:[{questionId:question.id,isCorrect:true}]};
+  tables.student_library_attempts.push(perfect);
+  try {
+    for(const requestBody of [undefined,body]) assert.equal((await call(url,'student',requestBody)).status,409);
+  } finally {
+    tables.student_library_attempts.splice(tables.student_library_attempts.indexOf(perfect),1);
+  }
 });
 
 test('teacher dashboard combines version histories; revocation overrides assignments and past attempts', async () => {
