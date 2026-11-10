@@ -1,26 +1,27 @@
 import { useState } from "react";
 import { ExamSessionPage } from "../pages/ExamSessionPage";
 import { gameExamContent } from "../features/games/gameExamContent";
-import { ExamAnswer } from "./ExamReviewQuestion";
+import { ExamAnswer, ExamText } from "./ExamReviewQuestion";
 import { correctExamAnswer } from "../lib/examReviewAnswer";
 import type { SelectedAnswers } from "../lib/examResults";
 import type { ReviewQuestion } from "../../../server/src/shared/examCorrections";
 
 type Props = {
   item: ReviewQuestion; title: string; studentName: string; showAnswers: boolean;
+  showExplanation?: boolean;
   readOnly: boolean; canPrevious: boolean; canNext: boolean;
   onPrevious: () => void; onNext: () => void;
 };
 
 /** The real exam player, scoped to the submitted snapshot. Trial answers never save to an exam. */
-export function CorrectionExamPlayer({ item, title, studentName, showAnswers, readOnly, ...navigation }: Props) {
+export function CorrectionExamPlayer({ item, title, studentName, showAnswers, showExplanation, readOnly, ...navigation }: Props) {
   const original: SelectedAnswers = item.submittedAnswer === undefined ? {} : { [item.question.id]: item.submittedAnswer };
   const [answers, setAnswers] = useState<SelectedAnswers>(original);
   const session = gameExamContent(`correction:${item.question.id}`, title, [{ question: item.question, passage: item.passage, subject: item.section }]);
   if (session.content.passageSets[0]) session.content.passageSets[0].section = item.passageSection ?? "reading";
   return <div className="correction-exam-player">
     <div className="correction-player-help">
-      <span>{readOnly ? "Submitted question · Read-only preview" : "Try again with your exam tools. Open Exhibits for the imported answer explanation."}</span>
+      <span>{readOnly ? "Submitted question · Read-only preview" : showExplanation ? "Review your original answer below. Trying again here does not change your worksheet score." : "Try again with your exam tools. Open Exhibits for the imported answer explanation."}</span>
       {!readOnly && <button type="button" onClick={() => setAnswers(original)}>Restore submitted answer</button>}
     </div>
     <fieldset className="correction-player-surface" disabled={readOnly} aria-label="Exam question player">
@@ -36,5 +37,6 @@ export function CorrectionExamPlayer({ item, title, studentName, showAnswers, re
       <section className={item.isCorrect ? "is-correct" : "is-incorrect"}><h3>Your submitted answer</h3><ExamAnswer question={item.question} answer={item.submittedAnswer} /></section>
       {showAnswers && <section className="is-correct"><h3>Correct answer</h3><ExamAnswer question={item.question} answer={correctExamAnswer(item.question)} /></section>}
     </div>
+    {showExplanation && showAnswers && (item.question.explanation || item.question.explanationHtml) && <section className="correction-player-explanation"><h3>Explanation</h3><ExamText text={item.question.explanation} html={item.question.explanationHtml} /></section>}
   </div>;
 }

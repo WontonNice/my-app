@@ -1,3 +1,4 @@
+import { generatorPublishers } from '../../../../server/src/shared/practiceSources';
 import { useState } from 'react';
 import { practiceModuleKind, type PracticeCatalog, type PracticeGeneratorDefinition } from '../../../../server/src/shared/practiceCatalog';
 import { practiceDifficulties, practicePrograms } from '../../../../server/src/shared/practiceOrganization';
@@ -7,6 +8,7 @@ type Taxonomy={label:string;topics:string[]}[];
 const title=(value:string)=>value[0].toUpperCase()+value.slice(1);
 export function GeneratorLibraryTools({catalog,filters,onFilters,sort,onSort}:{catalog:PracticeCatalog;filters:GeneratorFilters;onFilters:(filters:GeneratorFilters)=>void;sort:string;onSort:(sort:string)=>void}) {
   return <div className="ps-library-filters" aria-label="Generator library filters">
+    <fieldset className="ps-source-filters"><legend>Sources</legend>{[...new Set(["Official Handbook","Prestige",...catalog.generators.flatMap(generatorPublishers)])].sort().map(source=><label key={source}><input type="checkbox" checked={filters.publishers?.includes(source)??false} onChange={event=>onFilters({...filters,publishers:event.target.checked?[...(filters.publishers??[]),source]:(filters.publishers??[]).filter(value=>value!==source)})}/>{source === "Official Handbook" ? "Official" : source}</label>)}<small>Select sources to filter; no selection shows all.</small></fieldset>
     <label>Skill (module)<select value={filters.moduleId??''} onChange={event=>onFilters({...filters,moduleId:event.target.value})}><option value="">All skills</option>{catalog.modules.filter(module=>!practiceModuleKind(module)).map(module=><option key={module.id} value={module.id}>{module.title} · {module.category} / {module.topic} · {catalog.modules.find(parent=>parent.id===module.parentId)?.title}</option>)}</select></label>
     <label>Status<select value={filters.status} onChange={event=>onFilters({...filters,status:event.target.value})}>
       <option value="">All statuses</option><option value="enabled">Enabled</option><option value="disabled">Disabled</option><option value="unreviewed">Unreviewed</option><option value="in-review">In review</option><option value="approved">Approved</option><option value="unused">No focused module</option>

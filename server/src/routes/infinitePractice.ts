@@ -1,8 +1,9 @@
+import { withPracticeSources } from '../shared/practiceSources';
 import { practiceProgressRouter } from './practiceProgress';
 import { Router } from 'express';
 import { supabase } from '../lib/supabase';
 import { getAuthenticatedUser, getEnrolledClassIds } from '../lib/auth';
-import { mathCommandRoot, readMathCommandState, readMathCommandTaxonomy } from '../lib/mathCommandCatalogStore';
+import { mathCommandRoot, readMathCommandState, readMathCommandTaxonomy, readMathCommandCatalog } from '../lib/mathCommandCatalogStore';
 import { withMathCommandPersistence } from '../lib/mathCommandPersistence';
 import { defaultPracticeCatalog, reconcilePracticeSkilled, reconcilePracticeTaxonomy, studentPracticeCatalog, validatePracticeCatalog,reviewPracticePublication } from '../shared/practiceCatalog';
 
@@ -36,6 +37,7 @@ infinitePracticeRouter.get('/catalog',async(request,response)=>withMathCommandPe
   let catalog;
   try{catalog=validatePracticeCatalog(reconcilePracticeSkilled(reconcilePracticeTaxonomy(stored.data?.catalog??defaultPracticeCatalog(),taxonomy,readMathCommandState().taxonomyTopicRenames),taxonomy.classificationSkills??[]),taxonomy);}
   catch(error){if((error as {status?:number}).status!==400)throw error;response.status(409).json({message:`Practice resources need an update before the studio can open: ${(error as Error).message}`,requestId:response.locals.requestId});return;}
+  catalog=withPracticeSources(catalog,readMathCommandCatalog());
   const manage=request.query.manage==='1'&&response.locals.teacher;
   response.json({catalog:manage?catalog:studentPracticeCatalog(catalog),revision:stored.data?.revision??0,taxonomy:taxonomy.categories.map(({label,topics})=>({label,topics})),classificationSkills:taxonomy.classificationSkills??[]});
 }));
@@ -47,6 +49,7 @@ infinitePracticeRouter.put('/catalog',async(request,response)=>withMathCommandPe
   if((previous.data?.revision??0)!==revision){response.status(409).json({message:'Another window saved changes. Reload before saving.'});return;}
   let catalog;try{const taxonomy=readMathCommandTaxonomy();catalog=validatePracticeCatalog(reconcilePracticeSkilled(reconcilePracticeTaxonomy(request.body.catalog,taxonomy,readMathCommandState().taxonomyTopicRenames),taxonomy.classificationSkills??[]),taxonomy);}catch(error){response.status(400).json({message:(error as Error).message});return;}
   try{catalog=reviewPracticePublication(previous.data?.catalog??defaultPracticeCatalog(),catalog);}catch(error){response.status(400).json({message:(error as Error).message});return;}
+  catalog=withPracticeSources(catalog,readMathCommandCatalog());
   const row={id:'main',catalog,revision:revision+1,updated_at:new Date().toISOString(),updated_by:response.locals.user.id};
   const saved=revision===0?await supabase.from('infinite_practice_catalog').insert(row).select('revision').maybeSingle():await supabase.from('infinite_practice_catalog').update(row).eq('id','main').eq('revision',revision).select('revision').maybeSingle();
   if(saved.error?.code==='23505'||!saved.error&&!saved.data){response.status(409).json({message:'Another window saved changes. Reload the latest catalog before saving.'});return;}

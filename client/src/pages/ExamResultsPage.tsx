@@ -1,6 +1,6 @@
-import { hasFullyAnsweredExam } from "../../../server/src/shared/examCorrectionAccess";
+import { canReviewSubmittedActivity } from "../../../server/src/shared/examCorrectionAccess";
 import { useEffect, useState } from "react";
-import { getLearningProgress, getStudentAssessments, getStudentPreviewResults } from "../lib/api";
+import { getLearningProgress, getStudentAssessments, getStudentPreviewResults, type StudentAssessment } from "../lib/api";
 import { getExamResult, replaceExamResults, type ExamResult } from "../lib/examResults";
 import { appendStudentPreview } from "../lib/studentPreview";
 import { isSupabaseConfigured } from "../lib/supabase";
@@ -25,7 +25,7 @@ export function ExamResultsPage() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(isSupabaseConfigured);
   const [result, setResult] = useState<ExamResult | null>(null);
-  const [correctionsOpen, setCorrectionsOpen] = useState(false);
+  const [assessment, setAssessment] = useState<StudentAssessment>();
 
   useEffect(() => {
     if (!accessToken) return;
@@ -36,11 +36,11 @@ export function ExamResultsPage() {
       if (previewContext.isPreview) {
         if (!previewContext.studentId) throw new Error("Select a student to preview their results.");
         const data = await getStudentPreviewResults(accessToken, previewContext.studentId);
-        if (active) { setResult(data.results.find(item => item.assessmentId === id) || null); setCorrectionsOpen(data.assessments.find(item => item.id === id)?.correctionsOpen === true); }
+        if (active) { setResult(data.results.find(item => item.assessmentId === id) || null); setAssessment(data.assessments.find(item => item.id === id)); }
       } else {
         const [assessments, progress] = await Promise.all([getStudentAssessments(accessToken), getLearningProgress(accessToken)]);
         replaceExamResults(session.user.id, progress.examResults as unknown as ExamResult[]);
-        if (active) { setResult(getExamResult(session.user.id, id)); setCorrectionsOpen(assessments.find(item => item.id === id)?.correctionsOpen === true); }
+        if (active) { setResult(getExamResult(session.user.id, id)); setAssessment(assessments.find(item => item.id === id)); }
       }
     }).catch(reason => { if (active) setError(reason instanceof Error ? reason.message : "Results could not be loaded."); }).finally(() => { if (active) setIsLoading(false); });
     return () => { active = false; };
@@ -90,7 +90,7 @@ export function ExamResultsPage() {
         <a href={sectionOnly ? getAssessmentHref(result.assessmentId) : getDashboardHref()}>
           {sectionOnly ? "Continue assessment" : "Return to assessments"}
         </a>
-        {(correctionsOpen || hasFullyAnsweredExam(result)) ? <a href={examCorrectionsHref(result.assessmentId)}>Corrections →</a> : <button type="button" disabled>Corrections locked by your teacher</button>}
+        {canReviewSubmittedActivity(assessment, result) ? <a href={examCorrectionsHref(result.assessmentId)}>Corrections →</a> : <button type="button" disabled>Corrections locked by your teacher</button>}
       </section>
     </main>
   );

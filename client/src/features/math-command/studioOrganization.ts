@@ -1,3 +1,4 @@
+import { generatorPublishers } from '../../../../server/src/shared/practiceSources';
 import { reviewedGeneratorChange, managedGeneratorIds, practiceModuleKind, type PracticeCatalog, type ManagedPracticeModule, type PracticeGeneratorDefinition, type PracticeVideo } from '../../../../server/src/shared/practiceCatalog';
 
 export type StudioResource = ManagedPracticeModule | PracticeGeneratorDefinition | PracticeVideo;
@@ -19,7 +20,7 @@ export function generatorModuleUsage(generator: PracticeGeneratorDefinition, cat
   });
 }
 
-export type GeneratorFilters={status:string;difficulty:string;program:string;subject:string;moduleId?:string};
+export type GeneratorFilters={status:string;difficulty:string;program:string;subject:string;moduleId?:string;publishers?:string[]};
 export function filterStudioGenerators(catalog:PracticeCatalog,query:string,category:string,topic:string,filters:GeneratorFilters) {
   const skillModule=filters.moduleId?catalog.modules.find(module=>module.id===filters.moduleId&&!practiceModuleKind(module)):undefined;
   const skillGeneratorIds=new Set(skillModule?.generatorIds??[]);
@@ -31,6 +32,7 @@ export function filterStudioGenerators(catalog:PracticeCatalog,query:string,cate
   }
   return catalog.generators.filter(generator=>studioMatches(generator,query,category,topic)
     && (!filters.moduleId||skillModule&&(skillModule.includeAll||skillGeneratorIds.has(generator.id)))
+    && (!filters.publishers?.length||generatorPublishers(generator).some(source=>filters.publishers!.includes(source)))
     && (!filters.difficulty||(generator.difficulty??'unassigned')===filters.difficulty)
     && (!filters.program||(generator.programs??['SHSAT']).includes(filters.program))
     && (!filters.subject||(generator.subject??'Math')===filters.subject)

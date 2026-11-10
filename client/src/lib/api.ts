@@ -210,6 +210,7 @@ export type StudentLibraryCorrectionView = {
 };
 
 export type TeacherLibraryStudent = {
+  lastTaken?: import('../../../server/src/shared/passageLastTaken').PassageLastTaken | null;
   access: { unlocked: boolean; unlockedAt: string | null };
   attempts: TeacherLibraryAttempt[];
   email: string;

@@ -8,7 +8,7 @@ function loadRuntime(root){
   serverRequire('dotenv').config({path:[path.join(root,'server/.env'),path.join(root,'.env')],quiet:true});
   const previous=require.extensions['.ts'];
   require.extensions['.ts']=(module,filename)=>module._compile(ts.transpileModule(fs.readFileSync(filename,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText,filename);
-  try{runtime={...require(path.join(root,'server/src/shared/practiceCatalog.ts')),...require(path.join(root,'server/src/lib/mathCommandCatalogStore.ts')),...require(path.join(root,'server/src/lib/mathCommandPersistence.ts')),...require(path.join(root,'server/src/lib/supabase.ts')),...require(path.join(root,'server/src/lib/mathCommandAnalytics.ts'))};}
+  try{runtime={...require(path.join(root,'server/src/shared/practiceSources.ts')),...require(path.join(root,'server/src/shared/practiceCatalog.ts')),...require(path.join(root,'server/src/lib/mathCommandCatalogStore.ts')),...require(path.join(root,'server/src/lib/mathCommandPersistence.ts')),...require(path.join(root,'server/src/lib/supabase.ts')),...require(path.join(root,'server/src/lib/mathCommandAnalytics.ts'))};}
   finally{if(previous)require.extensions['.ts']=previous;else delete require.extensions['.ts'];}
   return runtime;
 }
@@ -25,6 +25,7 @@ async function handlePracticeCatalogRequest({method,body,root},injected){
       if(previous.error)fail(503,'The saved practice catalog could not be checked. Retry before publishing.');
       if((previous.data?.revision??0)!==body.revision)fail(409,'Another window saved changes. Reload before publishing.');
       catalog=r.reviewPracticePublication(previous.data?.catalog??r.defaultPracticeCatalog(),catalog);
+      if(r.withPracticeSources)catalog=r.withPracticeSources(catalog,r.readMathCommandCatalog(root));
       const row={id:'main',catalog,revision:body.revision+1,updated_at:new Date().toISOString()};
       const saved=body.revision===0?await r.supabase.from('infinite_practice_catalog').insert(row).select('revision').maybeSingle():await r.supabase.from('infinite_practice_catalog').update(row).eq('id','main').eq('revision',body.revision).select('revision').maybeSingle();
       if(saved.error?.code==='23505'||!saved.error&&!saved.data)fail(409,'Another window saved changes. Reload the latest catalog before saving.');
@@ -35,6 +36,7 @@ async function handlePracticeCatalogRequest({method,body,root},injected){
     const stored=await r.supabase.from('infinite_practice_catalog').select('catalog,revision').eq('id','main').maybeSingle();
     if(stored.error)fail(503,'The shared practice catalog could not be loaded. Check the database connection and practice catalog migration.');
     let catalog;try{catalog=r.validatePracticeCatalog(r.reconcilePracticeSkilled(r.reconcilePracticeTaxonomy(stored.data?.catalog??r.defaultPracticeCatalog(),taxonomy,renames),taxonomy.classificationSkills??[]),taxonomy);}catch(error){fail(409,`Practice resources need an update: ${error.message}`);}
+    if(r.withPracticeSources)catalog=r.withPracticeSources(catalog,r.readMathCommandCatalog(root));
     return {catalog,revision:stored.data?.revision??0,taxonomy:taxonomy.categories,classificationSkills:taxonomy.classificationSkills??[]};
   });
 }

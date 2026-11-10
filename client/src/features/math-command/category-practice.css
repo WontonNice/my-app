@@ -1,0 +1,23 @@
+.category-practice { margin: 20px 0; padding: 20px 0; border-block: 1px solid var(--student-line, #d4dce3); color: inherit; }
+.category-practice h3 { margin: 0 0 10px; font-size: 21px; }
+.category-practice p { line-height: 1.55; margin: 10px 0; max-width: 70ch; }
+.category-practice-category { display: flex; flex-direction: column; gap: 6px; max-width: 400px; }
+.category-practice select { width: 100%; min-height: 44px; padding: 8px; border: 1px solid #a8b6ae; border-radius: 6px; color: inherit; background: #fff; }
+.category-practice fieldset { border: 0; padding: 12px 0; margin: 10px 0; display: flex; flex-wrap: wrap; gap: 8px 20px; min-width: 0; }
+.category-practice legend { font-weight: 600; padding: 0; }
+.category-practice fieldset label { display: flex; align-items: center; gap: 7px; min-height: 44px; }
+.category-practice fieldset small { color: #526157; }
+.category-practice button { min-height: 44px; border: 1px solid #a8b6ae; border-radius: 6px; padding: 9px 14px; background: #fff; color: #24382f; cursor: pointer; }
+.category-practice button:hover:not(:disabled) { background: #edf2ed; }
+.category-practice button.category-practice-start { background: #245239; color: #fff; margin-top: 12px; }
+.category-practice button.category-practice-start:hover:not(:disabled) { background: #183d29; }
+.category-practice button:disabled { opacity: .55; cursor: default; }
+.category-practice :focus-visible { outline: 3px solid #6c9774; outline-offset: 3px; }
+.category-practice summary { cursor: pointer; padding: 10px 0; }
+.category-practice ul { columns: 2; padding-left: 22px; line-height: 1.6; }
+@media (max-width: 640px) { .category-practice ul { columns: 1; } .category-practice fieldset { flex-direction: column; gap: 2px; } }
+.ps-source-filters { display: flex; flex-wrap: wrap; gap: 8px 16px; grid-column: 1 / -1; border: 0; padding: 8px 0; min-width: 0; }
+.ps-source-filters legend { font-weight: 600; }
+.ps-source-filters label { display: flex; flex-direction: row; align-items: center; gap: 8px; min-height: 44px; }
+.ps-source-filters input[type=checkbox] { width: auto; }
+.ps-source-filters small { width: 100%; }

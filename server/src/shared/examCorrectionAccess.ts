@@ -3,6 +3,17 @@ import type { ExamContent, ExamQuestion } from './examTypes';
 import { getAllExamQuestions, type ExamResult, type SelectedAnswer } from './examGrading';
 import { isFullExamResult } from './examCompletion';
 import { isMathAnswerComplete } from './mathAnswer';
+import { isStudyHallWorksheet, type StudyHallWorksheet } from './studyHallWorksheets';
+
+type CorrectionActivity = { id: string; correctionsOpen?: boolean; examLabel?: string; studyHallWorksheet?: StudyHallWorksheet | null };
+
+/** Worksheet submissions may contain skipped questions or only one subject. */
+export function canReviewSubmittedActivity(activity: CorrectionActivity | null | undefined, result: ExamResult | null | undefined, content = result?.analysisContent): boolean {
+  if (!activity || !result || result.assessmentId !== activity.id || !result.answers || String(result.completionStatus) === 'in_progress') return false;
+  if (activity.correctionsOpen) return true;
+  if (isStudyHallWorksheet(activity)) return result.source !== 'answer_sheet' && result.total > 0 && Boolean(result.completedAt);
+  return hasFullyAnsweredExam(result, content);
+}
 
 function answered(question: ExamQuestion, answer: SelectedAnswer | undefined): boolean {
   if (question.type === "coordinate_response") return coordinateAnswerComplete(question, answer);

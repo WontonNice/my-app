@@ -1,3 +1,5 @@
+import { StudentPassageProgress } from '../client/src/components/StudentPassageInventory';
+import { StudentRecordFilterContext } from '../client/src/lib/studentRecordFilters';
 import { useMemo } from "react";
 import { TeacherLearningPlan, type PlanView } from "../client/src/components/TeacherLearningPlan";
 import { planSummary, type PlanClient, type PassageRelation } from "../client/src/lib/learningPlan";
@@ -43,6 +45,15 @@ const passageInventory: ContentInventory = [
   latestScore:hasCompleted?{correct:index===1?2:4,total:5,at:index===1?"2026-09-10":"2026-10-10"}:null,
   status: status as ContentInventory[number]["status"], hasCompleted: Boolean(hasCompleted), lastCompletedAt: hasCompleted ? "2026-10-10T15:00:00Z" : null, priorCount: hasCompleted ? 1 : 0, lastActivity: null, dueDate: null, plannedDate: null, assignmentCount: status === "Never assigned" ? 0 : 1,
 }));
+function EncountersPreview() {
+  const [filters,setFilters]=useState<Record<string,unknown>>({'PassageInventory.search':'2020-2021 Form B','PassageInventory.category':'official_handbook'});
+  const [completion,setCompletion]=useState<''|'completed'|'not_completed'>(''),[review,setReview]=useState('');
+  const inventory=passageInventory.map(row=>({...row,evidence:row.hasCompleted ? [
+    {contentId:row.content.id,source:'Exam · 2024-2025 Form A',reference:'qa-exam',at:'2026-11-09T15:30:00Z',correct:4,total:5,coverage:'recorded' as const},
+    {contentId:row.content.id,source:'Library practice',reference:'qa-library',at:'2026-10-02T14:00:00Z',correct:2,total:5,coverage:'verified' as const},
+  ] : []}));
+  return <main className="sa-workstation" style={{padding:20,maxWidth:1280,margin:'auto'}}><p>Fictional student · passage encounter preview</p><StudentRecordFilterContext.Provider value={{values:filters,setValues:setFilters}}><StudentPassageProgress inventory={inventory} completion={completion} onCompletionChange={setCompletion} onEvidence={activity=>setReview(activity.source+' · '+activity.at)}/></StudentRecordFilterContext.Provider>{review&&<p role="status">Reviewing {review}</p>}</main>;
+}
 function CategoryPreview() {
   const [relationships, setRelationships] = useState<PassageRelation[]>([]), [planning, setPlanning] = useState<PlanView | null>(null), [selectedContent, setSelectedContent] = useState(""), [skill, setSkill] = useState(""), [notice,setNotice] = useState("");
   const [partial,setPartial] = useState(false), [targetSubject, setTargetSubject] = useState(""), [targetCategory,setTargetCategory] = useState("");
@@ -64,4 +75,4 @@ function RosterPreview() {
   const students=[{id:"qa-1",fullName:"Alex Example",username:"alex",progress:{examResults:[...results,math]}},{id:"qa-2",fullName:"Jordan Example",username:"jordan",progress:{examResults:[]}},{id:"qa-3",fullName:"Taylor Example",username:"taylor",progress:{examResults:[paper]}}].map(student=>({...student,email:`${student.username}@example.test`,lastLoginAt:"2026-10-03T12:00:00Z",examSessions:{},classes:["shsat"],insights:{},progress:{...student.progress,practice:{}}}))as unknown as StudentProgressSnapshot[];
   return <main style={{padding:20,maxWidth:1440,margin:"auto"}}><section className="teacher-panel"><h1>Student progress · fictional QA roster</h1><StudentProgressRoster students={students} inputsFor={student=>(student.progress.examResults??[]).map(result=>({result,content,subjects:result.subjects as typeof results[number]["subjects"]??[],passages:result.passages as typeof results[number]["passages"]??[]}))} onSelect={setSelected}/>{selected&&<p role="status">Selected {students.find(student=>student.id===selected)?.fullName}</p>}</section></main>;
 }
-createRoot(document.getElementById("root")!).render(window.location.pathname === "/roster" ? <RosterPreview /> : window.location.pathname === "/categories" ? <CategoryPreview /> : <Preview />);
+createRoot(document.getElementById("root")!).render(window.location.pathname === "/encounters" ? <EncountersPreview /> : window.location.pathname === "/roster" ? <RosterPreview /> : window.location.pathname === "/categories" ? <CategoryPreview /> : <Preview />);

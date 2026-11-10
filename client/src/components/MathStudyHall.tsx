@@ -1,3 +1,4 @@
+import { CategoryPracticePicker } from '../features/math-command/CategoryPracticePicker';
 import { usePracticeAccount } from '../features/math-command/usePracticeAccount';
 import { lazy, Suspense, useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight, FileText, Infinity as InfinityIcon, Layers3, Play, Star } from "lucide-react";
@@ -65,6 +66,7 @@ export function MathStudyHall({ query, previewContext, view }: { query: string; 
   const resourceStatus=loading?<p className="math-study-resource-status" role="status">Loading resources…</p>:error?<div className="math-study-resource-status" role="alert"><p>{error}</p><button type="button" onClick={()=>void reload()}>Try again</button></div>:null;
 
   if(!taxonomy)return <section className="math-study-hall" aria-labelledby="math-study-title"><h2 id="math-study-title">Math categories</h2>{error?<div className="math-study-resource-status" role="alert"><p>{error}</p><button type="button" onClick={()=>void reload()}>Try again</button></div>:<p role="status">Loading math categories…</p>}</section>;
+  const mixedPractice = catalog && <CategoryPracticePicker key={`${category?.label ?? "all"}/${topic ?? "all"}`} catalog={catalog} taxonomy={mathStudyCategories} category={category?.label} topic={topic} teacher={previewContext.isPreview} />;
 
   return <section className="math-study-hall" aria-labelledby={view === 'recommended' ? 'recommended-heading' : 'math-study-title'}>
     <div hidden={view === 'recommended'}>
@@ -84,6 +86,7 @@ export function MathStudyHall({ query, previewContext, view }: { query: string; 
       <div className="math-study-resources">
         <section aria-labelledby="math-infinite-title" className="math-study-resource-section math-study-practice-section">
           <header><InfinityIcon size={28} aria-hidden="true" /><div><h3 id="math-infinite-title">Infinite practice</h3><p>Practice the full topic in General Practice, or choose modules and earn module stars in Foundation Building.</p></div></header>
+          {mixedPractice}
           {launchError&&<p role="alert">{launchError}</p>}
           {resourceStatus??(modules.length?<PracticeModuleList catalog={catalog!} previewContext={previewContext} category={category.label} topic={topic} onStart={(id,selection,startNew)=>void startModule(id,selection,startNew)}/>:<div className="math-study-resource-empty"><InfinityIcon size={34} aria-hidden="true" /><strong>No practice modules yet</strong><p>Modules published by your teacher will appear here.</p></div>)}
         </section>
@@ -98,6 +101,7 @@ export function MathStudyHall({ query, previewContext, view }: { query: string; 
       </div>
     </> : <>
       <header className="study-hall-section-heading"><div><p>{category ? "Subcategories" : "Math topics"}</p><h2 id="math-study-title">{category?.label || "Choose a main category"}</h2><span>{category ? "Choose a specific topic to find its worksheets and practice." : "Start with a main category, then choose the skill you want to work on."}</span></div></header>
+      {mixedPractice}
       {category ? <div className="math-study-topic-list">
         {category.topics.filter(name => matches(`${category.label} ${name}`)).map((name, index) => {
           const stars=generalPracticeStars(name);

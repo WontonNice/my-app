@@ -22,7 +22,8 @@ export function GeneratorWorkshop({catalog,taxonomy,request,sourceId='',moduleId
   useEffect(()=>{heading.current?.focus();},[]);
   useEffect(()=>{if(!selectedSource)return;let active=true;void request<MathQuestionDetail>(`/catalog/${encodeURIComponent(selectedSource)}`).then(next=>{
     if(!active)return;setSource(next);setCategory(next.row.category??'');setTopic(next.row.subcategory??'');
-  }).catch(reason=>{if(active)setError(reason instanceof Error?reason.message:'Could not load the source question.');}).finally(()=>{if(active)setBusy(false);});return()=>{active=false;};},[request,selectedSource]);
+    if(!moduleId)setDestination(catalog.modules.find(item=>item.category===next.row.category&&item.topic===next.row.subcategory&&practiceModuleKind(item)==='general')?.id??'');
+  }).catch(reason=>{if(active)setError(reason instanceof Error?reason.message:'Could not load the source question.');}).finally(()=>{if(active)setBusy(false);});return()=>{active=false;};},[request,selectedSource,catalog.modules,moduleId]);
   const modules=catalog.modules.filter(item=>item.category===category&&item.topic===topic);
   const existing=modules.find(item=>item.id===destination);
   const targetTitle=existing?.title??moduleName.trim();
@@ -32,7 +33,7 @@ export function GeneratorWorkshop({catalog,taxonomy,request,sourceId='',moduleId
   useEffect(()=>{onDirtyChange(Boolean((moduleName.trim()||notes.trim())&&prompt!==copiedPrompt));},[moduleName,notes,prompt,copiedPrompt,onDirtyChange]);
   async function search(){setBusy(true);setError('');try{const page=await request<MathCatalogPage>('/catalog?'+new URLSearchParams({filters:JSON.stringify({search:query,page:1,pageSize:10,sort:'source',direction:'asc'})}));setMatches(page.items);setNotice(page.total?`${page.total} matching questions. Showing the first ${page.items.length}.`:'No source questions match. Try a title, phrase, or question ID.');}catch(reason){setError((reason as Error).message);}finally{setBusy(false);}}
   return <section className="ps-workshop" aria-label="Create a question generator">
-    <header><div><h2 ref={heading} tabIndex={-1}>Create from a math question</h2><p>Choose a source and destination, then give the coding brief to your coding assistant.</p></div><button type="button" onClick={onClose} aria-label="Close generator workshop"><X size={18}/></button></header>
+    <header><div><h2 ref={heading} tabIndex={-1}>Create from a math question</h2><p>Start with a source question. Its category, topic, and existing General Practice group are selected automatically.</p></div><button type="button" onClick={onClose} aria-label="Close generator workshop"><X size={18}/></button></header>
     <section className="ps-workshop-source"><h3>Source question</h3><form onSubmit={event=>{event.preventDefault();void search();}}><label>Find a source question<input value={query} onChange={event=>setQuery(event.target.value)} placeholder="Question ID, wording, or source"/></label><button disabled={busy||!query.trim()}><Search size={16}/> Search questions</button></form>
       {matches.length>0&&<ul className="ps-source-results">{matches.map(item=><li key={item.id}><button type="button" aria-pressed={selectedSource===item.id} onClick={()=>{if(item.id===selectedSource)return;setError('');setNotice('');setBusy(true);setSelectedSource(item.id);}}><strong><ExamText text={item.prompt||item.id}/></strong><small>{item.id} · {item.category} / {item.subcategory}</small></button></li>)}</ul>}
       {busy&&<p role="status">Loading questions…</p>}

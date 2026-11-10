@@ -26,3 +26,9 @@
 .mc-inventory-scroll th small { display:block; font-weight:650; }
 .mc-duplicate-sides { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr)); gap:18px; margin:16px 0; }
 .mc-duplicate-sides article { min-width:0; overflow-wrap:anywhere; }
+.mc-question-generators { padding: 16px 0; margin-bottom: 16px; border-bottom: 1px solid #d4dce3; }
+.mc-question-generators h3 { margin-top: 0; }
+.mc-question-generators ul { list-style: none; padding: 0; }
+.mc-question-generators li { display: flex; justify-content: space-between; gap: 12px; align-items: center; padding: 12px 0; }
+.mc-question-generators small { display: block; margin-top: 5px; }
+.mc-question-generators button { min-height: 44px; }

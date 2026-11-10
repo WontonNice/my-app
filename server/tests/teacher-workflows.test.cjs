@@ -57,12 +57,14 @@ test('teacher test Review spans every passage and subject on any screen; student
  const source=fs.readFileSync(path.resolve(__dirname,'../../client/src/pages/ExamSessionPage.tsx'),'utf8');
  const block=source.slice(source.indexOf('  const reviewItems: ReviewItem[] = [];'),source.indexOf('  const unansweredCount = accessibleQuestions.filter('));
  const js=require('typescript').transpileModule(`function build({teacher=false,mode='',screen='passage'}) {
- const isTeacherPreviewSession=teacher,getStudentPreviewContext=()=>({mode}),sessionScreen=screen;
+ const isTeacherPreviewSession=teacher,isStudioPreview=false,getStudentPreviewContext=()=>({mode}),sessionScreen=screen;
+ const assessment={},isGameSession=false,isFastForwardEnabled=false,usesSourceOrder=false;
  const selectedAnswers={},bookmarkedQuestionIds=[],isQuestionAnswered=()=>false;
  const examContent={passageSets:[{questions:[{id:'p1'},{id:'p2'}],passage:{title:'First'}},{questions:[{id:'p3'}],passage:{title:'Second'}}]};
  const activePassageSetIndex=0,activePassageSet={...examContent.passageSets[0],directions:{}},shouldShowPassageDirections=true;
  const standaloneSection={questions:[{id:'s1'}],directions:{}},activeStandaloneQuestion=standaloneSection.questions[0];
  const mathQuestions=[{id:'m1'},{id:'m2'}],activeMathQuestion=mathQuestions[0],mathSection={directions:{}};
+ const englishSequence=[...examContent.passageSets.flatMap((set,passageIndex)=>set.questions.map((question,questionIndex)=>({kind:'passage',passageIndex,questionIndex,question}))),...standaloneSection.questions.map((question,questionIndex)=>({kind:'standalone',questionIndex,question}))];
  ${block}
  return reviewItems;
  } build;`,{compilerOptions:{target:99}}).outputText;

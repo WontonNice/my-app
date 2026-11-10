@@ -98,7 +98,7 @@ const users={teacher:{id:'teacher',app_metadata:{role:'teacher'}},admin:{id:'adm
 function stub(file,exports){const id=require.resolve(file);require.cache[id]={id,filename:id,loaded:true,exports};}
 stub('../src/lib/auth.ts',{getAuthenticatedUser:async header=>({user:users[header?.replace('Bearer ','')],error:'Sign in required'}),getEnrolledClassIds:metadata=>metadata.class_ids??[]});
 let taxonomyTopicRenames=[];
-stub('../src/lib/mathCommandCatalogStore.ts',{mathCommandRoot:path.resolve(__dirname,'../..'),readMathCommandTaxonomy:()=>taxonomy,readMathCommandState:()=>({taxonomyTopicRenames})});
+stub('../src/lib/mathCommandCatalogStore.ts',{mathCommandRoot:path.resolve(__dirname,'../..'),readMathCommandCatalog:()=>[],readMathCommandTaxonomy:()=>taxonomy,readMathCommandState:()=>({taxonomyTopicRenames})});
 stub('../src/lib/mathCommandPersistence.ts',{withMathCommandPersistence:async(root,operation)=>operation()});
 let stored=null,storageFails=false;
 stub('../src/lib/supabase.ts',{supabase:{from(){let mutation,filters=[];return {select(){return this;},eq(key,value){filters.push(row=>row[key]===value);return this;},insert(row){mutation={insert:row};return this;},update(row){mutation={update:row};return this;},async maybeSingle(){if(storageFails)return{data:null,error:{code:'PGRST205'}};if(mutation?.insert){if(stored)return{data:null,error:{code:'23505'}};stored=structuredClone(mutation.insert);}if(mutation?.update){if(!stored||!filters.every(filter=>filter(stored)))return{data:null,error:null};stored=structuredClone(mutation.update);}return{data:structuredClone(stored),error:null};}};}}});

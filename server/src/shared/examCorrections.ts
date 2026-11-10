@@ -46,6 +46,7 @@ export type CorrectionSubmission = {
   questions: ReviewQuestion[];
 };
 export type ExamCorrectionView = {
+  isWorksheet?: boolean;
   result: ExamResult;
   resultVersion: string;
   questions: ReviewQuestion[];

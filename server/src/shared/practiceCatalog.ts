@@ -280,6 +280,7 @@ export function validateGenerator(value:unknown):PracticeGeneratorDefinition {
   if(row.skills!==undefined)organization.skills=list(row.skills,'Skills',20,120);
   if(row.prerequisites!==undefined)organization.prerequisites=list(row.prerequisites,'Prerequisites',20,120);
   if(row.sourceQuestionIds!==undefined)organization.sourceQuestionIds=list(row.sourceQuestionIds,'Source question IDs',50,100).map(id);
+  if(row.sourcePublishers!==undefined)organization.sourcePublishers=list(row.sourcePublishers,'Source publishers',50,120);
   if(row.programs!==undefined){organization.programs=list(row.programs,'Programs',4,10);if(!organization.programs.length||organization.programs.some(program=>!practicePrograms.includes(program as typeof practicePrograms[number])))fail('Choose at least one supported program.');}
   if(row.subject!==undefined)organization.subject=text(row.subject,'Subject',80);
   if(row.difficulty!==undefined){if(!practiceDifficulties.includes(row.difficulty as typeof practiceDifficulties[number]))fail('Choose a valid difficulty.');organization.difficulty=row.difficulty as GeneratorOrganization['difficulty'];}

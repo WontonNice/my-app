@@ -54,7 +54,8 @@ test('Math Study Hall follows the managed hierarchy and reserves topic resource 
   assert.doesNotMatch(output.modules,/Start Inequalities: Variables on Both Sides|Start Writing Inequalities/);
   assert.equal((output.modules.match(/class="practice-module-group"/g)||[]).length,2);
   assert.doesNotMatch(output.modules,/Start infinite practice|Explore modules/);
-  assert.doesNotMatch(output.topic, /Start practice|<button/);
+  assert.doesNotMatch(output.topic, /class="category-practice-start" type="button">/);
+  assert.match(output.topic, /Coverage gaps/);
   assert.match(output.unknown, /This topic is no longer available/);
   assert.match(output.unknownTopic, /This topic is no longer available/);
   assert.match(output.search, new RegExp(escape(taxonomy.categories[0].label)));

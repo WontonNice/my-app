@@ -152,7 +152,7 @@ test('remote persistence rejects failed writes and simultaneous stale saves',asy
   const first=await save('Remote batch');
   assert.deepEqual(await read(),first);
   fixture.db.failNextMutation('math_command_metadata');
-  await assert.rejects(()=>save('Must not be acknowledged'),/could not be loaded or saved/);
+  await assert.rejects(()=>save('Must not be acknowledged'),/could not be confirmed saved/);
   assert.deepEqual(await read(),first);
   const parallel=await Promise.allSettled([save('Window A'),save('Window B')]);
   assert.equal(parallel.filter(item=>item.status==='fulfilled').length,1);

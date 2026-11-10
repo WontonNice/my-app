@@ -1,3 +1,4 @@
+import { newerPassageAttempt, passageExamAttempt, type PassageLastTaken } from '../shared/passageLastTaken';
 import { randomUUID } from "node:crypto";
 import { createHash } from "node:crypto";
 import { getExamContent } from "../lib/examContent";
@@ -427,10 +428,11 @@ libraryRouter.get("/teacher/books/:bookId", async (request, response) => {
     const material = libraryMaterial(request.params.bookId);
     if (!bookIdPattern.test(request.params.bookId) || !material) { response.status(404).json({ message: "English library book not found." }); return; }
     const ids = libraryBookAccessIds(material.id);
-    const [histories, grants, assignments] = await Promise.all([
+    const [histories, grants, assignments, examRows] = await Promise.all([
         Promise.all(ids.map(bookHistory)),
         libraryRows<{ user_id: string; progress: unknown }>(offset => supabase.from("student_practice_progress").select("user_id,progress").eq("topic_slug", accessTopicSlug(material.id)).order("user_id").range(offset, offset + 999)),
         libraryRows<{ student_id: string; content_id: string; kind: string }>(offset => supabase.from("student_assignments").select("student_id,content_id,kind").in("content_id", ids).in("status", ["assigned", "in_progress", "review", "completed"]).order("id").range(offset, offset + 999), true),
+        libraryRows<{ user_id: string; assessment_id: string; result: ExamResult }>(offset => supabase.from('student_exam_results').select('user_id,assessment_id,result').order('user_id').order('assessment_id').range(offset, offset + 999)),
     ]);
     const listedUsers: User[] = [];
     for (let page = 1; ; page++) {
@@ -444,12 +446,20 @@ libraryRouter.get("/teacher/books/:bookId", async (request, response) => {
     const grantsByStudent = new Map(grants.map(row => [row.user_id, row.progress]));
     const assignedStudents = new Set(assignments.filter(row => row.kind === libraryContentKind(row.content_id)).map(row => row.student_id));
     const legacyUnlocks = new Map([...histories.flatMap(history => history.unlocked).map(row => [row.userId, row.at] as const), ...rows.map(row => [row.user_id, row.completed_at] as const)]);
+    const lastTaken = new Map<string, PassageLastTaken | null>();
+    for (const row of rows) lastTaken.set(row.user_id, newerPassageAttempt(lastTaken.get(row.user_id) ?? null, { completedAt: row.completed_at, source: 'library' }));
+    for (const row of examRows) {
+        // Correction drafts and other compatibility records are not exam attempts.
+        if (!row.result || (row.assessment_id.startsWith('__') && !row.assessment_id.startsWith('__exam_history__:'))) continue;
+        const attempt = passageExamAttempt(ids, row.result, row.result.analysisContent ?? getExamContent(row.result.assessmentId));
+        if (attempt) lastTaken.set(row.user_id, newerPassageAttempt(lastTaken.get(row.user_id) ?? null, attempt));
+    }
     const students = listedUsers.filter(activeLibraryStudent).map(user => {
         const grant = grantsByStudent.get(user.id);
         const access = isRecord(grant) && typeof grant.granted === "boolean"
             ? { unlocked: grant.granted, unlockedAt: grant.granted && typeof grant.updatedAt === "string" ? grant.updatedAt : null }
             : { unlocked: legacyUnlocks.has(user.id) || assignedStudents.has(user.id), unlockedAt: legacyUnlocks.get(user.id) ?? null };
-        return { access, attempts: rows.filter(row => row.user_id === user.id).map(row => teacherAttempt(row, corrections.get(row.id))),
+        return { access, lastTaken: lastTaken.get(user.id) ?? null, attempts: rows.filter(row => row.user_id === user.id).map(row => teacherAttempt(row, corrections.get(row.id))),
             email: user.email ?? "", id: user.id,
             name: typeof user.user_metadata?.full_name === "string" ? user.user_metadata.full_name : user.email?.split("@")[0] ?? "Student",
             username: typeof user.user_metadata?.username === "string" ? user.user_metadata.username : user.email?.split("@")[0] ?? "student",

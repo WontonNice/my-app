@@ -2,6 +2,14 @@
 
 Open **Math Center → Infinite Practice Studio** on the teacher dashboard. In Content Studio, **Dashboard Math Center ↗** opens that dashboard in another tab. The same workspace is also available from **Teacher Study Hall → Practice & video studio**, **Manage practice & videos** on a math topic, and `/teacher/practice-studio`.
 
+## Mixed practice and source-question organization
+
+Students can open **All Math** or category/topic infinite practice in Study Hall. Teachers have the same source filters and a preview in Practice Studio. **Official**, **Prestige**, and other publishers can be combined; the counts and coverage-gap list reflect the selected sources. This combines existing enabled, published generators, including published recommendations. It does not invent generators for uncovered topics. Each filter combination has its own resumable session; question snapshots retain the original generator and skill classification.
+
+The question inspector's **Generators for this question** lists linked generators and opens the selected generator directly in the central studio. Creation starts from that question and preselects its category, topic, and existing General Practice destination. Keep `sourceQuestionIds` on every new generator. The catalog derives `sourcePublishers` from those canonical source records on reads and saves; missing provenance is shown as **Unspecified**, never inferred from a filename or question ID. Existing catalog JSON stores these fields without a database migration. Publisher filters are also available in the teacher generator library.
+
+Run `npm run test:learning-management` for source inheritance, publication filtering, coverage, and session compatibility. `npm run preview:learning-management` supplies a local UI fixture with fictional worksheet results, authored Telegraph questions, and one clearly labeled fictional Prestige generator.
+
 ## Personal generator planner
 
 Open **Math Center → My generator planner**, or use **My generator planner** from Infinite Practice Studio. This is a personal generator-building workspace, separate from student lessons and assignments.

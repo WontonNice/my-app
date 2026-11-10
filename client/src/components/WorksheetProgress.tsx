@@ -8,7 +8,7 @@ import { ExamReviewQuestion } from './ExamReviewQuestion';
 import { AppLink } from './AppLink';
 import { appendStudentPreview, type StudentPreviewContext } from '../lib/studentPreview';
 import { examCorrectionsHref } from '../lib/correctionNavigation';
-import { hasFullyAnsweredExam } from '../../../server/src/shared/examCorrectionAccess';
+import { canReviewSubmittedActivity } from '../../../server/src/shared/examCorrectionAccess';
 import '../styles/student-analytics.css';
 import '../styles/worksheet-workspace.css';
 import { worksheetScope, worksheetEducationalArea } from '../../../server/src/shared/studyHallWorksheets';
@@ -44,7 +44,7 @@ export function WorksheetProgress({ assessments, results, sessions = {}, teacher
           })}
           {inProgress && <details><summary>{Object.keys(session.answers).length} answers saved · in progress</summary><p>These answers have not been graded.</p>{getAllExamQuestions(resolveExamContent({ id:item.id, title:item.title, assembly:session.navigation?.activityReleaseId?{publishedReleaseId:session.navigation.activityReleaseId}:item.assembly, passages:[], questions:[] })).filter(question => Object.hasOwn(session.answers, question.id)).map((question, index) => <ExamReviewQuestion key={question.id} showAnswers={false} item={{ question, number:index + 1, section:placement.subject, submittedAnswer:session.answers[question.id] as import("../../../server/src/shared/examGrading").SelectedAnswer, isCorrect:false }} />)}</details>}
           {!result && !inProgress && 'No responses yet'}
-        </> : result && (item.correctionsOpen || hasFullyAnsweredExam(result as unknown as ExamResult)) ? <AppLink href={examCorrectionsHref(item.id, previewContext)}>Review responses</AppLink> : <AppLink href={appendStudentPreview(worksheetLibraryHref(placement), previewContext)}>{inProgress ? 'Resume worksheet' : result ? 'Open worksheet' : 'Find worksheet'}</AppLink>}</td></tr>;
+        </> : result && canReviewSubmittedActivity(item, result as unknown as ExamResult) ? <AppLink href={examCorrectionsHref(item.id, previewContext)}>Review results & corrections</AppLink> : <AppLink href={appendStudentPreview(worksheetLibraryHref(placement), previewContext)}>{inProgress ? 'Resume worksheet' : result ? 'Open worksheet' : 'Find worksheet'}</AppLink>}</td></tr>;
     })}</tbody></table></div>{!filtered.length && <p>{worksheets.length?'No worksheets match these filters. Clear filters to see all worksheets.':'No Study Hall worksheets yet.'}</p>}
   </section>;
 }

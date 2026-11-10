@@ -176,6 +176,28 @@ before(async () => {
   base = `http://127.0.0.1:${server.address().port}/api/exam-review`;
 });
 after(async () => { if (server) await new Promise(resolve => server.close(resolve)); });
+test('worksheet review API releases skipped questions immediately, preserves student isolation, and accepts corrections', async () => {
+  const savedResult=structuredClone(result), savedAssessment=structuredClone(assessment);
+  try {
+    assessment.studyHallWorksheet={subject:'math',category:'Algebra'};
+    assessment.correctionsOpen=false;
+    Object.assign(result,createExamResult({...content,passageSets:[]},{},['math']));
+    const view=await request('student','/student/test-exam');
+    assert.equal(view.status,200);
+    assert.equal(view.data.isWorksheet,true);
+    assert.equal(view.data.questions.length,1);
+    assert.equal(view.data.questions[0].isCorrect,false);
+    assert.equal((await request('outsider','/student/test-exam')).status,404);
+    assert.equal((await request('other','/student/test-exam')).status,409);
+    const submitted=await request('student','/student/test-exam','POST',{resultVersion:view.data.resultVersion,responses:[completeResponses[1]]});
+    assert.equal(submitted.status,201);
+    assert.equal(assessment.correctionsOpen,false);
+  } finally {
+    for(const key of Object.keys(result))delete result[key];Object.assign(result,savedResult);
+    for(const key of Object.keys(assessment))delete assessment[key];Object.assign(assessment,savedAssessment);
+    for(let i=rows.length-1;i>=0;i--)if(rows[i].assessment_id.startsWith('__exam_corrections__:'))rows.splice(i,1);
+  }
+});
 async function request(user, url, method = 'GET', body) {
   const response = await fetch(base + url, { method, headers: { Authorization: `Bearer ${user}`, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
   return { status: response.status, data: await response.json() };

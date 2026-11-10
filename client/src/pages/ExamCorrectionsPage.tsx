@@ -41,6 +41,10 @@ export function ExamCorrectionsPage() {
       const submitted = data.submission ? Object.fromEntries(data.submission.responses.map(item => [item.questionId, item])) : {};
       setDraft({ ...submitted, ...(saved && typeof saved === "object" ? saved : {}) });
       setView(data); setError("");
+      if (data.isWorksheet) {
+        setActive(Math.max(0, data.questions.findIndex(item => !item.isCorrect)));
+        setRevealedQuestionIds(new Set(data.questions.map(item => item.question.id)));
+      }
     }).catch(reason => { if (mounted) setError(reason instanceof Error ? reason.message : "Corrections could not be opened."); });
     return () => { mounted = false; };
   }, [accessToken, assessmentId, reload, previewContext.isPreview, previewContext.studentId, noPreviewStudent]);
@@ -104,7 +108,7 @@ export function ExamCorrectionsPage() {
           <button type="button" aria-label="Next question" disabled={!view || active >= view.questions.length - 1} onClick={() => goToQuestion(active + 1)}><span aria-hidden="true">›</span></button>
         </div>
         <button className="exam-corrections-question-toggle" type="button" aria-expanded={isQuestionMenuOpen} onClick={() => setIsQuestionMenuOpen(value => !value)}>Questions <span aria-hidden="true">{isQuestionMenuOpen ? "▴" : "▾"}</span></button>
-        <strong>Exam corrections</strong>
+        <strong>{view?.isWorksheet ? "Worksheet corrections" : "Exam corrections"}</strong>
         <span>{studentName}</span>
       </div>
     </header>
@@ -143,7 +147,7 @@ export function ExamCorrectionsPage() {
           {question && <div key={question.question.id}>
             <article className="exam-correction-viewer">
               <div className="exam-correction-question-heading"><div><strong>{sectionLabel} · Question {question.number}</strong>{question.passage && <p className="correction-passage-label">{question.passage.title}</p>}</div><div className="exam-correction-question-actions"><span className={question.isCorrect ? "is-correct" : "is-incorrect"}>{question.isCorrect ? "Correct answer" : "Incorrect answer"}</span><button type="button" aria-pressed={revealedQuestionIds.has(question.question.id)} onClick={() => setRevealedQuestionIds(current => { const next = new Set(current); if (next.has(question.question.id)) next.delete(question.question.id); else next.add(question.question.id); return next; })}>{revealedQuestionIds.has(question.question.id) ? "Hide answer" : "Show answer"}</button></div></div>
-              <CorrectionExamPlayer key={`${view.resultVersion}:${question.question.id}`} item={question} title={view.result.title} studentName={studentName} showAnswers={revealedQuestionIds.has(question.question.id)} readOnly={readOnly} canPrevious={active > 0} canNext={active < view.questions.length - 1} onPrevious={() => goToQuestion(active - 1)} onNext={() => goToQuestion(active + 1)} />
+              <CorrectionExamPlayer key={`${view.resultVersion}:${question.question.id}`} item={question} title={view.result.title} studentName={studentName} showExplanation={view.isWorksheet} showAnswers={revealedQuestionIds.has(question.question.id)} readOnly={readOnly} canPrevious={active > 0} canNext={active < view.questions.length - 1} onPrevious={() => goToQuestion(active - 1)} onNext={() => goToQuestion(active + 1)} />
             </article>
 
             {!question.isCorrect ? <section className="exam-correction-response-panel" aria-labelledby={`correction-response-${question.question.id}`}>

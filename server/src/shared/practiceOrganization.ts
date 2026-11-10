@@ -19,6 +19,8 @@ export type GeneratorOrganization = {
   skills?: string[];
   prerequisites?: string[];
   sourceQuestionIds?: string[];
+  /** Derived from linked source questions by the server, never from prompt wording. */
+  sourcePublishers?: string[];
   programs?: string[];
   subject?: string;
   difficulty?: typeof practiceDifficulties[number];

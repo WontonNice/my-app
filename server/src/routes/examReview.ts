@@ -1,3 +1,4 @@
+import { isStudyHallWorksheet } from '../shared/studyHallWorksheets';
 import { assessmentAccessErrorHandler, resolveAssessmentAccess, resolveAssessmentAccessList } from '../lib/assessmentAccess';
 import { Router } from "express";
 import { createHash } from "node:crypto";
@@ -10,7 +11,7 @@ import { supabase } from "../lib/supabase";
 import { createExamResult, getAllExamQuestions, type ExamResult, type SelectedAnswers } from "../shared/examGrading";
 import { reviewQuestions, validateCorrections, type CorrectionSubmission } from "../shared/examCorrections";
 import { getDatabaseProgress } from "./progress";
-import { hasFullyAnsweredExam } from "../shared/examCorrectionAccess";
+import { canReviewSubmittedActivity } from "../shared/examCorrectionAccess";
 const findAssessmentForStudent = (id: string, classes: string[]) => resolveAssessmentAccess(configuredFindAssessmentForStudent(id, classes));
 const listStudentAssessments = (classes: string[]) => resolveAssessmentAccessList(configuredListStudentAssessments(classes));
 const listTeacherAssessments = () => resolveAssessmentAccessList(configuredListTeacherAssessments());
@@ -132,7 +133,7 @@ async function loadCorrectionView(user: User, assessmentId: string, response: Re
     const result = progress.examResults.find(item => item.assessmentId === assessment.id) as ExamResult | undefined;
     if (!result || !result.answers) { response.status(409).json({ message: "Individual submitted answers are needed before corrections can open." }); return; }
     const content = result.analysisContent ?? getExamContent(assessment.id);
-    if (!assessment.correctionsOpen && !hasFullyAnsweredExam(result, content ?? undefined)) { response.status(403).json({ message: "Corrections open automatically after you submit a fully answered exam, or when your teacher opens them." }); return; }
+    if (!canReviewSubmittedActivity(assessment, result, content ?? undefined)) { response.status(403).json({ message: "Corrections open automatically after you submit a fully answered exam, or when your teacher opens them." }); return; }
     if (!content) { response.status(409).json({ message: "The exam content is unavailable. Ask your teacher to save the exam." }); return; }
     const questions = reviewQuestions(content, result);
     const resultVersion = createHash("sha256").update(JSON.stringify({ result, questions })).digest("hex");
@@ -145,7 +146,7 @@ async function loadCorrectionView(user: User, assessmentId: string, response: Re
     const existingSubmission = storedSubmission && Array.isArray(storedSubmission.responses)
         ? { ...storedSubmission, assessmentId: assessment.id, studentId: user.id, resultVersion, questions } as CorrectionSubmission
         : null;
-    return { assessment, existing, storageId, view: { result, questions, resultVersion, submission: existingSubmission } };
+    return { assessment, existing, storageId, view: { result, questions, resultVersion, submission: existingSubmission, isWorksheet: isStudyHallWorksheet(assessment) } };
 }
 examReviewRouter.all("/student/:assessmentId", async (request, response) => {
     if (request.method !== "GET" && request.method !== "POST") { response.sendStatus(405); return; }
@@ -160,7 +161,7 @@ examReviewRouter.all("/student/:assessmentId", async (request, response) => {
     catch (error) { response.status(400).json({ message: error instanceof Error ? error.message : "Complete all required fields." }); return; }
     const submittedAt = new Date().toISOString();
     const currentAssessment = await findAssessmentForStudent(assessment.id, getEnrolledClassIds(user.app_metadata));
-    if (!currentAssessment || (!currentAssessment.correctionsOpen && !hasFullyAnsweredExam(loaded.view.result, loaded.view.result.analysisContent ?? getExamContent(assessment.id) ?? undefined))) {
+    if (!currentAssessment || !canReviewSubmittedActivity(currentAssessment, loaded.view.result, loaded.view.result.analysisContent ?? getExamContent(assessment.id) ?? undefined)) {
         response.status(403).json({ message: "Your teacher has locked corrections. Your draft is still available." }); return;
     }
     const responseByQuestionId = new Map(

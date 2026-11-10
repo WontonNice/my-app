@@ -1,3 +1,6 @@
+import { PassageLastAttempt } from '../components/PassageLastAttempt';
+import { ExamText } from '../components/ExamReviewQuestion';
+import { TeacherQuestionReview } from '../components/TeacherQuestionReview';
 import { getLibraryBookSettings } from '../lib/api';
 import { libraryBookNeedsReview, type LibraryBookSettings as BookSettings } from '../../../server/src/shared/libraryBooks';
 import { LibraryBookSettings } from '../components/LibraryBookSettings';
@@ -187,7 +190,7 @@ export function TeacherLibraryPage() {
       profileRole="Teacher account"
     >
       {bookId ? (
-        <><details className="teacher-library-settings-panel" open={window.location.hash === "#book-settings"}><summary>Book settings · Questions &amp; cover</summary><LibraryBookSettings key={bookId} bookId={bookId} accessToken={accessToken} /></details><TeacherLibraryBookDetail
+        <TeacherLibraryBookDetail accessToken={accessToken}
           key={bookId}
           attempt={selectedAttempt}
           isLoading={isLoadingDetail}
@@ -205,7 +208,7 @@ export function TeacherLibraryPage() {
           showAnswers={showAnswers}
           students={students}
           toggleAnswers={() => setShowAnswers((current) => !current)}
-        /></>
+        />
       ) : (
         <>
           <header className="teacher-library-heading">
@@ -253,6 +256,7 @@ export function TeacherLibraryPage() {
 }
 
 type TeacherLibraryBookDetailProps = {
+  accessToken: string;
   attempt?: TeacherLibraryAttempt;
   isLoading: boolean;
   material?: StudentMaterial;
@@ -268,7 +272,7 @@ type TeacherLibraryBookDetailProps = {
   toggleAnswers: () => void;
 };
 
-function TeacherLibraryBookDetail({ attempt, isLoading, material, message, onSetAccess, onSelectAttempt, onSelectStudent, passageSet, savingStudentId, selectedStudent, showAnswers, students, toggleAnswers }: TeacherLibraryBookDetailProps) {
+function TeacherLibraryBookDetail({ accessToken, attempt, isLoading, material, message, onSetAccess, onSelectAttempt, onSelectStudent, passageSet, savingStudentId, selectedStudent, showAnswers, students, toggleAnswers }: TeacherLibraryBookDetailProps) {
   const [studentSearch, setStudentSearch] = useState("");
   const [accessFilter, setAccessFilter] = useState("");
   const [previewVersion, setPreviewVersion] = useState("");
@@ -287,19 +291,14 @@ function TeacherLibraryBookDetail({ attempt, isLoading, material, message, onSet
       {message ? <p role="status" className="teacher-message corporate-message">{message}</p> : null}
       <div className="teacher-library-detail-layout">
         <section className="teacher-book-preview" aria-label="Student book preview">
+          {getExamLibraryPassage(getLibraryBookId(material)) && !getLibraryBookId(material).startsWith('lab-set-') ? <LibraryBookSettings key={getLibraryBookId(material)} bookId={getLibraryBookId(material)} accessToken={accessToken} showAnswers={showAnswers} /> : <TeacherQuestionReview questions={passageSet.questions} showAnswers={showAnswers} />}
+          <details><summary>Passage reference & source versions</summary>
           <header><div><Eye size={18} /><span><small>Passage reference</small><h2>Source versions</h2></span></div><button aria-pressed={showAnswers} onClick={toggleAnswers} type="button">{showAnswers ? <EyeOff size={15} /> : <Eye size={15} />}{showAnswers ? "Hide answers" : "Show answers"}</button></header>
           {versions.length > 1 && <label className="teacher-book-version-picker">Passage version<select value={previewVersion || versions[0].id} onChange={event => setPreviewVersion(event.target.value)}>{versions.map(version => <option key={version.id} value={version.id}>{version.label}</option>)}</select></label>}
           <article className="teacher-book-preview-passage">
-            {previewPassage.lines.filter((line) => line.kind !== "image").map((line, index) => line.text ? <p className={line.kind ? `is-${line.kind}` : ""} key={`${line.lineNumber}-${index}`}>{line.text}</p> : null)}
-          </article>
-          <div className="teacher-book-preview-questions">
-            {passageSet.questions.map((question, index) => (
-              <article key={question.id}>
-                <span>Question {index + 1}</span><h3>{question.prompt}</h3>
-                <div>{question.choices?.map((choice) => <p className={showAnswers && choice.id === question.correctChoiceId ? "is-answer" : ""} key={choice.id}><b>{choice.id}</b>{choice.text}{showAnswers && choice.id === question.correctChoiceId ? <Check size={15} /> : null}</p>)}</div>
-              </article>
-            ))}
-          </div>
+            {previewPassage.lines.map((line, index) => <div className={line.kind ? `is-${line.kind}` : ""} key={`${line.lineNumber}-${index}`}><ExamText text={line.text} html={line.html} />{line.image && <img src={line.image.src} alt={line.image.alt} width={line.image.width} />}</div>)}
+          </article></details>
+
         </section>
 
         <aside className="teacher-book-results">
@@ -314,7 +313,7 @@ function TeacherLibraryBookDetail({ attempt, isLoading, material, message, onSet
             {visibleStudents.map(student => {
               const best = bestScore(student);
               return <div className={`teacher-library-student-row${student.id === selectedStudent?.id ? " is-active" : ""}`} key={student.id}>
-                <button className="teacher-library-student-select" aria-pressed={student.id === selectedStudent?.id} onClick={() => onSelectStudent(student)} type="button"><span>{student.name.split(" ").map(part => part[0]).join("").slice(0, 2)}</span><span><strong>{student.name}</strong><small>{student.username} · {student.attempts.length} attempts{best === null ? "" : ` · ${best}% best`}</small></span></button>
+                <button className="teacher-library-student-select" aria-pressed={student.id === selectedStudent?.id} onClick={() => onSelectStudent(student)} type="button"><span>{student.name.split(" ").map(part => part[0]).join("").slice(0, 2)}</span><span><strong>{student.name}</strong><small>{student.username} · {student.attempts.length} attempts{best === null ? "" : ` · ${best}% best`}</small><PassageLastAttempt attempts={student.attempts} lastTaken={student.lastTaken}/></span></button>
                 <button className={`teacher-library-access-toggle${student.access.unlocked ? " is-enabled" : ""}`} disabled={Boolean(savingStudentId)} aria-label={`${student.access.unlocked ? "Revoke access for" : "Grant access to"} ${student.name}`} onClick={() => onSetAccess(student, !student.access.unlocked)} type="button">{savingStudentId === student.id ? "Saving…" : student.access.unlocked ? <><Check size={14} /> Enabled · Revoke</> : <><UserRoundPlus size={14} /> Grant access</>}</button>
               </div>;
             })}

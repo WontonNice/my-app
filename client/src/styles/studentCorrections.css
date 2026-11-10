@@ -74,3 +74,6 @@
 .exam-corrections-page .exam-correction-response-panel textarea:focus { background: #fefff9; }
 @media (max-width:650px) { .exam-corrections-page .exam-correction-work > footer { position: static; box-shadow: none; }.exam-corrections-page .correction-nav-filter { max-width: 350px; } }
 @media (prefers-reduced-motion:reduce) { .exam-corrections-page .exam-correction-response-panel textarea { transition: none; } }
+.correction-player-explanation { padding: 18px; border-top: 1px solid #d7dfe5; line-height: 1.6; }
+.correction-player-explanation h3 { margin: 0 0 10px; }
+.correction-player-explanation img { max-width: 100%; height: auto; }

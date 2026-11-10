@@ -8,7 +8,7 @@ import { sourceFacets } from '../../../server/src/shared/sourceFacets';
 import { InlineTextSelection } from "../components/InlineTextSelection";
 import { EXAM_PLAYER_PROFILE } from "../content/exams/playerPresentation";
 import { testnavPartADirections, testnavPartBDirections, testnavMathDirections } from "../content/exams/testnavDirections";
-import { hasFullyAnsweredExam } from "../../../server/src/shared/examCorrectionAccess";
+import { canReviewSubmittedActivity } from "../../../server/src/shared/examCorrectionAccess";
 import { examCorrectionsHref } from "../lib/correctionNavigation";
 import { toolSetter, mergeToolLists, type SharedExamTools } from "../features/games/useTeamTools";
 import { SharedToolNotes } from "../features/games/SharedToolNotes";
@@ -3321,7 +3321,7 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
           <p>Your answers have been submitted.</p>
           <p className="exam-end-section-copy">Your teacher can view your score from the teacher dashboard.</p>
           <div className="exam-test-over-actions">
-            {!isTeacherPreviewSession && studentId && (assessment?.correctionsOpen || hasFullyAnsweredExam(getExamResult(studentId, currentAssessmentId))) && (
+            {!isTeacherPreviewSession && studentId && canReviewSubmittedActivity(assessment, getExamResult(studentId, currentAssessmentId)) && (
               <a className="exam-end-section-submit" href={examCorrectionsHref(currentAssessmentId)}>Open Corrections</a>
             )}
             <button
