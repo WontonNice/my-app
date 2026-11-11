@@ -165,6 +165,8 @@ export type StudentLibraryQuestionStat = {
 };
 
 export type TeacherLibraryQuestionStat = StudentLibraryQuestionStat & {
+  questionSnapshot?: import('../../../server/src/shared/examTypes').ExamQuestion;
+  passageSnapshot?: import('../../../server/src/shared/examTypes').ExamPassage;
   correctAnswerId: string;
   isCorrect: boolean;
   selectedAnswerId: string;

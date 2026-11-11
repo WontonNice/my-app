@@ -119,6 +119,9 @@ test('combined books use individual grants, preserve legacy access/history, reje
   assert.deepEqual(completions.filter(row=>row[0]===otherId).map(row=>row[2]),['book-fixture']); // No version coverage exists in this legacy fixture.
 });
 test('library corrections open and submit after a missed first attempt without a perfect retake',async()=>{
+  const first=tables.student_library_attempts.find(row=>row.user_id===studentId&&row.book_id===set.id);
+  first.question_stats[0].questionSnapshot={...question,prompt:'Original submitted question'};
+  first.question_stats[0].passageSnapshot={id:'original-passage',title:'Original passage',lines:[{text:'Original text'}]};
   const originalAttempts=structuredClone(tables.student_library_attempts);
   assert.ok(originalAttempts.filter(row=>row.user_id===studentId&&row.book_id===set.id).every(row=>row.score<row.total_questions));
   const view=await call(`/library/books/${set.id}/corrections`,'student');assert.equal(view.status,200);
@@ -126,6 +129,10 @@ test('library corrections open and submit after a missed first attempt without a
   assert.equal(view.data.attempt.questions[0].isCorrect,false);
   assert.equal(view.data.attempt.questions[0].selectedAnswerId,'C');
   assert.equal(view.data.attempt.questions[0].correctAnswerId,'A');
+  assert.equal(view.data.attempt.questions[0].questionSnapshot.prompt,'Original submitted question');
+  assert.equal(view.data.attempt.questions[0].passageSnapshot.lines[0].text,'Original text');
+  const scores=await call(`/library/books/${set.id}/attempts`,'student');
+  assert.ok(scores.data.attempts.every(row=>row.questions.every(item=>!('questionSnapshot' in item)&&!('passageSnapshot' in item))));
   const response={questionId:question.id,whyChosenIncorrect:'No supporting detail.',whyCorrectAnswerCorrect:'The text supports A.',questionType:'Tone & Mood'};
   assert.equal((await call(`/library/books/${set.id}/corrections`,'student',{responses:[{...response,questionType:''}]})).status,400);
   const submitted=await call(`/library/books/${set.id}/corrections`,'student',{responses:[response]});

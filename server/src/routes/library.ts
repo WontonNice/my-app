@@ -153,11 +153,12 @@ function studentAttempt(row: LibraryAttemptRow) {
     };
 }
 
-function teacherAttempt(row: LibraryAttemptRow, correction?: LibraryCorrectionRow) {
+function teacherAttempt(row: LibraryAttemptRow, correction?: LibraryCorrectionRow, includeSnapshots = false) {
     return {
         ...studentAttempt(row),
         correction: correction ? correctionSubmission(correction) : null,
         questions: row.question_stats.map((question) => ({
+            ...(includeSnapshots ? { questionSnapshot: question.questionSnapshot, passageSnapshot: question.passageSnapshot } : {}),
             correctAnswerId: question.correctAnswerId,
             isCorrect: question.isCorrect,
             questionId: question.questionId,
@@ -601,7 +602,7 @@ libraryRouter.get("/books/:bookId/corrections", async (request, response) => {
         }
     }
     response.json({
-        attempt: teacherAttempt(attempt),
+        attempt: teacherAttempt(attempt, undefined, true),
         correction: correctionData ? correctionSubmission(correctionData) : null,
         readOnly: Boolean(previewId),
     });

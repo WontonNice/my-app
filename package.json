@@ -50,7 +50,7 @@
         "test:database-usage": "node --test tools/visible-polling.test.cjs server/tests/exam-reentry.test.cjs server/tests/account-profile.test.cjs server/tests/game-rooms.test.cjs server/tests/team-race.test.cjs server/tests/game-world.test.cjs",
         "test:dashboard-loading": "node --test server/tests/dashboard-loading.test.cjs server/tests/student-progress-loading.test.cjs server/tests/fetch-timeout.test.cjs server/tests/exam-section-progress.test.cjs",
         "test:class-access": "node --test server/tests/class-access.test.cjs tools/class-access.test.cjs",
-        "test:corrections": "node --test server/tests/exam-review.test.cjs server/tests/teacher-workflows.test.cjs server/tests/question-bank-routes.test.cjs server/tests/correction-navigation.test.cjs tools/corrections-view.test.cjs tools/library-progress-view.test.cjs",
+        "test:corrections": "node --test server/tests/exam-review.test.cjs server/tests/teacher-workflows.test.cjs server/tests/question-bank-routes.test.cjs server/tests/correction-navigation.test.cjs server/tests/library-correction-questions.test.cjs tools/corrections-view.test.cjs tools/library-progress-view.test.cjs",
         "test:learning-management": "node --test server/tests/learning-management.test.cjs tools/learning-management-view.test.cjs",
         "preview:learning-management": "node tools/preview-learning-management.cjs",
         "test:boards": "node --test server/tests/boards.test.cjs",

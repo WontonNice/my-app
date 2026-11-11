@@ -1,5 +1,5 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { LibraryCorrectionsWorkspace, type CorrectionDraft } from "./AdvancedPassagePage";
+import { LibraryCorrectionsWorkspace, type CorrectionDraft } from "../components/LibraryCorrectionsWorkspace";
 import { getExamLibraryPassage } from "../content/exams/passageLibrary";
 import { getAdvancedPracticePassage } from "../content/advancedPractice";
 import { getBankSet } from "../content/questionBank";
@@ -13,7 +13,8 @@ import { navigateTo } from "../lib/navigation";
 export function LibraryCorrectionsPage() {
   const { accessToken, previewContext, studentName } = useStudentPortalAccess();
   const { bookId, backPath } = libraryCorrectionLocation(window.location.pathname);
-  const passageSet = (backPath.startsWith("/advanced-practice/") ? getAdvancedPracticePassage(bookId) : getExamLibraryPassage(bookId))?.passageSet;
+  const libraryBook = backPath.startsWith("/advanced-practice/") ? undefined : getExamLibraryPassage(bookId);
+  const passageSet = (backPath.startsWith("/advanced-practice/") ? getAdvancedPracticePassage(bookId) : libraryBook)?.passageSet;
   const [view, setView] = useState<StudentLibraryCorrectionView | null>(null), [draft, setDraft] = useState<CorrectionDraft>({});
   const [error, setError] = useState(""), [loading, setLoading] = useState(true), [saving, setSaving] = useState(false), [reload, setReload] = useState(0);
   const noPreviewStudent = previewContext.isPreview && !previewContext.studentId;
@@ -52,5 +53,5 @@ export function LibraryCorrectionsPage() {
   }
   const back = () => navigateTo(appendStudentPreview(backPath, previewContext));
   if (!passageSet || noPreviewStudent) return <main className="library-corrections-page"><button onClick={back}>Back to passage</button><p role="alert">{noPreviewStudent ? "Select a student to preview their corrections." : "This passage could not be found."}</p></main>;
-  return <LibraryCorrectionsWorkspace key={`${bookId}:${view?.attempt.id || "loading"}`} passageSet={passageSet} view={view} correctionDraft={draft} correctionError={error} isLoading={loading} isSubmitting={saving} studentName={studentName} collectionLabel={getBankSet(bookId) ? "Practice set" : "Passage"} onBack={back} onRetry={() => { setLoading(true); setReload(value => value + 1); }} onDraftChange={update} onSubmit={submit} readOnly={readOnly} />;
+  return <LibraryCorrectionsWorkspace key={`${bookId}:${view?.attempt.id || "loading"}`} passageSet={passageSet} questionPassages={libraryBook?.questionPassages} view={view} correctionDraft={draft} correctionError={error} isLoading={loading} isSubmitting={saving} studentName={studentName} collectionLabel={getBankSet(bookId) ? "Practice set" : "Passage"} onBack={back} onRetry={() => { setLoading(true); setReload(value => value + 1); }} onDraftChange={update} onSubmit={submit} readOnly={readOnly} />;
 }

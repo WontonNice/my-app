@@ -1,35 +1,28 @@
 import { LibraryBookSession } from '../components/LibraryBookSession';
 import { getLibraryBookContent } from '../lib/api';
 import '../styles/library-book-settings.css';
-import { useEffect, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useState } from "react";
 import {
   ArrowLeft,
   BarChart3,
-  CheckCircle2,
   KeyRound,
   MessageSquare,
   RotateCcw,
-  Send,
   Timer,
   Trophy,
 } from "lucide-react";
 import { getAdvancedPracticePassage } from "../content/advancedPractice";
 import { getExamLibraryPassage } from "../content/exams/passageLibrary";
 import { getBankPassage, getBankSet } from "../content/questionBank";
-import type { ExamPassageSet } from "../content/exams/types";
 import {
   getStudentLibraryBookAccess,
   getStudentLibraryAttempts,
-  type StudentLibraryCorrectionView,
   type StudentLibraryAttempt,
 } from "../lib/api";
 import { useStudentPortalAccess } from "../hooks/useStudentPortalAccess";
 import { appendStudentPreview } from "../lib/studentPreview";
-import { ExamAnswer } from "../components/ExamReviewQuestion";
-import { libraryAnswer } from "../../../server/src/shared/libraryBooks";
 import { libraryCorrectionsHref } from "../lib/correctionNavigation";
 import { navigateTo } from "../lib/navigation";
-import { correctionQuestionTypes } from "../../../server/src/shared/correctionTypes";
 
 function getPassageIdFromPath() {
   return window.location.pathname.split("/").filter(Boolean).at(-1) ?? "";
@@ -49,20 +42,6 @@ function formatAttemptDate(value: string) {
     minute: "2-digit",
     month: "short",
   }).format(new Date(value));
-}
-
-function renderFormattedText(text: string): ReactNode {
-  return text.split(/(\*\*.*?\*\*|\*.*?\*)/g).map((part, index) => {
-    if (part.startsWith("**") && part.endsWith("**")) {
-      return <strong key={`${part}-${index}`}>{part.slice(2, -2)}</strong>;
-    }
-
-    if (part.startsWith("*") && part.endsWith("*")) {
-      return <em key={`${part}-${index}`}>{part.slice(1, -1)}</em>;
-    }
-
-    return part;
-  });
 }
 
 function StudentAttemptSummary({ attempt, featured = false }: { attempt: StudentLibraryAttempt; featured?: boolean }) {
@@ -87,141 +66,6 @@ function StudentAttemptSummary({ attempt, featured = false }: { attempt: Student
       </div>
       <p className="library-student-privacy-note">Question results stay hidden in your score history. If corrections are needed, review them in the separate Corrections workspace.</p>
     </article>
-  );
-}
-
-export type CorrectionDraft = Record<string, {
-  whyChosenIncorrect: string;
-  whyCorrectAnswerCorrect: string;
-    questionType?: string;
-}>;
-
-export function LibraryCorrectionsWorkspace({
-  collectionLabel,
-  correctionDraft,
-  correctionError,
-  isLoading,
-  isSubmitting,
-  onBack,
-  onDraftChange,
-  onRetry,
-  onSubmit,
-  passageSet,
-  studentName,
-  view,
-  readOnly = false,
-}: {
-  collectionLabel: string;
-  correctionDraft: CorrectionDraft;
-  correctionError: string;
-  isLoading: boolean;
-  isSubmitting: boolean;
-  onBack: () => void;
-  onDraftChange: (questionId: string, field: keyof CorrectionDraft[string], value: string) => void;
-  onRetry: () => void;
-  onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-  passageSet: ExamPassageSet;
-  studentName: string;
-  view: StudentLibraryCorrectionView | null;
-  readOnly?: boolean;
-}) {
-  const [active, setActive] = useState(0);
-  if (isLoading) {
-    return <main className="library-corrections-page"><div className="library-corrections-loading" role="status">Loading your first attempt…</div></main>;
-  }
-
-  if (!view) {
-    return (
-      <main className="library-corrections-page">
-        <header className="library-corrections-topbar"><button onClick={onBack} type="button"><ArrowLeft size={16} /> Back</button><span>{studentName}</span></header>
-        <section className="library-corrections-error" role="alert"><MessageSquare size={24} /><h1>Corrections could not be opened</h1><p>{correctionError}</p><button onClick={onRetry} type="button">Try again</button></section>
-      </main>
-    );
-  }
-
-  const isSubmitted = Boolean(view.correction);
-  const locked = isSubmitted || readOnly;
-  const responsesByQuestion = new Map(view.correction?.responses.map((response) => [response.questionId, response]) ?? []);
-
-  return (
-    <main className="library-corrections-page">
-      <header className="library-corrections-topbar"><button onClick={onBack} type="button"><ArrowLeft size={16} /> Back to passage</button><span>{studentName}</span></header>
-      <section className="library-corrections-hero">
-        <span><MessageSquare size={25} /></span>
-        <p>{collectionLabel} · {passageSet.passage.title}</p>
-        <h1>Corrections</h1>
-        <small>Your first-attempt answers are locked. Explain both parts for every question you missed.</small>
-        {readOnly && <p>Student preview · read only</p>}
-      </section>
-      <div className="library-corrections-layout">
-        <aside>
-          <StudentAttemptSummary attempt={view.attempt} featured />
-          <div className={`library-correction-status${isSubmitted ? " is-submitted" : ""}`}>
-            {isSubmitted ? <CheckCircle2 size={19} /> : <MessageSquare size={19} />}
-            <span><strong>{isSubmitted ? "Submitted to your teacher" : "Ready to complete"}</strong><small>{isSubmitted && view.correction ? `Submitted ${formatAttemptDate(view.correction.submittedAt)}` : "Complete every explanation, then submit once."}</small></span>
-          </div>
-        </aside>
-        <form className="library-correction-form" onSubmit={onSubmit}>
-          <nav className="library-correction-pagination" aria-label="Correction question navigation"><button type="button" disabled={active === 0} onClick={() => setActive(value => value - 1)}>← Previous</button><label>Question<select aria-label="Correction question" value={active} onChange={event => setActive(Number(event.target.value))}>{passageSet.questions.map((question, index) => <option key={question.id} value={index}>{index + 1}</option>)}</select> of {passageSet.questions.length}</label><button type="button" disabled={active >= passageSet.questions.length - 1} onClick={() => setActive(value => value + 1)}>Next →</button></nav>
-          {passageSet.questions.map((question, index) => ({ question, index })).filter(entry => entry.index === active).map(({ question, index }) => {
-            const result =
-              view.attempt.questions.find((item) => item.questionId === question.id) ??
-              view.attempt.questions.find((item) => item.questionNumber === index + 1);
-            if (!result) return null;
-            const responseQuestionId = result.questionId;
-            const savedResponse = responsesByQuestion.get(responseQuestionId);
-            const draft = correctionDraft[responseQuestionId] ?? { whyChosenIncorrect: "", whyCorrectAnswerCorrect: "" };
-            return (
-              <article className={`library-correction-question${result.isCorrect ? " is-correct" : " is-missed"}`} key={question.id}>
-                <header><span>Question {index + 1}</span><strong>{result.isCorrect ? "Correct on first attempt" : "Correction required"}</strong></header>
-                <h2>{renderFormattedText(question.prompt)}</h2>
-                <div className="library-correction-choices" aria-label={`Locked answers for question ${index + 1}`}>
-                  {question.choices?.map((choice) => {
-                    const isSelected = choice.id === result.selectedAnswerId;
-                    const isCorrectAnswer = choice.id === result.correctAnswerId;
-                    return <div className={`${isSelected ? " is-selected" : ""}${isCorrectAnswer ? " is-answer" : ""}`} key={choice.id}><b>{choice.id}</b><span>{renderFormattedText(choice.text)}</span>{isSelected ? <small>Your first answer</small> : null}{isCorrectAnswer ? <small>Correct answer</small> : null}</div>;
-                  })}
-                </div>
-                {(!["multiple_choice", "transition_drop"].includes(question.type) || question.type === 'transition_drop' && Boolean(question.dragDropSlots?.length)) && <div><p>Your first answer</p><ExamAnswer question={question} answer={libraryAnswer(result.selectedAnswerId)} /><p>Correct answer</p><ExamAnswer question={question} answer={libraryAnswer(result.correctAnswerId)} /></div>}
-                {result.isCorrect ? (
-                  <div className="library-correction-congrats"><CheckCircle2 size={20} /><span><strong>Congratulations, you got it correct.</strong><small>No written correction is needed for this question.</small></span></div>
-                ) : (
-                  <div className="library-correction-explanations">
-                    <label><span>Question type</span>{locked ? <strong>{savedResponse?.questionType || draft.questionType || "Not recorded for this question"}</strong> : <select required value={draft.questionType || ""} onChange={event => onDraftChange(responseQuestionId, "questionType", event.target.value)}><option value="">Choose a question type</option>{correctionQuestionTypes(passageSet.questions, "english", passageSet.section ?? "reading").map(type => <option key={type} value={type}>{type}</option>)}</select>}</label>
-                    <label>
-                      <span>Why is the answer I chose incorrect?</span>
-                      <textarea
-                        maxLength={4000}
-                        onChange={(event) => onDraftChange(responseQuestionId, "whyChosenIncorrect", event.target.value)}
-                        placeholder="Explain the mistake in your first answer…"
-                        readOnly={locked}
-                        required
-                        rows={4}
-                        value={savedResponse?.whyChosenIncorrect ?? draft.whyChosenIncorrect}
-                      />
-                    </label>
-                    <label>
-                      <span>Why is the correct answer correct?</span>
-                      <textarea
-                        maxLength={4000}
-                        onChange={(event) => onDraftChange(responseQuestionId, "whyCorrectAnswerCorrect", event.target.value)}
-                        placeholder="Use evidence or reasoning to explain the correct answer…"
-                        readOnly={locked}
-                        required
-                        rows={4}
-                        value={savedResponse?.whyCorrectAnswerCorrect ?? draft.whyCorrectAnswerCorrect}
-                      />
-                    </label>
-                  </div>
-                )}
-              </article>
-            );
-          })}
-          {correctionError ? <p className="library-correction-submit-error" role="alert">{correctionError}</p> : null}
-          {!locked ? <div className="library-correction-submit"><p>Complete every missed question, then submit all corrections. Corrections cannot be edited after submission.</p><button disabled={isSubmitting} type="submit"><Send size={16} /> {isSubmitting ? "Submitting…" : "Submit all corrections"}</button></div> : null}
-        </form>
-      </div>
-    </main>
   );
 }
 
