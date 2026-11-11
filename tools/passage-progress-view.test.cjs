@@ -1,11 +1,20 @@
 const { test } = require('node:test'), assert = require('node:assert/strict'), { resolve } = require('node:path'), { build } = require('esbuild');
-async function render(inventory, completion = 'not_completed') {
+async function render(inventory, completion = 'not_completed', search = '') {
   const page = resolve(__dirname, '../client/src/components/StudentPassageProgress.tsx');
-  const result = await build({alias:require('./react-build-aliases.cjs')(resolve(__dirname,'..')), stdin: { contents: `import React from 'react';import {renderToStaticMarkup} from 'react-dom/server';import {StudentPassageProgress} from ${JSON.stringify(page)};console.log(renderToStaticMarkup(React.createElement(StudentPassageProgress,{inventory:${JSON.stringify(inventory)},completion:${JSON.stringify(completion)},onCompletionChange:()=>{}})));`, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic' });
+  const result = await build({alias:require('./react-build-aliases.cjs')(resolve(__dirname,'..')), stdin: { contents: `import React from 'react';import {renderToStaticMarkup} from 'react-dom/server';import {StudentPassageProgress} from ${JSON.stringify(page)};import {StudentRecordFilterContext} from './client/src/lib/studentRecordFilters';console.log(renderToStaticMarkup(React.createElement(StudentRecordFilterContext.Provider,{value:{values:{'PassageInventory.search':${JSON.stringify(search)}},setValues:()=>{}}},React.createElement(StudentPassageProgress,{inventory:${JSON.stringify(inventory)},completion:${JSON.stringify(completion)},onCompletionChange:()=>{}}))));`, resolveDir: resolve(__dirname, '..'), loader: 'tsx' }, platform: 'node', format: 'cjs', bundle: true, write: false, jsx: 'automatic' });
   const output = [];
   require('node:vm').runInNewContext(result.outputFiles[0].text, { require, console: { log: value => output.push(value) }, process, TextEncoder, TextDecoder, Buffer, setTimeout, clearTimeout, queueMicrotask, setImmediate, clearImmediate, AbortController, ReadableStream, WritableStream, TransformStream });
   return output.join('');
 }
+
+test('the real passage inventory renders seven Form A matches for the reported search', async () => {
+  const rows = require('../server/data/learning-catalog.json').map(content => ({ content, status: 'Never assigned', hasCompleted: false }));
+  const html = await render(rows, '', '2020-2021 form a');
+  assert.match(html, /7 passages · 7 matching versions/);
+  for (const set of require('../server/data/exam-content.json')['2020-2021-form-a'].passageSets) {
+    assert.ok(html.includes(set.passage.title), `Missing rendered passage: ${set.passage.title}`);
+  }
+});
 test('student progress renders distinct source versions, completed dates, No Data and both completion filter choices', async () => {
   const row = (id, versionLabel, lastCompletedAt, hasCompleted = true) => ({ content: { id, kind: 'passage', title: 'Same passage', subject: 'English', passageCategory: 'official_handbook', versionLabel, skills: [], aliases: [id], questionCount: 4, category: 'Poem' }, status: hasCompleted ? 'Assigned' : 'Planned', hasCompleted, lastCompletedAt, priorCount: 0 });
   const html = await render([row('a', '2020-2021 Form B', '2026-10-10T15:00:00Z'), row('b', '2024-2025 Form A', null), row('c', 'Untaken source', null, false)], 'completed');

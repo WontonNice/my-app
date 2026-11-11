@@ -29,7 +29,7 @@ const listTeacherAssessments = () => resolveAssessmentAccessList(configuredListT
 
 
 function applyReentry<T extends { sectionAccess: Record<AssessmentSection, boolean>; status: AssessmentStatus; allowCompletedAccess: boolean }>(assessment: T, grant?: ExamReentryGrant, openForEveryone = assessment.status === "open") {
-    if (openForEveryone && !(grant?.resetAnswers && grant.remainingSections.length)) return { ...assessment, allowCompletedAccess: true, canEditSubmittedSections: true };
+    if (openForEveryone && !((grant?.resetAnswers || grant?.resetTimer) && grant.remainingSections.length)) return { ...assessment, allowCompletedAccess: true, canEditSubmittedSections: true };
     if (!grant?.remainingSections.length) return assessment;
     return { ...assessment, status: "open" as const, reentry: grant, sectionAccess: { english: grant.remainingSections.includes("english"), math: grant.remainingSections.includes("math") } };
 }
@@ -92,8 +92,9 @@ assessmentsRouter.get("/student/:assessmentId", async (request, response) => {
     }
 
     const savedContent = records.get(assessment.id)?.analysisContent as ExamContent | undefined;
-    const pinnedContent=assessment.assembly&&!reentry?.resetAnswers?await activitySessionRelease(user,assessment.id):null;
-    const publishedContent = pinnedContent??(assessment.status === "open" && !(reentry?.resetAnswers && reentry.remainingSections.length) ? contentForExamAttempt(assessment.id, savedContent, true) : undefined);
+    const individualReentry = (reentry?.resetAnswers || reentry?.resetTimer) && reentry.remainingSections.length;
+    const pinnedContent=assessment.assembly&&!individualReentry?await activitySessionRelease(user,assessment.id):null;
+    const publishedContent = pinnedContent??(assessment.status === "open" && !individualReentry ? contentForExamAttempt(assessment.id, savedContent, true) : undefined);
     const closedSections = (["english", "math"] as const).filter(section => !assessment.sectionAccess[section]);
     const resumeContent = publishedContent ? preserveSubmittedSections(publishedContent, savedContent, closedSections) : undefined;
     response.json({ assessment: { ...applyReentry(toStudentAssessmentDetail(personalAccess ? { ...assessment, status: "open", allowCompletedAccess: true, sectionAccess: { english: true, math: true } } : assessment, user.id), reentry, assessment.status === "open"), ...(resumeContent ? { resumeContent } : {}) } });
@@ -117,8 +118,8 @@ assessmentsRouter.route("/teacher/:assessmentId/reentry/:studentId")
         response.json({ grant: grants[request.params.assessmentId] ?? null, hasSubmission: Boolean(result && submittedExamSections(result).length), completedSections: result ? submittedExamSections(result) : [] });
     })
     .put(async (request, response) => withExamWriteLock(request.params.studentId, request.params.assessmentId, async () => {
-        const { sections, additionalMinutes = 0, resetAnswers = false } = request.body ?? {};
-        if (typeof resetAnswers !== 'boolean' || !Array.isArray(sections) || !sections.length || sections.some(section => section !== "english" && section !== "math") || !Number.isInteger(additionalMinutes) || additionalMinutes < 0 || additionalMinutes > 180) {
+        const { sections, additionalMinutes = 0, resetAnswers = false, resetTimer = false, newAttempt = false } = request.body ?? {};
+        if ([resetAnswers, resetTimer, newAttempt].some(value => typeof value !== 'boolean') || !Array.isArray(sections) || !sections.length || sections.some(section => section !== "english" && section !== "math") || !Number.isInteger(additionalMinutes) || additionalMinutes < 0 || additionalMinutes > 180) {
             response.status(400).json({ message: "Choose English and/or Math and 0–180 additional minutes." }); return;
         }
         const { records, grants } = await readExamReentries(request.params.studentId);
@@ -126,11 +127,17 @@ assessmentsRouter.route("/teacher/:assessmentId/reentry/:studentId")
         if (!original || !submittedExamSections(original).length || original.source === "manual" || original.source === "answer_sheet" || !original.answers) {
             response.status(409).json({ message: "This student needs a submitted digital exam before it can be reopened." }); return;
         }
-        if (resetAnswers && (sections.length !== 1 || !submittedExamSections(original).includes(sections[0]))) {
+        if (newAttempt && (!sections.includes('english') || !sections.includes('math') || submittedExamSections(original).length !== 2)) {
+            response.status(400).json({ message: "Submit both sections before starting another full exam attempt." }); return;
+        }
+        if (!newAttempt && resetAnswers && (sections.length !== 1 || !submittedExamSections(original).includes(sections[0]))) {
             response.status(400).json({ message: "Choose one submitted section to reset." }); return;
         }
         const now = Date.now(), grantedAt = new Date(now).toISOString();
         const previousGrant = grants[request.params.assessmentId];
+        if (previousGrant?.newAttempt && previousGrant.remainingSections.length) {
+            response.status(409).json({ message: "Another attempt is already open. Finish it or revoke its permission before changing access." }); return;
+        }
         const originalTimer = (previousGrant?.remainingSections.length && original.reentryGrantId !== previousGrant.id ? previousGrant.timerState : original.timerState) as ExamReentryGrant["timerState"] | undefined;
         const stop = originalTimer?.pausedAt ?? (Number.isFinite(Date.parse(String(original.completedAt))) ? Date.parse(String(original.completedAt)) : now);
         const elapsed = originalTimer && Number.isFinite(originalTimer.startedAt) && Number.isFinite(originalTimer.totalPausedMs)
@@ -138,10 +145,12 @@ assessmentsRouter.route("/teacher/:assessmentId/reentry/:studentId")
             : typeof original.totalTimeSeconds === "number" ? original.totalTimeSeconds * 1000 : 180 * 60_000;
         const grant: ExamReentryGrant = {
             id: randomUUID(), assessmentId: request.params.assessmentId, studentId: request.params.studentId,
-            attemptId: examAttemptId(original, request.params.assessmentId), sections: [...new Set<AssessmentSection>(sections)], remainingSections: [...new Set<AssessmentSection>(sections)],
-            ...(resetAnswers ? { resetAnswers: true } : {}), grantedAt, grantedBy: response.locals.teacherId, additionalMinutes,
-            draftsFrom: !resetAnswers && !previousGrant?.resetAnswers && previousGrant?.remainingSections.length ? previousGrant.draftsFrom ?? previousGrant.grantedAt : grantedAt,
-            timerState: { startedAt: now - elapsed, pausedAt: now, totalPausedMs: additionalMinutes * 60_000 },
+            attemptId: newAttempt ? randomUUID() : examAttemptId(original, request.params.assessmentId), sections: [...new Set<AssessmentSection>(sections)], remainingSections: [...new Set<AssessmentSection>(sections)],
+            ...(newAttempt ? { newAttempt: true, previousAttemptId: examAttemptId(original, request.params.assessmentId) } : {}),
+            ...(resetAnswers || newAttempt ? { resetAnswers: true } : {}),
+            ...(resetTimer || newAttempt ? { resetTimer: true } : {}), grantedAt, grantedBy: response.locals.teacherId, additionalMinutes: newAttempt || resetTimer ? 0 : additionalMinutes,
+            draftsFrom: !newAttempt && !resetAnswers && !previousGrant?.resetAnswers && previousGrant?.remainingSections.length ? previousGrant.draftsFrom ?? previousGrant.grantedAt : grantedAt,
+            timerState: { startedAt: now - (resetTimer || newAttempt ? 0 : elapsed), pausedAt: now, totalPausedMs: resetTimer || newAttempt ? 0 : additionalMinutes * 60_000 },
         };
         const archived = await supabase.from("student_exam_results").upsert({ user_id: grant.studentId, assessment_id: `__exam_revision__:${grant.assessmentId}:${grant.id}`, result: original, completed_at: original.completedAt ?? grantedAt, updated_at: grantedAt }, { onConflict: "user_id,assessment_id" });
         if (archived.error) { response.status(503).json({ message: "Could not preserve the submitted answers. Try again." }); return; }

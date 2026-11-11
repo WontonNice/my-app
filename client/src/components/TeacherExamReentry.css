@@ -23,3 +23,4 @@
 .teacher-exam-reentry > fieldset { margin: 20px 0 0; padding: 12px 0 0; border: 0; border-top: 1px solid #cfddd5; }
 .teacher-exam-reentry > fieldset legend { padding: 0 8px 0 0; font-weight: 650; }
 .teacher-exam-reentry > fieldset small { display: block; margin-top: 6px; }
+.teacher-exam-reentry .exam-reentry-timer-option { display: flex; align-items: center; gap: 7px; margin: 14px 0 4px; font-size: 13px; font-weight: 600; }

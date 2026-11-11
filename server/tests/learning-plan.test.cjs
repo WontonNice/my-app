@@ -109,7 +109,7 @@ test('calendar, workload and supply calculations do not invent dates or duration
   assert.equal(shared.isOverdue(task({ status: 'completed', dueDate: '2026-10-04' }), '2026-10-05'), false);
   assert.equal(shared.validDate('2026-02-30'), false);
   assert.equal(new Set(catalog.map(item => `${item.kind}:${item.id}`)).size, catalog.length);
-  assert.ok(catalog.filter(item => item.kind === 'passage').every(item => ['official_handbook', 'prestige', 'miscellaneous'].includes(item.passageCategory)));
+  assert.ok(catalog.filter(item => item.kind === 'passage').every(item => ['official_handbook', 'prestige', 'kaplan', 'miscellaneous'].includes(item.passageCategory)));
 });
 test('permissions, empty student, archived student, and malformed identity', async () => {
   assert.equal((await call(prefix, 'missing')).status, 401);

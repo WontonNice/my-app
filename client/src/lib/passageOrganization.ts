@@ -4,6 +4,13 @@ import { validDate } from "./learningPlan";
 
 export type ContentInventory = NonNullable<PlanOverview["inventory"]>;
 export type PassageCompletionFilter = "" | "completed" | "not_completed";
+// Imported source labels use typographic dashes, quotes and spaces interchangeably.
+function inventorySearchText(value: string) {
+  return value.normalize("NFKC").toLowerCase()
+    .replace(/[\u2010-\u2015\u2212]/g, "-")
+    .replace(/[‘’]/g, "'").replace(/[“”]/g, '"')
+    .replace(/\s*-\s*/g, "-").replace(/\s+/g, " ").trim();
+}
 export const contentHasCompleted = (row: ContentInventory[number]) => row.hasCompleted ?? row.status === "Completed";
 export function passageCompletionDate(value: string | null | undefined) {
   if (!value || !Number.isFinite(Date.parse(value))) return "No Data";
@@ -28,8 +35,14 @@ export function categoryInventory(inventory: ContentInventory) {
   return [...counts.values()];
 }
 export function filterContentInventory(inventory: ContentInventory, filters: { kind: string; status: string; genre: string; category: string; source?: string; score?:string; completion?: PassageCompletionFilter; subject: string; skill: string; search: string; sort: string; direction: "asc" | "desc" }) {
-  const query = filters.search.trim().toLowerCase();
-  return inventory.filter(row => (!filters.score || (filters.score==='unscored'? !row.latestScore : !!row.latestScore && (filters.score==='below70'? row.latestScore.correct/row.latestScore.total<0.7 : row.latestScore.correct/row.latestScore.total>=0.7))) && (!filters.completion || contentHasCompleted(row) === (filters.completion === "completed")) && (!filters.kind || row.content.kind === filters.kind) && (!filters.status || row.status === filters.status) && (!filters.genre || row.content.category === filters.genre) && (!filters.category || row.content.kind === "passage" && passageCategory(row.content.passageCategory) === filters.category) && (!filters.source || row.content.contentSource === filters.source) && (!filters.subject || row.content.subject === filters.subject) && (!filters.skill || row.content.skills.includes(filters.skill)) && (!query || `${row.content.title} ${row.content.description ?? ""} ${row.content.generators?.map(generator => generator.title + " " + generator.description).join(" ") ?? ""} ${row.content.skills.join(" ")} ${row.content.contentSource ?? ""} ${row.content.versionLabel ?? ""} ${row.content.kind === "passage" ? passageCategoryLabel(row.content.passageCategory) : ""}`.toLowerCase().includes(query))).sort((a, b) => {
+  const query = inventorySearchText(filters.search);
+  const matchesSearch = ({ content }: ContentInventory[number]) => !query || inventorySearchText([
+    content.title, content.description ?? "",
+    ...(content.generators?.map(generator => generator.title + " " + generator.description) ?? []),
+    ...content.skills, content.contentSource ?? "", content.versionLabel ?? "", ...(content.examLabels ?? []),
+    content.kind === "passage" ? passageCategoryLabel(content.passageCategory) : "",
+  ].join(" ")).includes(query);
+  return inventory.filter(row => (!filters.score || (filters.score==='unscored'? !row.latestScore : !!row.latestScore && (filters.score==='below70'? row.latestScore.correct/row.latestScore.total<0.7 : row.latestScore.correct/row.latestScore.total>=0.7))) && (!filters.completion || contentHasCompleted(row) === (filters.completion === "completed")) && (!filters.kind || row.content.kind === filters.kind) && (!filters.status || row.status === filters.status) && (!filters.genre || row.content.category === filters.genre) && (!filters.category || row.content.kind === "passage" && passageCategory(row.content.passageCategory) === filters.category) && (!filters.source || row.content.contentSource === filters.source) && (!filters.subject || row.content.subject === filters.subject) && (!filters.skill || row.content.skills.includes(filters.skill)) && matchesSearch(row)).sort((a, b) => {
     const value = (row: ContentInventory[number]) => {
       if (filters.sort === "score") return row.latestScore ? row.latestScore.correct / row.latestScore.total : null;
       if (filters.sort === "completed") {

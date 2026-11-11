@@ -83,11 +83,13 @@ import {
   type ExamContent,
   type ExamQuestion,
 } from "../content/exams";
-import { getExamSessionProgress, getLearningProgress, getStudentAssessment, getTeacherStudentProgress, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
+import { getExamSessionProgress, getLearningProgress, getTeacherStudentProgress, saveCloudExamResult, saveExamSessionProgress, type TeacherAssessment } from "../lib/api";
+import { getExamAssessmentForView } from "../lib/examAssessmentView";
 import { getUserRole } from "../lib/auth";
 import { getAssessmentIdFromPath, getDisplayName } from "../lib/exam";
 import {
   createExamTimerState,
+  createExamPreviewTimer,
   getExamTimerDisplay,
   isExamTimeExpired,
   loadExamTimer,
@@ -1260,19 +1262,21 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
       const previewContext = getStudentPreviewContext();
       const fallbackName = previewContext.studentName || getDisplayName(data.session.user);
       const storedStartingSubject = getStoredStartingSubject(assessmentId);
+      const isTeacherPreview = previewContext.isPreview && getUserRole(data.session.user) === "teacher";
       let hadLocalTimer = false;
-      try { hadLocalTimer = Boolean(window.localStorage.getItem(`exam-timer:${assessmentId}`)); } catch { /* Cloud timer can restore without device storage. */ }
-      setTimerState(loadExamTimer(assessmentId));
+      if (!isTeacherPreview) {
+        try { hadLocalTimer = Boolean(window.localStorage.getItem(`exam-timer:${assessmentId}`)); } catch { /* Cloud timer can restore without device storage. */ }
+        setTimerState(loadExamTimer(assessmentId));
+      }
       setTimerNow(Date.now());
       setStudentId(data.session.user.id);
       setAccessToken(data.session.access_token);
       setStudentName(getStoredExamName(assessmentId, fallbackName));
-      const isTeacherPreview = previewContext.isPreview && getUserRole(data.session.user) === "teacher";
       setIsTeacherPreviewSession(isTeacherPreview);
       setIsFastForwardEnabled(isTeacherPreview && previewContext.mode === "teacher");
 
       try {
-        const nextAssessment = await getStudentAssessment(data.session.access_token, assessmentId);
+        const nextAssessment = await getExamAssessmentForView(data.session.access_token, assessmentId, isTeacherPreview ? previewContext.studentId : "");
         let nextStartingSubject = storedStartingSubject;
         const storedProgress = isTeacherPreview ? null : loadLocalExamSession(data.session.user.id, assessmentId);
         const reset = nextAssessment.reentry?.resetAnswers ? nextAssessment.reentry : undefined;
@@ -1311,7 +1315,7 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
           }
         }
         setHasSubmittedAttempt(Boolean(savedResult));
-        const reentry = !isTeacherPreview ? nextAssessment.reentry : undefined;
+        const reentry = nextAssessment.reentry;
         if (reset && savedResult) {
           // An older local draft may be the only copy of the other section.
           if (!progress && storedProgress) progress = storedProgress;
@@ -1319,7 +1323,7 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
           const ids = new Set(reset.remainingSections.flatMap(section => sectionIds[section]));
           savedResult = { ...savedResult, answers: omitExamQuestions(savedResult.answers, ids), questionTimes: omitExamQuestions(savedResult.questionTimes, ids) };
           if (progress && ((progress === storedProgress && progress.resetGrantId !== reset.id) || Date.parse(progress.updatedAt) < Date.parse(reset.grantedAt))) {
-            progress = { ...progress, answers: omitExamQuestions(progress.answers, ids), questionTimes: omitExamQuestions(progress.questionTimes, ids), navigation: progress.navigation ? { ...progress.navigation, [reset.sections[0]]: undefined } : undefined };
+            progress = { ...progress, answers: omitExamQuestions(progress.answers, ids), questionTimes: omitExamQuestions(progress.questionTimes, ids), navigation: progress.navigation ? { ...progress.navigation, ...Object.fromEntries(reset.sections.map(section => [section, undefined])) } : undefined };
           }
         }
         if (reentry && !reset && progress && Date.parse(progress.updatedAt) < Date.parse(reentry.draftsFrom ?? reentry.grantedAt)) progress = null;
@@ -1340,7 +1344,9 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
           };
         }
         sectionDatesRef.current = savedResult?.sectionCompletedAt ?? {};
-        if (reentry) {
+        if (isTeacherPreview) {
+          setTimerState(createExamPreviewTimer(reentry, savedResult));
+        } else if (reentry) {
           const timerGrantKey = `exam-reentry-timer:${data.session.user.id}:${assessmentId}`;
           let timerGrantId: string | null = null;
           try { timerGrantId = window.localStorage.getItem(timerGrantKey); } catch { /* Restore from the server. */ }
@@ -1366,8 +1372,8 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
         }
         const isReopeningCompletedAttempt =
           !isTeacherPreview && hasCompletedAttempt && nextAssessment.allowCompletedAccess && !nextAssessment.canEditSubmittedSections && !reentry;
-        attemptIdRef.current = isReopeningCompletedAttempt ? crypto.randomUUID() : savedResult ? savedResult.attemptId ?? `legacy:${assessmentId}:${savedResult.completedAt}` : attemptIdRef.current;
-        if (isTeacherPreview) setAttemptContent(null);
+        attemptIdRef.current = reentry?.attemptId ?? (isReopeningCompletedAttempt ? crypto.randomUUID() : savedResult ? savedResult.attemptId ?? `legacy:${assessmentId}:${savedResult.completedAt}` : attemptIdRef.current);
+        if (isTeacherPreview && !previewContext.studentId) setAttemptContent(null);
         else if (nextAssessment.resumeContent) setAttemptContent(nextAssessment.resumeContent);
         else if (!isReopeningCompletedAttempt && savedResult?.analysisContent) setAttemptContent(savedResult.analysisContent);
         const effectiveSectionAccess = getExamSectionAccess(
@@ -1852,7 +1858,8 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
       sectionDatesRef.current = dates;
       setSelectedAnswers(submission.answers); setCompletedSections(submission.completedSections);
       setHasSubmittedAttempt(true);
-      saveExamTimerState(currentAssessmentId, pausedTimer); setTimerState(pausedTimer);
+      if (!isTeacherPreviewSession) saveExamTimerState(currentAssessmentId, pausedTimer);
+      setTimerState(pausedTimer);
       return submission.completedSections;
     } finally { finalSubmissionRef.current = false; }
   }
@@ -1894,7 +1901,7 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
     }
 
     const nextTimerState = pauseExamTimer(timerState);
-    if (!isStudioPreview) saveExamTimerState(currentAssessmentId, nextTimerState);
+    if (!isStudioPreview && !isTeacherPreviewSession) saveExamTimerState(currentAssessmentId, nextTimerState);
     setTimerState(nextTimerState);
     setTimerNow(nextTimerState.pausedAt ?? timerNow);
     setIsUserMenuOpen(false);
@@ -1910,7 +1917,7 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
     }
 
     const nextTimerState = resumeExamTimer(timerState);
-    if (!isStudioPreview) saveExamTimerState(currentAssessmentId, nextTimerState);
+    if (!isStudioPreview && !isTeacherPreviewSession) saveExamTimerState(currentAssessmentId, nextTimerState);
     setTimerState(nextTimerState);
     setTimerNow(Date.now());
   }
@@ -2741,6 +2748,7 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
   if (isExamPaused && sessionScreen !== "testOver") {
     return (
       <main className="exam-paused-screen" aria-label="Exam paused">{previewControls}
+        <p>{isTeacherPreviewSession ? "Saved time remaining" : "Time remaining"}: <output aria-label="Time remaining">{timerDisplay.text}</output></p>
         <button onClick={handleResumeTimer} type="button">
           <Play aria-hidden="true" fill="currentColor" size={16} strokeWidth={2} />
           Resume exam

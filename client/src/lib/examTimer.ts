@@ -1,3 +1,5 @@
+import { restoredReentryTimer, type ExamReentryGrant } from "../../../server/src/shared/examReentry";
+
 export const EXAM_DURATION_MS = 3 * 60 * 60 * 1000;
 
 export type ExamTimerState = {
@@ -29,6 +31,14 @@ export function createExamTimerState(now = Date.now()): ExamTimerState {
     startedAt: now,
     totalPausedMs: 0,
   };
+}
+
+/** A read-only preview snapshots the student's server timer without device storage. */
+export function createExamPreviewTimer(grant: ExamReentryGrant | undefined, result: Record<string, unknown> | null, now = Date.now()): ExamTimerState {
+  const activeGrant = grant && !grant.revokedAt && grant.remainingSections.length ? grant : undefined;
+  const timer = activeGrant ? restoredReentryTimer(activeGrant, result)
+    : isValidTimerState(result?.timerState) ? { ...result.timerState } : createExamTimerState(now);
+  return pauseExamTimer(timer, now);
 }
 
 export function saveExamTimerState(assessmentId: string, timer: ExamTimerState) {

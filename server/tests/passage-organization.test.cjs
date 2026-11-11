@@ -35,6 +35,19 @@ const content = (id, category, title = id) => ({ id, title, passageCategory: cat
 const item = (id, category, status, extra = {}) => ({ content: content(id, category), status, lastActivity: null, dueDate: null, plannedDate: null, assignmentCount: 0, priorCount: 0, ...extra });
 const items = [item('Fire A', 'official_handbook', 'Never assigned'), item('Fire B', 'official_handbook', 'Completed'), item('Fire C', 'prestige', 'Never assigned'), item('Snow', 'miscellaneous', 'Completed')];
 const filters = { kind: 'passage', category: '', genre: '', subject: '', skill: '', search: '', status: '', sort: 'title', direction: 'asc' };
+
+test('inventory search treats source-label typography consistently without merging source versions', () => {
+  const rows = [item('one', 'official_handbook'), item('two', 'official_handbook'), item('other-form', 'official_handbook')];
+  rows[0].content.versionLabel = '2020–2021 Form A';
+  rows[1].content.versionLabel = '2020-2021 Form A';
+  rows[2].content.versionLabel = '2020–2021 Form B';
+  for (const dash of ['-', '‐', '‑', '‒', '–', '—', '−']) {
+    assert.deepEqual(filterContentInventory(rows, { ...filters, search: `  2020 ${dash} 2021\u00a0 FORM   A  ` }).map(row => row.content.id), ['one', 'two']);
+  }
+  rows[0].content.title = 'The Writer’s “New” Story';
+  assert.deepEqual(filterContentInventory(rows, { ...filters, search: 'writer\'s "new"' }).map(row => row.content.id), ['one']);
+  assert.equal(rows[0].content.versionLabel, '2020–2021 Form A', 'Displayed/authored metadata stays unchanged');
+});
 test('source, genre, subject, status, skill and search filters combine per student', () => {
   assert.deepEqual(filterContentInventory(items, { ...filters, subject: 'English', category: 'official_handbook', genre: 'Poem', status: 'Never assigned', search: 'fire', skill: 'Inference' }).map(row => row.content.id), ['Fire A']);
   assert.deepEqual(filterContentInventory(items, { ...filters, category: 'prestige', status: 'Never assigned' }).map(row => row.content.id), ['Fire C']);
@@ -44,7 +57,7 @@ test('source, genre, subject, status, skill and search filters combine per stude
 });
 test('inventory counts distinct sources and historical completion independently of repeat state', () => {
   const counts = categoryInventory([...items, item('Repeat', 'official_handbook', 'Assigned', { hasCompleted: true, hasBeenAssigned: true }), item('Reserve', 'prestige', 'Planned', { hasCompleted: false, hasBeenAssigned: false })]);
-  assert.deepEqual(counts.map(row => [row.value, row.remaining, row.completed, row.used, row.planned]), [['official_handbook', 1, 2, 2, 0], ['prestige', 1, 0, 0, 1], ['miscellaneous', 0, 1, 1, 0]]);
+  assert.deepEqual(counts.map(row => [row.value, row.remaining, row.completed, row.used, row.planned]), [['official_handbook', 1, 2, 2, 0], ['prestige', 1, 0, 0, 1], ['kaplan', 0, 0, 0, 0], ['miscellaneous', 0, 1, 1, 0]]);
   const completed = { id: 'task', contentId: 'Fire A', kind: 'passage', assignedAt: '2026-09-01', completedAt: '2026-09-02', createdAt: '2026-09-01', updatedAt: '2026-09-02', status: 'completed' };
   const original = inventory([items[0].content], [completed], [])[0];
   const anotherStudent = inventory([items[0].content], [], [])[0];

@@ -117,6 +117,115 @@ test('saving an identical passage in another exam preserves each exam result and
 });
 function revision(grant, answers = { e: 'A', m: '5' }, sections = ['english', 'math']) { return { ...createExamResult(content, answers, sections), attemptId: 'original', reentryGrantId: grant.id }; }
 
+test('timer reset restores exactly three hours without clearing answers or creating another attempt', async () => {
+  delete latest().timerState;
+  delete latest().totalTimeSeconds;
+  const original = structuredClone(latest());
+  assessment.status = 'open';
+  try {
+    const granted = await call(permissionPath, 'teacher', 'PUT', { sections: ['english', 'math'], resetTimer: true, additionalMinutes: 90 });
+    assert.equal(granted.status, 200);
+    const grant = granted.data.grant;
+    assert.equal(grant.attemptId, original.attemptId);
+    assert.equal(grant.additionalMinutes, 0);
+    assert.equal(grant.timerState.pausedAt - grant.timerState.startedAt - grant.timerState.totalPausedMs, 0);
+    assert.deepEqual(latest(), original);
+    assert.equal((await call('/assessments/student/exam', 'student')).data.assessment.reentry.id, grant.id);
+    assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result: revision(grant) })).status, 200);
+    assert.equal((await call('/progress/', 'student')).data.progress.examHistory.length, 0);
+  } finally { assessment.status = 'locked'; }
+});
+
+test('a teacher-authorized second attempt starts blank and saves both results across section submissions and retries', async () => {
+  const original = structuredClone(latest());
+  tables.student_exam_sessions.push({ user_id: 'student', assessment_id: 'exam', answers: { e: 'A', m: '0' }, completed_sections: ['english', 'math'], status: 'submitted', updated_at: '2020-01-01T00:00:00Z', navigation: { subject: 'math', english: { screen: 'passage', passageSetId: 'p', questionId: 'e' }, math: { screen: 'mathQuestion', questionId: 'm' } } });
+  const granted = await call(permissionPath, 'teacher', 'PUT', { sections: ['english', 'math'], newAttempt: true });
+  assert.equal(granted.status, 200);
+  const grant = granted.data.grant;
+  assert.notEqual(grant.attemptId, original.attemptId);
+  assert.equal(grant.previousAttemptId, original.attemptId);
+  assert.equal(grant.resetAnswers, true);
+  assert.equal(grant.timerState.pausedAt - grant.timerState.startedAt - grant.timerState.totalPausedMs, 0);
+  assert.deepEqual(latest(), original, 'Granting access must not replace the first result');
+  assert.deepEqual((await call('/assessments/student/exam', 'student')).data.assessment.reentry.remainingSections, ['english', 'math']);
+  assert.equal((await call('/assessments/student/exam', 'other')).status, 403);
+  assert.equal((await call(permissionPath, 'teacher', 'PUT', { sections: ['english', 'math'], newAttempt: true })).status, 409);
+  const draft = await call('/progress/exam-sessions/exam', 'student', 'PUT', { reentryGrantId: grant.id, answers: {}, completedSections: [] });
+  assert.equal(draft.status, 200);
+  assert.deepEqual(draft.data.session.answers, {});
+  assert.deepEqual(draft.data.session.completedSections, []);
+  assert.equal(draft.data.session.navigation.english, undefined);
+  assert.equal(draft.data.session.navigation.math, undefined);
+  const submit = (answers, sections) => ({ ...revision(grant, answers, sections), attemptId: grant.attemptId });
+  const english = submit({ e: 'B' }, ['english']);
+  assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result: revision(grant) })).status, 403, 'Old attempt ID cannot be submitted under the new grant');
+  assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result: english })).status, 200);
+  assert.deepEqual(latest().completedSections, ['english']);
+  assert.equal(latest().answers.m, undefined, 'Old Math answers must not carry over');
+  assert.deepEqual((await call(permissionPath)).data.grant.remainingSections, ['math']);
+  assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result: english })).status, 200);
+  const math = submit({ e: 'A', m: '5' }, ['english', 'math']);
+  assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result: math })).status, 200);
+  assert.deepEqual(latest().answers, { e: 'B', m: '5' }, 'Submitted English remains protected');
+  const retry = submit({ e: 'B', m: '5' }, ['english', 'math']);
+  assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result: retry })).status, 200);
+  const archived = tables.student_exam_results.filter(row => row.assessment_id.startsWith('__exam_history__:'));
+  assert.equal(archived.length, 1);
+  assert.deepEqual(archived[0].result, original);
+  const progress = (await call('/progress/', 'student')).data.progress;
+  assert.equal(progress.examResults.length, 1);
+  assert.equal(progress.examResults[0].attemptId, grant.attemptId);
+  assert.equal(progress.examHistory.length, 1);
+  assert.equal(progress.examHistory[0].attemptId, original.attemptId);
+  assert.deepEqual((await call(permissionPath)).data.grant.remainingSections, []);
+});
+
+test('new-attempt permissions validate completion, staff access and flags, and revoke stale tabs even on open exams', async () => {
+  const input = { sections: ['english', 'math'], newAttempt: true };
+  assert.equal((await call(permissionPath, 'student', 'PUT', input)).status, 403);
+  assert.equal((await call(permissionPath, 'teacher', 'PUT', { ...input, newAttempt: 'true' })).status, 400);
+  assert.equal((await call(permissionPath, 'teacher', 'PUT', { ...input, resetTimer: 'true' })).status, 400);
+  assert.equal((await call(permissionPath, 'teacher', 'PUT', { ...input, sections: ['math'] })).status, 400);
+  latest().completedSections = ['english'];
+  assert.equal((await call(permissionPath, 'teacher', 'PUT', input)).status, 400);
+  latest().completedSections = ['english', 'math'];
+  assessment.status = 'open';
+  try {
+    const grant = (await call(permissionPath, 'teacher', 'PUT', input)).data.grant;
+    assert.equal((await call('/assessments/student/exam', 'student')).data.assessment.reentry.id, grant.id);
+    assert.equal((await call('/progress/exam-sessions/exam', 'student', 'PUT', { answers: {}, completedSections: [] })).status, 409);
+    await call(permissionPath, 'teacher', 'DELETE');
+    const result = { ...revision(grant), attemptId: grant.attemptId };
+    assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result })).status, 403);
+    assert.equal((await call('/progress/exam-sessions/exam', 'student', 'PUT', { reentryGrantId: grant.id, answers: {}, completedSections: [] })).status, 403);
+    assert.equal(latest().attemptId, 'original');
+  } finally { assessment.status = 'locked'; }
+});
+
+test('a failed history write leaves the first result and retake permission intact for a safe retry', async () => {
+  delete latest().attemptId; // Older exams also need a stable history identity.
+  const original = structuredClone(latest());
+  const grant = (await call(permissionPath, 'teacher', 'PUT', { sections: ['english', 'math'], newAttempt: true })).data.grant;
+  const result = { ...revision(grant), attemptId: grant.attemptId };
+  const { supabase } = require('../src/lib/supabase.ts');
+  const from = supabase.from;
+  supabase.from = table => {
+    const query = from(table), upsert = query.upsert;
+    query.upsert = row => String(row.assessment_id).startsWith('__exam_history__:') ? Promise.resolve({ error: { message: 'Storage unavailable' } }) : upsert(row);
+    return query;
+  };
+  try {
+    assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result })).status, 503);
+    assert.deepEqual(latest(), original);
+    assert.deepEqual((await call(permissionPath)).data.grant.remainingSections, ['english', 'math']);
+  } finally { supabase.from = from; }
+  assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result })).status, 200);
+  const history = tables.student_exam_results.filter(row => row.assessment_id.startsWith('__exam_history__:'));
+  assert.equal(history.length, 1);
+  assert.deepEqual(history[0].result, { ...original, attemptId: grant.previousAttemptId });
+  assert.equal(latest().attemptId, grant.attemptId);
+});
+
 test('re-entry resumed on another device uses elapsed time from the latest revised section', () => {
   const initial = { startedAt: 1000, pausedAt: 60000, totalPausedMs: 0 };
   const resumed = { startedAt: 1000, pausedAt: 120000, totalPausedMs: 10000 };

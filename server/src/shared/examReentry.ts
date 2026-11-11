@@ -9,6 +9,9 @@ export type ExamReentryGrant = {
   grantedAt: string;
   draftsFrom?: string;
   resetAnswers?: boolean;
+  resetTimer?: boolean;
+  newAttempt?: boolean;
+  previousAttemptId?: string;
   grantedBy: string;
   revokedAt?: string;
   timerState: { startedAt: number; pausedAt: number | null; totalPausedMs: number };
@@ -23,7 +26,9 @@ export function examAttemptId(result: Record<string, unknown>, assessmentId: str
 }
 
 export function remainingReentrySections(grant: ExamReentryGrant, result: Record<string, unknown> | undefined) {
-  if (grant.revokedAt || !result || examAttemptId(result, grant.assessmentId) !== grant.attemptId) return [];
+  if (grant.revokedAt || !result) return [];
+  const attemptId = examAttemptId(result, grant.assessmentId);
+  if (attemptId !== grant.attemptId && !(grant.newAttempt && attemptId === grant.previousAttemptId)) return [];
   const submitted = result.reentryGrantId === grant.id && Array.isArray(result.reentrySubmittedSections) ? result.reentrySubmittedSections : [];
   return grant.sections.filter(section => !submitted.includes(section));
 }

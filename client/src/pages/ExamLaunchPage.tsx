@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { resolveExamContent } from "../content/exams";
-import { getExamSessionProgress, getLearningProgress, getStudentAssessment, getTeacherStudentProgress, type TeacherAssessment } from "../lib/api";
+import { getExamSessionProgress, getLearningProgress, getTeacherStudentProgress, type TeacherAssessment } from "../lib/api";
+import { getExamAssessmentForView } from "../lib/examAssessmentView";
 import {
   createAssessmentSectionLines,
   formatDuration,
@@ -64,7 +65,7 @@ export function ExamLaunchPage() {
       setTypedName(nextStudentName);
 
       try {
-        const nextAssessment = await getStudentAssessment(data.session.access_token, assessmentId);
+        const nextAssessment = await getExamAssessmentForView(data.session.access_token, assessmentId, previewContext.isPreview ? previewContext.studentId : "");
         const examContent = nextAssessment.resumeContent ?? resolveExamContent(nextAssessment);
         const sectionAccess = getExamSectionAccess(examContent, nextAssessment.sectionAccess);
         setAssessment({ ...nextAssessment, sectionAccess });
@@ -155,8 +156,10 @@ export function ExamLaunchPage() {
       window.sessionStorage.setItem(`exam-student-name:${assessment.id}`, launchName);
       window.sessionStorage.setItem(`exam-start-subject:${assessment.id}`, startingSubject);
     } catch { /* The chosen section also travels in the URL. */ }
-    if (!assessment.reentry && (!hasSavedProgress || (isComplete && !assessment.canEditSubmittedSections))) resetExamTimer(assessment.id);
-    if (assessment.studyHallWorksheet) saveExamTimerState(assessment.id, resumeExamTimer(loadExamTimer(assessment.id)));
+    if (!previewContext.isPreview) {
+      if (!assessment.reentry && (!hasSavedProgress || (isComplete && !assessment.canEditSubmittedSections))) resetExamTimer(assessment.id);
+      if (assessment.studyHallWorksheet) saveExamTimerState(assessment.id, resumeExamTimer(loadExamTimer(assessment.id)));
+    }
     const params = new URLSearchParams(window.location.search);
     params.set("subject", startingSubject);
     window.location.assign(`/exam/${assessment.id}/session?${params}`);
@@ -225,7 +228,7 @@ export function ExamLaunchPage() {
                 </div>
               ) : <form className="exam-launch-form" onSubmit={handleStartExam}>
                 <h2>{isComplete ? "Reopen submitted exam" : "Enter your name:"}</h2>
-                {assessment.reentry?.resetAnswers ? <p>Your teacher reset {assessment.reentry.remainingSections.map(section=>section==="english"?"English":"Math").join(" and ")}. Start with blank answers or resume your work since the reset.</p> : assessment.reentry ? <p>Your teacher reopened {assessment.reentry.remainingSections.map(section => section === "math" ? "Math" : "English").join(" and ")}. Your saved answers and remaining exam time will load{assessment.reentry.additionalMinutes ? `, with ${assessment.reentry.additionalMinutes} extra minutes` : ""}. Submit each reopened section when finished.</p> : isComplete ? <p>Your saved answers will load. You can edit and resubmit open sections while your teacher keeps this exam open.</p> : null}
+                {assessment.reentry?.newAttempt ? <p>Your teacher allowed another attempt with blank answers and a fresh 3-hour timer. Your previous result is saved. Any work from this new attempt will resume.</p> : assessment.reentry?.resetAnswers ? <p>Your teacher reset {assessment.reentry.remainingSections.map(section=>section==="english"?"English":"Math").join(" and ")}. Start with blank answers or resume your work since the reset.{assessment.reentry.resetTimer ? " The timer was reset to 3 hours." : ""}</p> : assessment.reentry ? <p>Your teacher reopened {assessment.reentry.remainingSections.map(section => section === "math" ? "Math" : "English").join(" and ")}. Your saved answers will load{assessment.reentry.resetTimer ? " with a timer reset to 3 hours" : assessment.reentry.additionalMinutes ? ` with ${assessment.reentry.additionalMinutes} extra minutes` : " with the remaining exam time"}. Submit each reopened section when finished.</p> : isComplete ? <p>Your saved answers will load. You can edit and resubmit open sections while your teacher keeps this exam open.</p> : null}
                 <label>
                   Name:
                   <input

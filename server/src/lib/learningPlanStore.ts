@@ -32,12 +32,25 @@ export async function assignmentSummaries(studentId?: string, statuses?: PlanAss
 }
 export function learningCatalog(): PlanContent[] {
   const base = readCachedJson<PlanContent[]>(path.resolve(__dirname, "../../data/learning-catalog.json"));
+  const passageExams = new Map<string, Set<string>>();
   const exams = listTeacherAssessments().map(exam => {
     const content = getExamContent(exam.id);
+    for (const set of content?.passageSets ?? []) {
+      // Match exact source identities, never a shared title or a merged library book.
+      for (const id of [set.id, set.passage?.id].filter((id): id is string => Boolean(id))) {
+        const titles = passageExams.get(id) ?? new Set<string>();
+        titles.add(exam.title);
+        passageExams.set(id, titles);
+      }
+    }
     const questions = [...(content?.passageSets.flatMap(set => set.questions) ?? []), ...(content?.standaloneSection?.questions ?? []), ...(content?.mathSection?.questions ?? [])];
     return { id: exam.id, kind: "exam" as const, title: exam.title, href: `/exam/${encodeURIComponent(exam.id)}`, subject: "English + Math", category: "Assessment", classId: exam.classId, skills: [...new Set(questions.map(question => question.topic))], questionCount: questions.length, aliases: [exam.id] };
   });
-  return [...base, ...bankCatalog(readQuestionBank()), ...exams.filter(exam => exam.questionCount > 0)];
+  const passages = base.map(item => item.kind === "passage" ? {
+    ...item,
+    examLabels: [...new Set([item.id, ...item.aliases].flatMap(id => [...(passageExams.get(id) ?? [])]))],
+  } : item);
+  return [...passages, ...bankCatalog(readQuestionBank()), ...exams.filter(exam => exam.questionCount > 0)];
 }
 export function passagePreview(id: string): { title: string; text: string } | undefined {
   const sources = readCachedJson<{ id: string; title: string; text: string }[]>(path.resolve(__dirname, "../../data/board-content.json"));
