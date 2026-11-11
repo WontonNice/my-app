@@ -42,6 +42,34 @@ async function call(path, token = 'teacher', method = 'GET', body) { const respo
 const permissionPath = '/assessments/teacher/exam/reentry/student';
 const latest = () => tables.student_exam_results.find(row => row.user_id === 'student' && row.assessment_id === 'exam').result;
 
+test('withdrawing a timer-only override restores open sections without interrupting the active draft', async () => {
+  const originalAssessment = structuredClone(assessment);
+  try {
+    Object.assign(assessment, { status: 'open', allowCompletedAccess: true, sectionAccess: { english: true, math: true } });
+    const grant = (await call(permissionPath, 'teacher', 'PUT', { sections: ['english', 'math'], resetTimer: true })).data.grant;
+    assert.equal((await call('/progress/exam-results/exam', 'student', 'PUT', { result: revision(grant, { e: 'B', m: '0' }, ['english']) })).status, 200);
+    const navigation = { subject: 'math', english: { screen: 'endSection' }, math: { screen: 'mathQuestion', questionId: 'm' } };
+    const draft = { reentryGrantId: grant.id, answers: { e: 'B', m: '5' }, completedSections: ['english'], navigation };
+    assert.equal((await call('/progress/exam-sessions/exam', 'student', 'PUT', draft)).status, 200);
+    assert.equal((await call('/assessments/student/exam', 'student')).data.assessment.sectionAccess.english, false);
+    const resultBefore = structuredClone(latest());
+    const sessionBefore = structuredClone((await call('/progress/exam-sessions', 'student')).data.sessions.exam);
+
+    // The live recovery changes only the timer-only permission, never student work.
+    delete tables.student_exam_results.find(row => row.assessment_id === '__exam_reentry__:exam').result.resetTimer;
+
+    const reopened = (await call('/assessments/student/exam', 'student')).data.assessment;
+    assert.deepEqual(reopened.sectionAccess, { english: true, math: true });
+    assert.equal(reopened.canEditSubmittedSections, true);
+    assert.equal(reopened.reentry, undefined);
+    assert.deepEqual(latest(), resultBefore);
+    assert.deepEqual((await call('/progress/exam-sessions', 'student')).data.sessions.exam, sessionBefore);
+    assert.equal((await call('/progress/exam-sessions/exam', 'student', 'PUT', draft)).status, 200, 'the already-open Math tab can keep saving');
+    assert.deepEqual((await call('/progress/exam-sessions', 'student')).data.sessions.exam.answers, { e: 'B', m: '5' });
+    assert.equal((await call('/progress/exam-sessions/exam', 'student', 'PUT', { ...draft, reentryGrantId: undefined, answers: { e: 'A', m: '5' } })).status, 200, 'English can be revised after refresh');
+  } finally { Object.assign(assessment, originalAssessment); }
+});
+
 test('autosaves read only the current exam, grant and session even with a large history', async () => {
   const grant = (await call(permissionPath, 'teacher', 'PUT', { sections: ['math'] })).data.grant;
   const navigation = { subject: 'english', english: { screen: 'passage', passageSetId: 'p', questionId: 'e' } };

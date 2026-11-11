@@ -3296,6 +3296,14 @@ export function ExamSessionPage({ gameSession: suppliedGameSession, librarySessi
           <p className="exam-end-section-copy">
             Use the <strong>Submit</strong> button below to submit your answers.
           </p>
+          {canAccessEnglish && (assessment.canEditSubmittedSections || assessment.reentry) && englishSequence.length > 0 && (
+            <button className="exam-end-section-submit" disabled={isSubmittingSection} onClick={() => {
+              clearTransientExamUi();
+              setIsReviewOpen(false);
+              setReviewFilter("all");
+              showEnglishLocation(englishSequence[0]);
+            }} type="button">Return to English questions</button>
+          )}
           <button className="exam-end-section-submit" disabled={isSubmittingSection} onClick={handleEndSectionSubmit} type="button">
             {isSubmittingSection ? "Saving" : "Submit"} <span aria-hidden="true">&gt;&gt;</span>
           </button>

@@ -119,6 +119,18 @@ test('a math-only exam selects math and still respects teacher locks', async () 
   assert.equal(getOpenExamSubject('english', getExamSectionAccess(content, { english: true, math: false })), null);
 });
 
+test('reopened English can return from its saved end screen without submitting or clearing answers', async () => {
+  const { renderExam, assessments } = await loadRenderer();
+  const { load } = require('cheerio');
+  const assessment = assessments.find(item => item.id === '2025-2026-form-a');
+  const render = sectionAccess => load(renderExam(assessment.id, 'endSection', content => content, {
+    assessment: { ...assessment, canEditSubmittedSections: true, sectionAccess },
+    answers: { 'standalone-pancakes-1': 'A' },
+  }));
+  assert.equal(render({ english: true, math: true })('button').filter((_, element) => /Return to English questions/.test(element.children?.map(child => child.data ?? '').join(''))).length, 1);
+  assert.doesNotMatch(render({ english: false, math: true }).html(), /Return to English questions/);
+});
+
 test('launch summary reflects the actual math-only exam content', async () => {
   const { worksheets, createAssessmentSectionLines } = await loadRenderer();
   const sections = createAssessmentSectionLines(worksheets.find(item => item.id === 'grade-9-2018-2019'));
