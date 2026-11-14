@@ -1,4 +1,19 @@
 /* Scoped assessment workspace: compact actions, readable data and clear access state. */
+.teacher-corrections-access { margin: 0 0 18px; padding: 14px 0; border-block: 1px solid var(--assessment-line, #dce5e0); color: var(--assessment-ink, #183d38); }
+.teacher-corrections-access-row { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.teacher-corrections-access-row strong { font-size: 14px; }
+.teacher-corrections-access-row p { max-width: 70ch; margin: 5px 0 0; font-size: 13px; line-height: 1.5; color: #52645d; }
+.teacher-corrections-access-row > button { display: inline-flex; flex: 0 0 auto; align-items: center; gap: 9px; min-height: 44px; padding: 8px; background: transparent; border: 0; color: inherit; font-family: inherit; font-size: 14px; font-weight: 600; line-height: 1.3; cursor: pointer; }
+.teacher-corrections-access-row > button:focus-visible { outline: 3px solid #306b53; outline-offset: 3px; border-radius: 6px; }
+.teacher-corrections-access-row > button:hover:not(:disabled) { background: #edf2ee; }
+.teacher-corrections-access-row > button:disabled { cursor: default; opacity: .65; }
+.teacher-corrections-switch { display: block; width: 40px; height: 24px; padding: 3px; border-radius: 20px; background: #647570; }
+.teacher-corrections-switch::before { content: ""; display: block; width: 18px; height: 18px; border-radius: 50%; background: white; }
+[aria-checked="true"] > .teacher-corrections-switch { background: #245b43; }
+[aria-checked="true"] > .teacher-corrections-switch::before { transform: translateX(16px); }
+.teacher-corrections-access-status { margin: 8px 0 0; font-size: 13px; }
+.teacher-corrections-access-status:empty { display: none; }
+@media (max-width: 600px) { .teacher-corrections-access-row { align-items: flex-start; flex-direction: column; gap: 8px; } }
 .corporate-dashboard-content .teacher-assessments-hub,
 .corporate-dashboard-content .assessment-insights {
   --assessment-ink: #183d38;

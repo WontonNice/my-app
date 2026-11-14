@@ -91,6 +91,7 @@ export type StudentAssessment = {
   examLabel?: string;
   reentry?: import("../../../server/src/shared/examReentry").ExamReentryGrant;
   correctionsOpen?: boolean;
+  correctionsOpenForAllExams?: boolean;
   allowCompletedAccess: boolean;
   classId: string;
   description: string;
@@ -113,6 +114,7 @@ export type TeacherAssessment = {
   resumeContent?: import("../../../server/src/shared/examTypes").ExamContent;
   reentry?: import("../../../server/src/shared/examReentry").ExamReentryGrant;
   correctionsOpen?: boolean;
+  correctionsOpenForAllExams?: boolean;
   allowCompletedAccess: boolean;
   assignedFormId?: string;
   assignedFormLabel?: string;
@@ -1106,6 +1108,12 @@ export async function setTeacherExamReentry(accessToken: string, assessmentId: s
   return requestApi<{ grant: TeacherExamReentryStatus["grant"] }>(`/api/assessments/teacher/${encodeURIComponent(assessmentId)}/reentry/${encodeURIComponent(studentId)}`, { headers: createAuthHeaders(accessToken), method: input ? "PUT" : "DELETE", ...(input ? { body: JSON.stringify(input) } : {}) });
 }
 
+export async function getAllExamCorrectionsAccess(accessToken: string) {
+  return requestApi<{ open: boolean }>("/api/exam-review/teacher/corrections-access", { headers: createAuthHeaders(accessToken) });
+}
+export async function setAllExamCorrectionsAccess(accessToken: string, open: boolean) {
+  return requestApi<{ open: boolean }>("/api/exam-review/teacher/corrections-access", { headers: createAuthHeaders(accessToken), method: "PATCH", body: JSON.stringify({ open }) });
+}
 export async function setExamCorrectionsAccess(accessToken: string, assessmentId: string, open: boolean) {
   const data = await requestApi<{ assessment: TeacherAssessment }>(`/api/exam-review/teacher/${encodeURIComponent(assessmentId)}/access`, {
     headers: createAuthHeaders(accessToken), method: "PATCH", body: JSON.stringify({ open }),

@@ -1,5 +1,5 @@
 import { isStudyHallWorksheet } from '../shared/studyHallWorksheets';
-import { assessmentAccessErrorHandler, resolveAssessmentAccess, resolveAssessmentAccessList } from '../lib/assessmentAccess';
+import { assessmentAccessErrorHandler, getAllExamCorrectionsAccess, setAllExamCorrectionsAccess, resolveAssessmentAccess, resolveAssessmentAccessList } from '../lib/assessmentAccess';
 import { Router } from "express";
 import { createHash } from "node:crypto";
 import { findAssessmentForStudent as configuredFindAssessmentForStudent, listTeacherAssessments as configuredListTeacherAssessments, listStudentAssessments as configuredListStudentAssessments, updateAssessmentCorrectionsAccess } from "../config/assessments";
@@ -44,6 +44,16 @@ examReviewRouter.get("/teacher/:assessmentId/students/:studentId", async (reques
     response.json({ ...loaded.view, readOnly: true });
 });
 examReviewRouter.all("/teacher/:assessmentId/students/:studentId", (_request, response) => { response.status(405).json({ message: "Student previews are read only." }); });
+
+examReviewRouter.get("/teacher/corrections-access", async (_request, response) => {
+    if (!isStaff(getUserRole(response.locals.user))) { response.status(403).json({ message: "Teacher access is required." }); return; }
+    response.json({ open: await getAllExamCorrectionsAccess() });
+});
+examReviewRouter.patch("/teacher/corrections-access", async (request, response) => {
+    if (!isStaff(getUserRole(response.locals.user))) { response.status(403).json({ message: "Teacher access is required." }); return; }
+    if (typeof request.body?.open !== "boolean") { response.status(400).json({ message: "Choose whether to open corrections for all exams." }); return; }
+    response.json({ open: await setAllExamCorrectionsAccess(request.body.open) });
+});
 
 examReviewRouter.patch("/teacher/:assessmentId/access", async (request, response) => {
     if (!isStaff(getUserRole(response.locals.user))) { response.status(403).json({ message: "Teacher access is required." }); return; }

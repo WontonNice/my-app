@@ -6,6 +6,8 @@ Availability now lives in the private Supabase `assessment_access` table, keyed 
 
 Assessment lists/details, draft/result writes, corrections and board content access resolve database settings. Metadata-only catalogs (question names and assignment catalogs) continue using authored files. Database failures return an unavailable error rather than substituting locked settings or acknowledging an unsaved open action.
 
+**Teacher dashboard → Assessments → Open corrections for all exams** grants correction access for submitted answers across current and future exams, including partial submissions. Turning it off restores the saved per-exam and automatic correction rules; it does not erase individual settings. Unsubmitted attempts, enrollment checks, worksheet access, section availability, and completed-attempt editing remain unchanged. The teacher/admin-only `/api/exam-review/teacher/corrections-access` GET/PATCH endpoint stores the boolean in the reserved `__all_exams_corrections__` row of `assessment_access`, using its existing atomic update function. No new migration is required. Resolved assessments carry `correctionsOpenForAllExams` separately from their individual `correctionsOpen` setting, and both student links and server correction routes use the shared access policy.
+
 ## Manual rollout — not applied by this change
 
 1. Apply `supabase/migrations/202610280003_persistent_exam_access.sql` to the intended environment before running the updated API. RLS is enabled; browser roles cannot read/write the table or call the function. The server service role has access.

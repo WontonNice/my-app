@@ -55,6 +55,7 @@ export type Assessment = {
   studyHallWorksheet?: import("../shared/studyHallWorksheets").StudyHallWorksheet | null;
     examLabel?: string;
     correctionsOpen?: boolean;
+    correctionsOpenForAllExams?: boolean;
     allowCompletedAccess: boolean;
     classId: string;
     createdAt: string;
@@ -77,6 +78,7 @@ export type AssessmentSummary = {
   studyHallWorksheet?: import("../shared/studyHallWorksheets").StudyHallWorksheet | null;
     examLabel?: string;
     correctionsOpen: boolean;
+    correctionsOpenForAllExams?: boolean;
     allowCompletedAccess: boolean;
     classId: string;
     description: string;
@@ -166,6 +168,7 @@ export function toAssessmentSummary(assessment: Assessment): AssessmentSummary {
         examLabel: assessment.examLabel,
         studyHallWorksheet: assessment.studyHallWorksheet,
         correctionsOpen: assessment.correctionsOpen === true,
+        correctionsOpenForAllExams: assessment.correctionsOpenForAllExams === true,
         allowCompletedAccess: assessment.allowCompletedAccess,
         classId: assessment.classId,
         description: assessment.description,

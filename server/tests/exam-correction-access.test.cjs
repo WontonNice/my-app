@@ -3,9 +3,19 @@ const assert = require('node:assert/strict');
 const path = require('node:path');
 require('ts-node').register({transpileOnly:true,project:path.resolve(__dirname,'../tsconfig.json')});
 const {createExamResult} = require('../src/shared/examGrading.ts');
-const {hasFullyAnsweredExam} = require('../src/shared/examCorrectionAccess.ts');
+const {hasFullyAnsweredExam,canReviewSubmittedActivity} = require('../src/shared/examCorrectionAccess.ts');
 const english = {id:'ela',type:'multiple_choice',choices:[{id:'A'},{id:'B'}],correctChoiceId:'B'};
 const examFor = question => ({assessmentId:'exam',title:'Exam',passageSets:[{id:'passage',passage:{id:'p',lines:[]},questions:[english]}],mathSection:{questions:[question]}});
+
+test('global correction access permits partial submissions but never an unsubmitted or another exam attempt',()=>{
+ const activity={id:'exam',correctionsOpen:false,correctionsOpenForAllExams:true};
+ const content=examFor({id:'math',type:'numeric_entry',correctTextAnswers:['5']});
+ const result=createExamResult(content,{ela:'A'},['english']);
+ assert.equal(canReviewSubmittedActivity(activity,result),true);
+ assert.equal(canReviewSubmittedActivity({...activity,correctionsOpenForAllExams:false},result),false);
+ for(const invalid of [null,{...result,answers:undefined},{...result,completionStatus:'in_progress'},{...result,assessmentId:'someone-elses-exam'}])assert.equal(canReviewSubmittedActivity(activity,invalid),false);
+ assert.equal(canReviewSubmittedActivity({...activity,studyHallWorksheet:{subject:'math',category:'Math'}},{...result,source:'answer_sheet'}),false);
+});
 
 test('automatic corrections require a full submitted attempt and complete answers, regardless of score', () => {
   const exam=examFor({id:'math',type:'numeric_entry',correctTextAnswers:['5']});
@@ -31,7 +41,7 @@ test('each part of multi-part answers must be filled; invalid extra IDs do not u
   for(const [config,complete,incomplete] of cases){
     const exam=examFor({...config,id:'math'});
     // Completion is deliberately independent of answer-key correctness.
-    const result={analysisContent:exam,answers:{ela:'A',math:complete},total:2,completedSections:['english','math'],completionStatus:'complete'};
+    const result={analysisContent:exam,answers:{ela:'A',math:complete},total:2,subjects:[{subject:'English Language Arts',total:1},{subject:'Mathematics',total:1}],completedSections:['english','math'],completionStatus:'complete'};
     assert.equal(hasFullyAnsweredExam(result),true,config.type);
     assert.equal(hasFullyAnsweredExam({...result,answers:{ela:'A',math:incomplete}}),false,config.type);
   }

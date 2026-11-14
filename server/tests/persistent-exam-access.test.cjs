@@ -14,6 +14,30 @@ test('opening remains open after process reload and replacement with a locked ca
  await store.setPersistentAssessmentAccess(base(),{english_open:false});value=await restartedStore().resolveAssessmentAccess(base());assert.equal(value.status,'open');assert.deepEqual(value.sectionAccess,{english:false,math:true});
  await store.setPersistentAssessmentAccess(base(),{math_open:false});value=await restartedStore().resolveAssessmentAccess({...base(),status:'open',sectionAccess:{english:true,math:true}});assert.equal(value.status,'locked');
 });
+
+test('all-exams corrections persist for existing and future exams without changing individual access',async()=>{
+ const store=restartedStore();
+ assert.equal(await store.getAllExamCorrectionsAccess(),false);
+ await store.setPersistentAssessmentAccess(base(),{corrections_open:true});
+ await store.setAllExamCorrectionsAccess(true);
+ const reopened=restartedStore();assert.equal(await reopened.getAllExamCorrectionsAccess(),true);
+ const exams=Array.from({length:205},(_,index)=>({...base(),id:index===0?'exam':`new-exam-${index}`}));
+ const list=await reopened.resolveAssessmentAccessList([...exams,{...base(),id:'worksheet',studyHallWorksheet:{subject:'math',category:'Math'}},{...base(),id:'legacy-worksheet',examLabel:'Grade 9 Mathematics Sample Questions'}]);
+ assert.ok(list.slice(0,205).every(item=>item.correctionsOpenForAllExams));
+ assert.ok(list.slice(205).every(item=>!item.correctionsOpenForAllExams));
+ assert.ok(list.every(item=>item.status==='locked'&&!item.sectionAccess.math&&!item.sectionAccess.english&&!item.allowCompletedAccess));
+ assert.equal(list[1].correctionsOpen,false,'Individual settings remain unchanged.');
+ await reopened.setPersistentAssessmentAccess({...base(),id:'new-exam-1'},{math_open:true});
+ assert.equal((await reopened.resolveAssessmentAccess({...base(),id:'new-exam-1'})).correctionsOpenForAllExams,true);
+ await reopened.setAllExamCorrectionsAccess(false);
+ const restored=await reopened.resolveAssessmentAccessList(exams);
+ assert.ok(restored.every(item=>!item.correctionsOpenForAllExams));
+ assert.equal(restored[0].correctionsOpen,true);assert.equal(restored[1].correctionsOpen,false);
+ failing=true;
+ await assert.rejects(reopened.getAllExamCorrectionsAccess(),error=>error.status===503);
+ await assert.rejects(reopened.setAllExamCorrectionsAccess(true),error=>error.status===503);
+ failing=false;assert.equal(await reopened.getAllExamCorrectionsAccess(),false);
+});
 test('independent simultaneous section/correction changes do not overwrite each other',async()=>{
  const store=restartedStore();await Promise.all([store.setPersistentAssessmentAccess(base(),{english_open:true}),store.setPersistentAssessmentAccess(base(),{math_open:true}),store.setPersistentAssessmentAccess(base(),{corrections_open:true}),store.setPersistentAssessmentAccess(base(),{allow_completed_access:true})]);
  const value=await restartedStore().resolveAssessmentAccess(base());assert.deepEqual(value.sectionAccess,{english:true,math:true});assert.equal(value.correctionsOpen,true);assert.equal(value.allowCompletedAccess,true);

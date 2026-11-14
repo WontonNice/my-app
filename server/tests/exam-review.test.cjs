@@ -128,7 +128,8 @@ const assessment = { id: 'test-exam', title: 'Test exam', classId: 'shsat', corr
 const users = Object.fromEntries(['student', 'other', 'teacher', 'outsider'].map(id => [id, { id, app_metadata: { role: id === 'teacher' ? 'teacher' : 'student', class_ids: id === 'outsider' ? [] : ['shsat'] }, user_metadata: {} }]));
 function stub(relative, exports) { const filename = require.resolve(relative); require.cache[filename] = { id: filename, filename, loaded: true, exports }; }
 stub('../src/lib/auth.ts', { getAuthenticatedUser: async header => ({ user: users[header?.replace('Bearer ', '')] ?? null, error: 'Unauthorized' }), getUserRole: user => user.app_metadata.role, getEnrolledClassIds: metadata => metadata.class_ids, isStudentArchived: user => Boolean(user.app_metadata.student_archived_at) });
-stub('../src/lib/assessmentAccess.ts', {resolveAssessmentAccess:async value=>value,resolveAssessmentAccessList:async values=>values,assessmentAccessErrorHandler:(error,_request,_response,next)=>next(error)});
+let allCorrectionsOpen=false;
+stub('../src/lib/assessmentAccess.ts', {getAllExamCorrectionsAccess:async()=>allCorrectionsOpen,setAllExamCorrectionsAccess:async open=>allCorrectionsOpen=open,resolveAssessmentAccess:async value=>value?{...value,correctionsOpenForAllExams:allCorrectionsOpen}:value,resolveAssessmentAccessList:async values=>values.map(value=>({...value,correctionsOpenForAllExams:allCorrectionsOpen})),assessmentAccessErrorHandler:(error,_request,_response,next)=>next(error)});
 stub('../src/config/assessments.ts', {
   findAssessmentForStudent: (id, classes) => id === assessment.id && classes.includes('shsat') ? assessment : undefined,
   listTeacherAssessments: () => [assessment],
@@ -202,6 +203,29 @@ async function request(user, url, method = 'GET', body) {
   const response = await fetch(base + url, { method, headers: { Authorization: `Bearer ${user}`, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
   return { status: response.status, data: await response.json() };
 }
+
+test('global corrections API is staff-only, validates input, and opens partial submissions without opening exams',async()=>{
+ const saved=structuredClone(result);
+ try {
+  for(const method of ['GET','PATCH']){
+   assert.equal((await request('none','/teacher/corrections-access',method,method==='PATCH'?{open:true}:undefined)).status,401);
+   assert.equal((await request('student','/teacher/corrections-access',method,method==='PATCH'?{open:true}:undefined)).status,403);
+  }
+  assert.equal((await request('teacher','/teacher/corrections-access')).data.open,false);
+  assert.equal((await request('teacher','/teacher/corrections-access','PATCH',{open:'true'})).status,400);
+  Object.assign(result,createExamResult(content,{'ela-1':'A'},['english']));
+  assert.equal((await request('student','/student/test-exam')).status,403);
+  const savedAccess=await request('teacher','/teacher/corrections-access','PATCH',{open:true});
+  assert.equal(savedAccess.status,200);assert.equal(savedAccess.data.open,true);
+  assert.equal((await request('teacher','/teacher/corrections-access')).data.open,true);
+  assert.equal((await request('student','/student/test-exam')).status,200);
+  assert.equal((await request('other','/student/test-exam')).status,409);
+  assert.equal((await request('outsider','/student/test-exam')).status,404);
+  assert.equal(assessment.correctionsOpen,false);
+  assert.equal((await request('teacher','/teacher/corrections-access','PATCH',{open:false})).data.open,false);
+  assert.equal((await request('student','/student/test-exam')).status,403);
+ } finally {allCorrectionsOpen=false;for(const key of Object.keys(result))delete result[key];Object.assign(result,saved);}
+});
 
 test('API enforces access and lets students submit or update one completed correction at a time', async () => {
   assert.equal((await request('none', '/student/test-exam')).status, 401);
