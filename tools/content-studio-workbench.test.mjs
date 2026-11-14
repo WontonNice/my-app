@@ -37,3 +37,17 @@ test('workspace activation remains safe before the workbench DOM has mounted', (
   const ui = vm.runInNewContext(`${source}\nstudioUI;`, { app: {}, document: {getElementById: () => null} });
   assert.doesNotThrow(() => ui.syncWorkbench('passages'));
 });
+test('assessment previews choose their actual sections, including math-only exams', () => {
+  const {ui}=fixture();
+  assert.equal(JSON.stringify(ui.activityPreviewSubjects({mathSection:{questions:[{}]},passageSets:[]})), '["math"]');
+  assert.equal(JSON.stringify(ui.activityPreviewSubjects({passageSets:[{questions:[{}]}],mathSection:{questions:[{}]}})), '["english","math"]');
+  assert.equal(JSON.stringify(ui.activityPreviewSubjects({standaloneSection:{questions:[{}]}})), '["english"]');
+});
+test('exam publication guidance points to assessments instead of Study Hall', () => {
+  const {ui}=fixture();
+  const exam={studyHallWorksheet:null,assembly:{draftQuestionIds:['q'],reviewed:false}};
+  assert.match(ui.publicationStatus(exam).detail,/exam/);
+  assert.doesNotMatch(ui.publicationStatus(exam).detail,/worksheet|Study Hall/);
+  exam.assembly.publishedReleaseId='release';exam.assembly.reviewed=true;
+  assert.match(ui.publicationStatus(exam).summary,/teacher dashboard/);
+});

@@ -5,6 +5,7 @@ import { execFileSync } from 'node:child_process';
 import { cp, mkdir, mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { isolateStudioPersistence } from './content-studio-test-context.mjs';
 
 const toolsRoot = dirname(fileURLToPath(import.meta.url));
 const sourceRoot = resolve(toolsRoot, '..');
@@ -15,9 +16,18 @@ const fixture = resumeArgument ? resolve(resumeArgument.slice('--resume='.length
 if(dirname(fixture)!==fixtureRoot || !fixture.startsWith(join(fixtureRoot,'qa-')))throw new Error('Resume only an existing disposable qa-* directory under tools/.content-drafts.');
 const modulePath = join(toolsRoot, `.content-studio-qa-${process.pid}.mjs`);
 const baseline = process.argv.includes('--baseline');
+// Use the same guarded offline persistence as editor tests. Previewing local
+// content must not depend on, or open, the production catalog connection.
+isolateStudioPersistence({ after() {} });
 await mkdir(join(fixture, 'tools'), { recursive: true });
 await mkdir(join(fixture, 'server/data'), { recursive: true });
-for (const path of resumeArgument ? [] : ['client/src/content', 'client/src/styles', 'client/src/lib/studentMaterials.ts', 'client/public', 'server/src/shared', 'server/data/assessments.json', 'tools/practice-topics.json', 'tools/content-topics.json', 'tools/math-topics.json', 'tools/content-studio-glossary.js']) {
+await cp(join(toolsRoot, 'poem-layout.js'), join(fixture, 'tools/poem-layout.js'));
+if (!resumeArgument) {
+  for (const name of ['activity-releases.json', 'worksheets.json']) {
+    await cp(join(sourceRoot, 'server/data', name), join(fixture, 'server/data', name));
+  }
+}
+for (const path of resumeArgument ? [] : ['client/src/content', 'client/src/styles', 'client/src/lib', 'client/public', 'server/src/shared', 'server/data/assessments.json', 'tools/practice-topics.json', 'tools/content-topics.json', 'tools/math-topics.json', 'tools/content-studio-glossary.js']) {
   await mkdir(dirname(join(fixture, path)), { recursive: true });
   await cp(join(sourceRoot, path), join(fixture, path), { recursive: true });
 }
@@ -37,8 +47,10 @@ for (const name of ['appStylesPath', 'katexDistRoot', 'mathliveRoot', ...(!basel
 }
 if (!baseline) source = source.replace('readFile(join(workspaceRoot, "tools", url.pathname.slice(1))', 'readFile(join(sourceRoot, "tools", url.pathname.slice(1))');
 if (!baseline) source = source.replaceAll("readFile(join(workspaceRoot, 'tools', url.pathname.slice(1))", "readFile(join(sourceRoot, 'tools', url.pathname.slice(1))")
+  .replaceAll("readFile(join(workspaceRoot,'tools',url.pathname.slice(1))", "readFile(join(sourceRoot,'tools',url.pathname.slice(1))")
   .replace("readFile(join(workspaceRoot, 'tools/content-studio-part-b.js')", "readFile(join(sourceRoot, 'tools/content-studio-part-b.js')");
 source = source.replace('mathPreviewAsset(workspaceRoot, url.pathname)', 'mathPreviewAsset(sourceRoot, url.pathname)');
+source = source.replace('examPreviewAsset(workspaceRoot, url.pathname)', 'examPreviewAsset(sourceRoot, url.pathname)');
 source = source.replace('mathCommandAsset(workspaceRoot, url.pathname)', 'mathCommandAsset(sourceRoot, url.pathname)');
 source = source.split('if (process.argv.includes("--validate"))')[0] + '\nexport { handleRequest };\n';
 await writeFile(modulePath, source);

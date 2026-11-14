@@ -1,0 +1,2311 @@
+import type { ExamMathSection } from "../types";
+
+export const digitalShsatPracticeTestAdaptive9HardMathSection: ExamMathSection = {
+  directions: {
+  "body": "Solve each problem. Select the answer from the choices given or enter your answer in the space provided.",
+  "breadcrumbLabel": "MATH DIRECTIONS",
+  "notes": [
+    "Formulas and definitions of mathematical terms and symbols are not provided.",
+    "Diagrams other than graphs are not necessarily drawn to scale."
+  ],
+  "subject": "MATHEMATICS",
+  "title": "IMPORTANT NOTES"
+},
+  id: "digital-shsat-practice-test-adaptive-9-hard-math",
+  label: "Math",
+  questionCount: 50,
+  questions: [
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-1",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "51",
+      "moduleQuestion": "1",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>There are \\(12\\) fish in all, so the probability that the first fish is an angelfish is \\(\\frac{4}{12}\\). After one angelfish is removed, \\(3\\) angelfish remain among \\(11\\) fish, so the probability that the second fish is an angelfish is \\(\\frac{3}{11}\\). Multiplying gives \\(\\frac{4}{12} \\times  \\frac{3}{11} = \\frac{12}{132} = \\frac{1}{11}\\).</p>",
+    "skilled": "TBD",
+    "explanation": "There are \\(12\\) fish in all, so the probability that the first fish is an angelfish is \\(\\frac{4}{12}\\). After one angelfish is removed, \\(3\\) angelfish remain among \\(11\\) fish, so the probability that the second fish is an angelfish is \\(\\frac{3}{11}\\). Multiplying gives \\(\\frac{4}{12} \\times  \\frac{3}{11} = \\frac{12}{132} = \\frac{1}{11}\\).",
+    "points": 1,
+    "prompt": "An aquarium has a tank containing \\(5\\) clownfish, \\(4\\) angelfish, and \\(3\\) surgeonfish. A marine biologist selects two fish at random, one after another, without returning either fish to the tank. Complete the equations below to find the probability that both selected fish are angelfish.",
+    "promptHtml": "An aquarium has a tank containing \\(5\\) clownfish, \\(4\\) angelfish, and \\(3\\) surgeonfish. A marine biologist selects two fish at random, one after another, without returning either fish to the tank. Complete the equations below to find the probability that both selected fish are angelfish.",
+    "dragDropContentHtml": "<p>The probability that the first fish is an angelfish is {{blank-1}}. The probability that the second fish is an angelfish, given that the first was an angelfish, is {{blank-2}}. The probability that both fish are angelfish is {{blank-3}}.</p>",
+    "topic": "Uncategorized",
+    "allowReuse": false,
+    "dragDropContent": [
+      "The probability that the first fish is an angelfish is {{blank-1}}. The probability that the second fish is an angelfish, given that the first was an angelfish, is {{blank-2}}. The probability that both fish are angelfish is {{blank-3}}."
+    ],
+    "dragDropSlots": [
+      {
+        "correctItemId": "option-1",
+        "id": "blank-1"
+      },
+      {
+        "correctItemId": "option-2",
+        "id": "blank-2"
+      },
+      {
+        "correctItemId": "option-3",
+        "id": "blank-3"
+      }
+    ],
+    "items": [
+      {
+        "id": "option-1",
+        "text": "\\(\\frac{4}{12}\\)"
+      },
+      {
+        "id": "option-2",
+        "text": "\\(\\frac{3}{11}\\)"
+      },
+      {
+        "id": "option-3",
+        "text": "\\(\\frac{1}{11}\\)"
+      },
+      {
+        "id": "option-4",
+        "text": "\\(\\frac{4}{11}\\)"
+      },
+      {
+        "id": "option-5",
+        "text": "\\(\\frac{3}{12}\\)"
+      },
+      {
+        "id": "option-6",
+        "text": "\\(\\frac{1}{12}\\)"
+      }
+    ],
+    "type": "math_drag_drop"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-2",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "52",
+      "moduleQuestion": "2",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The outer circle has a radius of \\(6 + 2 = 8\\) meters, so its area is \\(\\pi (8)^{2} = 64\\pi \\) square meters. The fountain has an area of \\(\\pi (6)^{2} = 36\\pi \\) square meters. The walkway is the difference, \\(64\\pi  - 36\\pi  = 28\\pi \\) square meters. Choice A squares the width of the walkway, choice B is only the fountain, and choice C is the whole outer circle.</p>",
+    "skilled": "TBD",
+    "explanation": "The outer circle has a radius of \\(6 + 2 = 8\\) meters, so its area is \\(\\pi (8)^{2} = 64\\pi \\) square meters. The fountain has an area of \\(\\pi (6)^{2} = 36\\pi \\) square meters. The walkway is the difference, \\(64\\pi  - 36\\pi  = 28\\pi \\) square meters. Choice A squares the width of the walkway, choice B is only the fountain, and choice C is the whole outer circle.",
+    "points": 1,
+    "prompt": "A circular fountain with a radius of \\(6\\) meters is surrounded by a walkway that is \\(2\\) meters wide, as shown in the figure. What is the area, in square meters, of the walkway?",
+    "promptHtml": "A circular fountain with a radius of \\(6\\) meters is surrounded by a walkway that is \\(2\\) meters wide, as shown in the figure. What is the area, in square meters, of the walkway?<br><img src=\"/exam-images/satcc-55a13a22a2dc3919c19673227fd1038bd4f77798dfe2f667cd921e333fcc1ca2.png\" alt=\"52\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(4\\pi \\)</p>",
+        "text": "\\(4\\pi \\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(36\\pi \\)</p>",
+        "text": "\\(36\\pi \\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(64\\pi \\)</p>",
+        "text": "\\(64\\pi \\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(28\\pi \\)</p>",
+        "text": "\\(28\\pi \\)"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-3",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "53",
+      "moduleQuestion": "3",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Numerator: inside parentheses first, \\(6 - 2 \\times  4 = 6 - 8 = -2\\); then \\((-2)^{2} = 4\\); and \\(3^{3} = 27\\); so numerator \\(= 4 + 27 = 31\\). Denominator: \\(2^{2} = 4\\); then \\(4 \\times  (-1) = -4\\); so denominator \\(= 5 - (-4) = 9\\). The value is \\(\\frac{31}{9}\\).</p>",
+    "skilled": "TBD",
+    "explanation": "Numerator: inside parentheses first, \\(6 - 2 \\times  4 = 6 - 8 = -2\\); then \\((-2)^{2} = 4\\); and \\(3^{3} = 27\\); so numerator \\(= 4 + 27 = 31\\). Denominator: \\(2^{2} = 4\\); then \\(4 \\times  (-1) = -4\\); so denominator \\(= 5 - (-4) = 9\\). The value is \\(\\frac{31}{9}\\).",
+    "points": 1,
+    "prompt": "What is the value of \\(\\frac{(6-2\\times 4)^{2}+3^{3}}{5-2^{2}\\times (-1)}\\)?",
+    "promptHtml": "What is the value of \\(\\frac{(6-2\\times 4)^{2}+3^{3}}{5-2^{2}\\times (-1)}\\)?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(3\\)</p>",
+        "text": "\\(3\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(\\frac{4}{9}\\)</p>",
+        "text": "\\(\\frac{4}{9}\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(31\\)</p>",
+        "text": "\\(31\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(\\frac{31}{9}\\)</p>",
+        "text": "\\(\\frac{31}{9}\\)"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-4",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "54",
+      "moduleQuestion": "4",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The two labeled angles are alternate interior angles formed by parallel lines \\(p\\) and \\(q\\) cut by transversal \\(t\\), so they are equal: \\(3x + 15 = 5x - 21\\). Subtracting \\(3x\\) from both sides gives \\(15 = 2x - 21\\), and adding \\(21\\) gives \\(2x = 36\\), so \\(x = 18\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The two labeled angles are alternate interior angles formed by parallel lines \\(p\\) and \\(q\\) cut by transversal \\(t\\), so they are equal: \\(3x + 15 = 5x - 21\\). Subtracting \\(3x\\) from both sides gives \\(15 = 2x - 21\\), and adding \\(21\\) gives \\(2x = 36\\), so \\(x = 18\\).",
+    "points": 1,
+    "prompt": "In the figure, lines \\(p\\) and \\(q\\) are parallel and are cut by transversal \\(t\\). Two of the angles formed are labeled \\((3x + 15)^{∘}\\) and \\((5x - 21)^{∘}\\) as shown. What is the value of \\(x\\)?",
+    "promptHtml": "In the figure, lines \\(p\\) and \\(q\\) are parallel and are cut by transversal \\(t\\). Two of the angles formed are labeled \\((3x + 15)^{∘}\\) and \\((5x - 21)^{∘}\\) as shown. What is the value of \\(x\\)?<br><img src=\"/exam-images/satcc-9200cb686656d3e537eb4baaa13ccbe43df847fa8ef8f7ff3fdf85d0cf443afe.png\" alt=\"54\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(24\\)</p>",
+        "text": "\\(24\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(21\\)</p>",
+        "text": "\\(21\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(18\\)</p>",
+        "text": "\\(18\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(15\\)</p>",
+        "text": "\\(15\\)"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-5",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "55",
+      "moduleQuestion": "5",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The five times in the table are \\(47.40\\), \\(48.00\\), \\(48.24\\), \\(48.60\\), and \\(49.26\\). Sorted: \\(47.40\\), \\(48.00\\), \\(48.24\\), \\(48.60\\), \\(49.26\\). Median \\(= 48.24\\). Mean \\(= (47.40 + 48.00 + 48.24 + 48.60 + 49.26) \\div  5 = 241.50 \\div  5 = 48.30\\). Difference \\(= 48.30 - 48.24 = 0.06\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The five times in the table are \\(47.40\\), \\(48.00\\), \\(48.24\\), \\(48.60\\), and \\(49.26\\). Sorted: \\(47.40\\), \\(48.00\\), \\(48.24\\), \\(48.60\\), \\(49.26\\). Median \\(= 48.24\\). Mean \\(= (47.40 + 48.00 + 48.24 + 48.60 + 49.26) \\div  5 = 241.50 \\div  5 = 48.30\\). Difference \\(= 48.30 - 48.24 = 0.06\\).",
+    "points": 1,
+    "prompt": "The table shows the times, in seconds, recorded by five kayakers during a qualifying race. What is the positive difference between the mean time and the median time, in seconds?",
+    "promptHtml": "The table shows the times, in seconds, recorded by five kayakers during a qualifying race. What is the positive difference between the mean time and the median time, in seconds?<br><img src=\"/exam-images/satcc-b2a30bd398e6371b9a06cac62440a2a5857475833d08db2efd9584b0a400ff3b.png\" alt=\"55\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(0.24\\)</p>",
+        "text": "\\(0.24\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(0.18\\)</p>",
+        "text": "\\(0.18\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(0.12\\)</p>",
+        "text": "\\(0.12\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(0.06\\)</p>",
+        "text": "\\(0.06\\)"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-6",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "56",
+      "moduleQuestion": "6",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The sum of the first \\(9\\) values is \\(14 + 9 + 17 + 11 + 14 + 20 + 8 + 14 + 13 = 120\\). For the mean of \\(10\\) days to equal \\(13.5\\), the total must be \\(13.5 \\times  10 = 135\\), so the \\(10\\)th value is \\(135 - 120 = 15\\). Sorting all \\(10\\) values: \\(8\\), \\(9\\), \\(11\\), \\(13\\), \\(14\\), \\(14\\), \\(14\\), \\(15\\), \\(17\\), \\(20\\). With \\(10\\) values, the median is the average of the \\(5\\)th and \\(6\\)th: \\((14 + 14) \\div  2 = 14\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The sum of the first \\(9\\) values is \\(14 + 9 + 17 + 11 + 14 + 20 + 8 + 14 + 13 = 120\\). For the mean of \\(10\\) days to equal \\(13.5\\), the total must be \\(13.5 \\times  10 = 135\\), so the \\(10\\)th value is \\(135 - 120 = 15\\). Sorting all \\(10\\) values: \\(8\\), \\(9\\), \\(11\\), \\(13\\), \\(14\\), \\(14\\), \\(14\\), \\(15\\), \\(17\\), \\(20\\). With \\(10\\) values, the median is the average of the \\(5\\)th and \\(6\\)th: \\((14 + 14) \\div  2 = 14\\).",
+    "points": 1,
+    "prompt": "An ornithologist recorded the number of bird species observed each day at a wetland reserve for \\(9\\) days: \\(14\\), \\(9\\), \\(17\\), \\(11\\), \\(14\\), \\(20\\), \\(8\\), \\(14\\), \\(13\\). After the \\(9\\)-day period, one additional day of observation is recorded. The mean number of species for all \\(10\\) days is \\(13.5\\). What is the median of all \\(10\\) values?",
+    "promptHtml": "<p>An ornithologist recorded the number of bird species observed each day at a wetland reserve for \\(9\\) days: \\(14\\), \\(9\\), \\(17\\), \\(11\\), \\(14\\), \\(20\\), \\(8\\), \\(14\\), \\(13\\). After the \\(9\\)-day period, one additional day of observation is recorded. The mean number of species for all \\(10\\) days is \\(13.5\\). What is the median of all \\(10\\) values? <br>\n\n                    \n                </p>",
+    "topic": "Uncategorized",
+    "correctTextAnswers": [
+      "14, 14.0"
+    ],
+    "type": "short_response"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-7",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "57",
+      "moduleQuestion": "7",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>From the table, the unit rate is consistent: for example, \\(48 \\div  36 = \\frac{4}{3}\\) passengers per gallon, meaning \\(\\frac{3}{4}\\) gallon per passenger. For \\(500\\) passengers, fuel needed \\(= 500 \\times  \\frac{3}{4} = 375\\) gallons. Total cost \\(= 375 \\times  \\$3.80 = \\$1,425.00\\).</p>",
+    "skilled": "TBD",
+    "explanation": "From the table, the unit rate is consistent: for example, \\(48 \\div  36 = \\frac{4}{3}\\) passengers per gallon, meaning \\(\\frac{3}{4}\\) gallon per passenger. For \\(500\\) passengers, fuel needed \\(= 500 \\times  \\frac{3}{4} = 375\\) gallons. Total cost \\(= 375 \\times  \\$3.80 = \\$1,425.00\\).",
+    "points": 1,
+    "prompt": "A ferry service transports passengers between two islands. The figure below shows the number of passengers carried and the total fuel used (in gallons) for four different crossings. The ferry company wants to carry a total of \\(500\\) passengers over a series of crossings, all at the same rate shown in the figure. Fuel costs \\(\\$3.80\\) per gallon. What is the total fuel cost for transporting \\(500\\) passengers?",
+    "promptHtml": "A ferry service transports passengers between two islands. The figure below shows the number of passengers carried and the total fuel used (in gallons) for four different crossings. The ferry company wants to carry a total of \\(500\\) passengers over a series of crossings, all at the same rate shown in the figure. Fuel costs \\(\\$3.80\\) per gallon. What is the total fuel cost for transporting \\(500\\) passengers?<br><img src=\"/exam-images/satcc-405a4cb8e49bdfbe90379c3567a95995c233777bd5422d36ad0c2244e8abf65d.png\" alt=\"57\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(\\$1,482.50\\)</p>",
+        "text": "\\(\\$1,482.50\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(\\$1,900.00\\)</p>",
+        "text": "\\(\\$1,900.00\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(\\$1,330.00\\)</p>",
+        "text": "\\(\\$1,330.00\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(\\$1,425.00\\)</p>",
+        "text": "\\(\\$1,425.00\\)"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-8",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "58",
+      "moduleQuestion": "8",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Distribute: \\(-4x + 8 &lt; 3x + 1\\). Subtract \\(3x\\) and \\(8\\) from both sides: \\(-7x &lt; -7\\). Divide by \\(-7\\) and reverse the inequality symbol: \\(x &gt; 1\\). Every value greater than \\(1\\) is a solution, but \\(x = 1\\) is not, because \\(-4(1 - 2) = 4\\) and \\(3(1) + 1 = 4\\), and \\(4 &lt; 4\\) is false.</p>",
+    "skilled": "TBD",
+    "explanation": "Distribute: \\(-4x + 8 < 3x + 1\\). Subtract \\(3x\\) and \\(8\\) from both sides: \\(-7x < -7\\). Divide by \\(-7\\) and reverse the inequality symbol: \\(x > 1\\). Every value greater than \\(1\\) is a solution, but \\(x = 1\\) is not, because \\(-4(1 - 2) = 4\\) and \\(3(1) + 1 = 4\\), and \\(4 < 4\\) is false.",
+    "points": 1,
+    "prompt": "Which of the following values of \\(x\\) is NOT a solution to the inequality \\(-4(x - 2) < 3x + 1\\)?",
+    "promptHtml": "Which of the following values of \\(x\\) is <strong>NOT</strong> a solution to the inequality \\(-4(x - 2) &lt; 3x + 1\\)?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(5\\)</p>",
+        "text": "\\(5\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(3\\)</p>",
+        "text": "\\(3\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(1\\)</p>",
+        "text": "\\(1\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(2\\)</p>",
+        "text": "\\(2\\)"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-9",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "59",
+      "moduleQuestion": "9",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Let angle \\(H = h\\). Then angle \\(G = 2h\\) and angle \\(I = 3h + 30\\). The angle sum is \\(h + 2h + 3h + 30 = 180\\), so \\(6h = 150\\), giving \\(h = 25^{∘}\\). The angles are \\(H = 25^{∘}\\), \\(G = 50^{∘}\\), \\(I = 3(25) + 30 = 105^{∘}\\). The largest angle is \\(105^{∘}\\).</p>",
+    "skilled": "TBD",
+    "explanation": "Let angle \\(H = h\\). Then angle \\(G = 2h\\) and angle \\(I = 3h + 30\\). The angle sum is \\(h + 2h + 3h + 30 = 180\\), so \\(6h = 150\\), giving \\(h = 25^{∘}\\). The angles are \\(H = 25^{∘}\\), \\(G = 50^{∘}\\), \\(I = 3(25) + 30 = 105^{∘}\\). The largest angle is \\(105^{∘}\\).",
+    "points": 1,
+    "prompt": "In triangle \\(GHI\\), the measure of angle \\(G\\) is twice the measure of angle \\(H\\), and the measure of angle \\(I\\) is \\(30^{∘}\\) more than three times the measure of angle \\(H\\). What is the measure of the largest angle of triangle \\(GHI\\)?",
+    "promptHtml": "In triangle \\(GHI\\), the measure of angle \\(G\\) is twice the measure of angle \\(H\\), and the measure of angle \\(I\\) is \\(30^{∘}\\) more than three times the measure of angle \\(H\\). What is the measure of the largest angle of triangle \\(GHI\\)?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(115^{∘}\\)</p>",
+        "text": "\\(115^{∘}\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(110^{∘}\\)</p>",
+        "text": "\\(110^{∘}\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(105^{∘}\\)</p>",
+        "text": "\\(105^{∘}\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(100^{∘}\\)</p>",
+        "text": "\\(100^{∘}\\)"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-10",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "60",
+      "moduleQuestion": "10",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>For \\(m = 3\\): \\(2(3)^{2} - 5(3) + 3 = 18 - 15 + 3 = 6\\). For \\(m = 5\\): \\(2(5)^{2} - 5(5) + 3 = 50 - 25 + 3 = 28\\).</p>",
+    "skilled": "TBD",
+    "explanation": "For \\(m = 3\\): \\(2(3)^{2} - 5(3) + 3 = 18 - 15 + 3 = 6\\). For \\(m = 5\\): \\(2(5)^{2} - 5(5) + 3 = 50 - 25 + 3 = 28\\).",
+    "points": 1,
+    "prompt": "Select the option that correctly completes each part of the statement below.",
+    "promptHtml": "Select the option that correctly completes each part of the statement below.",
+    "dropdownContentHtml": "<p>A greenhouse manager models the height of a vine in centimeters using the expression \\(2m^{2} - 5m + 3\\), where \\(m\\) is the number of months since planting. When \\(m = 3\\), the expression equals {{dropdown-1}}, and when \\(m = 5\\), the expression equals {{dropdown-2}}.</p>",
+    "topic": "Uncategorized",
+    "dropdownContent": [
+      "A greenhouse manager models the height of a vine in centimeters using the expression \\(2m^{2} - 5m + 3\\), where \\(m\\) is the number of months since planting. When \\(m = 3\\), the expression equals {{dropdown-1}}, and when \\(m = 5\\), the expression equals {{dropdown-2}}."
+    ],
+    "dropdowns": [
+      {
+        "correctChoiceId": "option-2",
+        "id": "dropdown-1",
+        "options": [
+          {
+            "id": "option-1",
+            "text": "9"
+          },
+          {
+            "id": "option-2",
+            "text": "6"
+          },
+          {
+            "id": "option-3",
+            "text": "3"
+          },
+          {
+            "id": "option-4",
+            "text": "12"
+          }
+        ]
+      },
+      {
+        "correctChoiceId": "option-4",
+        "id": "dropdown-2",
+        "options": [
+          {
+            "id": "option-1",
+            "text": "22"
+          },
+          {
+            "id": "option-2",
+            "text": "38"
+          },
+          {
+            "id": "option-3",
+            "text": "18"
+          },
+          {
+            "id": "option-4",
+            "text": "28"
+          }
+        ]
+      }
+    ],
+    "type": "inline_dropdown"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-11",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "61",
+      "moduleQuestion": "11",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Tile A, \\(\\frac{22}{7}\\), is a fraction of two integers, so it is rational. Tile B, \\(0.8333 …\\), is a repeating decimal equal to \\(\\frac{5}{6}\\), so it is rational. Tile D, \\(-4.25\\), is a terminating decimal equal to \\(-\\frac{17}{4}\\), so it is rational. Tile C, \\(\\pi \\), is a decimal that neither ends nor repeats, so it cannot be written as a fraction of two integers and is irrational. Only tile C shows an irrational number.</p>",
+    "skilled": "TBD",
+    "explanation": "Tile A, \\(\\frac{22}{7}\\), is a fraction of two integers, so it is rational. Tile B, \\(0.8333 …\\), is a repeating decimal equal to \\(\\frac{5}{6}\\), so it is rational. Tile D, \\(-4.25\\), is a terminating decimal equal to \\(-\\frac{17}{4}\\), so it is rational. Tile C, \\(\\pi \\), is a decimal that neither ends nor repeats, so it cannot be written as a fraction of two integers and is irrational. Only tile C shows an irrational number.",
+    "points": 1,
+    "prompt": "Each tile below shows a number. Exactly one of the four numbers is irrational. Which tile shows the irrational number?",
+    "promptHtml": "Each tile below shows a number. Exactly one of the four numbers is irrational. Which tile shows the irrational number?",
+    "topic": "Uncategorized",
+    "hotSpot": true,
+    "choices": [
+      {
+        "id": "A",
+        "image": {
+          "alt": "Figure A",
+          "src": "/exam-images/satcc-34f83ea375b305af6d4451bb386015b87c9b111ed1f054774d75b0b85776bb3c.png"
+        },
+        "text": "Figure A"
+      },
+      {
+        "id": "B",
+        "image": {
+          "alt": "Figure B",
+          "src": "/exam-images/satcc-ca2aca34e8c407f290ce7f814a23dcfa4c1e78cb6972ed474f4d401a06c6aa00.png"
+        },
+        "text": "Figure B"
+      },
+      {
+        "id": "C",
+        "image": {
+          "alt": "Figure C",
+          "src": "/exam-images/satcc-4e4219b7e7a5e32394b1146a91a8703def273df850e24475179b6f7aacec9aeb.png"
+        },
+        "text": "Figure C"
+      },
+      {
+        "id": "D",
+        "image": {
+          "alt": "Figure D",
+          "src": "/exam-images/satcc-6a1c14aef6053ff80d2424fae2cfdf013b01c65bc42340e72c15512e3f7a9c8a.png"
+        },
+        "text": "Figure D"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-12",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "62",
+      "moduleQuestion": "12",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>There are \\(12\\) folders in all, so the chance that the first folder is red is \\(\\frac{6}{12} = \\frac{1}{2}\\). After one red folder is removed, \\(11\\) folders remain and \\(4\\) of them are blue, so the chance that the second folder is blue is \\(\\frac{4}{11}\\). Multiplying gives \\(\\frac{1}{2} \\times  \\frac{4}{11} = \\frac{4}{22} = \\frac{2}{11}\\). Choice B, \\(\\frac{4}{11}\\), is only the chance for the second draw and ignores the first draw.</p>",
+    "skilled": "TBD",
+    "explanation": "There are \\(12\\) folders in all, so the chance that the first folder is red is \\(\\frac{6}{12} = \\frac{1}{2}\\). After one red folder is removed, \\(11\\) folders remain and \\(4\\) of them are blue, so the chance that the second folder is blue is \\(\\frac{4}{11}\\). Multiplying gives \\(\\frac{1}{2} \\times  \\frac{4}{11} = \\frac{4}{22} = \\frac{2}{11}\\). Choice B, \\(\\frac{4}{11}\\), is only the chance for the second draw and ignores the first draw.",
+    "points": 1,
+    "prompt": "A library archive contains \\(6\\) red folders, \\(4\\) blue folders, and \\(2\\) green folders. A librarian selects two folders at random without replacement. What is the probability that the first folder selected is red and the second folder selected is blue?",
+    "promptHtml": "A library archive contains \\(6\\) red folders, \\(4\\) blue folders, and \\(2\\) green folders. A librarian selects two folders at random without replacement. What is the probability that the first folder selected is red and the second folder selected is blue?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(\\frac{2}{9}\\)</p>",
+        "text": "\\(\\frac{2}{9}\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(\\frac{4}{11}\\)</p>",
+        "text": "\\(\\frac{4}{11}\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(\\frac{1}{6}\\)</p>",
+        "text": "\\(\\frac{1}{6}\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(\\frac{2}{11}\\)</p>",
+        "text": "\\(\\frac{2}{11}\\)"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-13",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "63",
+      "moduleQuestion": "13",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The standard price per seedling is \\(\\$19.20 \\div  8 = \\$2.40\\). The bulk price per tray is \\(\\$180.00 \\div  10 = \\$18.00\\), so the bulk price per seedling is \\(\\$18.00 \\div  8 = \\$2.25\\). The difference per seedling is \\(\\$2.40 - \\$2.25 = \\$0.15\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The standard price per seedling is \\(\\$19.20 \\div  8 = \\$2.40\\). The bulk price per tray is \\(\\$180.00 \\div  10 = \\$18.00\\), so the bulk price per seedling is \\(\\$18.00 \\div  8 = \\$2.25\\). The difference per seedling is \\(\\$2.40 - \\$2.25 = \\$0.15\\).",
+    "points": 1,
+    "prompt": "A greenhouse sells orchid seedlings in trays of \\(8\\). The standard price is \\(\\$19.20\\) per tray. A bulk deal offers \\(10\\) trays for \\(\\$180.00\\). A florist needs exactly \\(11\\) trays and decides to buy \\(10\\) trays at the bulk price and \\(1\\) tray at the standard price. How much less per seedling does the florist pay for the bulk trays than for the single standard tray?",
+    "promptHtml": "A greenhouse sells orchid seedlings in trays of \\(8\\). The standard price is \\(\\$19.20\\) per tray. A bulk deal offers \\(10\\) trays for \\(\\$180.00\\). A florist needs exactly \\(11\\) trays and decides to buy \\(10\\) trays at the bulk price and \\(1\\) tray at the standard price. How much less per seedling does the florist pay for the bulk trays than for the single standard tray?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(\\$0.12\\)</p>",
+        "text": "\\(\\$0.12\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(\\$0.15\\)</p>",
+        "text": "\\(\\$0.15\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(\\$0.18\\)</p>",
+        "text": "\\(\\$0.18\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(\\$0.20\\)</p>",
+        "text": "\\(\\$0.20\\)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-14",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "64",
+      "moduleQuestion": "14",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The four walls have areas \\(2(6 \\times  8) + 2(4 \\times  8) = 96 + 64 = 160\\) square feet. The ceiling has area \\(6 \\times  4 = 24\\) square feet. The total paintable surface area is \\(160 + 24 = 184\\) square feet. Dividing by \\(30\\) gives \\(184 \\div  30 = 6.1\\overline{3}\\), so the crew needs \\(⌈6.1\\overline{3}⌉ = 7\\) quarts.</p>",
+    "skilled": "TBD",
+    "explanation": "The four walls have areas \\(2(6 \\times  8) + 2(4 \\times  8) = 96 + 64 = 160\\) square feet. The ceiling has area \\(6 \\times  4 = 24\\) square feet. The total paintable surface area is \\(160 + 24 = 184\\) square feet. Dividing by \\(30\\) gives \\(184 \\div  30 = 6.1\\overline{3}\\), so the crew needs \\(⌈6.1\\overline{3}⌉ = 7\\) quarts.",
+    "points": 1,
+    "prompt": "A community radio station is building a wooden recording booth in the shape of a rectangular prism that is \\(6\\) feet wide, \\(4\\) feet deep, and \\(8\\) feet tall. The booth has no floor, so the crew will paint only the four walls and the ceiling. Each quart of paint covers exactly \\(30\\) square feet. What is the least number of quarts of paint needed to paint all five surfaces?",
+    "promptHtml": "A community radio station is building a wooden recording booth in the shape of a rectangular prism that is \\(6\\) feet wide, \\(4\\) feet deep, and \\(8\\) feet tall. The booth has no floor, so the crew will paint only the four walls and the ceiling. Each quart of paint covers exactly \\(30\\) square feet. What is the <strong>least</strong> number of quarts of paint needed to paint all five surfaces?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(8\\)</p>",
+        "text": "\\(8\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(7\\)</p>",
+        "text": "\\(7\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(6\\)</p>",
+        "text": "\\(6\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(5\\)</p>",
+        "text": "\\(5\\)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-15",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "65",
+      "moduleQuestion": "15",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>From the figure, the square has side length \\(10\\) cm, so its area is \\(10 \\times  10 = 100\\) square centimeters. Each removed right triangle has legs of \\(4\\) cm and \\(6\\) cm, so its area is \\(\\frac{1}{2} \\times  4 \\times  6 = 12\\) square centimeters. Two triangles remove \\(24\\) square centimeters in all. The remaining area is \\(100 - 24 = 76\\) square centimeters.</p>",
+    "skilled": "TBD",
+    "explanation": "From the figure, the square has side length \\(10\\) cm, so its area is \\(10 \\times  10 = 100\\) square centimeters. Each removed right triangle has legs of \\(4\\) cm and \\(6\\) cm, so its area is \\(\\frac{1}{2} \\times  4 \\times  6 = 12\\) square centimeters. Two triangles remove \\(24\\) square centimeters in all. The remaining area is \\(100 - 24 = 76\\) square centimeters.",
+    "points": 1,
+    "prompt": "A community radio station's logo, shown in the figure, is a square with a side length of \\(10\\) centimeters and two identical right triangles removed from opposite corners. What is the area, in square centimeters, of the remaining shape?",
+    "promptHtml": "A community radio station's logo, shown in the figure, is a square with a side length of \\(10\\) centimeters and two identical right triangles removed from opposite corners. What is the area, in square centimeters, of the remaining shape?<br><img src=\"/exam-images/satcc-f22d0c14aaa96583a9964420076235089f846357e92d1c9f23f758e48cb3a78f.png\" alt=\"65\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(76\\)</p>",
+        "text": "\\(76\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(88\\)</p>",
+        "text": "\\(88\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(100\\)</p>",
+        "text": "\\(100\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(52\\)</p>",
+        "text": "\\(52\\)"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-16",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "66",
+      "moduleQuestion": "16",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Let the common factor be \\(k\\), so Economy \\(= 3k\\), Comfort \\(= 5k\\), and Premium \\(= 12k\\). The difference between Premium and Economy is \\(12k - 3k = 9k = 63\\), so \\(k = 7\\). The total is \\((3 + 5 + 12) \\times  7 = 20 \\times  7 = 140\\) seats.</p>",
+    "skilled": "TBD",
+    "explanation": "Let the common factor be \\(k\\), so Economy \\(= 3k\\), Comfort \\(= 5k\\), and Premium \\(= 12k\\). The difference between Premium and Economy is \\(12k - 3k = 9k = 63\\), so \\(k = 7\\). The total is \\((3 + 5 + 12) \\times  7 = 20 \\times  7 = 140\\) seats.",
+    "points": 1,
+    "prompt": "A ferry company divides its passenger seating into three sections — Economy, Comfort, and Premium — in the ratio \\(3 : 5 : 12\\). On one voyage, the number of Premium seats exceeds the number of Economy seats by \\(63\\). What is the total number of seats on the ferry?",
+    "promptHtml": "A ferry company divides its passenger seating into three sections — Economy, Comfort, and Premium — in the ratio \\(3 : 5 : 12\\). On one voyage, the number of Premium seats exceeds the number of Economy seats by \\(63\\). What is the total number of seats on the ferry?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(175\\)</p>",
+        "text": "\\(175\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(140\\)</p>",
+        "text": "\\(140\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(154\\)</p>",
+        "text": "\\(154\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(126\\)</p>",
+        "text": "\\(126\\)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-17",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "67",
+      "moduleQuestion": "17",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The ratio \\(4 : 7\\) gives the proportion \\(\\frac{4}{7} = \\frac{168}{c}\\). Each part is \\(168 \\div  4 = 42\\) trees, so the number of cherry trees is \\(7 \\times  42 = 294\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The ratio \\(4 : 7\\) gives the proportion \\(\\frac{4}{7} = \\frac{168}{c}\\). Each part is \\(168 \\div  4 = 42\\) trees, so the number of cherry trees is \\(7 \\times  42 = 294\\).",
+    "points": 1,
+    "prompt": "At an orchard, the ratio of pear trees to cherry trees is \\(4\\) to \\(7\\). If there are \\(168\\) pear trees, how many cherry trees are there? Enter your answer.",
+    "promptHtml": "At an orchard, the ratio of pear trees to cherry trees is \\(4\\) to \\(7\\). If there are \\(168\\) pear trees, how many cherry trees are there? Enter your answer.",
+    "topic": "Uncategorized",
+    "correctTextAnswers": [
+      "294",
+      "294.0"
+    ],
+    "entryLayout": "plain",
+    "type": "expression_entry"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-18",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "68",
+      "moduleQuestion": "18",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Reading the plot, the \\(15\\) values in order are: \\(12, 14, 17, 18, 20, 23, 23, 26, 29, 31, 35, 35, 38, 42, 46\\). The median is the \\(8\\)th value, which is \\(26\\). The four values from \\(30\\) to \\(39\\) are \\(31, 35, 35\\), and \\(38\\); their mean is \\((31 + 35 + 35 + 38) \\div  4 = 139 \\div  4 = 34.75\\). The positive difference is \\(34.75 - 26 = 8.75\\).</p>",
+    "skilled": "TBD",
+    "explanation": "Reading the plot, the \\(15\\) values in order are: \\(12, 14, 17, 18, 20, 23, 23, 26, 29, 31, 35, 35, 38, 42, 46\\). The median is the \\(8\\)th value, which is \\(26\\). The four values from \\(30\\) to \\(39\\) are \\(31, 35, 35\\), and \\(38\\); their mean is \\((31 + 35 + 35 + 38) \\div  4 = 139 \\div  4 = 34.75\\). The positive difference is \\(34.75 - 26 = 8.75\\).",
+    "points": 1,
+    "prompt": "The stem-and-leaf plot shown displays the times, in seconds, that \\(15\\) kayakers took to complete a slalom course. What is the positive difference between the median of all \\(15\\) times and the mean of only the times from \\(30\\) to \\(39\\) seconds?",
+    "promptHtml": "The stem-and-leaf plot shown displays the times, in seconds, that \\(15\\) kayakers took to complete a slalom course. What is the positive difference between the median of all \\(15\\) times and the mean of only the times from \\(30\\) to \\(39\\) seconds?<br><img src=\"/exam-images/satcc-e9dd946c8f3ab33a77c0b91668ab36d651a516a1f1997ae232c5dcc78c68d36b.png\" alt=\"68\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(7.25\\)</p>",
+        "text": "\\(7.25\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(8.75\\)</p>",
+        "text": "\\(8.75\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(9.25\\)</p>",
+        "text": "\\(9.25\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(10.50\\)</p>",
+        "text": "\\(10.50\\)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-19",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "69",
+      "moduleQuestion": "19",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Distributing gives \\(3n + 15 - 8n + 2 = -5n + 17\\). Choice A is \\(-5n + 17\\) and Choice B is \\(17 - 5n\\), both equal to \\(-5n + 17\\) by the commutative property. Choice C (\\(-5n + 13\\)) omits the \\(+2\\) from distributing \\(-2 \\times  (-1)\\). Choice D (\\(-3n + 17\\)) incorrectly computes \\(3n - 8n = -3n\\). Choices E and F have sign errors on either the constant or the variable term.</p>",
+    "skilled": "TBD",
+    "explanation": "Distributing gives \\(3n + 15 - 8n + 2 = -5n + 17\\). Choice A is \\(-5n + 17\\) and Choice B is \\(17 - 5n\\), both equal to \\(-5n + 17\\) by the commutative property. Choice C (\\(-5n + 13\\)) omits the \\(+2\\) from distributing \\(-2 \\times  (-1)\\). Choice D (\\(-3n + 17\\)) incorrectly computes \\(3n - 8n = -3n\\). Choices E and F have sign errors on either the constant or the variable term.",
+    "points": 1,
+    "prompt": "Select TWO expressions that are equivalent to \\(3(n + 5) - 2(4n - 1)\\).",
+    "promptHtml": "Select <strong>TWO</strong> expressions that are equivalent to \\(3(n + 5) - 2(4n - 1)\\).",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(-5n + 17\\)</p>",
+        "text": "\\(-5n + 17\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(17 - 5n\\)</p>",
+        "text": "\\(17 - 5n\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(-5n + 13\\)</p>",
+        "text": "\\(-5n + 13\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(-3n + 17\\)</p>",
+        "text": "\\(-3n + 17\\)"
+      },
+      {
+        "id": "E",
+        "html": "<p>\\(-5n - 17\\)</p>",
+        "text": "\\(-5n - 17\\)"
+      },
+      {
+        "id": "F",
+        "html": "<p>\\(5n + 17\\)</p>",
+        "text": "\\(5n + 17\\)"
+      }
+    ],
+    "correctChoiceIds": [
+      "A",
+      "B"
+    ],
+    "requiredSelections": 2,
+    "type": "multi_select"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-20",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "70",
+      "moduleQuestion": "20",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Distributing and combining: \\(9 + 4n + 7 - 6n - 11 - 3n + 6 = (4n - 6n - 3n) + (9 + 7 - 11 + 6) = -5n + 11\\).</p>",
+    "skilled": "TBD",
+    "explanation": "Distributing and combining: \\(9 + 4n + 7 - 6n - 11 - 3n + 6 = (4n - 6n - 3n) + (9 + 7 - 11 + 6) = -5n + 11\\).",
+    "points": 1,
+    "prompt": "Which expression is equivalent to \\(9 + (4n + 7) - (6n + 11) - 3(n - 2)\\)?",
+    "promptHtml": "Which expression is equivalent to \\(9 + (4n + 7) - (6n + 11) - 3(n - 2)\\)?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(-5n + 11\\)</p>",
+        "text": "\\(-5n + 11\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(-5n - 1\\)</p>",
+        "text": "\\(-5n - 1\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(n + 11\\)</p>",
+        "text": "\\(n + 11\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(-5n + 5\\)</p>",
+        "text": "\\(-5n + 5\\)"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-21",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "71",
+      "moduleQuestion": "21",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Write each cost for \\(x\\) miles: Company A charges \\(25 + 0.40x\\) and Company B charges \\(15 + 0.60x\\). Set them equal: \\(25 + 0.40x = 15 + 0.60x\\). Subtract \\(0.40x\\) and \\(15\\) from both sides: \\(10 = 0.20x\\). Divide by \\(0.20\\): \\(x = 50\\) miles. Check: \\(25 + 0.40(50) = 45\\) and \\(15 + 0.60(50) = 45\\).</p>",
+    "skilled": "TBD",
+    "explanation": "Write each cost for \\(x\\) miles: Company A charges \\(25 + 0.40x\\) and Company B charges \\(15 + 0.60x\\). Set them equal: \\(25 + 0.40x = 15 + 0.60x\\). Subtract \\(0.40x\\) and \\(15\\) from both sides: \\(10 = 0.20x\\). Divide by \\(0.20\\): \\(x = 50\\) miles. Check: \\(25 + 0.40(50) = 45\\) and \\(15 + 0.60(50) = 45\\).",
+    "points": 1,
+    "prompt": "Company A charges a \\(\\$25\\) fee plus \\(\\$0.40\\) per mile to rent a trailer. Company B charges a \\(\\$15\\) fee plus \\(\\$0.60\\) per mile. For how many miles will the two companies charge the same total amount?",
+    "promptHtml": "Company A charges a \\(\\$25\\) fee plus \\(\\$0.40\\) per mile to rent a trailer. Company B charges a \\(\\$15\\) fee plus \\(\\$0.60\\) per mile. For how many miles will the two companies charge the same total amount?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(50\\)</p>",
+        "text": "\\(50\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(40\\)</p>",
+        "text": "\\(40\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(25\\)</p>",
+        "text": "\\(25\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(60\\)</p>",
+        "text": "\\(60\\)"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-22",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "72",
+      "moduleQuestion": "22",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Distribute: \\(-3x - 12 &gt; 2x - 7\\). Subtract \\(2x\\): \\(-5x - 12 &gt; -7\\). Add \\(12\\): \\(-5x &gt; 5\\). Divide by \\(-5\\) (flip the inequality): \\(x &lt; -1\\). This is an open circle at \\(-1\\) with shading to the left.</p>",
+    "skilled": "TBD",
+    "explanation": "Distribute: \\(-3x - 12 > 2x - 7\\). Subtract \\(2x\\): \\(-5x - 12 > -7\\). Add \\(12\\): \\(-5x > 5\\). Divide by \\(-5\\) (flip the inequality): \\(x < -1\\). This is an open circle at \\(-1\\) with shading to the left.",
+    "points": 1,
+    "prompt": "Which number line represents all values of \\(x\\) that satisfy \\(-3(x + 4) > 2x - 7\\)?",
+    "promptHtml": "Which number line represents all values of \\(x\\) that satisfy \\(-3(x + 4) &gt; 2x - 7\\)?<br><img src=\"/exam-images/satcc-c8d1b0745b6471b38e0c2ec72ee2a5f90722390f0c4578d5127524eb3d5f7b65.png\" alt=\"72\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>An open circle at \\(x = -1\\) with shading to the left</p>",
+        "text": "An open circle at \\(x = -1\\) with shading to the left"
+      },
+      {
+        "id": "B",
+        "html": "<p>A closed circle at \\(x = -1\\) with shading to the left</p>",
+        "text": "A closed circle at \\(x = -1\\) with shading to the left"
+      },
+      {
+        "id": "C",
+        "html": "<p>An open circle at \\(x = 1\\) with shading to the left</p>",
+        "text": "An open circle at \\(x = 1\\) with shading to the left"
+      },
+      {
+        "id": "D",
+        "html": "<p>An open circle at \\(x = 1\\) with shading to the right</p>",
+        "text": "An open circle at \\(x = 1\\) with shading to the right"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-23",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "73",
+      "moduleQuestion": "23",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The constant of proportionality is \\(k = 1.8 \\div  12 = 0.15\\) pounds of salt per gallon. The remaining volume is \\(85 - 40 = 45\\) gallons. The additional salt needed is \\(45 \\times  0.15 = 6.75\\) pounds.</p>",
+    "skilled": "TBD",
+    "explanation": "The constant of proportionality is \\(k = 1.8 \\div  12 = 0.15\\) pounds of salt per gallon. The remaining volume is \\(85 - 40 = 45\\) gallons. The additional salt needed is \\(45 \\times  0.15 = 6.75\\) pounds.",
+    "points": 1,
+    "prompt": "An aquarium's shark tank requires saltwater mixed so that the weight of salt is always proportional to the total volume of water. A technician records that \\(12\\) gallons of water requires \\(1.8\\) pounds of salt. The aquarium is refilling a display tank that holds \\(85\\) gallons. After adding salt for the first \\(40\\) gallons, how many additional pounds of salt are needed for the remaining volume?",
+    "promptHtml": "An aquarium's shark tank requires saltwater mixed so that the weight of salt is always proportional to the total volume of water. A technician records that \\(12\\) gallons of water requires \\(1.8\\) pounds of salt. The aquarium is refilling a display tank that holds \\(85\\) gallons. After adding salt for the first \\(40\\) gallons, how many additional pounds of salt are needed for the remaining volume?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(6.00\\)</p>",
+        "text": "\\(6.00\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(6.75\\)</p>",
+        "text": "\\(6.75\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(7.50\\)</p>",
+        "text": "\\(7.50\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(8.25\\)</p>",
+        "text": "\\(8.25\\)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-24",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "74",
+      "moduleQuestion": "24",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>By the triangle inequality, the third side must be strictly less than \\(11 + 18 = 29\\) feet and strictly greater than \\(18 - 11 = 7\\) feet. The greatest whole-number value for the third side is therefore \\(28\\) feet. The greatest possible perimeter is \\(11 + 18 + 28 = 57\\) feet. Choice D (\\(58\\)) would require a third side of \\(29\\) feet, which equals the sum of the other two sides and does not form a valid triangle.</p>",
+    "skilled": "TBD",
+    "explanation": "By the triangle inequality, the third side must be strictly less than \\(11 + 18 = 29\\) feet and strictly greater than \\(18 - 11 = 7\\) feet. The greatest whole-number value for the third side is therefore \\(28\\) feet. The greatest possible perimeter is \\(11 + 18 + 28 = 57\\) feet. Choice D (\\(58\\)) would require a third side of \\(29\\) feet, which equals the sum of the other two sides and does not form a valid triangle.",
+    "points": 1,
+    "prompt": "An engineer designing a triangular brace for a bridge support needs two sides of the triangle to measure \\(11\\) feet and \\(18\\) feet. She wants the perimeter to be as large as possible while still forming a valid triangle, using only whole-number side lengths. What is the greatest possible perimeter, in feet, of such a triangle?",
+    "promptHtml": "An engineer designing a triangular brace for a bridge support needs two sides of the triangle to measure \\(11\\) feet and \\(18\\) feet. She wants the perimeter to be as large as possible while still forming a valid triangle, using only whole-number side lengths. What is the <strong>greatest</strong> possible perimeter, in feet, of such a triangle?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(55\\)</p>",
+        "text": "\\(55\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(56\\)</p>",
+        "text": "\\(56\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(57\\)</p>",
+        "text": "\\(57\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(58\\)</p>",
+        "text": "\\(58\\)"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-25",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "75",
+      "moduleQuestion": "25",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The circle touches all four sides, so its diameter is \\(10\\) centimeters and its radius is \\(5\\) centimeters. The area of the circle is \\(\\pi (5)^{2} = 25\\pi \\) and the area of the square is \\(10 \\times  10 = 100\\). The area outside the circle is \\(100 - 25\\pi \\) square centimeters. Choice A uses the diameter as the radius, and choice D is only the area of the circle.</p>",
+    "skilled": "TBD",
+    "explanation": "The circle touches all four sides, so its diameter is \\(10\\) centimeters and its radius is \\(5\\) centimeters. The area of the circle is \\(\\pi (5)^{2} = 25\\pi \\) and the area of the square is \\(10 \\times  10 = 100\\). The area outside the circle is \\(100 - 25\\pi \\) square centimeters. Choice A uses the diameter as the radius, and choice D is only the area of the circle.",
+    "points": 1,
+    "prompt": "A circle is drawn inside a square so that the circle touches all four sides of the square. The square has a side length of \\(10\\) centimeters. What is the area, in square centimeters, of the part of the square that is outside the circle?",
+    "promptHtml": "A circle is drawn inside a square so that the circle touches all four sides of the square. The square has a side length of \\(10\\) centimeters. What is the area, in square centimeters, of the part of the square that is outside the circle?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(100 - 100\\pi \\)</p>",
+        "text": "\\(100 - 100\\pi \\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(100 - 10\\pi \\)</p>",
+        "text": "\\(100 - 10\\pi \\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(100 - 25\\pi \\)</p>",
+        "text": "\\(100 - 25\\pi \\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(25\\pi \\)</p>",
+        "text": "\\(25\\pi \\)"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-26",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "76",
+      "moduleQuestion": "26",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>From the labeled box plot: minimum \\(= 42\\), \\(Q_{1} = 55\\), median \\(= 68\\), \\(Q_{3} = 83\\), maximum \\(= 97\\). The interquartile range is \\(83 - 55 = 28\\). The range of the lower half of the data (minimum to median) is \\(68 - 42 = 26\\). Since \\(28 &gt; 26\\), choice C is supported. Choice A cannot be determined, because a box plot does not show the mean. Choice B is not supported: a median of \\(68\\) means about half of the weeks, not more than half, had at least \\(68\\) books. Choice D is not supported: roughly a quarter of the weeks fall between \\(Q_{1}\\) and the median, but a box plot does not show the exact count.</p>",
+    "skilled": "TBD",
+    "explanation": "From the labeled box plot: minimum \\(= 42\\), \\(Q_{1} = 55\\), median \\(= 68\\), \\(Q_{3} = 83\\), maximum \\(= 97\\). The interquartile range is \\(83 - 55 = 28\\). The range of the lower half of the data (minimum to median) is \\(68 - 42 = 26\\). Since \\(28 > 26\\), choice C is supported. Choice A cannot be determined, because a box plot does not show the mean. Choice B is not supported: a median of \\(68\\) means about half of the weeks, not more than half, had at least \\(68\\) books. Choice D is not supported: roughly a quarter of the weeks fall between \\(Q_{1}\\) and the median, but a box plot does not show the exact count.",
+    "points": 1,
+    "prompt": "The box plot shows the distribution of the number of books checked out per week at a library branch over a \\(40\\)-week period. The minimum, first quartile, median, third quartile, and maximum are labeled on the plot. Which statement about the data is supported by the box plot?",
+    "promptHtml": "The box plot shows the distribution of the number of books checked out per week at a library branch over a \\(40\\)-week period. The minimum, first quartile, median, third quartile, and maximum are labeled on the plot. Which statement about the data is supported by the box plot?<br><img src=\"/exam-images/satcc-110c9315e60a6893e520308db50c9ebf5a93e2fd3b0b96b633536773bda655fa.png\" alt=\"76\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>The mean number of books checked out is \\(74\\).</p>",
+        "text": "The mean number of books checked out is \\(74\\)."
+      },
+      {
+        "id": "B",
+        "html": "<p>More than half of the weeks had at least \\(68\\) books checked out.</p>",
+        "text": "More than half of the weeks had at least \\(68\\) books checked out."
+      },
+      {
+        "id": "C",
+        "html": "<p>The interquartile range is greater than the range of the lower half of the data.</p>",
+        "text": "The interquartile range is greater than the range of the lower half of the data."
+      },
+      {
+        "id": "D",
+        "html": "<p>Exactly \\(10\\) weeks had between \\(55\\) and \\(68\\) books checked out.</p>",
+        "text": "Exactly \\(10\\) weeks had between \\(55\\) and \\(68\\) books checked out."
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-27",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "77",
+      "moduleQuestion": "27",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>From the dot plot, the \\(15\\) values add to \\(61\\), so the mean is \\(61 \\div  15 ≈ 4.07\\). The median is the \\(8\\)th value in order, which is \\(4\\). The mode is \\(3\\), and the range is \\(9 - 1 = 8\\). The mean is greater than the median, so choice D is true. Choice A is false because \\(4.07 &gt; 4\\), choice B is false because the median is \\(4\\) and the mode is \\(3\\), and choice C is false because the range is \\(8\\).</p>",
+    "skilled": "TBD",
+    "explanation": "From the dot plot, the \\(15\\) values add to \\(61\\), so the mean is \\(61 \\div  15 ≈ 4.07\\). The median is the \\(8\\)th value in order, which is \\(4\\). The mode is \\(3\\), and the range is \\(9 - 1 = 8\\). The mean is greater than the median, so choice D is true. Choice A is false because \\(4.07 > 4\\), choice B is false because the median is \\(4\\) and the mode is \\(3\\), and choice C is false because the range is \\(8\\).",
+    "points": 1,
+    "prompt": "The dot plot shows the number of goals scored by each of \\(15\\) players during a season. Which statement about the data is true?",
+    "promptHtml": "The dot plot shows the number of goals scored by each of \\(15\\) players during a season. Which statement about the data is true?<br><img src=\"/exam-images/satcc-a439888f135b023a684c879fd02f94e42c1ed1a211fa332260fe0c85c028d238.png\" alt=\"77\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>The mean is less than the median.</p>",
+        "text": "The mean is less than the median."
+      },
+      {
+        "id": "B",
+        "html": "<p>The median is equal to the mode.</p>",
+        "text": "The median is equal to the mode."
+      },
+      {
+        "id": "C",
+        "html": "<p>The range of the data is \\(9\\).</p>",
+        "text": "The range of the data is \\(9\\)."
+      },
+      {
+        "id": "D",
+        "html": "<p>The mean is greater than the median.</p>",
+        "text": "The mean is greater than the median."
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-28",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "78",
+      "moduleQuestion": "28",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The number of bicycles is \\(2p - 5\\). Revenue from passengers is \\(4p\\) and from bicycles is \\(3(2p - 5)\\), giving \\(4p + 3(2p - 5) = 585\\). Check: \\(4p + 3(2p - 5) = 10p - 15 = 585\\), so \\(p = 60\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The number of bicycles is \\(2p - 5\\). Revenue from passengers is \\(4p\\) and from bicycles is \\(3(2p - 5)\\), giving \\(4p + 3(2p - 5) = 585\\). Check: \\(4p + 3(2p - 5) = 10p - 15 = 585\\), so \\(p = 60\\).",
+    "points": 1,
+    "prompt": "A ferry carries passengers and bicycles across a harbor. Each passenger ticket costs \\(\\$4\\) and each bicycle costs an additional \\(\\$3\\) to transport. On one trip, the ferry carried some passengers, and the number of bicycles was \\(5\\) fewer than twice the number of passengers. The total revenue from that trip was \\(\\$585\\). Which equation can be used to find \\(p\\), the number of passengers on that trip?",
+    "promptHtml": "A ferry carries passengers and bicycles across a harbor. Each passenger ticket costs \\(\\$4\\) and each bicycle costs an additional \\(\\$3\\) to transport. On one trip, the ferry carried some passengers, and the number of bicycles was \\(5\\) fewer than twice the number of passengers. The total revenue from that trip was \\(\\$585\\). Which equation can be used to find \\(p\\), the number of passengers on that trip?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(7p - 5 = 585\\)</p>",
+        "text": "\\(7p - 5 = 585\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(4p + 3(2p - 5) = 585\\)</p>",
+        "text": "\\(4p + 3(2p - 5) = 585\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(4(2p - 5) + 3p = 585\\)</p>",
+        "text": "\\(4(2p - 5) + 3p = 585\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(4p + 3(2p + 5) = 585\\)</p>",
+        "text": "\\(4p + 3(2p + 5) = 585\\)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-29",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "79",
+      "moduleQuestion": "29",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Alternate interior angles formed by parallel streets are congruent, so \\(4x - 12 = 2x + 18\\). This gives \\(2x = 30\\) and \\(x = 15\\). Each angle measures \\(2(15) + 18 = 48^{∘}\\). A supplementary angle measures \\(180^{∘} - 48^{∘} = 132^{∘}\\). Choice A is the value of \\(x\\), and choice B is the measure of the alternate interior angles themselves.</p>",
+    "skilled": "TBD",
+    "explanation": "Alternate interior angles formed by parallel streets are congruent, so \\(4x - 12 = 2x + 18\\). This gives \\(2x = 30\\) and \\(x = 15\\). Each angle measures \\(2(15) + 18 = 48^{∘}\\). A supplementary angle measures \\(180^{∘} - 48^{∘} = 132^{∘}\\). Choice A is the value of \\(x\\), and choice B is the measure of the alternate interior angles themselves.",
+    "points": 1,
+    "prompt": "A city map shows two parallel streets, \\(p\\) and \\(q\\), crossed by an avenue, \\(t\\). At the two intersections, the alternate interior angles are marked \\((4x - 12)^{∘}\\) and \\((2x + 18)^{∘}\\). What is the measure, in degrees, of an angle supplementary to either marked angle?",
+    "promptHtml": "A city map shows two parallel streets, \\(p\\) and \\(q\\), crossed by an avenue, \\(t\\). At the two intersections, the alternate interior angles are marked \\((4x - 12)^{∘}\\) and \\((2x + 18)^{∘}\\). What is the measure, in degrees, of an angle supplementary to either marked angle?<br><img src=\"/exam-images/satcc-1fae5aef50596e28e4622ff980e22e9cbf9634cb4ed2b1d2a38f430eb93eef1e.png\" alt=\"79\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(15\\)</p>",
+        "text": "\\(15\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(48\\)</p>",
+        "text": "\\(48\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(42\\)</p>",
+        "text": "\\(42\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(132\\)</p>",
+        "text": "\\(132\\)"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-30",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "80",
+      "moduleQuestion": "30",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Packages delivered each hour: hour \\(1\\) = \\(12\\), hour \\(2\\) = \\(16\\), hour \\(3\\) = \\(20\\), hour \\(4\\) = \\(24\\). Cumulative totals: after hour \\(1\\) = \\(12\\), after hour \\(2\\) = \\(28\\), after hour \\(3\\) = \\(48\\), after hour \\(4\\) = \\(72\\). The total first exceeds \\(50\\) after hour \\(4\\), so the answer is \\(4\\) complete hours.</p>",
+    "skilled": "TBD",
+    "explanation": "Packages delivered each hour: hour \\(1\\) = \\(12\\), hour \\(2\\) = \\(16\\), hour \\(3\\) = \\(20\\), hour \\(4\\) = \\(24\\). Cumulative totals: after hour \\(1\\) = \\(12\\), after hour \\(2\\) = \\(28\\), after hour \\(3\\) = \\(48\\), after hour \\(4\\) = \\(72\\). The total first exceeds \\(50\\) after hour \\(4\\), so the answer is \\(4\\) complete hours.",
+    "points": 1,
+    "prompt": "A drone delivery company tracks the cumulative number of packages delivered each hour after its warehouse opens. In the first hour, \\(12\\) packages are delivered. Each subsequent hour, \\(4\\) more packages are delivered than in the previous hour. After how many complete hours will the total number of packages delivered first exceed \\(50\\)?",
+    "promptHtml": "<p>A drone delivery company tracks the cumulative number of packages delivered each hour after its warehouse opens. In the first hour, \\(12\\) packages are delivered. Each subsequent hour, \\(4\\) more packages are delivered than in the previous hour. After how many complete hours will the total number of packages delivered first exceed \\(50\\)? <br>\n\n                    \n                </p>",
+    "topic": "Uncategorized",
+    "correctTextAnswers": [
+      "4, 4.0"
+    ],
+    "type": "short_response"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-31",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "81",
+      "moduleQuestion": "31",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>There are \\(12\\) tokens in all, so the chance that the first token is orange is \\(\\frac{6}{12} = \\frac{1}{2}\\). After one orange token is removed, \\(11\\) tokens remain and \\(2\\) of them are silver, so the chance that the second token is silver is \\(\\frac{2}{11}\\). Multiplying gives \\(\\frac{1}{2} \\times  \\frac{2}{11} = \\frac{1}{11}\\).</p>",
+    "skilled": "TBD",
+    "explanation": "There are \\(12\\) tokens in all, so the chance that the first token is orange is \\(\\frac{6}{12} = \\frac{1}{2}\\). After one orange token is removed, \\(11\\) tokens remain and \\(2\\) of them are silver, so the chance that the second token is silver is \\(\\frac{2}{11}\\). Multiplying gives \\(\\frac{1}{2} \\times  \\frac{2}{11} = \\frac{1}{11}\\).",
+    "points": 1,
+    "prompt": "A bag contains colored tokens in the following quantities: \\(6\\) orange, \\(4\\) purple, and \\(2\\) silver. Rashida draws two tokens from the bag one at a time without replacing the first before drawing the second. What is the probability that she draws one orange token and then one silver token, in that order?",
+    "promptHtml": "A bag contains colored tokens in the following quantities: \\(6\\) orange, \\(4\\) purple, and \\(2\\) silver. Rashida draws two tokens from the bag one at a time without replacing the first before drawing the second. What is the probability that she draws one orange token and then one silver token, in that order?<br><img src=\"/exam-images/satcc-be3615fcc32b945930160d22c83a5899ba1e5e4465d505dd9322dad814c3c903.png\" alt=\"81\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(\\frac{1}{11}\\)</p>",
+        "text": "\\(\\frac{1}{11}\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(\\frac{1}{10}\\)</p>",
+        "text": "\\(\\frac{1}{10}\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(\\frac{1}{6}\\)</p>",
+        "text": "\\(\\frac{1}{6}\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(\\frac{2}{11}\\)</p>",
+        "text": "\\(\\frac{2}{11}\\)"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-32",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "82",
+      "moduleQuestion": "32",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The number of snow globes is \\(3k + 6\\). Total souvenirs: \\(k + (3k + 6) = 94\\), which simplifies to \\(k + 3k + 6 = 94\\). Choice A matches this equation. Choice B subtracts \\(6\\) instead of adding it, choice C applies the extra \\(6\\) inside the multiplication, and choice D uses \\(6k\\) instead of \\(3k + 6\\) for the snow globes.</p>",
+    "skilled": "TBD",
+    "explanation": "The number of snow globes is \\(3k + 6\\). Total souvenirs: \\(k + (3k + 6) = 94\\), which simplifies to \\(k + 3k + 6 = 94\\). Choice A matches this equation. Choice B subtracts \\(6\\) instead of adding it, choice C applies the extra \\(6\\) inside the multiplication, and choice D uses \\(6k\\) instead of \\(3k + 6\\) for the snow globes.",
+    "points": 1,
+    "prompt": "An aquarium gift shop sells two types of souvenirs: keychains and snow globes. The shop sold a total of \\(94\\) souvenirs on Saturday. The number of snow globes sold was \\(6\\) more than three times the number of keychains sold. Which equation could be used to find \\(k\\), the number of keychains sold?",
+    "promptHtml": "An aquarium gift shop sells two types of souvenirs: keychains and snow globes. The shop sold a total of \\(94\\) souvenirs on Saturday. The number of snow globes sold was \\(6\\) more than three times the number of keychains sold. Which equation could be used to find \\(k\\), the number of keychains sold?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(k + 3k + 6 = 94\\)</p>",
+        "text": "\\(k + 3k + 6 = 94\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(k + (3k - 6) = 94\\)</p>",
+        "text": "\\(k + (3k - 6) = 94\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(k + 3(k + 6) = 94\\)</p>",
+        "text": "\\(k + 3(k + 6) = 94\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(6k + k = 94\\)</p>",
+        "text": "\\(6k + k = 94\\)"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-33",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "83",
+      "moduleQuestion": "33",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Raise each factor inside the parentheses to the fourth power: \\(2^{4} = 16\\) and \\((x^{3})^{4} = x^{3\\times 4} = x^{12}\\). The expression is equivalent to \\(16x^{12}\\). Choices A and D add the exponents instead of multiplying them, and choices A and B do not raise the coefficient \\(2\\) to the fourth power.</p>",
+    "skilled": "TBD",
+    "explanation": "Raise each factor inside the parentheses to the fourth power: \\(2^{4} = 16\\) and \\((x^{3})^{4} = x^{3\\times 4} = x^{12}\\). The expression is equivalent to \\(16x^{12}\\). Choices A and D add the exponents instead of multiplying them, and choices A and B do not raise the coefficient \\(2\\) to the fourth power.",
+    "points": 1,
+    "prompt": "Simplify \\((2x^{3})^{4}\\). Which choice shows the result?",
+    "promptHtml": "Simplify \\((2x^{3})^{4}\\). Which choice shows the result?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(8x^{7}\\)</p>",
+        "text": "\\(8x^{7}\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(2x^{12}\\)</p>",
+        "text": "\\(2x^{12}\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(16x^{12}\\)</p>",
+        "text": "\\(16x^{12}\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(16x^{7}\\)</p>",
+        "text": "\\(16x^{7}\\)"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-34",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "84",
+      "moduleQuestion": "34",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Reading the stem-and-leaf plot: the \\(16\\) values in order are \\(12, 15, 18, 21, 23, 23, 27, 29, 31, 34, 34, 34, 38, 42, 46, 49\\). Mode \\(= 34\\) (appears \\(3\\) times). Median \\(=\\) average of \\(8\\)th and \\(9\\)th values \\(= (29 + 31) \\div  2 = 30\\). Positive difference \\(= 34 - 30 = 4\\).</p>",
+    "skilled": "TBD",
+    "explanation": "Reading the stem-and-leaf plot: the \\(16\\) values in order are \\(12, 15, 18, 21, 23, 23, 27, 29, 31, 34, 34, 34, 38, 42, 46, 49\\). Mode \\(= 34\\) (appears \\(3\\) times). Median \\(=\\) average of \\(8\\)th and \\(9\\)th values \\(= (29 + 31) \\div  2 = 30\\). Positive difference \\(= 34 - 30 = 4\\).",
+    "points": 1,
+    "prompt": "The stem-and-leaf plot below shows the number of library books checked out by each of \\(16\\) patrons on a single afternoon. What is the positive difference between the median and the mode of this data set?",
+    "promptHtml": "The stem-and-leaf plot below shows the number of library books checked out by each of \\(16\\) patrons on a single afternoon. What is the positive difference between the median and the mode of this data set?<br><img src=\"/exam-images/satcc-2335672ba9166e5c99431a9bd07f322fcdf66db7dfff7e22be27900b291c3b0d.png\" alt=\"84\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(1\\)</p>",
+        "text": "\\(1\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(2\\)</p>",
+        "text": "\\(2\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(3\\)</p>",
+        "text": "\\(3\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(4\\)</p>",
+        "text": "\\(4\\)"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-35",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "85",
+      "moduleQuestion": "35",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Choice A: the multiples of \\(4\\) from \\(1\\) to \\(12\\) are \\(4\\), \\(8\\), and \\(12\\), so the chance of a multiple of \\(4\\) on one spin is \\(\\frac{3}{12} = \\frac{1}{4}\\). For both spins, \\((\\frac{1}{4})^{2} = \\frac{1}{16}\\). True. Choice D: the only way to get a sum of \\(24\\) is for both spins to show \\(12\\), and \\(\\frac{1}{12} \\times  \\frac{1}{12} = \\frac{1}{144}\\). True. Choice B: the chance of a number greater than \\(9\\) is \\(\\frac{3}{12} = \\frac{1}{4}\\) and the chance of a number less than \\(3\\) is \\(\\frac{2}{12} = \\frac{1}{6}\\), so the product is \\(\\frac{1}{24}\\), not \\(\\frac{1}{18}\\). Choice C: the perfect squares from \\(1\\) to \\(12\\) are \\(1\\), \\(4\\), and \\(9\\), so the chance for both spins is \\((\\frac{3}{12})^{2} = \\frac{1}{16}\\), not \\(\\frac{1}{9}\\). Choice E: the chance of a number greater than \\(6\\) is \\(\\frac{1}{2}\\), so the chance for both spins is \\(\\frac{1}{4}\\), not \\(\\frac{1}{6}\\). Choice F: the factors of \\(12\\) from \\(1\\) to \\(12\\) are \\(1, 2, 3, 4, 6, 12\\), which is \\(6\\) values, leaving \\(6\\) non-factors, so the chance that neither spin shows a factor is \\((\\frac{1}{2})^{2} = \\frac{1}{4}\\), not \\(\\frac{4}{9}\\).</p>",
+    "skilled": "TBD",
+    "explanation": "Choice A: the multiples of \\(4\\) from \\(1\\) to \\(12\\) are \\(4\\), \\(8\\), and \\(12\\), so the chance of a multiple of \\(4\\) on one spin is \\(\\frac{3}{12} = \\frac{1}{4}\\). For both spins, \\((\\frac{1}{4})^{2} = \\frac{1}{16}\\). True. Choice D: the only way to get a sum of \\(24\\) is for both spins to show \\(12\\), and \\(\\frac{1}{12} \\times  \\frac{1}{12} = \\frac{1}{144}\\). True. Choice B: the chance of a number greater than \\(9\\) is \\(\\frac{3}{12} = \\frac{1}{4}\\) and the chance of a number less than \\(3\\) is \\(\\frac{2}{12} = \\frac{1}{6}\\), so the product is \\(\\frac{1}{24}\\), not \\(\\frac{1}{18}\\). Choice C: the perfect squares from \\(1\\) to \\(12\\) are \\(1\\), \\(4\\), and \\(9\\), so the chance for both spins is \\((\\frac{3}{12})^{2} = \\frac{1}{16}\\), not \\(\\frac{1}{9}\\). Choice E: the chance of a number greater than \\(6\\) is \\(\\frac{1}{2}\\), so the chance for both spins is \\(\\frac{1}{4}\\), not \\(\\frac{1}{6}\\). Choice F: the factors of \\(12\\) from \\(1\\) to \\(12\\) are \\(1, 2, 3, 4, 6, 12\\), which is \\(6\\) values, leaving \\(6\\) non-factors, so the chance that neither spin shows a factor is \\((\\frac{1}{2})^{2} = \\frac{1}{4}\\), not \\(\\frac{4}{9}\\).",
+    "points": 1,
+    "prompt": "A spinner has \\(12\\) equal sections labeled \\(1\\) through \\(12\\). Isabela spins the spinner twice. The two spins are independent. Select TWO statements that are true.",
+    "promptHtml": "A spinner has \\(12\\) equal sections labeled \\(1\\) through \\(12\\). Isabela spins the spinner twice. The two spins are independent. Select <strong>TWO</strong> statements that are true.",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>The probability that both spins land on a multiple of \\(4\\) is \\(\\frac{1}{16}\\).</p>",
+        "text": "The probability that both spins land on a multiple of \\(4\\) is \\(\\frac{1}{16}\\)."
+      },
+      {
+        "id": "B",
+        "html": "<p>The probability that the first spin shows a number greater than \\(9\\) and the second spin shows a number less than \\(3\\) is \\(\\frac{1}{18}\\).</p>",
+        "text": "The probability that the first spin shows a number greater than \\(9\\) and the second spin shows a number less than \\(3\\) is \\(\\frac{1}{18}\\)."
+      },
+      {
+        "id": "C",
+        "html": "<p>The probability that both spins show a perfect square is \\(\\frac{1}{9}\\).</p>",
+        "text": "The probability that both spins show a perfect square is \\(\\frac{1}{9}\\)."
+      },
+      {
+        "id": "D",
+        "html": "<p>The probability that both spins show a \\(12\\), giving a sum of \\(24\\), is \\(\\frac{1}{144}\\).</p>",
+        "text": "The probability that both spins show a \\(12\\), giving a sum of \\(24\\), is \\(\\frac{1}{144}\\)."
+      },
+      {
+        "id": "E",
+        "html": "<p>The probability that the first spin is greater than \\(6\\) and the second spin is greater than \\(6\\) is \\(\\frac{1}{6}\\).</p>",
+        "text": "The probability that the first spin is greater than \\(6\\) and the second spin is greater than \\(6\\) is \\(\\frac{1}{6}\\)."
+      },
+      {
+        "id": "F",
+        "html": "<p>The probability that neither spin shows a factor of \\(12\\) is \\(\\frac{4}{9}\\).</p>",
+        "text": "The probability that neither spin shows a factor of \\(12\\) is \\(\\frac{4}{9}\\)."
+      }
+    ],
+    "correctChoiceIds": [
+      "A",
+      "D"
+    ],
+    "requiredSelections": 2,
+    "type": "multi_select"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-36",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "86",
+      "moduleQuestion": "36",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Let \\(g\\) be the number of guests. Then \\(60 + 7.50g &lt; 150\\), so \\(7.50g &lt; 90\\) and \\(g &lt; 12\\). The greatest whole number less than \\(12\\) is \\(11\\). With \\(12\\) guests the cost is exactly \\(\\$150\\), which is not less than \\(\\$150\\). Choice D divides \\(\\$150\\) by \\(\\$7.50\\) without subtracting the venue cost.</p>",
+    "skilled": "TBD",
+    "explanation": "Let \\(g\\) be the number of guests. Then \\(60 + 7.50g < 150\\), so \\(7.50g < 90\\) and \\(g < 12\\). The greatest whole number less than \\(12\\) is \\(11\\). With \\(12\\) guests the cost is exactly \\(\\$150\\), which is not less than \\(\\$150\\). Choice D divides \\(\\$150\\) by \\(\\$7.50\\) without subtracting the venue cost.",
+    "points": 1,
+    "prompt": "Lena wants to spend less than \\(\\$150\\) on a party. The venue costs \\(\\$60\\), and each guest's meal costs \\(\\$7.50\\). What is the greatest number of guests Lena can invite?",
+    "promptHtml": "Lena wants to spend less than \\(\\$150\\) on a party. The venue costs \\(\\$60\\), and each guest's meal costs \\(\\$7.50\\). What is the <strong>greatest</strong> number of guests Lena can invite?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(12\\)</p>",
+        "text": "\\(12\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(11\\)</p>",
+        "text": "\\(11\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(13\\)</p>",
+        "text": "\\(13\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(20\\)</p>",
+        "text": "\\(20\\)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-37",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "87",
+      "moduleQuestion": "37",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The area of the trapezoidal cross-section is \\(\\frac{1}{2}(b_{1} + b_{2}) \\times  h = \\frac{1}{2}(6 + 10) \\times  5 = \\frac{1}{2} \\times  16 \\times  5 = 40\\) square feet. The volume is \\(40 \\times  12 = 480\\) cubic feet.</p>",
+    "skilled": "TBD",
+    "explanation": "The area of the trapezoidal cross-section is \\(\\frac{1}{2}(b_{1} + b_{2}) \\times  h = \\frac{1}{2}(6 + 10) \\times  5 = \\frac{1}{2} \\times  16 \\times  5 = 40\\) square feet. The volume is \\(40 \\times  12 = 480\\) cubic feet.",
+    "points": 1,
+    "prompt": "A greenhouse has a cross-section in the shape of a trapezoid. The two parallel sides of the trapezoid measure \\(6\\) feet and \\(10\\) feet, and the perpendicular height between them is \\(5\\) feet. The greenhouse extends \\(12\\) feet in length. The area of a trapezoid is \\(A = \\frac{1}{2}(b_{1} + b_{2})h\\). What is the volume of the greenhouse, in cubic feet?",
+    "promptHtml": "A greenhouse has a cross-section in the shape of a trapezoid. The two parallel sides of the trapezoid measure \\(6\\) feet and \\(10\\) feet, and the perpendicular height between them is \\(5\\) feet. The greenhouse extends \\(12\\) feet in length. The area of a trapezoid is \\(A = \\frac{1}{2}(b_{1} + b_{2})h\\). What is the volume of the greenhouse, in cubic feet?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(480\\)</p>",
+        "text": "\\(480\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(240\\)</p>",
+        "text": "\\(240\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(960\\)</p>",
+        "text": "\\(960\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(360\\)</p>",
+        "text": "\\(360\\)"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-38",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "88",
+      "moduleQuestion": "38",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The actual dimensions are \\(4.5 \\times  20 = 90\\) feet and \\(6 \\times  20 = 120\\) feet, so the actual area is \\(90 \\times  120 = 10,800\\) square feet. A common error is multiplying the drawing area (\\(27\\) sq in) by only \\(20\\) instead of by \\(20^{2} = 400\\), yielding \\(540\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The actual dimensions are \\(4.5 \\times  20 = 90\\) feet and \\(6 \\times  20 = 120\\) feet, so the actual area is \\(90 \\times  120 = 10,800\\) square feet. A common error is multiplying the drawing area (\\(27\\) sq in) by only \\(20\\) instead of by \\(20^{2} = 400\\), yielding \\(540\\).",
+    "points": 1,
+    "prompt": "An architect's floor plan of an aquarium uses a scale in which \\(1\\) inch represents \\(20\\) feet. In the floor plan, the main tank hall is a rectangle that measures \\(4.5\\) inches by \\(6\\) inches. What is the actual area of the main tank hall, in square feet?",
+    "promptHtml": "An architect's floor plan of an aquarium uses a scale in which \\(1\\) inch represents \\(20\\) feet. In the floor plan, the main tank hall is a rectangle that measures \\(4.5\\) inches by \\(6\\) inches. What is the actual area of the main tank hall, in square feet?<br><img src=\"/exam-images/satcc-eed66c8596e8452df4770b2c86766b35fe4be429de7e55eb6a3ece033b990d64.png\" alt=\"88\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(21,600\\)</p>",
+        "text": "\\(21,600\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(10,800\\)</p>",
+        "text": "\\(10,800\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(5,400\\)</p>",
+        "text": "\\(5,400\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(540\\)</p>",
+        "text": "\\(540\\)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-39",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "89",
+      "moduleQuestion": "39",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The total number of baskets is \\(37\\), so \\(s + l = 37\\). The total number of apples is \\(387\\), with small baskets holding \\(8\\) and large baskets holding \\(15\\), so \\(8s + 15l = 387\\). This matches choice B. Check: substituting \\(s = 37 - l\\) gives \\(8(37 - l) + 15l = 387\\), so \\(296 + 7l = 387\\), \\(l = 13\\), and \\(s = 24\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The total number of baskets is \\(37\\), so \\(s + l = 37\\). The total number of apples is \\(387\\), with small baskets holding \\(8\\) and large baskets holding \\(15\\), so \\(8s + 15l = 387\\). This matches choice B. Check: substituting \\(s = 37 - l\\) gives \\(8(37 - l) + 15l = 387\\), so \\(296 + 7l = 387\\), \\(l = 13\\), and \\(s = 24\\).",
+    "points": 1,
+    "prompt": "At an orchard, apples are packed into small baskets and large baskets. A small basket holds \\(8\\) apples and a large basket holds \\(15\\) apples. On Tuesday, the orchard packed a total of \\(387\\) apples using \\(37\\) baskets in all. Which system of equations can be used to find \\(s\\), the number of small baskets, and \\(l\\), the number of large baskets used?",
+    "promptHtml": "At an orchard, apples are packed into small baskets and large baskets. A small basket holds \\(8\\) apples and a large basket holds \\(15\\) apples. On Tuesday, the orchard packed a total of \\(387\\) apples using \\(37\\) baskets in all. Which system of equations can be used to find \\(s\\), the number of small baskets, and \\(l\\), the number of large baskets used?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(s + l = 387\\) and \\(8s + 15l = 37\\)</p>",
+        "text": "\\(s + l = 387\\) and \\(8s + 15l = 37\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(s + l = 37\\) and \\(8s + 15l = 387\\)</p>",
+        "text": "\\(s + l = 37\\) and \\(8s + 15l = 387\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(8s + l = 37\\) and \\(s + 15l = 387\\)</p>",
+        "text": "\\(8s + l = 37\\) and \\(s + 15l = 387\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(s + l = 37\\) and \\(15s + 8l = 387\\)</p>",
+        "text": "\\(s + l = 37\\) and \\(15s + 8l = 387\\)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-40",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "90",
+      "moduleQuestion": "40",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The constant of proportionality is \\(\\$22 \\div  4 = \\$5.50\\) per visitor. The community group admits \\(\\$154 \\div  \\$5.50 = 28\\) visitors. Combined with the school group's \\(7\\) visitors: \\(28 + 7 = 35\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The constant of proportionality is \\(\\$22 \\div  4 = \\$5.50\\) per visitor. The community group admits \\(\\$154 \\div  \\$5.50 = 28\\) visitors. Combined with the school group's \\(7\\) visitors: \\(28 + 7 = 35\\).",
+    "points": 1,
+    "prompt": "An aquarium charges admission based on the number of visitors. The figure shows the total admission cost for different group sizes. A community group has a budget of \\(\\$154\\). A school group separately pays for \\(7\\) visitors. What is the combined number of visitors for both groups?",
+    "promptHtml": "An aquarium charges admission based on the number of visitors. The figure shows the total admission cost for different group sizes. A community group has a budget of \\(\\$154\\). A school group separately pays for \\(7\\) visitors. What is the combined number of visitors for both groups?<br><img src=\"/exam-images/satcc-51b207c180206c536a3597ad3acd0582fa6015f54f3789a204cbd2c8868feeaf.png\" alt=\"90\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(33\\)</p>",
+        "text": "\\(33\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(42\\)</p>",
+        "text": "\\(42\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(29\\)</p>",
+        "text": "\\(29\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(35\\)</p>",
+        "text": "\\(35\\)"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-41",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "91",
+      "moduleQuestion": "41",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>First find the fare: \\(F = 3 + 2(7.5) = 3 + 15 = 18\\) dollars. The tip is \\(15\\%\\) of the fare, which is \\(0.15 \\times  18 = 2.70\\) dollars, so the rider pays \\(18 + 2.70 = \\$20.70\\). Choice A leaves out the tip, choice B adds \\(0.15\\) instead of \\(15\\%\\) of the fare, and choice D applies the tip only to the mileage charge.</p>",
+    "skilled": "TBD",
+    "explanation": "First find the fare: \\(F = 3 + 2(7.5) = 3 + 15 = 18\\) dollars. The tip is \\(15\\%\\) of the fare, which is \\(0.15 \\times  18 = 2.70\\) dollars, so the rider pays \\(18 + 2.70 = \\$20.70\\). Choice A leaves out the tip, choice B adds \\(0.15\\) instead of \\(15\\%\\) of the fare, and choice D applies the tip only to the mileage charge.",
+    "points": 1,
+    "prompt": "A taxi company charges a fare of \\(F = 3 + 2m\\) dollars for a ride, where \\(m\\) is the number of miles traveled. A rider pays the fare plus a \\(15\\%\\) tip on the fare. What is the total amount, in dollars, the rider pays for a ride of \\(7.5\\) miles?",
+    "promptHtml": "A taxi company charges a fare of \\(F = 3 + 2m\\) dollars for a ride, where \\(m\\) is the number of miles traveled. A rider pays the fare plus a \\(15\\%\\) tip on the fare. What is the total amount, in dollars, the rider pays for a ride of \\(7.5\\) miles?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(\\$18.00\\)</p>",
+        "text": "\\(\\$18.00\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(\\$18.15\\)</p>",
+        "text": "\\(\\$18.15\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(\\$20.70\\)</p>",
+        "text": "\\(\\$20.70\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(\\$20.25\\)</p>",
+        "text": "\\(\\$20.25\\)"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-42",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "92",
+      "moduleQuestion": "42",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>September sightings: \\(400 \\times  0.90 = 360\\). October sightings: \\(360 \\times  1.15 = 414\\). Choice A results from incorrectly combining the two percents as a net \\(5\\%\\) increase (\\(400 \\times  1.05 = 420\\)); choice C results from ignoring the September decrease and applying only the \\(15\\%\\) increase to \\(400\\); choice D results from multiplying the two percent values together (\\(0.10 \\times  0.15 = 0.015\\)) and applying a \\(1.5\\%\\) increase.</p>",
+    "skilled": "TBD",
+    "explanation": "September sightings: \\(400 \\times  0.90 = 360\\). October sightings: \\(360 \\times  1.15 = 414\\). Choice A results from incorrectly combining the two percents as a net \\(5\\%\\) increase (\\(400 \\times  1.05 = 420\\)); choice C results from ignoring the September decrease and applying only the \\(15\\%\\) increase to \\(400\\); choice D results from multiplying the two percent values together (\\(0.10 \\times  0.15 = 0.015\\)) and applying a \\(1.5\\%\\) increase.",
+    "points": 1,
+    "prompt": "An observatory recorded \\(400\\) meteor sightings in August. In September, the number of sightings decreased by \\(10\\%\\) from August. In October, the number of sightings increased by \\(15\\%\\) from September's total. How many meteor sightings were recorded in October?",
+    "promptHtml": "An observatory recorded \\(400\\) meteor sightings in August. In September, the number of sightings decreased by \\(10\\%\\) from August. In October, the number of sightings increased by \\(15\\%\\) from September's total. How many meteor sightings were recorded in October?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(420\\)</p>",
+        "text": "\\(420\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(414\\)</p>",
+        "text": "\\(414\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(460\\)</p>",
+        "text": "\\(460\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(406\\)</p>",
+        "text": "\\(406\\)"
+      }
+    ],
+    "correctChoiceId": "B",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-43",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "93",
+      "moduleQuestion": "43",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>Dividing, \\(15.75 \\div  1.35 ≈ 11.67\\), so the jeweler can make \\(11\\) whole rings, since \\(12\\) rings would need \\(16.20\\) grams. The \\(11\\) rings use \\(11 \\times  1.35 = 14.85\\) grams. The silver left over is \\(15.75 - 14.85 = 0.90\\) grams.</p>",
+    "skilled": "TBD",
+    "explanation": "Dividing, \\(15.75 \\div  1.35 ≈ 11.67\\), so the jeweler can make \\(11\\) whole rings, since \\(12\\) rings would need \\(16.20\\) grams. The \\(11\\) rings use \\(11 \\times  1.35 = 14.85\\) grams. The silver left over is \\(15.75 - 14.85 = 0.90\\) grams.",
+    "points": 1,
+    "prompt": "A jeweler has a silver bar that weighs \\(15.75\\) grams. Each ring uses exactly \\(1.35\\) grams of silver. After making as many whole rings as possible, how many grams of silver are left over?",
+    "promptHtml": "A jeweler has a silver bar that weighs \\(15.75\\) grams. Each ring uses exactly \\(1.35\\) grams of silver. After making as many whole rings as possible, how many grams of silver are left over?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(0.90\\)</p>",
+        "text": "\\(0.90\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(0.60\\)</p>",
+        "text": "\\(0.60\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(1.35\\)</p>",
+        "text": "\\(1.35\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(0.45\\)</p>",
+        "text": "\\(0.45\\)"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-44",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "94",
+      "moduleQuestion": "44",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The probability both conditions are met is \\(\\frac{3}{8} \\times  \\frac{2}{5} = \\frac{6}{40} = \\frac{3}{20}\\). Expected hours: \\(200 \\times  \\frac{3}{20} = 30\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The probability both conditions are met is \\(\\frac{3}{8} \\times  \\frac{2}{5} = \\frac{6}{40} = \\frac{3}{20}\\). Expected hours: \\(200 \\times  \\frac{3}{20} = 30\\).",
+    "points": 1,
+    "prompt": "A community radio station runs two independent segments each hour. The probability that the music segment plays a jazz song is \\(\\frac{3}{8}\\). The probability that the talk segment features a local guest is \\(\\frac{2}{5}\\). In \\(200\\) hours of programming, what is the expected number of hours in which both segments satisfy their respective conditions?",
+    "promptHtml": "<p>A community radio station runs two independent segments each hour. The probability that the music segment plays a jazz song is \\(\\frac{3}{8}\\). The probability that the talk segment features a local guest is \\(\\frac{2}{5}\\). In \\(200\\) hours of programming, what is the expected number of hours in which both segments satisfy their respective conditions?<br>\n\n                    \n                </p>",
+    "topic": "Uncategorized",
+    "correctTextAnswers": [
+      "30, 30.0"
+    ],
+    "type": "short_response"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-45",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "95",
+      "moduleQuestion": "45",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>From the table, the distances are \\(1\\frac{5}{6}\\), \\(\\frac{7}{9}\\), and \\(\\frac{2}{3}\\) miles. Convert to eighteenths: \\(1\\frac{5}{6} = \\frac{33}{18}\\), \\(\\frac{7}{9} = \\frac{14}{18}\\), \\(\\frac{2}{3} = \\frac{12}{18}\\). The sum is \\(\\frac{33+14+12}{18} = \\frac{59}{18} = 3\\frac{5}{18}\\) miles.</p>",
+    "skilled": "TBD",
+    "explanation": "From the table, the distances are \\(1\\frac{5}{6}\\), \\(\\frac{7}{9}\\), and \\(\\frac{2}{3}\\) miles. Convert to eighteenths: \\(1\\frac{5}{6} = \\frac{33}{18}\\), \\(\\frac{7}{9} = \\frac{14}{18}\\), \\(\\frac{2}{3} = \\frac{12}{18}\\). The sum is \\(\\frac{33+14+12}{18} = \\frac{59}{18} = 3\\frac{5}{18}\\) miles.",
+    "points": 1,
+    "prompt": "The table below shows the distance of each of the three segments of a kayak trail. What is the total distance, in miles, paddled along the entire trail?",
+    "promptHtml": "The table below shows the distance of each of the three segments of a kayak trail. What is the total distance, in miles, paddled along the entire trail?<br><img src=\"/exam-images/satcc-2002aab91653f799a1f599d25f57ca38918e99fbf6b96f2f3f13e2ef3219fbe2.png\" alt=\"95\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(3\\frac{5}{18}\\)</p>",
+        "text": "\\(3\\frac{5}{18}\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(3\\frac{1}{6}\\)</p>",
+        "text": "\\(3\\frac{1}{6}\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(3\\frac{1}{3}\\)</p>",
+        "text": "\\(3\\frac{1}{3}\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(3\\frac{7}{9}\\)</p>",
+        "text": "\\(3\\frac{7}{9}\\)"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-46",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "96",
+      "moduleQuestion": "46",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>From the labeled box plot, \\(28\\) is the first quartile and \\(41\\) is the third quartile. The middle half of the data lies between \\(Q_{1}\\) and \\(Q_{3}\\), so about \\(\\frac{1}{2} \\times  60 = 30\\) runners finished between \\(28\\) and \\(41\\) minutes. Choice A is one quarter of the runners and choice C is three quarters.</p>",
+    "skilled": "TBD",
+    "explanation": "From the labeled box plot, \\(28\\) is the first quartile and \\(41\\) is the third quartile. The middle half of the data lies between \\(Q_{1}\\) and \\(Q_{3}\\), so about \\(\\frac{1}{2} \\times  60 = 30\\) runners finished between \\(28\\) and \\(41\\) minutes. Choice A is one quarter of the runners and choice C is three quarters.",
+    "points": 1,
+    "prompt": "The box plot shows the finishing times, in minutes, of \\(60\\) runners in a race. The minimum, quartiles, median, and maximum are labeled. About how many of the runners finished with a time between \\(28\\) and \\(41\\) minutes?",
+    "promptHtml": "The box plot shows the finishing times, in minutes, of \\(60\\) runners in a race. The minimum, quartiles, median, and maximum are labeled. About how many of the runners finished with a time between \\(28\\) and \\(41\\) minutes?<br><img src=\"/exam-images/satcc-901c93904ee79ba5320a6708f2b7fae9a27fe6f9e71a1a4ae870fd3d0c630b11.png\" alt=\"96\">",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(15\\)</p>",
+        "text": "\\(15\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(20\\)</p>",
+        "text": "\\(20\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(45\\)</p>",
+        "text": "\\(45\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(30\\)</p>",
+        "text": "\\(30\\)"
+      }
+    ],
+    "correctChoiceId": "D",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-47",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "97",
+      "moduleQuestion": "47",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>A mean of at least \\(85\\) on four tests requires a total of at least \\(4 \\times  85 = 340\\) points. Her first three scores total \\(78 + 85 + 90 = 253\\). She needs at least \\(340 - 253 = 87\\) points on the fourth test. Choice B, \\(85\\), would give a mean of only \\(84.5\\).</p>",
+    "skilled": "TBD",
+    "explanation": "A mean of at least \\(85\\) on four tests requires a total of at least \\(4 \\times  85 = 340\\) points. Her first three scores total \\(78 + 85 + 90 = 253\\). She needs at least \\(340 - 253 = 87\\) points on the fourth test. Choice B, \\(85\\), would give a mean of only \\(84.5\\).",
+    "points": 1,
+    "prompt": "Dana scored \\(78\\), \\(85\\), and \\(90\\) on her first three tests. What is the lowest score she can earn on her fourth test so that the mean of all four scores is at least \\(85\\)?",
+    "promptHtml": "Dana scored \\(78\\), \\(85\\), and \\(90\\) on her first three tests. What is the lowest score she can earn on her fourth test so that the mean of all four scores is at <strong>least</strong> \\(85\\)?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(80\\)</p>",
+        "text": "\\(80\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(85\\)</p>",
+        "text": "\\(85\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(87\\)</p>",
+        "text": "\\(87\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(92\\)</p>",
+        "text": "\\(92\\)"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-48",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "98",
+      "moduleQuestion": "48",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The rate per km: \\((52 - 31) \\div  (15 - 8) = 21 \\div  7 = \\$3\\) per km. Flat fee using \\((8, 31)\\): \\(31 - 3(8) = 31 - 24 = \\$7\\). So \\(C = 3k + 7\\). Verify: \\(3(15) + 7 = 52\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The rate per km: \\((52 - 31) \\div  (15 - 8) = 21 \\div  7 = \\$3\\) per km. Flat fee using \\((8, 31)\\): \\(31 - 3(8) = 31 - 24 = \\$7\\). So \\(C = 3k + 7\\). Verify: \\(3(15) + 7 = 52\\).",
+    "points": 1,
+    "prompt": "A drone delivery service charges a flat fee plus a cost per kilometer. Delivering to a location \\(8\\) km away costs \\(\\$31\\), and delivering to a location \\(15\\) km away costs \\(\\$52\\). Which equation correctly represents the total cost \\(C\\), in dollars, for a delivery \\(k\\) kilometers away?",
+    "promptHtml": "A drone delivery service charges a flat fee plus a cost per kilometer. Delivering to a location \\(8\\) km away costs \\(\\$31\\), and delivering to a location \\(15\\) km away costs \\(\\$52\\). Which equation correctly represents the total cost \\(C\\), in dollars, for a delivery \\(k\\) kilometers away?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(C = 3k + 7\\)</p>",
+        "text": "\\(C = 3k + 7\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(C = 4k - 1\\)</p>",
+        "text": "\\(C = 4k - 1\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(C = 2k + 12\\)</p>",
+        "text": "\\(C = 2k + 12\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(C = 2k + 15\\)</p>",
+        "text": "\\(C = 2k + 15\\)"
+      }
+    ],
+    "correctChoiceId": "A",
+    "type": "multiple_choice"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-49",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "99",
+      "moduleQuestion": "49",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>The absolute values are \\(7, 4, 11, 3, 8, 5\\). Their sum is \\(7 + 4 + 11 + 3 + 8 + 5 = 38\\).</p>",
+    "skilled": "TBD",
+    "explanation": "The absolute values are \\(7, 4, 11, 3, 8, 5\\). Their sum is \\(7 + 4 + 11 + 3 + 8 + 5 = 38\\).",
+    "points": 1,
+    "prompt": "A trail maintenance crew records hourly temperature changes (in \\(^{∘}\\)F) over one shift: \\(-7\\), \\(+4\\), \\(-11\\), \\(+3\\), \\(+8\\), \\(-5\\). The total deviation is defined as the sum of the absolute values of all changes. What is the total deviation, in degrees Fahrenheit?",
+    "promptHtml": "<p>A trail maintenance crew records hourly temperature changes (in \\(^{∘}\\)F) over one shift: \\(-7\\), \\(+4\\), \\(-11\\), \\(+3\\), \\(+8\\), \\(-5\\). The total deviation is defined as the sum of the absolute values of all changes. What is the total deviation, in degrees Fahrenheit?<br>\n\n                    \n                </p>",
+    "topic": "Uncategorized",
+    "correctTextAnswers": [
+      "38, 38.0"
+    ],
+    "type": "short_response"
+  },
+  {
+    "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-50",
+    "source": {
+      "sourceFamily": "sat_crash_course",
+      "sourceFormat": "web",
+      "playerProfile": "sat_crash_course",
+      "sourceId": "satcc-fabf13209030b2a2edea",
+      "label": "Digital SHSAT Practice Test Adaptive 9",
+      "url": "https://tutor.thesatcrashcourse.com/tests/digital-shsat/digital-Digital%20SHSAT%20Practice%20Test%20Adaptive%209",
+      "section": "math",
+      "sourceQuestion": "100",
+      "moduleQuestion": "50",
+      "originalPackageId": "32a4f08c71cebe19b4deb5ebcae7a2cba1fe253210b38b8bd4a8cc56d09740b4"
+    },
+    "explanationHtml": "<p>A slice parallel to the base has the same shape and size as the base, which is a triangle with a base of \\(6\\) inches and a height of \\(9\\) inches. Its area is \\(\\frac{1}{2} \\times  6 \\times  9 = 27\\) square inches. Choice A forgets the factor of \\(\\frac{1}{2}\\), and choice D is the volume of the prism, \\(27 \\times  10\\).</p>",
+    "skilled": "TBD",
+    "explanation": "A slice parallel to the base has the same shape and size as the base, which is a triangle with a base of \\(6\\) inches and a height of \\(9\\) inches. Its area is \\(\\frac{1}{2} \\times  6 \\times  9 = 27\\) square inches. Choice A forgets the factor of \\(\\frac{1}{2}\\), and choice D is the volume of the prism, \\(27 \\times  10\\).",
+    "points": 1,
+    "prompt": "A triangular prism has a triangular base with a base of \\(6\\) inches and a height of \\(9\\) inches. The prism is \\(10\\) inches long. A slice is made through the prism parallel to its triangular base. The area of a triangle is \\(A = \\frac{1}{2}bh\\). What is the area, in square inches, of the cross section?",
+    "promptHtml": "A triangular prism has a triangular base with a base of \\(6\\) inches and a height of \\(9\\) inches. The prism is \\(10\\) inches long. A slice is made through the prism parallel to its triangular base. The area of a triangle is \\(A = \\frac{1}{2}bh\\). What is the area, in square inches, of the cross section?",
+    "topic": "Uncategorized",
+    "choices": [
+      {
+        "id": "A",
+        "html": "<p>\\(54\\)</p>",
+        "text": "\\(54\\)"
+      },
+      {
+        "id": "B",
+        "html": "<p>\\(90\\)</p>",
+        "text": "\\(90\\)"
+      },
+      {
+        "id": "C",
+        "html": "<p>\\(27\\)</p>",
+        "text": "\\(27\\)"
+      },
+      {
+        "id": "D",
+        "html": "<p>\\(270\\)</p>",
+        "text": "\\(270\\)"
+      }
+    ],
+    "correctChoiceId": "C",
+    "type": "multiple_choice"
+  }
+],
+};

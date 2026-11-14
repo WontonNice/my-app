@@ -184,8 +184,20 @@ body.studio-authoring.studio-workbench[data-workspace] > header.app-header {
 .studio-workbench #math-builder .math-import-badge { color: var(--studio-red); font-size: 11px; font-weight: 500; }
 .studio-workbench .math-import-editing-banner { background: var(--studio-red-soft); border: 1px solid var(--studio-line); color: var(--studio-red); padding: 12px 16px; }
 .studio-workbench .math-import-editing-banner p { font-size: 12px; }
+.studio-authoring.studio-workbench .assessment-list { grid-auto-rows: max-content; align-content: start; }
+.studio-authoring.studio-workbench .studio-library-panel > .assessment-list { flex: 1; max-height: none; }
+.studio-authoring.studio-workbench .studio-library-panel > .studio-exam-search { margin-block: 8px; }
+.studio-authoring.studio-workbench :is(.assessment-list,.passage-list) button { height: max-content; min-width: 0; overflow-wrap: anywhere; }
 .studio-authoring.studio-workbench .assessment-list button { flex-shrink: 0; padding: 12px; border-color: var(--studio-line); }
+.studio-authoring.studio-workbench #math-view .assessment-list button.is-active { background: var(--studio-blue-soft); border-color: var(--studio-blue); }
 .studio-authoring.studio-workbench .assessment-list strong { font-size: 13px; font-weight: 600; line-height: 1.5; }
+.studio-authoring.studio-workbench .assessment-list small { font-size: 12px; line-height: 1.5; }
+/* Image answers need the width of the editing pane, not a narrow text column. */
+.studio-workbench .math-choice-row:has([data-math-choice-mode] option[value="image"]:checked) { grid-template-columns: 30px minmax(0,1fr) auto; }
+.studio-workbench .math-choice-row:has([data-math-choice-mode] option[value="image"]:checked) > .math-choice-visual-editor { grid-column: 2 / -1; grid-row: 2; }
+.studio-workbench .math-choice-row:has([data-math-choice-mode] option[value="image"]:checked) > .danger { grid-column: 3; grid-row: 1; }
+.studio-workbench .math-choice-image-preview { min-height: 160px; padding: 12px; }
+.studio-workbench .math-choice-image-preview img { display: block; width: auto; height: auto; max-width: 100%; max-height: 280px; }
 .studio-authoring.studio-workbench #standalone-list > button.is-active { background: var(--studio-blue-soft); color: var(--studio-blue); }
 .studio-workbench .studio-catalog-toolbar :is([open],.has-filters,[data-has-selection=true]) > summary { background: var(--studio-blue-soft); color: var(--studio-blue); }
 .studio-workbench :is(.bank-workspace,#compare-workspace) { color: var(--studio-ink); padding: 28px 32px; }
@@ -226,6 +238,8 @@ body.studio-authoring.studio-workbench[data-workspace] > header.app-header {
   .studio-workbench .studio-workbench-library { padding: 8px; }
   .studio-workbench .studio-workbench-library svg { display: none; }
   .studio-workbench .studio-library-shell { --studio-library-width: min(290px,82vw); }
+  .studio-authoring.studio-workbench:not(.studio-library-hidden) #math-view > .test-shell { height: 100%; min-height: 0; }
+  .studio-authoring.studio-workbench:not(.studio-library-hidden) #math-view .test-grid { height: 100%; min-height: 0; grid-template-rows: minmax(0,1fr); }
   .studio-workbench:not(.studio-library-hidden) .studio-library-shell { grid-template-columns: minmax(0,1fr) !important; }
   .studio-workbench:not(.studio-library-hidden) .studio-library-shell > .studio-library-panel { width: 100% !important; grid-column: 1; grid-row: 1; z-index: 30; }
   .studio-workbench:not(.studio-library-hidden) .studio-library-shell > :not(.studio-library-panel):not(#studio-library-toggle) { visibility: hidden; grid-column: 1; }
@@ -251,6 +265,11 @@ body.studio-authoring.studio-workbench[data-workspace] > header.app-header {
   .studio-workbench .studio-format-disclosure .studio-direct-format { max-height: 132px; overflow: auto; padding-bottom: 8px; }
   .studio-authoring.studio-workbench .studio-direct-question { order: 1; }
   .studio-workbench :is(.bank-workspace,#compare-workspace) { padding: 20px 16px; }
+}
+@media (max-width: 700px) {
+  /* The question list scrolls inside its own section instead of covering the form. */
+  .studio-authoring.studio-workbench .math-question-nav { display: flex; flex-direction: column; max-height: none; }
+  .studio-authoring.studio-workbench .math-question-nav-list { flex: 0 0 auto; max-height: 230px; min-height: 0; overflow: auto; }
 }
 @media (prefers-reduced-motion: reduce) {
   .studio-workbench *, .studio-workbench *::before, .studio-workbench *::after { scroll-behavior: auto; animation: none !important; transition: none !important; }

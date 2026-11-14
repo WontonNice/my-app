@@ -1,6 +1,6 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path');
 const {syncLearningTaxonomy}=require('./learning-taxonomy.cjs');
-const {assembleActivity,publishActivity,publicationIssues}=require('./learning-assemblies.cjs');
+const {assembleActivity,publishActivity,publicationIssues,hash}=require('./learning-assemblies.cjs');
 const {activityStore,withTypeScript}=require('./exam-catalog.cjs');
 const {questionCatalog,selectCatalog}=require('./question-catalog.cjs');
 const question={id:'canonical-q',type:'multiple_choice',prompt:'Choose the correct sentence.',topic:'Modifiers',choices:[{id:'A',text:'First'},{id:'B',text:'Second'}],correctChoiceId:'A',points:1,source:{publisher:'Kaplan'}};
@@ -40,6 +40,41 @@ test('publication pins immutable content and keeps a draft edit out of the publi
   assert.equal(store.read()[0].assembly.publishedReleaseId,release.releaseId);
   assert.deepEqual(JSON.parse(fs.readFileSync(path.join(root,'server/data/assessments.json'))),[]);
 });
+test('exams publish without category, source, or math topic after preview review',t=>{
+  const root=fixture(t);
+  const unclassified={...question,topic:'',source:undefined,subtopic:undefined};
+  const activity={id:'exam',title:'Unclassified exam',examLabel:'Prestige',assembly:{draftQuestionIds:[question.id],reviewed:false}};
+  const content=assembleActivity(activity,new Map([[question.id,{question:unclassified,area:'math'}]]));
+  assert.deepEqual(publicationIssues(activity,content),['Review the student preview and confirm the answer key and formatting.']);
+  assert.throws(()=>publishActivity(root,activity,content),/Review the student preview/);
+  activity.assembly.reviewed=true;
+  activity.assembly.reviewedContentHash=hash(content);
+  assert.deepEqual(publicationIssues(activity,content),[]);
+  const store=activityStore(path.join(root,'server/data'));store.write([activity]);
+  const release=publishActivity(root,activity,content);
+  assert.equal(store.read()[0].assembly.publishedReleaseId,release.releaseId);
+  const saved=JSON.parse(fs.readFileSync(path.join(root,'server/data/activity-releases.json')))[release.releaseId];
+  assert.equal(saved.content.mathSection.questions[0].topic,'','Publishing must not invent classification.');
+  const changed=structuredClone(content);changed.mathSection.questions[0].prompt='A changed question';
+  assert.ok(publicationIssues(activity,changed).some(issue=>issue.includes('changed after review')));
+});
+
+test('optional exam metadata does not bypass prompt or answer validation',()=>{
+  const activity={id:'exam',title:'Exam',assembly:{draftQuestionIds:[question.id],reviewed:true}};
+  const invalid={...question,topic:'',source:undefined,prompt:'',correctChoiceId:'missing'};
+  const content=assembleActivity(activity,new Map([[question.id,{question:invalid,area:'math'}]]));
+  const issues=publicationIssues(activity,content);
+  assert.ok(issues.includes(`${question.id}: prompt needed`));
+  assert.ok(issues.includes(`${question.id}: valid answer key needed`));
+  assert.ok(!issues.some(issue=>/category needed|source needed|math topic needed/.test(issue)));
+});
+
+test('worksheet publication still requires classification and source',()=>{
+  const activity={id:'sheet',title:'Worksheet',studyHallWorksheet:{subject:'math',scope:'mixed'},assembly:{draftQuestionIds:[question.id],reviewed:true}};
+  const content=assembleActivity(activity,new Map([[question.id,{question:{...question,topic:'',source:undefined},area:'math'}]]));
+  assert.deepEqual(publicationIssues(activity,content),[`${question.id}: category needed`,`${question.id}: source needed`,`${question.id}: math topic needed`]);
+});
+
 test('one bank question has typed worksheet and assessment usage',()=>{
   const inventory={passages:[],mathSections:[],standaloneItems:[question],tests:[{assessmentId:'sheet',passageIds:[],standaloneItemIds:[question.id]},{assessmentId:'exam',passageIds:[],standaloneItemIds:[question.id]}]};
   const content=id=>({assessmentId:id,title:id,passageSets:[],standaloneSection:{questions:[question]}});

@@ -3743,6 +3743,7 @@ function saveLearningActivity(input,id) {
     if(!['worksheet','assessment'].includes(input.kind))throw new EditorError(400,'Choose worksheet or assessment.');
     if(existing?.assembly.publishedReleaseId&&Boolean(existing.studyHallWorksheet)!==(input.kind==='worksheet'))throw new EditorError(400,'A published activity keeps its type. Create a separate worksheet or assessment using the same bank questions.');
     const placement=input.kind==='worksheet'?await normalizeWorksheetPlacement(input.studyHallWorksheet):null;
+    const libraryLabel=examLabel(input.examLabel ?? existing?.examLabel);
     const questionIds=input.questionIds;
     if(!Array.isArray(questionIds)||questionIds.length>200||questionIds.some(id=>typeof id!=='string')||new Set(questionIds).size!==questionIds.length)throw new EditorError(400,'Choose at most 200 distinct questions.');
     const catalog=await readQuestionCatalog();
@@ -3752,6 +3753,7 @@ function saveLearningActivity(input,id) {
     const now=new Date().toISOString(),activityId=id||slugify(title);
     if(!activityId)throw new EditorError(400,'Include letters or numbers in the title.');
     const activity={allowCompletedAccess:false,classId:'shsat',createdAt:now,description:'',forms:[],formAssignments:{},questions:[],passages:[],sectionAccess:{english:false,math:false},split:false,status:'locked',...existing,id:activityId,title,durationMinutes,description:String(input.description||'').slice(0,2000),updatedAt:now,studyHallWorksheet:placement,assembly:{...existing?.assembly,draftQuestionIds:questionIds,reviewed:input.reviewed===true}};
+    activity.examLabel=libraryLabel;
     delete activity.assembly.reviewedContentHash;
     if(!questionIds.length)delete activity.assembly.previewedContentHash;
     if(activity.assembly.reviewed||activity.assembly.previewedContentHash){

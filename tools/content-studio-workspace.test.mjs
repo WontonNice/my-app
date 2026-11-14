@@ -22,7 +22,7 @@ test('unpublished worksheets explicitly say Draft and Not visible even with acce
 
 test('publication labels never infer student access from the authored access defaults', () => {
   const {ui}=setup();
-  const worksheet={status:'locked',assembly:{publishedReleaseId:'same',reviewedContentHash:'same',reviewed:true}};
+  const worksheet={status:'locked',studyHallWorksheet:{subject:'math'},assembly:{publishedReleaseId:'same',reviewedContentHash:'same',reviewed:true}};
   assert.equal(ui.publicationStatus(worksheet).label,'Published');
   assert.equal(ui.publicationStatus(worksheet).summary,'Check student access in Study Hall');
   worksheet.assembly.reviewed=false;

@@ -815,15 +815,23 @@ const studioUI = {
     return item?.studyHallWorksheet || (item?.studyHallWorksheet !== null && item?.examLabel === 'Grade 9 Mathematics Sample Questions' ? {subject:'math', category:"Nathan Teacher's Recommended", collection:item.examLabel} : null);
   },
   builderKindFor(item) { return this.worksheetPlacement(item) ? 'worksheets' : 'tests'; },
+  activityPreviewSubjects(content) {
+    const subjects=[];
+    if(content.passageSets?.some(set=>set.questions?.length)||content.standaloneSection?.questions?.length)subjects.push('english');
+    if(content.mathSection?.questions?.length)subjects.push('math');
+    return subjects;
+  },
   publicationStatus(item) {
     const assembly=item?.assembly;
-    if(assembly&&!assembly.publishedReleaseId)return {key:'draft',label:'Draft',summary:'Not visible to students',detail:'Saving only stores your draft. Open Student preview, confirm your review, then publish this worksheet. After publishing, open student access in Study Hall.'};
+    const worksheet=Boolean(this.worksheetPlacement(item)),noun=worksheet?'worksheet':'exam';
+    const access=worksheet?'Manage student access in Study Hall.':'Assign the exam or open a session from the teacher dashboard.';
+    if(assembly&&!assembly.publishedReleaseId)return {key:'draft',label:'Draft',summary:'Not visible to students',detail:`Saving only stores your draft. Open Student preview, confirm your review, then publish this ${noun}. ${access}`};
     const stable=value=>JSON.stringify(value,(_,entry)=>entry&&typeof entry==='object'&&!Array.isArray(entry)?Object.fromEntries(Object.keys(entry).sort().map(key=>[key,entry[key]])):entry);
     const metadataChanged=assembly?.publishedMetadata&&['title','description','durationMinutes','studyHallWorksheet'].some(key=>stable(item[key])!==stable(assembly.publishedMetadata[key]));
     const contentHash=assembly?.reviewedContentHash||assembly?.previewedContentHash;
-    if(metadataChanged||contentHash&&contentHash!==assembly.publishedReleaseId)return {key:'changes',label:'Unpublished changes',summary:'Students use the published version',detail:'These draft changes are not in the student version. Preview and review the changes, then publish the updated version. Student access is managed separately in Study Hall.'};
-    if(assembly&&!assembly.reviewed)return {key:'review',label:'Published · draft needs review',summary:'Students use the published version',detail:'A published version exists. Review the current draft before publishing it again. Student access is managed separately in Study Hall.'};
-    return {key:'published',label:'Published',summary:'Check student access in Study Hall',detail:'A published version exists. Publishing and opening student access are separate steps. Use Manage student access in Study Hall to see whether students can open it.'};
+    if(metadataChanged||contentHash&&contentHash!==assembly.publishedReleaseId)return {key:'changes',label:'Unpublished changes',summary:'Students use the published version',detail:`These draft changes are not in the student version. Preview and review the changes, then publish the updated version. ${access}`};
+    if(assembly&&!assembly.reviewed)return {key:'review',label:'Published · draft needs review',summary:'Students use the published version',detail:`A published version exists. Review the current draft before publishing it again. ${access}`};
+    return {key:'published',label:'Published',summary:worksheet?'Check student access in Study Hall':'Manage access in the teacher dashboard',detail:`A published version exists. Publishing and opening student access are separate steps. ${access}`};
   },
   publicationBadge(item) {
     const state=this.publicationStatus(item);

@@ -56,9 +56,11 @@ function publicationIssues(activity,content,learning){
     const location=content.mathSection?.questions.includes(question)?'math':content.standaloneSection?.questions.includes(question)?'revising_editing_b':content.passageSets.find(set=>set.questions.includes(question))?.section||'reading';
     const metadata=questionOrganization(question);
     if(!question.prompt?.trim()&&!question.promptHtml?.trim())issues.push(`${question.id}: prompt needed`);
-    if(!categoryFor(location,question.topic)?.active)issues.push(`${question.id}: category needed`);
-    if(sourcePublisher(question.source)==='Unspecified')issues.push(`${question.id}: source needed`);
-    if(location==='math'&&!question.subtopic)issues.push(`${question.id}: math topic needed`);
+    if(activity.studyHallWorksheet){
+      if(!categoryFor(location,question.topic)?.active)issues.push(`${question.id}: category needed`);
+      if(sourcePublisher(question.source)==='Unspecified')issues.push(`${question.id}: source needed`);
+      if(location==='math'&&!question.subtopic)issues.push(`${question.id}: math topic needed`);
+    }
     if(question.type==='multiple_choice'&&!question.choices?.some(choice=>choice.id===question.correctChoiceId))issues.push(`${question.id}: valid answer key needed`);
     if(question.type==='multi_select'&&!question.correctChoiceIds?.length)issues.push(`${question.id}: answer key needed`);
     try{const key=question.type==='coordinate_response'?correctCoordinateAnswer(question):question.correctTextAnswers?.[0]??libraryCorrectAnswer(question);if(!isExamQuestionCorrect(question,key))issues.push(`${question.id}: answer key does not pass the student grader`);}catch{issues.push(`${question.id}: answer format needs repair`);}

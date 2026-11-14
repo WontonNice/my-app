@@ -46877,5 +46877,913 @@
     "correctionsOpen": false,
     "allowCompletedAccess": false,
     "split": false
+  },
+  {
+    "allowCompletedAccess": false,
+    "classId": "shsat",
+    "createdAt": "2026-11-13T15:17:14.499Z",
+    "description": "",
+    "forms": [],
+    "formAssignments": {},
+    "questions": [
+      {
+        "answer": "",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-1",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An aquarium has a tank containing \\(5\\) clownfish, \\(4\\) angelfish, and \\(3\\) surgeonfish. A marine biologist selects two fish at random, one after another, without returning either fish to the tank. Complete the equations below to find the probability that both selected fish are angelfish.",
+        "topic": "Uncategorized",
+        "type": "math_drag_drop"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(4\\pi \\)",
+          "\\(36\\pi \\)",
+          "\\(64\\pi \\)",
+          "\\(28\\pi \\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-2",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A circular fountain with a radius of \\(6\\) meters is surrounded by a walkway that is \\(2\\) meters wide, as shown in the figure. What is the area, in square meters, of the walkway?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(3\\)",
+          "\\(\\frac{4}{9}\\)",
+          "\\(31\\)",
+          "\\(\\frac{31}{9}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-3",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "What is the value of \\(\\frac{(6-2\\times 4)^{2}+3^{3}}{5-2^{2}\\times (-1)}\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(24\\)",
+          "\\(21\\)",
+          "\\(18\\)",
+          "\\(15\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-4",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In the figure, lines \\(p\\) and \\(q\\) are parallel and are cut by transversal \\(t\\). Two of the angles formed are labeled \\((3x + 15)^{∘}\\) and \\((5x - 21)^{∘}\\) as shown. What is the value of \\(x\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(0.24\\)",
+          "\\(0.18\\)",
+          "\\(0.12\\)",
+          "\\(0.06\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-5",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The table shows the times, in seconds, recorded by five kayakers during a qualifying race. What is the positive difference between the mean time and the median time, in seconds?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "14, 14.0",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-6",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An ornithologist recorded the number of bird species observed each day at a wetland reserve for \\(9\\) days: \\(14\\), \\(9\\), \\(17\\), \\(11\\), \\(14\\), \\(20\\), \\(8\\), \\(14\\), \\(13\\). After the \\(9\\)-day period, one additional day of observation is recorded. The mean number of species for all \\(10\\) days is \\(13.5\\). What is the median of all \\(10\\) values?",
+        "topic": "Uncategorized",
+        "type": "short_response"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(\\$1,482.50\\)",
+          "\\(\\$1,900.00\\)",
+          "\\(\\$1,330.00\\)",
+          "\\(\\$1,425.00\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-7",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A ferry service transports passengers between two islands. The figure below shows the number of passengers carried and the total fuel used (in gallons) for four different crossings. The ferry company wants to carry a total of \\(500\\) passengers over a series of crossings, all at the same rate shown in the figure. Fuel costs \\(\\$3.80\\) per gallon. What is the total fuel cost for transporting \\(500\\) passengers?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(5\\)",
+          "\\(3\\)",
+          "\\(1\\)",
+          "\\(2\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-8",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which of the following values of \\(x\\) is NOT a solution to the inequality \\(-4(x - 2) < 3x + 1\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(115^{∘}\\)",
+          "\\(110^{∘}\\)",
+          "\\(105^{∘}\\)",
+          "\\(100^{∘}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-9",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "In triangle \\(GHI\\), the measure of angle \\(G\\) is twice the measure of angle \\(H\\), and the measure of angle \\(I\\) is \\(30^{∘}\\) more than three times the measure of angle \\(H\\). What is the measure of the largest angle of triangle \\(GHI\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-10",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Select the option that correctly completes each part of the statement below.",
+        "topic": "Uncategorized",
+        "type": "inline_dropdown"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "Figure A",
+          "Figure B",
+          "Figure C",
+          "Figure D"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-11",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Each tile below shows a number. Exactly one of the four numbers is irrational. Which tile shows the irrational number?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(\\frac{2}{9}\\)",
+          "\\(\\frac{4}{11}\\)",
+          "\\(\\frac{1}{6}\\)",
+          "\\(\\frac{2}{11}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-12",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A library archive contains \\(6\\) red folders, \\(4\\) blue folders, and \\(2\\) green folders. A librarian selects two folders at random without replacement. What is the probability that the first folder selected is red and the second folder selected is blue?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(\\$0.12\\)",
+          "\\(\\$0.15\\)",
+          "\\(\\$0.18\\)",
+          "\\(\\$0.20\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-13",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A greenhouse sells orchid seedlings in trays of \\(8\\). The standard price is \\(\\$19.20\\) per tray. A bulk deal offers \\(10\\) trays for \\(\\$180.00\\). A florist needs exactly \\(11\\) trays and decides to buy \\(10\\) trays at the bulk price and \\(1\\) tray at the standard price. How much less per seedling does the florist pay for the bulk trays than for the single standard tray?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(8\\)",
+          "\\(7\\)",
+          "\\(6\\)",
+          "\\(5\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-14",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A community radio station is building a wooden recording booth in the shape of a rectangular prism that is \\(6\\) feet wide, \\(4\\) feet deep, and \\(8\\) feet tall. The booth has no floor, so the crew will paint only the four walls and the ceiling. Each quart of paint covers exactly \\(30\\) square feet. What is the least number of quarts of paint needed to paint all five surfaces?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(76\\)",
+          "\\(88\\)",
+          "\\(100\\)",
+          "\\(52\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-15",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A community radio station's logo, shown in the figure, is a square with a side length of \\(10\\) centimeters and two identical right triangles removed from opposite corners. What is the area, in square centimeters, of the remaining shape?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(175\\)",
+          "\\(140\\)",
+          "\\(154\\)",
+          "\\(126\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-16",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A ferry company divides its passenger seating into three sections — Economy, Comfort, and Premium — in the ratio \\(3 : 5 : 12\\). On one voyage, the number of Premium seats exceeds the number of Economy seats by \\(63\\). What is the total number of seats on the ferry?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "294",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-17",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "At an orchard, the ratio of pear trees to cherry trees is \\(4\\) to \\(7\\). If there are \\(168\\) pear trees, how many cherry trees are there? Enter your answer.",
+        "topic": "Uncategorized",
+        "type": "expression_entry"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(7.25\\)",
+          "\\(8.75\\)",
+          "\\(9.25\\)",
+          "\\(10.50\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-18",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The stem-and-leaf plot shown displays the times, in seconds, that \\(15\\) kayakers took to complete a slalom course. What is the positive difference between the median of all \\(15\\) times and the mean of only the times from \\(30\\) to \\(39\\) seconds?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A,B",
+        "choices": [
+          "\\(-5n + 17\\)",
+          "\\(17 - 5n\\)",
+          "\\(-5n + 13\\)",
+          "\\(-3n + 17\\)",
+          "\\(-5n - 17\\)",
+          "\\(5n + 17\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-19",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Select TWO expressions that are equivalent to \\(3(n + 5) - 2(4n - 1)\\).",
+        "topic": "Uncategorized",
+        "type": "multi_select"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(-5n + 11\\)",
+          "\\(-5n - 1\\)",
+          "\\(n + 11\\)",
+          "\\(-5n + 5\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-20",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which expression is equivalent to \\(9 + (4n + 7) - (6n + 11) - 3(n - 2)\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(50\\)",
+          "\\(40\\)",
+          "\\(25\\)",
+          "\\(60\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-21",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Company A charges a \\(\\$25\\) fee plus \\(\\$0.40\\) per mile to rent a trailer. Company B charges a \\(\\$15\\) fee plus \\(\\$0.60\\) per mile. For how many miles will the two companies charge the same total amount?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "An open circle at \\(x = -1\\) with shading to the left",
+          "A closed circle at \\(x = -1\\) with shading to the left",
+          "An open circle at \\(x = 1\\) with shading to the left",
+          "An open circle at \\(x = 1\\) with shading to the right"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-22",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Which number line represents all values of \\(x\\) that satisfy \\(-3(x + 4) > 2x - 7\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(6.00\\)",
+          "\\(6.75\\)",
+          "\\(7.50\\)",
+          "\\(8.25\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-23",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An aquarium's shark tank requires saltwater mixed so that the weight of salt is always proportional to the total volume of water. A technician records that \\(12\\) gallons of water requires \\(1.8\\) pounds of salt. The aquarium is refilling a display tank that holds \\(85\\) gallons. After adding salt for the first \\(40\\) gallons, how many additional pounds of salt are needed for the remaining volume?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(55\\)",
+          "\\(56\\)",
+          "\\(57\\)",
+          "\\(58\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-24",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An engineer designing a triangular brace for a bridge support needs two sides of the triangle to measure \\(11\\) feet and \\(18\\) feet. She wants the perimeter to be as large as possible while still forming a valid triangle, using only whole-number side lengths. What is the greatest possible perimeter, in feet, of such a triangle?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(100 - 100\\pi \\)",
+          "\\(100 - 10\\pi \\)",
+          "\\(100 - 25\\pi \\)",
+          "\\(25\\pi \\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-25",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A circle is drawn inside a square so that the circle touches all four sides of the square. The square has a side length of \\(10\\) centimeters. What is the area, in square centimeters, of the part of the square that is outside the circle?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "The mean number of books checked out is \\(74\\).",
+          "More than half of the weeks had at least \\(68\\) books checked out.",
+          "The interquartile range is greater than the range of the lower half of the data.",
+          "Exactly \\(10\\) weeks had between \\(55\\) and \\(68\\) books checked out."
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-26",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The box plot shows the distribution of the number of books checked out per week at a library branch over a \\(40\\)-week period. The minimum, first quartile, median, third quartile, and maximum are labeled on the plot. Which statement about the data is supported by the box plot?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "The mean is less than the median.",
+          "The median is equal to the mode.",
+          "The range of the data is \\(9\\).",
+          "The mean is greater than the median."
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-27",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The dot plot shows the number of goals scored by each of \\(15\\) players during a season. Which statement about the data is true?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(7p - 5 = 585\\)",
+          "\\(4p + 3(2p - 5) = 585\\)",
+          "\\(4(2p - 5) + 3p = 585\\)",
+          "\\(4p + 3(2p + 5) = 585\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-28",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A ferry carries passengers and bicycles across a harbor. Each passenger ticket costs \\(\\$4\\) and each bicycle costs an additional \\(\\$3\\) to transport. On one trip, the ferry carried some passengers, and the number of bicycles was \\(5\\) fewer than twice the number of passengers. The total revenue from that trip was \\(\\$585\\). Which equation can be used to find \\(p\\), the number of passengers on that trip?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(15\\)",
+          "\\(48\\)",
+          "\\(42\\)",
+          "\\(132\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-29",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A city map shows two parallel streets, \\(p\\) and \\(q\\), crossed by an avenue, \\(t\\). At the two intersections, the alternate interior angles are marked \\((4x - 12)^{∘}\\) and \\((2x + 18)^{∘}\\). What is the measure, in degrees, of an angle supplementary to either marked angle?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "4, 4.0",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-30",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A drone delivery company tracks the cumulative number of packages delivered each hour after its warehouse opens. In the first hour, \\(12\\) packages are delivered. Each subsequent hour, \\(4\\) more packages are delivered than in the previous hour. After how many complete hours will the total number of packages delivered first exceed \\(50\\)?",
+        "topic": "Uncategorized",
+        "type": "short_response"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(\\frac{1}{11}\\)",
+          "\\(\\frac{1}{10}\\)",
+          "\\(\\frac{1}{6}\\)",
+          "\\(\\frac{2}{11}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-31",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A bag contains colored tokens in the following quantities: \\(6\\) orange, \\(4\\) purple, and \\(2\\) silver. Rashida draws two tokens from the bag one at a time without replacing the first before drawing the second. What is the probability that she draws one orange token and then one silver token, in that order?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(k + 3k + 6 = 94\\)",
+          "\\(k + (3k - 6) = 94\\)",
+          "\\(k + 3(k + 6) = 94\\)",
+          "\\(6k + k = 94\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-32",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An aquarium gift shop sells two types of souvenirs: keychains and snow globes. The shop sold a total of \\(94\\) souvenirs on Saturday. The number of snow globes sold was \\(6\\) more than three times the number of keychains sold. Which equation could be used to find \\(k\\), the number of keychains sold?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(8x^{7}\\)",
+          "\\(2x^{12}\\)",
+          "\\(16x^{12}\\)",
+          "\\(16x^{7}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-33",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Simplify \\((2x^{3})^{4}\\). Which choice shows the result?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(1\\)",
+          "\\(2\\)",
+          "\\(3\\)",
+          "\\(4\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-34",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The stem-and-leaf plot below shows the number of library books checked out by each of \\(16\\) patrons on a single afternoon. What is the positive difference between the median and the mode of this data set?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A,D",
+        "choices": [
+          "The probability that both spins land on a multiple of \\(4\\) is \\(\\frac{1}{16}\\).",
+          "The probability that the first spin shows a number greater than \\(9\\) and the second spin shows a number less than \\(3\\) is \\(\\frac{1}{18}\\).",
+          "The probability that both spins show a perfect square is \\(\\frac{1}{9}\\).",
+          "The probability that both spins show a \\(12\\), giving a sum of \\(24\\), is \\(\\frac{1}{144}\\).",
+          "The probability that the first spin is greater than \\(6\\) and the second spin is greater than \\(6\\) is \\(\\frac{1}{6}\\).",
+          "The probability that neither spin shows a factor of \\(12\\) is \\(\\frac{4}{9}\\)."
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-35",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A spinner has \\(12\\) equal sections labeled \\(1\\) through \\(12\\). Isabela spins the spinner twice. The two spins are independent. Select TWO statements that are true.",
+        "topic": "Uncategorized",
+        "type": "multi_select"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(12\\)",
+          "\\(11\\)",
+          "\\(13\\)",
+          "\\(20\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-36",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Lena wants to spend less than \\(\\$150\\) on a party. The venue costs \\(\\$60\\), and each guest's meal costs \\(\\$7.50\\). What is the greatest number of guests Lena can invite?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(480\\)",
+          "\\(240\\)",
+          "\\(960\\)",
+          "\\(360\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-37",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A greenhouse has a cross-section in the shape of a trapezoid. The two parallel sides of the trapezoid measure \\(6\\) feet and \\(10\\) feet, and the perpendicular height between them is \\(5\\) feet. The greenhouse extends \\(12\\) feet in length. The area of a trapezoid is \\(A = \\frac{1}{2}(b_{1} + b_{2})h\\). What is the volume of the greenhouse, in cubic feet?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(21,600\\)",
+          "\\(10,800\\)",
+          "\\(5,400\\)",
+          "\\(540\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-38",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An architect's floor plan of an aquarium uses a scale in which \\(1\\) inch represents \\(20\\) feet. In the floor plan, the main tank hall is a rectangle that measures \\(4.5\\) inches by \\(6\\) inches. What is the actual area of the main tank hall, in square feet?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(s + l = 387\\) and \\(8s + 15l = 37\\)",
+          "\\(s + l = 37\\) and \\(8s + 15l = 387\\)",
+          "\\(8s + l = 37\\) and \\(s + 15l = 387\\)",
+          "\\(s + l = 37\\) and \\(15s + 8l = 387\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-39",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "At an orchard, apples are packed into small baskets and large baskets. A small basket holds \\(8\\) apples and a large basket holds \\(15\\) apples. On Tuesday, the orchard packed a total of \\(387\\) apples using \\(37\\) baskets in all. Which system of equations can be used to find \\(s\\), the number of small baskets, and \\(l\\), the number of large baskets used?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(33\\)",
+          "\\(42\\)",
+          "\\(29\\)",
+          "\\(35\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-40",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An aquarium charges admission based on the number of visitors. The figure shows the total admission cost for different group sizes. A community group has a budget of \\(\\$154\\). A school group separately pays for \\(7\\) visitors. What is the combined number of visitors for both groups?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(\\$18.00\\)",
+          "\\(\\$18.15\\)",
+          "\\(\\$20.70\\)",
+          "\\(\\$20.25\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-41",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A taxi company charges a fare of \\(F = 3 + 2m\\) dollars for a ride, where \\(m\\) is the number of miles traveled. A rider pays the fare plus a \\(15\\%\\) tip on the fare. What is the total amount, in dollars, the rider pays for a ride of \\(7.5\\) miles?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "B",
+        "choices": [
+          "\\(420\\)",
+          "\\(414\\)",
+          "\\(460\\)",
+          "\\(406\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-42",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "An observatory recorded \\(400\\) meteor sightings in August. In September, the number of sightings decreased by \\(10\\%\\) from August. In October, the number of sightings increased by \\(15\\%\\) from September's total. How many meteor sightings were recorded in October?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(0.90\\)",
+          "\\(0.60\\)",
+          "\\(1.35\\)",
+          "\\(0.45\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-43",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A jeweler has a silver bar that weighs \\(15.75\\) grams. Each ring uses exactly \\(1.35\\) grams of silver. After making as many whole rings as possible, how many grams of silver are left over?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "30, 30.0",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-44",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A community radio station runs two independent segments each hour. The probability that the music segment plays a jazz song is \\(\\frac{3}{8}\\). The probability that the talk segment features a local guest is \\(\\frac{2}{5}\\). In \\(200\\) hours of programming, what is the expected number of hours in which both segments satisfy their respective conditions?",
+        "topic": "Uncategorized",
+        "type": "short_response"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(3\\frac{5}{18}\\)",
+          "\\(3\\frac{1}{6}\\)",
+          "\\(3\\frac{1}{3}\\)",
+          "\\(3\\frac{7}{9}\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-45",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The table below shows the distance of each of the three segments of a kayak trail. What is the total distance, in miles, paddled along the entire trail?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "D",
+        "choices": [
+          "\\(15\\)",
+          "\\(20\\)",
+          "\\(45\\)",
+          "\\(30\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-46",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "The box plot shows the finishing times, in minutes, of \\(60\\) runners in a race. The minimum, quartiles, median, and maximum are labeled. About how many of the runners finished with a time between \\(28\\) and \\(41\\) minutes?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(80\\)",
+          "\\(85\\)",
+          "\\(87\\)",
+          "\\(92\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-47",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "Dana scored \\(78\\), \\(85\\), and \\(90\\) on her first three tests. What is the lowest score she can earn on her fourth test so that the mean of all four scores is at least \\(85\\)?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "A",
+        "choices": [
+          "\\(C = 3k + 7\\)",
+          "\\(C = 4k - 1\\)",
+          "\\(C = 2k + 12\\)",
+          "\\(C = 2k + 15\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-48",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A drone delivery service charges a flat fee plus a cost per kilometer. Delivering to a location \\(8\\) km away costs \\(\\$31\\), and delivering to a location \\(15\\) km away costs \\(\\$52\\). Which equation correctly represents the total cost \\(C\\), in dollars, for a delivery \\(k\\) kilometers away?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      },
+      {
+        "answer": "38, 38.0",
+        "choices": [],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-49",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A trail maintenance crew records hourly temperature changes (in \\(^{∘}\\)F) over one shift: \\(-7\\), \\(+4\\), \\(-11\\), \\(+3\\), \\(+8\\), \\(-5\\). The total deviation is defined as the sum of the absolute values of all changes. What is the total deviation, in degrees Fahrenheit?",
+        "topic": "Uncategorized",
+        "type": "short_response"
+      },
+      {
+        "answer": "C",
+        "choices": [
+          "\\(54\\)",
+          "\\(90\\)",
+          "\\(27\\)",
+          "\\(270\\)"
+        ],
+        "id": "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-50",
+        "skilled": "TBD",
+        "imageUrl": "",
+        "points": 1,
+        "prompt": "A triangular prism has a triangular base with a base of \\(6\\) inches and a height of \\(9\\) inches. The prism is \\(10\\) inches long. A slice is made through the prism parallel to its triangular base. The area of a triangle is \\(A = \\frac{1}{2}bh\\). What is the area, in square inches, of the cross section?",
+        "topic": "Uncategorized",
+        "type": "multiple_choice"
+      }
+    ],
+    "passages": [],
+    "sectionAccess": {
+      "english": false,
+      "math": false
+    },
+    "split": false,
+    "status": "locked",
+    "id": "digital-shsat-practice-test-adaptive-9-hard",
+    "title": "Digital SHSAT Practice Test Adaptive 9 (Hard)",
+    "durationMinutes": 180,
+    "updatedAt": "2026-11-13T16:49:29.824Z",
+    "studyHallWorksheet": null,
+    "assembly": {
+      "draftQuestionIds": [
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-1",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-2",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-3",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-4",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-5",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-6",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-7",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-8",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-9",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-10",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-11",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-12",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-13",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-14",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-15",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-16",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-17",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-18",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-19",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-20",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-21",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-22",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-23",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-24",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-25",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-26",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-27",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-28",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-29",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-30",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-31",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-32",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-33",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-34",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-35",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-36",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-37",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-38",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-39",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-40",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-41",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-42",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-43",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-44",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-45",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-46",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-47",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-48",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-49",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-50"
+      ],
+      "reviewed": false,
+      "previewedContentHash": "094aba80acc54e06b43ca93daa58767eb3514ce4639fa6ddeff5ace607b9f977",
+      "publishedMetadata": {
+        "title": "Digital SHSAT Practice Test Adaptive 9 (Hard)",
+        "description": "",
+        "durationMinutes": 180,
+        "studyHallWorksheet": null
+      },
+      "publishedReleaseId": "094aba80acc54e06b43ca93daa58767eb3514ce4639fa6ddeff5ace607b9f977",
+      "publishedQuestionIds": [
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-1",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-2",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-3",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-4",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-5",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-6",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-7",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-8",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-9",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-10",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-11",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-12",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-13",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-14",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-15",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-16",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-17",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-18",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-19",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-20",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-21",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-22",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-23",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-24",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-25",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-26",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-27",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-28",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-29",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-30",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-31",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-32",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-33",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-34",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-35",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-36",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-37",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-38",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-39",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-40",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-41",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-42",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-43",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-44",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-45",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-46",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-47",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-48",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-49",
+        "digital-shsat-practice-test-adaptive-9-hard-satcc-fabf13209030b2a2edea-math-50"
+      ],
+      "publishedAt": "2026-11-13T16:47:14.316Z"
+    },
+    "examLabel": "Prestige"
   }
 ]

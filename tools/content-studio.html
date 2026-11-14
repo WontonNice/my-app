@@ -4366,9 +4366,9 @@ Why D is wrong."></textarea>
         return `
           <button class="${assessment.id === app.selectedAssessmentId ? "is-active" : ""}" data-assessment-id="${escapeHtml(assessment.id)}" type="button">
             <strong>${escapeHtml(assessment.title)}</strong>
-            ${placement ? studioUI.publicationBadge(assessment) : ''}
+            ${placement || assessment.assembly ? studioUI.publicationBadge(assessment) : ''}
             ${app.state.examVerification?.[assessment.id]?.verified === true ? '<span class="studio-verified-badge">✓ Verified</span>' : ''}
-            <small>${placement ? `${assessment.questions?.length || 0} questions · ${escapeHtml(placement.category)}` : test ? `${test.passageIds.length} passage${test.passageIds.length === 1 ? "" : "s"} in source` : "English source not registered yet"}</small>
+            <small>${assessment.assembly ? `${assessment.assembly.draftQuestionIds.length} questions in draft` : placement ? `${assessment.questions?.length || 0} questions · ${escapeHtml(placement.category)}` : test ? `${test.passageIds.length} passage${test.passageIds.length === 1 ? "" : "s"} in source` : "English source not registered yet"}</small>
           </button>
         `;
       }).join("");
@@ -4487,7 +4487,7 @@ Why D is wrong."></textarea>
       $("#test-builder").classList.remove("learning-catalog");
       const assessment = app.state.assessments.find((candidate) => candidate.id === app.selectedAssessmentId);
       if(assessment?.assembly){
-        $("#test-builder").innerHTML='<p role="status">Loading worksheet editor…</p>';
+        $("#test-builder").innerHTML='<p role="status">Loading '+(assessment.studyHallWorksheet?'worksheet':'exam')+' editor…</p>';
         LearningCatalog.openActivity(assessment.id,false).catch(error=>setStatus(error.message,'error'));
         return;
       }
