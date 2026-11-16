@@ -11,7 +11,8 @@ export function getStudentLoginEmail(username: string) {
 }
 
 export function getUserRole(user: User | null): UserRole {
-  const role = user?.app_metadata.role ?? user?.user_metadata.role;
+  // Only app_metadata is trustworthy; users can edit their own user_metadata.
+  const role = user?.app_metadata.role;
 
   if (role === "admin") {
     return "admin";

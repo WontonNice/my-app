@@ -6,6 +6,7 @@ import {
     classJoinRequestsKey,
     getAuthenticatedUser,
     getEnrolledClassIds,
+    getTrustedRoleClaim,
     getUserRole,
     isStudentArchived,
     studentArchivedAtKey,
@@ -334,6 +335,9 @@ authRouter.post("/register", async (request, response) => {
         email,
         password,
         email_confirm: true,
+        app_metadata: {
+            role: "student",
+        },
         user_metadata: {
             full_name: fullName,
             role: "student",
@@ -552,7 +556,7 @@ authRouter.get("/staff", async (request, response) => {
         return;
     }
 
-    const staffUsers = data.users.filter((user) => (user.app_metadata.role ?? user.user_metadata.role) === "staff");
+    const staffUsers = data.users.filter((user) => getTrustedRoleClaim(user) === "staff");
     const dashboardData = await getStaffDashboardDataMap(staffUsers);
     const staff = staffUsers
         .map((user) => toStaffAccount(user, dashboardData.get(user.id) ?? {}))
@@ -673,7 +677,7 @@ authRouter.patch("/staff/:userId", async (request, response) => {
     }
 
     const target = targetData.user;
-    if ((target.app_metadata.role ?? target.user_metadata.role) !== "staff") {
+    if (getTrustedRoleClaim(target) !== "staff") {
         response.status(400).json({ message: "Only staff accounts can be edited here." });
         return;
     }

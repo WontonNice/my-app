@@ -148,8 +148,15 @@ export function getClassJoinRequests(appMetadata: Record<string, unknown> | unde
     });
 }
 
+// Roles are trusted only from app_metadata, which only the service role can write.
+// user_metadata is editable by the signed-in user (supabase.auth.updateUser), so a
+// role stored there must never grant privileges.
+export function getTrustedRoleClaim(user: Pick<User, "app_metadata">): unknown {
+    return user.app_metadata?.role;
+}
+
 export function getUserRole(user: User) {
-    const role = user.app_metadata.role ?? user.user_metadata.role;
+    const role = getTrustedRoleClaim(user);
 
     if (role === "admin") {
         return "admin";

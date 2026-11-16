@@ -13,7 +13,7 @@ const supabase = createClient(supabaseUrl, serviceRole, { auth: { autoRefreshTok
 const listed = await supabase.auth.admin.listUsers({ page: 1, perPage: 1000 });
 if (listed.error) throw listed.error;
 
-const staffUsers = listed.data.users.filter((user) => (user.app_metadata.role ?? user.user_metadata.role) === "staff");
+const staffUsers = listed.data.users.filter((user) => user.app_metadata.role === "staff");
 let migrated = 0;
 let compacted = 0;
 
