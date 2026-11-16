@@ -1,0 +1,237 @@
+{
+  "title": "Content Studio redesign: choose the visual world",
+  "question": "Each sketch is the Reading passages editor with the TestNav exam as the default canvas and every existing control kept. Pick the world to build, or re-roll.",
+  "options": [
+    {
+      "id": "ditto",
+      "kind": "assigned",
+      "label": "Ditto Master",
+      "kicker": "THE ROLL",
+      "lineage": "Spirit-duplicator classroom worksheets",
+      "thesis": "The studio is the teacher's duplicating room: one violet ink runs the whole shell, and the white TestNav sheet is the print coming off it.",
+      "palette": [
+        "#4a2c9a",
+        "#2a1a52",
+        "#ebe6f8",
+        "#fcfbff",
+        "#1c8a5a"
+      ],
+      "materials": [
+        "aniline violet ink",
+        "bright bond paper",
+        "system sans, mono for IDs"
+      ],
+      "viewport": "Violet navigation rail, a dense passage library, then the TestNav exam sheet on a pale desk; one ink rule under the title carries save state.",
+      "risk": "A violet shell is a strong flavor to sit in for hour-long editing sessions.",
+      "raised": [
+        {
+          "from": "challenger-emission",
+          "raise": "Save state is carried by line form as well as color: solid rule for saved, dashed for unsaved changes, broken red for a failed save."
+        },
+        {
+          "from": "challenger-crouwel",
+          "raise": "Every pane snaps to one 8px module and the layout reflows by whole columns, never by squeezing."
+        },
+        {
+          "from": "challenger-doujin",
+          "raise": "Library rows tighten to two lines so about fifteen passages are visible without scrolling."
+        }
+      ],
+      "html": ".impeccable/mocks/decision/ditto.html"
+    },
+    {
+      "id": "teachers-edition",
+      "kind": "pick",
+      "label": "Teacher's Edition",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Annotated teacher's-edition textbooks",
+      "thesis": "The student page sits in the middle exactly as students see it; everything a teacher adds lives in a margin beside it, in a second ink.",
+      "palette": [
+        "#12313a",
+        "#0f6b6b",
+        "#c2185b",
+        "#eaf1f3",
+        "#ffffff"
+      ],
+      "materials": [
+        "student page on white",
+        "tinted teacher margin",
+        "answer-key magenta"
+      ],
+      "viewport": "Top navigation bar, slim library column, TestNav exam page centered, and a teacher's margin on the right holding answer key, question tools, tags and publish state.",
+      "risk": "A three-pane editor is the familiar arrangement; its distinction rests on the margin being executed precisely.",
+      "html": ".impeccable/mocks/decision/teachers-edition.html"
+    },
+    {
+      "id": "divider-tabs",
+      "kind": "challenger",
+      "catalogId": "rw-manual-acetate-tab-board",
+      "label": "Divider Tabs",
+      "verdict": "competitive",
+      "lineage": "Tabbed reference binders with colored divider boards",
+      "thesis": "Each workspace family owns one full-strength hue, and white working leaves sit on top of it, so you always know which section you are in.",
+      "palette": [
+        "#2340c7",
+        "#2f8f4e",
+        "#d9641e",
+        "#6a3fb5",
+        "#f7f8fa"
+      ],
+      "materials": [
+        "full-strength divider board",
+        "white working leaves",
+        "stepped index tabs"
+      ],
+      "viewport": "A stepped tab rail down the right edge sized by how much each workspace holds; the English board in ultramarine behind white library and TestNav leaves.",
+      "case": "Holds product clarity: tabs are familiar and location is unmistakable. Loses narrowly on identification, since a saturated board is louder than a tutor's desk.",
+      "risk": "Full-strength color around the page can tire the eye if the gutters are not kept thin.",
+      "html": ".impeccable/mocks/decision/divider-tabs.html"
+    },
+    {
+      "id": "graphite-bench",
+      "kind": "challenger",
+      "catalogId": "digital-design-canon-dark-first-developer-console",
+      "label": "Graphite Bench",
+      "verdict": "competitive",
+      "lineage": "Dark-first tiled working consoles",
+      "thesis": "A graphite bench where panels tile and stay put, the white exam sheet is the only bright object, and Delete stands alone.",
+      "palette": [
+        "#16181d",
+        "#22262e",
+        "#3a4150",
+        "#7cc4a4",
+        "#e6b450"
+      ],
+      "materials": [
+        "graphite ground",
+        "hairline seams",
+        "state-only accents"
+      ],
+      "viewport": "Slim header, text rail, library and inspector panels tiled around the lit TestNav sheet, and a status bar carrying save state.",
+      "case": "Holds product clarity through persistent panels and isolated destructive actions. Loses on identification: it reads as a developer's tool more than a teacher's.",
+      "risk": "A white exam page inside a dark shell is high contrast over long evening sessions.",
+      "html": ".impeccable/mocks/decision/graphite-bench.html"
+    },
+    {
+      "id": "challenger-emission",
+      "kind": "challenger",
+      "catalogId": "operate-c-emission-line-rail",
+      "label": "Emission-Line Rail",
+      "verdict": "declined",
+      "lineage": "Glass spectrograms on a viewing box",
+      "thesis": "State drawn as line height, dash and doubling on one calibrated rail.",
+      "palette": [
+        "#2b2d30",
+        "#e8e2d2",
+        "#f2c230",
+        "#5aa9e6"
+      ],
+      "materials": [
+        "charcoal continuum",
+        "hairline emission lines"
+      ],
+      "viewport": "Every workspace a tick on one off-centre rail, the open one blooming into a plate.",
+      "case": "Loses both axes: hue-free status slows scanning a review queue, and tutors do not read spectrograms.",
+      "kept": "Status readable by line form, not color alone.",
+      "risk": "Unfamiliar status language on a working screen."
+    },
+    {
+      "id": "challenger-star-atlas",
+      "kind": "challenger",
+      "catalogId": "notation-diagram-systems-star-atlas",
+      "label": "Star Atlas",
+      "verdict": "declined",
+      "lineage": "Celestial atlas charts",
+      "thesis": "Importance as dot size on a coordinate field.",
+      "palette": [
+        "#0f1b3d",
+        "#f4f1e8",
+        "#d98a2b",
+        "#c0392b"
+      ],
+      "materials": [
+        "navy chart ground",
+        "chalk-white points"
+      ],
+      "viewport": "The content library as overlapping chart plates with an index.",
+      "case": "Loses both axes: passages and questions are text to edit, not points to plot.",
+      "kept": "An index whose entries point to an exact place.",
+      "risk": "A map metaphor over a text editor."
+    },
+    {
+      "id": "challenger-doujin",
+      "kind": "challenger",
+      "catalogId": "pop-culture-shelf-doujin-event-catalog",
+      "label": "Circle Catalog",
+      "verdict": "declined",
+      "lineage": "Newsprint convention catalogs",
+      "thesis": "Hundreds of coded cells packed edge to edge on one page.",
+      "palette": [
+        "#1a1a1a",
+        "#d9d6cc",
+        "#e23b2e"
+      ],
+      "materials": [
+        "single-ink newsprint",
+        "packed thumbnail grid"
+      ],
+      "viewport": "The library as a wall of coded cells with a keyed map.",
+      "case": "Loses both axes: passages have titles, not thumbnails, and the grid hides the editor.",
+      "kept": "The courage to show many entries at once.",
+      "risk": "Density without hierarchy."
+    },
+    {
+      "id": "challenger-crouwel",
+      "kind": "challenger",
+      "catalogId": "crouwel-grid-specimen",
+      "label": "Grid Specimen",
+      "verdict": "declined",
+      "lineage": "Wim Crouwel gridded type specimens",
+      "thesis": "A visible construction grid with monumental letterforms built on it.",
+      "palette": [
+        "#ffffff",
+        "#1d3fbb",
+        "#111111",
+        "#cfd8ee"
+      ],
+      "materials": [
+        "construction hairlines",
+        "one accent plane"
+      ],
+      "viewport": "Workspace names as giant grid-built letters over the tools.",
+      "case": "Loses both axes: monumental type steals room from the exam page it should serve.",
+      "kept": "One module governing every pane and reflow.",
+      "risk": "Poster scale on a working screen."
+    }
+  ],
+  "reroll": {
+    "registers": [
+      "safer",
+      "bolder"
+    ]
+  },
+  "buildPath": {
+    "value": "code"
+  },
+  "canon": true,
+  "canonCard": {
+    "kind": "canon",
+    "label": "The category standard",
+    "thesis": "A neutral white-and-grey authoring workbench with one blue accent, executed cleanly.",
+    "palette": [
+      "#ffffff",
+      "#f5f6f8",
+      "#1f2937",
+      "#2563eb"
+    ],
+    "materials": [
+      "neutral greys",
+      "single blue accent",
+      "system sans"
+    ],
+    "viewport": "Grey sidebar, library list, toolbar and the TestNav sheet: the current arrangement, tidied.",
+    "risk": "Closest to what the editor looks like today, so the change will feel smallest.",
+    "html": ".impeccable/mocks/decision/canon.html"
+  },
+  "steer": true
+}

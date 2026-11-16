@@ -1,7 +1,7 @@
 import { PassageLastAttempt } from '../components/PassageLastAttempt';
 import { ExamText } from '../components/ExamReviewQuestion';
 import { TeacherQuestionReview } from '../components/TeacherQuestionReview';
-import { getLibraryBookSettings } from '../lib/api';
+import { getLibraryBookSettings, getLibraryOpenAccess, setLibraryOpenAccess, type LibraryOpenAccess } from '../lib/api';
 import { libraryBookNeedsReview, type LibraryBookSettings as BookSettings } from '../../../server/src/shared/libraryBooks';
 import { LibraryBookSettings } from '../components/LibraryBookSettings';
 import { teacherNavItems } from '../lib/teacherNavigation';
@@ -158,6 +158,20 @@ export function TeacherLibraryPage() {
 
   useEffect(() => { if (!accessToken) return; let current = true; getLibraryBookSettings(accessToken).then(result => { if (current) setBookSettings(result.settings); }).catch(() => { if (current) setMessage('Book review status could not be loaded. Open Book settings to retry.'); }); return () => { current = false; }; }, [accessToken]);
   const visibleMaterials = useMemo(() => englishLibraryMaterials.filter(material => (!sourceFilter || material.contentSource === sourceFilter) && (!categoryFilter || !material.contentSource && (material.passageCategories ?? [passageCategory(material.passageCategory)]).some(category => category === categoryFilter)) && (!genreFilter || material.readingFormat === genreFilter) && (!librarySearch.trim() || `${material.title} ${material.author ?? ""}`.toLowerCase().includes(librarySearch.trim().toLowerCase()))).sort((a, b) => ((librarySort === "category" ? passageCategoryLabel(a.passageCategory).localeCompare(passageCategoryLabel(b.passageCategory)) : librarySort === "questions" ? a.questionCount - b.questionCount : a.title.localeCompare(b.title)) * (libraryDirection === "asc" ? 1 : -1)) || a.id.localeCompare(b.id)), [sourceFilter, categoryFilter, genreFilter, librarySearch, librarySort, libraryDirection]);
+  const [openAccess, setOpenAccess] = useState<LibraryOpenAccess>();
+  const [savingOpenAccess, setSavingOpenAccess] = useState(false);
+  useEffect(() => { if (!accessToken) return; let current = true; getLibraryOpenAccess(accessToken).then(result => { if (current) setOpenAccess(result); }).catch(() => { if (current) setMessage('Library-wide access could not be loaded. Reload to retry.'); }); return () => { current = false; }; }, [accessToken]);
+  async function handleOpenAccess(open: boolean) {
+    if (!accessToken || savingOpenAccess) return;
+    if (open && !window.confirm('Open every book in the Study Hall library to all students? Per-book access settings are ignored while the library is open.')) return;
+    setSavingOpenAccess(true); setMessage('');
+    try {
+      const result = await setLibraryOpenAccess(accessToken, open);
+      setOpenAccess(result);
+      setMessage(open ? 'All doors open: every student can now read every library book.' : 'Library closed. Students again need per-book access.');
+    } catch (error) { setMessage(error instanceof Error ? error.message : 'Library-wide access could not be saved.'); }
+    finally { setSavingOpenAccess(false); }
+  }
   const selectedStudent = students.find((student) => student.id === selectedStudentId);
   const selectedAttempt = selectedStudent?.attempts.find((attempt) => attempt.id === selectedAttemptId) ?? selectedStudent?.attempts[0];
   async function handleSetAccess(student: TeacherLibraryStudent, granted: boolean) {
@@ -197,6 +211,7 @@ export function TeacherLibraryPage() {
           material={selectedMaterial}
           message={message}
           onSetAccess={handleSetAccess}
+          libraryOpen={!!openAccess?.open}
           onSelectAttempt={setSelectedAttemptId}
           onSelectStudent={(student) => {
             setSelectedStudentId(student.id);
@@ -215,6 +230,10 @@ export function TeacherLibraryPage() {
             <div><p><BookOpen size={15} /> English library</p><h1>Books & reading</h1><span>All versions, one book. Manage individual student access and review their results.</span></div>
             <div><span><small>Books</small><strong>{englishLibraryMaterials.length}</strong></span><span><small>Combined books</small><strong>{englishLibraryMaterials.filter(material => (material.versionCount ?? 1) > 1).length}</strong></span></div>
           </header>
+          <section className={`teacher-library-open-access${openAccess?.open ? ' is-open' : ''}`} aria-labelledby="library-open-access-title">
+            <div><h2 id="library-open-access-title">{openAccess?.open ? 'Library is open to everyone' : 'Open all doors'}</h2><p>{openAccess?.open ? `Every student can read every book${openAccess.updatedAt ? ` (opened ${new Date(openAccess.updatedAt).toLocaleDateString()})` : ''}. Per-book access settings are saved and come back when you close the library.` : 'Give every student access to every book in the Study Hall library at once, without granting books one by one.'}</p></div>
+            <button type="button" className={openAccess?.open ? 'secondary' : 'primary'} disabled={!openAccess || savingOpenAccess} aria-pressed={!!openAccess?.open} onClick={() => void handleOpenAccess(!openAccess?.open)}>{savingOpenAccess ? 'Saving…' : openAccess?.open ? 'Close library (use per-book access)' : 'Open all doors'}</button>
+          </section>
           {message ? <p role="status" className="teacher-message corporate-message">{message}</p> : null}
           <div className="lp-toolbar">
             <label>Content source<select value={sourceFilter} onChange={event => { setSourceFilter(event.target.value); setCategoryFilter(""); }}><option value="">All sources</option><option>SHSAT Lab</option></select></label>
@@ -262,6 +281,7 @@ type TeacherLibraryBookDetailProps = {
   material?: StudentMaterial;
   message: string;
   onSetAccess: (student: TeacherLibraryStudent, granted: boolean) => void;
+  libraryOpen: boolean;
   onSelectAttempt: (attemptId: string) => void;
   onSelectStudent: (student: TeacherLibraryStudent) => void;
   passageSet?: ExamPassageSet;
@@ -272,7 +292,7 @@ type TeacherLibraryBookDetailProps = {
   toggleAnswers: () => void;
 };
 
-function TeacherLibraryBookDetail({ accessToken, attempt, isLoading, material, message, onSetAccess, onSelectAttempt, onSelectStudent, passageSet, savingStudentId, selectedStudent, showAnswers, students, toggleAnswers }: TeacherLibraryBookDetailProps) {
+function TeacherLibraryBookDetail({ accessToken, attempt, isLoading, libraryOpen, material, message, onSetAccess, onSelectAttempt, onSelectStudent, passageSet, savingStudentId, selectedStudent, showAnswers, students, toggleAnswers }: TeacherLibraryBookDetailProps) {
   const [studentSearch, setStudentSearch] = useState("");
   const [accessFilter, setAccessFilter] = useState("");
   const [previewVersion, setPreviewVersion] = useState("");
@@ -314,7 +334,7 @@ function TeacherLibraryBookDetail({ accessToken, attempt, isLoading, material, m
               const best = bestScore(student);
               return <div className={`teacher-library-student-row${student.id === selectedStudent?.id ? " is-active" : ""}`} key={student.id}>
                 <button className="teacher-library-student-select" aria-pressed={student.id === selectedStudent?.id} onClick={() => onSelectStudent(student)} type="button"><span>{student.name.split(" ").map(part => part[0]).join("").slice(0, 2)}</span><span><strong>{student.name}</strong><small>{student.username} · {student.attempts.length} attempts{best === null ? "" : ` · ${best}% best`}</small><PassageLastAttempt attempts={student.attempts} lastTaken={student.lastTaken}/></span></button>
-                <button className={`teacher-library-access-toggle${student.access.unlocked ? " is-enabled" : ""}`} disabled={Boolean(savingStudentId)} aria-label={`${student.access.unlocked ? "Revoke access for" : "Grant access to"} ${student.name}`} onClick={() => onSetAccess(student, !student.access.unlocked)} type="button">{savingStudentId === student.id ? "Saving…" : student.access.unlocked ? <><Check size={14} /> Enabled · Revoke</> : <><UserRoundPlus size={14} /> Grant access</>}</button>
+                {libraryOpen ? <span className="teacher-library-access-toggle is-enabled" title="The whole library is open. Close it on the English library page to manage per-book access."><Check size={14} /> Open to all</span> : <button className={`teacher-library-access-toggle${student.access.unlocked ? " is-enabled" : ""}`} disabled={Boolean(savingStudentId)} aria-label={`${student.access.unlocked ? "Revoke access for" : "Grant access to"} ${student.name}`} onClick={() => onSetAccess(student, !student.access.unlocked)} type="button">{savingStudentId === student.id ? "Saving…" : student.access.unlocked ? <><Check size={14} /> Enabled · Revoke</> : <><UserRoundPlus size={14} /> Grant access</>}</button>}
               </div>;
             })}
           </div>

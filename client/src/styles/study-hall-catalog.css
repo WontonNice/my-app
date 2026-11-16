@@ -54,6 +54,13 @@
 .study-hall-cover-catalog h4 a { color:#24382f; text-decoration:none; }
 .study-hall-cover-catalog h4 a:hover { text-decoration:underline; text-underline-offset:3px; }
 .study-hall-reading-author { margin:0; font-size:.8rem; color:#59675f; line-height:1.5; }
+.study-hall-score { display:inline-flex; align-items:baseline; gap:4px; width:fit-content; margin-top:6px; padding:3px 9px; border-radius:999px; font-size:.75rem; font-variant-numeric:tabular-nums; border:1px solid transparent; }
+.study-hall-score strong { font-size:.82rem; }
+.study-hall-score small { font-size:.7rem; opacity:.85; }
+.study-hall-score.is-strong { background:#e3f2e8; color:#1d5a3c; border-color:#b9dcc6; }
+.study-hall-score.is-fair { background:#fbf0d9; color:#7a5310; border-color:#ecd39c; }
+.study-hall-score.is-weak { background:#fbe4e1; color:#8f2a1f; border-color:#efbcb5; }
+.study-hall-score.is-untaken { color:#59675f; border-color:#d9dfda; }
 .study-hall-reading-action { display:flex; align-items:center; justify-content:space-between; gap:8px; margin-top:8px; font-size:.76rem; font-variant-numeric:tabular-nums; }
 .study-hall-reading-action small { display:block; color:#59675f; font-size:.75rem; margin-top:3px; }
 .study-hall-reading-action a { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:8px 4px 8px 10px; color:#1f4a3a; text-decoration:none; font-weight:650; }

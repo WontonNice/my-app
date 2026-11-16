@@ -3,6 +3,7 @@ import { geometryReviewPractice } from './geometryReviewPractice';
 import { prob2Practice } from './prob2Practice';
 import { algebraPlannerPractice } from './algebraPlannerPractice';
 import { exponentsPractice } from './exponentsPractice';
+import { combinatoricsPractice } from './combinatoricsPractice';
 import type { ExamQuestion } from './examTypes';
 import { generateInequality, generateVariablesBothSidesInequality, variablesBothSidesTemplate } from './inequalityPractice';
 import { generateWritingInequality, writingInequalitiesTemplate } from './writingInequalities';
@@ -42,6 +43,7 @@ export const practiceGenerators: Generator[] = [
   ...algebraPlannerPractice.map(template=>({...template,foundation:true,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
   ...exponentsPractice.map(template=>({...template,foundation:true,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
   ...geometryReviewPractice.map(template=>({id:template.id,title:template.title,description:template.description,category:template.category,topic:template.topic,foundation:false,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
+  ...combinatoricsPractice.map(template=>({id:template.id,title:template.title,description:template.description,category:template.category,topic:template.topic,foundation:false,generate:(index:number,seed:string)=>template.generate(index,seed).question})),
 ];
 
 // Targeted modules can combine any number of registered generators. Stable IDs

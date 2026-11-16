@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Graphite Bench</title>
+<style>
+*{box-sizing:border-box;margin:0}
+:root{--g0:#16181d;--g1:#1d2027;--g2:#262a33;--seam:#333945;--ink:#e3e6ec;--muted:#98a1b0;--mint:#7cc4a4;--amber:#e6b450;--red:#e0787a}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{font:13.5px/1.45 "Segoe UI Variable Text","Segoe UI",system-ui,sans-serif;color:var(--ink);background:var(--g0);display:grid;grid-template-columns:196px 280px 1fr 300px;grid-template-rows:44px 1fr 28px}
+button{font:inherit;color:inherit}
+.mono{font-family:"Cascadia Mono",Consolas,monospace;font-size:12px}
+.top{grid-column:1/-1;display:flex;align-items:center;gap:10px;padding:0 14px;border-bottom:1px solid var(--seam);background:var(--g1)}
+.brand{display:flex;align-items:center;gap:9px;width:182px}
+.brand b{display:grid;place-items:center;width:26px;height:26px;border-radius:5px;background:var(--ink);color:var(--g0);font-size:11px}
+.crumb{color:var(--muted)}.crumb b{color:var(--ink);font-weight:600}
+.top .r{margin-left:auto;display:flex;gap:6px}
+.btn{height:28px;padding:0 10px;border:1px solid var(--seam);border-radius:5px;background:var(--g2);font-size:12.5px;font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:6px;color:var(--ink)}
+.btn.pri{background:var(--mint);border-color:var(--mint);color:#0f2a20}
+.btn.on{border-color:var(--mint);color:var(--mint)}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--muted)}
+.btn.del{background:transparent;border-color:#5a3438;color:var(--red)}
+.sel{height:28px;border:1px solid var(--seam);border-radius:5px;background:var(--g0);padding:0 24px 0 9px;font-size:12.5px;display:inline-flex;align-items:center;position:relative;white-space:nowrap}
+.sel:after{content:"▾";position:absolute;right:8px;color:var(--muted)}.sel small{color:var(--muted);margin-right:6px}
+.pane{border-right:1px solid var(--seam);min-height:0;display:flex;flex-direction:column;background:var(--g1)}
+.ph{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid var(--seam);font-size:11px;font-weight:650;letter-spacing:.06em;color:var(--muted)}
+.rail{background:var(--g0);padding-bottom:8px}
+.rail h6{font-size:11px;font-weight:650;letter-spacing:.06em;color:#6f7888;padding:14px 14px 5px}
+.rail a{display:flex;justify-content:space-between;padding:6px 14px;color:#c5cad3;text-decoration:none;border-left:2px solid transparent}
+.rail a.on{background:var(--g2);color:#fff;font-weight:650;border-left-color:var(--mint)}.rail a span{color:#6f7888;font-size:12px}
+.lhead{padding:10px 12px;border-bottom:1px solid var(--seam)}
+.row{display:flex;gap:6px;align-items:center}
+.search{height:28px;border:1px solid var(--seam);border-radius:5px;padding:0 9px;margin-top:8px;color:var(--muted);display:flex;align-items:center;font-size:12.5px;background:var(--g0)}
+.item{padding:7px 12px;border-bottom:1px solid #262a33}.item b{display:block;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item small{color:var(--muted);font-size:11.5px}.item.on{background:var(--g2);box-shadow:inset 2px 0 0 var(--mint)}
+.pf{margin-top:auto;padding:7px 12px;border-top:1px solid var(--seam);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
+.ed{display:flex;flex-direction:column;min-width:0;min-height:0;border-right:1px solid var(--seam);background:var(--g0)}
+.head{padding:12px 16px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 6px;border-bottom:1px solid var(--seam);background:var(--g1)}
+.head h1{font-size:20px;font-weight:650;letter-spacing:-.01em;margin-right:8px;white-space:nowrap}
+.head .act{flex:1 1 100%;display:flex;gap:6px;align-items:center}.head .del{margin-left:auto}
+.gap{width:28px}
+.tools{padding:7px 16px;display:flex;gap:4px;align-items:center;flex-wrap:wrap;border-bottom:1px solid var(--seam);background:var(--g1)}
+.sep{width:1px;height:18px;background:var(--seam);margin:0 5px}
+.desk{flex:1;min-height:0;padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px}
+.cap{font-size:12px;color:var(--muted)}.cap b{color:var(--mint)}
+/* TestNav sheet: student rendering, untouched; the only lit object */
+.sheet{flex:1;background:#fff;display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:18px;font:14px/1.5 Arial,Helvetica,sans-serif;color:#1b1b1b;min-height:0;box-shadow:0 0 0 1px #000,0 18px 50px #0009}
+.psg{border:2px solid #444;padding:12px 16px;overflow:hidden}
+.psg em{display:block;margin-bottom:8px}.psg h3{font-size:14px;font-weight:400;text-align:center}.psg .by{text-align:center;margin:4px 0 8px}
+.ln{display:grid;grid-template-columns:28px 1fr}.ln span{font-weight:700;font-size:12px;padding-top:3px}.st{margin-top:10px}
+.q p{margin-bottom:10px}
+.ch{display:grid;grid-template-columns:20px 22px 1fr;gap:4px;padding:7px;border-left:3px solid transparent}
+.ch:before{content:"";width:13px;height:13px;border:1.5px solid #777;border-radius:50%;margin-top:4px}
+.ch.ok{background:#e9f5ec;border-left-color:#2e7d4f}
+.ins{border-right:0}
+.tabs{display:flex;flex-wrap:wrap;gap:2px;padding:8px 10px;border-bottom:1px solid var(--seam)}
+.tabs span{font-size:12px;padding:3px 8px;border-radius:4px;color:var(--muted)}.tabs .on{background:var(--g2);color:var(--mint);font-weight:650}
+.blk{padding:12px;border-bottom:1px solid var(--seam)}
+.blk h3{font-size:12.5px;font-weight:650;margin-bottom:8px;display:flex;justify-content:space-between}.blk h3 span{color:var(--muted);font-weight:500}
+.keys{display:grid;grid-template-columns:repeat(6,1fr);gap:5px}
+.keys div{background:var(--g0);border:1px solid var(--seam);border-radius:5px;text-align:center;padding:4px 0;font-size:11.5px;color:var(--muted)}
+.keys b{display:block;font-size:16px;color:var(--mint);line-height:1.2}.keys .on{border-color:var(--mint)}
+.kv{display:grid;grid-template-columns:84px 1fr;gap:5px 8px;font-size:12.5px}.kv dt{color:var(--muted)}
+.stack{display:grid;grid-template-columns:1fr 1fr;gap:6px}.stack .btn{justify-content:center}
+.status{grid-column:1/-1;display:flex;align-items:center;gap:18px;padding:0 14px;border-top:1px solid var(--seam);background:var(--g1);font-size:12px;color:var(--muted)}
+.status b{color:var(--mint);font-weight:600}.status span:last-child{margin-left:auto}
+</style></head><body>
+<header class="top">
+  <div class="brand"><b>NT</b><strong>Content Studio</strong></div>
+  <div class="crumb">English / <b>Reading passages</b> / "A Bird came down the Walk"</div>
+  <div class="r"><button class="btn on">▤ Library</button><button class="btn">Saved import drafts</button><button class="btn ghost">Help</button></div>
+</header>
+<nav class="pane rail">
+  <a href="#" style="margin-top:10px">Question banks</a>
+  <h6>ENGLISH</h6><a href="#">English center<span>256</span></a><a class="on" href="#">Reading passages<span>164</span></a><a href="#">Rev/Edit A</a><a href="#">Standalone items<span>91</span></a>
+  <h6>MATH</h6><a href="#">Math questions</a><a href="#">Math center<span>↗</span></a>
+  <h6>MANAGE</h6><a href="#">Exams<span>31</span></a><a href="#">Worksheets</a><a href="#">Compare exams</a><a href="#">Question bank</a><a href="#">Answer sheets<span>↗</span></a>
+  <h6>MORE CONTENT</h6><a href="#">SAT passages</a><a href="#">Practice</a>
+</nav>
+<aside class="pane">
+  <div class="ph"><span>LIBRARY · 164</span><span>UNPIN</span></div>
+  <div class="lhead"><div class="row"><button class="btn pri">+ New</button><button class="btn">Import ▾</button><span style="margin-left:auto;color:var(--muted);font-size:12px">Filters ▾ &nbsp; Select</span></div><div class="search">Search titles, sources, questions…</div></div>
+  <div class="item on"><b>"A Bird came down the Walk"</b><small>Digital SHSAT Practice Test Adaptive 10 · 6 Q</small></div>
+  <div class="item"><b>"The Weary Blues"</b><small>Digital SHSAT Practice Test Adaptive 10 · 6 Q</small></div>
+  <div class="item"><b>5 Reasons Physical Books Might Be Better…</b><small>2 versions</small></div>
+  <div class="item"><b>A Memory Revolution</b><small>4 versions</small></div>
+  <div class="item"><b>A Miracle Mile</b><small>5 versions</small></div>
+  <div class="item"><b>An Early Warning</b><small>2018-2019 Form A · 6 Q</small></div>
+  <div class="item"><b>At Dusk</b><small>2 versions</small></div>
+  <div class="item"><b>Bird Talk</b><small>2 versions</small></div>
+  <div class="item"><b>Champion of the Channel</b><small>4 versions</small></div>
+  <div class="item"><b>Cross-Purposes</b><small>3 versions</small></div>
+  <div class="item"><b>Excerpt from "Brown Wolf"</b><small>Nathan's Mock SHSAT · 10 Q</small></div>
+  <div class="item"><b>Maggie Walker and the Economic Empowerment…</b><small>Nathan's Mock SHSAT · 10 Q</small></div>
+  <div class="pf"><span>1–50 of 164</span><span><button class="btn">‹</button> <button class="btn">›</button></span></div>
+</aside>
+<main class="ed">
+  <div class="head">
+    <h1>"A Bird came down the Walk"</h1><span class="sel"><small>Version</small>Digital SHSAT Practice Test Adaptive 10</span>
+    <div class="act"><button class="btn">Passage options</button><button class="btn">Student view</button><button class="btn">More ▾</button><button class="btn pri">Save passage</button><button class="btn del">Delete passage</button></div>
+  </div>
+  <div class="tools">
+    <span class="sel">Poetry · source lines</span><button class="btn"><b>B</b></button><button class="btn"><i>I</i></button><button class="btn"><u>U</u></button><button class="btn">Definition</button><button class="btn">Paste image</button><button class="btn">↶</button><button class="btn">↷</button><span class="sel">More formatting…</span>
+    <i class="sep"></i><button class="btn">‹</button><span class="sel">Question 1 of 6</span><button class="btn">›</button><button class="btn">Format excerpt</button><button class="btn">+ Question</button>
+  </div>
+  <div class="desk">
+    <div class="cap"><b>TestNav exam</b> · default preview · click any text to edit</div>
+    <section class="sheet">
+      <div class="psg"><em>Emily Dickinson (1830–1886) was an American poet who wrote nearly 1,800 poems, most of which were published after her death.</em><h3>"A Bird came down the Walk"</h3><div class="by">by Emily Dickinson</div>
+        <div class="ln"><span></span><div>A Bird came down the Walk—<br>He did not know I saw—<br>He bit an Angleworm in halves<br>And ate the fellow, raw,</div></div>
+        <div class="ln st"><span>5</span><div>And then he drank a Dew<br>From a convenient Grass—<br>And then hopped sidewise to the Wall<br>To let a Beetle pass—</div></div>
+        <div class="ln st"><span>10</span><div>He glanced with rapid eyes,<br>That hurried all around—</div></div>
+      </div>
+      <div class="q"><p>The poem develops a theme about the relationship between the human and natural worlds <b>mainly</b> through</p>
+        <div class="ch ok"><span>A.</span><span>the bird's departure right after the speaker's kind offer, which shows that even gentle human contact cannot erase a wild creature's caution.</span></div>
+        <div class="ch"><span>B.</span><span>the speaker's detailed record of the bird's habits, which shows that close study allows a person to understand a wild creature fully.</span></div>
+        <div class="ch"><span>C.</span><span>the speaker's refusal to approach the bird, which shows that respecting nature means never interfering with it.</span></div>
+        <div class="ch"><span>D.</span><span>the bird's acceptance of the crumb, which shows that patience and kindness eventually win the trust of wild animals.</span></div>
+      </div>
+    </section>
+  </div>
+</main>
+<aside class="pane ins">
+  <div class="ph"><span>INSPECTOR</span><span>CLOSE</span></div>
+  <div class="tabs"><span>Passage</span><span>Question</span><span class="on">Answers</span><span>Settings</span><span>Media</span><span>Definitions</span><span>Review</span></div>
+  <div class="blk"><h3>Answer summary <span>6 of 6 keyed</span></h3>
+    <div class="keys"><div class="on">1<b>A</b></div><div>2<b>C</b></div><div>3<b>B</b></div><div>4<b>D</b></div><div>5<b>A</b></div><div>6<b>B</b></div></div></div>
+  <div class="blk"><h3>Question 1</h3>
+    <dl class="kv"><dt>Topic</dt><dd>Central Idea &amp; Theme</dd><dt>Response</dt><dd>Multiple choice</dd><dt>Source</dt><dd class="mono">adaptive-10 · Q1</dd></dl>
+    <div class="stack" style="margin-top:10px"><button class="btn">Question options</button><button class="btn">☆ Favorite</button><button class="btn">My Tags</button></div></div>
+  <div class="blk"><h3>Placement</h3><div style="display:grid;gap:6px"><span class="sel"><small>Library</small>Exams</span><span class="sel"><small>Publish to</small>Question / passage library only</span></div></div>
+</aside>
+<footer class="status"><b>✓ Saved</b><span>Reading passages · Poem · 6 questions</span><span class="mono">a-bird-came-down-the-walk</span><span>Ctrl + S saves the open item</span></footer>
+</body></html>

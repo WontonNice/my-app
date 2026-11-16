@@ -1,4 +1,5 @@
 import { withPracticeSources } from '../shared/practiceSources';
+import { withRecommendedPractice } from '../shared/recommendedPractice';
 import { practiceProgressRouter } from './practiceProgress';
 import { Router } from 'express';
 import { supabase } from '../lib/supabase';
@@ -37,7 +38,7 @@ infinitePracticeRouter.get('/catalog',async(request,response)=>withMathCommandPe
   let catalog;
   try{catalog=validatePracticeCatalog(reconcilePracticeSkilled(reconcilePracticeTaxonomy(stored.data?.catalog??defaultPracticeCatalog(),taxonomy,readMathCommandState().taxonomyTopicRenames),taxonomy.classificationSkills??[]),taxonomy);}
   catch(error){if((error as {status?:number}).status!==400)throw error;response.status(409).json({message:`Practice resources need an update before the studio can open: ${(error as Error).message}`,requestId:response.locals.requestId});return;}
-  catalog=withPracticeSources(catalog,readMathCommandCatalog());
+  catalog=withPracticeSources(withRecommendedPractice(catalog),readMathCommandCatalog());
   const manage=request.query.manage==='1'&&response.locals.teacher;
   response.json({catalog:manage?catalog:studentPracticeCatalog(catalog),revision:stored.data?.revision??0,taxonomy:taxonomy.categories.map(({label,topics})=>({label,topics})),classificationSkills:taxonomy.classificationSkills??[]});
 }));

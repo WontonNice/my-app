@@ -1,4 +1,5 @@
 import { createPlainTextPassage } from "./formatters";
+import { nathanSMockShsatContent } from "./tests/nathan-s-mock-shsat";
 import { digitalShsatPracticeTestAdaptive9HardContent } from "./tests/digital-shsat-practice-test-adaptive-9-hard";
 import { grade920102011Content } from "./tests/grade-9-2010-2011";
 import { grade920092010Content } from "./tests/grade-9-2009-2010";
@@ -50,6 +51,7 @@ import type {
 } from "./types";
 
 const examContentByAssessmentId: Record<string, ExamContent> = {
+  [nathanSMockShsatContent.assessmentId]: nathanSMockShsatContent,
   [digitalShsatPracticeTestAdaptive9HardContent.assessmentId]: digitalShsatPracticeTestAdaptive9HardContent,
   [grade920102011Content.assessmentId]: grade920102011Content,
   [grade920092010Content.assessmentId]: grade920092010Content,

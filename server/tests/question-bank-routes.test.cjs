@@ -18,15 +18,15 @@ stub('../src/lib/libraryBooks.ts', { getLibraryAttemptBook: id => id === mergedB
 const tables = { student_assignments: [], teacher_library_books: [], student_practice_progress: [], student_library_attempts: [], student_library_corrections: [] };
 let compatibility = false, accessFailure = false;
 const db = { auth: { admin: { listUsers: async () => ({ data: { users: Object.values(users) }, error: null }), getUserById: async id => ({ data: { user: Object.values(users).find(user => user.id === id) }, error: null }) } }, from(table) {
-  const filters = []; let rows; let one = false; let limit = Infinity; let offset = 0;
+  const filters = []; let rows; let one = false; let deleting = false; let limit = Infinity; let offset = 0;
   const query = {
-    select() { return query; }, in(key, values) { filters.push(row => values.includes(row[key])); return query; }, eq(key, value) { filters.push(row => row[key] === value); return query; },
+    select() { return query; }, in(key, values) { filters.push(row => values.includes(row[key])); return query; }, eq(key, value) { filters.push(row => row[key] === value); return query; }, neq(key, value) { filters.push(row => row[key] !== value); return query; }, delete() { deleting = true; return query; },
     like(key, value) { filters.push(row => String(row[key] ?? '').startsWith(value.replace(/%$/, ''))); return query; },
     order() { return query; }, limit(value) { limit = value; return query; }, range(start, end) { offset = start; limit = end - start + 1; return query; },
     maybeSingle() { one = true; return query; }, single() { one = true; return query; },
     insert(row) { tables[table].push(row); rows = [row]; return query; },
     upsert(row, options = {}) { const old = tables[table].find(q => table === "teacher_library_books" ? q.book_id === row.book_id : q.user_id === row.user_id && q.topic_slug === row.topic_slug); if (old) { if (!options.ignoreDuplicates) Object.assign(old, row); } else tables[table].push(row); rows = [row]; return query; },
-    then(resolve, reject) { if (accessFailure && table === "student_practice_progress") return Promise.resolve({ data:null, error:{message:"storage unavailable"} }).then(resolve,reject); if (compatibility && table === 'student_library_attempts') return Promise.resolve({ data: null, error: { code: 'PGRST205', message: 'missing library table' } }).then(resolve, reject); const result = (rows ?? tables[table] ?? []).filter(row => filters.every(filter => filter(row))).slice(offset, offset + limit); return Promise.resolve({ data: one ? result[0] ?? null : result, error: null }).then(resolve, reject); },
+    then(resolve, reject) { if (accessFailure && table === "student_practice_progress") return Promise.resolve({ data:null, error:{message:"storage unavailable"} }).then(resolve,reject); if (compatibility && table === 'student_library_attempts') return Promise.resolve({ data: null, error: { code: 'PGRST205', message: 'missing library table' } }).then(resolve, reject); if (deleting) { tables[table] = tables[table].filter(row => !filters.every(filter => filter(row))); return Promise.resolve({ data: null, error: null }).then(resolve, reject); } const result = (rows ?? tables[table] ?? []).filter(row => filters.every(filter => filter(row))).slice(offset, offset + limit); return Promise.resolve({ data: one ? result[0] ?? null : result, error: null }).then(resolve, reject); },
   }; return query;
 } };
 stub('../src/lib/supabase.ts', { supabase: db });
@@ -197,6 +197,26 @@ test('students cannot forge library access through practice progress or profile 
   assert.equal((await call(`/library/teacher/books/book-fixture/students/${users[role].id}/access`,'teacher',{granted:true},'PUT')).status,404);
   assert.equal((await call('/library/books/book-fixture/access',role)).data.unlocked,false);
  }
+});
+
+test('teacher can open all library doors for every student and close them again', async () => {
+ const path = '/library/teacher/open-access';
+ assert.equal((await call(path, 'student', { open: true }, 'PUT')).status, 403);
+ assert.equal((await call('/progress/practice/' + encodeURIComponent('english-library:open-access'), 'student', { progress: { open: true } }, 'PUT')).status, 403);
+ assert.equal((await call(path, 'teacher', { open: 'yes' }, 'PUT')).status, 400);
+ await call(`/library/teacher/books/book-fixture/students/${otherId}/access`, 'teacher', { granted: false }, 'PUT');
+ assert.equal((await call('/library/books/book-fixture/access', 'other')).data.unlocked, false);
+ const opened = await call(path, 'teacher', { open: true }, 'PUT');
+ assert.equal(opened.status, 200); assert.equal(opened.data.open, true);
+ assert.equal((await call(path)).data.open, true);
+ // Open access overrides an explicit per-book revoke while it is on.
+ assert.equal((await call('/library/books/book-fixture/access', 'other')).data.unlocked, true);
+ assert.equal((await call('/library/books/book-fixture/content', 'other')).status, 200);
+ const dashboard = await call('/library/teacher/books/book-fixture');
+ assert.ok(dashboard.data.students.every(student => student.access.unlocked));
+ assert.equal((await call(path, 'teacher', { open: false }, 'PUT')).data.open, false);
+ assert.equal((await call('/library/books/book-fixture/access', 'other')).data.unlocked, false);
+ assert.equal(tables.student_practice_progress.filter(row => row.topic_slug === 'english-library:open-access').length, 1);
 });
 
 test('book curation is teacher-only, grades the launched edition, and keeps library scores out of assessments', async () => {

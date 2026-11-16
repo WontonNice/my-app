@@ -14,9 +14,17 @@
       "output_tokens": null,
       "usage_available": false,
       "files": 5971
+    },
+    {
+      "date": "2026-11-16T03:38:19.635389+00:00",
+      "scope": "code + docs (images, PDFs, artifacts text dumps skipped)",
+      "input_tokens": 1054632,
+      "output_tokens": 0,
+      "token_note": "host reports one combined subagent total; recorded as input, in/out split unavailable",
+      "files": 1965
     }
   ],
-  "total_input_tokens": 0,
+  "total_input_tokens": 1054632,
   "total_output_tokens": 0,
   "token_usage_status": "Totals exclude unmetered runs; do not interpret zero as measured free usage."
 }

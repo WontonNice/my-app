@@ -1,5 +1,5 @@
 import {learningCategories,categoryFor} from '../../../server/src/shared/learningTaxonomy';
-import { getLibraryBookSettings } from '../lib/api';
+import { getLibraryBookSettings, getLibraryProgress } from '../lib/api';
 import { getExamLibraryPassage } from '../content/exams/passageLibrary';
 import { libraryBookNeedsReview, type LibraryBookSettings } from '../../../server/src/shared/libraryBooks';
 import '../styles/library-book-settings.css';
@@ -24,6 +24,13 @@ export function StudentMaterialsPage({ teacherWorkspace = false }: { teacherWork
   const [bookSettings, setBookSettings] = useState<Record<string, LibraryBookSettings>>({});
   const [settingsError, setSettingsError] = useState('');
   useEffect(() => { if (!accessToken) return; let current = true; getLibraryBookSettings(accessToken).then(result => { if (current) setBookSettings(result.settings); }).catch(() => { if (current) setSettingsError('Book selections could not be loaded. Open Book settings to check the saved selection.'); }); return () => { current = false; }; }, [accessToken]);
+  const [passageScores, setPassageScores] = useState<Record<string, PassageScore>>();
+  useEffect(() => {
+    if (!accessToken || previewContext.isPreview && !previewContext.studentId) return;
+    let current = true;
+    getLibraryProgress(accessToken, previewContext.studentId || undefined).then(result => { if (current) setPassageScores(scoresByBook(result.attempts)); }).catch(() => { /* Scores are a convenience; the library still works without them. */ });
+    return () => { current = false; };
+  }, [accessToken, previewContext.isPreview, previewContext.studentId]);
   const [search, setSearch] = useState(() => window.location.search);
   useEffect(() => {
     const update = () => setSearch(window.location.search);
@@ -51,7 +58,7 @@ export function StudentMaterialsPage({ teacherWorkspace = false }: { teacherWork
   const passages = library.filter(item => (!type || item.readingFormat === type)
     && (!source || (item.passageCategories ?? [passageCategory(item.passageCategory)]).includes(passageCategory(source)))
     && (!skill || item.skills?.includes(skill)) && materialMatchesQuery(item, query))
-    .sort((a, b) => sort === 'questions' ? a.questionCount - b.questionCount || a.title.localeCompare(b.title) : (sort === 'title-desc' ? -1 : 1) * a.title.localeCompare(b.title));
+    .sort((a, b) => sort === 'score' ? scoreSortValue(passageScores ?? {}, a) - scoreSortValue(passageScores ?? {}, b) || a.title.localeCompare(b.title) : sort === 'questions' ? a.questionCount - b.questionCount || a.title.localeCompare(b.title) : (sort === 'title-desc' ? -1 : 1) * a.title.localeCompare(b.title));
   const advanced = advancedPassageMaterials.filter(item => (!genre || item.questionType === genre) && materialMatchesQuery(item, query))
     .sort((a, b) => (sort === 'title-desc' ? -1 : 1) * a.title.localeCompare(b.title));
   const educationalArea=entry==='editing'?'revising_editing_a':entry==='standalone'?'revising_editing_b':'reading';
@@ -99,10 +106,10 @@ export function StudentMaterialsPage({ teacherWorkspace = false }: { teacherWork
           <label>Source<select value={source} onChange={event => updateFilters({ source: event.target.value })}><option value="">All sources</option>{PASSAGE_CATEGORIES.map(item => <option key={item.value} value={item.value}>{item.label}</option>)}</select></label>
           <label>Passage type<select value={type} onChange={event => updateFilters({ type: event.target.value })}><option value="">All types</option>{['Informational', 'Literary', 'Poem', 'Revising/Editing'].map(value => <option key={value}>{value}</option>)}</select></label>
           <label>Reading skill<select value={skill} onChange={event => updateFilters({ skill: event.target.value })}><option value="">All skills</option>{[...new Set(library.flatMap(item => item.skills ?? []))].sort().map(value => <option key={value}>{value}</option>)}</select></label>
-          <SortSelect value={sort} onChange={value => updateFilters({ sort: value })} questions />
+          <SortSelect value={sort} onChange={value => updateFilters({ sort: value })} questions scores={!!passageScores} />
         </div>
         {settingsError && <p role="status">{settingsError}</p>}
-        <PassageList settings={bookSettings} materials={passages} previewContext={previewContext} onClear={clearFilters} />
+        <PassageList settings={bookSettings} scores={passageScores} materials={passages} previewContext={previewContext} onClear={clearFilters} />
       </section>}
     </div>
   </StudentPortalShell>;
@@ -111,8 +118,43 @@ export function StudentMaterialsPage({ teacherWorkspace = false }: { teacherWork
 function SectionHeading({ id, title, description, count }: { id: string; title: string; description: string; count?: string }) {
   return <header className="study-hall-section-title"><div><h3 id={id}>{title}</h3><p>{description}</p></div>{count && <span role="status">{count}</span>}</header>;
 }
-function SortSelect({ value, onChange, questions = false }: { value: string; onChange: (value: string) => void; questions?: boolean }) {
-  return <label>Sort by<select value={value} onChange={event => onChange(event.target.value)}><option value="title">Title A–Z</option><option value="title-desc">Title Z–A</option>{questions && <option value="questions">Fewest questions</option>}</select></label>;
+function SortSelect({ value, onChange, questions = false, scores = false }: { value: string; onChange: (value: string) => void; questions?: boolean; scores?: boolean }) {
+  return <label>Sort by<select value={value} onChange={event => onChange(event.target.value)}><option value="title">Title A–Z</option><option value="title-desc">Title Z–A</option>{questions && <option value="questions">Fewest questions</option>}{scores && <option value="score">Lowest score first</option>}</select></label>;
+}
+type LibraryAttemptSummary = Awaited<ReturnType<typeof getLibraryProgress>>['attempts'][number];
+type PassageScore = { score: number; total: number; attempts: number; completedAt: string };
+function scoresByBook(attempts: LibraryAttemptSummary[]) {
+  const scores: Record<string, PassageScore> = {};
+  for (const attempt of attempts) {
+    const current = scores[attempt.bookId];
+    const newer = !current || attempt.completedAt > current.completedAt;
+    scores[attempt.bookId] = { score: newer ? attempt.score : current.score, total: newer ? attempt.totalQuestions : current.total, completedAt: newer ? attempt.completedAt : current.completedAt, attempts: (current?.attempts ?? 0) + 1 };
+  }
+  return scores;
+}
+function libraryBookKey(material: StudentMaterial) { return material.href.split('/').at(-1) ?? ''; }
+/** A combined book keeps older attempts under its version IDs, so merge them. */
+function passageScore(scores: Record<string, PassageScore>, material: StudentMaterial): PassageScore | undefined {
+  const id = libraryBookKey(material);
+  const ids = [id, ...(getExamLibraryPassage(id)?.versions.map(version => version.id) ?? [])];
+  let merged: PassageScore | undefined;
+  for (const key of new Set(ids)) {
+    const score = scores[key];
+    if (!score) continue;
+    merged = !merged ? { ...score } : { ...(score.completedAt > merged.completedAt ? score : merged), attempts: merged.attempts + score.attempts };
+  }
+  return merged;
+}
+function scorePercent(score: PassageScore) { return Math.round(100 * score.score / Math.max(1, score.total)); }
+/** Untaken passages sort after every scored one. */
+function scoreSortValue(scores: Record<string, PassageScore>, material: StudentMaterial) { const score = passageScore(scores, material); return score ? scorePercent(score) : 101; }
+function ScoreBadge({ score }: { score?: PassageScore }) {
+  if (!score) return <span className="study-hall-score is-untaken">Not taken yet</span>;
+  const percent = scorePercent(score);
+  const tone = percent >= 80 ? 'strong' : percent >= 60 ? 'fair' : 'weak';
+  return <span className={`study-hall-score is-${tone}`} title={`Latest attempt ${new Date(score.completedAt).toLocaleDateString()}`}>
+    <strong>{percent}%</strong> {score.score}/{score.total}{score.attempts > 1 && <small> · {score.attempts} attempts</small>}
+  </span>;
 }
 function WorksheetSection({ area, query, previewContext }: { area: 'reading' | 'editing' | 'standalone' | 'advanced'; query: string; previewContext: StudentPreviewContext }) {
   return <section className="study-hall-worksheet-section" aria-label="Worksheets"><SectionHeading id={`${area}-worksheets`} title="Worksheets" description="Short, focused sets organized by category. Your saved work stays with each worksheet." /><StudyHallWorksheetLinks subject="english" area={area} query={query} previewContext={previewContext} /></section>;
@@ -122,7 +164,7 @@ function EnglishTopicGroups({topics,area,previewContext}:{topics:StudentMaterial
   const used=new Set<string>();
   return <div className="study-hall-topic-groups">{groups.map(group=>{const members=topics.filter(topic=>!used.has(topic.id)&&group.matches.test(topic.title));members.forEach(topic=>used.add(topic.id));return members.length?<section key={group.title}><h3>{group.title}</h3><div className="study-hall-topic-grid">{members.map(material=><AppLink key={material.id} href={appendStudentPreview(material.href+(area==='standalone'?(material.href.includes('?')?'&':'?')+'area=standalone':''),previewContext)}><strong>{material.title}</strong><span>View worksheets and practice</span><ArrowRight size={18} aria-hidden="true"/></AppLink>)}</div></section>:null;})}</div>;
 }
-function PassageList({ materials, previewContext, onClear, settings = {} }: { materials: StudentMaterial[]; previewContext: StudentPreviewContext; onClear: () => void; settings?: Record<string, LibraryBookSettings> }) {
+function PassageList({ materials, previewContext, onClear, settings = {}, scores }: { materials: StudentMaterial[]; previewContext: StudentPreviewContext; onClear: () => void; settings?: Record<string, LibraryBookSettings>; scores?: Record<string, PassageScore> }) {
   if (!materials.length) return <EmptyState onClear={onClear} />;
   return <ul className="study-hall-reading-list study-hall-cover-catalog">{materials.map(material => <li key={material.id}>
     <AppLink className={`study-hall-catalog-cover is-${material.tone ?? 'emerald'}`} aria-label={`Read ${material.title}`} href={appendStudentPreview(material.href, previewContext)}>
@@ -131,6 +173,7 @@ function PassageList({ materials, previewContext, onClear, settings = {} }: { ma
     <div className="study-hall-reading-body"><div className="study-hall-reading-meta"><span>{(material.passageCategories ?? [passageCategory(material.passageCategory)]).map(passageCategoryLabel).join(' / ')}</span><span>{material.readingFormat}</span></div>
       <h4><AppLink href={appendStudentPreview(material.href, previewContext)}>{material.title}</AppLink></h4>
       {material.author && !['SHSAT Library', 'Nathan Tutors Editorial'].includes(material.author) && <p className="study-hall-reading-author">{material.author}</p>}
+      {scores && <ScoreBadge score={passageScore(scores, material)} />}
       {!!material.examLabels?.length && <details className="study-hall-appearances"><summary>Appears in {material.examLabels.length} {material.examLabels.length === 1 ? 'exam' : 'exams'}</summary><ul>{material.examLabels.map(label => <li key={label}>{label}</li>)}</ul></details>}
     </div>
     <div className="study-hall-reading-action"><span>{settings[material.href.split('/').at(-1) ?? '']?.questionIds.length ?? material.questionCount} {material.questionCount === 1 ? 'question' : 'questions'}{(material.versionCount ?? 0) > 1 && <small>{material.versionCount} versions combined</small>}</span><AppLink aria-label={`Open ${material.title}`} href={appendStudentPreview(material.href, previewContext)}>Open <ArrowRight size={16} aria-hidden="true" /></AppLink></div>

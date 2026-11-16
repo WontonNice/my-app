@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Ditto Master</title>
+<style>
+*{box-sizing:border-box;margin:0}
+:root{--ink:#4a2c9a;--ink-deep:#2a1a52;--wash:#ebe6f8;--wash-2:#f5f2fc;--paper:#fcfbff;--line:#d6cdf0;--muted:#6a5f8a;--ok:#1c8a5a;--ok-soft:#e3f4ea;--warn:#9a6208}
+html,body{width:1440px;height:900px;overflow:hidden}
+body{font:14px/1.45 "Segoe UI Variable Text","Segoe UI",system-ui,sans-serif;color:var(--ink-deep);background:var(--wash);display:grid;grid-template-columns:216px 304px 1fr;grid-template-rows:56px 1fr}
+.mono{font-family:"Cascadia Mono",Consolas,monospace;font-size:12px}
+button,select,input{font:inherit;color:inherit}
+/* rail */
+.rail{grid-row:1/-1;background:var(--ink);color:#efeaff;display:flex;flex-direction:column;padding:16px 12px}
+.brand{display:flex;gap:10px;align-items:center;padding:0 8px 20px}
+.brand b{display:grid;place-items:center;width:34px;height:34px;border-radius:8px;background:#fff;color:var(--ink);font-size:13px}
+.brand strong{display:block;font-size:14px;color:#fff}.brand small{font-size:12px;color:#cdc1f2}
+.rail h6{font-size:11px;font-weight:600;color:#bfb0ee;padding:16px 10px 6px;letter-spacing:.02em}
+.rail a{display:flex;justify-content:space-between;padding:8px 10px;border-radius:6px;color:#efeaff;text-decoration:none;font-size:14px}
+.rail a.on{background:#fff;color:var(--ink);font-weight:650}
+.rail a span{font-size:12px;color:#bfb0ee}.rail a.on span{color:var(--muted)}
+.rail footer{margin-top:auto;padding:12px 10px 0;border-top:1px solid #6a4fb8;font-size:12px;color:#cdc1f2}
+/* header */
+.top{grid-column:2/-1;display:flex;align-items:center;gap:12px;padding:0 24px;background:var(--paper);border-bottom:1px solid var(--line)}
+.crumb{font-size:13px;color:var(--muted)}.crumb b{color:var(--ink-deep)}
+.cmd{margin-left:auto;width:300px;height:34px;border:1px solid var(--line);border-radius:6px;background:var(--wash-2);padding:0 12px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:13px}
+.btn{height:34px;padding:0 12px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:13px;font-weight:600;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.btn.pri{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.on{background:var(--wash);border-color:var(--ink);color:var(--ink)}
+.btn.ghost{border-color:transparent;background:transparent}
+/* library */
+.lib{background:var(--paper);border-right:1px solid var(--line);display:flex;flex-direction:column;min-height:0}
+.lib header{padding:16px 16px 12px;border-bottom:1px solid var(--line)}
+.lib h2{font-size:15px;display:flex;justify-content:space-between;align-items:baseline}
+.lib h2 span{font-weight:500;color:var(--muted)}
+.row{display:flex;gap:8px;margin-top:10px}
+.search{height:34px;border:1px solid #a99bd6;border-radius:6px;padding:0 10px;width:100%;margin-top:10px;background:#fff;color:var(--muted);display:flex;align-items:center;font-size:13px}
+.item{padding:9px 16px;border-bottom:1px solid var(--wash);display:grid;grid-template-columns:1fr auto;gap:2px 8px}
+.item b{font-size:13.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item small{grid-column:1;color:var(--muted);font-size:12px}
+.item i{font-style:normal;font-size:11px;align-self:start;padding:1px 6px;border-radius:3px}
+.item .d{border:1px dashed var(--ink);color:var(--ink)}.item .p{border:1px solid var(--ink-deep);color:var(--ink-deep)}
+.item.on{background:var(--wash);box-shadow:inset 3px 0 0 var(--ink)}
+.lib footer{margin-top:auto;padding:10px 16px;border-top:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted)}
+/* editor */
+.ed{display:flex;flex-direction:column;min-width:0;min-height:0}
+.head{background:var(--paper);padding:16px 24px 12px;display:flex;align-items:flex-end;gap:10px;flex-wrap:wrap}
+.head h1{font-size:24px;line-height:1.15;font-weight:650;letter-spacing:-.01em}
+.head p{font-size:12.5px;color:var(--muted);margin-top:4px}
+.head .act{margin-left:auto;display:flex;gap:8px;align-items:center}
+.sel{height:34px;border:1px solid #a99bd6;border-radius:6px;background:#fff;padding:0 28px 0 10px;font-size:13px;display:inline-flex;align-items:center;position:relative}
+.sel:after{content:"▾";position:absolute;right:9px;color:var(--muted)}
+.sel small{color:var(--muted);margin-right:6px}
+/* signature: run strip */
+.run{background:var(--paper);padding:0 24px 12px;display:flex;align-items:center;gap:0;font-size:12.5px;border-bottom:1px solid var(--line)}
+.step{display:flex;align-items:center;gap:8px;color:var(--muted)}
+.step u{text-decoration:none;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;border:1.5px solid #a99bd6;font-size:11px}
+.step.done{color:var(--ink);font-weight:600}.step.done u{background:var(--ink);border-color:var(--ink);color:#fff}
+.step.now{color:var(--ink);font-weight:650}.step.now u{border:1.5px dashed var(--ink)}
+.rule{flex:1;height:0;border-top:2px solid var(--ink);margin:0 14px}.run{color:var(--muted)}.dot:before{content:"·";margin:0 8px}
+.run .saved{color:var(--ink);font-weight:650}
+.tools{background:var(--wash-2);border-bottom:1px solid var(--line);padding:8px 24px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.tools .btn,.tools .sel{height:30px;font-size:12.5px;padding-left:9px;padding-right:9px}.tools .sel{padding-right:26px}
+.sep{width:1px;height:20px;background:var(--line);margin:0 4px}
+.key{background:var(--ok-soft);border-color:#9fd3b6;color:#12643f}
+.desk{flex:1;min-height:0;padding:20px 24px 24px;display:flex;flex-direction:column;gap:8px}
+.cap{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
+.cap b{color:var(--ink)}
+/* TestNav sheet: student rendering, untouched */
+.sheet{flex:1;background:#fff;border:1px solid #c9c2de;box-shadow:0 1px 0 #d6cdf0,0 10px 28px #4a2c9a1c;display:grid;grid-template-columns:1fr 1fr;gap:24px;padding:22px;font:15px/1.5 Arial,Helvetica,sans-serif;color:#1b1b1b;min-height:0}
+.psg{border:2px solid #444;padding:16px 22px;overflow:hidden}
+.psg em{display:block;margin-bottom:10px}.psg h3{font-size:15px;font-weight:400;text-align:center}
+.psg .by{text-align:center;margin:4px 0 12px}
+.ln{display:grid;grid-template-columns:34px 1fr}.ln span{font-weight:700;font-size:12px;padding-top:3px}
+.st{margin-top:14px}
+.q p{margin-bottom:12px}
+.ch{display:grid;grid-template-columns:22px 24px 1fr;gap:4px;padding:9px 8px;border-left:3px solid transparent}
+.ch:before{content:"";width:13px;height:13px;border:1.5px solid #777;border-radius:50%;margin-top:4px}
+.ch.ok{background:#e9f5ec;border-left-color:#2e7d4f;position:relative}
+.ch.ok:after{content:"✓ Correct answer";position:absolute;right:8px;bottom:-16px;font-size:11px;color:#2e7d4f}
+</style></head><body>
+<nav class="rail">
+  <div class="brand"><b>NT</b><div><strong>Nathan Tutors</strong><small>Content Studio</small></div></div>
+  <a href="#">Question banks</a>
+  <h6>English</h6><a href="#">English center<span>251</span></a><a class="on" href="#">Reading passages<span>164</span></a><a href="#">Rev/Edit A</a><a href="#">Standalone items<span>91</span></a>
+  <h6>Math</h6><a href="#">Math questions</a><a href="#">Math center<span>↗</span></a>
+  <h6>Manage</h6><a href="#">Exams<span>31</span></a><a href="#">Worksheets</a><a href="#">Compare exams</a><a href="#">Question bank</a><a href="#">Answer sheets<span>↗</span></a>
+  <h6>More content</h6><a href="#">SAT passages</a><a href="#">Practice</a>
+  <footer>Nathan Tutors<br>Content workspace</footer>
+</nav>
+<header class="top">
+  <div class="crumb">Content Studio / <b>Reading passages</b></div>
+  <span style="margin-left:auto"></span>
+  <button class="btn on">▤ Library</button><button class="btn">Saved import drafts</button><button class="btn ghost">Help</button>
+</header>
+<aside class="lib">
+  <header>
+    <h2>Reading passages <span>164</span></h2>
+    <div class="row"><button class="btn pri">+ New</button><button class="btn">Import ▾</button><button class="btn ghost" style="margin-left:auto">Unpin</button></div>
+    <div class="search">Search titles, sources, questions…</div>
+    <div class="row" style="justify-content:space-between;font-size:12.5px;color:var(--muted)"><span>Filters ▾</span><span>Select</span></div>
+  </header>
+  <div class="item on"><b>"A Bird came down the Walk"</b><small>Digital SHSAT Practice Test Adaptive 10 · 6 Q</small></div>
+  <div class="item"><b>"The Weary Blues"</b><small>Digital SHSAT Practice Test Adaptive 10 · 6 Q</small></div>
+  <div class="item"><b>5 Reasons Physical Books Might Be Better…</b><small>2 versions</small></div>
+  <div class="item"><b>A Memory Revolution</b><small>4 versions</small></div>
+  <div class="item"><b>A Miracle Mile</b><small>5 versions</small></div>
+  <div class="item"><b>An Early Warning</b><small>2018-2019 Form A · 6 Q</small></div>
+  <div class="item"><b>At Dusk</b><small>2 versions</small></div>
+  <div class="item"><b>Bird Talk</b><small>2 versions</small></div>
+  <div class="item"><b>Champion of the Channel</b><small>4 versions</small></div>
+  <div class="item"><b>Cross-Purposes</b><small>3 versions</small></div>
+  <div class="item"><b>Excerpt from "Brown Wolf"</b><small>Nathan's Mock SHSAT · 10 Q</small></div>
+  <footer><span>1–50 of 164</span><span><button class="btn" style="height:28px">‹</button> <button class="btn" style="height:28px">›</button></span></footer>
+</aside>
+<main class="ed">
+  <div class="head">
+    <div><h1>"A Bird came down the Walk"</h1><p>Poem · 6 questions · <span class="mono">a-bird-came-down-the-walk</span></p></div>
+    <div class="act"><button class="btn">Passage options</button><button class="btn">Student view</button><button class="btn">More ▾</button><button class="btn pri">Save passage</button></div>
+  </div>
+  <div class="run">
+    <span class="sel"><small>Version</small>Digital SHSAT Practice Test Adaptive 10</span><span class="sel" style="margin-left:8px"><small>Library</small>Exams</span><span class="sel" style="margin-left:8px"><small>Publish to</small>Question / passage library only</span>
+    <i class="rule"></i>
+    <span class="saved">✓ Saved</span>
+  </div>
+  <div class="tools">
+    <span class="sel">Poetry · source lines</span><button class="btn"><b>B</b></button><button class="btn"><i>I</i></button><button class="btn"><u>U</u></button><button class="btn">Definition</button><button class="btn">Paste image</button><button class="btn">↶</button><button class="btn">↷</button><span class="sel">More formatting…</span>
+    <i class="sep"></i>
+    <button class="btn key">Answer summary · A</button><button class="btn">‹</button><span class="sel">Question 1 of 6</span><button class="btn">›</button><button class="btn">Format excerpt</button><button class="btn">Question options</button><button class="btn">+ Question</button><button class="btn">☆ Favorite</button><button class="btn">My Tags</button>
+  </div>
+  <div class="desk">
+    <div class="cap"><span><b>TestNav exam</b> · default preview · click any text to edit</span><span>Manage answer keys in Answer summary</span></div>
+    <section class="sheet">
+      <div class="psg"><em>Emily Dickinson (1830–1886) was an American poet who wrote nearly 1,800 poems, most of which were published after her death.</em><h3>"A Bird came down the Walk"</h3><div class="by">by Emily Dickinson</div>
+        <div class="ln"><span></span><div>A Bird came down the Walk—<br>He did not know I saw—<br>He bit an Angleworm in halves<br>And ate the fellow, raw,</div></div>
+        <div class="ln st"><span>5</span><div>And then he drank a Dew<br>From a convenient Grass—<br>And then hopped sidewise to the Wall<br>To let a Beetle pass—</div></div>
+        <div class="ln st"><span>10</span><div>He glanced with rapid eyes,<br>That hurried all around—<br>They looked like frightened Beads, I thought—</div></div>
+      </div>
+      <div class="q"><p>The poem develops a theme about the relationship between the human and natural worlds <b>mainly</b> through</p>
+        <div class="ch ok"><span>A.</span><span>the bird's departure right after the speaker's kind offer, which shows that even gentle human contact cannot erase a wild creature's caution.</span></div>
+        <div class="ch" style="margin-top:14px"><span>B.</span><span>the speaker's detailed record of the bird's habits, which shows that close study allows a person to understand a wild creature fully.</span></div>
+        <div class="ch"><span>C.</span><span>the speaker's refusal to approach the bird, which shows that respecting nature means never interfering with it in any way.</span></div>
+        <div class="ch"><span>D.</span><span>the bird's acceptance of the crumb, which shows that patience and kindness eventually win the trust of wild animals.</span></div>
+      </div>
+    </section>
+  </div>
+</main>
+</body></html>
