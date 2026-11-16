@@ -2758,15 +2758,28 @@ Object.assign(studioUI, {
     const brand = header.querySelector('.brand');
     brand.querySelector('small').textContent = 'Content Studio';
     rail.append(brand, nav);
+    // Two-tier navigation: a family tab lists its workspaces in the second row.
+    // It never switches workspace itself, so unsaved-change guards stay on the workspace buttons.
+    this.navFamilies = [];
     for (const [label, tabs] of groups) {
       const group = this.element('div', 'studio-nav-group');
       group.setAttribute('role', 'group'); group.setAttribute('aria-label', label);
-      group.append(this.element('p', 'studio-nav-label', label));
-      for (const key of tabs) group.append(nav.querySelector(`[data-tab="${key}"]`));
-      if (label === 'Math') group.append(nav.querySelector('a[href="/math-command/"]'));
-      if (label === 'Manage') group.append(nav.querySelector('.content-studio-answer-sheets'));
+      const family = this.element('button', 'studio-nav-label', label);
+      family.type = 'button';
+      const items = this.element('div', 'studio-nav-items');
+      items.id = 'studio-nav-' + label.toLowerCase().replace(/\s+/g, '-');
+      family.setAttribute('aria-controls', items.id);
+      for (const key of tabs) items.append(nav.querySelector(`[data-tab="${key}"]`));
+      if (label === 'Math') items.append(nav.querySelector('a[href="/math-command/"]'));
+      if (label === 'Manage') items.append(nav.querySelector('.content-studio-answer-sheets'));
+      group.append(family, items);
+      const entry = { group, family, tabs };
+      family.onclick = () => this.showNavFamily(document.body.dataset.workspace, group.dataset.shown === 'true' ? null : entry);
+      this.navFamilies.push(entry);
       nav.append(group);
     }
+    document.addEventListener('pointerdown', event => { if (!nav.contains(event.target)) this.showNavFamily(document.body.dataset.workspace); });
+    nav.addEventListener('keydown', event => { if (event.key === 'Escape') this.showNavFamily(document.body.dataset.workspace); });
     nav.querySelectorAll('a').forEach(link => {
       const name = link.matches('.content-studio-answer-sheets') ? 'Answer sheets' : 'Math center';
       link.innerHTML = icon('<path d="M14 3h7v7m0-7L10 14M10 3H3v18h18v-7"/>') + `<span>${name}</span>`;
@@ -2781,7 +2794,20 @@ Object.assign(studioUI, {
     picker.after(library);
     this.syncWorkbench(document.body.dataset.workspace || 'passages');
   },
+  // Shows one family's workspaces in the second row; without a requested family, the one holding the open workspace.
+  showNavFamily(tab, requested = null) {
+    if (!this.navFamilies) return;
+    const current = this.navFamilies.find(entry => entry.tabs.includes(tab));
+    const shown = requested || current;
+    for (const entry of this.navFamilies) {
+      entry.group.dataset.shown = String(entry === shown);
+      entry.family.setAttribute('aria-expanded', String(entry === shown));
+      entry.family.toggleAttribute('data-current', entry === current);
+    }
+    document.body.dataset.navFamily = shown ? shown.group.getAttribute('aria-label') : '';
+  },
   syncWorkbench(tab) {
+    this.showNavFamily(tab);
     const title = document.getElementById('studio-workspace-title');
     if (title) title.textContent = this.workbenchLabels?.[tab] || 'Content Studio';
     const open = document.getElementById('studio-open-library');
