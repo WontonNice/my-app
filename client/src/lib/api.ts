@@ -814,6 +814,14 @@ export async function setTeacherLibraryStudentAccess(accessToken: string, bookId
   );
 }
 
+export type LibraryOpenAccess = { open: boolean; updatedAt: string | null };
+export async function getLibraryOpenAccess(accessToken: string) {
+  return requestApi<LibraryOpenAccess>('/api/library/teacher/open-access', { headers: createAuthHeaders(accessToken) });
+}
+export async function setLibraryOpenAccess(accessToken: string, open: boolean) {
+  return requestApi<LibraryOpenAccess>('/api/library/teacher/open-access', { method: 'PUT', body: JSON.stringify({ open }), headers: createAuthHeaders(accessToken) });
+}
+
 export async function getTeacherLibraryBook(accessToken: string, bookId: string) {
   return requestApi<{ book: LibraryBookAccess | null; students: TeacherLibraryStudent[] }>(
     `/api/library/teacher/books/${encodeURIComponent(bookId)}`,

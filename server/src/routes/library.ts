@@ -253,6 +253,15 @@ async function getStudentLibraryAttemptRows(userId: string, bookId: string) {
 }
 
 function accessTopicSlug(bookId: string) { return `${fallbackProgressPrefix}access:${canonicalLibraryBookId(bookId)}`; }
+// One library-wide switch ("open all doors"). It overrides per-book grants while on.
+const openAccessTopic = `${fallbackProgressPrefix}open-access`;
+type LibraryOpenAccess = { open: boolean; updatedAt: string | null };
+async function readLibraryOpenAccess(): Promise<LibraryOpenAccess> {
+    const result = await supabase.from("student_practice_progress").select("progress").eq("topic_slug", openAccessTopic).order("updated_at", { ascending: false }).limit(1).maybeSingle();
+    if (result.error) throw Object.assign(new Error("Could not load library access."), { status: 503 });
+    const progress = result.data?.progress;
+    return isRecord(progress) && progress.open === true ? { open: true, updatedAt: typeof progress.updatedAt === "string" ? progress.updatedAt : null } : { open: false, updatedAt: null };
+}
 function libraryMaterial(bookId: string) {
     const canonical = canonicalLibraryBookId(bookId);
     const merged = getMergedLibraryBook(canonical);
@@ -296,6 +305,23 @@ libraryRouter.put('/teacher/books/:bookId/settings', async (request, response) =
         if (saved.error) { response.status(503).json({ message: 'Book settings could not be saved. Please retry.' }); return; }
     }
     response.json({ settings });
+});
+libraryRouter.get('/teacher/open-access', async (request, response) => {
+    const auth = await requireTeacher(request.headers.authorization);
+    if (!auth.user) { response.status(403).json({ message: 'Teacher access is required.' }); return; }
+    response.json(await readLibraryOpenAccess());
+});
+libraryRouter.put('/teacher/open-access', async (request, response) => {
+    const auth = await requireTeacher(request.headers.authorization);
+    if (!auth.user) { response.status(403).json({ message: 'Teacher access is required.' }); return; }
+    if (typeof request.body?.open !== 'boolean') { response.status(400).json({ message: 'Choose whether the library is open.' }); return; }
+    const updatedAt = new Date().toISOString();
+    // Clear older rows (possibly saved by another teacher) so only one switch exists.
+    const cleared = await supabase.from('student_practice_progress').delete().eq('topic_slug', openAccessTopic).neq('user_id', auth.user.id);
+    if (cleared.error) { response.status(503).json({ message: 'Could not save library access. Please try again.' }); return; }
+    const saved = await supabase.from('student_practice_progress').upsert({ user_id: auth.user.id, topic_slug: openAccessTopic, progress: { open: request.body.open, updatedAt, updatedBy: auth.user.id }, updated_at: updatedAt }, { onConflict: 'user_id,topic_slug' });
+    if (saved.error) { response.status(503).json({ message: 'Could not save library access. Please try again.' }); return; }
+    response.json({ open: request.body.open, updatedAt: request.body.open ? updatedAt : null });
 });
 libraryRouter.get('/progress', async (request, response) => {
     const auth = await getAuthenticatedUser(request.headers.authorization);
@@ -429,7 +455,8 @@ libraryRouter.get("/teacher/books/:bookId", async (request, response) => {
     const material = libraryMaterial(request.params.bookId);
     if (!bookIdPattern.test(request.params.bookId) || !material) { response.status(404).json({ message: "English library book not found." }); return; }
     const ids = libraryBookAccessIds(material.id);
-    const [histories, grants, assignments, examRows] = await Promise.all([
+    const [openAccess, histories, grants, assignments, examRows] = await Promise.all([
+        readLibraryOpenAccess(),
         Promise.all(ids.map(bookHistory)),
         libraryRows<{ user_id: string; progress: unknown }>(offset => supabase.from("student_practice_progress").select("user_id,progress").eq("topic_slug", accessTopicSlug(material.id)).order("user_id").range(offset, offset + 999)),
         libraryRows<{ student_id: string; content_id: string; kind: string }>(offset => supabase.from("student_assignments").select("student_id,content_id,kind").in("content_id", ids).in("status", ["assigned", "in_progress", "review", "completed"]).order("id").range(offset, offset + 999), true),
@@ -457,7 +484,7 @@ libraryRouter.get("/teacher/books/:bookId", async (request, response) => {
     }
     const students = listedUsers.filter(activeLibraryStudent).map(user => {
         const grant = grantsByStudent.get(user.id);
-        const access = isRecord(grant) && typeof grant.granted === "boolean"
+        const access = openAccess.open ? { unlocked: true, unlockedAt: openAccess.updatedAt } : isRecord(grant) && typeof grant.granted === "boolean"
             ? { unlocked: grant.granted, unlockedAt: grant.granted && typeof grant.updatedAt === "string" ? grant.updatedAt : null }
             : { unlocked: legacyUnlocks.has(user.id) || assignedStudents.has(user.id), unlockedAt: legacyUnlocks.get(user.id) ?? null };
         return { access, lastTaken: lastTaken.get(user.id) ?? null, attempts: rows.filter(row => row.user_id === user.id).map(row => teacherAttempt(row, corrections.get(row.id))),
@@ -470,6 +497,8 @@ libraryRouter.get("/teacher/books/:bookId", async (request, response) => {
 });
 
 async function completedBookAccess(userId: string, bookId: string) {
+    const openAccess = await readLibraryOpenAccess();
+    if (openAccess.open) return { unlocked: true, unlockedAt: openAccess.updatedAt };
     const access = await supabase.from("student_practice_progress").select("progress").eq("user_id", userId).eq("topic_slug", accessTopicSlug(bookId)).maybeSingle();
     if (access.error) throw Object.assign(new Error("Could not load book access."), { status: 503 });
     if (isRecord(access.data?.progress) && typeof access.data.progress.granted === "boolean") {

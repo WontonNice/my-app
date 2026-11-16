@@ -3,11 +3,12 @@ import { defaultPracticeCatalog, managedGeneratorIds, practiceModuleKind, reconc
 import { mathCommandRoot, readMathCommandTaxonomy } from './mathCommandCatalogStore';
 import { withMathCommandPersistence } from './mathCommandPersistence';
 import type { PlanContent } from '../shared/learningPlan';
+import { withRecommendedPractice } from '../shared/recommendedPractice';
 
 export async function publishedPracticeCatalog(): Promise<PracticeCatalog> {
   const result = await supabase.from('infinite_practice_catalog').select('catalog').eq('id', 'main').maybeSingle();
   if (result.error) throw Object.assign(new Error('Practice modules could not be loaded. Please retry.'), { status: 503 });
-  return withMathCommandPersistence(mathCommandRoot,()=>studentPracticeCatalog(reconcilePracticeSkilled(result.data?.catalog??defaultPracticeCatalog(),readMathCommandTaxonomy().classificationSkills??[])));
+  return withMathCommandPersistence(mathCommandRoot,()=>studentPracticeCatalog(withRecommendedPractice(reconcilePracticeSkilled(result.data?.catalog??defaultPracticeCatalog(),readMathCommandTaxonomy().classificationSkills??[]))));
 }
 export async function infiniteHomeworkCatalog(): Promise<PlanContent[]> {
   return practiceHomeworkContents(await publishedPracticeCatalog());

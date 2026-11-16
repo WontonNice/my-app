@@ -5273,5 +5273,2861 @@
       },
       "releaseId": "094aba80acc54e06b43ca93daa58767eb3514ce4639fa6ddeff5ace607b9f977"
     }
+  },
+  "f066614284e4a8e70d2c6ad23e577ae7065ca48bbe2d384fa8afc79002bc7579": {
+    "id": "f066614284e4a8e70d2c6ad23e577ae7065ca48bbe2d384fa8afc79002bc7579",
+    "activityId": "nathan-s-mock-shsat",
+    "createdAt": "2026-11-16T17:51:24.607Z",
+    "content": {
+      "assessmentId": "nathan-s-mock-shsat",
+      "title": "Nathan's Mock SHSAT",
+      "questionOrder": [
+        "nms-maggie-walker-1",
+        "nms-maggie-walker-2",
+        "nms-maggie-walker-3",
+        "nms-maggie-walker-4",
+        "nms-maggie-walker-5",
+        "nms-maggie-walker-6",
+        "nms-maggie-walker-7",
+        "nms-maggie-walker-8",
+        "nms-maggie-walker-9",
+        "nms-brown-wolf-1",
+        "nms-brown-wolf-2",
+        "nms-brown-wolf-3",
+        "nms-brown-wolf-4",
+        "nms-brown-wolf-5",
+        "nms-brown-wolf-6",
+        "nms-brown-wolf-7",
+        "nms-brown-wolf-8",
+        "nms-brown-wolf-9",
+        "nms-brown-wolf-10",
+        "nms-pebble-acorn-1",
+        "nms-pebble-acorn-2",
+        "nms-pebble-acorn-3",
+        "nms-pebble-acorn-4",
+        "nms-pebble-acorn-5",
+        "nms-pebble-acorn-6",
+        "nms-pebble-acorn-7",
+        "nms-pebble-acorn-8",
+        "nms-pebble-acorn-9",
+        "nms-pebble-acorn-10",
+        "nms-storm-is-over-1",
+        "nms-storm-is-over-2",
+        "nms-storm-is-over-3",
+        "nms-storm-is-over-4",
+        "nms-storm-is-over-5",
+        "nms-storm-is-over-6",
+        "nms-storm-is-over-7",
+        "nms-storm-is-over-8",
+        "nms-storm-is-over-9",
+        "nms-storm-is-over-10",
+        "nms-snake-1",
+        "nms-snake-2",
+        "nms-snake-3",
+        "nms-snake-4",
+        "nms-snake-5",
+        "nms-snake-6",
+        "nms-snake-7",
+        "nms-snake-8",
+        "nms-snake-9",
+        "nms-snake-10"
+      ],
+      "passageSets": [
+        {
+          "id": "ela-maggie-walker-and-the-economic-empowerment-of-the-black-community-nathan-s-mock-shsat",
+          "versionLabels": [
+            "Nathan's Mock SHSAT"
+          ],
+          "section": "reading",
+          "questionCount": 9,
+          "directions": {
+            "body": "Read each text and answer the related questions. Base your answers only on the content within the text.",
+            "breadcrumbLabel": "ELA RDG COMP DIRECTIONS",
+            "subject": "English Language Arts",
+            "title": "READING COMPREHENSION"
+          },
+          "passage": {
+            "passageCategory": "miscellaneous",
+            "versionLabel": "Nathan's Mock SHSAT",
+            "format": "prose",
+            "id": "maggie-walker-and-the-economic-empowerment-of-the-black-community-nathan-s-mock-shsat",
+            "lines": [
+              {
+                "align": "center",
+                "kind": "title",
+                "text": "Maggie Walker and the Economic Empowerment of the Black Community"
+              },
+              {
+                "text": ""
+              },
+              {
+                "html": "Today you can visit and tour the home of Maggie Lena Walker (1864-1934) in Richmond, Virginia. This beautifully furnished twenty-eight room mansion is evidence of the success achieved by the first woman in the United States to be the president of a bank—a bank that she founded to serve the African American community.",
+                "lineNumber": "1",
+                "text": "Today you can visit and tour the home of Maggie Lena Walker (1864-1934) in Richmond, Virginia. This beautifully furnished twenty-eight room mansion is evidence of the success achieved by the first woman in the United States to be the president of a bank—a bank that she founded to serve the African American community."
+              },
+              {
+                "html": "Her success did not come easy—as she said, “I was not born with a silver spoon in my mouth but a laundry basket practically on my head.” Her mother, who had been an enslaved worker before the Civil War, worked as a laundress after Maggie’s stepfather died unexpectedly. Young Maggie helped her mother by delivering the washed and ironed clothes, carrying them in a basket perched on her head.",
+                "lineNumber": "2",
+                "text": "Her success did not come easy—as she said, “I was not born with a silver spoon in my mouth but a laundry basket practically on my head.” Her mother, who had been an enslaved worker before the Civil War, worked as a laundress after Maggie’s stepfather died unexpectedly. Young Maggie helped her mother by delivering the washed and ironed clothes, carrying them in a basket perched on her head."
+              },
+              {
+                "html": "After finishing school in 1883, she worked as a teacher. Three years later, when she married a Richmond businessman, she left teaching because female teachers were not allowed to be married. As a married woman, she stayed active in her work with the church and various community organizations, especially one called the Independent Order of St. Luke.",
+                "lineNumber": "3",
+                "text": "After finishing school in 1883, she worked as a teacher. Three years later, when she married a Richmond businessman, she left teaching because female teachers were not allowed to be married. As a married woman, she stayed active in her work with the church and various community organizations, especially one called the Independent Order of St. Luke."
+              },
+              {
+                "html": "The Independent Order of St. Luke (IOSL) had its beginnings in 1867 in Baltimore, Maryland, as an organization to provide financial help to its members when they got sick or when there was a death in the family. As the organization spread to local chapters in other states, it became an important provider of other financial, educational, and community services to African Americans. In this time of Jim Crow, many white-owned businesses denied or limited their services to Black people, who found a way to help themselves economically and socially through the Independent Order of St. Luke and similar organizations. IOSL members were expected to support each other, serve their community, and live by certain values such as thrift, hard work, and charity.",
+                "lineNumber": "4",
+                "text": "The Independent Order of St. Luke (IOSL) had its beginnings in 1867 in Baltimore, Maryland, as an organization to provide financial help to its members when they got sick or when there was a death in the family. As the organization spread to local chapters in other states, it became an important provider of other financial, educational, and community services to African Americans. In this time of Jim Crow, many white-owned businesses denied or limited their services to Black people, who found a way to help themselves economically and socially through the Independent Order of St. Luke and similar organizations. IOSL members were expected to support each other, serve their community, and live by certain values such as thrift, hard work, and charity."
+              },
+              {
+                "html": "Maggie Walker was in high school in Richmond when she first joined a youth group of the Independent Order of St. Luke. From starting out as a part-time volunteer, she steadily rose in the Order. In 1895, she created a <span data-glossary-definition=\"for young people\" role=\"link\" tabindex=\"0\">juvenile</span> branch of the IOSL. “Our hope for the future,” she said, “lies with the children—the youth of our race.” Within a year, a thousand children were enrolled. They met in small groups, called circles, each led by a woman called a matron. In this way, many more women assumed leadership roles in the IOSL, while the children received lessons in social skills, community service, and racial pride.",
+                "lineNumber": "5",
+                "text": "Maggie Walker was in high school in Richmond when she first joined a youth group of the Independent Order of St. Luke. From starting out as a part-time volunteer, she steadily rose in the Order. In 1895, she created a juvenile branch of the IOSL. “Our hope for the future,” she said, “lies with the children—the youth of our race.” Within a year, a thousand children were enrolled. They met in small groups, called circles, each led by a woman called a matron. In this way, many more women assumed leadership roles in the IOSL, while the children received lessons in social skills, community service, and racial pride."
+              },
+              {
+                "html": "In 1899 Maggie Walker became the head of the Independent Order of St. Luke. At the time, the organization had been losing adult members for some years and was facing financial difficulties. But that changed under Walker’s leadership. As she traveled from city to city and delivered inspiring speeches, the Order gained many thousands of new dues-paying members.",
+                "lineNumber": "6",
+                "text": "In 1899 Maggie Walker became the head of the Independent Order of St. Luke. At the time, the organization had been losing adult members for some years and was facing financial difficulties. But that changed under Walker’s leadership. As she traveled from city to city and delivered inspiring speeches, the Order gained many thousands of new dues-paying members."
+              },
+              {
+                "html": "Maggie Walker saw business opportunities that other people missed; she was a bold entrepreneur—a person who starts new businesses and is willing to take on the risk of doing so. In 1901, at the annual convention of the Independent Order of St. Luke, she gave a speech in which she announced her vision for the expansion of the Order into new businesses: “First we need a savings bank,” she said. “Let us put our moneys together. . . . Let us have a bank that will take the nickels and turn them into dollars.” She also announced plans to start a newspaper and open a department store.",
+                "lineNumber": "7",
+                "text": "Maggie Walker saw business opportunities that other people missed; she was a bold entrepreneur—a person who starts new businesses and is willing to take on the risk of doing so. In 1901, at the annual convention of the Independent Order of St. Luke, she gave a speech in which she announced her vision for the expansion of the Order into new businesses: “First we need a savings bank,” she said. “Let us put our moneys together. . . . Let us have a bank that will take the nickels and turn them into dollars.” She also announced plans to start a newspaper and open a department store."
+              },
+              {
+                "html": "In 1903, when Maggie Walker founded the St. Luke Penny Savings Bank in Richmond, she became the nation’s first woman bank president. Her goal, however, was not her personal advancement—rather, it was the economic empowerment of the African American community. In the Jim Crow South, Walker’s bank provided a safe place for Black people to save their money, and a welcoming place when they needed to borrow money for such purposes as buying a home or starting a business. To encourage children to learn the importance of saving, she gave out penny banks to families who belonged to the Independent Order of St. Luke. A child who saved one hundred pennies could march proudly into the bank and open an account.",
+                "lineNumber": "8",
+                "text": "In 1903, when Maggie Walker founded the St. Luke Penny Savings Bank in Richmond, she became the nation’s first woman bank president. Her goal, however, was not her personal advancement—rather, it was the economic empowerment of the African American community. In the Jim Crow South, Walker’s bank provided a safe place for Black people to save their money, and a welcoming place when they needed to borrow money for such purposes as buying a home or starting a business. To encourage children to learn the importance of saving, she gave out penny banks to families who belonged to the Independent Order of St. Luke. A child who saved one hundred pennies could march proudly into the bank and open an account."
+              },
+              {
+                "html": "Maggie Walker went on to take active roles in organizations like the National Association of Colored Women and the National Association for the Advancement of Colored People. The first president of the National Association of Colored Women, Mary Church Terrell—who herself came from a wealthy family—said this about Maggie Walker: “When one sees Mrs. Walker sitting in a solid <span data-glossary-definition=\"a hard, reddish-brown wood used in making furniture\" role=\"link\" tabindex=\"0\">mahogany</span> chair in her bank, it is hard to visualize her as the daughter of a washerwoman carrying clothes which she and her mother had laundered to the <span data-glossary-definition=\"privileged upper class\" role=\"link\" tabindex=\"0\">aristocracy</span> of the <span data-glossary-definition=\"Richmond, Virginia, had been the capital of the Confederate States of America during the Civil War, which ended in 1865.\" role=\"link\" tabindex=\"0\">capital of the Confederacy</span>.”",
+                "lineNumber": "9",
+                "text": "Maggie Walker went on to take active roles in organizations like the National Association of Colored Women and the National Association for the Advancement of Colored People. The first president of the National Association of Colored Women, Mary Church Terrell—who herself came from a wealthy family—said this about Maggie Walker: “When one sees Mrs. Walker sitting in a solid mahogany chair in her bank, it is hard to visualize her as the daughter of a washerwoman carrying clothes which she and her mother had laundered to the aristocracy of the capital of the Confederacy.”"
+              }
+            ],
+            "passageType": "informational",
+            "title": "Maggie Walker and the Economic Empowerment of the Black Community"
+          },
+          "questions": [
+            {
+              "id": "nms-maggie-walker-1",
+              "explanation": "The quotation sets up the passage’s contrast between hardship and success. A and B aren’t supported by the passage. C mixes in a detail from paragraph 3, and she actually left teaching because married women weren’t allowed to teach.",
+              "points": 1,
+              "prompt": "In paragraph 2, the quotation “I was not born with a silver spoon in my mouth but a laundry basket practically on my head” mainly serves to",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "suggest that Walker resented the wealthy families whose clothing her mother washed."
+                },
+                {
+                  "id": "B",
+                  "text": "show that Walker believed physical labor was more valuable than education."
+                },
+                {
+                  "id": "C",
+                  "text": "explain why Walker chose to leave teaching after she married."
+                },
+                {
+                  "id": "D",
+                  "text": "emphasize that Walker achieved success despite starting life with few advantages."
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-maggie-walker-2",
+              "explanation": "Paragraph 4 gives background on the IOSL before Walker’s rise in it. B overstates a “conflict.” A makes a comparison the passage never makes. D is the opposite of the passage: the IOSL’s values fit Walker’s.",
+              "points": 1,
+              "prompt": "How does paragraph 4 fit into the overall structure of the passage?",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "It compares the IOSL with similar organizations to show why the IOSL was more successful than they were."
+                },
+                {
+                  "id": "B",
+                  "text": "It interrupts the account of Walker’s life to describe a conflict between the IOSL and white-owned businesses."
+                },
+                {
+                  "id": "C",
+                  "text": "It provides background about the IOSL that helps explain the importance of the organization Walker later led."
+                },
+                {
+                  "id": "D",
+                  "text": "It introduces values that Walker later rejected when she became the head of the IOSL."
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-maggie-walker-3",
+              "explanation": "It’s the only choice that mentions adults (women leaders). A, B and D are true but are only about children or about Walker herself.",
+              "points": 1,
+              "prompt": "Which sentence from the passage best supports the idea that the juvenile branch of the IOSL benefited adults as well as children?",
+              "topic": "Evidence & Support",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "“In 1895, she created a juvenile branch of the IOSL.” (paragraph 5)"
+                },
+                {
+                  "id": "B",
+                  "text": "“Within a year, a thousand children were enrolled.” (paragraph 5)"
+                },
+                {
+                  "id": "C",
+                  "text": "“In this way, many more women assumed leadership roles in the IOSL, while the children received lessons in social skills, community service, and racial pride.” (paragraph 5)"
+                },
+                {
+                  "id": "D",
+                  "text": "“Maggie Walker was in high school in Richmond when she first joined a youth group of the Independent Order of St. Luke.” (paragraph 5)"
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-maggie-walker-4",
+              "explanation": "Cause: Walker’s leadership and speeches. Effect: thousands of new members after years of losses. B and C invent causes. D mistakes the traveling for the reason the speeches worked.",
+              "points": 1,
+              "prompt": "The author’s use of cause and effect in paragraph 6 mainly emphasizes the idea that",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Walker’s leadership reversed the decline the IOSL had been experiencing."
+                },
+                {
+                  "id": "B",
+                  "text": "the IOSL had lost members because it expanded into too many cities."
+                },
+                {
+                  "id": "C",
+                  "text": "the IOSL’s financial difficulties forced Walker to raise members’ dues."
+                },
+                {
+                  "id": "D",
+                  "text": "Walker’s speeches were popular mainly because she traveled so widely."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-maggie-walker-5",
+              "explanation": "The metaphor is about pooling small savings so they grow. D (“a short time”) and B (“only”) go too far. C isn’t in the passage.",
+              "points": 1,
+              "prompt": "In paragraph 7, Walker’s statement “Let us have a bank that will take the nickels and turn them into dollars” suggests that she",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "believed that small amounts of money, pooled and saved, could grow into something significant."
+                },
+                {
+                  "id": "B",
+                  "text": "wanted the bank to serve only members who could not afford to save large amounts."
+                },
+                {
+                  "id": "C",
+                  "text": "worried that IOSL members were spending too much money on unnecessary items."
+                },
+                {
+                  "id": "D",
+                  "text": "expected the bank to make IOSL members wealthy within a short time."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-maggie-walker-6",
+              "explanation": "The passage defines an entrepreneur as someone who starts new businesses and takes risks, and D is the only choice about starting businesses. C shows that she rose in the Order, not that she took business risks.",
+              "points": 1,
+              "prompt": "Which sentence from the passage best supports the claim that Walker was “a bold entrepreneur” (paragraph 7)?",
+              "topic": "Evidence & Support",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "“As a married woman, she stayed active in her work with the church and various community organizations . . .” (paragraph 3)"
+                },
+                {
+                  "id": "B",
+                  "text": "“IOSL members were expected to support each other, serve their community, and live by certain values such as thrift, hard work, and charity.” (paragraph 4)"
+                },
+                {
+                  "id": "C",
+                  "text": "“From starting out as a part-time volunteer, she steadily rose in the Order.” (paragraph 5)"
+                },
+                {
+                  "id": "D",
+                  "text": "“She also announced plans to start a newspaper and open a department store.” (paragraph 7)"
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-maggie-walker-7",
+              "explanation": "Paragraph 8 ties the bank to empowerment under Jim Crow. D directly contradicts the paragraph (“not her personal advancement”). A and C twist the penny-bank detail.",
+              "points": 1,
+              "prompt": "The details in paragraph 8 convey a central idea of the passage by noting that",
+              "topic": "Central Idea & Theme",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Walker’s bank was the first in the country to offer savings accounts to children."
+                },
+                {
+                  "id": "B",
+                  "text": "Walker’s bank gave African Americans financial opportunities that discriminatory businesses often denied them."
+                },
+                {
+                  "id": "C",
+                  "text": "Walker required IOSL families to save money in order to remain members of the Order."
+                },
+                {
+                  "id": "D",
+                  "text": "Walker founded the bank mainly to gain recognition as the nation’s first woman bank president."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-maggie-walker-8",
+              "explanation": "Terrell’s image sets the daughter of a washerwoman against the woman in the mahogany chair. A and C misread her admiring tone, and B isn’t what the quote is about.",
+              "points": 1,
+              "prompt": "Mary Church Terrell’s comment in paragraph 9 contributes to the passage mainly by",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "revealing that Terrell disapproved of Walker’s wealth and expensive furnishings."
+                },
+                {
+                  "id": "B",
+                  "text": "explaining how Walker became a leader in the National Association of Colored Women."
+                },
+                {
+                  "id": "C",
+                  "text": "suggesting that Walker’s background made it difficult for others to accept her as a bank president."
+                },
+                {
+                  "id": "D",
+                  "text": "contrasting Walker’s humble beginnings with the success and influence she later achieved."
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-maggie-walker-9",
+              "explanation": "It covers her background, her leadership and the bank’s purpose. B has an error (it was a thousand children, and she left teaching because she married) and leaves out the bank. D says the newspaper and store were opened, but the passage only says they were planned. C focuses on wealth, which isn’t the central idea.",
+              "points": 1,
+              "prompt": "Which sentence is the best summary of the passage?",
+              "topic": "Central Idea & Theme",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Maggie Walker, who rose from a childhood of hard work, led the IOSL to new growth and founded a bank that helped strengthen the economic life of the Black community."
+                },
+                {
+                  "id": "B",
+                  "text": "Maggie Walker left teaching to join the IOSL, where she created a juvenile branch that enrolled thousands of children and taught them racial pride."
+                },
+                {
+                  "id": "C",
+                  "text": "Maggie Walker became wealthy as the first woman bank president in the United States and later joined national organizations such as the NAACP."
+                },
+                {
+                  "id": "D",
+                  "text": "Because many white-owned businesses refused to serve Black people, the IOSL opened a bank, a newspaper, and a department store in Richmond, Virginia."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ela-excerpt-from-brown-wolf-nathan-s-mock-shsat",
+          "versionLabels": [
+            "Nathan's Mock SHSAT"
+          ],
+          "section": "reading",
+          "questionCount": 10,
+          "directions": {
+            "body": "Read each text and answer the related questions. Base your answers only on the content within the text.",
+            "breadcrumbLabel": "ELA RDG COMP DIRECTIONS",
+            "subject": "English Language Arts",
+            "title": "READING COMPREHENSION"
+          },
+          "passage": {
+            "passageCategory": "miscellaneous",
+            "versionLabel": "Nathan's Mock SHSAT",
+            "format": "prose",
+            "id": "excerpt-from-brown-wolf-nathan-s-mock-shsat",
+            "lines": [
+              {
+                "align": "center",
+                "kind": "title",
+                "text": "Excerpt from “Brown Wolf”"
+              },
+              {
+                "align": "center",
+                "kind": "byline",
+                "text": "by Jack London"
+              },
+              {
+                "text": ""
+              },
+              {
+                "html": "SHE had delayed, because of the dew-wet grass, in order to put on her overshoes, and when she emerged from the house found her waiting husband absorbed in the wonder of a bursting almond-bud. She sent a questing glance across the tall grass and in and out among the orchard trees.",
+                "lineNumber": "1",
+                "text": "SHE had delayed, because of the dew-wet grass, in order to put on her overshoes, and when she emerged from the house found her waiting husband absorbed in the wonder of a bursting almond-bud. She sent a questing glance across the tall grass and in and out among the orchard trees."
+              },
+              {
+                "html": "“Where’s Wolf?” she asked.",
+                "lineNumber": "2",
+                "text": "“Where’s Wolf?” she asked."
+              },
+              {
+                "html": "“He was here a moment ago.” Walt Irvine drew himself away with a jerk from the metaphysics and poetry of the organic miracle of blossom, and surveyed the landscape. “He was running a rabbit the last I saw of him.”",
+                "lineNumber": "3",
+                "text": "“He was here a moment ago.” Walt Irvine drew himself away with a jerk from the metaphysics and poetry of the organic miracle of blossom, and surveyed the landscape. “He was running a rabbit the last I saw of him.”"
+              },
+              {
+                "html": "“Wolf! Wolf! Here Wolf!” she called, as they left the clearing and took the trail that led down through the waxen-belled manzanita jungle to the county road.",
+                "lineNumber": "4",
+                "text": "“Wolf! Wolf! Here Wolf!” she called, as they left the clearing and took the trail that led down through the waxen-belled manzanita jungle to the county road."
+              },
+              {
+                "html": "Irvine thrust between his lips the little finger of each hand and lent to her efforts a shrill whistling.",
+                "lineNumber": "5",
+                "text": "Irvine thrust between his lips the little finger of each hand and lent to her efforts a shrill whistling."
+              },
+              {
+                "html": "She covered her ears hastily and made a wry grimace.",
+                "lineNumber": "6",
+                "text": "She covered her ears hastily and made a wry grimace."
+              },
+              {
+                "html": "“My! for a poet, delicately attuned and all the rest of it, you can make unlovely noises. My ear-drums are pierced. You outwhistle—”",
+                "lineNumber": "7",
+                "text": "“My! for a poet, delicately attuned and all the rest of it, you can make unlovely noises. My ear-drums are pierced. You outwhistle—”"
+              },
+              {
+                "html": "“<span data-glossary-definition=\"a musician in Greek mythology whose music could charm animals\" role=\"link\" tabindex=\"0\">Orpheus</span>.”",
+                "lineNumber": "8",
+                "text": "“Orpheus.”"
+              },
+              {
+                "html": "“I was about to say a <span data-glossary-definition=\"an old term for a child who roams city streets\" role=\"link\" tabindex=\"0\">street-arab</span>,” she concluded severely.",
+                "lineNumber": "9",
+                "text": "“I was about to say a street-arab,” she concluded severely."
+              },
+              {
+                "html": "“Poesy does not prevent one from being practical—at least it doesn’t prevent ME. Mine is no futility of genius that can’t sell gems to the magazines.”",
+                "lineNumber": "10",
+                "text": "“Poesy does not prevent one from being practical—at least it doesn’t prevent ME. Mine is no futility of genius that can’t sell gems to the magazines.”"
+              },
+              {
+                "html": "He assumed a mock extravagance, and went on:",
+                "lineNumber": "11",
+                "text": "He assumed a mock extravagance, and went on:"
+              },
+              {
+                "html": "“I am no attic singer, no ballroom warbler. And why? Because I am practical. Mine is no squalor of song that cannot <span data-glossary-definition=\"to change from one form into another\" role=\"link\" tabindex=\"0\">transmute</span> itself, with proper exchange value, into a flower-crowned cottage, a sweet mountain-meadow, a grove of red-woods, an orchard of thirty-seven trees, one long row of blackberries and two short rows of strawberries, to say nothing of a quarter of a mile of gurgling brook. I am a beauty-merchant, a trader in song, and I pursue utility, dear Madge. I sing a song, and thanks to the magazine editors I transmute my song into a waft of the west wind sighing through our redwoods, into a murmur of waters over mossy stones that sings back to me another song than the one I sang and yet the same song wonderfully—er—transmuted.”",
+                "lineNumber": "12",
+                "text": "“I am no attic singer, no ballroom warbler. And why? Because I am practical. Mine is no squalor of song that cannot transmute itself, with proper exchange value, into a flower-crowned cottage, a sweet mountain-meadow, a grove of red-woods, an orchard of thirty-seven trees, one long row of blackberries and two short rows of strawberries, to say nothing of a quarter of a mile of gurgling brook. I am a beauty-merchant, a trader in song, and I pursue utility, dear Madge. I sing a song, and thanks to the magazine editors I transmute my song into a waft of the west wind sighing through our redwoods, into a murmur of waters over mossy stones that sings back to me another song than the one I sang and yet the same song wonderfully—er—transmuted.”"
+              },
+              {
+                "html": "“O that all your song-transmutations were as successful!” she laughed.",
+                "lineNumber": "13",
+                "text": "“O that all your song-transmutations were as successful!” she laughed."
+              },
+              {
+                "html": "“Name one that wasn’t.”",
+                "lineNumber": "14",
+                "text": "“Name one that wasn’t.”"
+              },
+              {
+                "html": "“Those two beautiful sonnets that you transmuted into the cow that was accounted the worst milker in the township.”",
+                "lineNumber": "15",
+                "text": "“Those two beautiful sonnets that you transmuted into the cow that was accounted the worst milker in the township.”"
+              },
+              {
+                "html": "“She was beautiful—” he began,",
+                "lineNumber": "16",
+                "text": "“She was beautiful—” he began,"
+              },
+              {
+                "html": "“But she didn’t give milk,” Madge interrupted.",
+                "lineNumber": "17",
+                "text": "“But she didn’t give milk,” Madge interrupted."
+              },
+              {
+                "html": "“But she WAS beautiful, now, wasn’t she?” he insisted.",
+                "lineNumber": "18",
+                "text": "“But she WAS beautiful, now, wasn’t she?” he insisted."
+              },
+              {
+                "html": "“And here’s where beauty and utility fall out,” was her reply. “And there’s the Wolf!”",
+                "lineNumber": "19",
+                "text": "“And here’s where beauty and utility fall out,” was her reply. “And there’s the Wolf!”"
+              },
+              {
+                "html": "From the thicket-covered hillside came a crashing of underbrush, and then, forty feet above them, on the edge of the sheer wall of rock, appeared a wolf’s head and shoulders. His braced fore paws dislodged a pebble, and with sharp-pricked ears and peering eyes he watched the fall of the pebble till it struck at their feet. Then he transferred his gaze and with open mouth laughed down at them.",
+                "lineNumber": "20",
+                "text": "From the thicket-covered hillside came a crashing of underbrush, and then, forty feet above them, on the edge of the sheer wall of rock, appeared a wolf’s head and shoulders. His braced fore paws dislodged a pebble, and with sharp-pricked ears and peering eyes he watched the fall of the pebble till it struck at their feet. Then he transferred his gaze and with open mouth laughed down at them."
+              },
+              {
+                "html": "“You Wolf, you!” and “You blessed Wolf!” the man and woman called out to him.",
+                "lineNumber": "21",
+                "text": "“You Wolf, you!” and “You blessed Wolf!” the man and woman called out to him."
+              },
+              {
+                "html": "The ears flattened back and down at the sound, and the head seemed to snuggle under the caress of an invisible hand.",
+                "lineNumber": "22",
+                "text": "The ears flattened back and down at the sound, and the head seemed to snuggle under the caress of an invisible hand."
+              },
+              {
+                "html": "They watched him scramble backward into the thicket, then proceeded on their way. Several minutes later, rounding a turn in the trail where the descent was less precipitous, he joined them in the midst of a miniature avalanche of pebbles and loose soil. He was not demonstrative. A pat and a rub around the ears from the man, and a more prolonged caressing from the woman, and he was away down the trail in front of them, gliding effortlessly over the ground in true wolf fashion.",
+                "lineNumber": "23",
+                "text": "They watched him scramble backward into the thicket, then proceeded on their way. Several minutes later, rounding a turn in the trail where the descent was less precipitous, he joined them in the midst of a miniature avalanche of pebbles and loose soil. He was not demonstrative. A pat and a rub around the ears from the man, and a more prolonged caressing from the woman, and he was away down the trail in front of them, gliding effortlessly over the ground in true wolf fashion."
+              },
+              {
+                "html": "In build and coat and <span data-glossary-definition=\"a bushy tail\" role=\"link\" tabindex=\"0\">brush</span> he was a huge timber-wolf; but the lie was given to his wolfhood by his color and marking. There the dog unmistakably advertised itself. No wolf was ever colored like him. He was brown, deep brown, red-brown, an orgy of browns. Back and shoulders were a warm brown that paled on the sides and underneath to a yellow that was dingy because of the brown that lingered in it. The white of the throat and paws and the spots over the eyes was dirty because of the persistent and ineradicable brown, while the eyes themselves were twin <span data-glossary-definition=\"golden-brown gemstones\" role=\"link\" tabindex=\"0\">topazes</span>, golden and brown.",
+                "lineNumber": "24",
+                "text": "In build and coat and brush he was a huge timber-wolf; but the lie was given to his wolfhood by his color and marking. There the dog unmistakably advertised itself. No wolf was ever colored like him. He was brown, deep brown, red-brown, an orgy of browns. Back and shoulders were a warm brown that paled on the sides and underneath to a yellow that was dingy because of the brown that lingered in it. The white of the throat and paws and the spots over the eyes was dirty because of the persistent and ineradicable brown, while the eyes themselves were twin topazes, golden and brown."
+              },
+              {
+                "html": "The man and woman loved the dog very much; perhaps this was because it had been such a task to win his love. It had been no easy matter when he first drifted in mysteriously out of nowhere to their little mountain cottage. Footsore and famished, he had killed a rabbit under their very noses and under their very windows, and then crawled away and slept by the spring at the foot of the blackberry bushes. When Walt Irvine went down to inspect the intruder, he was snarled at for his pains, and Madge likewise was snarled at when she went down to present, as a peace-offering, a large pan of bread and milk.",
+                "lineNumber": "25",
+                "text": "The man and woman loved the dog very much; perhaps this was because it had been such a task to win his love. It had been no easy matter when he first drifted in mysteriously out of nowhere to their little mountain cottage. Footsore and famished, he had killed a rabbit under their very noses and under their very windows, and then crawled away and slept by the spring at the foot of the blackberry bushes. When Walt Irvine went down to inspect the intruder, he was snarled at for his pains, and Madge likewise was snarled at when she went down to present, as a peace-offering, a large pan of bread and milk."
+              },
+              {
+                "html": "A most unsociable dog he proved to be, resenting all their advances, refusing to let them lay hands on him, menacing them with bared fangs and bristling hair. Nevertheless he remained, sleeping and resting by the spring, and eating the food they gave him after they set it down at a safe distance and retreated. His wretched physical condition explained why he lingered; and when he had recuperated, after several days’ <span data-glossary-definition=\"a short stay\" role=\"link\" tabindex=\"0\">sojourn</span>, he disappeared.",
+                "lineNumber": "26",
+                "text": "A most unsociable dog he proved to be, resenting all their advances, refusing to let them lay hands on him, menacing them with bared fangs and bristling hair. Nevertheless he remained, sleeping and resting by the spring, and eating the food they gave him after they set it down at a safe distance and retreated. His wretched physical condition explained why he lingered; and when he had recuperated, after several days’ sojourn, he disappeared."
+              },
+              {
+                "html": "And this would have been the end of him, so far as Irvine and his wife were concerned, had not Irvine at that particular time been called away into the northern part of the state. Riding along on the train, near to the line between California and Oregon, he chanced to look out of the window and saw his unsociable guest sliding along the wagon road, brown and wolfish, tired yet tireless, dust-covered and soiled with two hundred miles of travel.",
+                "lineNumber": "27",
+                "text": "And this would have been the end of him, so far as Irvine and his wife were concerned, had not Irvine at that particular time been called away into the northern part of the state. Riding along on the train, near to the line between California and Oregon, he chanced to look out of the window and saw his unsociable guest sliding along the wagon road, brown and wolfish, tired yet tireless, dust-covered and soiled with two hundred miles of travel."
+              },
+              {
+                "html": "Now Irvine was a man of impulse, a poet. He got off the train at the next station, bought a piece of meat at a butcher shop, and captured the vagrant on the outskirts of the town. The return trip was made in the baggage car, and so Wolf came a second time to the mountain cottage. Here he was tied up for a week and made love to by the man and woman. But it was very <span data-glossary-definition=\"careful, cautious\" role=\"link\" tabindex=\"0\">circumspect</span> love-making. Remote and alien as a traveller from another planet, he snarled down their soft-spoken love-words. He never barked. In all the time they had him he was never known to bark.",
+                "lineNumber": "28",
+                "text": "Now Irvine was a man of impulse, a poet. He got off the train at the next station, bought a piece of meat at a butcher shop, and captured the vagrant on the outskirts of the town. The return trip was made in the baggage car, and so Wolf came a second time to the mountain cottage. Here he was tied up for a week and made love to by the man and woman. But it was very circumspect love-making. Remote and alien as a traveller from another planet, he snarled down their soft-spoken love-words. He never barked. In all the time they had him he was never known to bark."
+              },
+              {
+                "html": "To win him became a problem. Irvine liked problems. He had a metal plate made, on which was stamped: RETURN TO WALT IRVINE, GLEN ELLEN, SONOMA COUNTY, CALIFORNIA. This was riveted to a collar and strapped about the dog’s neck. Then he was turned loose, and promptly he disappeared. A day later came a telegram from Mendocino County. In twenty hours he had made over a hundred miles to the north, and was still going when captured.",
+                "lineNumber": "29",
+                "text": "To win him became a problem. Irvine liked problems. He had a metal plate made, on which was stamped: RETURN TO WALT IRVINE, GLEN ELLEN, SONOMA COUNTY, CALIFORNIA. This was riveted to a collar and strapped about the dog’s neck. Then he was turned loose, and promptly he disappeared. A day later came a telegram from Mendocino County. In twenty hours he had made over a hundred miles to the north, and was still going when captured."
+              }
+            ],
+            "passageType": "literary",
+            "sourceNote": "“Brown Wolf” by Jack London—Public Domain",
+            "title": "Excerpt from “Brown Wolf”"
+          },
+          "questions": [
+            {
+              "id": "nms-brown-wolf-1",
+              "explanation": "Walt is “absorbed in the wonder” of the bud and has to pull himself away from its “poetry.” C is the opposite: Madge is the one he’s waiting for. A and D aren’t supported.",
+              "points": 1,
+              "prompt": "In paragraphs 1 and 3, the details about Walt and the almond-bud mainly suggest that he",
+              "topic": "Inference",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "worries that the orchard trees will not produce fruit."
+                },
+                {
+                  "id": "B",
+                  "text": "is easily absorbed by the beauty of nature."
+                },
+                {
+                  "id": "C",
+                  "text": "is impatient to begin the walk down to the county road."
+                },
+                {
+                  "id": "D",
+                  "text": "pays closer attention to the land than Madge does."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-brown-wolf-2",
+              "explanation": "His “mock extravagance” (paragraph 11) shows he’s joking, and he frames poems as goods he trades for land and comforts. A misses the playful tone. C contradicts “thanks to the magazine editors.”",
+              "points": 1,
+              "prompt": "Read this sentence from paragraph 12.\n\nI am a beauty-merchant, a trader in song, and I pursue utility, dear Madge.\n\nWalt’s description of himself as a “beauty-merchant” mainly reveals that he",
+              "promptHtml": "<p>Read this sentence from paragraph 12.</p><blockquote><strong>I am a beauty-merchant, a trader in song, and I pursue utility, dear Madge.</strong></blockquote><p>Walt’s description of himself as a “beauty-merchant” mainly reveals that he</p>",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "regrets that he must sell his poems in order to support himself."
+                },
+                {
+                  "id": "B",
+                  "text": "playfully presents himself as a practical businessman whose product is poetry."
+                },
+                {
+                  "id": "C",
+                  "text": "believes that magazine editors do not value his work."
+                },
+                {
+                  "id": "D",
+                  "text": "considers himself a more talented poet than other writers."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-brown-wolf-3",
+              "explanation": "The sonnets that turned into a cow that wouldn’t give milk show that beauty and usefulness “fall out.” C is too serious for the tone. B misreads Madge: she laughs, and the point is the cow, not the sonnets.",
+              "points": 1,
+              "prompt": "Paragraphs 13–19 contribute to the development of the excerpt mainly by",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "explaining how Walt first began selling his poems to magazines."
+                },
+                {
+                  "id": "B",
+                  "text": "suggesting that Madge does not appreciate the beauty of Walt’s sonnets."
+                },
+                {
+                  "id": "C",
+                  "text": "revealing a serious disagreement between Walt and Madge about money."
+                },
+                {
+                  "id": "D",
+                  "text": "showing, through a humorous exchange, that Walt’s poetry does not always lead to useful results."
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-brown-wolf-4",
+              "explanation": "His build says wolf, and his brown coloring “unmistakably” says dog. A is a trap, since the paragraph is about looks, not behavior. D borrows “lie” too literally.",
+              "points": 1,
+              "prompt": "In paragraph 24, the phrase “the lie was given to his wolfhood by his color and marking” suggests that",
+              "topic": "Word & Phrase Meaning",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Wolf’s behavior is gentler than his appearance would lead people to expect."
+                },
+                {
+                  "id": "B",
+                  "text": "Wolf’s coloring shows he is a dog, even though his size and shape resemble a wolf’s."
+                },
+                {
+                  "id": "C",
+                  "text": "Wolf’s coat has faded from living in the warm California climate."
+                },
+                {
+                  "id": "D",
+                  "text": "Walt and Madge were deceived about where Wolf had come from."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-brown-wolf-5",
+              "explanation": "The narration moves from the present walk back to how Wolf first “drifted in.” A is wrong because winning Wolf over is still unfinished when the excerpt ends.",
+              "points": 1,
+              "prompt": "How does paragraph 25 fit into the overall structure of the excerpt?",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "It introduces a new conflict that is fully resolved by the end of the excerpt."
+                },
+                {
+                  "id": "B",
+                  "text": "It shifts from the walk on the trail to a flashback that explains how Walt and Madge came to have Wolf."
+                },
+                {
+                  "id": "C",
+                  "text": "It shifts the point of view from Walt to Madge."
+                },
+                {
+                  "id": "D",
+                  "text": "It summarizes the events of the walk before the excerpt continues."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-brown-wolf-6",
+              "explanation": "He covers more than a hundred miles in twenty hours and is “still going,” which shows a compulsion. C gives the reason he stayed, not why he left. A and B show his temperament and hunger.",
+              "points": 1,
+              "prompt": "Which sentence from the excerpt best supports the idea that Wolf is driven by an urge he cannot resist?",
+              "topic": "Evidence & Support",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "“He was not demonstrative.” (paragraph 23)"
+                },
+                {
+                  "id": "B",
+                  "text": "“Footsore and famished, he had killed a rabbit under their very noses and under their very windows . . .” (paragraph 25)"
+                },
+                {
+                  "id": "C",
+                  "text": "“His wretched physical condition explained why he lingered; and when he had recuperated, after several days’ sojourn, he disappeared.” (paragraph 26)"
+                },
+                {
+                  "id": "D",
+                  "text": "“In twenty hours he had made over a hundred miles to the north, and was still going when captured.” (paragraph 29)"
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-brown-wolf-7",
+              "explanation": "The simile appears right where Wolf “snarled down their soft-spoken love-words,” so it’s about emotional distance. C takes “traveller” literally, and B focuses on looks.",
+              "points": 1,
+              "prompt": "In paragraph 28, the phrase “Remote and alien as a traveller from another planet” emphasizes that Wolf",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "remains distant and unresponsive to the couple’s affection."
+                },
+                {
+                  "id": "B",
+                  "text": "looks unlike any other animal Walt and Madge have seen."
+                },
+                {
+                  "id": "C",
+                  "text": "had traveled a great distance before reaching California."
+                },
+                {
+                  "id": "D",
+                  "text": "frightens visitors who come to the cottage."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-brown-wolf-8",
+              "explanation": "“Irvine liked problems.” He jumps off a train and has a collar made with an address plate. B is unsupported, and D mixes in a later part of the story.",
+              "points": 1,
+              "prompt": "Walt’s actions in paragraphs 28 and 29 mainly reveal that he",
+              "topic": "Inference",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "regrets bringing Wolf back to the cottage after the dog’s first escape."
+                },
+                {
+                  "id": "B",
+                  "text": "is more concerned with Wolf’s value than with the dog’s well-being."
+                },
+                {
+                  "id": "C",
+                  "text": "is determined to win Wolf over and enjoys the challenge of doing so."
+                },
+                {
+                  "id": "D",
+                  "text": "hopes to find the owner from whom Wolf escaped."
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-brown-wolf-9",
+              "explanation": "Paragraph 25 says the couple loved the dog “perhaps” because his love was so hard to win. A oversimplifies the opening banter. B is too absolute, since the couple clearly does come to love and keep him.",
+              "points": 1,
+              "prompt": "Which statement best describes a theme developed in the excerpt?",
+              "topic": "Central Idea & Theme",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "Practical concerns are more important than beauty."
+                },
+                {
+                  "id": "B",
+                  "text": "Wild animals can never truly be tamed."
+                },
+                {
+                  "id": "C",
+                  "text": "Something that is difficult to win may be valued more deeply."
+                },
+                {
+                  "id": "D",
+                  "text": "Generosity toward strangers is always rewarded."
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-brown-wolf-10",
+              "explanation": "It covers both the present walk and the backstory. D treats the playful banter as an argument and stops partway through. B says Wolf “quickly” became affectionate, which contradicts the excerpt. C adds the Klondike detail, which comes later in the story, and the dog he sees from the train had already stayed at their cottage.",
+              "points": 1,
+              "prompt": "Which sentence is the best summary of the excerpt?",
+              "topic": "Central Idea & Theme",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "As Walt and Madge walk down a mountain trail joking about Walt’s poetry, their dog Wolf joins them, and the narrator explains how the wild, independent dog kept fleeing north after first arriving at their cottage."
+                },
+                {
+                  "id": "B",
+                  "text": "A starving dog arrives at Walt and Madge’s cottage, and after they feed him and give him a collar, he quickly becomes a loyal and affectionate pet."
+                },
+                {
+                  "id": "C",
+                  "text": "Walt, a poet, spots a wolf from a train window and brings it home, where he and Madge learn that it is actually a dog from the Klondike."
+                },
+                {
+                  "id": "D",
+                  "text": "Walt and Madge argue about whether poetry is useful until Wolf interrupts them by knocking a pebble down from a rock wall above the trail."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ela-the-pebble-and-the-acorn-nathan-s-mock-shsat",
+          "versionLabels": [
+            "Nathan's Mock SHSAT"
+          ],
+          "section": "reading",
+          "questionCount": 10,
+          "directions": {
+            "body": "Read each text and answer the related questions. Base your answers only on the content within the text.",
+            "breadcrumbLabel": "ELA RDG COMP DIRECTIONS",
+            "subject": "English Language Arts",
+            "title": "READING COMPREHENSION"
+          },
+          "passage": {
+            "passageCategory": "miscellaneous",
+            "versionLabel": "Nathan's Mock SHSAT",
+            "format": "poem",
+            "id": "the-pebble-and-the-acorn-nathan-s-mock-shsat",
+            "lines": [
+              {
+                "align": "center",
+                "kind": "title",
+                "text": "The Pebble and the Acorn"
+              },
+              {
+                "align": "center",
+                "kind": "byline",
+                "text": "by Hannah Flagg Gould"
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "“I am a Pebble! and yield to none!”",
+                "text": "“I am a Pebble! and yield to none!”"
+              },
+              {
+                "lineNumber": "",
+                "html": "Were swelling words of a tiny stone,",
+                "text": "Were swelling words of a tiny stone,"
+              },
+              {
+                "lineNumber": "",
+                "html": "“Nor time nor season can alter me;",
+                "text": "“Nor time nor season can alter me;"
+              },
+              {
+                "lineNumber": "",
+                "html": "I am abiding, while ages flee.",
+                "text": "I am abiding, while ages flee."
+              },
+              {
+                "lineNumber": "5",
+                "html": "The pelting hail and the drizzling rain",
+                "text": "The pelting hail and the drizzling rain"
+              },
+              {
+                "lineNumber": "",
+                "html": "Have tried to soften me, long, in vain;",
+                "text": "Have tried to soften me, long, in vain;"
+              },
+              {
+                "lineNumber": "",
+                "html": "And the tender dew has sought to melt,",
+                "text": "And the tender dew has sought to melt,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Or touch my heart; but it was not felt.",
+                "text": "Or touch my heart; but it was not felt."
+              },
+              {
+                "lineNumber": "",
+                "html": "There’s none that can tell about my birth,",
+                "text": "There’s none that can tell about my birth,"
+              },
+              {
+                "lineNumber": "10",
+                "html": "For I’m as old as the big, round earth.",
+                "text": "For I’m as old as the big, round earth."
+              },
+              {
+                "lineNumber": "",
+                "html": "The children of men arise, and pass",
+                "text": "The children of men arise, and pass"
+              },
+              {
+                "lineNumber": "",
+                "html": "Out of the world, like the blades of grass;",
+                "text": "Out of the world, like the blades of grass;"
+              },
+              {
+                "lineNumber": "",
+                "html": "And many a foot on me has trod,",
+                "text": "And many a foot on me has trod,"
+              },
+              {
+                "lineNumber": "",
+                "html": "That’s gone from sight, and under the sod!",
+                "text": "That’s gone from sight, and under the sod!"
+              },
+              {
+                "lineNumber": "15",
+                "html": "I am a Pebble! but who <span data-glossary-definition=\"are you\" role=\"link\" tabindex=\"0\">art thou</span>,",
+                "text": "I am a Pebble! but who art thou,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Rattling along from the restless bough?”",
+                "text": "Rattling along from the restless bough?”"
+              },
+              {
+                "lineNumber": "",
+                "html": "The Acorn was shocked at this rude salute,",
+                "text": "The Acorn was shocked at this rude salute,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And lay for a moment <span data-glossary-definition=\"embarrassed\" role=\"link\" tabindex=\"0\">abashed</span> and mute;",
+                "text": "And lay for a moment abashed and mute;"
+              },
+              {
+                "lineNumber": "",
+                "html": "She never before had been so near",
+                "text": "She never before had been so near"
+              },
+              {
+                "lineNumber": "20",
+                "html": "This gravelly ball, the <span data-glossary-definition=\"the earth\" role=\"link\" tabindex=\"0\">mundane sphere</span>;",
+                "text": "This gravelly ball, the mundane sphere;"
+              },
+              {
+                "lineNumber": "",
+                "html": "And she felt for a time at a loss to know",
+                "text": "And she felt for a time at a loss to know"
+              },
+              {
+                "lineNumber": "",
+                "html": "How to answer a thing so coarse and low.",
+                "text": "How to answer a thing so coarse and low."
+              },
+              {
+                "lineNumber": "",
+                "html": "But to give <span data-glossary-definition=\"criticism or correction\" role=\"link\" tabindex=\"0\">reproof</span> of a nobler sort",
+                "text": "But to give reproof of a nobler sort"
+              },
+              {
+                "lineNumber": "",
+                "html": "Than the angry look, or the keen <span data-glossary-definition=\"a sharp reply\" role=\"link\" tabindex=\"0\">retort</span>,",
+                "text": "Than the angry look, or the keen retort,"
+              },
+              {
+                "lineNumber": "25",
+                "html": "At length she said, in a gentle tone,",
+                "text": "At length she said, in a gentle tone,"
+              },
+              {
+                "lineNumber": "",
+                "html": "“Since it has happened that I am thrown",
+                "text": "“Since it has happened that I am thrown"
+              },
+              {
+                "lineNumber": "",
+                "html": "From the lighter element, where I grew,",
+                "text": "From the lighter element, where I grew,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Down to another, so hard and new,",
+                "text": "Down to another, so hard and new,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And beside a personage so <span data-glossary-definition=\"grand and important\" role=\"link\" tabindex=\"0\">august</span>,",
+                "text": "And beside a personage so august,"
+              },
+              {
+                "lineNumber": "30",
+                "html": "<span data-glossary-definition=\"lowered in dignity\" role=\"link\" tabindex=\"0\">Abased</span>, I will cover my head with dust,",
+                "text": "Abased, I will cover my head with dust,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And quickly retire from the sight of one",
+                "text": "And quickly retire from the sight of one"
+              },
+              {
+                "lineNumber": "",
+                "html": "Whom time, nor season, nor storm, nor sun,",
+                "text": "Whom time, nor season, nor storm, nor sun,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Nor the gentle dew, nor the grinding heel",
+                "text": "Nor the gentle dew, nor the grinding heel"
+              },
+              {
+                "lineNumber": "",
+                "html": "Has ever <span data-glossary-definition=\"overcome\" role=\"link\" tabindex=\"0\">subdued</span>, or made to feel!”",
+                "text": "Has ever subdued, or made to feel!”"
+              },
+              {
+                "lineNumber": "35",
+                "html": "And soon, in the earth, she sunk away",
+                "text": "And soon, in the earth, she sunk away"
+              },
+              {
+                "lineNumber": "",
+                "html": "From the comfortless spot where the Pebble lay.",
+                "text": "From the comfortless spot where the Pebble lay."
+              },
+              {
+                "lineNumber": "",
+                "html": "But it was not long <span data-glossary-definition=\"before\" role=\"link\" tabindex=\"0\">ere</span> the soil was broke",
+                "text": "But it was not long ere the soil was broke"
+              },
+              {
+                "lineNumber": "",
+                "html": "By the peering head of an infant oak!",
+                "text": "By the peering head of an infant oak!"
+              },
+              {
+                "lineNumber": "",
+                "html": "And, as it arose and its branches spread,",
+                "text": "And, as it arose and its branches spread,"
+              },
+              {
+                "lineNumber": "40",
+                "html": "The Pebble looked up, and wondering said,",
+                "text": "The Pebble looked up, and wondering said,"
+              },
+              {
+                "lineNumber": "",
+                "html": "“A modest Acorn! never to tell",
+                "text": "“A modest Acorn! never to tell"
+              },
+              {
+                "lineNumber": "",
+                "html": "What was enclosed in its simple shell;",
+                "text": "What was enclosed in its simple shell;"
+              },
+              {
+                "lineNumber": "",
+                "html": "That the pride of the forest was folded up",
+                "text": "That the pride of the forest was folded up"
+              },
+              {
+                "lineNumber": "",
+                "html": "In the narrow space of its little cup!",
+                "text": "In the narrow space of its little cup!"
+              },
+              {
+                "lineNumber": "45",
+                "html": "And meekly to sink in the darksome earth,",
+                "text": "And meekly to sink in the darksome earth,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Which proves that nothing could hide her worth!",
+                "text": "Which proves that nothing could hide her worth!"
+              },
+              {
+                "lineNumber": "",
+                "html": "And oh! how many will tread on me,",
+                "text": "And oh! how many will tread on me,"
+              },
+              {
+                "lineNumber": "",
+                "html": "To come and admire the beautiful tree,",
+                "text": "To come and admire the beautiful tree,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Whose head is towering towards the sky,",
+                "text": "Whose head is towering towards the sky,"
+              },
+              {
+                "lineNumber": "50",
+                "html": "Above such a worthless thing as I!",
+                "text": "Above such a worthless thing as I!"
+              },
+              {
+                "lineNumber": "",
+                "html": "Useless and vain, a <span data-glossary-definition=\"something that takes up space without being useful\" role=\"link\" tabindex=\"0\">cumberer</span> here,",
+                "text": "Useless and vain, a cumberer here,"
+              },
+              {
+                "lineNumber": "",
+                "html": "I have been idling from year to year.",
+                "text": "I have been idling from year to year."
+              },
+              {
+                "lineNumber": "",
+                "html": "But never, from this, shall a <span data-glossary-definition=\"boastful\" role=\"link\" tabindex=\"0\">vaunting</span> word",
+                "text": "But never, from this, shall a vaunting word"
+              },
+              {
+                "lineNumber": "",
+                "html": "From the humbled Pebble again be heard,",
+                "text": "From the humbled Pebble again be heard,"
+              },
+              {
+                "lineNumber": "55",
+                "html": "Till something without me or within,",
+                "text": "Till something without me or within,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Shall show the purpose for which I’ve been!”",
+                "text": "Shall show the purpose for which I’ve been!”"
+              },
+              {
+                "lineNumber": "",
+                "html": "The Pebble its vow could not forget,",
+                "text": "The Pebble its vow could not forget,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And it lies there <span data-glossary-definition=\"wrapped\" role=\"link\" tabindex=\"0\">wrapt</span> in silence yet.",
+                "text": "And it lies there wrapt in silence yet."
+              }
+            ],
+            "passageType": "poem",
+            "sourceNote": "“The Pebble and the Acorn” by Hannah Flagg Gould—Public Domain",
+            "title": "The Pebble and the Acorn"
+          },
+          "questions": [
+            {
+              "id": "nms-pebble-acorn-1",
+              "explanation": "“Swelling” goes with the Pebble’s proud “I am a Pebble! and yield to none!” B is wrong because the Pebble isn’t angry, just boastful. C takes the storm imagery literally. A assumes the Pebble is lying, and the poem never says that.",
+              "points": 1,
+              "prompt": "In line 2, the phrase “swelling words” mainly suggests that the Pebble",
+              "topic": "Word & Phrase Meaning",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "exaggerates its age to impress the Acorn."
+                },
+                {
+                  "id": "B",
+                  "text": "is angry that the Acorn has fallen near it."
+                },
+                {
+                  "id": "C",
+                  "text": "is trying to be heard over the sound of a storm."
+                },
+                {
+                  "id": "D",
+                  "text": "speaks with pride and self-importance."
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-pebble-acorn-2",
+              "explanation": "The hail, rain and dew all tried to change it “in vain.” B and C are about its age and long life, not about being unchangeable. D is just a question to the Acorn.",
+              "points": 1,
+              "prompt": "Which lines best support the Pebble’s claim that nothing can change it?",
+              "topic": "Evidence & Support",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "“The pelting hail and the drizzling rain / Have tried to soften me, long, in vain; / And the tender dew has sought to melt, / Or touch my heart; but it was not felt.” (lines 5–8)"
+                },
+                {
+                  "id": "B",
+                  "text": "“There’s none that can tell about my birth, / For I’m as old as the big, round earth.” (lines 9–10)"
+                },
+                {
+                  "id": "C",
+                  "text": "“And many a foot on me has trod, / That’s gone from sight, and under the sod!” (lines 13–14)"
+                },
+                {
+                  "id": "D",
+                  "text": "“I am a Pebble! but who art thou, / Rattling along from the restless bough?” (lines 15–16)"
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-pebble-acorn-3",
+              "explanation": "People “arise, and pass” quickly, like grass, while the Pebble stays. D adds an emotion the Pebble never shows.",
+              "points": 1,
+              "prompt": "In lines 11–12, the comparison of people to “blades of grass” emphasizes the Pebble’s view that",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "people are too small and ordinary to notice it."
+                },
+                {
+                  "id": "B",
+                  "text": "human lives are brief compared with its own existence."
+                },
+                {
+                  "id": "C",
+                  "text": "people treat the natural world carelessly."
+                },
+                {
+                  "id": "D",
+                  "text": "it is lonely because everyone it once knew has died."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-pebble-acorn-4",
+              "explanation": "She picks a “nobler” kind of reproof over “the angry look” or “keen retort.” B confuses being “abashed” with fear. D misses the criticism hidden in her reply.",
+              "points": 1,
+              "prompt": "Read lines 23–25.\n\nBut to give reproof of a nobler sort\nThan the angry look, or the keen retort,\nAt length she said, in a gentle tone,\n\nThese lines reveal that the Acorn",
+              "promptHtml": "<p>Read lines 23–25.</p><blockquote><strong>But to give reproof of a nobler sort<br>Than the angry look, or the keen retort,<br>At length she said, in a gentle tone,</strong></blockquote><p>These lines reveal that the Acorn</p>",
+              "topic": "Inference",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "chooses to respond with calm dignity rather than anger."
+                },
+                {
+                  "id": "B",
+                  "text": "is too frightened to defend herself against the Pebble."
+                },
+                {
+                  "id": "C",
+                  "text": "plans to leave without answering the Pebble at all."
+                },
+                {
+                  "id": "D",
+                  "text": "agrees with the Pebble’s opinion of itself."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-pebble-acorn-5",
+              "explanation": "She echoes the Pebble’s own boasts back to it (“time, nor season…”). “Made to feel” is a quiet jab, because the Pebble bragged that even the dew couldn’t touch its heart. B takes her words at face value.",
+              "points": 1,
+              "prompt": "In lines 29–34, the Acorn’s description of the Pebble as “a personage so august” whom nothing has “ever subdued, or made to feel” is most likely meant to be",
+              "topic": "Tone & Mood",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "confused, showing that she does not understand what the Pebble is."
+                },
+                {
+                  "id": "B",
+                  "text": "sincere, showing that she truly admires the Pebble’s strength."
+                },
+                {
+                  "id": "C",
+                  "text": "ironic, gently mocking the Pebble’s high opinion of itself."
+                },
+                {
+                  "id": "D",
+                  "text": "fearful, revealing that she believes the Pebble may harm her."
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-pebble-acorn-6",
+              "explanation": "“But it was not long ere…” is where the poem turns: the Acorn’s retreat grows into an oak. A fits only if a reader counts the oak as a new character, and the oak never speaks.",
+              "points": 1,
+              "prompt": "How do lines 37–38 contribute to the structure of the poem?",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "They introduce a new character who settles the argument."
+                },
+                {
+                  "id": "B",
+                  "text": "They describe the setting where the conversation takes place."
+                },
+                {
+                  "id": "C",
+                  "text": "They repeat the Pebble’s boast from the beginning of the poem."
+                },
+                {
+                  "id": "D",
+                  "text": "They mark a turning point by revealing what the Acorn’s quiet retreat led to."
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-pebble-acorn-7",
+              "explanation": "A great tree was hidden inside a small, plain shell. A isn’t supported, and B and D read the lines too literally.",
+              "points": 1,
+              "prompt": "In lines 43–44, the image of “the pride of the forest” being “folded up / In the narrow space of its little cup” mainly conveys that",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "the Acorn was ashamed of its small size."
+                },
+                {
+                  "id": "B",
+                  "text": "oak trees grow best in narrow, protected spaces."
+                },
+                {
+                  "id": "C",
+                  "text": "the Acorn held great potential inside a humble appearance."
+                },
+                {
+                  "id": "D",
+                  "text": "the forest takes pride in the trees that grow there."
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-pebble-acorn-8",
+              "explanation": "The Pebble starts out bragging and ends up calling itself “useless and vain” and “idling.” C is a trap, because the Pebble never talks about wearing away.",
+              "points": 1,
+              "prompt": "Which statement best describes how the Pebble changes over the course of the poem?",
+              "topic": "Inference",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "It moves from boasting about its permanence to recognizing its own lack of purpose."
+                },
+                {
+                  "id": "B",
+                  "text": "It moves from distrusting the Acorn to becoming her loyal friend."
+                },
+                {
+                  "id": "C",
+                  "text": "It moves from fearing time to accepting that it will someday wear away."
+                },
+                {
+                  "id": "D",
+                  "text": "It moves from silence to speaking proudly about its long life."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-pebble-acorn-9",
+              "explanation": "The poem’s lesson is that true worth shows itself through what you do, not through boasting. A and B state the Pebble’s mistaken view, and C is a minor detail.",
+              "points": 1,
+              "prompt": "Which line best conveys a theme of the poem?",
+              "topic": "Central Idea & Theme",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "“I am abiding, while ages flee.” (line 4)"
+                },
+                {
+                  "id": "B",
+                  "text": "“The children of men arise, and pass” (line 11)"
+                },
+                {
+                  "id": "C",
+                  "text": "“Rattling along from the restless bough?” (line 16)"
+                },
+                {
+                  "id": "D",
+                  "text": "“Which proves that nothing could hide her worth!” (line 46)"
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-pebble-acorn-10",
+              "explanation": "The Pebble vowed not to boast “till” its purpose is shown, and it lies “in silence yet.” B, D and A aren’t supported by the poem.",
+              "points": 1,
+              "prompt": "The final two lines of the poem (lines 57–58) suggest that the Pebble",
+              "topic": "Inference",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "regrets its vow and wishes it could boast again."
+                },
+                {
+                  "id": "B",
+                  "text": "has been buried beneath the roots of the growing oak."
+                },
+                {
+                  "id": "C",
+                  "text": "has kept its promise because it has not yet found a purpose worth speaking about."
+                },
+                {
+                  "id": "D",
+                  "text": "is waiting silently for the Acorn to return."
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ela-the-storm-is-over-nathan-s-mock-shsat",
+          "versionLabels": [
+            "Nathan's Mock SHSAT"
+          ],
+          "section": "reading",
+          "questionCount": 10,
+          "directions": {
+            "body": "Read each text and answer the related questions. Base your answers only on the content within the text.",
+            "breadcrumbLabel": "ELA RDG COMP DIRECTIONS",
+            "subject": "English Language Arts",
+            "title": "READING COMPREHENSION"
+          },
+          "passage": {
+            "passageCategory": "miscellaneous",
+            "versionLabel": "Nathan's Mock SHSAT",
+            "format": "poem",
+            "id": "the-storm-is-over-nathan-s-mock-shsat",
+            "lines": [
+              {
+                "align": "center",
+                "kind": "title",
+                "text": "The Storm Is Over"
+              },
+              {
+                "align": "center",
+                "kind": "byline",
+                "text": "by Robert Bridges"
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "The storm is over, the land hushes to rest:",
+                "text": "The storm is over, the land hushes to rest:"
+              },
+              {
+                "lineNumber": "",
+                "html": "The <span data-glossary-definition=\"cruel, harshly powerful\" role=\"link\" tabindex=\"0\">tyrannous</span> wind, its strength <span data-glossary-definition=\"used up, exhausted\" role=\"link\" tabindex=\"0\">fordone</span>,",
+                "text": "The tyrannous wind, its strength fordone,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Is fallen back in the west",
+                "text": "Is fallen back in the west"
+              },
+              {
+                "lineNumber": "",
+                "html": "To <span data-glossary-definition=\"lie down to rest\" role=\"link\" tabindex=\"0\">couch</span> with the sinking sun.",
+                "text": "To couch with the sinking sun."
+              },
+              {
+                "lineNumber": "5",
+                "html": "The last clouds <span data-glossary-definition=\"travel\" role=\"link\" tabindex=\"0\">fare</span>",
+                "text": "The last clouds fare"
+              },
+              {
+                "lineNumber": "",
+                "html": "With fainting speed, and their thin streamers fly",
+                "text": "With fainting speed, and their thin streamers fly"
+              },
+              {
+                "lineNumber": "",
+                "html": "In melting drifts of the sky.",
+                "text": "In melting drifts of the sky."
+              },
+              {
+                "lineNumber": "",
+                "html": "Already the birds in the air",
+                "text": "Already the birds in the air"
+              },
+              {
+                "lineNumber": "",
+                "html": "Appear again; the <span data-glossary-definition=\"large black birds related to crows\" role=\"link\" tabindex=\"0\">rooks</span> return to their <span data-glossary-definition=\"a place often visited\" role=\"link\" tabindex=\"0\">haunt</span>,",
+                "text": "Appear again; the rooks return to their haunt,"
+              },
+              {
+                "lineNumber": "10",
+                "html": "And one by one,",
+                "text": "And one by one,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Proclaiming aloud their care,",
+                "text": "Proclaiming aloud their care,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Renew their peaceful chant.",
+                "text": "Renew their peaceful chant."
+              },
+              {
+                "lineNumber": "",
+                "html": "Torn and shattered trees their branches again reset,",
+                "text": "Torn and shattered trees their branches again reset,"
+              },
+              {
+                "lineNumber": "",
+                "html": "They trim afresh the fair",
+                "text": "They trim afresh the fair"
+              },
+              {
+                "lineNumber": "15",
+                "html": "Few green and golden leaves withheld from the storm,",
+                "text": "Few green and golden leaves withheld from the storm,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And awhile will be handsome yet.",
+                "text": "And awhile will be handsome yet."
+              },
+              {
+                "lineNumber": "",
+                "html": "To-morrow’s sun shall caress",
+                "text": "To-morrow’s sun shall caress"
+              },
+              {
+                "lineNumber": "",
+                "html": "Their remnant of loveliness:",
+                "text": "Their remnant of loveliness:"
+              },
+              {
+                "lineNumber": "",
+                "html": "In quiet days for a time",
+                "text": "In quiet days for a time"
+              },
+              {
+                "lineNumber": "20",
+                "html": "Sad Autumn lingering warm",
+                "text": "Sad Autumn lingering warm"
+              },
+              {
+                "lineNumber": "",
+                "html": "Shall <span data-glossary-definition=\"to treat kindly, indulge\" role=\"link\" tabindex=\"0\">humour</span> their faded <span data-glossary-definition=\"best time\" role=\"link\" tabindex=\"0\">prime</span>.",
+                "text": "Shall humour their faded prime."
+              },
+              {
+                "lineNumber": "",
+                "html": "But ah! the leaves of summer that lie on the ground!",
+                "text": "But ah! the leaves of summer that lie on the ground!"
+              },
+              {
+                "lineNumber": "",
+                "html": "What havoc! The laughing <span data-glossary-definition=\"tambourines\" role=\"link\" tabindex=\"0\">timbrels</span> of June,",
+                "text": "What havoc! The laughing timbrels of June,"
+              },
+              {
+                "lineNumber": "",
+                "html": "That curtained the birds’ cradles, and screened their song,",
+                "text": "That curtained the birds’ cradles, and screened their song,"
+              },
+              {
+                "lineNumber": "25",
+                "html": "That sheltered the cooing doves at noon,",
+                "text": "That sheltered the cooing doves at noon,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Of airy fans the delicate throng,—",
+                "text": "Of airy fans the delicate throng,—"
+              },
+              {
+                "lineNumber": "",
+                "html": "Torn and scattered around:",
+                "text": "Torn and scattered around:"
+              },
+              {
+                "lineNumber": "",
+                "html": "Far out afield they lie,",
+                "text": "Far out afield they lie,"
+              },
+              {
+                "lineNumber": "",
+                "html": "In the watery <span data-glossary-definition=\"grooves plowed in a field\" role=\"link\" tabindex=\"0\">furrows</span> die,",
+                "text": "In the watery furrows die,"
+              },
+              {
+                "lineNumber": "30",
+                "html": "In grassy pools of the flood they sink and drown,",
+                "text": "In grassy pools of the flood they sink and drown,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Green-golden, orange, <span data-glossary-definition=\"bright red\" role=\"link\" tabindex=\"0\">vermilion</span>, golden and brown,",
+                "text": "Green-golden, orange, vermilion, golden and brown,"
+              },
+              {
+                "lineNumber": "",
+                "html": "The high year’s <span data-glossary-definition=\"showy\" role=\"link\" tabindex=\"0\">flaunting</span> crown",
+                "text": "The high year’s flaunting crown"
+              },
+              {
+                "lineNumber": "",
+                "html": "Shattered and trampled down.",
+                "text": "Shattered and trampled down."
+              },
+              {
+                "lineNumber": "",
+                "html": "The day is done: the tired land looks for night:",
+                "text": "The day is done: the tired land looks for night:"
+              },
+              {
+                "lineNumber": "35",
+                "html": "She prays to the night to keep",
+                "text": "She prays to the night to keep"
+              },
+              {
+                "lineNumber": "",
+                "html": "In peace her nerves of delight:",
+                "text": "In peace her nerves of delight:"
+              },
+              {
+                "lineNumber": "",
+                "html": "While silver mist <span data-glossary-definition=\"creeps upward\" role=\"link\" tabindex=\"0\">upstealeth</span> silently,",
+                "text": "While silver mist upstealeth silently,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And the broad cloud-driving moon in the clear sky",
+                "text": "And the broad cloud-driving moon in the clear sky"
+              },
+              {
+                "lineNumber": "",
+                "html": "Lifts o’er the <span data-glossary-definition=\"evergreen trees\" role=\"link\" tabindex=\"0\">firs</span> her shining shield,",
+                "text": "Lifts o’er the firs her shining shield,"
+              },
+              {
+                "lineNumber": "40",
+                "html": "And in her tranquil light",
+                "text": "And in her tranquil light"
+              },
+              {
+                "lineNumber": "",
+                "html": "Sleep falls on forest and field.",
+                "text": "Sleep falls on forest and field."
+              },
+              {
+                "lineNumber": "",
+                "html": "See! sleep hath fallen: the trees are asleep:",
+                "text": "See! sleep hath fallen: the trees are asleep:"
+              },
+              {
+                "lineNumber": "",
+                "html": "The night is come. The land is <span data-glossary-definition=\"wrapped\" role=\"link\" tabindex=\"0\">wrapt</span> in sleep.",
+                "text": "The night is come. The land is wrapt in sleep."
+              }
+            ],
+            "passageType": "poem",
+            "sourceNote": "“The storm is over, the land hushes to rest” by Robert Bridges—Public Domain",
+            "title": "The Storm Is Over"
+          },
+          "questions": [
+            {
+              "id": "nms-storm-is-over-1",
+              "explanation": "The wind’s “strength [is] fordone,” and it lies down (“couch”) with the setting sun. D is a trap: lying down with the sun isn’t the same as being beaten by it. A ignores “The storm is over.”",
+              "points": 1,
+              "prompt": "In lines 2–4, the description of the wind mainly creates an image of",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "a dangerous force that is waiting to return."
+                },
+                {
+                  "id": "B",
+                  "text": "a powerful force that has worn itself out and gone to rest."
+                },
+                {
+                  "id": "C",
+                  "text": "a gentle breeze that cools the land at sunset."
+                },
+                {
+                  "id": "D",
+                  "text": "a force that the sun has defeated in battle."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-storm-is-over-2",
+              "explanation": "The birds “appear again,” “return” and “renew their peaceful chant.” C misreads “care” as worry about another storm. Nothing in the lines suggests one is coming.",
+              "points": 1,
+              "prompt": "Lines 8–12 contribute to the poem mainly by",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "showing that ordinary life is returning now that the storm has passed."
+                },
+                {
+                  "id": "B",
+                  "text": "contrasting the noisy birds with the silent, damaged trees."
+                },
+                {
+                  "id": "C",
+                  "text": "suggesting that the birds are warning one another about another storm."
+                },
+                {
+                  "id": "D",
+                  "text": "explaining why the rooks had abandoned their haunt."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-storm-is-over-3",
+              "explanation": "The trees “reset” their branches and “trim afresh” their leaves, the way someone would straighten up after a struggle. A is wrong because the leaves were “withheld from the storm,” so nothing new is growing.",
+              "points": 1,
+              "prompt": "In lines 13–16, the trees are described as if they were",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "gardeners planting new growth to replace what was damaged."
+                },
+                {
+                  "id": "B",
+                  "text": "mourners grieving for the leaves they have lost."
+                },
+                {
+                  "id": "C",
+                  "text": "soldiers preparing for another battle."
+                },
+                {
+                  "id": "D",
+                  "text": "people tidying their appearance after a struggle."
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-storm-is-over-4",
+              "explanation": "The leaves get a “remnant of loveliness” for “a time,” in their “faded prime.” D contradicts “for a time.” B misreads “caress,” which is gentle.",
+              "points": 1,
+              "prompt": "Read lines 17–21.\n\nTo-morrow’s sun shall caress\nTheir remnant of loveliness:\nIn quiet days for a time\nSad Autumn lingering warm\nShall humour their faded prime.\n\nThese lines suggest that the leaves that survived the storm",
+              "promptHtml": "<p>Read lines 17–21.</p><blockquote><strong>To-morrow’s sun shall caress<br>Their remnant of loveliness:<br>In quiet days for a time<br>Sad Autumn lingering warm<br>Shall humour their faded prime.</strong></blockquote><p>These lines suggest that the leaves that survived the storm</p>",
+              "topic": "Inference",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "will enjoy a brief period of beauty before they fade."
+                },
+                {
+                  "id": "B",
+                  "text": "will be harmed by the heat of the next day’s sun."
+                },
+                {
+                  "id": "C",
+                  "text": "are more beautiful than the summer leaves had been."
+                },
+                {
+                  "id": "D",
+                  "text": "will remain on the trees through the winter."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-storm-is-over-5",
+              "explanation": "“But ah!” turns from the surviving leaves to the fallen ones (“What havoc!”). D describes line 34, not line 22.",
+              "points": 1,
+              "prompt": "How does line 22 contribute to the structure of the poem?",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "It shifts from what survived the storm to a lament for what was lost."
+                },
+                {
+                  "id": "B",
+                  "text": "It introduces the storm that the rest of the poem describes."
+                },
+                {
+                  "id": "C",
+                  "text": "It returns to the image of the wind from the opening lines."
+                },
+                {
+                  "id": "D",
+                  "text": "It marks the change from evening to night."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-storm-is-over-6",
+              "explanation": "“Laughing” shows their liveliness, and lines 24–25 show they sheltered birds. C is a trap: the leaves protected the birds, but they aren’t being compared to them.",
+              "points": 1,
+              "prompt": "In lines 23–26, the poet calls the summer leaves “laughing timbrels of June” and “airy fans” mainly to",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "suggest that the leaves were never strong enough to survive."
+                },
+                {
+                  "id": "B",
+                  "text": "emphasize the liveliness and usefulness the leaves once had."
+                },
+                {
+                  "id": "C",
+                  "text": "compare the leaves to the birds that nested among them."
+                },
+                {
+                  "id": "D",
+                  "text": "describe the sound the leaves made as the storm tore them away."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-storm-is-over-7",
+              "explanation": "It ends the lament with images of ruin. B and A are about recovery, and D is about the peaceful night.",
+              "points": 1,
+              "prompt": "Which line best conveys the speaker’s sense of loss over the destruction of the summer leaves?",
+              "topic": "Tone & Mood",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "“Renew their peaceful chant.” (line 12)"
+                },
+                {
+                  "id": "B",
+                  "text": "“And awhile will be handsome yet.” (line 16)"
+                },
+                {
+                  "id": "C",
+                  "text": "“Shattered and trampled down.” (line 33)"
+                },
+                {
+                  "id": "D",
+                  "text": "“Lifts o’er the firs her shining shield,” (line 39)"
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-storm-is-over-8",
+              "explanation": "The “tired land” prays for peace. A is wrong because the storm is over. B and D give the land feelings the lines don’t show.",
+              "points": 1,
+              "prompt": "In lines 34–36, the land is personified mainly to convey",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "its fear that the storm will return during the night."
+                },
+                {
+                  "id": "B",
+                  "text": "its anger at the damage the storm has caused."
+                },
+                {
+                  "id": "C",
+                  "text": "its exhaustion and its longing for peace after the storm."
+                },
+                {
+                  "id": "D",
+                  "text": "its pride at having survived the storm."
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-storm-is-over-9",
+              "explanation": "A shield protects. The moon’s light is “tranquil,” and the scene is one of sleep, not battle, so D is wrong.",
+              "points": 1,
+              "prompt": "The image of the moon lifting “her shining shield” (line 39) suggests that the moon",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "reflects the colors of the fallen leaves."
+                },
+                {
+                  "id": "B",
+                  "text": "protects the land as it rests."
+                },
+                {
+                  "id": "C",
+                  "text": "hides itself behind the clouds."
+                },
+                {
+                  "id": "D",
+                  "text": "prepares to battle the returning wind."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-storm-is-over-10",
+              "explanation": "The poem moves from aftermath (lines 1–21) to lament (lines 22–33) to nightfall (lines 34–43). A is wrong because the poem opens after the storm is already over.",
+              "points": 1,
+              "prompt": "Which statement best describes the overall structure of the poem?",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "It describes a storm’s arrival, its most violent moment, and its slow retreat."
+                },
+                {
+                  "id": "B",
+                  "text": "It moves from the calm after a storm, to a lament for the storm’s damage, to the peace of nightfall."
+                },
+                {
+                  "id": "C",
+                  "text": "It moves from night to morning as the land slowly recovers."
+                },
+                {
+                  "id": "D",
+                  "text": "It compares a summer storm with an autumn storm."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            }
+          ]
+        },
+        {
+          "id": "ela-snake-nathan-s-mock-shsat",
+          "versionLabels": [
+            "Nathan's Mock SHSAT"
+          ],
+          "section": "reading",
+          "questionCount": 10,
+          "directions": {
+            "body": "Read each text and answer the related questions. Base your answers only on the content within the text.",
+            "breadcrumbLabel": "ELA RDG COMP DIRECTIONS",
+            "subject": "English Language Arts",
+            "title": "READING COMPREHENSION"
+          },
+          "passage": {
+            "passageCategory": "miscellaneous",
+            "versionLabel": "Nathan's Mock SHSAT",
+            "format": "poem",
+            "id": "snake-nathan-s-mock-shsat",
+            "lines": [
+              {
+                "align": "center",
+                "kind": "title",
+                "text": "Snake"
+              },
+              {
+                "align": "center",
+                "kind": "byline",
+                "text": "by D. H. Lawrence"
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "A snake came to my water-trough",
+                "text": "A snake came to my water-trough"
+              },
+              {
+                "lineNumber": "",
+                "html": "On a hot, hot day, and I in pyjamas for the heat,",
+                "text": "On a hot, hot day, and I in pyjamas for the heat,"
+              },
+              {
+                "lineNumber": "",
+                "html": "To drink there.",
+                "text": "To drink there."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "In the deep, strange-scented shade of the great dark <span data-glossary-definition=\"a Mediterranean tree\" role=\"link\" tabindex=\"0\">carob</span> tree",
+                "text": "In the deep, strange-scented shade of the great dark carob tree"
+              },
+              {
+                "lineNumber": "5",
+                "html": "I came down the steps with my pitcher",
+                "text": "I came down the steps with my pitcher"
+              },
+              {
+                "lineNumber": "",
+                "html": "And must wait, must stand and wait, for there he was at the trough before me.",
+                "text": "And must wait, must stand and wait, for there he was at the trough before me."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "He reached down from a <span data-glossary-definition=\"a narrow crack\" role=\"link\" tabindex=\"0\">fissure</span> in the earth-wall in the gloom",
+                "text": "He reached down from a fissure in the earth-wall in the gloom"
+              },
+              {
+                "lineNumber": "",
+                "html": "And trailed his yellow-brown slackness soft-bellied down, over the edge of the stone trough",
+                "text": "And trailed his yellow-brown slackness soft-bellied down, over the edge of the stone trough"
+              },
+              {
+                "lineNumber": "",
+                "html": "And rested his throat upon the stone bottom,",
+                "text": "And rested his throat upon the stone bottom,"
+              },
+              {
+                "lineNumber": "10",
+                "html": "And where the water had dripped from the tap, in a small clearness,",
+                "text": "And where the water had dripped from the tap, in a small clearness,"
+              },
+              {
+                "lineNumber": "",
+                "html": "He sipped with his straight mouth,",
+                "text": "He sipped with his straight mouth,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Softly drank through his straight gums, into his slack long body,",
+                "text": "Softly drank through his straight gums, into his slack long body,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Silently.",
+                "text": "Silently."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "Someone was before me at my water-trough,",
+                "text": "Someone was before me at my water-trough,"
+              },
+              {
+                "lineNumber": "15",
+                "html": "And I, like a second-comer, waiting.",
+                "text": "And I, like a second-comer, waiting."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "He lifted his head from his drinking, as cattle do,",
+                "text": "He lifted his head from his drinking, as cattle do,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And looked at me vaguely, as drinking cattle do,",
+                "text": "And looked at me vaguely, as drinking cattle do,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And flickered his two-forked tongue from his lips, and mused a moment,",
+                "text": "And flickered his two-forked tongue from his lips, and mused a moment,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And stooped and drank a little more,",
+                "text": "And stooped and drank a little more,"
+              },
+              {
+                "lineNumber": "20",
+                "html": "Being earth-brown, earth-golden from the burning bowels of the earth",
+                "text": "Being earth-brown, earth-golden from the burning bowels of the earth"
+              },
+              {
+                "lineNumber": "",
+                "html": "On the day of Sicilian July, with <span data-glossary-definition=\"an active volcano in Sicily\" role=\"link\" tabindex=\"0\">Etna</span> smoking.",
+                "text": "On the day of Sicilian July, with Etna smoking."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "The voice of my education said to me",
+                "text": "The voice of my education said to me"
+              },
+              {
+                "lineNumber": "",
+                "html": "He must be killed,",
+                "text": "He must be killed,"
+              },
+              {
+                "lineNumber": "",
+                "html": "For in Sicily the black, black snakes are innocent, the gold are venomous.",
+                "text": "For in Sicily the black, black snakes are innocent, the gold are venomous."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "25",
+                "html": "And voices in me said, If you were a man",
+                "text": "And voices in me said, If you were a man"
+              },
+              {
+                "lineNumber": "",
+                "html": "You would take a stick and break him now, and finish him off.",
+                "text": "You would take a stick and break him now, and finish him off."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "But must I confess how I liked him,",
+                "text": "But must I confess how I liked him,"
+              },
+              {
+                "lineNumber": "",
+                "html": "How glad I was he had come like a guest in quiet, to drink at my water-trough",
+                "text": "How glad I was he had come like a guest in quiet, to drink at my water-trough"
+              },
+              {
+                "lineNumber": "",
+                "html": "And depart peaceful, pacified, and thankless,",
+                "text": "And depart peaceful, pacified, and thankless,"
+              },
+              {
+                "lineNumber": "30",
+                "html": "Into the burning bowels of this earth?",
+                "text": "Into the burning bowels of this earth?"
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "Was it cowardice, that I dared not kill him?",
+                "text": "Was it cowardice, that I dared not kill him?"
+              },
+              {
+                "lineNumber": "",
+                "html": "Was it <span data-glossary-definition=\"a desire to do the opposite of what is expected\" role=\"link\" tabindex=\"0\">perversity</span>, that I longed to talk to him?",
+                "text": "Was it perversity, that I longed to talk to him?"
+              },
+              {
+                "lineNumber": "",
+                "html": "Was it humility, to feel so honoured?",
+                "text": "Was it humility, to feel so honoured?"
+              },
+              {
+                "lineNumber": "",
+                "html": "I felt so honoured.",
+                "text": "I felt so honoured."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "35",
+                "html": "And yet those voices:",
+                "text": "And yet those voices:"
+              },
+              {
+                "lineNumber": "",
+                "html": "If you were not afraid, you would kill him!",
+                "text": "If you were not afraid, you would kill him!"
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "And truly I was afraid, I was most afraid,",
+                "text": "And truly I was afraid, I was most afraid,"
+              },
+              {
+                "lineNumber": "",
+                "html": "But even so, honoured still more",
+                "text": "But even so, honoured still more"
+              },
+              {
+                "lineNumber": "",
+                "html": "That he should seek my hospitality",
+                "text": "That he should seek my hospitality"
+              },
+              {
+                "lineNumber": "40",
+                "html": "From out the dark door of the secret earth.",
+                "text": "From out the dark door of the secret earth."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "He drank enough",
+                "text": "He drank enough"
+              },
+              {
+                "lineNumber": "",
+                "html": "And lifted his head, dreamily, as one who has drunken,",
+                "text": "And lifted his head, dreamily, as one who has drunken,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And flickered his tongue like a forked night on the air, so black,",
+                "text": "And flickered his tongue like a forked night on the air, so black,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Seeming to lick his lips,",
+                "text": "Seeming to lick his lips,"
+              },
+              {
+                "lineNumber": "45",
+                "html": "And looked around like a god, unseeing, into the air,",
+                "text": "And looked around like a god, unseeing, into the air,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And slowly turned his head,",
+                "text": "And slowly turned his head,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And slowly, very slowly, as if <span data-glossary-definition=\"deeply dreamy\" role=\"link\" tabindex=\"0\">thrice adream</span>,",
+                "text": "And slowly, very slowly, as if thrice adream,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Proceeded to draw his slow length curving round",
+                "text": "Proceeded to draw his slow length curving round"
+              },
+              {
+                "lineNumber": "",
+                "html": "And climb again the broken bank of my wall-face.",
+                "text": "And climb again the broken bank of my wall-face."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "50",
+                "html": "And as he put his head into that dreadful hole,",
+                "text": "And as he put his head into that dreadful hole,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And as he slowly drew up, snake-easing his shoulders, and entered farther,",
+                "text": "And as he slowly drew up, snake-easing his shoulders, and entered farther,"
+              },
+              {
+                "lineNumber": "",
+                "html": "A sort of horror, a sort of protest against his withdrawing into that horrid black hole,",
+                "text": "A sort of horror, a sort of protest against his withdrawing into that horrid black hole,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Deliberately going into the blackness, and slowly drawing himself after,",
+                "text": "Deliberately going into the blackness, and slowly drawing himself after,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Overcame me now his back was turned.",
+                "text": "Overcame me now his back was turned."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "55",
+                "html": "I looked round, I put down my pitcher,",
+                "text": "I looked round, I put down my pitcher,"
+              },
+              {
+                "lineNumber": "",
+                "html": "I picked up a clumsy log",
+                "text": "I picked up a clumsy log"
+              },
+              {
+                "lineNumber": "",
+                "html": "And threw it at the water-trough with a clatter.",
+                "text": "And threw it at the water-trough with a clatter."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "I think it did not hit him,",
+                "text": "I think it did not hit him,"
+              },
+              {
+                "lineNumber": "",
+                "html": "But suddenly that part of him that was left behind convulsed in an undignified haste,",
+                "text": "But suddenly that part of him that was left behind convulsed in an undignified haste,"
+              },
+              {
+                "lineNumber": "60",
+                "html": "Writhed like lightning, and was gone",
+                "text": "Writhed like lightning, and was gone"
+              },
+              {
+                "lineNumber": "",
+                "html": "Into the black hole, the earth-lipped fissure in the wall-front,",
+                "text": "Into the black hole, the earth-lipped fissure in the wall-front,"
+              },
+              {
+                "lineNumber": "",
+                "html": "At which, in the intense still noon, I stared with fascination.",
+                "text": "At which, in the intense still noon, I stared with fascination."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "And immediately I regretted it.",
+                "text": "And immediately I regretted it."
+              },
+              {
+                "lineNumber": "",
+                "html": "I thought how <span data-glossary-definition=\"petty, worthless\" role=\"link\" tabindex=\"0\">paltry</span>, how <span data-glossary-definition=\"crude\" role=\"link\" tabindex=\"0\">vulgar</span>, what a mean act!",
+                "text": "I thought how paltry, how vulgar, what a mean act!"
+              },
+              {
+                "lineNumber": "65",
+                "html": "I despised myself and the voices of my accursed human education.",
+                "text": "I despised myself and the voices of my accursed human education."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "And I thought of the <span data-glossary-definition=\"a reference to the poem “The Rime of the Ancient Mariner,” in which a sailor needlessly kills an albatross and is cursed for it\" role=\"link\" tabindex=\"0\">albatross</span>,",
+                "text": "And I thought of the albatross,"
+              },
+              {
+                "lineNumber": "",
+                "html": "And I wished he would come back, my snake.",
+                "text": "And I wished he would come back, my snake."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "For he seemed to me again like a king,",
+                "text": "For he seemed to me again like a king,"
+              },
+              {
+                "lineNumber": "",
+                "html": "Like a king in exile, uncrowned in the underworld,",
+                "text": "Like a king in exile, uncrowned in the underworld,"
+              },
+              {
+                "lineNumber": "70",
+                "html": "Now due to be crowned again.",
+                "text": "Now due to be crowned again."
+              },
+              {
+                "text": ""
+              },
+              {
+                "lineNumber": "",
+                "html": "And so, I missed my chance with one of the lords",
+                "text": "And so, I missed my chance with one of the lords"
+              },
+              {
+                "lineNumber": "",
+                "html": "Of life.",
+                "text": "Of life."
+              },
+              {
+                "lineNumber": "",
+                "html": "And I have something to <span data-glossary-definition=\"to make amends for\" role=\"link\" tabindex=\"0\">expiate</span>:",
+                "text": "And I have something to expiate:"
+              },
+              {
+                "lineNumber": "",
+                "html": "A pettiness.",
+                "text": "A pettiness."
+              }
+            ],
+            "passageType": "poem",
+            "sourceNote": "“Snake” by D. H. Lawrence—Public Domain",
+            "title": "Snake"
+          },
+          "questions": [
+            {
+              "id": "nms-snake-1",
+              "explanation": "“Someone was before me” treats the snake like a person who got there first, and the speaker waits his turn. A is wrong because he never shows resentment. The waiting is courtesy, not fear, so B is wrong too.",
+              "points": 1,
+              "prompt": "In lines 14–15, the speaker’s description of himself as “a second-comer, waiting” suggests that he",
+              "topic": "Inference",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "resents having to wait for an animal to finish drinking."
+                },
+                {
+                  "id": "B",
+                  "text": "is too frightened to approach the water-trough."
+                },
+                {
+                  "id": "C",
+                  "text": "accepts that the snake has a rightful claim to the water."
+                },
+                {
+                  "id": "D",
+                  "text": "arrived late because the heat made him move slowly."
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-snake-2",
+              "explanation": "Cattle drinking is a peaceful, ordinary image. A reads “vaguely” as a sign of stupidity. B isn’t supported, since the snake comes “from the burning bowels of the earth,” not from a farm.",
+              "points": 1,
+              "prompt": "In lines 16–17, the comparison of the snake to drinking cattle mainly serves to",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "suggest that the snake is slow and unintelligent."
+                },
+                {
+                  "id": "B",
+                  "text": "show that the snake is tame and used to people."
+                },
+                {
+                  "id": "C",
+                  "text": "present the snake as calm and unthreatening."
+                },
+                {
+                  "id": "D",
+                  "text": "emphasize the snake’s large size."
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-snake-3",
+              "explanation": "“Education” means beliefs he was taught, and “If you were a man” points to what society expects. B is the main trap: the poem sets these voices against his own instinct, which is to like the snake.",
+              "points": 1,
+              "prompt": "In lines 22–26, “the voice of my education” and the “voices in me” mainly represent",
+              "topic": "Word & Phrase Meaning",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "memories of a time when the speaker was bitten by a snake."
+                },
+                {
+                  "id": "B",
+                  "text": "the speaker’s natural instinct that the snake is dangerous."
+                },
+                {
+                  "id": "C",
+                  "text": "warnings from other people who are watching the snake."
+                },
+                {
+                  "id": "D",
+                  "text": "beliefs the speaker has learned from society about how he should act."
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-snake-4",
+              "explanation": "He weighs cowardice, perversity and humility, then says simply “I felt so honoured.” B and A get the audience of the questions wrong, and C is the opposite.",
+              "points": 1,
+              "prompt": "How do the questions in lines 31–33 contribute to the development of the poem?",
+              "topic": "Text Structure & Purpose",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "They challenge the reader to defend the snake."
+                },
+                {
+                  "id": "B",
+                  "text": "They show the speaker demanding an explanation from the snake."
+                },
+                {
+                  "id": "C",
+                  "text": "They reveal that the speaker has already decided to kill the snake."
+                },
+                {
+                  "id": "D",
+                  "text": "They show the speaker struggling to understand his own conflicting feelings."
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-snake-5",
+              "explanation": "“Like a god” shows reverence directly. B shows fear, not reverence, and A and D are neutral details.",
+              "points": 1,
+              "prompt": "Which line best supports the idea that the speaker views the snake with reverence?",
+              "topic": "Evidence & Support",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "“He sipped with his straight mouth,” (line 11)"
+                },
+                {
+                  "id": "B",
+                  "text": "“And truly I was afraid, I was most afraid,” (line 37)"
+                },
+                {
+                  "id": "C",
+                  "text": "“And looked around like a god, unseeing, into the air,” (line 45)"
+                },
+                {
+                  "id": "D",
+                  "text": "“I picked up a clumsy log” (line 56)"
+                }
+              ],
+              "correctChoiceId": "C",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-snake-6",
+              "explanation": "“A sort of horror, a sort of protest… overcame me.” C is wrong because the snake is turned away from him. D is wrong because the snake has already “drunk enough.” B isn’t stated, and he regrets the act right away.",
+              "points": 1,
+              "prompt": "Lines 50–54 suggest that the speaker throws the log mainly because he",
+              "topic": "Inference",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "is suddenly overcome by horror as the snake withdraws into the darkness."
+                },
+                {
+                  "id": "B",
+                  "text": "has finally been convinced that the snake is venomous."
+                },
+                {
+                  "id": "C",
+                  "text": "sees the snake preparing to strike at him."
+                },
+                {
+                  "id": "D",
+                  "text": "wants to stop the snake from drinking more of his water."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-snake-7",
+              "explanation": "Before this, the snake moves “slowly,” “dreamily,” “like a god.” Now it moves in “undignified haste.” A contradicts “I think it did not hit him.”",
+              "points": 1,
+              "prompt": "The description of the snake in line 59 (“convulsed in an undignified haste”) contrasts with earlier descriptions of the snake mainly by",
+              "topic": "Word & Phrase Meaning",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "revealing that the log has wounded the snake."
+                },
+                {
+                  "id": "B",
+                  "text": "suggesting that the snake had only been pretending to be calm."
+                },
+                {
+                  "id": "C",
+                  "text": "proving that the snake was dangerous all along."
+                },
+                {
+                  "id": "D",
+                  "text": "showing that the speaker’s act has destroyed the snake’s calm, dignified manner."
+                }
+              ],
+              "correctChoiceId": "D",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-snake-8",
+              "explanation": "Like the sailor in the Coleridge poem, he struck at a creature for no reason, and that is what he feels he must “expiate.” The other choices don’t match the allusion.",
+              "points": 1,
+              "prompt": "The reference to the albatross in line 66 suggests that the speaker",
+              "topic": "Figurative Language & Imagery",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "wishes that he could escape as easily as the snake did."
+                },
+                {
+                  "id": "B",
+                  "text": "fears he has needlessly harmed a creature and will suffer for it."
+                },
+                {
+                  "id": "C",
+                  "text": "realizes that snakes and birds are natural enemies."
+                },
+                {
+                  "id": "D",
+                  "text": "expects the snake to return and take revenge."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-snake-9",
+              "explanation": "He “missed [his] chance” with a royal, lordly creature, and he blames his own pettiness. C is wrong because “I wished he would come back” shows longing, not fear. B is wrong because he isn’t relieved.",
+              "points": 1,
+              "prompt": "In lines 68–72, the speaker’s description of the snake as “a king in exile” and “one of the lords / Of life” mainly conveys his belief that",
+              "topic": "Author's Point of View",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "the snake deserved an honor and respect that he failed to give it."
+                },
+                {
+                  "id": "B",
+                  "text": "he is relieved that such a powerful creature has left."
+                },
+                {
+                  "id": "C",
+                  "text": "the snake will return to punish him."
+                },
+                {
+                  "id": "D",
+                  "text": "the snake ruled over the other animals in the area."
+                }
+              ],
+              "correctChoiceId": "A",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            },
+            {
+              "id": "nms-snake-10",
+              "explanation": "He’s honored (lines 27–40), throws the log (lines 55–57), then regrets it (lines 63–74). D leaves out the attack, and C leaves out the regret.",
+              "points": 1,
+              "prompt": "Which statement best describes how the speaker’s attitude changes over the course of the poem?",
+              "topic": "Author's Point of View",
+              "choices": [
+                {
+                  "id": "A",
+                  "text": "He moves from hatred of the snake to admiration of its courage."
+                },
+                {
+                  "id": "B",
+                  "text": "He moves from honoring the snake, to acting against it out of learned fear, to regretting his own pettiness."
+                },
+                {
+                  "id": "C",
+                  "text": "He moves from calm, to anger, to relief that the snake is gone."
+                },
+                {
+                  "id": "D",
+                  "text": "He moves from fear of the snake, to curiosity about it, to friendship with it."
+                }
+              ],
+              "correctChoiceId": "B",
+              "type": "multiple_choice",
+              "source": {
+                "publisher": "Unspecified"
+              }
+            }
+          ]
+        }
+      ],
+      "passageSections": {
+        "maggie-walker-and-the-economic-empowerment-of-the-black-community-nathan-s-mock-shsat": "reading",
+        "excerpt-from-brown-wolf-nathan-s-mock-shsat": "reading",
+        "the-pebble-and-the-acorn-nathan-s-mock-shsat": "reading",
+        "the-storm-is-over-nathan-s-mock-shsat": "reading",
+        "snake-nathan-s-mock-shsat": "reading"
+      },
+      "releaseId": "f066614284e4a8e70d2c6ad23e577ae7065ca48bbe2d384fa8afc79002bc7579"
+    }
   }
 }
