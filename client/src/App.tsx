@@ -53,6 +53,7 @@ const TeacherLibraryPage = lazy(() =>
 );
 const MathCommandPage = lazy(() => import("./features/math-command/MathCommandPage").then(module => ({ default: module.MathCommandPage })));
 const InfinitePracticePage = lazy(() => import("./pages/InfinitePracticePage").then(module => ({ default: module.InfinitePracticePage })));
+const AdaptiveMathExamPage = lazy(() => import("./pages/AdaptiveMathExamPage").then(module => ({ default: module.AdaptiveMathExamPage })));
 const ClassroomMealsPage = lazy(() => import("./pages/ClassroomMealsPage").then(module => ({ default: module.ClassroomMealsPage })));
 const TeacherMealsPage = lazy(() => import("./pages/TeacherMealsPage").then(module => ({ default: module.TeacherMealsPage })));
 const PracticeStudioPage = lazy(() => import("./pages/PracticeStudioPage").then(module => ({ default: module.PracticeStudioPage })));
@@ -124,6 +125,7 @@ function CurrentPage() {
     if (path === "/study-hall/shsat/assignments") {
       return withClassAccess(<StudentAssignmentsPage />);
     }
+    if (path === "/study-hall/shsat/assessments/adaptive-math") return withClassAccess(<AdaptiveMathExamPage />);
     if (path === "/study-hall/shsat/assessments" || path === "/study-hall/shsat/worksheets") {
       return withClassAccess(<StudentAssessmentsPage />);
     }

@@ -37,6 +37,8 @@ _Avoid_: General as a substitute for the questions' actual classifications.
 
 **Assessment**: A finite collection of questions used to evaluate performance under specified conditions. An exam is a form of assessment.
 
+**Adaptive exam**: A self-paced exam with no fixed question list. It chooses each question from practice generators according to the student's earlier answers, moving on from topics the student has mastered and returning to topics the student misses. It is listed with assessments, and its result is a topic-by-topic mastery report instead of a score.
+
 **Practice generator**: A reviewed rule or template that produces question variations within a defined domain. Its source questions describe its provenance, not its generated output's identity.
 
 **Practice module**: A student-facing activity combining an instructional focus with an available set of question generators or an explicitly identified finite question pool.

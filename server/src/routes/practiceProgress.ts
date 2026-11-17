@@ -26,9 +26,10 @@ practiceProgressRouter.get('/', async (req, res) => {
     return;
   }
   const { data, error } = await supabase.from(table).select(columns)
-    .eq('user_id', res.locals.user.id).not('module_id','like','\\_\\_response\\_\\_:%').order('module_id').range(page * 50, page * 50 + 49);
+    .eq('user_id', res.locals.user.id).not('module_id','like','\\_\\_response\\_\\_:%').not('module_id','like','\\_\\_adaptive\\_\\_:%').order('module_id').range(page * 50, page * 50 + 49);
   if (error) { res.status(503).json({ message: unavailable }); return; }
-  res.json((data??[]).filter(row=>!row.moduleId.startsWith('__response__:')));
+  // Reserved rows (saved responses, the adaptive exam) are not practice checkpoints.
+  res.json((data??[]).filter(row=>!row.moduleId.startsWith('__')));
 });
 
 practiceProgressRouter.put('/', async (req, res) => {

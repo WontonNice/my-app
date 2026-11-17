@@ -1,5 +1,5 @@
 import { contentEditorQuestionHref } from '../lib/contentEditorLink';
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { ArrowRight, CheckCircle2, FileCheck2, LockKeyhole, Search, X } from "lucide-react";
 import type { StudentAssessment } from "../lib/api";
 import { appendStudentPreview, type StudentPreviewContext } from "../lib/studentPreview";
@@ -14,13 +14,15 @@ type Props = {
   assessments: StudentAssessment[]; previewContext: StudentPreviewContext;
   loading?: boolean; error?: boolean; onRetry?: () => void;
   heading?: string; description?: string; worksheetMode?: boolean; onToggleWorksheet?: (assessment: StudentAssessment) => void; savingWorksheet?: string;
+  /** Shown between the page heading and the library, for assessments that are not teacher-assigned exams. */
+  featured?: ReactNode;
 };
 function durationLabel(minutes: number) {
   const hours = Math.floor(minutes / 60), remainder = minutes % 60;
   return hours ? hours + "h" + (remainder ? " " + remainder + "m" : "") : minutes + "m";
 }
 
-export function StudentAssessmentLibrary({ assessments, previewContext, loading = false, error = false, onRetry, heading = 'Assessments', description = 'Find your exam by name or year. Your teacher controls which sections are open.', worksheetMode = false, onToggleWorksheet, savingWorksheet }: Props) {
+export function StudentAssessmentLibrary({ assessments, previewContext, loading = false, error = false, onRetry, heading = 'Assessments', description = 'Find your exam by name or year. Your teacher controls which sections are open.', worksheetMode = false, onToggleWorksheet, savingWorksheet, featured }: Props) {
   const noun = worksheetMode ? "worksheet" : "exam";
   const teacherView = previewContext.isPreview && previewContext.mode === 'teacher';
   const initialParams = new URLSearchParams(window.location.search);
@@ -53,6 +55,7 @@ export function StudentAssessmentLibrary({ assessments, previewContext, loading 
 
   return <div className="student-section-page student-exams">
     <header className="student-section-heading"><div>{!worksheetMode && <p>Your exam library</p>}<h1>{heading}</h1><span>{description}</span></div>{!loading && !error && <strong>{openCount} available</strong>}</header>
+    {featured}
     <section className="student-exams-library" aria-label={worksheetMode ? "Worksheet library" : "Exam library"} aria-busy={loading}>
       <div className="student-exams-toolbar">
         <div className="student-exams-search"><Search size={17} aria-hidden="true" /><input type="search" aria-label={worksheetMode ? "Search worksheets by name or year" : "Search exams by name or year"} placeholder={`Search by ${noun} name or year…`} value={query} onChange={event => setQuery(event.target.value)} />{query && <button type="button" aria-label={`Clear ${noun} search`} onClick={() => setQuery("")}><X size={15} /></button>}</div>

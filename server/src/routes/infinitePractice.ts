@@ -1,6 +1,7 @@
 import { withPracticeSources } from '../shared/practiceSources';
 import { withRecommendedPractice } from '../shared/recommendedPractice';
 import { practiceProgressRouter } from './practiceProgress';
+import { adaptiveExamRouter } from './adaptiveExam';
 import { Router } from 'express';
 import { supabase } from '../lib/supabase';
 import { getAuthenticatedUser, getEnrolledClassIds } from '../lib/auth';
@@ -18,6 +19,7 @@ infinitePracticeRouter.use(async(request,response,next)=>{
   response.locals.teacher=teacher;response.locals.user=user;response.setHeader('Cache-Control','no-store');next();
 });
 infinitePracticeRouter.use('/progress', practiceProgressRouter);
+infinitePracticeRouter.use('/adaptive-exam', adaptiveExamRouter);
 infinitePracticeRouter.get('/evidence/:studentId',async(request,response)=>{
   const studentId=request.params.studentId==='me'?response.locals.user.id:request.params.studentId;
   if(studentId!==response.locals.user.id&&!response.locals.teacher){response.status(403).json({message:'You can only view your own practice responses.'});return;}
