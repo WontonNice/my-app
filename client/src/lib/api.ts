@@ -1,5 +1,6 @@
 import { getSupabaseClient, isSupabaseConfigured } from "./supabase";
 import { RequestTimeoutError, withRequestDeadline } from "./requestDeadline";
+import { attachSharedExamSnapshots } from "./sharedExamSnapshots";
 import type { AssignmentPage, ContentHistory, PlanClient, PlanOverview, PlanAssignment } from "./learningPlan";
 import type { ExamResult } from "./examResults";
 import type { ExamNavigation } from "../../../server/src/shared/examNavigation";
@@ -906,16 +907,18 @@ export async function saveStudentLibraryAttempt(
   return data.attempt;
 }
 
-// The roster snapshot includes every student's saved exam results, each with a copy of its exam.
-// The server needs around ten seconds to read them, so the default 15-second budget left no
-// margin; a slow load now finishes instead of reporting a timeout.
+// The roster includes every student's saved exam results and the exams they were taken on.
+// It is the largest read in the app, so it gets more than the default 15-second budget;
+// a slow load finishes instead of reporting a timeout.
 const studentProgressTimeoutMs = 45_000;
 
 export async function getTeacherStudentProgress(accessToken: string) {
-  const data = await requestApi<{ students: StudentProgressSnapshot[] }>("/api/progress/students", {
-    headers: createAuthHeaders(accessToken),
-  }, studentProgressTimeoutMs);
-  return data.students;
+  const data = await requestApi<{ students: StudentProgressSnapshot[]; examSnapshots?: Record<string, unknown> }>(
+    "/api/progress/students?snapshots=shared",
+    { headers: createAuthHeaders(accessToken) },
+    studentProgressTimeoutMs,
+  );
+  return attachSharedExamSnapshots(data.students, data.examSnapshots);
 }
 
 export async function getTeacherStudentAccounts(accessToken: string) {

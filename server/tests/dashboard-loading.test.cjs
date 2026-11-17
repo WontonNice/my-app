@@ -32,6 +32,7 @@ function apiWith(fetch, auth = {}, dev = false) {
     exports, Headers, Error, URLSearchParams, fetch, setTimeout: (fn) => setTimeout(fn, 1), clearTimeout,
     require: name => {
       if (name === './supabase') return { isSupabaseConfigured: true, getSupabaseClient: () => ({ auth: { getSession: async () => ({ data: {} }), ...auth } }) };
+      if (name === './sharedExamSnapshots') return loadTS('../../client/src/lib/sharedExamSnapshots.ts');
       if (name === './requestDeadline') return { ...deadline, withRequestDeadline: (signal, run) => deadline.withRequestDeadline(signal, run, 40) };
       throw new Error(`Unexpected import ${name}`);
     },

@@ -11,6 +11,7 @@ import { randomUUID } from "node:crypto";
 import type { User } from "@supabase/supabase-js";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
+import { stringifyWithSharedExamSnapshots } from "../lib/examSnapshotStore";
 import { shareInFlight } from "../lib/shareInFlight";
 import { loadStudentProgressRows, type ProgressRows } from "../lib/studentProgressRows";
 import { recordPlanCompletion, recordPracticePlanCompletion } from "../lib/learningPlanStore";
@@ -270,7 +271,7 @@ progressRouter.get("/", async (request, response) => {
 // Building the roster snapshot reads every saved exam result and takes several seconds.
 // Requests that arrive while one is being built (another teacher, another tab, or the browser
 // trying again after a timeout) share that build instead of each starting their own.
-type StudentSnapshotResult = { status: number; body: unknown };
+type StudentSnapshotResult = { status: number; body: { message: string } | { students: { progress: LearningProgress }[] } };
 
 async function buildStudentSnapshots(): Promise<StudentSnapshotResult> {
     const listed = await listDashboardUsers();
@@ -325,6 +326,11 @@ progressRouter.get("/students", async (request, response) => {
     }
 
     const built = await sharedStudentSnapshots();
+    // Current clients ask for each distinct exam copy once; older tabs still get them inline.
+    if (request.query.snapshots === "shared" && "students" in built.body) {
+        response.type("json").send(stringifyWithSharedExamSnapshots(built.body.students));
+        return;
+    }
     response.status(built.status).json(built.body);
 });
 
