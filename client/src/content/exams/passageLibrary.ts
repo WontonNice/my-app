@@ -195,6 +195,11 @@ import { excerptFromBrownWolfNathanSMockShsatPassageSet } from "./passageSets/ex
 import { thePebbleAndTheAcornNathanSMockShsatPassageSet } from "./passageSets/the-pebble-and-the-acorn-nathan-s-mock-shsat";
 import { theStormIsOverNathanSMockShsatPassageSet } from "./passageSets/the-storm-is-over-nathan-s-mock-shsat";
 import { snakeNathanSMockShsatPassageSet } from "./passageSets/snake-nathan-s-mock-shsat";
+import { maggieWalkerAndTheEconomicEmpowermentOfTheBlackCommunityNathanSMockShsatHardPassageSet } from "./passageSets/maggie-walker-and-the-economic-empowerment-of-the-black-community-nathan-s-mock-shsat-hard";
+import { excerptFromBrownWolfNathanSMockShsatHardPassageSet } from "./passageSets/excerpt-from-brown-wolf-nathan-s-mock-shsat-hard";
+import { thePebbleAndTheAcornNathanSMockShsatHardPassageSet } from "./passageSets/the-pebble-and-the-acorn-nathan-s-mock-shsat-hard";
+import { theStormIsOverNathanSMockShsatHardPassageSet } from "./passageSets/the-storm-is-over-nathan-s-mock-shsat-hard";
+import { snakeNathanSMockShsatHardPassageSet } from "./passageSets/snake-nathan-s-mock-shsat-hard";
 
 export const examPassageLibrary: ExamPassageSet[] = [
   aMiracleMilePassageSet,
@@ -391,6 +396,11 @@ export const examPassageLibrary: ExamPassageSet[] = [
   thePebbleAndTheAcornNathanSMockShsatPassageSet,
   theStormIsOverNathanSMockShsatPassageSet,
   snakeNathanSMockShsatPassageSet,
+  maggieWalkerAndTheEconomicEmpowermentOfTheBlackCommunityNathanSMockShsatHardPassageSet,
+  excerptFromBrownWolfNathanSMockShsatHardPassageSet,
+  thePebbleAndTheAcornNathanSMockShsatHardPassageSet,
+  theStormIsOverNathanSMockShsatHardPassageSet,
+  snakeNathanSMockShsatHardPassageSet,
 ];
 
 export const examLibraryBooks = groupPassageBooks(examPassageLibrary);
