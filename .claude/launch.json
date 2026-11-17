@@ -45,6 +45,16 @@
         "--strictPort"
       ],
       "port": 5174
+    },
+    {
+      "name": "adaptive-exam-preview",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "preview:adaptive-exam"
+      ],
+      "port": 4336,
+      "url": "http://127.0.0.1:4336"
     }
   ]
 }
