@@ -11,6 +11,7 @@ import { randomUUID } from "node:crypto";
 import type { User } from "@supabase/supabase-js";
 import { getAuthenticatedUser, getEnrolledClassIds, getUserRole, isStudentArchived } from "../lib/auth";
 import { supabase } from "../lib/supabase";
+import { shareInFlight } from "../lib/shareInFlight";
 import { loadStudentProgressRows, type ProgressRows } from "../lib/studentProgressRows";
 import { recordPlanCompletion, recordPracticePlanCompletion } from "../lib/learningPlanStore";
 import { readExamReentries, withExamWriteLock } from "../lib/examReentry";
@@ -266,22 +267,15 @@ progressRouter.get("/", async (request, response) => {
     response.json({ progress: await getDatabaseProgress(user) });
 });
 
-progressRouter.get("/students", async (request, response) => {
-    const authenticated = await getAuthenticatedUser(request.headers.authorization);
-    if (authenticated.error || !authenticated.user) {
-        response.status(401).json({ message: authenticated.error });
-        return;
-    }
-    const role = getUserRole(authenticated.user);
-    if (role !== "teacher" && role !== "admin") {
-        response.status(403).json({ message: "Teacher access is required." });
-        return;
-    }
+// Building the roster snapshot reads every saved exam result and takes several seconds.
+// Requests that arrive while one is being built (another teacher, another tab, or the browser
+// trying again after a timeout) share that build instead of each starting their own.
+type StudentSnapshotResult = { status: number; body: unknown };
 
+async function buildStudentSnapshots(): Promise<StudentSnapshotResult> {
     const listed = await listDashboardUsers();
     if (listed.error) {
-        response.status(400).json({ message: listed.error.message });
-        return;
+        return { status: 400, body: { message: listed.error.message } };
     }
     const students = listed.data.users.filter(
         (candidate) => getUserRole(candidate) === "student" && !isStudentArchived(candidate),
@@ -290,8 +284,7 @@ progressRouter.get("/students", async (request, response) => {
     try {
         rows = await loadStudentProgressRows(students.map(student => student.id));
     } catch {
-        response.status(503).json({ message: "Student progress is temporarily unavailable. Please try again." });
-        return;
+        return { status: 503, body: { message: "Student progress is temporarily unavailable. Please try again." } };
     }
     const snapshots = students.map((student) => {
         const exams = rows.exams(student.id);
@@ -314,7 +307,25 @@ progressRouter.get("/students", async (request, response) => {
         };
     });
 
-    response.json({ students: snapshots.sort((left, right) => left.fullName.localeCompare(right.fullName)) });
+    return { status: 200, body: { students: snapshots.sort((left, right) => left.fullName.localeCompare(right.fullName)) } };
+}
+
+const sharedStudentSnapshots = shareInFlight(buildStudentSnapshots);
+
+progressRouter.get("/students", async (request, response) => {
+    const authenticated = await getAuthenticatedUser(request.headers.authorization);
+    if (authenticated.error || !authenticated.user) {
+        response.status(401).json({ message: authenticated.error });
+        return;
+    }
+    const role = getUserRole(authenticated.user);
+    if (role !== "teacher" && role !== "admin") {
+        response.status(403).json({ message: "Teacher access is required." });
+        return;
+    }
+
+    const built = await sharedStudentSnapshots();
+    response.status(built.status).json(built.body);
 });
 
 progressRouter.get("/exam-sessions", async (request, response) => {

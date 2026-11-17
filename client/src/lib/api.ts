@@ -629,9 +629,9 @@ async function refreshAccessToken() {
   }
 }
 
-export async function requestApi<TResponse>(path: string, init: RequestInit = {}) {
+export async function requestApi<TResponse>(path: string, init: RequestInit = {}, timeoutMs?: number) {
   try {
-    return await withRequestDeadline(init.signal, signal => requestApiWithinDeadline<TResponse>(path, { ...init, signal }));
+    return await withRequestDeadline(init.signal, signal => requestApiWithinDeadline<TResponse>(path, { ...init, signal }), timeoutMs);
   } catch (error) {
     if (error instanceof RequestTimeoutError && !["GET", "HEAD"].includes((init.method ?? "GET").toUpperCase())) {
       throw new Error("The server took too long to respond. The change was not confirmed; refresh before trying it again.");
@@ -906,10 +906,15 @@ export async function saveStudentLibraryAttempt(
   return data.attempt;
 }
 
+// The roster snapshot includes every student's saved exam results, each with a copy of its exam.
+// The server needs around ten seconds to read them, so the default 15-second budget left no
+// margin; a slow load now finishes instead of reporting a timeout.
+const studentProgressTimeoutMs = 45_000;
+
 export async function getTeacherStudentProgress(accessToken: string) {
   const data = await requestApi<{ students: StudentProgressSnapshot[] }>("/api/progress/students", {
     headers: createAuthHeaders(accessToken),
-  });
+  }, studentProgressTimeoutMs);
   return data.students;
 }
 
