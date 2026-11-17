@@ -28,7 +28,7 @@
 .english-review-message { color: var(--studio-green); font-size: 13px; font-weight: 600; margin: 0 0 8px; flex-shrink: 0; }
 .english-review-message:empty { display: none; }
 .english-review-message.is-error { color: var(--studio-red); padding: 8px 12px; background: var(--studio-red-soft); }
-.english-review-help { order: 6; padding: 8px 0; margin: 0; color: var(--studio-muted); font-size: 11px; line-height: 1.5; flex-shrink: 0; }
+.english-review-help { order: 6; padding: 8px 0; margin: 0; color: var(--studio-muted); font-size: 12px; line-height: 1.5; flex-shrink: 0; }
 /* This is the scroll owner. min-height:0 lets it shrink below the table's intrinsic size. */
 .english-review-table-wrap { flex: 1 1 0; min-height: 160px; overflow: auto; overscroll-behavior: contain; scrollbar-gutter: stable; border-top: 1px solid var(--studio-line); }
 .english-review-table { width: 100%; min-width: 850px; border-collapse: separate; border-spacing: 0; table-layout: fixed; font-size: 13px; }
@@ -42,17 +42,17 @@
 .english-review-table th:last-child { width: 148px; }
 .english-review-table tr:has(input:checked) td { background: var(--studio-accent-soft); }
 .english-review-table tbody tr:hover td { background: var(--studio-rail); }
-.english-review-table td:last-child button { display: block; margin: 0 0 8px; padding: 8px 8px; min-height: 32px; font-size: 11px; }
+.english-review-table td:last-child button { display: block; margin: 0 0 8px; padding: 8px 8px; min-height: 32px; font-size: 12px; }
 .english-review-table td:last-child button[data-review-related] { border-color: transparent; background: transparent; color: var(--studio-amber); padding-inline: 0; }
 .english-review-table strong,.english-review-table small { display: block; }
 .english-review-table strong { font-size: 13px; font-weight: 600; color: var(--studio-ink); }
 .english-review-table p { font-size: 12px; line-height: 1.55; margin: 8px 0; overflow-wrap: anywhere; white-space: pre-wrap; }
-.english-review-table small { margin-top: 8px; font-size: 11px; }
+.english-review-table small { margin-top: 8px; font-size: 12px; }
 .english-review-table details { font-size: 12px; }
 .english-review-table summary { cursor: pointer; color: var(--studio-accent); padding: 4px 0; }
 .english-review-table details[open] { padding: 8px 0; }
-.review-section { display: block; font-size: 11px; color: var(--studio-muted); margin-bottom: 4px; }
-.review-status { display: inline-block; padding: 4px 8px; border-radius: 4px; background: var(--studio-amber-soft); color: var(--studio-amber); white-space: nowrap; font-size: 11px; font-weight: 500; }
+.review-section { display: block; font-size: 12px; color: var(--studio-muted); margin-bottom: 4px; }
+.review-status { display: inline-block; padding: 4px 8px; border-radius: 4px; background: var(--studio-amber-soft); color: var(--studio-amber); white-space: nowrap; font-size: 12px; font-weight: 500; }
 .review-status-finished { background: var(--studio-green-soft); color: var(--studio-green); }
 .review-status-draft { background: var(--studio-accent-soft); color: var(--studio-accent); }
 .math-bulk-finish { grid-column: 1 / -1; padding: 16px 16px; margin-bottom: 16px; }
@@ -73,7 +73,7 @@
   .english-review-summary { margin-top: 20px; gap: 12px; }
   .english-review-summary > span { padding: 0; border: 0; gap: 4px; }
   .english-review-summary strong { font-size: 23px; }
-  .english-review-summary > span > span { font-size: 11px; }
+  .english-review-summary > span > span { font-size: 12px; }
   .english-review-filters { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .english-review-filters label:first-child,.english-review-filters .review-check { grid-column: 1 / -1; }
   .english-review-actions .review-check { flex-basis: 100%; }
@@ -87,7 +87,7 @@
   .english-review-table td { padding: 0; border: 0; grid-column: 2; }
   .english-review-table td:first-child { grid-column: 1; grid-row: 1; padding-top: 4px; }
   .english-review-table td:nth-child(2) { grid-row: 1; }
-  .english-review-table td:nth-child(3)::before,.english-review-table td:nth-child(4)::before { content: attr(data-label) ': '; color: var(--studio-muted); font-size: 11px; }
+  .english-review-table td:nth-child(3)::before,.english-review-table td:nth-child(4)::before { content: attr(data-label) ': '; color: var(--studio-muted); font-size: 12px; }
   .english-review-table td:last-child { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px; }
   .english-review-table td:last-child button { margin: 0; }
   .english-review-help { padding-block: 16px; }

@@ -163,7 +163,7 @@ body.studio-authoring.studio-workbench[data-workspace] > header.app-header {
 .studio-workbench #passage-list .studio-category-row > button { padding: 12px 8px; border: 0; }
 .studio-workbench #passage-list .studio-category-row > button.is-active,
 .studio-workbench :is(.assessment-list,.passage-list) button.is-active { background: var(--studio-accent-soft); color: var(--studio-ink); border-color: var(--studio-accent-soft); box-shadow: none; font-weight: 600; }
-.studio-workbench :is(.studio-catalog-meta,.studio-catalog-result,.passage-list small,.assessment-list small) { color: var(--studio-muted); font-size: 11px; }
+.studio-workbench :is(.studio-catalog-meta,.studio-catalog-result,.passage-list small,.assessment-list small) { color: var(--studio-muted); font-size: 12px; }
 .studio-workbench .studio-catalog-search::before { content: none; }
 .studio-workbench .studio-catalog-search input { padding-left: 8px; border-color: var(--studio-field-line); border-radius: 6px; }
 .studio-workbench .editor { padding: 0; background: var(--studio-canvas); }
@@ -183,7 +183,7 @@ body.studio-authoring.studio-workbench[data-workspace] > header.app-header {
 .studio-workbench .studio-direct-question { gap: 8px; }
 .studio-workbench .studio-direct-question :is(button,summary) { min-height: 32px; font-size: 12px; }
 .studio-workbench .studio-preview-first .studio-answer-summary { font-family: var(--studio-font); color: var(--studio-key); background: var(--studio-key-soft); border-color: var(--studio-key-line); }
-.studio-workbench .studio-item-state { font-size: 11px; color: var(--studio-muted); }
+.studio-workbench .studio-item-state { font-size: 12px; color: var(--studio-muted); }
 .studio-workbench .studio-item-state[data-state=dirty] { color: var(--studio-amber); }
 .studio-workbench .studio-item-state[data-state=error] { color: var(--studio-red); }
 /* The student page sits on the desk as a sheet; its own document keeps the exam presentation. */
@@ -228,7 +228,7 @@ body.studio-authoring.studio-workbench[data-workspace] > header.app-header {
 .studio-authoring.studio-workbench .studio-exam-workspace .studio-format-disclosure { flex: 1 1 100%; }
 .studio-authoring.studio-workbench .studio-exam-workspace .studio-preview-hint { order: 1; flex: 1 1 200px; min-width: 0; margin: 0; text-align: right; line-height: 1.35; text-wrap: balance; }
 .studio-authoring.studio-workbench .math-question-nav-list { display: flex; flex-direction: column; }
-.studio-authoring.studio-workbench .math-question-nav-list > button { flex: 0 0 auto; height: max-content; min-height: 104px; padding: 12px 8px; }
+.studio-authoring.studio-workbench .math-question-nav-list > button { flex: 0 0 auto; height: max-content; min-height: 0; padding: 8px; }
 .studio-authoring.studio-workbench .math-question-nav-copy { min-width: 0; line-height: 1.5; }
 .studio-authoring.studio-workbench .math-question-nav-copy strong { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: normal; font-size: 12px; line-height: 1.5; }
 .studio-workbench #math-builder .math-question-nav-list button.math-import-needs-editing { border: 1px solid var(--studio-line); background: var(--studio-paper); color: var(--studio-ink); }
@@ -446,4 +446,103 @@ body.studio-authoring.studio-workbench[data-workspace] > header.app-header {
 .studio-workbench .compare-readonly { border-radius: 6px; }
 @media (max-width: 600px) {
   .studio-workbench #catalog-view.learning-catalog { padding: 20px 16px 24px; }
+}
+
+/* Math questions: the same item header as the passage editor, a compact question outline,
+   the live student preview shown as a sheet, and the answer key in the teacher's ink. */
+.studio-authoring.studio-workbench #math-view #math-builder { background: var(--studio-subtle); }
+.studio-authoring.studio-workbench #math-builder > .panel-head { padding: 12px 20px 10px; gap: 12px; background: var(--studio-paper); }
+.studio-authoring.studio-workbench #math-builder > .panel-head h2 { font-size: 20px; line-height: 1.3; font-weight: 650; letter-spacing: -.01em; color: var(--studio-ink); }
+.studio-workbench #math-builder > .panel-head :is(button, summary) { min-height: 32px; }
+.studio-workbench #math-builder .math-editor-stack > .panel-head h2 { font-size: 18px; font-weight: 650; }
+.studio-workbench #math-builder .math-question-nav-list { gap: 2px; }
+.studio-workbench #math-builder .math-question-nav-list button:not(.is-active) { border-color: transparent; }
+.studio-workbench #math-builder .math-question-nav-list button:not(.is-active):hover { background: var(--studio-subtle); }
+.studio-workbench #math-builder :is(.math-prompt-note, .question-code-id, .image-editor-preview, .math-question-nav-hint) { font-size: 12px; line-height: 1.4; }
+.studio-workbench #math-builder :is(.studio-disclosure, .studio-math-settings) > summary { font-size: 13px; }
+.studio-authoring.studio-workbench .studio-math-preview-pane { border: 0; border-radius: 3px; overflow: hidden; box-shadow: 0 1px 2px #12313a24, 0 8px 22px #12313a14; }
+.studio-workbench .studio-question-key-lock { background: var(--studio-key-soft); border-color: var(--studio-key-line); }
+.studio-workbench .studio-question-key-lock .field-note { color: var(--studio-key); font-weight: 600; }
+
+/* Exams and worksheets: the library and the builder sit flush under a slim page header,
+   like the passage editor, instead of floating as cards on the desk. */
+.studio-authoring.studio-workbench #tests-view > .test-shell { padding: 0; gap: 0; }
+.studio-authoring.studio-workbench #tests-view .test-shell > header { margin: 0; padding: 10px 20px; background: var(--studio-paper); border-bottom: 1px solid var(--studio-line); }
+.studio-authoring.studio-workbench #tests-view .test-shell > header h1 { font-size: 20px; line-height: 1.3; font-weight: 650; letter-spacing: -.01em; }
+.studio-workbench #tests-view .test-shell > header button { min-height: 32px; }
+.studio-authoring.studio-workbench #tests-view .test-grid > .panel { border-top: 0; border-bottom: 0; border-radius: 0; }
+.studio-authoring.studio-workbench #tests-view #test-builder { border: 0; padding: 16px 24px 24px; }
+.studio-workbench #test-builder > .panel-head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0 0 12px; }
+.studio-workbench #test-builder > .panel-head > div:first-child { flex: 1 1 100%; }
+.studio-workbench #test-builder > .panel-head h2 { font-size: 20px; line-height: 1.3; font-weight: 650; letter-spacing: -.01em; color: var(--studio-ink); }
+.studio-workbench #test-builder > .panel-head .studio-save-bar { display: flex; flex-direction: row; align-items: center; gap: 8px; position: static; margin: 0 0 0 auto; padding: 0; border: 0; background: transparent; }
+.studio-workbench #test-builder .test-summary span { padding: 3px 8px; border-radius: 4px; background: var(--studio-line-soft); color: var(--studio-secondary); font-size: 12px; }
+.studio-workbench #test-builder .studio-answer-key { border-color: var(--studio-key-line); }
+.studio-workbench #test-builder .studio-answer-key > summary { color: var(--studio-key); font-size: 13px; }
+.studio-workbench #test-builder .studio-test-nav { gap: 4px; padding: 0; background: transparent; border-bottom: 1px solid var(--studio-line); }
+.studio-workbench #test-builder .studio-test-nav button { border-radius: 0; background: transparent; box-shadow: inset 0 -2px 0 transparent; color: var(--studio-secondary); }
+.studio-workbench #test-builder .studio-test-nav button:hover { background: var(--studio-subtle); color: var(--studio-ink); }
+.studio-workbench #test-builder .studio-test-nav button.is-active { background: transparent; color: var(--studio-accent); box-shadow: inset 0 -2px 0 var(--studio-accent); }
+/* Library lists read as flat rows; only the open item is filled. */
+.studio-authoring.studio-workbench .assessment-list button:not(.is-active) { background: transparent; border-color: transparent; }
+.studio-authoring.studio-workbench .assessment-list button:not(.is-active):hover { background: var(--studio-subtle); }
+.studio-authoring.studio-workbench .assessment-list button { padding: 10px 12px; }
+.studio-workbench .studio-builder-pagination button { min-height: 32px; padding: 6px 10px; border: 1px solid var(--studio-line); background: var(--studio-paper); color: var(--studio-secondary); }
+.studio-workbench .studio-builder-pagination button:hover:not(:disabled) { background: var(--studio-rail); border-color: var(--studio-field-line); }
+@media (max-width: 600px) {
+  .studio-authoring.studio-workbench #tests-view .test-shell > header { padding: 10px 12px; }
+  .studio-authoring.studio-workbench #tests-view #test-builder { padding: 12px; }
+}
+
+/* Legibility floor: notes, counts and labels on the main screens are at least 12px (a few compact
+   badges stay at 11px), and disclosure summaries
+   are at least 24px tall so they are easy to hit. Icon-only buttons keep their own sizing. */
+.studio-authoring.studio-workbench main :is(small, .field-note, .studio-eyebrow, .passage-version-count, .passage-version-tag, .english-review-help, .studio-heading-meta span, .scantron-field span, .studio-picker-tools span, .bank-selection-empty, .math-question-nav-copy small) { font-size: 12px; }
+.studio-authoring.studio-workbench :is(.studio-library-topbar > span, #passage-list .passage-version-count, #passage-count, #standalone-count, .studio-library-create summary, .studio-catalog-toolbar summary) { font-size: 12px; }
+.studio-workbench #question-bank-workspace :is(.bank-table td small, .bank-help > summary, .bank-list-toolbar > span, .bank-muted) { font-size: 12px; }
+.studio-workbench main :is(.studio-math-outline-filters, .math-bulk-finish, .bank-import, .bank-help, .studio-catalog-filters, .passage-bulk) > summary { min-height: 24px; align-content: center; }
+/* Regular practice follows the same page title and drops the small uppercase labels. */
+.studio-workbench #practice-view .studio-eyebrow { display: none; }
+.studio-authoring.studio-workbench #practice-view .practice-header h1 { font-size: 24px; line-height: 1.25; font-weight: 650; letter-spacing: -.015em; }
+@media (max-width: 600px) {
+  /* Keep previous, the question picker and next on one line with the answer summary. */
+  .studio-authoring.studio-workbench .studio-exam-workspace .studio-direct-question > select { flex: 1 1 110px; width: auto; min-width: 0; }
+}
+
+/* Dialogs share one frame: the same radius, shadow and backdrop, an 18px title with no small
+   uppercase label above it, and styled buttons throughout. */
+.studio-authoring.studio-workbench dialog:not(.student-preview-modal) { border: 0; border-radius: 10px; box-shadow: var(--studio-shadow); }
+.studio-workbench dialog::backdrop { background: var(--studio-overlay); backdrop-filter: none; }
+.studio-workbench dialog .studio-eyebrow { display: none; }
+.studio-authoring.studio-workbench dialog :is(.panel-head h2, header h2) { margin-block: 0 4px; font-size: 18px; line-height: 1.3; font-weight: 650; letter-spacing: -.01em; color: var(--studio-ink); }
+.studio-workbench dialog .official-import-steps :is(strong, small) { font-size: 12px; line-height: 1.4; }
+.studio-workbench dialog .official-import-steps b { font-size: 12px; }
+.studio-workbench dialog input:is([type=checkbox], [type=radio]) { flex: 0 0 16px; width: 16px; height: 16px; min-width: 16px; min-height: 16px; margin: 0; padding: 0; }
+.studio-workbench dialog label:has(> input:is([type=checkbox], [type=radio])) { align-items: center; gap: 8px; }
+.studio-workbench dialog .secondary { border-color: var(--studio-line); }
+.studio-workbench .studio-dialog-status { font-size: 13px; color: var(--studio-accent-hover); }
+.studio-workbench .studio-dialog-status.is-error { color: var(--studio-red); border-color: var(--studio-red); background: var(--studio-red-soft); }
+/* Import review: the document's own buttons carry no class, so they are styled here; the title
+   and the action row stay in view while the long form scrolls. */
+.studio-workbench #document-review-dialog button:not([class]) { padding: 8px 12px; border: 1px solid var(--studio-line); background: var(--studio-paper); color: var(--studio-secondary); }
+.studio-workbench #document-review-dialog button:not([class]):hover:not(:disabled) { background: var(--studio-rail); border-color: var(--studio-field-line); }
+.studio-workbench #document-review-dialog [data-doc-open] { width: 100%; justify-content: flex-start; white-space: normal; text-align: left; }
+.studio-workbench #document-review-dialog p:has(> [data-doc-open]) { display: flex; gap: 8px; margin: 8px 0; }
+.studio-workbench #document-review-dialog p:has(> [data-doc-open]) > .danger { flex: 0 0 auto; }
+.studio-authoring.studio-workbench #document-review-dialog > .panel > .panel-head { position: sticky; top: 0; z-index: 3; align-items: center; margin: -24px -24px 12px; padding: 16px 24px 12px; background: var(--studio-paper); border-bottom: 1px solid var(--studio-line-soft); }
+.studio-workbench #document-review-dialog .math-import-actions { position: sticky; top: 65px; z-index: 2; margin: 0 -24px 12px; padding: 8px 24px; background: var(--studio-paper); border-bottom: 1px solid var(--studio-line-soft); }
+.studio-workbench #document-review-dialog img { max-width: 100%; height: auto; }
+.studio-workbench .studio-review-summary { border-color: var(--studio-amber); border-radius: 6px; background: var(--studio-amber-soft); }
+.studio-workbench .studio-review-summary summary, .studio-workbench .studio-review-issue { color: var(--studio-amber); }
+/* Student preview: the header belongs to the shell, the page below it to the exam. */
+.studio-workbench .student-preview-modal > header { background: var(--studio-bar); color: var(--studio-bar-ink); }
+.studio-workbench .student-preview-modal > header strong { font-size: 14px; }
+.studio-workbench .student-preview-modal > header small { color: var(--studio-bar-muted); font-size: 12px; }
+.studio-workbench .student-preview-controls label { color: var(--studio-bar-muted); font-size: 12px; font-weight: 600; }
+.studio-workbench .student-preview-controls .secondary { background: transparent; border-color: var(--studio-bar-line); color: var(--studio-bar-ink); }
+.studio-workbench .student-preview-controls .secondary:hover:not(:disabled) { background: var(--studio-bar-raised); border-color: var(--studio-bar-muted); }
+.studio-workbench .student-preview-modal > header :is(button, select):focus-visible { outline-color: var(--studio-paper); }
+@media (max-width: 600px) {
+  .studio-authoring.studio-workbench #document-review-dialog > .panel > .panel-head { padding-block: 12px; }
+  .studio-workbench #document-review-dialog .math-import-actions { position: static; margin: 0 0 12px; padding: 0; border: 0; }
 }

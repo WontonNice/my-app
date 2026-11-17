@@ -14,6 +14,10 @@ The passage and Part B editor has three bands above the student page. The item h
 
 The table screens (English center, Question banks, SHSAT Lab question bank, Compare) share one page pattern defined at the end of `tools/content-studio-workbench.css`: a white work surface, a 24px page title with a muted description, 12px field labels, and a tinted sticky table header in sentence case. Each screen keeps its layout rules in its own stylesheet. The small uppercase labels above the SHSAT Lab and Compare titles are hidden because the navigation already names the section.
 
+Math questions uses the same item header as the passage editor. Its question outline is a compact flat list where only the open question is filled, the live student preview is a shadowed sheet, and the answer-key lock uses `--studio-key`. Exams and Worksheets sit flush under a slim page header instead of floating as cards: the library is a flat list, the builder header puts View exam and Edit math questions on the left with save state and Save on the right, and the Reading / Part A / Part B / All sections tabs are underlined like the navigation.
+
+Dialogs share one frame: a 10px radius, the workbench shadow and overlay, an 18px title, and no small uppercase label above it. Checkboxes and radios inside dialogs keep their natural 16px size. In the import review dialog the title row and the action row stay in view while the form scrolls (the action row is static under 600px), and the document's classless buttons are styled there. The student preview header uses the shell color; the exam below it is untouched.
+
 Scroll ownership is explicit: the shell stays within the viewport; every active view permits vertical scrolling; compound editors own their individual pane scrollers. The English review table has `min-height: 0` and `overflow: auto` in a bounded flex layout. On small screens the view scrolls the stacked records instead. Do not make an ancestor clip overflowing content unless a descendant provides a reachable scroller.
 
 Preserve existing element IDs, data attributes, save flows, draft guards, shortcuts, and student-rendering frames when changing presentation. The sidebar groups existing navigation buttons rather than replacing their handlers. The header library control delegates to the existing pin/open behavior and mirrors its accessibility state.
@@ -34,14 +38,17 @@ Authoring frames wait for the shared response renderer's `exam-response-ready` e
 
 Validation: run `node --test tools/content-studio-workspace.test.mjs tools/content-studio-math.test.mjs tools/content-review.test.cjs tools/content-studio-workbench.test.mjs`. In the browser check English review at the first and last records, filter results, open editors, toggle the library, and confirm reachable save and inspector controls on desktop and at 390px.
 
+## Accessibility and responsive rules
+
+- Text and background pairs on every workspace meet 4.5:1. New colors must come from the tokens in `tools/content-studio-workbench.css`; check any new pair before using it.
+- Notes, counts and labels on the main screens are at least 12px. A few compact badges stay at 11px.
+- Keyboard focus is a 2px outline: white on the dark bar, teal on light surfaces. Do not remove outlines without replacing them.
+- Disclosure summaries are at least 24px tall. Toolbar controls are 32px; other buttons are 36px.
+- No workspace scrolls sideways at 1440, 1024, 768 or 390px. The only horizontal scrollers are the tables that own one.
+- Under 600px the question picker shrinks so previous, picker and next stay on one line with the answer summary.
+
+Known gaps: several dialogs created in the satellite scripts (math import, diagram batch, Part B import and repeats) have no accessible name, and the phone workspace selector shows the first option instead of the open workspace on first load.
+
 ## Redesign verification
 
-Hallmark 2.0.0 is installed in the user's global Codex skills folder. The app uses the selected clean, light direction, with Refract's restrained light surfaces adapted to a working editor.
-
-The two new/replaced styles pass Hallmark's static app-scope checks: 0 failures, 0 reflex findings, 0 warnings. Browser verification used the connected Chrome tools rather than Hallmark's separate Puppeteer renderer.
-
-The editor, math, review, and shell tests pass (72 tests). The content synchronization suite also passes (21 tests, including 8 review tests shared with the first group): 85 unique targeted tests.
-
-Desktop and 390px checks confirmed that the English center reaches its last question, search finds all five gelato matches, header controls fit, libraries open and close, and formatting tools open on mobile while question navigation stays visible. Math rows have enough height for their full labels and review badges. No exam questions or review completion statuses were changed during UI verification.
-
-Hallmark's independent finish review identified three usability issues. All were resolved: passage-title width, mobile formatting/navigation hierarchy, and short mobile workspace names. Student preview rendering and the persistence/synchronization behavior remain separate from the new presentation layer.
+The Teacher's Edition redesign was verified in the running editor at 1440, 1024, 768 and 390px, workspace by workspace, with the editable TestNav exam canvas confirmed as the default view. Run `npm run content-editor:test` and the shell tests listed under Validation after any presentation change; `tools/content-studio-library-refresh.test.mjs` fails for a reason that predates the redesign.
