@@ -79,7 +79,7 @@ export const integersAbsoluteValue: Family[] = [
     let a = rng.int(-6, 8); if (a === 0) a = 3;
     const b = rng.int(Math.abs(a) + 1, Math.abs(a) + 9), smaller = rng.bool(), answer = smaller ? a - b : a + b;
     return { prompt: `What is the ${smaller ? 'lesser' : 'greater'} of the two solutions to the equation \\(|x${signed(-a)}|=${b}\\)?`, answer: num(answer), wrong: [num(smaller ? a + b : a - b), num(smaller ? -(a + b) : -(a - b)), num(b), num(-b)],
-      explanation: `The expression inside the absolute value can equal ${b} or \\(-${b}\\).\n\\(x${signed(-a)}=${b}\\) gives \\(x=${a + b}\\).\n\\(x${signed(-a)}=-${b}\\) gives \\(x=${a - b}\\).\nThe ${smaller ? 'lesser' : 'greater'} solution is ${answer}.` };
+      explanation: `The expression inside the absolute value can equal ${b} or \\(-${b}\\).\n\\(x${signed(-a)}=${b}\\) gives \\(x=${a + b}\\).\n\\(x${signed(-a)}=-${b}\\) gives \\(x=${a - b}\\).\nThe ${smaller ? 'lesser' : 'greater'} solution is \\(${answer}\\).` };
   }),
   family('integer-absolute-inequality-count', 'Counting integers within a distance', 3, rng => {
     let a = rng.int(-5, 9); if (a === 0) a = 4;
@@ -191,7 +191,7 @@ export const exponentsRoots: Family[] = [
     const [a, m] = rng.pick([[2, 5], [2, 6], [3, 3], [3, 4], [4, 3], [5, 3], [2, 7], [6, 2], [7, 2], [10, 3]]), [b, n] = rng.pick([[2, 3], [3, 2], [2, 4], [4, 2], [5, 2], [2, 2], [3, 3]]);
     const big = a ** m, small = b ** n, minus = big > small && rng.bool(), answer = minus ? big - small : big + small;
     return { prompt: `What is the value of \\(${a}^{${m}}${minus ? '-' : '+'}${b}^{${n}}\\)?`, answer: num(answer), wrong: [num(minus ? a * m - b * n : a * m + b * n), num(minus ? big + small : Math.abs(big - small)), num(minus ? big - b * n : big + b * n), num(minus ? a * m + small : a * m - small)],
-      explanation: `An exponent tells how many times to use the base as a factor.\n\\(${a}^{${m}}=${Array(m).fill(a).join('\\times')}=${big}\\) and \\(${b}^{${n}}=${Array(n).fill(b).join('\\times')}=${small}\\).\n\\[${big}${minus ? '-' : '+'}${small}=${answer}.\\]\nDo not multiply the base by the exponent.` };
+      explanation: `An exponent tells how many times to use the base as a factor.\n\\(${a}^{${m}}=${Array(m).fill(a).join('\\times')}=${tx(big)}\\) and \\(${b}^{${n}}=${Array(n).fill(b).join('\\times')}=${small}\\).\n\\[${tx(big)}${minus ? '-' : '+'}${small}=${tx(answer)}.\\]\nDo not multiply the base by the exponent.` };
   }),
   family('exponent-rules', 'Combining exponents', 2, rng => {
     const a = rng.int(2, 6), b = rng.int(2, 5), c = rng.int(2, 9), power = rng.bool(), v = rng.pick(['x', 'n', 'p', 'y']);

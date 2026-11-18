@@ -53,7 +53,7 @@ export const extraOrderOfOperations: Family[] = [
 export const extraExponents: Family[] = [
   family('root-perfect-square', 'Square roots and squares', 1, rng => {
     const r = rng.int(4, 15), k = rng.int(2, 9), plus = rng.bool(), answer = plus ? r + k * k : r - k * k;
-    return { prompt: `What is the value of \\(\\sqrt{${r * r}}${plus ? '+' : '-'}${k}^2\\)?`, answer: num(answer), wrong: [num(plus ? r + 2 * k : r - 2 * k), num(plus ? r * r / 2 + k * k : r * r / 2 - k * k), num(plus ? r - k * k : r + k * k), num(plus ? r * r + k * k : r * r - k * k)],
+    return { prompt: `What is the value of \\(\\sqrt{${r * r}}${plus ? '+' : '-'}${k}^2\\)?`, answer: num(answer), wrong: [num(plus ? r + 2 * k : r - 2 * k), num(plus ? r * r + k * k : r * r - k * k), ...(r % 2 === 0 ? [num(plus ? r * r / 2 + k * k : r * r / 2 - k * k)] : []), num(plus ? (r + k) ** 2 : (r - k) ** 2), num(plus ? r + k : r - k)],
       explanation: `\\(\\sqrt{${r * r}}=${r}\\) because \\(${r}\\times${r}=${r * r}\\), and \\(${k}^2=${k}\\times${k}=${k * k}\\).\n\\[${r}${plus ? '+' : '-'}${k * k}=${answer}.\\]\nA square root is not half of a number, and squaring is not doubling.` };
   }),
 ];
@@ -170,9 +170,9 @@ export const extraPolygons: Family[] = [
   family('parallelogram-adjacent-angle', 'Angles of a parallelogram', 1, rng => {
     let a = rng.int(35, 145); if (a === 90) a = 72;
     const opposite = rng.bool();
-    if (opposite) return { prompt: `One angle of a parallelogram measures \\(${a}^\\circ\\). What is the measure of the angle opposite it?`, answer: deg(a), wrong: [deg(180 - a), deg(360 - a), deg(Math.abs(90 - a) || 45), deg(a + 10)],
+    if (opposite) return { prompt: `One angle of a parallelogram measures \\(${a}^\\circ\\). What is the measure of the angle opposite it?`, answer: deg(a), wrong: [deg(180 - a), deg(360 - a), deg(Math.max(20, Math.abs(90 - a))), deg(a + 10)],
       explanation: `Opposite angles of a parallelogram are equal, so the opposite angle also measures \\(${a}^\\circ\\).\n(The angles next to it each measure \\(180^\\circ-${a}^\\circ=${180 - a}^\\circ\\).)` };
-    return { prompt: `One angle of a parallelogram measures \\(${a}^\\circ\\). What is the measure of an angle next to it?`, answer: deg(180 - a), wrong: [deg(a), deg(360 - a), deg(Math.abs(90 - a) || 45), deg(180 - a + 10)],
+    return { prompt: `One angle of a parallelogram measures \\(${a}^\\circ\\). What is the measure of an angle next to it?`, answer: deg(180 - a), wrong: [deg(a), deg(360 - a), deg(Math.max(20, Math.abs(90 - a))), deg(180 - a + 10)],
       explanation: `Angles next to each other in a parallelogram are supplementary:\n\\[180^\\circ-${a}^\\circ=${180 - a}^\\circ.\\]\nOnly the opposite angle is equal to \\(${a}^\\circ\\).` };
   }),
 ];

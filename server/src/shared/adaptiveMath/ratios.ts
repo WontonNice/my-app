@@ -72,7 +72,7 @@ export const rates: Family[] = [
     const [a, b] = rng.pick(workPairs), together = a * b / (a + b), [n1, n2] = rng.shuffle([...names]).slice(0, 2);
     const story = rng.pick([{ x: 'Pipe A', y: 'Pipe B', job: 'fill a tank', unitName: 'hours' }, { x: 'One printer', y: 'A second printer', job: 'print a batch of flyers', unitName: 'minutes' }, { x: n1, y: n2, job: 'paint a fence', unitName: 'hours' }]);
     return { prompt: `${story.x} can ${story.job} in ${a} ${story.unitName}. ${story.y} can ${story.job} in ${b} ${story.unitName}. Working together at these rates, how many ${story.unitName} will it take them to ${story.job}?`, answer: num(together), wrong: [num((a + b) / 2), num(a + b), num(Math.abs(a - b)), num(Math.min(a, b) / 2)],
-      explanation: `Add the rates, not the times. In one ${story.unitName.replace(/s$/, '')}, they finish \\(\\frac{1}{${a}}+\\frac{1}{${b}}=\\frac{${a + b}}{${a * b}}=\\frac{1}{${together}}\\) of the job.\nSo the whole job takes ${together} ${story.unitName}. The answer must be less than the faster time of ${Math.min(a, b)} ${story.unitName}.` };
+      explanation: `Add the rates, not the times. In one ${story.unitName.replace(/s$/, '')}, they finish \\(\\frac{1}{${a}}+\\frac{1}{${b}}=\\frac{${a + b}}{${tx(a * b)}}=\\frac{1}{${together}}\\) of the job.\nSo the whole job takes ${together} ${story.unitName}. The answer must be less than the faster time of ${Math.min(a, b)} ${story.unitName}.` };
   }),
   family('rate-machines', 'Scaling a rate in two ways', 2, rng => {
     const r = rng.pick([5, 8, 10, 12, 15, 20, 25]), m1 = rng.int(2, 6), h1 = rng.int(2, 6), m2 = rng.int(m1 + 1, m1 + 5); let h2 = rng.int(2, 8); if (h2 === h1) h2++;

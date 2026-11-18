@@ -63,11 +63,11 @@ export const triangles: Family[] = [
   family('triangle-pythagorean', 'Right triangle side lengths', 2, rng => {
     const [a, b, c] = rng.pick(triples), form = rng.int(0, 2);
     if (form === 0) return { prompt: `A ${c}-foot ladder leans against a vertical wall. The bottom of the ladder is ${a} feet from the base of the wall. How many feet above the ground does the ladder touch the wall?`, answer: num(b), wrong: [num(c - a), num(c + a), num(Math.round(Math.sqrt(c * c + a * a))), num(b + 2)],
-      explanation: `The ladder, wall, and ground form a right triangle with the ladder as the hypotenuse:\n\\[${a}^2+h^2=${c}^2\\quad\\Rightarrow\\quad h^2=${c * c}-${a * a}=${b * b}\\quad\\Rightarrow\\quad h=${b}.\\]\nSubtract the squares; the ladder is the longest side.` };
+      explanation: `The ladder, wall, and ground form a right triangle with the ladder as the hypotenuse:\n\\[${a}^2+h^2=${c}^2\\quad\\Rightarrow\\quad h^2=${tx(c * c)}-${tx(a * a)}=${tx(b * b)}\\quad\\Rightarrow\\quad h=${b}.\\]\nSubtract the squares; the ladder is the longest side.` };
     if (form === 1) return { prompt: `A rectangle is ${a} centimeters wide and ${b} centimeters long. What is the length, in centimeters, of a diagonal of the rectangle?`, answer: num(c), wrong: [num(a + b), num(2 * (a + b)), num(c + 2), num(Math.round(c * 1.5))],
-      explanation: `A diagonal splits the rectangle into two right triangles with legs ${a} and ${b}:\n\\[d^2=${a}^2+${b}^2=${a * a}+${b * b}=${c * c}\\quad\\Rightarrow\\quad d=${c}.\\]` };
+      explanation: `A diagonal splits the rectangle into two right triangles with legs ${a} and ${b}:\n\\[d^2=${a}^2+${b}^2=${tx(a * a)}+${tx(b * b)}=${tx(c * c)}\\quad\\Rightarrow\\quad d=${c}.\\]` };
     return { prompt: `A hiker walks ${a} miles due north and then ${b} miles due east. How many miles is the hiker from the starting point?`, answer: num(c), wrong: [num(a + b), num(Math.abs(b - a)), num(c + 2), num(Math.round(c * 1.5))],
-      explanation: `North and east are perpendicular, so the two legs of the walk form a right triangle:\n\\[d^2=${a}^2+${b}^2=${a * a}+${b * b}=${c * c}\\quad\\Rightarrow\\quad d=${c}.\\]\nThe straight-line distance is shorter than the \\(${a}+${b}=${a + b}\\) miles walked.` };
+      explanation: `North and east are perpendicular, so the two legs of the walk form a right triangle:\n\\[d^2=${a}^2+${b}^2=${tx(a * a)}+${tx(b * b)}=${tx(c * c)}\\quad\\Rightarrow\\quad d=${c}.\\]\nThe straight-line distance is shorter than the \\(${a}+${b}=${a + b}\\) miles walked.` };
   }),
   family('triangle-possible-side', 'A possible third side', 2, rng => {
     const a = rng.int(4, 12), b = a + rng.int(2, 9), low = b - a, high = a + b, valid = rng.int(low + 1, high - 1);
@@ -217,7 +217,7 @@ export const surfaceAreaVolume: Family[] = [
   family('volume-small-cubes', 'Packing cubes into a box', 2, rng => {
     const e = rng.pick([2, 3, 4]), a = rng.int(2, 6), b = rng.int(2, 5), c = rng.int(2, 5), l = a * e, w = b * e, h = c * e;
     return { prompt: `A box is ${l} inches long, ${w} inches wide, and ${h} inches high. How many cubes with an edge length of ${e} inches are needed to fill the box completely?`, answer: num(a * b * c), wrong: [num(l * w * h / e), num(l * w * h / (e * e)), num(l * w * h), num(a + b + c)],
-      explanation: `Count how many cubes fit along each edge: \\(${l}\\div${e}=${a}\\), \\(${w}\\div${e}=${b}\\), and \\(${h}\\div${e}=${c}\\).\n\\[${a}\\times${b}\\times${c}=${a * b * c}.\\]\n(Each cube has volume \\(${e}^3=${e ** 3}\\), and \\(${l * w * h}\\div${e ** 3}=${a * b * c}\\).)` };
+      explanation: `Count how many cubes fit along each edge: \\(${l}\\div${e}=${a}\\), \\(${w}\\div${e}=${b}\\), and \\(${h}\\div${e}=${c}\\).\n\\[${a}\\times${b}\\times${c}=${a * b * c}.\\]\n(Each cube has volume \\(${e}^3=${e ** 3}\\), and \\(${tx(l * w * h)}\\div${e ** 3}=${a * b * c}\\).)` };
   }),
   family('surface-area-prism', 'Surface area of a rectangular prism', 2, rng => {
     const l = rng.int(3, 10), w = rng.int(2, 8), h = rng.int(2, 8), area = 2 * (l * w + l * h + w * h);
@@ -229,7 +229,7 @@ export const surfaceAreaVolume: Family[] = [
     if (rng.bool()) return { prompt: `The volume of a cube is ${tx(e ** 3).replace(/\{,\}/g, ',')} cubic inches. What is the total surface area of the cube, in square inches?`, answer: num(surface), wrong: [num(e * e), num(4 * e * e), num(12 * e), num(6 * e)],
       explanation: `Find the edge first: \\(${e}\\times${e}\\times${e}=${tx(e ** 3)}\\), so each edge is ${e}.\nA cube has 6 square faces, each with area \\(${e}^2=${e * e}\\):\n\\[6\\times${e * e}=${surface}.\\]` };
     return { prompt: `The total surface area of a cube is ${surface} square inches. What is the volume of the cube, in cubic inches?`, answer: num(e ** 3), wrong: [num(e * e), num(6 * e ** 3), num(surface), num((e + 1) ** 3)],
-      explanation: `A cube has 6 equal square faces, so each face has area \\(${surface}\\div6=${e * e}\\) and each edge is \\(${e}\\).\n\\[${e}^3=${e ** 3}.\\]` };
+      explanation: `A cube has 6 equal square faces, so each face has area \\(${surface}\\div6=${e * e}\\) and each edge is \\(${e}\\).\n\\[${e}^3=${tx(e ** 3)}.\\]` };
   }),
 ];
 

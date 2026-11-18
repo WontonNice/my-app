@@ -24,7 +24,7 @@ export const algebraicExpressions: Family[] = [
     const a = rng.int(2, 9), b = rng.int(2, 9), c = rng.int(1, 9), form = rng.int(0, 3);
     const forms: { phrase: string; answer: string; wrong: string[]; why: string }[] = [
       { phrase: `${c} less than the product of ${a} and a number \\(n\\)`, answer: `${a}n-${c}`, wrong: [`${c}-${a}n`, `${a}(n-${c})`, `${a}n+${c}`], why: `"The product of ${a} and \\(n\\)" is \\(${a}n\\). "${c} less than" that amount means subtract ${c} from it: \\(${a}n-${c}\\). The order matters: \\(${c}-${a}n\\) would be "${a}n less than ${c}."` },
-      { phrase: `${a} times the sum of a number \\(n\\) and ${b}, decreased by ${c}`, answer: `${a}(n+${b})-${c}`, wrong: [`${a}n+${b}-${c}`, `${a}(n+${b}-${c})`, `${c}-${a}(n+${b})`], why: `"The sum of \\(n\\) and ${b}" must be grouped: \\((n+${b})\\). Multiply the whole sum by ${a}, then subtract ${c}: \\(${a}(n+${b})-${c}\\).` },
+      { phrase: `${c} subtracted from ${a} times the sum of a number \\(n\\) and ${b}`, answer: `${a}(n+${b})-${c}`, wrong: [`${a}n+${b}-${c}`, `${a}(n+${b}-${c})`, `${c}-${a}(n+${b})`], why: `"The sum of \\(n\\) and ${b}" must be grouped: \\((n+${b})\\). Multiply the whole sum by ${a}, then subtract ${c}: \\(${a}(n+${b})-${c}\\).` },
       { phrase: `the quotient of a number \\(n\\) and ${a}, increased by ${b}`, answer: `\\frac{n}{${a}}+${b}`, wrong: [`\\frac{n}{${a}+${b}}`, `\\frac{${a}}{n}+${b}`, `\\frac{n+${b}}{${a}}`], why: `"The quotient of \\(n\\) and ${a}" is \\(\\frac{n}{${a}}\\) (the first quantity named is divided by the second). "Increased by ${b}" adds ${b} to that quotient: \\(\\frac{n}{${a}}+${b}\\).` },
       { phrase: `${a} times the difference of a number \\(n\\) and ${b}`, answer: `${a}(n-${b})`, wrong: [`${a}n-${b}`, `${a}(${b}-n)`, `n-${a * b}`], why: `"The difference of \\(n\\) and ${b}" is \\(n-${b}\\), in that order. The whole difference is multiplied by ${a}, so it needs parentheses: \\(${a}(n-${b})\\).` },
     ];
@@ -176,7 +176,7 @@ export const patternsSequences: Family[] = [
   family('sequence-geometric', 'Multiplying patterns', 2, rng => {
     const a = rng.int(2, 9), r = rng.pick([2, 3]), n = rng.int(4, 6), answer = a * r ** (n - 1);
     return { prompt: `The first term of a sequence is ${a}, and each term after the first is ${r} times the term before it. What is the ${ordinal(n)} term?`, answer: num(answer), wrong: [num(a * r ** n), num(a * r * (n - 1)), num(a * r * n), num(a + r * (n - 1))],
-      explanation: `Multiply by ${r} each time: ${Array.from({ length: n }, (_, i) => a * r ** i).join(', ')}.\nThe ${ordinal(n)} term is ${answer}. (Only \\(${n}-1=${n - 1}\\) multiplications are needed.)` };
+      explanation: `Multiply by ${r} each time: ${Array.from({ length: n }, (_, i) => fmt(a * r ** i)).join(', ')}.\nThe ${ordinal(n)} term is ${fmt(answer)}. (Only \\(${n}-1=${n - 1}\\) multiplications are needed.)` };
   }),
   family('sequence-figure-number', 'Which figure in a growing pattern', 3, rng => {
     const first = rng.int(3, 6), d = rng.int(2, 5), n = rng.int(12, 40), total = first + (n - 1) * d, item = rng.pick(['toothpicks', 'tiles', 'dots', 'blocks']);
