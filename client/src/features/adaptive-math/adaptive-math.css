@@ -71,6 +71,24 @@
 .am-missed-why { white-space: pre-line; overflow-x: auto; }
 .am-missed-why h3 { margin: 0 0 4px; font-size: .8rem; }
 
+/* Teacher's read-only copy of the report, inside the teacher dashboard. It keeps the dashboard's own colors and sans-serif headings. */
+.am-teacher { --am-ink: var(--dashboard-heading, #1b2a40); --am-green: var(--dashboard-accent-strong, #21675e); --am-green-2: var(--dashboard-accent, #28796f); --am-line: var(--dashboard-border, #dce2e9); --am-muted: var(--dashboard-muted-strong, #526477); --am-paper: var(--dashboard-surface, #fff); margin-top: 14px; }
+.am-teacher-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.am-teacher-heading h2 { margin: 0 0 4px; font-size: 1.05rem; font-weight: 700; }
+.am-teacher-heading p { max-width: 80ch; margin: 0; color: var(--am-muted); font-size: .8rem; line-height: 1.5; }
+.am-teacher-heading button { flex: none; min-height: 36px; padding: 6px 14px; border: 1px solid var(--am-line); border-radius: 6px; background: var(--am-paper); color: var(--am-green-2); font: 600 .8rem/1.2 inherit; font-family: inherit; cursor: pointer; }
+.am-teacher-heading button:hover { background: var(--dashboard-surface-subtle, #f8fafb); }
+.am-teacher-heading button:focus-visible, .am-teacher .am-missed summary:focus-visible, .am-teacher .am-alert button:focus-visible { outline: 2px solid var(--am-green-2); outline-offset: 2px; }
+.am-teacher-empty { max-width: 70ch; margin: 0; padding: 16px 18px; border: 1px solid var(--am-line); border-radius: 8px; background: var(--dashboard-surface-subtle, #f8fafb); font-size: .9rem; line-height: 1.5; }
+.am-teacher .am-stats { margin-bottom: 16px; }
+.am-teacher .am-stats div, .am-teacher .am-panel { border-radius: 8px; }
+.am-teacher .am-stats dd, .am-teacher .am-panel > h2 { font-family: inherit; font-weight: 700; }
+.am-teacher .am-stats dd { font-size: 1.45rem; font-variant-numeric: tabular-nums; }
+.am-teacher .am-panel { margin-bottom: 16px; padding: 18px 20px; }
+.am-teacher .am-panel > h2 { font-size: .98rem; }
+.am-teacher .am-panel > p { font-size: .8rem; }
+@media (max-width: 640px) { .am-teacher-heading { flex-direction: column; } .am-teacher .am-panel { padding: 16px 14px; } }
+
 /* Entry card on the Assessments page */
 .am-card { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin-bottom: 22px; padding: 20px 24px; border: 1px solid var(--student-line, #ddd6ca); border-radius: 12px; background: var(--student-green, #1f4a3a); color: #fff; }
 .am-card p { margin: 0 0 6px; color: var(--student-gold, #f2c66d); font-size: .62rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
@@ -98,7 +116,7 @@
 @media (max-width: 640px) {
   .am-panel { padding: 18px 16px; }
   .am-topics thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-  .am-topics, .am-topics tbody, .am-topics tr { display: block; }
+  .am-topics, .am-topics caption, .am-topics tbody, .am-topics tr { display: block; }
   .am-topics tr { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; padding: 10px 0; border-top: 1px solid var(--am-line); }
   .am-topics th, .am-topics td { padding: 0; border: 0; width: auto !important; }
   .am-topics tbody th { grid-column: 1 / -1; }

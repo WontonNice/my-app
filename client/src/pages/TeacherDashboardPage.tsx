@@ -2,6 +2,8 @@ import { LibraryProgress } from '../components/LibraryProgress';
 import { isStudyHallWorksheet, worksheetIds } from '../lib/examLibrary';
 import { WorksheetProgress } from '../components/WorksheetProgress';
 import { PracticeEvidence } from '../components/PracticeEvidence';
+import { StudentAdaptiveExamReport } from '../features/adaptive-math/StudentAdaptiveExamReport';
+import { loadAdaptiveRoster, type AdaptiveRoster } from '../features/adaptive-math/adaptiveExamResults';
 import { getStudentPreviewContext } from '../lib/studentPreview';
 import { StudentRecordFilterProvider } from "../components/StudentRecordFilterProvider";
 import { mergeAnalyticsInputs } from "../lib/studentAnalytics";
@@ -887,7 +889,7 @@ export function StudentDetail({
   onAddPaperScore: (studentId: string, input: ManualExamScoreInput) => Promise<void>;
   student: StudentProgressSnapshot;
 }) {
-  const [workspaceView, setWorkspaceView] = useState<"progress" | "results" | "library" | "worksheets" | "infinite" | "passages" | "boards" | PlanView>(() => { const value = new URLSearchParams(window.location.search).get("workspace"); return ["results", "library", "worksheets", "infinite", "passages", "boards", "plan", "content", "schedule", "history"].includes(value ?? "") ? value as "results" | PlanView : initialAnalyticsAssessmentId ? "results" : "progress"; });
+  const [workspaceView, setWorkspaceView] = useState<"progress" | "results" | "library" | "worksheets" | "infinite" | "adaptive" | "passages" | "boards" | PlanView>(() => { const value = new URLSearchParams(window.location.search).get("workspace"); return ["results", "library", "worksheets", "infinite", "adaptive", "passages", "boards", "plan", "content", "schedule", "history"].includes(value ?? "") ? value as "results" | PlanView : initialAnalyticsAssessmentId ? "results" : "progress"; });
   const [analyticsView, setAnalyticsView] = useState(() => new URLSearchParams(window.location.search).get("view") || (initialAnalyticsAssessmentId ? "history" : workspaceView === "passages" ? "passages" : workspaceView === "results" ? "history" : "overview"));
   const [planOverview, setPlanOverview] = useState<import("../lib/learningPlan").PlanOverview>();
   const [planError, setPlanError] = useState("");
@@ -983,10 +985,11 @@ export function StudentDetail({
   return (
     <section className="teacher-student-detail" aria-label={`${student.fullName} record`}>
       <div className="teacher-panel-header"><div><span>Student record</span><h2>{student.fullName}</h2></div><p>{student.email} · Last login: {formatDate(student.lastLoginAt)}</p></div>
-      {accessToken && <><nav className="lp-record-tabs" aria-label="Student record workspaces">{([["progress", "Overview"], ["results", "Assessment results"], ["worksheets", "Worksheets"], ["infinite", "Infinite practice"], ["library", "Library practice"], ["plan", "Learning plan"], ["passages", "Passage inventory"]] as const).map(([value, label]) => <button key={value} aria-pressed={workspaceView === value || value === "plan" && ["content", "schedule", "history"].includes(workspaceView)} onClick={() => { setWorkspaceView(value); if (value === "progress") setAnalyticsView("overview"); if (value === "results") setAnalyticsView("history"); if (value === "passages") setAnalyticsView("passages"); }} type="button">{label}</button>)}<button type="button" aria-pressed={workspaceView === "boards"} onClick={() => setWorkspaceView("boards")}>Boards</button></nav>
-      <div hidden={["progress", "results", "passages", "worksheets", "infinite", "library"].includes(workspaceView)}>{workspaceView === "boards" ? <BoardLibrary accessToken={accessToken} studentId={student.id} studentName={student.fullName} teacher /> : <TeacherLearningPlan client={activePlanClient} key={planFocus} targetSubject={planTargetSubject} targetCategory={planTargetCategory} assignmentContentId={assignmentContentId} onOverview={setPlanOverview} onLoadError={setPlanError} onEvidence={activity => { setActivityFocus(activity); openAnalyticsView("history"); }} sourceCategory={planCategory} onSourceCategory={setPlanCategory} onInventory={setPassageInventory} accessToken={accessToken} studentId={student.id} studentName={student.fullName} view={["progress", "results", "passages", "infinite"].includes(workspaceView) ? "summary" : workspaceView as PlanView} onView={setWorkspaceView} skillFilter={planSkill} onSkillFilter={setPlanSkill} />}</div></>}
+      {accessToken && <><nav className="lp-record-tabs" aria-label="Student record workspaces">{([["progress", "Overview"], ["results", "Assessment results"], ["worksheets", "Worksheets"], ["infinite", "Infinite practice"], ["adaptive", "Adaptive math exam"], ["library", "Library practice"], ["plan", "Learning plan"], ["passages", "Passage inventory"]] as const).map(([value, label]) => <button key={value} aria-pressed={workspaceView === value || value === "plan" && ["content", "schedule", "history"].includes(workspaceView)} onClick={() => { setWorkspaceView(value); if (value === "progress") setAnalyticsView("overview"); if (value === "results") setAnalyticsView("history"); if (value === "passages") setAnalyticsView("passages"); }} type="button">{label}</button>)}<button type="button" aria-pressed={workspaceView === "boards"} onClick={() => setWorkspaceView("boards")}>Boards</button></nav>
+      <div hidden={["progress", "results", "passages", "worksheets", "infinite", "adaptive", "library"].includes(workspaceView)}>{workspaceView === "boards" ? <BoardLibrary accessToken={accessToken} studentId={student.id} studentName={student.fullName} teacher /> : <TeacherLearningPlan client={activePlanClient} key={planFocus} targetSubject={planTargetSubject} targetCategory={planTargetCategory} assignmentContentId={assignmentContentId} onOverview={setPlanOverview} onLoadError={setPlanError} onEvidence={activity => { setActivityFocus(activity); openAnalyticsView("history"); }} sourceCategory={planCategory} onSourceCategory={setPlanCategory} onInventory={setPassageInventory} accessToken={accessToken} studentId={student.id} studentName={student.fullName} view={["progress", "results", "passages", "infinite", "adaptive"].includes(workspaceView) ? "summary" : workspaceView as PlanView} onView={setWorkspaceView} skillFilter={planSkill} onSkillFilter={setPlanSkill} />}</div></>}
       {workspaceView === "library" && <LibraryProgress accessToken={accessToken ?? ""} studentId={student.id} teacher />}
       {workspaceView === 'infinite' && <PracticeEvidence key={student.id} accessToken={accessToken??''} studentId={student.id}/>}
+      {workspaceView === 'adaptive' && <StudentAdaptiveExamReport key={student.id} accessToken={accessToken} studentId={student.id} studentName={student.fullName} />}
       {workspaceView === "worksheets" && <WorksheetProgress assessments={assessments} results={[...student.progress.examResults, ...(student.progress.examHistory ?? [])]} sessions={student.examSessions} teacher previewContext={getStudentPreviewContext("?preview=teacher&teacherTools=1")} />}
       <div hidden={!["progress", "results", "passages"].includes(workspaceView)}>
       <StudentAnalyticsWorkstation studentName={student.fullName} view={accessToken ? analyticsView : undefined} onView={accessToken ? openAnalyticsView : undefined} plan={planOverview} planError={planError} activityFocus={activityFocus} onOpenPlan={() => setWorkspaceView("plan")} evidenceState={evidenceState} evidenceMessage={evidenceStatus} onRetryEvidence={() => { setEvidenceState("loading"); setEvidenceStatus("Loading saved passage, practice and archived exam evidence…"); setEvidenceRevision(value => value + 1); setPlanFocus(value => value + 1); }}
@@ -1101,10 +1104,12 @@ export function TeacherDashboardPage() {
   });
   const [accountView, setAccountView] = useState<"current" | "archived">("current");
   const [selectedStudentId, setSelectedStudentState] = useState(() => new URLSearchParams(window.location.search).get("student") ?? window.location.pathname.match(/^\/teacher\/students\/([a-f0-9-]{36})$/i)?.[1] ?? "");
-  const setSelectedStudentId = (id: string) => { const url = new URL(window.location.href); if (id) url.searchParams.set("student", id); else url.searchParams.delete("student"); for (const key of ["exam", "question", "attempt", "practice", "topic", "category", "moduleId", "generatorId"]) url.searchParams.delete(key); window.history.pushState(window.history.state, "", url); setSelectedStudentState(id); };
+  const setSelectedStudentId = (id: string, workspace?: string) => { const url = new URL(window.location.href); if (id) url.searchParams.set("student", id); else url.searchParams.delete("student"); if (id && workspace) url.searchParams.set("workspace", workspace); for (const key of ["exam", "question", "attempt", "practice", "topic", "category", "moduleId", "generatorId"]) url.searchParams.delete(key); window.history.pushState(window.history.state, "", url); setSelectedStudentState(id); };
   useEffect(() => { const restore = () => setSelectedStudentState(new URLSearchParams(window.location.search).get("student") ?? ""); window.addEventListener("popstate", restore); return () => window.removeEventListener("popstate", restore); }, []);
   useEffect(() => { const url = new URL(window.location.href); const previous = url.searchParams.get("student"); if (selectedStudentId) url.searchParams.set("student", selectedStudentId); else url.searchParams.delete("student"); if (previous && previous !== selectedStudentId) { for (const key of ["exam", "question", "attempt", "practice", "topic", "category", "moduleId", "generatorId"]) url.searchParams.delete(key); } window.history.replaceState(window.history.state, "", url); }, [selectedStudentId]);
   const [planRoster, setPlanRoster] = useState<Record<string, PlanOverview["summary"]>>({});
+  const [adaptiveRoster, setAdaptiveRoster] = useState<AdaptiveRoster>();
+  const rosterVisible = getTeacherWorkspace(window.location.pathname) === "students" && !selectedStudentId;
   const [isCheckingSession, setIsCheckingSession] = useState(
     isSupabaseConfigured && !initialDashboardCache,
   );
@@ -1143,6 +1148,12 @@ export function TeacherDashboardPage() {
     getLearningPlanRoster(accessToken).then(data => { if (active) setPlanRoster(data); }).catch(() => { /* The student's plan displays storage errors; existing analytics remain usable. */ });
     return () => { active = false; };
   }, [accessToken, selectedStudentId]);
+  useEffect(() => {
+    if (!accessToken || !rosterVisible) return;
+    let active = true;
+    loadAdaptiveRoster(accessToken).then(data => { if (active) setAdaptiveRoster(data); }).catch(() => { /* The roster column stays hidden; each student's report shows its own loading errors. */ });
+    return () => { active = false; };
+  }, [accessToken, rosterVisible]);
 
   useEffect(() => {
     if (!isSupabaseConfigured) return;
@@ -1662,7 +1673,7 @@ export function TeacherDashboardPage() {
       {activeWorkspace === "students" ? (
       <section className={`teacher-panel teacher-roster-panel${selectedStudent ? " sa-selected-workspace" : ""}`} id="students">
           {selectedStudent ? <div className="sa-student-picker"><button onClick={() => setSelectedStudentId("")} type="button"><ArrowLeft size={14} /> All students</button><label>Student <select value={selectedStudentId} onChange={event => setSelectedStudentId(event.target.value)}>{shsatStudents.map(student => <option key={student.id} value={student.id}>{student.fullName}</option>)}</select></label><span>{shsatStudents.length} enrolled</span></div> : <div className="teacher-panel-header"><div><span>Roster</span><h2>SHSAT student progress</h2></div><p>Select a student to review progression and question evidence.</p></div>}
-          {!selectedStudent && <StudentProgressRoster plans={planRoster} students={shsatStudents} inputsFor={student => buildTeacherAnalyticsInputs(student, assessments).filter(input => !worksheetIds(assessments).has(String(input.result.assessmentId)))} onSelect={setSelectedStudentId} />}
+          {!selectedStudent && <StudentProgressRoster plans={planRoster} adaptive={adaptiveRoster} onOpenAdaptive={id => setSelectedStudentId(id, "adaptive")} students={shsatStudents} inputsFor={student => buildTeacherAnalyticsInputs(student, assessments).filter(input => !worksheetIds(assessments).has(String(input.result.assessmentId)))} onSelect={setSelectedStudentId} />}
           <StudentRecordFilterProvider key={teacherUserId}>{selectedStudent && <StudentDetail key={selectedStudent.id+":"+(new URLSearchParams(window.location.search).get("exam")??"")} accessToken={accessToken} assessments={assessments} initialAnalyticsAssessmentId={new URLSearchParams(window.location.search).get("exam") ?? undefined} onAddPaperScore={handleAddPaperScore} student={selectedStudent} />}</StudentRecordFilterProvider>
 
       </section>
