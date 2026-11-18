@@ -4,6 +4,8 @@ const ordinal = (n: number) => `${n}${n % 100 >= 11 && n % 100 <= 13 ? 'th' : ['
 /** "3x", "x", "-x" style term. */
 const term = (coefficient: number, variable = 'x') => coefficient === 1 ? variable : coefficient === -1 ? `-${variable}` : `${coefficient}${variable}`;
 const nonzero = (value: number, fallback: number) => value === 0 ? fallback : value;
+/** Plain-text reading of a LaTeX choice for screen readers, such as "(n)/(4)+7". */
+const spoken = (latex: string) => latex.replace(/\\frac\{([^}]*)\}\{([^}]*)\}/g, '($1)/($2)');
 
 // ---- Algebraic Expressions ----
 export const algebraicExpressions: Family[] = [
@@ -27,7 +29,7 @@ export const algebraicExpressions: Family[] = [
       { phrase: `${a} times the difference of a number \\(n\\) and ${b}`, answer: `${a}(n-${b})`, wrong: [`${a}n-${b}`, `${a}(${b}-n)`, `n-${a * b}`], why: `"The difference of \\(n\\) and ${b}" is \\(n-${b}\\), in that order. The whole difference is multiplied by ${a}, so it needs parentheses: \\(${a}(n-${b})\\).` },
     ];
     const chosen = forms[form];
-    return { prompt: `Which expression represents "${chosen.phrase}"?`, answer: tex(chosen.answer), wrong: chosen.wrong.map(value => tex(value)), explanation: chosen.why };
+    return { prompt: `Which expression represents "${chosen.phrase}"?`, answer: tex(chosen.answer, spoken(chosen.answer)), wrong: chosen.wrong.map(value => tex(value, spoken(value))), explanation: chosen.why };
   }),
   family('expression-ages', 'Writing an expression from a situation', 2, rng => {
     const b = rng.int(2, 4), a = rng.int(2, 9), older = rng.bool(), [n1, n2] = rng.shuffle([...names]).slice(0, 2), sign = older ? '+' : '-', other = older ? '-' : '+';
@@ -80,7 +82,7 @@ export const equationsSystems: Family[] = [
       : `A theater sold ${n} tickets for a show. Adult tickets cost $${high} each and child tickets cost $${low} each. The theater collected $${fmt(total)} in all. How many adult tickets were sold?`;
     const unitText = coins ? 'cents' : 'dollars';
     return { prompt, answer: num(c2), wrong: [num(c1), num(Math.round(total / (low + high))), num(Math.round(n / 2) === c2 ? c2 + 3 : Math.round(n / 2)), num(c2 + (high - low))],
-      explanation: `Let \\(d\\) be the number of ${coins ? 'dimes' : 'adult tickets'}. Then there are \\(${n}-d\\) ${coins ? 'nickels' : 'child tickets'}. Working in ${unitText}:\n\\[${high}d+${low}(${n}-d)=${tx(total)}\\quad\\Rightarrow\\quad ${high - low}d+${low * n}=${tx(total)}\\quad\\Rightarrow\\quad d=\\frac{${total - low * n}}{${high - low}}=${c2}.\\]\nCheck: \\(${c2}\\times${high}+${c1}\\times${low}=${tx(total)}\\).` };
+      explanation: `Let \\(d\\) be the number of ${coins ? 'dimes' : 'adult tickets'}. Then there are \\(${n}-d\\) ${coins ? 'nickels' : 'child tickets'}. Working in ${unitText}:\n\\[${high}d+${low}(${n}-d)=${tx(total)}\\quad\\Rightarrow\\quad ${term(high - low, 'd')}+${low * n}=${tx(total)}\\quad\\Rightarrow\\quad ${high - low === 1 ? `d=${tx(total)}-${low * n}` : `d=\\frac{${total - low * n}}{${high - low}}`}=${c2}.\\]\nCheck: \\(${c2}\\times${high}+${c1}\\times${low}=${tx(total)}\\).` };
   }),
   family('equation-transfer', 'Solve, then evaluate a second expression', 3, rng => {
     const a = rng.int(2, 6), x = nonzero(rng.int(-5, 9), 4), b = rng.int(1, 12), e = rng.int(1, 9), plus = rng.bool(), c = a * x + b; let d = rng.int(2, 7); if (d === a) d++;

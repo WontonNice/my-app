@@ -38,7 +38,7 @@ export const numberProperties: Family[] = [
     const [p, q] = rng.pick([[2, 3], [2, 5], [3, 5], [2, 7], [3, 7]]), a = rng.int(1, p === 2 ? 3 : 2), b = rng.int(1, 2), n = p ** a * q ** b, count = (a + 1) * (b + 1);
     const factors: number[] = []; for (let d = 1; d <= n; d++) if (n % d === 0) factors.push(d);
     return { prompt: `How many positive factors does ${n} have?`, answer: num(count), wrong: [num(count - 2), num(a + b), num(count + 2), num(count - 1)],
-      explanation: `Prime factorization: \\(${n}=${p}^{${a}}\\times${q}^{${b}}\\). A factor uses 0 to ${a} copies of ${p} (${a + 1} choices) and 0 to ${b} copies of ${q} (${b + 1} choices):\n\\[${a + 1}\\times${b + 1}=${count}.\\]\nThe factors are ${factors.join(', ')}. Remember to count 1 and ${n} itself.` };
+      explanation: `Prime factorization: \\(${n}=${a === 1 ? p : `${p}^{${a}}`}\\times${b === 1 ? q : `${q}^{${b}}`}\\). A factor uses 0 to ${a} copies of ${p} (${a + 1} choices) and 0 to ${b} copies of ${q} (${b + 1} choices):\n\\[${a + 1}\\times${b + 1}=${count}.\\]\nThe factors are ${factors.join(', ')}. Remember to count 1 and ${n} itself.` };
   }),
   family('number-remainder', 'Remainders after adding', 3, rng => {
     const d = rng.int(5, 9), r = rng.int(1, d - 1), k = rng.int(d - r + 1, 2 * d + 4), answer = (r + k) % d;
@@ -85,7 +85,7 @@ export const integersAbsoluteValue: Family[] = [
     let a = rng.int(-5, 9); if (a === 0) a = 4;
     const b = rng.int(2, 7), strict = rng.bool(), answer = strict ? 2 * b - 1 : 2 * b + 1;
     return { prompt: `How many integers \\(x\\) satisfy the inequality \\(|x${signed(-a)}|${strict ? '<' : '\\le'}${b}\\)?`, answer: num(answer), wrong: [num(2 * b), num(strict ? 2 * b + 1 : 2 * b - 1), num(b), num(strict ? b - 1 : b + 1)],
-      explanation: `The inequality says \\(x\\) is ${strict ? 'less than' : 'at most'} ${b} units from ${a} on the number line, so \\(${a - b}${strict ? '<' : '\\le '}x${strict ? '<' : '\\le '}${a + b}\\).\nThe integers run from ${strict ? a - b + 1 : a - b} to ${strict ? a + b - 1 : a + b}. Count them: \\(${strict ? a + b - 1 : a + b}-(${strict ? a - b + 1 : a - b})+1=${answer}\\).` };
+      explanation: `The inequality says \\(x\\) is ${strict ? 'less than' : 'at most'} ${b} units from ${a} on the number line, so \\(${a - b}${strict ? '<' : '\\le '}x${strict ? '<' : '\\le '}${a + b}\\).\nThe integers run from ${strict ? a - b + 1 : a - b} to ${strict ? a + b - 1 : a + b}. Count them: \\(${strict ? a + b - 1 : a + b}-${(strict ? a - b + 1 : a - b) < 0 ? `(${strict ? a - b + 1 : a - b})` : strict ? a - b + 1 : a - b}+1=${answer}\\).` };
   }),
 ];
 
@@ -102,7 +102,7 @@ export const fractionsDecimals: Family[] = [
   family('fraction-of-group', 'Fraction of a group', 1, rng => {
     const [p, q] = rng.pick([[1, 3], [2, 3], [1, 4], [3, 4], [2, 5], [3, 5], [1, 6], [5, 6], [3, 8], [5, 8]]), total = q * rng.int(3, 12), name = rng.pick(names);
     const story = rng.pick([
-      { setup: `A class has ${total} students. \\(${fracTex(p, q)}\\) of them walk to school.`, ask: 'How many students do not walk to school?' },
+      { setup: `A grade at a middle school has ${total} students. \\(${fracTex(p, q)}\\) of them walk to school.`, ask: 'How many students do not walk to school?' },
       { setup: `${name} has ${total} stickers. ${name} gives away \\(${fracTex(p, q)}\\) of them.`, ask: `How many stickers does ${name} have left?` },
       { setup: `A parking lot has ${total} spaces, and \\(${fracTex(p, q)}\\) of the spaces are filled.`, ask: 'How many spaces are empty?' },
     ]), part = total * p / q;
@@ -125,7 +125,7 @@ export const fractionsDecimals: Family[] = [
     const story = rng.pick([
       { thing: 'A board', unit: 'feet', piece: 'foot', ask: 'pieces' }, { thing: 'A ribbon', unit: 'yards', piece: 'yard', ask: 'pieces' }, { thing: 'A rope', unit: 'meters', piece: 'meter', ask: 'pieces' },
     ]);
-    return { prompt: `${story.thing} is \\(${mixed(count * p, q)}\\) ${story.unit} long. It is cut into pieces that are each \\(${fracTex(p, q)}\\) ${story.piece} long, with nothing left over. How many ${story.ask} are there?`, grid: count,
+    return { prompt: `${story.thing} is \\(${mixed(count * p, q)}\\) ${count * p <= q ? story.piece : story.unit} long. It is cut into pieces that are each \\(${fracTex(p, q)}\\) ${story.piece} long, with nothing left over. How many ${story.ask} are there?`, grid: count,
       explanation: `Divide the total length by the length of one piece. Dividing by a fraction is the same as multiplying by its reciprocal:\n\\[${mixed(count * p, q)}\\div${fracTex(p, q)}=${fracTex(count * p, q)}\\times${fracTex(q, p)}=${count}.\\]` };
   }),
   family('fraction-compare', 'Comparing fractions', 2, rng => {
@@ -153,7 +153,7 @@ export const orderOfOperations: Family[] = [
   family('order-four-operations', 'Order of operations with four operations', 1, rng => {
     const a = rng.int(3, 20), b = rng.int(2, 9), c = rng.int(2, 9), e = rng.int(2, 6), d = e * rng.int(2, 8), answer = a + b * c - d / e;
     return { prompt: `What is the value of the expression below?\n\\[${a}+${b}\\times${c}-${d}\\div${e}\\]`, answer: num(answer), wrong: ints(((a + b) * c - d) / e, (a + b) * c - d / e, a + b * (c - d) / e, a + b * c - d),
-      explanation: `Multiply and divide before adding and subtracting:\n\\[${a}+(${b}\\times${c})-(${d}\\div${e})=${a}+${b * c}-${d / e}=${answer}.\\]\nWorking strictly left to right gives a different, incorrect value.` };
+      explanation: `Multiply and divide before adding and subtracting:\n\\[${a}+(${b}\\times${c})-(${d}\\div${e})=${a}+${b * c}-${d / e}=${answer}.\\]${((a + b) * c - d) / e === answer ? '' : '\nWorking strictly left to right gives a different, incorrect value.'}` };
   }),
   family('order-squared-group', 'Order of operations with a squared group', 2, rng => {
     const d = rng.int(1, 6), c = d + rng.int(2, 5), b = rng.int(2, 5), a = rng.int(10, 60), answer = a - b * (c - d) ** 2;
@@ -210,7 +210,7 @@ export const exponentsRoots: Family[] = [
   family('root-pythagorean-sum', 'Square root of a sum', 2, rng => {
     const [a, b, c] = rng.pick(triples);
     return { prompt: `What is the value of \\(\\sqrt{${a * a}+${b * b}}\\)?`, answer: num(c), wrong: [num(a + b), num((a * a + b * b) / 2), num(c + 2), num(a * b)],
-      explanation: `Add inside the square root first: \\(${a * a}+${b * b}=${c * c}\\).\nThen \\(\\sqrt{${c * c}}=${c}\\) because \\(${c}\\times${c}=${c * c}\\).\nTaking each square root separately (\\(${a}+${b}=${a + b}\\)) is not allowed for a sum.` };
+      explanation: `Add inside the square root first: \\(${tx(a * a)}+${tx(b * b)}=${tx(c * c)}\\).\nThen \\(\\sqrt{${tx(c * c)}}=${c}\\) because \\(${c}\\times${c}=${tx(c * c)}\\).\nTaking each square root separately (\\(${a}+${b}=${a + b}\\)) is not allowed for a sum.` };
   }),
   family('scientific-to-standard', 'Scientific notation to standard form', 2, rng => {
     const digits = rng.pick([12, 15, 18, 24, 27, 32, 36, 45, 48, 52, 56, 63, 72, 75, 84, 91, 96]), exponent = rng.bool() ? -rng.int(2, 5) : rng.int(3, 6);
@@ -246,7 +246,7 @@ export const unitsConversions: Family[] = [
       explanation: `Convert the ${big} to ${small}, then add the extra ${small}:\n\\[${a}\\times${k}=${a * k}\\qquad ${a * k}+${b}=${answer}.\\]` };
   }),
   family('units-invented-chain', 'Converting through two made-up units', 2, rng => {
-    const [x, y, z] = rng.shuffle(['sind', 'lorg', 'dalt', 'plex', 'zarn', 'quib', 'morp', 'tink', 'vosh', 'reld']), p = rng.int(2, 6), q = rng.int(3, 8), k = rng.int(2, 9), down = rng.bool();
+    const [x, y, z] = rng.shuffle(['sind', 'lorg', 'dalt', 'gorn', 'zarn', 'quib', 'morp', 'tink', 'brel', 'reld']), p = rng.int(2, 6), q = rng.int(3, 8), k = rng.int(2, 9), down = rng.bool();
     if (down) return { prompt: `In a game, 1 ${x} = ${p} ${y}s and 1 ${y} = ${q} ${z}s. How many ${z}s are equal to ${k} ${x}s?`, answer: num(k * p * q), wrong: [num(k * p), num(k * q), num(k * (p + q)), num(p * q)],
       explanation: `Convert one step at a time. ${k} ${x}s = \\(${k}\\times${p}=${k * p}\\) ${y}s.\nThen ${k * p} ${y}s = \\(${k * p}\\times${q}=${k * p * q}\\) ${z}s.` };
     const total = k * p * q;
@@ -259,7 +259,7 @@ export const unitsConversions: Family[] = [
       return { prompt: `A train travels at a constant speed of ${metric} kilometers per hour. What is its speed in meters per second? (1 kilometer = 1,000 meters)`, answer: num(result), wrong: [num(metric * 1000 / 60), num(result * 2), num(metric * 10), num(result + 5)],
         explanation: `Convert kilometers to meters and hours to seconds. One hour is \\(60\\times60=3{,}600\\) seconds.\n\\[\\frac{${metric}\\times1{,}000\\text{ meters}}{3{,}600\\text{ seconds}}=\\frac{${tx(metric * 1000)}}{3{,}600}=${result}\\text{ meters per second}.\\]\nDividing by 60 only once gives meters per minute.` }; }
     if (form === 2) { const feet = rng.pick([22, 44, 66, 88, 110, 132]), result = feet * 15 / 22;
-      return { prompt: `A cyclist coasts downhill at a constant speed of ${feet} feet per second. What is this speed in miles per hour? (1 mile = 5,280 feet)`, answer: num(result), wrong: [num(result * 2), num(feet), num(clean(feet * 60 / 5280 * 10)), num(result + 5)],
+      return { prompt: `A car on a test track travels at a constant speed of ${feet} feet per second. What is this speed in miles per hour? (1 mile = 5,280 feet)`, answer: num(result), wrong: [num(result * 2), num(feet), num(clean(feet * 60 / 5280 * 10)), num(result + 5)],
         explanation: `In one hour (3,600 seconds) the cyclist travels \\(${feet}\\times3{,}600=${tx(feet * 3600)}\\) feet.\nDivide by the number of feet in a mile:\n\\[${tx(feet * 3600)}\\div5{,}280=${result}\\text{ miles per hour}.\\]` }; }
     const speed = rng.pick([15, 30, 45, 60, 75, 90]), answer = speed * 22 / 15;
     return { prompt: `A car travels at a constant speed of ${speed} miles per hour. What is its speed in feet per second? (1 mile = 5,280 feet)`, answer: num(answer), wrong: [num(speed * 88), num(answer * 2), num(answer / 2)],
@@ -273,15 +273,15 @@ export const unitsConversions: Family[] = [
     }
     const n = rng.int(2, 9);
     return { prompt: `How many square inches are in ${n} square feet? (1 foot = 12 inches)`, answer: num(144 * n), wrong: [num(12 * n), num(24 * n), num(48 * n), num(144 + n)],
-      explanation: `A square foot is 12 inches by 12 inches, so it contains \\(12\\times12=144\\) square inches.\n\\[${n}\\times144=${144 * n}.\\]` };
+      explanation: `A square foot is 12 inches by 12 inches, so it contains \\(12\\times12=144\\) square inches.\n\\[${n}\\times144=${tx(144 * n)}.\\]` };
   }),
   family('units-elapsed-time', 'Adding elapsed time', 2, rng => {
     const hour = rng.int(1, 6), minute = rng.pick([15, 20, 25, 35, 40, 45, 50, 55]), h = rng.int(1, 3), m = rng.pick([15, 20, 25, 30, 35, 40, 45, 50, 55].filter(value => value + minute >= 60 && (value + minute) % 60 !== 0));
     const end = hour * 60 + minute + h * 60 + m, clock = (total: number) => `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')} p.m.`;
     const option = (total: number): Choice => ({ text: clock(total), value: total });
-    const story = rng.pick(['A movie starts', 'A train leaves', 'A soccer practice begins', 'A concert starts']);
+    const story = rng.pick(['A movie starts', 'A train ride begins', 'A soccer practice begins', 'A concert starts']);
     return { prompt: `${story} at ${clock(hour * 60 + minute)} and lasts ${h} ${plural(h, 'hour')} ${m} minutes. At what time does it end?`, answer: option(end), wrong: [option(end - 60), option(end + 60), option(end + rng.pick([10, 20, -10, -20]))],
-      explanation: `Add the hours, then the minutes: ${hour}:${String(minute).padStart(2, '0')} plus ${h} ${plural(h, 'hour')} is ${hour + h}:${String(minute).padStart(2, '0')}.\n${minute} minutes + ${m} minutes = ${minute + m} minutes, which is 1 hour ${minute + m - 60} minutes.\nSo the end time is ${clock(end)}. Remember that 60 minutes, not 100, make an hour.` };
+      explanation: `Add the hours, then the minutes: ${hour}:${String(minute).padStart(2, '0')} plus ${h} ${plural(h, 'hour')} is ${hour + h}:${String(minute).padStart(2, '0')}.\n${minute} minutes + ${m} minutes = ${minute + m} minutes, which is 1 hour ${minute + m - 60} minutes.\nSo the end time is ${clock(end)} Remember that 60 minutes, not 100, make an hour.` };
   }),
   family('units-money-rate', 'Converting with an exchange rate', 2, rng => {
     const rate = rng.pick([4, 5, 6, 8, 12, 15, 20]), dollarsHad = rng.int(3, 15) * 5, cost = rate * rng.int(4, Math.floor(dollarsHad * 0.8)), unitName = rng.pick(['pesos', 'kroner', 'rupees', 'francs']), name = rng.pick(names);

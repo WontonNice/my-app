@@ -18,7 +18,7 @@ export const dataDisplays: Family[] = [
     const wrong = mode === 'at least' ? [moreThan, fewerThan, counts[t], total] : mode === 'more than' ? [atLeast, atMost, counts[t + 1], total] : [atMost, atLeast, counts[t - 1], total];
     const rows = mode === 'fewer than' ? counts.slice(0, t) : mode === 'at least' ? counts.slice(t) : counts.slice(t + 1);
     return { prompt: `${table([s.label, s.count], counts.map((count, value) => [value, count]))}\n\nThe table shows the results of a survey. How many ${s.who} ${s.verb} ${mode} ${t} ${s.thing}?`, answer: num(answer), wrong: wrong.map(num),
-      explanation: `"${mode[0].toUpperCase()}${mode.slice(1)} ${t}" means ${mode === 'at least' ? `${t} or more, so include the row for ${t}` : mode === 'more than' ? `${t + 1} or more, so do not include the row for ${t}` : `${t - 1} or less, so do not include the row for ${t}`}.\nAdd those rows: \\(${rows.join('+')}=${answer}\\).` };
+      explanation: `"${mode[0].toUpperCase()}${mode.slice(1)} ${t}" means ${mode === 'at least' ? `${t} or more, so include the row for ${t}` : mode === 'more than' ? `${t + 1} or more, so do not include the row for ${t}` : `${t - 1} or fewer, so do not include the row for ${t}`}.\n${rows.length === 1 ? `Only one row qualifies, so the answer is ${answer}.` : `Add those rows: \\(${rows.join('+')}=${answer}\\).`}` };
   }),
   family('data-frequency-total', 'Totals from a frequency table', 2, rng => {
     const s = rng.pick(tableStories), counts = Array.from({ length: 5 }, () => rng.int(1, 8)), weighted = sum(counts.map((count, value) => count * value)), total = sum(counts);
@@ -26,10 +26,13 @@ export const dataDisplays: Family[] = [
       explanation: `Each row stands for several ${s.who}. Multiply each number of ${s.thing} by how many ${s.who} had that number, then add:\n\\[${counts.map((count, value) => `${value}\\times${count}`).join('+')}=${weighted}.\\]\nAdding only the right column (${total}) counts the ${s.who}, not the ${s.thing}.` };
   }),
   family('data-frequency-mean', 'Mean from a frequency table', 3, rng => {
-    let counts = [1, 2, 4, 2, 1];
-    for (let tries = 0; tries < 200; tries++) { const next = Array.from({ length: 5 }, () => rng.int(1, 8)); if (sum(next.map((count, i) => count * (i + 1))) % sum(next) === 0 && !(next[0] === next[4] && next[1] === next[3])) { counts = next; break; } }
-    const total = sum(counts), weighted = sum(counts.map((count, i) => count * (i + 1))), mean = weighted / total, mode = counts.indexOf(Math.max(...counts)) + 1;
-    return { prompt: `${table(['Rating', 'Number of customers'], counts.map((count, i) => [i + 1, count]))}\n\nCustomers rated a restaurant from 1 to 5, as shown in the table. What is the mean (average) rating?`, answer: num(mean), wrong: [num(3), num(mode), num(clean(Math.round(total / 5 * 10) / 10)), num(mean + 1)],
+    // Aim for a mean of 2, 3 or 4 equally often, so the answer cannot be guessed from the middle of the scale.
+    const want = rng.pick([2, 3, 4]); let counts = want === 2 ? [6, 3, 1, 1, 1] : want === 4 ? [1, 1, 1, 3, 6] : [1, 2, 4, 2, 1];
+    for (let tries = 0; tries < 400; tries++) { const peak = want === 2 ? rng.int(0, 1) : want === 4 ? rng.int(3, 4) : rng.int(1, 3), next = Array.from({ length: 5 }, (_, i) => rng.int(1, 4) + (i === peak ? rng.int(3, 9) : 0)); if (sum(next.map((count, i) => count * (i + 1))) === want * sum(next) && !(next[0] === next[4] && next[1] === next[3])) { counts = next; break; } }
+    const total = sum(counts), weighted = sum(counts.map((count, i) => count * (i + 1))), mean = weighted / total;
+    // Four evenly spaced ratings on the 1-to-5 scale, with the answer equally likely in any position.
+    const options = rng.shuffle([0, 1, 2, 3].flatMap(rank => [0.5, 1].map(step => [0, 1, 2, 3].map(i => mean + (i - rank) * step)))).find(values => values.every(value => value >= 1 && value <= 5))!;
+    return { prompt: `${table(['Rating', 'Number of customers'], counts.map((count, i) => [i + 1, count]))}\n\nCustomers rated a restaurant from 1 to 5, as shown in the table. What is the mean (average) rating?`, answer: num(mean), wrong: options.filter(value => value !== mean).map(num),
       explanation: `Multiply each rating by the number of customers who gave it, add, and divide by the number of customers.\nTotal of all ratings: \\(${counts.map((count, i) => `${i + 1}\\times${count}`).join('+')}=${weighted}\\).\nNumber of customers: \\(${counts.join('+')}=${total}\\).\n\\[${weighted}\\div${total}=${mean}.\\]` };
   }),
   family('data-circle-graph', 'Circle graphs', 2, rng => {
@@ -57,15 +60,15 @@ export const dataDisplays: Family[] = [
     const counts = Array.from({ length: 5 }, () => rng.int(1, 7)); if (sum(counts) % 2 === 0) counts[rng.int(0, 4)]++;
     const total = sum(counts), middle = (total + 1) / 2; let running = 0, median = 1; for (let i = 0; i < 5; i++) { running += counts[i]; if (running >= middle) { median = i + 1; break; } }
     const mode = counts.indexOf(Math.max(...counts)) + 1, cumulative = counts.map((_, i) => sum(counts.slice(0, i + 1)));
-    return { prompt: `${table(['Quiz score', 'Number of students'], counts.map((count, i) => [i + 1, count]))}\n\nThe table shows the scores of ${total} students on a 5-point quiz. What is the median score?`, answer: num(median), wrong: [num(mode), num(3), num(median + 1), num(median - 1)].filter(choice => choice.value! >= 1 && choice.value! <= 5),
-      explanation: `With ${total} scores in order, the median is the \\(\\frac{${total}+1}{2}=${middle}\\)th score.\nCount through the table: ${cumulative.map((value, i) => `scores of ${i + 1} or less: ${value}`).join('; ')}.\nThe ${middle}th score falls in the row for a score of ${median}.` };
+    return { prompt: `${table(['Quiz score', 'Number of students'], counts.map((count, i) => [i + 1, count]))}\n\nThe table shows the scores of ${total} students on a 5-point quiz. What is the median score?`, answer: num(median), wrong: [...(mode !== median ? [mode] : []), ...rng.shuffle([1, 2, 3, 4, 5].filter(value => value !== median && value !== mode))].map(num),
+      explanation: `With ${total} scores in order, the median is the \\(\\frac{${total}+1}{2}=${middle}\\)th score.\nCount through the table: ${cumulative.map((value, i) => `scores of ${i + 1} or lower: ${value}`).join('; ')}.\nThe ${middle}th score falls in the row for a score of ${median}.` };
   }),
 ];
 
 // ---- Averages & Spread ----
 export const averagesSpread: Family[] = [
   family('mean-list', 'Mean of a list', 1, rng => {
-    const mean = rng.int(70, 92); let deviations = [-6, -2, 0, 3, 5];
+    const mean = rng.int(70, 88); let deviations = [-6, -2, 0, 3, 5];
     for (let tries = 0; tries < 40; tries++) { const next = Array.from({ length: 4 }, () => rng.int(-9, 9)), last = -sum(next); if (Math.abs(last) <= 12 && new Set([...next, last]).size === 5) { deviations = rng.shuffle([...next, last]); break; } }
     const scores = deviations.map(value => mean + value), sorted = [...scores].sort((a, b) => a - b), name = rng.pick(names);
     return { prompt: `${name}'s scores on five quizzes were ${scores.slice(0, 4).join(', ')}, and ${scores[4]}. What is the mean (average) of the five scores?`, answer: num(mean), wrong: [num(sorted[2]), num(sorted[4] - sorted[0]), num(Math.round(sum(scores) / 4)), num(mean + 2)],
@@ -140,11 +143,11 @@ export const probability: Family[] = [
     const test = kind === 0 ? (value: number) => value % m === 0 : kind === 1 ? isPrime : (value: number) => value > k;
     const label = kind === 0 ? `a multiple of ${m}` : kind === 1 ? 'a prime number' : `greater than ${k}`, matches = Array.from({ length: n }, (_, i) => i + 1).filter(test), count = matches.length;
     return { prompt: `Cards numbered 1 through ${n} are placed in a box, one number on each card. One card is drawn at random. What is the probability that the number on the card is ${label}?`, answer: frac(count, n), wrong: [frac(count + 1, n), frac(Math.max(1, count - 1), n), frac(n - count, n), kind === 0 ? frac(1, m) : frac(count, n + 1)],
-      explanation: `List the numbers from 1 to ${n} that are ${label}: ${matches.join(', ')}. That is ${count} ${plural(count, 'number')}.\n\\[\\frac{${count}}{${n}}${frac(count, n).text === `${count}/${n}` ? '' : `=${fracTex(count, n)}`}.\\]${kind === 1 ? '\nRemember that 1 is not prime and 2 is prime.' : ''}` };
+      explanation: `List the numbers from 1 to ${n} that are ${kind === 0 ? `multiples of ${m}` : kind === 1 ? 'prime' : label}: ${matches.join(', ')}. That is ${count} ${plural(count, 'number')}.\n\\[\\frac{${count}}{${n}}${frac(count, n).text === `${count}/${n}` ? '' : `=${fracTex(count, n)}`}.\\]${kind === 1 ? '\nRemember that 1 is not prime and 2 is prime.' : ''}` };
   }),
   family('probability-add-marbles', 'Changing a probability', 3, rng => {
     const [p, q] = rng.pick([[1, 2], [2, 3], [3, 4], [3, 5], [4, 5]]), m = rng.int(2, 6), finalRed = p * m, finalTotal = q * m, blue = finalTotal - finalRed, added = rng.int(1, finalRed - 1), red = finalRed - added;
     return { prompt: `A bag contains ${red} red ${plural(red, 'marble')} and ${blue} blue ${plural(blue, 'marble')}. How many red marbles must be added to the bag so that the probability of randomly drawing a red marble is \\(\\frac{${p}}{${q}}\\)?`, answer: num(added), wrong: [num(finalRed), num(Math.abs(blue - red) || added + 2), num(finalTotal), num(added + q)],
-      explanation: `Adding red marbles does not change the ${blue} blue ${plural(blue, 'marble')}. If \\(\\frac{${p}}{${q}}\\) of the marbles are red, then \\(\\frac{${q - p}}{${q}}\\) are blue.\nSo \\(\\frac{${q - p}}{${q}}\\) of the new total is ${blue}, which makes the new total \\(${blue}\\times\\frac{${q}}{${q - p}}=${finalTotal}\\) and the number of red marbles \\(${finalTotal}-${blue}=${finalRed}\\).\n\\[${finalRed}-${red}=${added}.\\]\nCheck: \\(\\frac{${finalRed}}{${finalTotal}}=\\frac{${p}}{${q}}\\).` };
+      explanation: `Adding red marbles does not change the ${blue} blue ${plural(blue, 'marble')}. If \\(\\frac{${p}}{${q}}\\) of the marbles are red, then \\(\\frac{${q - p}}{${q}}\\) are blue.\nSo \\(\\frac{${q - p}}{${q}}\\) of the new total is ${blue}, which makes the new total \\(${blue}\\times${fracTex(q, q - p)}=${finalTotal}\\) and the number of red marbles \\(${finalTotal}-${blue}=${finalRed}\\).\n\\[${finalRed}-${red}=${added}.\\]\nCheck: \\(\\frac{${finalRed}}{${finalTotal}}=\\frac{${p}}{${q}}\\).` };
   }),
 ];

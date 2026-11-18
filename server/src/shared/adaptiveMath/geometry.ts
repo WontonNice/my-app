@@ -1,4 +1,4 @@
-import { clean, deg, family, num, piTerm, plural, point, signed, tex, tx, type Draft, type Family, type Rng } from './kit';
+import { article, clean, deg, family, fmt, num, piTerm, plural, point, signed, tex, tx, type Draft, type Family, type Rng } from './kit';
 import { figure, label, polygon, type Point } from '../geometryFigures';
 
 const angleRatios = [[1, 2, 3], [2, 3, 4], [1, 3, 5], [2, 3, 5], [1, 4, 5], [3, 4, 5], [1, 5, 6], [2, 5, 8], [1, 2, 6], [4, 5, 6], [3, 5, 7], [5, 6, 7], [2, 7, 9], [3, 7, 10], [1, 1, 2], [1, 2, 2], [2, 2, 5], [1, 3, 6]];
@@ -133,21 +133,21 @@ export const circles: Family[] = [
       explanation: `From \\(A=\\pi r^2\\): \\(r^2=${r * r}\\), so \\(r=${r}\\).\n\\[C=2\\pi r=${2 * r}\\pi.\\]` };
   }),
   family('circle-semicircle-perimeter', 'Perimeter of a semicircle', 2, rng => {
-    const d = 2 * rng.int(2, 30), half = d / 2, shape = rng.pick(['A window', 'A garden bed', 'A tabletop', 'A stage']);
+    const d = 2 * rng.int(2, 30), half = d / 2, shape = rng.pick(['A plaza', 'A garden bed', 'A skating rink', 'A stage']);
     return { prompt: `${shape} has the shape of a semicircle with a diameter of ${d} feet. What is the perimeter of the semicircle, in feet?`, answer: tex(`${half}\\pi+${d}`, `${half}π + ${d}`), wrong: [tex(`${d}\\pi+${d}`, `${d}π + ${d}`), tex(`${half}\\pi`, `${half}π`), tex(`${half}\\pi+${half}`, `${half}π + ${half}`), tex(`${d}\\pi`, `${d}π`)],
       explanation: `The perimeter has two parts: the curved edge and the straight diameter.\nCurved edge: half of the full circumference, \\(\\frac{1}{2}\\times${d}\\pi=${half}\\pi\\).\nStraight edge: ${d}.\n\\[${half}\\pi+${d}\\]` };
   }),
   family('circle-inscribed-square', 'Region between a square and a circle', 3, rng => {
-    const s = 2 * rng.int(3, 20), r = s / 2, option = (first: number, second: number) => tex(`${first}-${second}\\pi`, `${first} - ${second}π`);
+    const s = 2 * rng.int(3, 20), r = s / 2, option = (first: number, second: number) => tex(`${tx(first)}-${tx(second)}\\pi`, `${fmt(first)} - ${fmt(second)}π`);
     return { prompt: `A circle is inscribed in a square with a side length of ${s} inches, so the circle touches all four sides. What is the area, in square inches, of the region inside the square but outside the circle?`, answer: option(s * s, r * r), wrong: [option(s * s, s * s), option(s * s, s), option(4 * s, s), option(s * s, 2 * r * r)],
       explanation: `The circle's diameter equals the side of the square, so its radius is \\(${s}\\div2=${r}\\).\nSquare: \\(${s}^2=${s * s}\\). Circle: \\(\\pi(${r})^2=${r * r}\\pi\\).\n\\[${s * s}-${r * r}\\pi\\]` };
   }),
   family('circle-sector', 'Area of a sector', 3, rng => {
     const r = rng.pick([6, 12, 18, 24]), angle = rng.pick([30, 45, 60, 90, 120, 135, 150]), area = clean(r * r * angle / 360), arc = clean(2 * r * angle / 360);
     if (rng.bool()) return { prompt: `A circle has a radius of ${r} inches. An arc of the circle has a central angle of \\(${angle}^\\circ\\). What is the length of the arc, in inches?`, answer: piTerm(arc), wrong: [piTerm(area), piTerm(2 * r), piTerm(clean(arc * 2)), piTerm(clean(arc / 2))],
-      explanation: `The arc is \\(\\frac{${angle}}{360}\\) of the whole circumference. The circumference is \\(2\\pi(${r})=${2 * r}\\pi\\).\n\\[\\frac{${angle}}{360}\\times${2 * r}\\pi=${tx(arc)}\\pi.\\]\n(\\(${tx(area)}\\pi\\) is the area of the sector, not the arc length.)` };
+      explanation: `The arc is \\(\\frac{${angle}}{360}\\) of the whole circumference. The circumference is \\(2\\pi(${r})=${2 * r}\\pi\\).\n\\[\\frac{${angle}}{360}\\times${2 * r}\\pi=${piTerm(arc).math}.\\]\n(\\(${piTerm(area).math}\\) is the area of the sector, not the arc length.)` };
     return { prompt: `A circle has a radius of ${r} inches. A sector of the circle has a central angle of \\(${angle}^\\circ\\). What is the area of the sector, in square inches?`, answer: piTerm(area), wrong: [piTerm(arc), piTerm(r * r), piTerm(clean(area * 2)), piTerm(clean(area / 2))],
-      explanation: `The sector is \\(\\frac{${angle}}{360}\\) of the whole circle. The whole circle's area is \\(\\pi(${r})^2=${r * r}\\pi\\).\n\\[\\frac{${angle}}{360}\\times${r * r}\\pi=${tx(area)}\\pi.\\]\n(\\(${tx(arc)}\\pi\\) is the length of the arc, not the area.)` };
+      explanation: `The sector is \\(\\frac{${angle}}{360}\\) of the whole circle. The whole circle's area is \\(\\pi(${r})^2=${r * r}\\pi\\).\n\\[\\frac{${angle}}{360}\\times${r * r}\\pi=${piTerm(area).math}.\\]\n(\\(${piTerm(arc).math}\\) is the length of the arc, not the area.)` };
   }),
 ];
 
@@ -159,10 +159,10 @@ function lShape(rng: Rng, askArea: boolean): Draft {
   const drawing = polygon(corners, '#f6f6f6') + label([x0 + width * scale / 2, y0 + 22], `${width} ft`) + label([x0 - 10, y0 - height * scale / 2 + 5], `${height} ft`, 'end')
     // The notch's width is labeled inside the floor and its height outside, so short notches stay readable.
     + label([x0 + (width - cutWidth / 2) * scale, y0 - (height - cutHeight) * scale + 19], `${cutWidth} ft`) + label([x0 + (width - cutWidth) * scale + 8, y0 - (height - cutHeight / 2) * scale + 5], `${cutHeight} ft`, 'start');
-  const image = figure(drawing, `An L-shaped floor: a ${width}-foot by ${height}-foot rectangle with a ${cutWidth}-foot by ${cutHeight}-foot rectangle removed from one corner.`);
+  const image = figure(drawing, `An L-shaped floor: ${article(width)} ${width}-foot by ${height}-foot rectangle with ${article(cutWidth)} ${cutWidth}-foot by ${cutHeight}-foot rectangle removed from one corner.`);
   const area = width * height - cutWidth * cutHeight, perimeter = 2 * (width + height);
   if (askArea) return { image, prompt: `The figure shows the floor plan of a room. All of the angles are right angles. What is the area of the floor, in square feet?`, answer: num(area), wrong: [num(width * height), num((width - cutWidth) * (height - cutHeight)), num(width * height + cutWidth * cutHeight), num(area - cutWidth - cutHeight)],
-    explanation: `Think of the floor as a ${width}-by-${height} rectangle with a ${cutWidth}-by-${cutHeight} corner removed.\n\\[${width}\\times${height}-${cutWidth}\\times${cutHeight}=${width * height}-${cutWidth * cutHeight}=${area}.\\]` };
+    explanation: `Think of the floor as ${article(width)} ${width}-by-${height} rectangle with ${article(cutWidth)} ${cutWidth}-by-${cutHeight} corner removed.\n\\[${width}\\times${height}-${cutWidth}\\times${cutHeight}=${width * height}-${cutWidth * cutHeight}=${area}.\\]` };
   return { image, prompt: `The figure shows the floor plan of a room. All of the angles are right angles. What is the perimeter of the floor, in feet?`, answer: num(perimeter), wrong: [num(perimeter - cutWidth - cutHeight), num(width + height + cutWidth + cutHeight), num(perimeter + 2 * (cutWidth + cutHeight)), num(area)],
     explanation: `The two unlabeled sides are \\(${width}-${cutWidth}=${width - cutWidth}\\) feet and \\(${height}-${cutHeight}=${height - cutHeight}\\) feet.\nAdd all six sides: \\(${width}+${height - cutHeight}+${cutWidth}+${cutHeight}+${width - cutWidth}+${height}=${perimeter}\\).\nThe notch moves two sides inward without changing their total length, so the perimeter equals that of the full ${width}-by-${height} rectangle: \\(2(${width}+${height})=${perimeter}\\).` };
 }
@@ -181,8 +181,8 @@ export const perimeterArea: Family[] = [
       explanation: `A triangle is half of a rectangle with the same base and height:\n\\[\\frac{1}{2}\\times${base}\\times${h}=${area}.\\]` };
   }),
   family('area-walkway', 'Area of a border', 2, rng => {
-    const a = rng.int(8, 30), b = rng.int(5, 20), w = rng.int(1, 4), answer = (a + 2 * w) * (b + 2 * w) - a * b;
-    const story = rng.pick([['pool', 'walkway'], ['garden', 'gravel path'], ['painting', 'frame']]);
+    const a = rng.int(12, 30), b = rng.int(5, a - 2), w = rng.int(1, 4), answer = (a + 2 * w) * (b + 2 * w) - a * b;
+    const story = rng.pick([['pool', 'walkway'], ['garden', 'gravel path'], ['playground', 'rubber border']]);
     return { prompt: `A rectangular ${story[0]} is ${a} feet long and ${b} feet wide. It is surrounded on all four sides by a ${story[1]} that is ${w} ${plural(w, 'foot', 'feet')} wide. What is the area of the ${story[1]}, in square feet?`, answer: num(answer), wrong: [num((a + w) * (b + w) - a * b), num(2 * w * (a + b)), num((a + 2 * w) * (b + 2 * w)), num(w * (a + b))],
       explanation: `The ${story[1]} adds ${w} ${plural(w, 'foot', 'feet')} on each side, so the outer rectangle is \\(${a}+2(${w})=${a + 2 * w}\\) by \\(${b}+2(${w})=${b + 2 * w}\\).\n\\[${a + 2 * w}\\times${b + 2 * w}-${a}\\times${b}=${(a + 2 * w) * (b + 2 * w)}-${a * b}=${answer}.\\]\nThe width is added twice to each dimension, once for each side.` };
   }),
@@ -279,7 +279,7 @@ export const similarityScale: Family[] = [
   }),
   family('scale-shadow', 'Similar triangles and shadows', 2, rng => {
     const [hn, sn] = rng.pick([[1, 2], [2, 3], [3, 2], [3, 4], [4, 3], [5, 4], [2, 1], [5, 2], [3, 5], [4, 5]]), k1 = rng.int(2, 4), k2 = rng.int(5, 12), h1 = hn * k1, s1 = sn * k1, s2 = sn * k2, answer = hn * k2;
-    return { prompt: `A ${h1}-foot pole casts a ${s1}-foot shadow. At the same time, a nearby tree casts a ${s2}-foot shadow. How tall is the tree, in feet?`, answer: num(answer), wrong: [num(h1 + (s2 - s1)), num(Math.round(s2 * s1 / h1)), num(Math.abs(s2 - h1) || answer + 2), num(answer + h1)],
+    return { prompt: `${article(h1) === 'an' ? 'An' : 'A'} ${h1}-foot pole casts ${article(s1)} ${s1}-foot shadow. At the same time, a nearby tree casts ${article(s2)} ${s2}-foot shadow. How tall is the tree, in feet?`, answer: num(answer), wrong: [num(h1 + (s2 - s1)), num(Math.round(s2 * s1 / h1)), num(Math.abs(s2 - h1) || answer + 2), num(answer + h1)],
       explanation: `The sun's rays make similar right triangles, so height and shadow are proportional:\n\\[\\frac{${h1}}{${s1}}=\\frac{h}{${s2}}\\quad\\Rightarrow\\quad h=\\frac{${h1}\\times${s2}}{${s1}}=${answer}.\\]\nThe shadows differ by a factor, not by a fixed number of feet.` };
   }),
   family('scale-similar-perimeter', 'Perimeter of a similar triangle', 2, rng => {

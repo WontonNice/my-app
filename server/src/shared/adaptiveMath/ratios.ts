@@ -39,7 +39,7 @@ export const ratiosProportions: Family[] = [
     const story = rng.pick([{ mix: 'A paint mixture uses red, yellow, and blue paint', made: `A painter makes ${total} liters of the mixture`, unitName: 'liters', first: 'red paint', last: 'blue paint' }, { mix: 'A trail mix uses raisins, peanuts, and almonds', made: `A batch weighs ${total} ounces`, unitName: 'ounces', first: 'raisins', last: 'almonds' }, { mix: 'Three friends, Ana, Ben, and Cal, share prize money', made: `The prize is $${total}`, unitName: 'dollars', first: 'Ana', last: 'Cal' }]);
     const people = story.unitName === 'dollars';
     return { prompt: `${story.mix} in the ratio ${a}:${b}:${c}. ${story.made}. ${people ? `How many more dollars does ${story.last} receive than ${story.first}?` : `How many more ${story.unitName} of ${story.last} than ${story.first} are used?`}`, answer: num(k * (c - a)), wrong: [num(k * c), num(k * a), num(c - a), num(k * b)],
-      explanation: `There are \\(${a}+${b}+${c}=${a + b + c}\\) parts in all, so each part is \\(${total}\\div${a + b + c}=${k}\\).\n${story.last}: \\(${c}\\times${k}=${c * k}\\). ${story.first}: \\(${a}\\times${k}=${a * k}\\).\nThe difference is \\(${c * k}-${a * k}=${k * (c - a)}\\).` };
+      explanation: `There are \\(${a}+${b}+${c}=${a + b + c}\\) parts in all, so each part is \\(${total}\\div${a + b + c}=${k}\\).\nAmount for ${story.last}: \\(${c}\\times${k}=${c * k}\\). Amount for ${story.first}: \\(${a}\\times${k}=${a * k}\\).\nThe difference is \\(${c * k}-${a * k}=${k * (c - a)}\\).` };
   }),
 ];
 
@@ -53,10 +53,10 @@ export const rates: Family[] = [
       explanation: `Find the cost of one: \\(\\$${dollars(a * price)}\\div${a}=\\$${dollars(price)}\\).\nThen multiply by ${c}: \\(${c}\\times\\$${dollars(price)}=\\$${dollars(c * price)}\\).` };
   }),
   family('rate-distance-time', 'Constant speed with mixed time units', 2, rng => {
-    const u = rng.pick([15, 20, 30, 40, 45]), miles = rng.int(2, 12), k = rng.int(3, 8), target = u * k, name = rng.pick(names);
-    const story = rng.pick([['bikes', 'bike'], ['jogs', 'jog'], ['paddles a canoe', 'paddle']]);
-    return { prompt: `${name} ${story[0]} ${miles} miles in ${u} minutes. At this rate, how many miles will ${name} ${story[1]} in ${hoursMinutes(target)}?`, answer: num(miles * k), wrong: [num(clean(miles * target / 60)), num(miles * (k - 1)), num(miles * (k + 1)), num(miles + k)],
-      explanation: `Use the same time unit. ${hoursMinutes(target)} is ${target} minutes, which is \\(${target}\\div${u}=${k}\\) periods of ${u} minutes.\n${name} covers ${miles} miles in each period: \\(${k}\\times${miles}=${miles * k}\\) miles.` };
+    const u = rng.pick([15, 20, 30, 40, 45]), miles = rng.int(Math.ceil(u / 5), Math.ceil(u / 2)), k = rng.int(3, 8), target = u * k;
+    const vehicle = rng.pick(['A delivery van', 'A city bus', 'A ferry', 'A freight train']);
+    return { prompt: `${vehicle} travels ${miles} miles in ${u} minutes. At this rate, how many miles will it travel in ${hoursMinutes(target)}?`, answer: num(miles * k), wrong: [num(miles * (k - 1)), num(miles * (k + 1)), num(miles + k), num(miles * k * 2)],
+      explanation: `Use the same time unit. ${target >= 60 ? `${hoursMinutes(target)} is ${target} minutes, which is` : `${target} minutes is`} \\(${target}\\div${u}=${k}\\) periods of ${u} minutes.\n${vehicle} covers ${miles} miles in each period: \\(${k}\\times${miles}=${miles * k}\\) miles.` };
   }),
   family('rate-average-speed', 'Average speed for a whole trip', 3, rng => {
     let t1 = 1, t2 = 3, r1 = 30, r2 = 50;
@@ -98,13 +98,13 @@ export const percentages: Family[] = [
   }),
   family('percent-discount', 'Sale price', 2, rng => {
     const price = rng.pick([24, 30, 36, 40, 45, 48, 60, 75, 80, 90, 120, 150]), d = rng.pick([10, 15, 20, 25, 30, 40]), off = price * d / 100, thing = rng.pick(['jacket', 'backpack', 'lamp', 'pair of headphones', 'skateboard']);
-    return { prompt: `A ${thing} that regularly costs $${price} is on sale for ${d}% off. What is the sale price?`, answer: money(price - off), wrong: [money(off), money(price - d), money(price + off)],
+    return { prompt: `A ${thing} that regularly costs $${price} is on sale for ${d}% off. What is the sale price?`, answer: money(price - off), wrong: [money(off), money(price - d), money(price + off)].filter(choice => choice.value! > 0),
       explanation: `The discount is \\(${d}\\%\\) of \\$${price}: \\(${d / 100}\\times${price}=\\$${dollars(off)}\\).\nSubtract it from the regular price: \\(\\$${price}-\\$${dollars(off)}=\\$${dollars(price - off)}\\).\n(Or find \\(${100 - d}\\%\\) of \\$${price} directly.)` };
   }),
   family('percent-reverse', 'Finding the original price', 2, rng => {
     const original = rng.pick([40, 50, 60, 80, 120, 150, 200, 240, 300]), d = rng.pick([10, 20, 25, 30, 40]), sale = original * (100 - d) / 100, thing = rng.pick(['bicycle', 'tent', 'keyboard', 'winter coat']);
     return { prompt: `After a ${d}% discount, a ${thing} costs $${dollars(sale)}. What was the original price?`, answer: money(original), wrong: [money(sale * (100 + d) / 100), money(sale + d), money(original * (100 + d) / 100)],
-      explanation: `After a ${d}% discount, the sale price is \\(${100 - d}\\%\\) of the original price.\n\\[${(100 - d) / 100}\\times\\text{original}=${tx(sale)}\\quad\\Rightarrow\\quad\\text{original}=${tx(sale)}\\div${(100 - d) / 100}=${original}.\\]\nAdding ${d}% of the sale price does not undo the discount, because the ${d}% was taken from the larger original price.` };
+      explanation: `After a ${d}% discount, the sale price is \\(${100 - d}\\%\\) of the original price.\n\\[${(100 - d) / 100}\\times\\text{original}=${dollars(sale)}\\quad\\Rightarrow\\quad\\text{original}=${dollars(sale)}\\div${(100 - d) / 100}=${original}.\\]\nAdding ${d}% of the sale price does not undo the discount, because the ${d}% was taken from the larger original price.` };
   }),
   family('percent-is-what', 'One number as a percent of another', 2, rng => {
     let b = 20, p = 75;

@@ -68,7 +68,7 @@ export const extraUnits: Family[] = [
     let ml = 20, seconds = 4, hours = 2;
     for (let tries = 0; tries < 60; tries++) { const a = rng.pick([5, 10, 15, 20, 25, 50]), s = rng.pick([2, 3, 4, 5, 6, 9, 10]), h = rng.int(1, 5); if (Number.isInteger(clean(a * 3600 * h / s / 100))) { ml = a; seconds = s; hours = h; break; } }
     const milliliters = ml * 3600 * hours / seconds, answer = clean(milliliters / 1000);
-    return { prompt: `A leaky faucet drips ${ml} milliliters of water every ${seconds} seconds. At this rate, how many liters of water does it drip in ${hours} ${plural(hours, 'hour')}? (1 liter = 1,000 milliliters)`, answer: num(answer), wrong: [num(clean(answer / 60)), num(clean(answer * 10)), num(clean(ml * hours / seconds)), num(clean(answer / 10))],
+    return { prompt: `A leaky faucet drips ${ml} milliliters of water every ${seconds} seconds. At this rate, how many liters of water does it drip in ${hours} ${plural(hours, 'hour')}? (1 liter = 1,000 milliliters)`, answer: num(answer), wrong: [num(milliliters), num(clean(answer * 10)), num(clean(answer / 10)), num(clean(answer * 2))],
       explanation: `${hours} ${plural(hours, 'hour')} is \\(${hours}\\times3{,}600=${tx(hours * 3600)}\\) seconds, which is \\(${tx(hours * 3600)}\\div${seconds}=${tx(hours * 3600 / seconds)}\\) periods of ${seconds} seconds.\nWater: \\(${tx(hours * 3600 / seconds)}\\times${ml}=${tx(milliliters)}\\) milliliters.\n\\[${tx(milliliters)}\\div1{,}000=${tx(answer)}\\text{ liters}.\\]` };
   }),
 ];

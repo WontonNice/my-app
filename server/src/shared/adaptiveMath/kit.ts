@@ -64,7 +64,9 @@ export const fracTex = (numerator: number, denominator: number) => frac(numerato
 export const tex = (math: string, text = math): Choice => ({ text, math });
 export const txt = (text: string): Choice => ({ text });
 /** k·π with the coefficient written first, or a bare number when there is no π part. */
-export const piTerm = (coefficient: number): Choice => ({ text: `${fmt(coefficient)}π`, math: `${tx(coefficient)}\\pi`, value: clean(coefficient), like: piTerm });
+export const piTerm = (coefficient: number): Choice => ({ text: `${clean(coefficient) === 1 ? '' : fmt(coefficient)}π`, math: `${clean(coefficient) === 1 ? '' : tx(coefficient)}\\pi`, value: clean(coefficient), like: piTerm });
+/** "a" or "an" before a number read aloud, as in "an 8-foot pole" and "an 11-foot shadow". */
+export const article = (value: number) => value === 8 || value === 11 || value === 18 || value >= 80 && value <= 89 || value >= 800 && value <= 899 ? 'an' : 'a';
 export const point = (x: number, y: number): Choice => ({ text: `(${x}, ${y})`, math: `(${x},\\ ${y})`, near: () => [point(y, x), point(-x, y), point(x, -y), point(x + 1, y), point(x, y + 1), point(x - 1, y - 1)] });
 export const ratio = (a: number, b: number): Choice => { const g = gcd(a, b) || 1; return { text: `${a / g}:${b / g}`, math: `${a / g}:${b / g}`, near: () => [ratio(b, a), ratio(a + b, b), ratio(a, a + b), ratio(a + 1, b), ratio(a, b + 1), ratio(a + 2, b + 1)] }; };
 /** A linear expression such as 3x - 5 in the given variable. */
@@ -76,7 +78,8 @@ export function linear(coefficient: number, constant: number, variable = 'x'): C
 
 /** A simple table rendered with KaTeX, matching the tables used elsewhere in practice. */
 export function table(headers: string[], rows: (string | number)[][]) {
-  const cell = (value: string | number) => typeof value === 'number' ? tx(value) : `\\text{${value}}`;
+  // A single lowercase letter is an unknown, so it is set in math italics like the rest of the question.
+  const cell = (value: string | number) => typeof value === 'number' ? tx(value) : /^[a-z]$/.test(value) ? value : `\\text{${value}}`;
   return `\\[\\begin{array}{|${headers.map(() => 'c').join('|')}|}\\hline ${headers.map(header => `\\textbf{${header}}`).join(' & ')}\\\\ \\hline ${rows.map(row => `${row.map(cell).join(' & ')}\\\\ \\hline`).join(' ')}\\end{array}\\]`;
 }
 
