@@ -29,7 +29,9 @@ require.cache[id] = { id, filename: id, loaded: true, exports: { supabase: {
           if (copiesChangeWhileLoading && columns.includes('snapshot,') === false && columns.endsWith('snapshot')) source = source.map(row => ({ ...row, snapshot_hash: 'changed' }));
         }
         if (failures[table]) return Promise.resolve({ data: table === 'student_exam_result_summaries' ? null : source, error: failures[table] }).then(resolve, reject);
-        const data = source.filter(row => values.includes(row[key])).slice(start, end === Infinity ? undefined : end + 1);
+        let data = source.filter(row => values.includes(row[key])).slice(start, end === Infinity ? undefined : end + 1);
+        // Like the real database, the view returns only the columns that were selected.
+        if (table === 'student_exam_result_summaries') data = data.map(row => Object.fromEntries(columns.split(',').map(column => [column, row[column]])));
         return Promise.resolve({ data, error: null }).then(resolve, reject);
       },
     };
@@ -37,7 +39,15 @@ require.cache[id] = { id, filename: id, loaded: true, exports: { supabase: {
 } } };
 const { loadStudentProgressRows } = require('../src/lib/studentProgressRows.ts');
 const { clearExamSnapshots, stringifyWithSharedExamSnapshots } = require('../src/lib/examSnapshotStore.ts');
-const { attachSharedExamSnapshots } = require('../../client/src/lib/sharedExamSnapshots.ts');
+// The client package is ES modules, so its helper is transpiled here instead of required.
+function loadClientModule(relative) {
+  const filename = path.resolve(__dirname, relative);
+  const compiled = require('typescript').transpileModule(require('node:fs').readFileSync(filename, 'utf8'), { compilerOptions: { module: 1, target: 9 } }).outputText;
+  const loaded = new (require('node:module'))(filename, module);
+  loaded._compile(compiled, filename);
+  return loaded.exports;
+}
+const { attachSharedExamSnapshots } = loadClientModule('../../client/src/lib/sharedExamSnapshots.ts');
 function reset() { tables = {}; failures = {}; queries = []; viewInstalled = true; copiesChangeWhileLoading = false; clearExamSnapshots(); }
 const count = table => queries.filter(name => name === table).length;
 
